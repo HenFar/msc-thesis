@@ -1,6 +1,7 @@
 # LaTeX build artifacts
 *.aux
 *.bbl
+*.bbl-SAVE-ERROR
 *.bcf
 *.blg
 *.fdb_latexmk
