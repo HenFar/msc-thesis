@@ -1,0 +1,103 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  >=Stealth,
+  stage/.style={
+    draw=black!65,
+    rounded corners=2pt,
+    fill=white,
+    align=center,
+    minimum height=10mm,
+    text width=19mm,
+    inner sep=3pt
+  },
+  profile/.style={
+    stage,
+    fill=violet!7,
+    text width=34mm,
+    minimum height=12mm
+  },
+  public/.style={
+    stage,
+    fill=blue!7,
+    text width=24mm
+  },
+  flow/.style={->, line width=.75pt},
+  config/.style={->, dashed, gray!75, line width=.6pt}
+]
+
+% centre line
+\draw[black, thick] (0,-1) -- (2,-1);
+
+% build-only lines
+\draw[black, thick] (4,-2) -- (5,-2);
+\draw[black, dashed] (5,-2) -- (6,-2);
+
+\draw[black, dashed] (7, -1.5) -- (7.5,-1.5);
+\draw[black, dashed] (7, -2) -- (7.5,-2);
+\draw[black, dashed] (7, -2.5) -- (7.5,-2.5);
+
+% build-only nodes
+\filldraw[black] (8,-1.5) node[anchor=center]{$A_3^1$};
+\filldraw[black] (8,-2) node[anchor=center]{$\tilde A_3^1$};
+\filldraw[black] (8,-2.5) node[anchor=center]{$\hat A_3^1$};
+
+% integrate-only lines
+\draw[black, thick] (4,0) -- (6,0);
+
+\draw[black, thick] (7,0.5) -- (7.5,0.5);
+\draw[black, thick] (7,0) -- (7.5,0);
+\draw[black, thick] (7,-0.5) -- (7.5,-0.5);
+
+\draw[black, dashed] (8.5,0.5) -- (9,0.5);
+\draw[black, dashed] (8.5,0) -- (9,0);
+\draw[black, dashed] (8.5,-0.5) -- (9,-0.5);
+
+\draw[black, dashed] (10,0) -- (10.5,0)
+                    arc [start angle=90, end angle=0, radius=0.5]
+                           -- (11,-2);
+
+% integrate-only nodes
+\filldraw[black] (8,0.5) node[anchor=center]{$\mathcal A_3^1$};
+\filldraw[black] (8,0) node[anchor=center]{$\tilde{\mathcal A}_3^1$};
+\filldraw[black] (8,-0.5) node[anchor=center]{$\hat{\mathcal A}_3^1$};
+
+% curvy lines
+\draw (2,-1) to[out=0,in=180] (4,-2);
+\draw (2,-1) to[out=0,in=180] (4,0);
+
+\draw (6,0) to[out=0,in=180] (7,0.5);
+\draw (6,0) to[out=0,in=180] (7,0);
+\draw (6,0) to[out=0,in=180] (7,-0.5);
+
+\draw[black, dashed] (6,-2) to[out=0,in=180] (7, -1.5);
+\draw[black, dashed] (6,-2) to[out=0,in=180] (7, -2);
+\draw[black, dashed] (6,-2) to[out=0,in=180] (7, -2.5);
+
+\draw[black, dashed] (9,0.5) to[out=0,in=180] (10, 0);
+\draw[black, dashed] (9,0) to[out=0,in=180] (10, 0);
+\draw[black, dashed] (9,-0.5) to[out=0,in=180] (10, 0);
+
+% back and frontend backgrounds
+\begin{pgfonlayer}{background}
+  % Draws a light blue rectangle behind a specific region
+  \fill[black!10, rounded corners] (-2,1.5) rectangle (14,-4);
+\end{pgfonlayer}
+
+% diagram labels
+% \node[label={[text=gray]right:\textit{PaVe}}] at (-2,-4) {};
+
+% circle points
+\filldraw[black] (0,-1) circle (2pt) node[anchor=south, yshift = 2pt]{BuildAntenna[A,3,1]};
+\filldraw[black] (11,-2) circle (2pt) node[align=center, anchor=north, yshift = -2pt]{$\{\mathcal A_3^1, \tilde{\mathcal A}_3^1, \hat{\mathcal A}_3^1\}$};
+\filldraw[black] (5,-2) circle (2pt) node[anchor=north, yshift = -2pt]{$\{A_3^1, \tilde A_3^1, \hat A_3^1\}$};
+
+% arrows
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-45, label={[align=center]above:\textit{AntennaObject}}] at (5,0) {};
+\node[draw, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90] at (11,-1) {};
+
+\end{tikzpicture}
+\caption{\centering Diagram showing the component extraction steps and paths for the build-only and build-and-integrate routes. The combined route is shown above and the build-only route below it. The dashed lines represent the options to either separate the ordered lists into single components on the build-only route, or to merge the components into a single ordered list for the combined route. The $A_3^1$ antenna set is used as an example.}
+\label{fig:component-extraction}
+\end{figure}

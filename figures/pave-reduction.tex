@@ -1,0 +1,58 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  >=Stealth,
+  stage/.style={
+    draw=black!65,
+    rounded corners=2pt,
+    fill=white,
+    align=center,
+    minimum height=10mm,
+    text width=19mm,
+    inner sep=3pt
+  },
+  profile/.style={
+    stage,
+    fill=violet!7,
+    text width=34mm,
+    minimum height=12mm
+  },
+  public/.style={
+    stage,
+    fill=blue!7,
+    text width=24mm
+  },
+  flow/.style={->, line width=.75pt},
+  config/.style={->, dashed, gray!75, line width=.6pt}
+]
+
+% main lines
+\draw[black, thick] (0,-1) -- (10,-1);
+
+% back and frontend backgrounds
+\begin{pgfonlayer}{background}
+  % Draws a light blue rectangle behind a specific region
+  \fill[black!10, rounded corners] (-2,0.5) rectangle (12,-2.5);
+\end{pgfonlayer}
+
+% back and frontend labels
+\node[label={[text=gray]right:\textit{PaVe}}] at (-2,-2) {};
+
+% circle points
+\filldraw[black] (0,-1) circle (2pt) node[anchor=south, yshift = 2pt]{$A_2^1$};
+\filldraw[black] (2.5,-1) circle (2pt) node[anchor=south, yshift = 2pt]{PaVe};
+\filldraw[black] (5,-1) circle (2pt) node[align=center, anchor=south, yshift = 2pt]{Evaluate using \\ \textit{FeynHelpers}};
+\filldraw[black] (7.5,-1) circle (2pt) node[align=center, anchor=south, yshift = 2pt]{Laurent- \\ -Expansion};
+\filldraw[black] (10,-1) circle (2pt) node[anchor=south, yshift = 2pt]{$\mathcal A_2^1$};
+
+% arrows
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-45] at (1.25,-1) {};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-45] at (3.75,-1) {};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-45] at (6.25,-1) {};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-45] at (8.75,-1) {};
+
+\end{tikzpicture}
+\caption{PaVe reduction for the $A_2^1$ antenna integration.}
+\label{fig:pave-reduction}
+\end{figure}

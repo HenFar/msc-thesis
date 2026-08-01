@@ -1,0 +1,361 @@
+\chapter{Worked Example: $A_3^0$ End To End}\label{ch:workedexample}
+
+\section{Purpose of the Example}
+
+The simplest non-trivial SMQCD antenna is $A_3^0$. As such, it may be used as an example of how
+\textcolor{red}{AntCalc} handles the physics involved in building and then integrating it over the
+phase space. In this chapter, we are going to go over how this antenna is mathematically computed by hand, 
+and how \textcolor{red}{AntCalc} handles those same calculations on its end. 
+
+\section{Mathematical Derivation}\label{sec:matDerivation}
+
+\subsection{Physics Definition}
+
+The $A_3^0$ is the tree-level final-final quark-antiquark-gluon antenna. It represents the normalised 
+$\gamma^*(p)\to q(k_1)g(k_3)\bar q(k_2)$ process. This process, in the current model,
+is able to produce two distinct topologies which differ by what quark line the gluon is emitted from. Those
+diagrams are shown below in Figure~\ref{fig:feynDiagsA30}.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a) {\(\gamma^*\)};
+                \vertex [right=2cm of a] (b);
+                \vertex [above right=2cm of b] (q) {\(q\)};
+                \vertex [above right=1cm of b] (mid);
+                \vertex [below right=2cm of b] (barq) {\(\bar q\)};
+                \vertex [right=1.41cm of b] (g) {\(g\)};
+
+                \diagram* {
+                (a) -- [boson] (b) -- [fermion] (q),
+                (barq) -- [fermion] (b),
+                (mid) -- [gluon, bend right=45] (g),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{Gluon emitted from the quark line.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a) {\(\gamma^*\)};
+                \vertex [right=2cm of a] (b);
+                \vertex [above right=2cm of b] (q) {\(q\)};
+                \vertex [below right=1cm of b] (mid);
+                \vertex [below right=2cm of b] (barq) {\(\bar q\)};
+                \vertex [right=1.41cm of b] (g) {\(g\)};
+
+                \diagram* {
+                (a) -- [boson] (b) -- [fermion] (q),
+                (barq) -- [fermion] (b),
+                (mid) -- [gluon, bend left=45] (g),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{Gluon emitted from the antiquark line.}
+    \end{subfigure}
+    \caption{\centering Feynman diagrams depicting the two topologies described under the $A_3^0$ antenna, corresponding to the process \(\gamma^*\to q(k_1)g(k_3)\bar q(k_2)\).}
+    \label{fig:feynDiagsA30}
+\end{figure}
+
+\subsection{Computing the Amplitude}
+
+The amplitude is given as follows directly from the diagrams,
+
+\begin{equation}\label{eq:M30amplitude}
+    \begin{split}
+        \mathcal M_3^0 = e_qg_s(T^{a_3})_{i_1i_2}\left[\bar u(k_1) /\!\!\!\varepsilon^*(k_3)\frac{/\!\!\!k_1+/\!\!\!k_3}{s_{13}}/\!\!\!\varepsilon(p)\varv(k_2)-\bar u(k_1) /\!\!\!\varepsilon^*(p)\frac{/\!\!\!k_2+/\!\!\!k_3}{s_{23}}/\!\!\!\varepsilon(k_3)\varv(k_2)\right]
+    \end{split}
+\end{equation}
+where $(T^{a_3})_{i_1i_2}$ represents the colour matrix for the quark and antiquark in positions 1 and 2 and 
+gluon in position 3.
+
+\subsection{Squared Matrix Element}
+
+The amplitude is now squared as follows,
+
+\begin{equation}
+    \begin{split}
+        |\mathcal M_3^0|^2 &= e_q^2g_s^2(T^{a_3})_{i_1i_2}(T^{a_3})_{i_1i_2}\left(M_AM_A^\dagger+M_BM_B^\dagger-M_AM_B^\dagger-M_BM_A^\dagger\right)\\
+                           &\text{with } M_A = \bar u(k_1) /\!\!\!\varepsilon^*(k_3)\frac{/\!\!\!k_1+/\!\!\!k_3}{s_{13}}/\!\!\!\varepsilon(p)\varv(k_2)= \bar u(k_1) \Gamma_A\varv(k_2),\\
+                           &\,\,\,\,\,\,\,\,\,\,\,\, M_B = \bar u(k_1) /\!\!\!\varepsilon^*(p)\frac{/\!\!\!k_2+/\!\!\!k_3}{s_{23}}/\!\!\!\varepsilon(k_3)\varv(k_2) = \bar u(k_1) \Gamma_B\varv(k_2).
+    \end{split}
+\end{equation}
+which in total becomes
+
+\begin{equation}
+    \begin{split}
+        = \sum_{a_3,i_1,i_2} &(T^{a_3})_{i_1i_2}(T^{a_3})_{i_1i_2}\\
+                             &\sum_{s_1, s_2, \lambda_g, \lambda_\gamma}\bar u(k_1,s_1) u(k_1,s_1)\Bigg[\Gamma_A \bar\Gamma_A + \Gamma_B\bar\Gamma_B - \Gamma_A\bar\Gamma_B - \Gamma_B\bar\Gamma_A\Bigg]v(k_2,s_2)\bar v(k_2,s_2)
+    \end{split}
+\end{equation}
+
+Each of the $\Gamma$ terms becomes, using Dirac Algebra \textcolor{red}{[ref to dirac algebra maths]},
+
+\begin{equation}
+    \begin{split}
+        \sum_{s_1,s_2,\lambda_g,\lambda_\gamma} \bar u(k_1,s_1) u(k_1,s_1)&\left(\Gamma_A \bar\Gamma_A\right)v(k_2,s_2)\bar v(k_2,s_2) = \\
+                                                                        &=\frac1{s_{13}^2}\sum_{\lambda_g,\lambda_\gamma}\varepsilon_\mu^*\varepsilon_\nu\varepsilon_\rho\varepsilon_\sigma^*\operatorname{Tr}\Big(/\!\!\!k_1\gamma^\mu(/\!\!\!k_1+/\!\!\!k_3)\gamma^\rho/\!\!\!k_2\gamma^\sigma(/\!\!\!k_1+/\!\!\!k_3)\gamma^\nu\Big)\\
+                                                                        &=\frac1{s_{13}^2}g_{\mu\nu}g_{\rho\sigma}\operatorname{Tr}\Big(/\!\!\!k_1\gamma^\mu(/\!\!\!k_1+/\!\!\!k_3)\gamma^\rho/\!\!\!k_2\gamma^\sigma(/\!\!\!k_1+/\!\!\!k_3)\gamma^\nu\Big)\\
+                                                                        &=\frac1{s_{13}^2}\operatorname{Tr}\Big(/\!\!\!k_1\gamma^\mu(/\!\!\!k_1+/\!\!\!k_3)\gamma^\rho/\!\!\!k_2\gamma_\rho(/\!\!\!k_1+/\!\!\!k_3)\gamma_\mu\Big)\\
+                                                                        &=\left(\frac{2-d}{s_{13}}\right)^2\operatorname{Tr}(/\!\!\!k_1/\!\!\!P/\!\!\!k_2/\!\!\!P),\,\,\,/\!\!\!P = (/\!\!\!k_1+/\!\!\!k_3)\\
+                                                                        &=4\left(\frac{2-d}{s_{13}}\right)^2\Big(2(k_1\cdot P)(k_2\cdot P)-(k_1\cdot k_2)P^2\Big)\\
+                                                                        &=2(d-2)^2\frac{s_{23}}{s_{13}}
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        \sum_{s_1,s_2,\lambda_g,\lambda_\gamma} \bar u(k_1,s_1) u(k_1,s_1)&\left(\Gamma_B \bar\Gamma_B\right)v(k_2,s_2)\bar v(k_2,s_2) = \\
+                                                                        &=2(d-2)^2\frac{s_{13}}{s_{23}}
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        \sum_{s_1,s_2,\lambda_g,\lambda_\gamma} \bar u(k_1,s_1) u(k_1,s_1)&\left(\Gamma_A \bar\Gamma_B\right)v(k_2,s_2)\bar v(k_2,s_2) = \\
+                                                                        &=2(d-2)\frac{(d-4)s_{13}s_{23}-2s_{12}^2-2s_{12}(s_{13}+s_{23})}{s_{13}s_{23}}
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    \begin{split}
+        \sum_{s_1,s_2,\lambda_g,\lambda_\gamma} \bar u(k_1,s_1) u(k_1,s_1)&\left(\Gamma_B \bar\Gamma_A\right)v(k_2,s_2)\bar v(k_2,s_2) = \\
+                                                                        &=2(d-2)\frac{(d-4)s_{13}s_{23}-2s_{12}^2-2s_{12}(s_{13}+s_{23})}{s_{13}s_{23}}
+    \end{split}
+\end{equation}
+and computing the colour matrix sum as
+
+\begin{equation}
+    \sum_{a_3,i_1,i_2} (T^{a_3})_{i_1i_2}(T^{a_3})_{i_1i_2} = \frac12(N^2-1)
+\end{equation}
+we are finally able to reach the final result, as follows, using dimensional regularisation as 
+$d\to 4-2\epsilon$ \textcolor{red}{[ref to dimreg]},
+
+\begin{equation}\label{eq:M30interference}
+    \begin{split}
+        |\mathcal M_3^0|^2 &= e_q^2g_s^2(N^2-1)\Bigg(2(d-2)^2\left(\frac{s_{13}}{s_{23}}+\frac{s_{23}}{s_{13}}\right)-4(d-2)\frac{(d-4)s_{13}s_{23}-2s_{12}^2-2s_{12}(s_{13}+s_{23})}{s_{13}s_{23}}\Bigg)\\
+                           &= 2(d-2)e_q^2g_s^2(N^2-1)\Bigg((d-2)\left(\frac{s_{13}}{s_{23}}+\frac{s_{23}}{s_{13}}\right)-2\frac{(d-4)s_{13}s_{23}-2s_{12}^2-2s_{12}(s_{13}+s_{23})}{s_{13}s_{23}}\Bigg)\\
+                           &= \frac8{s_{13}s_{23}}\Bigg(2q^2s_{12}+s_{13}^2+s_{23}^2-2\epsilon\left(q^2s_{12}+s_{13}^2+s_{23}^2+s_{13}s_{23}\right)+\epsilon^2\left(s_{13}+s_{23}\right)^2\Bigg)
+    \end{split}
+\end{equation}
+
+The $A_3^0$ antenna also requires the $\mathcal M_2^0$ amplitude. This amplitude corresponds to the 
+$\gamma^*\to q\bar q$ Born process. The amplitude is
+
+\begin{equation}
+    \mathcal M_2^0 = e_q\delta_{i_1i_2}\bar u(k_1)/\!\!\!\varepsilon(p)\varv(k_2).
+\end{equation}
+
+Applying the same spin, polarization and colour sums as above, and considering that, for a two 
+final-state particles system $s_{12}=q^2$, we get
+
+\begin{equation}\label{eq:M20interference}
+    \begin{split}
+        |\mathcal M_2^0|^2 = 4e_q^2(d-2)Ns_{12} &= 4e_q^2(d-2)Nq^2\\
+                                                       &= 8e_q^2(1-\epsilon)Nq^2
+    \end{split}
+\end{equation}
+
+\subsection{Antenna Building and Normalisation}
+
+The antenna is now finally ready to be built. That is accomplished using the following formula,
+\begin{equation}
+    A_3^0 = \frac1{2g_s^2C_F}\frac{|\mathcal M_3^0|^2}{|\mathcal M_2^0|^2}.
+\end{equation}
+
+By taking $C_F = (N^2-1)/(2N)$, the formula yields, using Eqs.~\ref{eq:M30interference} and \ref{eq:M20interference},
+
+\begin{equation}\label{eq:A30}
+    \begin{split}
+        A_3^0 &= \frac{2q^2s_{12}+s_{13}^2+s_{23}^2}{q^2s_{13}s_{23}}-\epsilon\frac{(s_{13}+s_{23})^2}{q^2s_{13}s_{23}}\\
+              &= \frac1{q^2}\Bigg[\left(\frac{s_{13}}{s_{23}}+\frac{s_{23}}{s_{13}}+2\frac{s_{12}q^2}{s_{13}s_{23}}\right)-\epsilon\left(2+\frac{s_{13}}{s_{23}}+\frac{s_{23}}{s_{13}}\right)\Bigg]
+    \end{split}
+\end{equation}
+
+\subsection{Antenna Integration}\label{sec:antIntMaths}
+
+We now integrate the $A_3^0$ antenna over the appropriate (3 final-state particle, in this case) 
+phase-space. This integral is computed in $d$ dimensions and over the phase-space measure in terms
+of the Mandelstam invariants ($s_{13}$, $q^2$, etc.). The integral takes the form,
+
+\begin{equation}
+    \begin{split}
+        \mathcal A_3^0 &= C(\epsilon,1)\int d\Phi_{ijk}\,A_3^0\\
+                       &= \mathcal N(\epsilon,1)\,(4\pi)^{3-2d}\left(q^2\right)^{1-\frac d2}\int ds_{12}ds_{13}ds_{23}d\Omega\,(s_{12}s_{13}s_{23})^{\frac{d-4}{2}}\delta\left(q^2-s_{12}-s_{13}-s_{23}\right)\,A_3^0.
+    \end{split}
+\end{equation}
+with $d\Phi_{ijk} = d\Phi_3/\Phi_2$ and with the derivation of the $d\Phi_3$ measure being 
+present in \textcolor{red}{[ref to this derivation]}.
+$C(\epsilon,1)$ is the integral normalisation which is here given as 
+\begin{equation}
+    C(\epsilon,1) = 8\pi^2(4\pi)^{-\epsilon}e^{\epsilon\gamma_E}.
+\end{equation}
+
+This integral is quite complex and spans across all $A_3^0$ terms. Accordingly, we are not
+going to compute this integral directly: instead we are going to use IBP reduction to reduce the 
+expression to a linear combination of master integrals, compute those master integrals and then 
+use the result to compute the integrated antenna. This process is explained in
+\textcolor{red}{[ref to IBP section]}.
+
+After applying IBP identities and reducing the integral to a linear combination of this master
+integral\footnote{This process is shown completely in \textcolor{red}{[ref to ibp reduction appendix]}.},
+we reach the following expression,
+\begin{equation}\label{eq:A30intermsofR3}
+    \mathcal A_3^0 = \frac{C(\epsilon,1)}{\Phi_2}\frac{2(2-6\epsilon+5\epsilon^2-2\epsilon^3)}{q^2\epsilon^2}R_3
+\end{equation}
+This antenna has a single master: $R_3$ \textcolor{red}{[ref to master integrals section/appendix]}.
+This master integral is the integral over phase-space itself,
+
+\begin{equation}\label{eq:R3}
+    R_3 = \int d\Phi_3 = \frac{2^{-7+4\epsilon}\pi^{-3+2\epsilon}\Gamma^3(1-\epsilon)}{\Gamma(2-2\epsilon)\Gamma(3-3\epsilon)}\left(q^2\right)^{1-2\epsilon}.
+\end{equation}
+After using the expression in Eq.~\ref{eq:R3} explicitly in Eq.~\ref{eq:A30intermsofR3}becomes
+\begin{equation}\label{eq:A30withR30Sub}
+    \begin{split}
+        \mathcal A_3^0 &= \frac{C(\epsilon,1)}{\Phi_2}\left(q^2\right)^{-2\epsilon}(4\pi)^{-3+2\epsilon}(2-6\epsilon+5\epsilon^2-2\epsilon^3)\frac{\Gamma^3(1-\epsilon)}{\epsilon^2\Gamma(3-3\epsilon)\Gamma(2-2\epsilon)}\\
+                       &= \left(q^2\right)^{-\epsilon}e^{\epsilon\gamma_E}(1-2\epsilon)\big(2+\epsilon(\epsilon+2)\big)\frac{\Gamma^2(-\epsilon)}{\Gamma(3-3\epsilon)}
+    \end{split}
+\end{equation}
+
+and, after expanding the integrated expression as a Laurent series in $\epsilon$, we finally 
+arrive at the infrared pole structure,
+
+\begin{equation*}
+    \begin{split}
+        \mathcal A_3^0 = \left(q^2\right)^{-\epsilon}\Bigg[\frac1{\epsilon^2}+\frac3{2\epsilon}&+\frac{57-7\pi^2}{12}+\epsilon\left(\frac{84-21\pi^2-8\psi^{(2)}(1)+108\psi^{(2)}(3)}{24}\right)\\
+        &+\epsilon^2\left(\frac{35640-3990\pi^2-71\pi^4-720\psi^{(2)}(1)+9720\psi^{(2)}(3)}{1440}\right)\Bigg]
+    \end{split}
+\end{equation*}
+\begin{equation}
+    = \left(q^2\right)^{-\epsilon}\Bigg[\frac1{\epsilon^2}+\frac3{2\epsilon}+\frac{19}4-\frac{7\pi^2}{12}+\epsilon\left(\frac{109}{8}-\frac{7\pi^2}8-\frac{25\zeta_3}{3}\right)+\epsilon^2\left(\frac{639}{16}-\frac{133\pi^2}{48}-\frac{71\pi^4}{1440}-\frac{25\zeta_3}{2}\right)\Bigg]
+\end{equation}
+where the usual polygamma identities, $\psi^{(2)}(1) = -2\zeta_3$ and $\psi^{(2)}(3) = -2\zeta_3 + \frac94$,
+were employed.
+
+\section{Computational Derivation}
+
+\subsection{Antenna Building}
+
+Using \textcolor{red}{AntCalc}, building the antenna is very simple, since the
+function \texttt{BuildAntenna[type, numFinalParticles, numLoops]} already encodes the entire 
+logical chain and is able to return all intermediate steps using the appropriate options. 
+
+First, by running the function naively we get the final result in Eq.~\ref{eq:A30},
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[2]:= BuildAntenna[A,3,0]//Collect[\#,Epsilon]\&}\\
+\hfill
+\texttt{Out[2]:=}
+    \begin{equation*}
+        \frac{2s_{12}}{q^2 s_{13}} + \frac{2s_{12}}{q^2 s_{23}} + \frac{2s_{12}^2}{q^2 s_{13}s_{23}} + \frac{s_{13}}{q^2 s_{23}} + \frac{s_{23}}{q^2 s_{13}} + \epsilon\left(\frac{-2}{q^2} - \frac{s_{13}}{q^2 s_{23}} - \frac{s_{23}}{q^2 s_{13}}\right)
+    \end{equation*}
+\end{mdframed}
+
+We can also use the \texttt{ReturnRecord} option to access all intermediate steps, and check that 
+\textcolor{red}{AntCalc} goes through the same steps as the by-hand derivation in
+Sec.~\ref{sec:matDerivation}. We can see that with,
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+    \texttt{In[3]:= \\BuildAntenna[A,3,0,ReturnRecord->True]["IntermediateSteps"]}\\
+    \texttt{Out[3]:=}
+
+    \texttt{Amplitude:}
+    \begin{equation*}
+        T^{a_3}_{i_1 i_2}\left[
+        \frac{\bar{u}(k_1)\,/\!\!\!\varepsilon^*(k_3)\,(/\!\!\!k_1+/\!\!\!k_3)\,/\!\!\!\varepsilon(p)\,v(k_2)}{(k_1+k_3)^2}
+        -
+        \frac{\bar{u}(k_1)\,/\!\!\!\varepsilon(p)\,(/\!\!\!k_2+/\!\!\!k_3)\,/\!\!\!\varepsilon^*(k_3)\,v(k_2)}{(k_2+k_3)^2}
+        \right]
+    \end{equation*}
+
+    \texttt{Interference:}
+    \begin{equation*}
+        \frac{4(\epsilon-1)(N^2-1)\Big(-2s_{12}^2 - 2s_{12}(s_{13}+s_{23}) + (\epsilon-1)s_{13}^2 + 2\epsilon\, s_{13}s_{23} + (\epsilon-1)s_{23}^2\Big)}{s_{13}s_{23}}
+    \end{equation*}
+
+    \texttt{Result:}
+    \begin{equation*}
+        -\frac{2\epsilon}{q^2} + \frac{2s_{12}^2}{q^2 s_{13}s_{23}} + \frac{2s_{12}}{q^2 s_{13}} + \frac{2s_{12}}{q^2 s_{23}} + \frac{s_{13}}{q^2 s_{23}} - \frac{\epsilon\, s_{13}}{q^2 s_{23}} + \frac{s_{23}}{q^2 s_{13}} - \frac{\epsilon\, s_{23}}{q^2 s_{13}}
+    \end{equation*}
+\end{mdframed}
+where \texttt{Amplitude}, \texttt{Interference} and \texttt{Result} respectively refer to the
+expressions in Eqs.~\ref{eq:M30amplitude}, \ref{eq:M30interference} and \ref{eq:A30}.
+
+\subsection{Antenna Integration}
+
+Integrating antennae using \textcolor{red}{AntCalc} is also simple. Every step in \ref{sec:antIntMaths}
+is handled by a single function: \texttt{IntegrateAntenna[antenna]}.
+
+Before going over how this function is used, a small clarification needs to be made: the 
+\texttt{IntegrateAntenna} function is not compatible with the default output of the 
+\texttt{BuildAntenna} function described earlier. This is so that the built antenna is immediately 
+useful and easily readable. As described in Chapter~\ref{ch:packageframework}, however, the IBP reduction
+steps are handled by the LiteRed2 package, which does not expect Mandelstam invariants, but rather,
+momenta. Accordingly, to use \texttt{BuildAntenna}'s output in \texttt{IntegrateAntenna} we 
+must toggle the relevant flag: \texttt{BuildAntenna[A,3,0,IntegrableForm->True]}. This
+will return a large association with all required information for integrating the antenna.
+
+We may now proceed to the integration. The whole process goes as follows,
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+    \texttt{In[4]:= intA30 = BuildAntenna[A,3,0,IntegrableForm->True]};\\
+    \hfill
+    \texttt{In[5]:= IntegrateAntenna[intA30,ExpansionOrder->2]}\\
+    \hfill
+    \texttt{Out[5]:=}
+        \begin{equation*}
+            \frac{19}{4}+\epsilon^{-2}+\frac3{2\epsilon}-\frac{7\pi^2}{12}+\epsilon^2\left(\frac{639}{16}-\frac{133\pi^2}{48}-\frac{71\pi^4}{1440}-\frac{25\zeta_3}{2}\right)+\epsilon\left(\frac{109}{8}-\frac{7\pi^2}{8}-\frac{25\zeta_3}{3}\right)
+        \end{equation*}
+\end{mdframed}
+
+Much like with \texttt{BuildAntenna}, \texttt{IntegrateAntenna} also allows us to inspect
+its intermediate steps. Here, however, the available options show the master integral linear
+combination expression both with $R_3$ and with it substituted by the appropriate expression, 
+that is, the equivalent to Eqs.~\ref{eq:A30intermsofR3} and \ref{eq:A30withR30Sub} before
+normalisation. The code and results are,
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+    \texttt{In[6]:= resA30 = IntegrateAntenna[intA30,ExpansionOrder->2,\\ReturnRecord->True];}\\
+    \hfill
+    \texttt{In[7]:= resA30["MasterCombination"]//Simplify//Collect[\#,R3]\&}\\
+    \hfill
+    \texttt{Out[7]:=}
+        \begin{equation*}
+            \frac{-4(d-3)\big(4+d(\epsilon-2)-4\epsilon\big)}{(d-4)^2q^2}R_3
+        \end{equation*}
+    \texttt{In[8]:= resA30["MasterSubstitutedExpression"]//Simplify}\\
+    \hfill
+    \texttt{Out[8]:=}
+        \begin{equation*}
+            -\left(q^2\right)^{-2\epsilon}\frac{2^{-5+4\epsilon}(d-3)\big(4+d(\epsilon-2)-4\epsilon\big)\pi^{-3+2\epsilon}\Gamma^3(1-\epsilon)}{(d-4)^2\Gamma(3-3\epsilon)\Gamma(2-2\epsilon)}
+        \end{equation*}
+\end{mdframed}
+
+The results here are given as a combination of $d$ and $\epsilon$. This is a result of the way
+the function processes each step. Since these are snapshots of what is happening inside the
+function itself, they show the expressions before dimension regularisation is applied.
+
+Finally, \textcolor{red}{AntCalc} also enables us to forgo the work we did building and
+the integrating the antenna with the use of the \texttt{BuildAndIntegrateAntenna[type,
+numFinalParticles,numLoops]} function. It goes over the whole process, as we did, and outputs the 
+$\epsilon$ Laurent series,
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+    \texttt{In[9]:= BuildAndIntegrateAntenna[A,3,0,ExpansionOrder->2]}\\
+    \hfill
+    \texttt{Out[9]:=}
+        \begin{equation*}
+            \frac{19}{4}+\epsilon^{-2}+\frac3{2\epsilon}-\frac{7\pi^2}{12}+\epsilon^2\left(\frac{639}{16}-\frac{133\pi^2}{48}-\frac{71\pi^4}{1440}-\frac{25\zeta_3}{2}\right)+\epsilon\left(\frac{109}{8}-\frac{7\pi^2}{8}-\frac{25\zeta_3}{3}\right)
+        \end{equation*}
+\end{mdframed}
+
+The agreement between the two sections in the present chapter confirms that \textcolor{red}{AntCalc}
+completes the same function we would do by-hand, going through the same steps. The same
+pipeline extends to the more complex antennae treated in this thesis, with their integrated 
+results collected in Appendix~\ref{ap:AntennaTrees}.

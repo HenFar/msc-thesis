@@ -1,0 +1,70 @@
+\chapter{Future Work}\label{ch:futurework}
+
+\textcolor{red}{AntCalc}, as described in Chapter~\ref{ch:packageframework}
+and validated in Chapter~\ref{ch:validation}, for both its the building and integration 
+engines, currently encompasses all massless antennae in SMQCD up to NNLO.
+
+Modern fixed-order QCD calculations, however, increasingly require antenna functions beyond this
+scope. Massive quark effects enter heavy-flavour production at hadron colliders, supersymmetric
+models introduce new parton species, and Higgs-plus-jet processes at NNLO require antennae
+derived from an effective $H\to gg$ vertex. Extension to N$^3$LO is also an active frontier,
+as the precision demands of the LHC physics programme continue to tighten. The natural 
+directions for extending \textcolor{red}{AntCalc} are therefore the massive SMQCD sector,
+the massless SUSY and HiggsEFT models, and eventually the full N$^3$LO antenna set.
+
+The physical, mathematical and computation challenges introduced by these extensions are discussed
+to a higher level of detail in Appendix~\ref{ap:futureWork}.
+
+\section{Massive Antennae}
+
+As discussed in Chapter~\ref{ch:workedexample}, the $A_3^0$ antenna is the simplest non-trivial
+SMQCD antenna in the model, and as such, is also the best topology to use to extend 
+\textcolor{red}{AntCalc} to the massive framework. This extension has already been 
+implemented in the current version. To access the results, we can run the usual functions, 
+using the \texttt{quarkMass} option,
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+    \texttt{In[2]:= BuildAntenna[A,3,0,quarkMass->mQ]}\\
+    \hfill
+    \texttt{Out[2]:=}
+        \begin{equation*}
+            \begin{split}
+                \frac{1}{4s_{13}^2s_{23}^2\left(4m_q^2+s_{12}+s_{13}+s_{23}\right)} \Bigg[&-8m_q^2\left(s_{13}^2+s_{23}^2\right)+s_{13}s_{23}\left(2s_{12}^2+s_{13}^2+s_{23}^2+2s_{12}(s_{13}+s_{23})\right)\\
+                                                                                          &-2m_q^2\Big(s_{13}^2+s_{13}^2s_{23}+s_{13}s_{23}^2+s_{23}^2+s_{12}\left(s_{13}^2-4s_{13}s_{23}+s_{23}^2\right)\Big)\Bigg]
+            \end{split}
+        \end{equation*}
+    \texttt{In[3]:= \\
+            BuildAndIntegrateAntenna[A,3,0,quarkMass->mQ]\\
+            /.\{j[MX30Basis123, 1, 1, 1, 0, 0]->RM1, \\
+            j[MX30Basis123, 2, 1, 1, 0, 0]->RM2,d->4-2Epsilon, eps->Epsilon\}\\
+            //FullSimplify//Collect[\#,\{RM1,RM2\}]\&}\\
+    \hfill
+    \texttt{Out[3]:=}
+        \begin{equation*}
+            \begin{split}
+                &\frac{8\big(2-\epsilon(7-6\epsilon)\big)m_q^4-4\Big(4+\epsilon\big(-11+4\epsilon(1+\epsilon)\big)\Big)m_q^2q^2-(1-2\epsilon)\big(4-\epsilon(3+2\epsilon)\big)q^4}{\epsilon(1+2\epsilon)\left(4m_q^2-q^2\right)q^4}R_1^M\\
+                &+\frac{16(1-2\epsilon)m_q^6+8\big(-1+4\epsilon(1+\epsilon)\big)m_Q^4q^2-4\left(1+2\epsilon+4\epsilon^2\right)m_q^2q^4+2q^6+\epsilon(-1+2\epsilon)q^6}{\epsilon(1-2\epsilon)\left(4m_q^2-q^2\right)q^4}R_2^M
+            \end{split}
+        \end{equation*}
+\end{mdframed}
+
+To get to these results, the same method from Chapter~\ref{ch:workedexample} was used, but
+for the massive case, in which $k^2\neq0\neq m_q$. The results still are not complete, as 
+the massive master integrals, $R_1^M$ and $R_2^M$, have yet to be computed to enable us to 
+expand into the usual $\epsilon$ Laurent series.
+This example does show, however, that the already present framework is able to handle the 
+massive expansion, at least inside SMQCD, seamlessly, opening it up to the possibility of 
+further expansion to the massive SMQCD (and beyond) sector.
+
+\section{SUSY model}
+
+\subsection{Short Introduction To SUSY}
+
+\subsection{Example Implementation}
+
+\section{HiggsEFT model}
+
+\subsection{Short Introduction To HiggsEFT}
+
+\subsection{Example Implementation}
+
+\section{N$^3$LO}

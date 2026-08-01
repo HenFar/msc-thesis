@@ -1,0 +1,63 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  >=Stealth,
+  stage/.style={
+    draw=black!65,
+    rounded corners=2pt,
+    fill=white,
+    align=center,
+    minimum height=10mm,
+    text width=19mm,
+    inner sep=3pt
+  },
+  profile/.style={
+    stage,
+    fill=violet!7,
+    text width=34mm,
+    minimum height=12mm
+  },
+  public/.style={
+    stage,
+    fill=blue!7,
+    text width=24mm
+  },
+  flow/.style={->, line width=.75pt},
+  config/.style={->, dashed, gray!75, line width=.6pt}
+]
+
+% main lines
+\draw[black, thick] (0,0) -- (9,0);
+\draw[black, thick] (9,0) -- (9,-5);
+
+% back and frontend backgrounds
+\begin{pgfonlayer}{background}
+  % Draws a light blue rectangle behind a specific region
+  \fill[blue!10, rounded corners] (-2.5,1) rectangle (12,-4);
+    
+  % Or a light gray box behind another region
+  \fill[black!5, rounded corners] (-2.5,-4) rectangle (12,-6);
+\end{pgfonlayer}
+
+% back and frontend labels
+\node[label={[text=blue!60]above:\textit{Backend}}] at (11,-4) {};
+\node[label={[text=gray]below:\textit{Frontend}}] at (11,-4) {};
+
+% interceptions
+\filldraw[black] (0,0) circle (2pt) node[align=center, anchor=north, yshift = -2pt]{AntennaObject \\ \textit{(IntegrateAntenna-\textgreater True)}};
+\filldraw[black] (9,0) circle (2pt) node[anchor=south]{IntegrateAntenna[]};
+
+% input node
+
+% output nodes
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90, label=below:Default Build Output] at (9,-5) {};
+
+% midway points
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90, label={[label distance = -5pt, rotate=90, anchor=south]below:\textit{Expanding...}}] at (9,-2.5) {};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-45] at (4.5,0) {};
+
+\end{tikzpicture}
+\caption{Profile-driven architecture of \textit{AntCalc}'s Integration stage.}
+\label{fig:antcalc-architecture-intstage}
+\end{figure}

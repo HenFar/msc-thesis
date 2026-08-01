@@ -1,0 +1,631 @@
+\chapter{Package Framework}\label{ch:packageframework}
+
+\textit{AntCalc} is an active research \textit{Wolfram Language} package developed to 
+offer direct access to QCD antenna functions, both before and after integration, 
+by automating the symbolic steps required to build and integrate the 
+supported antenna functions. 
+
+To complete its function, \textit{AntCalc} makes use of the \textit{FeynCalc} environment 
+for symbolic-amplitude work, and \textit{LiteRed2} for IBP-backed routes. It uses 
+a profile-based system to enable modularity. 
+Its internal architecture is organised as a
+profile-driven route system: route-specific information is centralised in
+profiles, which guide the selection and configuration of the appropriate build,
+reduction, and integration workflows. This establishes a common contract
+between the package components, reducing the amount of route-specific logic
+that must be duplicated when existing functionality is extended or new routes
+are introduced.
+
+The package supports public and experimental routes. The public antenna building and 
+integration routes, which for the
+current version compute all massless quark-antiquark final-final antenna functions up to 
+NNLO, have been validated against the literature. Experimental routes are 
+unfinished or unchecked and should not be considered validated.
+
+\textit{AntCalc}'s inner working structure can be described using the diagram in Figure~\ref{fig:antcalc-architecture}.
+
+\input{figures/antcalc-architecture}
+
+\section{Design Philosophy and Scope}\label{sec:philosophy}
+
+\textit{AntCalc} was built to combine the symbolic amplitude capabilities of the 
+FeynCalc environment with the IBP-reduction capabilities of LiteRed2, adapting and 
+orchestrating the parts of those systems required for the construction and integration
+of QCD antenna functions. 
+
+The central design objective of the package is to return results in the conventional 
+forms used in antenna calculations. 
+Though it supports a wide 
+variety of options to inspect and configure the backend operations, the default outputs 
+of its two central functions are designed to reflect this objective. 
+For example, for loop antennae, the default \texttt{BuildAntenna[\ldots]} result is given 
+in PaVe-reduced form, as is customary in the literature. The default 
+\texttt{IntegrateAntenna[\ldots]} result is also a Laurent $\epsilon$-series up[] to $\epsilon^0$,
+matching the conventional truncation order, 
+though higher order terms are accessible through the use of the 
+aforementioned options.
+
+Its structure was also designed to be modular and extensible.
+Each of the two central functions (\texttt{BuildAntenna} and \texttt{IntegrateAntenna}) is 
+implemented as an encapsulated public module, which communicates with the rest of the codebase
+using the profile system: the route profile selects and configures the appropriate 
+workflows and the route context carries the evolving results and diagnostics between 
+stages.
+Using route profiles and route contexts, as described in Section~\ref{sec:profile}, 
+the addition of further modules is made easier, reducing duplicated logic and 
+direct dependencies. These new modules need not be 
+compatible with previous implemented functions through function-specific 
+couplings. They need only conform with the profile system, being selected and 
+configured by route profiles, and accepting inputs from and delivering outputs 
+to the route contexts. 
+
+Currently, \textit{AntCalc} is organised into two tiers: public and experimental. It 
+already has all massless quark-antiquark final-final antenna functions up to NNLO 
+implemented as part of the public tier, along with every other object required to 
+compute the massless $R$-ratio up to that perturbative order. These are:
+\begin{itemize}
+    \item $A_2^0$;
+    \item $A_2^1$;
+    \item $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$;
+    \item $A_3^0$;
+    \item $A_3^1$, $\tilde A_3^1$, $\hat A_3^1$;
+    \item $A_4^0$, $\tilde A_4^0$;
+    \item $B_4^0$;
+    \item $C_4^0$.
+\end{itemize}
+The massive $A_3^0$ route is also accessible, but remains experimental.
+
+\section{Profile-Driven Architecture}\label{sec:profile}
+
+As described in Section~\ref{sec:philosophy}, \textit{AntCalc} relies on a 
+profile-driven routing system. This system maps the route key to its route-specific 
+profile and workflow. 
+
+A public antenna route key is a three-element list which describes a canonical route
+whose execution may be refined by options. The route key takes the form,
+\begin{equation}
+    \{\text{Antenna Type}, \text{Final-State Multiplicity}, \text{Loop Order}\}.
+\end{equation}
+As an example, the route key for  
+the one-loop three-parton
+\footnote{It is understood that throughout the rest of the present 
+work, unless explicitly mentioned, all antenna functions considered are massless 
+quark-antiquark final-final antennae.} antenna set is $\{\text A,3,1\}$, and represents 
+not only the leading $A_3^1$ antenna, but also its subleading and quark-loop 
+counterparts, and its default public output is the ordered list
+$\{A_3^1, \tilde A_3^1, \hat A_3^1\}$, in this specific order.
+
+The package links this key to the profile it identifies and follows that profile's 
+directions on how the route should be constructed and/or integrated. The data produced 
+while the route executes is also stored in the route context association. 
+The profile system does not consist of a single profile, but rather of three main 
+and some conventional auxiliary profiles which are routinely read
+while the route executes. The principal build-side profile is 
+\texttt{AntennaProfile[key]}, which specifies information such as antenna type, 
+multiplicity and loop order, colour normalisation, extraction rules, components, etc.
+\texttt{AntennaReductionProfile[key]} is separate, but still build-side. It specifies 
+the PaVe-reduction preferences for the appropriate routes. In this case, up to 
+NNLO, these are the $\{\text A,2,1\}$ and 
+$\{\text A,3,1\}$ loop routes. \texttt{AntennaIntegrationProfile[key]} is the 
+integration-side profile, which specifies its side's backend, IBP basis 
+families, expansion depth, etc. The specifics of each stage's profiles and options 
+will be discussed in their respective sections, \ref{sec:buildStage} and 
+\ref{sec:integrateStage}.
+
+While profiles select and configure computation paths, the workflows themselves 
+perform the calculations. The route dispatcher and workflow code consult the profiles 
+to select and configure each stage. As an example, which will be further 
+explained and explored in the two upcoming sections, let us consider the call 
+\texttt{BuildAntenna[A,2,1]}. Its full route profile is,
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\begin{lstlisting}
+AntennaProfile[{A, 2, 1}] :=
+    <|
+        "Key" -> {A, 2, 1},
+        "Name" -> "A21",
+        "AntennaType" -> A,
+        "NumFinalParticles" -> 2,
+        "LoopOrder" -> 1,
+        "TreeAmplitude" -> AntennaAmplitude[{A, 2, 0}],
+        "BornInterference" -> BornInterference[],
+        "Extraction" -> "LoopScalar",
+        "ColourNorm" -> colourNorm,
+        "ExcludedParticles" -> 
+            {S[_], V[1], V[2], V[3], U[1], U[2], U[3], U[4]},
+        "DropSumOver" -> True,
+        "ReductionProfile" -> AntennaReductionProfile[{A, 2, 1}],
+        "ConventionProfile" -> BuildAntennaConventionProfile[{A, 2, 1}]
+    |>
+\end{lstlisting}
+\end{mdframed}
+In this profile, the key, name, antenna type, number of final particles (multiplicity),
+and loop order have been discussed before. The remaining entries configure the 
+construction of the route: \texttt{TreeAmplitude} supplies the tree-level $A_2^0$ amplitude with 
+which the one-loop amplitude is interfered, \texttt{BornInterference} selects the Born-level 
+self-interference used to normalise the loop interference. \texttt{Extraction} selects the 
+scalar one-loop extraction appropriate for this antenna, while \texttt{ColourNorm} provides 
+the colour normalisation used. \texttt{ExcludedParticles} and \texttt{DropSumOver} are settings passed to
+the \textit{FeynCalc}/\textit{FeynArts} part of the build workflow, 
+selecting what particles are not to be considered in the 
+Feynman diagram generation step and requesting the removal of external \texttt{SumOver}
+structures. Lastly, \texttt{ReductionProfile} commands the workflow to complete 
+a lookup on the selected route's 
+antenna, $A_2^1$ in this case, and determines whether it requires the PaVe reduction 
+backend, from within its \texttt{AntennaReductionProfile} association. Since it is a 
+one-loop antenna, it does.
+\texttt{ConventionProfile} selects the convention
+bridge so the public results follow \textit{AntCalc}'s stated normalisation and 
+dimensional-regularisation conventions, through its separately defined 
+\texttt{BuildAntennaConventionProfile} association.
+
+\section{The Build Stage}\label{sec:buildStage}
+%%%%%%%%%%%%%%%
+% Comments:
+%
+%   \mathcal J is chosen here to represent the amplitude interference as the closest symbol to 
+%   I that isnt confused in the regular literature for either the imaginary unit i, or the 
+%   Catani operators I.
+%
+%   As of 29/07, this chapter still includes mentions to the UV counterterms on A22. Those are 
+%   yet to be implemented in AntCalc. They will be as soon as possible and will be implemented 
+%   upon defence.
+%
+%%%%%%%%%%%%%%%
+
+This first stage is tasked with building the unintegrated antenna functions from their respective
+Feynman diagrams. Its central function is \texttt{BuildAntenna[type, multiplicity, loop order]}. 
+The route through this stage begins by taking the route key from some public call, like 
+\texttt{BuildAntenna[A, 3, 1]}. It then resolves the corresponding build workflow from the route key,
+and implements it. Finally, it produces a rich build-side, backend, association which is then 
+reformatted into the public unintegrated antenna expression or component list. 
+This workflow is structured as follows,
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\begin{lstlisting}
+BuildAntenna[type, multiplicity, loop order]
+    -> route key;
+    -> loop-order dispatcher;
+    -> route-specific build workflow;
+    -> build-data association / route context;
+    -> public-output boundary;
+    -> output: expression, component list, AntennaObject, diagnostics, 
+       or run record.
+\end{lstlisting}
+\end{mdframed}
+
+The loop-order dispatcher is the most important element of this workflow. It dispatches the route, 
+using its key,
+to its loop order's path, as different loop orders
+necessitate different mechanisms, the most important of which being the introduction of the 
+reduction of the loop momenta $\ell^\mu$ for one- and two-loop antennae.
+
+Functionally, the route-context for this stage usually contains the initial profile itself (the declarative 
+\texttt{AntennaProfile}), the amplitude 
+generated from it, the sectors, computed interferences, components after separation, diagnostics, and its
+normalised interference. Depending on the route, the context might also retain prototype components, 
+full colour components, reference square components or loop-specific amplitudes. 
+
+A diagram in the spirit of the one in Fig.~\ref{fig:antcalc-architecture}, but only relative to 
+the Build stage is shown below, in Fig.~\ref{fig:antcalc-architecture-buildstage}.
+
+\input{figures/antcalc-architecture-buildstage}
+
+\subsection{Tree-Level Routes}
+
+As mentioned, the workflow handles distinct loop-order routes differently, though the differences only appear 
+after the dispatcher is called. Tree-level routes like those relative to the $A_3^0$ antenna, start by retrieving 
+the profile and the interference type (\texttt{BornInterference} in this case), and computing the relevant 
+process's amplitude. It uses the profile's \texttt{Production} field to select the physical construction path,
+and the \texttt{Extraction} and \texttt{ColourNorm} fields to select the extraction mode and 
+the colour normalisation used for each antenna. The colour normalisation used by default 
+has been described previously in Eq.\ref{eq:colourNorm}, as $c_N\equiv N-\frac1N$. 
+The \texttt{Extraction} mode 
+also introduces the Born normalisation as described in Eq.~\ref{eq:bornNorm} as 
+$B_0\equiv|\mathcal M_2^0|^2$.
+The routes selected in the 
+\texttt{Production} and \texttt{Extraction} fields
+depend on the methodology required to compute the antenna functions and retrieve the components, if required. 
+The public tree-level antenna functions are constructed using different production
+and extraction modes, as described in 
+Table~\ref{tab:treeLevelProdModes}.
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\resizebox{\textwidth}{!}{
+  \begin{tabular}{|c|c|c|} 
+   \hline
+   \textbf{Production Mode} & \textbf{Extraction Mode} & \textbf{Current Route} \\ 
+   \hline
+   \texttt{SelfInterference} & \texttt{BornScalar} & $A_2^0$ \\ \hline
+   \texttt{SelfInterference} & \texttt{TreeColourCoefficients} & $A_3^0$ \\ \hline
+   \texttt{ColourOrderedAntenna} & \texttt{TreeColourCoefficients} & $A_4^0$, $\tilde A_4^0$ \\ \hline
+   \texttt{SectorSelfInterference} & \texttt{ColourNormScalar} & $B_4^0$ \\ \hline
+   \texttt{SectorSymmetrisedInterference} & \texttt{MinusTwoColourNormOverSUNN} & $C_4^0$ \\ 
+   \hline
+  \end{tabular}
+} 
+  \caption{Overview of the tree-level production and extraction modes.}
+\label{tab:treeLevelProdModes}
+\end{table}
+
+These production paths all lead to the extraction of the required antenna functions, but the way in which 
+they do it changes with the antenna's multiplicity. \texttt{SelfInterference} starts by generating the amplitude, 
+computing its self-interference, and then extracting the antenna. \texttt{ColourOrderedAntenna} generates the 
+full-process amplitude and computes the full-colour interference. It then applies the colour-ordered reconstruction 
+as specified by \texttt{ColourOrderedSpecs}, and then extracts the components, in this case the Leading and Subleading 
+components. \texttt{SectorSelfInterference} generates the full-process amplitude and splits it into profile-defined 
+sectors. It selects the relevant sector, computes its self-interference and extracts the antenna function. 
+Finally, \texttt{SectorSymmetrisedInterference} starts by generating the full-process amplitude, and splitting 
+it into direct and exchange sectors. It then computes the required symmetrised interference and extracts the antenna.
+A reference square is also retained for diagnostics and comparison.
+The extraction paths lead to the separation of the whole-process results into 
+colour-independent antenna functions. The \texttt{BornScalar} mode is used solely in $A_2^0$, 
+and it does not algebraically divide the computed interference by its Born form, establishing 
+the antenna as the reference normalisation. It returns $A_2^0 = 1$. \texttt{TreeColourCoefficients},
+as used for $A_3^0$, $A_4^0$ and $\tilde A_4^0$, starts by normalising the computed amplitude 
+by the colour and the Born normalisation. It then simplifies and expands the normalised 
+interference and searches for the $N$, $1/N$ and $N_f$ coefficients, the \texttt{Leading},
+\texttt{SubLead} and \texttt{QuarkLoop} coefficients in the code. If the terms are present, as
+described in the previous text, the interference $\mathcal J$ becomes,
+\begin{equation}\label{eq:regularInterf}
+    \frac{\mathcal J}{c_NB_0}=NX_\text{Lead}+\frac1NX_\text{SubLead}+N_fX_\text{QuarkLoop}
+\end{equation}
+and the $X$ terms extracted as the antenna functions. If there are no terms of that shape,
+like in the $A_3^0$ case, then $X=\mathcal J / (c_NB_0)$, colour- and Born-normalised. 
+It is important to note that, though present, no 
+quark loop antenna should ever appear in the tree-level route. The dispatcher still 
+considers it nonetheless since it is written to be reusable. For $B_4^0$, the \texttt{ColourNormScalar}
+mode is used, after the primary-current sector has been self-interfered. The extraction 
+then returns the colour- and Born-normalised sector interference, as,
+\begin{equation}
+    B_4^0 = \frac{\mathcal J_\text{sector}}{c_NB_0}.
+\end{equation} 
+Lastly, \texttt{MinusTwoColourNormOverSUNN} is used for $C_4^0$, and it takes the symmetrised 
+interference of the direct and exchange sectors and normalises it as,
+\begin{equation}
+    C_4^0=-\frac{N\mathcal J_\text{sym}}{2c_NB_0}.
+\end{equation}
+The $C_4^0$ antenna requires a further $-N/2$ normalisation factor due to its origin as the 
+interference of the direct and exchange flavour-flow amplitudes for identical quarks. The minus
+sign reflects the exchange of identical fermions, the $1/2$ factor is required when the symmetrised 
+source contains both cross terms, as discussed in Eq.~\ref{eq:cAntTheory}. The remaining $N$ 
+factor, along with the usual $c_N$ in the denominator adjusts the interference's colour coefficient 
+into the colour-free $C_4^0$ antenna.
+
+\subsection{One-Loop Routes}\label{subsec:oneLoopRoutes}
+
+One-loop routes are dispatched to \texttt{BuildLoopAntennaData} where the primary backend reduction 
+method is selected through the nested \texttt{ReductionProfile}, which by default is the 
+reduction using PaVe, as described in Subsection~\ref{subsec:PaVe}.
+
+The production method consists of generating the tree-level and one-loop amplitudes, using \\
+\texttt{TreeAmplitude} and \texttt{MAmpOneLoop}, respectively, and then forming the tree-loop 
+interference. The interference is colour- and one-loop-normalised, using $c_N$ and 
+$\Lambda_l=(8\pi^2)^l$, for loop order $l$, as described in Eq.~\ref{eq:loopNorm}.
+To this normalised interference is then applied the reduction and the components extracted.
+These antenna functions also differ in production and extraction method, however. Their 
+production and extraction modes are shown in Table~\ref{tab:oneLoopProdModes}, below.
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|c|c|c|} 
+   \hline
+   \textbf{Production Mode} & \textbf{Extraction Mode} & \textbf{Current Route} \\ 
+   \hline
+   \texttt{TreeAmplitude + MAmpOneLoop} & \texttt{LoopScalar} & $A_2^1$ \\ \hline
+   \texttt{TreeAmplitude + MAmpOneLoop} & \texttt{LoopColourCoefficients} & $A_3^1$, $\tilde A_3^1$, $\hat A_3^1$ \\ \hline
+  \end{tabular}
+  
+  \caption{Overview of the one-loop production and extraction modes.}
+\label{tab:oneLoopProdModes}
+\end{table}
+
+Both antenna sets are produced in the same manner, as discussed. The relevant tree-level
+antenna amplitude, $\mathcal M_2^0$ and $\mathcal M_3^0$ respectively for $A_2^1$ and the 
+$A_3^1$ set, is first computed. Then it is interfered with the loop amplitudes, 
+$\mathcal M_2^1$ and $\mathcal M_3^1$. The interference is computed, before being normalised as, 
+\begin{equation}\label{eq:treeLoopInterf}
+    \mathcal J_n^l = 2\operatorname{Re}\!\left(\!\left(\mathcal M_n^{0}\right)^\dagger\mathcal M_n^l\right)
+\end{equation}
+where $n$ represents the number of final-state particles, as usual.
+
+Since $A_2^1$'s interference does not decompose into colour components, $A_2^1 = \Lambda_1\mathcal J_2^{1\prime} = \Lambda_1\mathcal J_2^1/(c_NB_0)$.
+The $A_3^1$ set, on the other hand, appears closely like the $A_4^0$ set, but with three,
+rather than two components, the leading, subleading and quark loop antenna functions. The 
+interference is given as in Eq.~\ref{eq:regularInterf}. Lastly, as discussed in Eq.~\ref{eq:alphaRescaling},
+together with Eq.~\ref{eq:bornNorm}, the $A_3^1$ set needs to be UV renormalised. Consider 
+the notation $X_{n}^{l,\text{bare}}$ here to denote a bare antenna, such that, for example, $A_2^{1,\text{bare}}=A_2^1$.
+For the $A_3^1$ set, the interference expands to,
+\begin{equation}
+    \frac{\Lambda_1}{c_NB_0}\mathcal J_3^1 = NT_\text{Lead} + \frac1N T_\text{Sublead} + N_f T_\text{QL}.
+\end{equation}
+Differently from other processes at this level, the $A_3^1$ route necessitates 
+a further subtraction, as the interference components come in terms of
+a genuine one-loop three-parton antenna and an iterated lower-order contribution.
+That makes it so that the bare (before UV renormalisation) $A_3^1$ set 
+antenna functions become,
+\begin{equation}\label{eq:a31Norm}
+    \begin{split}
+        &A_{3}^{1,\text{bare}} = T_\text{Lead} - A_2^1 A_3^0\\
+        &\tilde A_3^{1,\text{bare}} = -\left(T_\text{Sublead} + A_2^1A_3^0\right)\\
+        &\hat A_3^{1,\text{bare}} = T_\text{QL}.
+    \end{split}
+\end{equation}
+The components are then, finally, renormalised as discussed,
+\begin{equation}
+    \begin{split}
+        &A_3^1 = A_{3}^{1,\text{bare}}-\frac{11}{6\epsilon}A_3^0\\
+        &\tilde A_3^1 = \tilde A_3^{1,\text{bare}}\\
+        &\hat A_3^1 = \hat A_3^{1,\text{bare}} + \frac1{3\epsilon}A_3^0.
+    \end{split}
+\end{equation}
+
+\subsection{Two-Loop Routes}
+
+Loop order two routes are dispatched to \texttt{BuildTwoLoopAntennaData}. There is only, formally, 
+one set of this kind, $A_2^2$. It is remarkably different from the rest, however. First, these 
+objects, alongside $A_2^0$ and $A_2^1$, are not formally antenna functions as they fail to meet 
+the definition of a structure that captures the singular behaviour of an unresolved parton 
+radiated between two hard, colour-connected partons \cite{Gehrmann-DeRidder:2005btv}. They
+are, instead, form factors required by the antenna framework. 
+The $A_2^2$ set, at two loops, is obtained from the two-loop quark form factor 
+\cite{GehrmannDeRidder0507061}. Second, this four-component set is not generated like 
+$A_4^0$ and $A_3^1$ were, rather these four components come from two distinct source contributions.
+Their production and extraction modes are similar and handled as a bundle inside \textit{AntCalc},
+but, as shown in Table~\ref{tab:twoLoopProdModes}, their sources differ,
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|c|c|c|} 
+   \hline
+   \textbf{Contribution} & \textbf{Extraction Mode} & \textbf{Current Route} \\ 
+   \hline
+   \texttt{TwoLoopInterf} & \texttt{TwoLoopTTermComponents} & $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$ \\ \hline
+   \texttt{OneLoopSelf} & \texttt{TwoLoopTTermComponents} & $\breve A_2^2$ \\ \hline
+  \end{tabular}
+  
+  \caption{Overview of the two-loop contributions and extraction modes.}
+\label{tab:twoLoopProdModes}
+\end{table}
+
+The first three antenna objects are formed by interfering the LO tree-level amplitude with the 
+two-loop amplitude. This interference follows the blueprint defined in Eq.~\ref{eq:treeLoopInterf},
+as the interference becomes,
+\begin{equation}
+    \mathcal J_2^{2, [2\times 0]} = 2\operatorname{Re}\!\left(\left(\mathcal M_2^0\right)^\dagger\mathcal M_2^2\right).
+\end{equation}
+The superscript $[2\times 0]$ denotes the nature of the operation: interfering a two-loop 
+with a zero-loop amplitude. It is also usual to split the $T$-object relative to these four 
+components, $T_{q\bar q}^6$, into two, based on the two contributions.
+
+The last object, $\breve A_2^2$, comes from self-interfering the one-loop amplitude as,
+\begin{equation}
+    \mathcal J_2^{2,[1\times 1]} = \left(\mathcal M_2^1\right)^\dagger \mathcal M_2^1.
+\end{equation}
+
+Both of these interferences are equally Born- and loop-normalised, using $B_0$ and $\Lambda_2$. 
+They are also colour-normalised, but while $\mathcal J_2^{2,[2\times 0]}$ requires only $c_N$,
+$\mathcal J_2^{2,[1\times 1]}$ requires $c_N^2$ since it is computed using two one-loop 
+amplitudes, each of which requires a $c_N$ normalisation factor, as described in Subsection~\ref{subsec:colourAlg}. 
+They, then, become,
+\begin{equation}
+    \begin{split}
+        &\frac{\Lambda_2}{c_NB_0}\mathcal J_2^{2,[2\times 0]} = NA_2^{2,\text{bare}} + \frac1N\tilde A_2^{2,\text{bare}} + N_f\hat A_2^{2,\text{bare}}\\
+        &\frac{\Lambda_2}{c_N^2B_0}\mathcal J_2^{2,[1\times 1]} = \breve A_2^{2,\text{bare}}.
+    \end{split}
+\end{equation}
+
+The antenna objects have to then be UV renormalised as follows,
+\begin{equation}
+    \begin{split}
+        &A_2^2 = A_2^{2,\text{bare}} - \frac{11}{6\epsilon}A_2^1\\
+        &\tilde A_2^2 = \tilde A_2^{2,\text{bare}}\\
+        &\hat A_2^2 = \hat A_2^{2,\text{bare}} + \frac{1}{3\epsilon}A_2^1\\
+        &\breve A_2^2 = \breve A_2^{2,\text{bare}}.
+    \end{split}
+\end{equation}
+
+These renormalised results are now used to form the overall $T_{q\bar q}^6$ object. It is defined 
+as the sum of the two contributions' sub-$T$-objects, $T_{q\bar q}^{6,[2\times 0]}$ for the first,
+and $T_{q\bar q}^{6,[1\times 1]}$ for the second contribution, following the interferences 
+$\mathcal J$ notation as,
+\begin{equation}
+    \begin{split}
+        T_{q\bar q}^6 &= \left(N-\frac1N\right)T_{q\bar q}^2 \left[T_{q\bar q}^{6,[2\times 0]}+T_{q\bar q}^{6, [1\times 1]}\right]\\
+                      &= \left(N-\frac1N\right)T_{q\bar q}^2 \left[\frac{\Lambda_2}{c_NB_0}\mathcal J_2^{2,[2\times 0]} + \frac{\Lambda_2}{c_NB_0}\mathcal J_2^{2,[1\times 1]}\right]\\
+                      &= \left(N-\frac1N\right)T_{q\bar q}^2 \left[NA_2^2 + \frac1N\tilde A_2^2 + N_f\hat A_2^2 + \left(N-\frac1N\right)\breve A_2^2\right].
+    \end{split}
+\end{equation}
+
+\section{Public Boundary and Integration handoff}
+
+As previously discussed, each \texttt{BuildAntenna} workflow produces a route context. That 
+context contains the initial profile alongside some selected pieces of data acquired during the 
+building process. The ordinary, default, \texttt{BuildAntenna[...]} call formats this contexts 
+into the conventional public output, which consists of a single expression or ordered list 
+of components. This output is not compatible with a following \texttt{IntegrateAntenna[...]}
+call, as this second call requires the route profile information. To make the two functions 
+compatible we must use the handoff option \texttt{IntegrableForm}. Calling
+\texttt{BuildAntenna[..., IntegrableForm -> True]} returns an \texttt{AntennaObject} instead of 
+the default public output. It retains the route key, the selected output, the profile, 
+the complete build data and the source-contribution provenance. This \texttt{AntennaObject} is
+the intended input of the \texttt{IntegrateAntenna[...]} function.
+
+\section{The Integration Stage}\label{sec:integrateStage}
+
+The integration stage is tasked with taking the complete \texttt{AntennaObject}, as produced by 
+a \texttt{BuildAntenna[..., IntegrableForm -> True]}, resolving the integration route from the key,
+performing all intermediate calculations and applying all necessary conventions, and finally 
+returning a Laurent-expanded integrated antenna or component list. The workflow's structure 
+is,
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\begin{lstlisting}
+IntegrateAntenna[AntennaObject]
+    -> recover route key and resolve profile;
+    -> choose IBP backend;
+    -> complete IBP reduction;
+    -> substitute master integrals when applicable;
+    -> extract public integrated antennae;
+    -> output: selected component, list, diagnostics, run record, or 
+       master-combination view.
+\end{lstlisting}
+\end{mdframed}
+
+It is relevant to note that \texttt{IntegrateAntenna} requires the profile to complete its 
+function like \texttt{BuildAntenna}, since it also encodes the relevant routing information 
+for the reduction and integration process. 
+
+Much like for \texttt{BuildAntenna}, there is no single route context object, rather the 
+relevant information is stored around multiple objects that are accessed when required. 
+These objects store initiation-crucial elements, like the key and the profile, the selected 
+component and the input (unintegrated) antenna, some IBP-crucial elements, like the bases 
+required. the master integrals to use, and the series result, along with others like 
+the route story, or the diagnostics.
+
+An integration-stage-specific diagram in the spirit of the one in
+Fig.~\ref{fig:antcalc-architecture} can also be drawn in further detail. 
+That diagram is shown in Fig.~\ref{fig:antcalc-architecture-intstage}.
+
+\input{figures/antcalc-architecture-intstage.tex}
+
+\subsection{Integration Profiles and Selection}
+
+The integration-specific profile for each route selects the kind of backend process (and 
+external package workflow used), and the basis family required for the process. The antennae 
+are divided by topology, that is, number of final-state particles and number of loops, and all 
+of those that share the same topology in the current implementation, share the same basis-family 
+set. The exception to this rule is the $A_2^2$ set, in which different sets are used depending on
+configuration. The $A_2^1$ antenna is also an exception to the use of basis families, as it 
+is reduced using PaVe reduction and then the PaVe MI are substituted by their analytical results 
+in terms of $\epsilon$. An overview of these is shown in the following Table~\ref{tab:intModes}.
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|c|c|c|} 
+   \hline
+   \textbf{Default Backend} & \textbf{Bases-Family Set} & \textbf{Current Route} \\ 
+   \hline
+   PaVe / \textit{FeynHelpers} & massless two-parton vertex & $A_2^1$ \\ \hline
+   IBP / \textit{LiteRed2} & \texttt{X30} & $A_3^0$ \\ \hline
+   IBP / \textit{LiteRed2} & \texttt{X40} & $A_4^0$, $\tilde A_4^0$, $B_4^0$, $C_4^0$ \\ \hline
+   IBP / \textit{LiteRed2} & \texttt{A31} & $A_3^1$, $\tilde A_3^1$, $\hat A_3^1$ \\ \hline
+   IBP / \textit{LiteRed2} & \texttt{A22TwoLoopTree} & $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$ \\ \hline
+   IBP / \textit{LiteRed2} & \texttt{A22OneLoopSelf} & $\breve A_2^2$ \\ \hline
+  \end{tabular}
+  
+  \caption{Overview of the integration-side route-profiles.}
+\label{tab:intModes}
+\end{table}
+
+As discussed previously for the build-side, the profile here also does not complete any 
+calculations itself. It simply provides the workflow with the required information for it 
+to work. For example, consider the integration of the $B_4^0$ antenna: it reaches \texttt{IntegrateAntenna}
+as an \texttt{AntennaObject}. For the key, the workflow is able to resolve the integration-side 
+route-profile and then it reduces the input unintegrated antenna from \texttt{AntennaObject}
+with the IBP method, using \textit{LiteRed2}, and using the bases and MI from the \texttt{X40}
+basis-family set.
+
+\subsection{Integration Routes}
+
+\subsubsection{PaVe Route}
+
+The $A_2^1$ PaVe route is the distinct low-multiplicity virtual case. It is the only route that 
+does not involve IBP. Due to $A_2^0 = 1$, this $A_2^1$ antenna's integration workflow requires 
+only the reduction and integration of the single loop momentum, making PaVe reduction the 
+best choice. The workflow then uses \textit{Package-X}, which comes pre-installed within \textit{FeynHelpers},
+to evaluate the PaVe scalar one-loop functions and, after applying the required branch and scale 
+conventions, the kinematic-scale normalisation, and Laurent expansion in $\epsilon$, it 
+gives the integrated $\mathcal A_2^1$ antenna. This process is shown schematically in 
+Fig.~\ref{fig:pave-reduction}, below.
+
+\input{figures/pave-reduction.tex}
+
+\subsubsection{IBP Route}
+
+All other antenna functions are integrated using IBP reduction using \textit{LiteRed2} and as 
+described in Sections~\ref{sec:integration}. The workflow rewrites the momenta, invariants, and
+denominators in \textit{LiteRed2}'s terms. It then adds the phase-space cut structure for the 
+selected family, loads its bases and after expanding the unintegrated antenna expression, 
+going term-by-term, matches each one to its relevant family. After each match, the term is IBP 
+reduced relative to its matched family-basis MI. This last step is handled completely by 
+\textit{LiteRed2}'s internal engine. After all terms have been reduced, they are summed 
+to form the final reduced antenna function. For the public routes, the MI have already been 
+hand-matched with known MI. These known MI are then substituted by their values after integration, 
+which is also hand-calculated and finally, after applying all required normalisation and 
+conventions, the integrated antenna functions are Laurent-expanded in $\epsilon$. The IBP 
+route process is shown schematically in Fig.~\ref{fig:ibp-reduction}.
+
+\input{figures/ibp-reduction.tex}
+
+\subsection{Normalisations and Convention Bridge}
+
+As discussed in Section~\ref{sec:dimreg}, before integration, the antenna functions must be 
+normalised using the $\mathcal N(\epsilon, k)$ factor, introduced in Eq.~\ref{eq:normN}. 
+Since in Section~\ref{sec:buildStage}, where we discussed the Build stage, the unintegrated 
+antenna functions were normalised using the loop-order factor, $\Lambda_l$, in this stage, 
+the rest of the normalisations and conventions must be applied. That begins with the 
+application of what remains from the $G_k$ factor and then $C(\epsilon, k)$. Finally, we 
+reach the full $\mathcal N(\epsilon, k)$ by diving out the twp-particle phase-space measure. 
+This is, schematically,
+\begin{equation}
+    \begin{split}
+        \mathcal X_n^l &= \mathcal N(\epsilon, k)\int d\Phi_{X_{ijk}}\, X_n^l\\
+                       &= \frac{1}{\Phi_2}\left(8\pi^2\right)^{n-2}S_\epsilon\int d\Phi_{X_{ijk}}\,\left(\Lambda_l X_n^l\right).
+    \end{split}
+\end{equation}
+Note, however, that not all routes require that the rest of the $G_k$ be applied, based on 
+their $n$. There also those routes that did not require the application of the $\Lambda_l$
+factor in the Build stage. The following Table~\ref{tab:GkNorm} shows how each antenna or 
+antenna set interacts with $G_k$.
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|c|c|c|} 
+   \hline
+   \textbf{Route} & $n$, $l$ & $G_k$\textbf{ relative to build }$\Lambda_l$ \\ 
+   \hline
+   $A_2^1$ & $2,1$ & $G_1=\Lambda_1$ (no extra multiplicity factors needed) \\ \hline
+   $A_3^0$ & $3,0$ & $G_1=8\pi^2\Lambda_0=8\pi^2$ \\ \hline
+   $A_3^1$ set & $3,1$ & $G_2=8\pi^2\Lambda_1$ \\ \hline
+   $A_4^0$ set, $B_4^0$, $C_4^0$ & $4,0$ & $G_2=(8\pi^2)^2\Lambda_0=(8\pi^2)^2$ \\ \hline
+   $A_2^2$ set & $2,2$ & $G_2=\Lambda_2$ (no extra multiplicity factors needed) \\ \hline
+  \end{tabular}
+  
+  \caption{Overview of the interactions of the antenna routes with the normalisation factor $G_k$.}
+\label{tab:GkNorm}
+\end{table}
+
+\subsection{Component Extraction and Integrated $\mathcal T$-Objects}
+
+The last part of the Build stage, before it generates the output, is component extraction.
+In that part,  
+the full result of the calculations the workflow went over is separated into colour-dependent
+terms and the coefficients relative to each of those terms is labelled as one of the components
+(leading, subleading, etc.). All multi-component antenna routes are reduced and integrated using 
+IBP reduction, which is independent of colour. That makes it sensible to completely separate 
+the components before reducing. This way, not only does the process become much cheaper if only 
+one component is selected, but the reduction are also made cleaner, since different components 
+may require different bases and MI. The following diagram in Fig.\ref{fig:component-extraction},
+describes schematically this process, using the $A_3^1$ antenna set as an example.
+
+\input{figures/component-extraction.tex}
+
+It is also important to note here that the result of the $A_3^1$ set's 
+integration is given, much like it was for the Build stage in \ref{eq:a31Norm}, as,
+\begin{gather*}
+    \mathcal A_3^1 = \mathcal T_\text{Lead} - \mathcal A_2^1\mathcal A_3^0\\
+    \tilde{\mathcal A_3^1} = -\left(\mathcal T_\text{Sublead} + \mathcal A_2^1\mathcal A_3^0\right).
+\end{gather*}
+These resulting $\mathcal A_3^1$ and $\tilde{\mathcal A}_3^1$ are already
+UV renormalised by this stage.
+
+\section{Higher-Level Functions}
+
+\section{Validation, Diagnostics, and Provenance}

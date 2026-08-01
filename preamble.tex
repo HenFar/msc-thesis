@@ -1,0 +1,52 @@
+% ==========================
+%   FCUL Thesis Preamble
+% ==========================
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{setspace}
+\setstretch{1.15}
+\usepackage{times}
+\usepackage{amsmath,amssymb,physics,bm, slashed}
+\usepackage{graphicx,caption,subcaption}
+\usepackage{hyperref,cleveref}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+
+%%%%%%%%%%
+% Extra packages
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,backgrounds,calc,decorations.pathreplacing,fit,positioning}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz-feynman}  % For Feynman diagrams
+\usepackage{feynmp-auto}
+\tikzfeynmanset{compat=1.1.0}  % Ensures compatibility
+
+\usepackage{bbm}
+\usepackage{indentfirst}
+
+\usepackage{mdframed}
+\usepackage{listings}
+\usepackage{tabularx}
+%%%%%%%%%%
+
+\addbibresource{references.bib}
+
+\numberwithin{equation}{chapter}
+\numberwithin{figure}{chapter}
+\numberwithin{table}{chapter}
+
+\captionsetup{font=small,labelfont=bf}
+
+%%%%%%%%%%
+% for listings %
+\lstset{
+  basicstyle=\ttfamily\small,
+  keepspaces=true,
+  breaklines=true
+}
+
+% tikz libraries %
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{backgrounds}
