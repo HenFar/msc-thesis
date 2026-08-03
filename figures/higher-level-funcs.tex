@@ -1,0 +1,129 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  >=Stealth,
+  stage/.style={
+    draw=black!65,
+    rounded corners=2pt,
+    fill=white,
+    align=center,
+    minimum height=10mm,
+    text width=19mm,
+    inner sep=3pt
+  },
+  profile/.style={
+    stage,
+    fill=violet!7,
+    text width=34mm,
+    minimum height=12mm
+  },
+  public/.style={
+    stage,
+    fill=blue!7,
+    text width=24mm
+  },
+  flow/.style={->, line width=.75pt},
+  config/.style={->, dashed, gray!75, line width=.6pt}
+]
+
+% buildandintegrateantenna
+\filldraw[black] (3,0) circle (2pt) node[anchor=south, yshift = 2pt]{BuildAndIntegrateAntenna};
+
+% buildantenna
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, rotate=-90] at (3,-0.75) {};
+\draw[black, thick] (3,0) -- (3,-1.5);
+\filldraw[black] (3,-1.5) circle (2pt) node[anchor=west, xshift=2pt]{BuildAntenna};
+
+% build secondary path
+\draw[black, thick] (3,-1.5) to[out=-90, in=20] (2,-2.5);
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, rotate=200, label={[anchor=north east, xshift=-5pt, yshift=9pt]:$X_n^l$}] at (2,-2.5) {};
+
+% integrateantenna
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, rotate=-90, label={[anchor=west,xshift=2pt]:\textit{AntennaObject}}] at (3,-2.5) {};
+\draw[black, thick] (3,-1.5) -- (3,-3.5);
+\filldraw[black] (3,-3.5) circle (2pt) node[anchor=west, xshift=2pt]{IntegrateAntenna};
+
+% integrate paths
+\draw[black, thick] (3,-3.5) -- (3,-4);
+\draw[black, thick] (3,-4) to[out=-90,in=90] (4,-5);
+\draw[black, thick] (3,-4) -- (3, -5);
+\draw[black, thick] (3,-4) to[out=-90,in=90] (2,-5);
+\filldraw[black] (2,-5.5) node[anchor=center]{IBP};
+\filldraw[black] (3,-5.5) node[anchor=center]{PaVe};
+\filldraw[black] (4,-5.5) node[align=center, anchor=center]{Trivial \\ ($A_2^0$)};
+\draw[black, thick] (2,-6) to[out=-90,in=90] (3,-7);
+\draw[black, thick] (3,-6) -- (3, -7);
+\draw[black, thick] (4,-6) to[out=-90,in=90] (3,-7);
+\draw[black, thick] (3,-7) -- (3,-7.5);
+
+% integrate sec path
+\draw[black, thick] (3,-7) to[out=-90, in=20] (2,-8);
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, rotate=200, label={[anchor=north east, xshift=-5pt, yshift=9pt]:$\mathcal X_n^l$}] at (2,-8) {};
+
+% buildandintegrateallantennae
+\draw[black, thick] (3,-7.5) to[out=-90, in=90] (5,-10.5);
+
+\filldraw[black] (8,-8.1) node[anchor=center]{$\mathcal C_4^0$};
+\filldraw[black] (7.4,-8.1) node[anchor=center]{$\mathcal B_4^0$};
+\filldraw[black] (6.8,-8.1) node[anchor=center]{\ldots};
+\filldraw[black] (6.2,-8.1) node[anchor=center]{$\mathcal A_2^1$};
+\filldraw[black] (5.6,-8.1) node[anchor=center]{$\mathcal A_2^0$};
+\draw[black, thick] (8,-8.6) to[out=-90, in=90] (5,-10.5);
+\draw[black, thick] (7.4,-8.6) to[out=-90, in=90] (5,-10.5);
+\draw[black, thick] (6.8,-8.6) to[out=-90, in=90] (5,-10.5);
+\draw[black, thick] (6.2,-8.6) to[out=-90, in=90] (5,-10.5);
+\draw[black, thick] (5.6,-8.6) to[out=-90, in=90] (5,-10.5);
+
+% tobject
+\draw[black, thick] (3,-7.5) to[out=-90, in=90] (1,-10.5);
+\filldraw[black] (1,-10.5) circle (2pt) node[anchor=north, yshift=-2pt]{TObject};
+
+\filldraw[black] (0,-8.1) node[anchor=center]{$\tilde{\mathcal X}_n^l$};
+\filldraw[black] (-0.8,-8.1) node[anchor=center]{$\hat{\mathcal X}_n^l$};
+\filldraw[black] (-1.6,-8.1) node[anchor=center]{\ldots};
+\draw[black, thick] (0,-8.6) to[out=-90, in=90] (1,-10.25);
+\draw[black, thick] (-0.8,-8.6) to[out=-90, in=90] (1,-10.25);
+\draw[black, thick] (-1.6,-8.6) to[out=-90, in=90] (1,-10.25);
+
+% RRatio
+\draw[black, thick] (5,-10.5) to[out=-90, in=90] (8,-12.5);
+\filldraw[black] (8,-12.5) circle (2pt) node[align=center, anchor=north, yshift=-2pt]{BuildRRatio};
+\draw[black, thick] (5,-10.5) to[out=-90, in=90] (2,-12.5);
+\filldraw[black] (2,-12.5) circle (2pt) node[align=center, anchor=north, yshift=-2pt]{BuildAndIntegrateAllAntennae \\ $\{\mathcal A_2^0, \mathcal A_2^1, ..., \mathcal X_n^l, ..., \mathcal B_4^0, \mathcal C_4^0\}$};
+
+% buildallantenna
+\filldraw[black] (10,-1.5) circle (2pt) node[anchor=south, yshift = 2pt]{BuildAllAntennae};
+\draw[black, thick] (10,-1.5) to[out=-90, in=90] (8.5,-3);
+\draw[black, thick] (10,-1.5) to[out=-90, in=90] (9.5,-3);
+\draw[black, thick] (10,-1.5) to[out=-90, in=90] (10.5,-3);
+\draw[black, thick] (10,-1.5) to[out=-90, in=90] (11.5,-3);
+\filldraw[black] (8.5,-3.5) node[anchor=center]{$A_2^0$};
+\filldraw[black] (9.5,-3.5) node[anchor=center]{$A_2^1$};
+\filldraw[black] (10.5,-3.5) node[anchor=center]{\ldots};
+\filldraw[black] (11.5,-3.5) node[anchor=center]{$C_4^0$};
+\draw[black, thick] (8.5,-4) to[out=-90, in=90] (10,-5.5);
+\draw[black, thick] (9.5,-4) to[out=-90, in=90] (10,-5.5);
+\draw[black, thick] (10.5,-4) to[out=-90, in=90] (10,-5.5);
+\draw[black, thick] (11.5,-4) to[out=-90, in=90] (10,-5.5);
+\filldraw[black] (10,-5.5) circle (2pt) node[anchor=north, yshift = -2pt]{$\{A_2^0, A_2^1,...,B_4^0,C_4^0\}$};
+
+% curvy lines
+%\draw (1,-1) to[out=0,in=180] (3,-2);
+%\draw (1,-1) to[out=0,in=180] (3,0);
+
+% back and frontend backgrounds
+\begin{pgfonlayer}{background}
+  % Draws a light blue rectangle behind a specific region
+  \fill[black!10, rounded corners] (-2.5,1) rectangle (13.5,-14);
+\end{pgfonlayer}
+
+% diagram labels
+% \node[label={[text=gray]right:\textit{PaVe}}] at (-2,-4) {};
+
+% circle points
+
+\end{tikzpicture}
+\caption{\centering Diagram showing the build-side workflow leading to the generation of the $A_2^2$ antenna set. The two subsets are separated by the interferences used in their generation.}
+\label{fig:higher-level}
+\end{figure}

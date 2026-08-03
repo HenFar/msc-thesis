@@ -363,6 +363,11 @@ The components are then, finally, renormalised as discussed,
     \end{split}
 \end{equation}
 
+Each of these components may also be extracted alone as a single antenna, using the \\
+\texttt{Component} option. If, while using \textit{AntCalc}, one ran
+\texttt{BuildAntenna[A,3,1, \\ Component->Subleading]}, for example, only the unintegrated $\tilde A_3^1$
+antenna would be returned.
+
 \subsection{Two-Loop Routes}
 
 Loop order two routes are dispatched to \texttt{BuildTwoLoopAntennaData}. There is only, formally, 
@@ -429,6 +434,10 @@ The antenna objects have to then be UV renormalised as follows,
     \end{split}
 \end{equation}
 
+This route may be schematically represented as shown in Fig.~\ref{fig:a22-build}, below.
+
+\input{figures/a22-build.tex}
+
 These renormalised results are now used to form the overall $T_{q\bar q}^6$ object. It is defined 
 as the sum of the two contributions' sub-$T$-objects, $T_{q\bar q}^{6,[2\times 0]}$ for the first,
 and $T_{q\bar q}^{6,[1\times 1]}$ for the second contribution, following the interferences 
@@ -436,7 +445,7 @@ $\mathcal J$ notation as,
 \begin{equation}
     \begin{split}
         T_{q\bar q}^6 &= \left(N-\frac1N\right)T_{q\bar q}^2 \left[T_{q\bar q}^{6,[2\times 0]}+T_{q\bar q}^{6, [1\times 1]}\right]\\
-                      &= \left(N-\frac1N\right)T_{q\bar q}^2 \left[\frac{\Lambda_2}{c_NB_0}\mathcal J_2^{2,[2\times 0]} + \frac{\Lambda_2}{c_NB_0}\mathcal J_2^{2,[1\times 1]}\right]\\
+                      &= \left(N-\frac1N\right)T_{q\bar q}^2 \left[\frac{\Lambda_2}{c_NB_0}\mathcal J_2^{2,[2\times 0]} + \frac{\Lambda_2}{c_N^2B_0}\mathcal J_2^{2,[1\times 1]}\right]\\
                       &= \left(N-\frac1N\right)T_{q\bar q}^2 \left[NA_2^2 + \frac1N\tilde A_2^2 + N_f\hat A_2^2 + \left(N-\frac1N\right)\breve A_2^2\right].
     \end{split}
 \end{equation}
@@ -467,8 +476,8 @@ is,
 \begin{lstlisting}
 IntegrateAntenna[AntennaObject]
     -> recover route key and resolve profile;
-    -> choose IBP backend;
-    -> complete IBP reduction;
+    -> choose integration backend;
+    -> complete IBP/PaVe reduction;
     -> substitute master integrals when applicable;
     -> extract public integrated antennae;
     -> output: selected component, list, diagnostics, run record, or 
@@ -536,7 +545,8 @@ basis-family set.
 \subsubsection{PaVe Route}
 
 The $A_2^1$ PaVe route is the distinct low-multiplicity virtual case. It is the only route that 
-does not involve IBP. Due to $A_2^0 = 1$, this $A_2^1$ antenna's integration workflow requires 
+does not involve IBP. Due to being the two-parton one-loop form factor, 
+this $A_2^1$ antenna's integration workflow requires 
 only the reduction and integration of the single loop momentum, making PaVe reduction the 
 best choice. The workflow then uses \textit{Package-X}, which comes pre-installed within \textit{FeynHelpers},
 to evaluate the PaVe scalar one-loop functions and, after applying the required branch and scale 
@@ -602,6 +612,30 @@ antenna set interacts with $G_k$.
 \label{tab:GkNorm}
 \end{table}
 
+\subsubsection{Expansion Order}
+
+The last step before reaching the integrated antenna function $\mathcal X_n^l$, or the ordered 
+list of component integrated antennae, is to expand the working expression as a Laurent series.
+Following the literature, the maximum Laurent-expansion order is route-dependent. Lower-order 
+antenna functions ($\mathcal A_2^1$ and $\mathcal A_3^0$) are expanded to $\epsilon^2$, 
+while higher-order functions are expanded to $\epsilon^0$. This latter restriction comes 
+from the used and verified master-integral representations, of which some are only encoded 
+throgh $\epsilon^0$.
+There might be need to expand to a lesser or to a greater term, however. That can be set using the 
+\texttt{ExpansionOrder} option, as,
+\begin{equation}\label{eq:expansionOrderDiag}
+    \begin{gathered}
+        \texttt{IntegrateAntenna[A30]} \xrightarrow{\text{Default Result}}\frac{1}{\epsilon^2}+\frac{3}{2\epsilon}+\frac{19}{4}-\frac{7\pi^2}{12}+\epsilon\!\left(\frac{109}{8}+...\right)+\epsilon^2\!\left(\frac{639}{16}+...\right)\\
+        \texttt{IntegrateAntenna[A30]} \xrightarrow{\texttt{ExpansionOrder->0}}\frac{1}{\epsilon^2}+\frac{3}{2\epsilon}+\frac{19}{4}-\frac{7\pi^2}{12}
+    \end{gathered}
+\end{equation}
+where \texttt{A30=BuildAntenna[A,3,0,IntegrableForm->True]}, is the $A_3^0$ set's \\
+\texttt{AntennaObject}. Though the example in Eq.\ref{eq:expansionOrderDiag} above shows the 
+truncation of a series whose default expansion is deeper than the one resulting from the 
+option, using \texttt{ExpansionOrder} for a higher-than-default order is also possible 
+and supported. That call, however, is not validated against the literature, as the MI 
+\textit{AntCalc} uses are, some, truncated.
+
 \subsection{Component Extraction and Integrated $\mathcal T$-Objects}
 
 The last part of the Build stage, before it generates the output, is component extraction.
@@ -619,13 +653,49 @@ describes schematically this process, using the $A_3^1$ antenna set as an exampl
 
 It is also important to note here that the result of the $A_3^1$ set's 
 integration is given, much like it was for the Build stage in \ref{eq:a31Norm}, as,
-\begin{gather*}
-    \mathcal A_3^1 = \mathcal T_\text{Lead} - \mathcal A_2^1\mathcal A_3^0\\
-    \tilde{\mathcal A_3^1} = -\left(\mathcal T_\text{Sublead} + \mathcal A_2^1\mathcal A_3^0\right).
-\end{gather*}
+\begin{equation}\label{eq:a31WithTs}
+    \begin{split}
+        &\mathcal A_3^1 = \mathcal T_\text{Lead} - \mathcal A_2^1\mathcal A_3^0\\
+        &\tilde{\mathcal A_3^1} = -\left(\mathcal T_\text{Sublead} + \mathcal A_2^1\mathcal A_3^0\right)\\
+        &\hat{\mathcal A_3^1} = \mathcal T_\text{QL}.
+    \end{split}
+\end{equation}
 These resulting $\mathcal A_3^1$ and $\tilde{\mathcal A}_3^1$ are already
 UV renormalised by this stage.
 
+Those $\mathcal T$-object may still be useful, however. They can be extracted instead of the 
+antenna functions, essentially by breaking the process before that last operation, in 
+Eq.~\ref{eq:a31WithTs} and returning an analogous ordered list made up of the $\mathcal T$-objects,
+as,
+\begin{equation}
+    \begin{gathered}
+        \texttt{IntegrateAntenna[A31]} \xrightarrow{\text{Default Result}} \{\mathcal A_3^1, \tilde{\mathcal A}_3^1, \hat{\mathcal A}_3^1\}\\
+        \texttt{IntegrateAntenna[A31]} \xrightarrow{\texttt{ReturnTTerms->True}} \{\mathcal T_\text{Lead}, \mathcal T_\text{Sublead}, \mathcal T_\text{QL}\}
+    \end{gathered}
+\end{equation}
+where \texttt{A31=BuildAntenna[A,3,1,IntegrableForm->True]}, is, once again, the $A_3^1$ set's
+\texttt{AntennaObject}.
+
+\subsection{$A_2^2$ Set Integration Routes}
+
+As described in this section, the $A_2^2$ set is composed of two subsets of antennae that come 
+from different provenance. They come from different provenance and use different IBP basis 
+families. Both the build- and the integrate-side routes are completely separate based on 
+subset. Those routes may be schematically drawn in the spirit of the diagram in 
+Fig.~\ref{fig:component-extraction}, as in the diagram in 
+Fig.~\ref{fig:a22-component-extraction}, below. The workflow interprets the overall 
+\texttt{[A,2,2]}, then separates the process into different build-side production modes 
+as shown in the diagram in Fig.~\ref{fig:a22-build}. It then merges the four components into 
+an ordered list. That list is sent to the integrate-side workflow. This workflow starts by 
+separating them into the subsets and then, considering that all components are selected for 
+integration, it reduces them using the subset-specific basis families. Finally, once all four 
+are integrated, they are once again merged onto an ordered list, which is delivered as the 
+default output.
+
+\input{figures/a22-component-extraction.tex}
+
 \section{Higher-Level Functions}
+
+\input{figures/higher-level-funcs.tex}
 
 \section{Validation, Diagnostics, and Provenance}

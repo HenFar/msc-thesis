@@ -35,11 +35,11 @@
 % back and frontend backgrounds
 \begin{pgfonlayer}{background}
   % Draws a light blue rectangle behind a specific region
-  \fill[black!10, rounded corners] (-2,0.5) rectangle (12.5,-3.5);
+  \fill[black!10, rounded corners] (-2,0.5) rectangle (12.5,-4);
 \end{pgfonlayer}
 
 % back and frontend labels
-\node[label={[text=gray]right:\textit{IBP}}] at (-2,-3) {};
+\node[label={[text=gray]right:\textit{IBP}}] at (-2,-3.5) {};
 
 % circle points 
 %   top
@@ -50,7 +50,7 @@
 \filldraw[black] (10,-1) circle (2pt) node[align=center, anchor=south, yshift = 2pt]{IBP \\ term-by-term};
 %   bottom
 \filldraw[black] (10,-2) circle (2pt) node[align=center, anchor=north, yshift = -2pt]{Sum};
-\filldraw[black] (7.5,-2) circle (2pt) node[align=center, anchor=north, yshift = -2pt]{Id., match, \\ and compute MI};
+\filldraw[black] (7.5,-2) circle (2pt) node[align=center, anchor=north, yshift = -2pt]{Id. \\ and match \\ MI};
 \filldraw[black] (5,-2) circle (2pt) node[align=center, anchor=north, yshift = -2pt]{Substitute \\ MI};
 \filldraw[black] (2.5,-2) circle (2pt) node[align=center, anchor=north, yshift = -2pt]{Laurent- \\ -Expansion};
 \filldraw[black] (0,-2) circle (2pt) node[anchor=north, yshift = -2pt]{$\mathcal X_n^l$};
@@ -68,7 +68,13 @@
 \node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-225] at (6.25,-2) {};
 \node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-225] at (8.75,-2) {};
 
+% compute MI line
+\draw[black, thick] (9.875,-3) -- (10.5,-3);
+\draw (9.875,-3) to[out=180,in=0] (7.5,-2);
+\filldraw[black] (10.5,-3) circle (2pt) node[anchor=north, yshift = -2pt]{Compute MI};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, rotate=-95] at (8.8,-2.55) {};
+
 \end{tikzpicture}
-\caption{IBP reduction workflow for the remaining antennae integrations.}
+\caption{\centering IBP reduction workflow for the remaining antennae integrations. The MI computation is external to \textit{AntCalc}'s internal operation, and hence is represented by an external incoming arrow.}
 \label{fig:ibp-reduction}
 \end{figure}

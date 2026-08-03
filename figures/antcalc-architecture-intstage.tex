@@ -28,36 +28,68 @@
 ]
 
 % main lines
-\draw[black, thick] (0,0) -- (9,0);
-\draw[black, thick] (9,0) -- (9,-5);
+\draw[black, thick] (0,0) -- (11,0);
+\draw[black, thick] (11,0) -- (11,-10);
 
 % back and frontend backgrounds
 \begin{pgfonlayer}{background}
   % Draws a light blue rectangle behind a specific region
-  \fill[blue!10, rounded corners] (-2.5,1) rectangle (12,-4);
+  \fill[blue!10, rounded corners] (-2.5,1) rectangle (14,-8);
     
   % Or a light gray box behind another region
-  \fill[black!5, rounded corners] (-2.5,-4) rectangle (12,-6);
+  \fill[black!5, rounded corners] (-2.5,-8) rectangle (14,-12);
+
+  % Red background for options
+  \fill[red!15, rounded corners] (2.5,-1) rectangle (10,-11);
 \end{pgfonlayer}
 
 % back and frontend labels
-\node[label={[text=blue!60]above:\textit{Backend}}] at (11,-4) {};
-\node[label={[text=gray]below:\textit{Frontend}}] at (11,-4) {};
+\node[label={[text=blue!60]above:\textit{Backend}}] at (13,-8) {};
+\node[label={[text=gray]below:\textit{Frontend}}] at (13,-8) {};
+\node[label={[text=red!60]below:\textit{Options}}] at (3.3,-10.2) {};
 
 % interceptions
 \filldraw[black] (0,0) circle (2pt) node[align=center, anchor=north, yshift = -2pt]{AntennaObject \\ \textit{(IntegrateAntenna-\textgreater True)}};
-\filldraw[black] (9,0) circle (2pt) node[anchor=south]{IntegrateAntenna[]};
+\filldraw[black] (11,0) circle (2pt) node[anchor=south]{IntegrateAntenna[]};
 
 % input node
 
 % output nodes
-\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90, label=below:Default Build Output] at (9,-5) {};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90, label={[align=center, anchor=west, label distance=3pt]below:Default \\ Integrate \\ Output}] at (11,-10) {};
 
 % midway points
-\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90, label={[label distance = -5pt, rotate=90, anchor=south]below:\textit{Expanding...}}] at (9,-2.5) {};
-\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-45] at (4.5,0) {};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90, label={[label distance = -5pt, rotate=90, anchor=south]below:\textit{Expanding...}}] at (11,-5) {};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-45] at (5.5,0) {};
+
+% Options
+\draw[black, dashed] (2.1,0) -- (2.1,-1.6);
+\draw[black, dashed] (2.1,-1.6) -- (2.85,-1.6);
+
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-45] at (2.85,-1.6) {};
+
+\node[align=center, anchor=west] at (3.05,-1.7) {Convention \\ \& Expansion:};
+\draw[black!80, thick] (3.8, -2.2) -- (3.8, -4);
+\node[anchor=west] at (3.9,-2.45) {\texttt{ExpansionOrder}};
+\node[anchor=west] at (3.9,-2.85) {\texttt{KinematicScale}};
+\node[anchor=west] at (3.9,-3.25) {\texttt{NormalizeKinematicScale}};
+\node[anchor=west] at (3.9,-3.65) {\texttt{ApplyFeynCalcMS}};
+
+\node[align=center, anchor=west] at (3.05,-4.6) {IBP Basis \\ Control:};
+\draw[black!80, thick] (3.8, -5.1) -- (3.8, -6.45);
+\node[anchor=west] at (3.9,-5.35) {\texttt{BasisFamily}};
+\node[anchor=west] at (3.9,-5.75) {\texttt{BasisRoot}};
+\node[anchor=west] at (3.9,-6.15) {\texttt{GenerateMissingBases}};
+
+\node[align=center, anchor=west] at (3.05,-7.05) {Public \\ Integration Views:};
+\draw[black!80, thick] (3.8, -7.55) -- (3.8, -8.45);
+\node[anchor=west] at (3.9,-7.8) {\texttt{ReturnTTerms}};
+\node[anchor=west] at (3.9,-8.2) {\texttt{ReturnMasterCombination}};
+
+\node[align=center, anchor=west] at (3.05,-9.05) {Diagnostics};
+\draw[black!80, thick] (3.8, -9.55) -- (3.8, -10);
+\node[anchor=west] at (3.9,-9.8) {\texttt{DetailedTimingDiagnostics}};
 
 \end{tikzpicture}
-\caption{Profile-driven architecture of \textit{AntCalc}'s Integration stage.}
+\caption{\centering Profile-driven architecture of \textit{AntCalc}'s Integration stage. The principal integration-only options are shown inside the red card.}
 \label{fig:antcalc-architecture-intstage}
 \end{figure}

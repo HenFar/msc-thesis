@@ -1,0 +1,93 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  >=Stealth,
+  stage/.style={
+    draw=black!65,
+    rounded corners=2pt,
+    fill=white,
+    align=center,
+    minimum height=10mm,
+    text width=19mm,
+    inner sep=3pt
+  },
+  profile/.style={
+    stage,
+    fill=violet!7,
+    text width=34mm,
+    minimum height=12mm
+  },
+  public/.style={
+    stage,
+    fill=blue!7,
+    text width=24mm
+  },
+  flow/.style={->, line width=.75pt},
+  config/.style={->, dashed, gray!75, line width=.6pt}
+]
+
+% centre line
+\draw[black, thick] (-0.5,-1) -- (1,-1);
+
+\draw[black, thick] (10,-1) -- (11.5,-1);
+
+% build-only lines
+\draw[black, thick] (3,-2) -- (6.5,-2);
+\draw[black, thick] (7.5,-2) -- (8,-2);
+
+% build-only nodes
+
+% integrate-only lines
+\draw[black, thick] (3,0) -- (5,0);
+
+\draw[black, thick] (6,0.5) -- (6.5,0.5);
+\draw[black, thick] (6,0) -- (6.5,0);
+\draw[black, thick] (6,-0.5) -- (6.5,-0.5);
+
+\draw[black, thick] (7.5,0.5) -- (8,0.5);
+\draw[black, thick] (7.5,0) -- (8,0);
+\draw[black, thick] (7.5,-0.5) -- (8,-0.5);
+
+% integrate-only nodes
+\filldraw[black] (7,0.5) node[anchor=center]{$\mathcal A_2^2$};
+\filldraw[black] (7,0) node[anchor=center]{$\tilde{\mathcal A}_2^2$};
+\filldraw[black] (7,-0.5) node[anchor=center]{$\hat{\mathcal A}_2^2$};
+\filldraw[black] (7,-2) node[anchor=center]{$\breve{\mathcal A}_2^2$};
+
+% curvy lines
+\draw (1,-1) to[out=0,in=180] (3,-2);
+\draw (1,-1) to[out=0,in=180] (3,0);
+
+\draw (5,0) to[out=0,in=180] (6,0.5);
+\draw (5,0) to[out=0,in=180] (6,0);
+\draw (5,0) to[out=0,in=180] (6,-0.5);
+
+\draw (8,0.5) to[out=0,in=180] (10,-1);
+\draw (8,0) to[out=0,in=180] (10,-1);
+\draw (8,-0.5) to[out=0,in=180] (10,-1);
+\draw (8,-2) to[out=0,in=180] (10,-1);
+
+% back and frontend backgrounds
+\begin{pgfonlayer}{background}
+  % Draws a light blue rectangle behind a specific region
+  \fill[black!10, rounded corners] (-2.5,1.5) rectangle (13.5,-3.5);
+\end{pgfonlayer}
+
+% diagram labels
+% \node[label={[text=gray]right:\textit{PaVe}}] at (-2,-4) {};
+
+% circle points
+\filldraw[black] (-0.5,-1) circle (2pt) node[align=center, anchor=south, yshift = 2pt]{$\{A_2^2, \tilde A_2^2, \hat A_2^2, \breve A_2^2\}$};
+\filldraw[black] (-0.5,-1) circle (2pt) node[align=center, anchor=north, yshift = -2pt]{Key = \texttt{[A,2,2]}};
+
+\filldraw[black] (11.5,-1) circle (2pt) node[align=center, anchor=south, yshift = 2pt]{$\{\mathcal A_2^2, \tilde{\mathcal A}_2^2, \hat{\mathcal A}_2^2, \breve{\mathcal A}_2^2\}$};
+
+% arrows
+\node[draw, fill=black, regular polygon, regular polygon sides=5, inner sep=2pt, label={[align=center]above:\texttt{TwoLoopTree}}] at (4,0) {};
+\node[draw, fill=black, regular polygon, regular polygon sides=5, inner sep=2pt, label={[align=center]below:\texttt{OneLoopSelf}}] at (4,-2) {};
+
+\end{tikzpicture}
+\caption{\centering Diagram showing the component extraction steps and integration-basis families used in the integration-side workflow of the $A_2^2$ antenna set.}
+\label{fig:a22-component-extraction}
+\end{figure}

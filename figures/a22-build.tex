@@ -1,0 +1,96 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  >=Stealth,
+  stage/.style={
+    draw=black!65,
+    rounded corners=2pt,
+    fill=white,
+    align=center,
+    minimum height=10mm,
+    text width=19mm,
+    inner sep=3pt
+  },
+  profile/.style={
+    stage,
+    fill=violet!7,
+    text width=34mm,
+    minimum height=12mm
+  },
+  public/.style={
+    stage,
+    fill=blue!7,
+    text width=24mm
+  },
+  flow/.style={->, line width=.75pt},
+  config/.style={->, dashed, gray!75, line width=.6pt}
+]
+
+% centre line
+\draw[black, thick] (-0.5,-1) -- (1,-1);
+
+\draw[black, thick] (10,-1) -- (11.5,-1);
+
+% build-only lines
+\draw[black, thick] (3,-2) -- (6.5,-2);
+\draw[black, thick] (7.5,-2) -- (8,-2);
+
+% build-only nodes
+
+% integrate-only lines
+\draw[black, thick] (3,0) -- (5,0);
+
+\draw[black, thick] (6,0.8) -- (6.5,0.8);
+\draw[black, thick] (6,0) -- (6.5,0);
+\draw[black, thick] (6,-0.8) -- (6.5,-0.8);
+
+\draw[black, thick] (7.5,0.8) -- (8,0.8);
+\draw[black, thick] (7.5,0) -- (8,0);
+\draw[black, thick] (7.5,-0.8) -- (8,-0.8);
+
+% integrate-only nodes
+\filldraw[black] (7,0.8) node[anchor=center]{$A_2^2$};
+\filldraw[black] (7,0) node[anchor=center]{$\tilde{A}_2^2$};
+\filldraw[black] (7,-0.8) node[anchor=center]{$\hat{A}_2^2$};
+\filldraw[black] (7,-2) node[anchor=center]{$\breve{A}_2^2$};
+
+% curvy lines
+\draw (1,-1) to[out=0,in=180] (3,-2);
+\draw (1,-1) to[out=0,in=180] (3,0);
+
+\draw (5,0) to[out=0,in=180] (6,0.8);
+\draw (5,0) to[out=0,in=180] (6,0);
+\draw (5,0) to[out=0,in=180] (6,-0.8);
+
+\draw (8,0.8) to[out=0,in=180] (10,-1);
+\draw (8,0) to[out=0,in=180] (10,-1);
+\draw (8,-0.8) to[out=0,in=180] (10,-1);
+\draw (8,-2) to[out=0,in=180] (10,-1);
+
+% back and frontend backgrounds
+\begin{pgfonlayer}{background}
+  % Draws a light blue rectangle behind a specific region
+  \fill[black!10, rounded corners] (-2.5,2) rectangle (13.5,-3.5);
+\end{pgfonlayer}
+
+% diagram labels
+% \node[label={[text=gray]right:\textit{PaVe}}] at (-2,-4) {};
+
+% circle points
+\filldraw[black] (-0.5,-1) circle (2pt) node[align=center, anchor=south, yshift = 2pt]{\texttt{BuildAntenna} \\ \texttt{[A,2,2]}};
+
+\filldraw[black] (11.5,-1) circle (2pt) node[align=center, anchor=south, yshift = 2pt]{$\{A_2^2, \tilde{A}_2^2, \hat{A}_2^2, \breve{A}_2^2\}$};
+
+% arrows
+\node[draw, fill=black, circle, inner sep=2pt, label={[align=center]above:$\mathcal J_2^{2,[2\times 0]}$}] at (4,0) {};
+\node[draw, fill=black, regular polygon, regular polygon sides=5, inner sep=2pt, label={[align=center]below:$\mathcal J_2^{2,[1\times 1]}$}] at (4,-2) {};
+
+\node[label={[text=blue!80,align=center]above:$(N)$}] at (6.1,0.7) {};
+\node[label={[text=blue!80,align=center]above:$(1/N)$}] at (6.1,-0.1) {};
+\node[label={[text=blue!80,align=center]above:$(N_f)$}] at (6.1,-0.9) {};
+
+\end{tikzpicture}
+\caption{\centering Diagram showing the build-side workflow leading to the generation of the $A_2^2$ antenna set. The two subsets are separated by the interferences used in their generation.}
+\label{fig:a22-build}
+\end{figure}

@@ -28,41 +28,74 @@
 ]
 
 % main lines
-\draw[black, thick] (0,0) -- (7.5,0);
-\draw[black, dashed] (7.5,0) -- (10,0);
-\draw[black, thick] (0,-5) -- (0,0);
-\draw[black, thick] (7.5,0) -- (7.5,-5);
+\draw[black, thick] (0,0) -- (9.5,0);
+\draw[black, dashed] (9.5,0) -- (12,0);
+\draw[black, thick] (0,-10) -- (0,0);
+\draw[black, thick] (9.5,0) -- (9.5,-10);
 
 % back and frontend backgrounds
 \begin{pgfonlayer}{background}
   % Draws a light blue rectangle behind a specific region
-  \fill[blue!10, rounded corners] (-2,1) rectangle (12,-4);
+  \fill[blue!10, rounded corners] (-2,1) rectangle (14,-8);
     
   % Or a light gray box behind another region
-  \fill[black!5, rounded corners] (-2,-4) rectangle (12,-6);
+  \fill[black!5, rounded corners] (-2,-8) rectangle (14,-12);
+
+  % Red background for options
+  \fill[red!15, rounded corners] (1,-1) rectangle (8.5,-11.5);
 \end{pgfonlayer}
 
 % back and frontend labels
-\node[label={[text=blue!60]above:\textit{Backend}}] at (11,-4) {};
-\node[label={[text=gray]below:\textit{Frontend}}] at (11,-4) {};
+\node[label={[text=blue!60]above:\textit{Backend}}] at (13,-8) {};
+\node[label={[text=gray]below:\textit{Frontend}}] at (13,-8) {};
+\node[label={[text=red!60]below:\textit{Options}}] at (1.8,-10.7) {};
 
 % interceptions
 \filldraw[black] (0,0) circle (2pt) node[anchor=south, yshift = 2pt]{Route Profile};
-\filldraw[black] (7.5,0) circle (2pt) node[anchor=south]{BuildAntenna[]};
+\filldraw[black] (9.5,0) circle (2pt) node[anchor=south]{BuildAntenna[]};
 
 % input node
-\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=+90, label=below:Input Key] at (0,-5) {};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=+90, label=below:Input Key] at (0,-10) {};
 
 % output nodes
-\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90, label=below:Default Build Output] at (7.5,-5) {};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90, label={[align=center]east:Default \\ Build \\ Output}] at (9.5,-10) {};
 
 % midway points
-\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=+90, label={[label distance = -5pt, rotate=90, anchor=south]below:\textit{Resolving...}}] at (0,-2.5) {};
-\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90, label={[label distance = -5pt, rotate=90, anchor=south]below:\textit{Formatting...}}] at (7.5,-2.5) {};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=+90, label={[label distance = -5pt, rotate=90, anchor=south]below:\textit{Resolving...}}] at (0,-5) {};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90, label={[label distance = 5pt, rotate=90, anchor=north]below:\textit{Formatting...}}] at (9.5,-5) {};
 \node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-45] at (3.75,0) {};
-\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-45, label={[align=center]below:\textit{AntennaObject}\\\textit{(IntegrableForm -\textgreater \,True)}}] at (10,0) {};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-45, label={[align=center]below:\textit{AntennaObject}\\\textit{(IntegrableForm -\textgreater \,True)}}] at (12,0) {};
+
+% Options
+\draw[black, dashed] (0.5,0) -- (0.5,-1.6);
+\draw[black, dashed] (0.5,-1.6) -- (1.25,-1.6);
+
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-45] at (1.25,-1.6) {};
+
+\node[align=center, anchor=west] at (1.45,-1.7) {Construction \\ \& Algebra:};
+\draw[black!80, thick] (2.2, -2.2) -- (2.2, -4);
+\node[anchor=west] at (2.3,-2.45) {\texttt{prefactor}};
+\node[anchor=west] at (2.3,-2.85) {\texttt{ApplyStripCouplings}};
+\node[anchor=west] at (2.3,-3.25) {\texttt{ApplyCasimirSubstitution}};
+\node[anchor=west] at (2.3,-3.65) {\texttt{printDiagram}};
+
+\node[align=center, anchor=west] at (1.45,-4.6) {Loop \\ Construction:};
+\draw[black!80, thick] (2.2, -5.1) -- (2.2, -6);
+\node[anchor=west] at (2.3,-5.35) {\texttt{ReductionBackend}};
+\node[anchor=west] at (2.3,-5.75) {\texttt{LoopMomenta}};
+
+\node[align=center, anchor=west] at (1.45,-6.6) {Route \& Public \\ Boundary:};
+\draw[black!80, thick] (2.2, -7.1) -- (2.2, -8.45);
+\node[anchor=west] at (2.3,-7.35) {\texttt{IntegrableForm}};
+\node[anchor=west] at (2.3,-7.75) {\texttt{BuildOutputBranch}};
+\node[anchor=west] at (2.3,-8.15) {\texttt{RunPaperCheck}};
+
+\node[align=center, anchor=west] at (1.45,-9.05) {Experimental \\ Routes:};
+\draw[black!80, thick] (2.2, -9.55) -- (2.2, -10.45);
+\node[anchor=west] at (2.3,-9.8) {\texttt{AllowPrototypeTargets}};
+\node[anchor=west] at (2.3,-10.2) {\texttt{UseSourceModelRoute}};
 
 \end{tikzpicture}
-\caption{Profile-driven architecture of \textit{AntCalc}'s Build stage.}
+\caption{\centering Profile-driven architecture of \textit{AntCalc}'s Build stage. The principal build-specific options to the \texttt{BuildAntenna} function are displayed on the red card.}
 \label{fig:antcalc-architecture-buildstage}
 \end{figure}
