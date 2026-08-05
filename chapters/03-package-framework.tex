@@ -696,6 +696,95 @@ default output.
 
 \section{Higher-Level Functions}
 
+Besides the two canonical functions, \textit{AntCalc} also supports a number of higher-level 
+functions. This higher-level layer does not introduce new antenna-construction or integration
+methodology; instead it 
+orchestrates the use of the two canonical functions to compute observables like the $R$-ratio, 
+retrieve $T$-objects or to streamline repeated Build or Integrate evaluation.
+
+There are a total of five higher-level functions. They are,
+\begin{itemize}
+    \item \texttt{BuildAndIntegrateAntenna}
+    \item \texttt{BuildAllAntennae}
+    \item \texttt{BuildAndIntegrateAllAntennae}
+    \item \texttt{TObject}
+    \item \texttt{BuildRRatio}.
+\end{itemize}
+
+Each of these functions completes a useful higher-level task and their use can be schematically 
+seen in Fig.~\ref{fig:higher-level}. The first one streamlines the 
+retrieval of the integrated antenna result to a single function, instead of having to build
+the unintegrated antenna using the \texttt{IntegrableForm} option and then to plug the 
+intermediate result into the integration workflow. This function essentially follows the top 
+path on the diagram in Fig.~\ref{fig:component-extraction}, for the $A_3^1$ route: it starts 
+by calling \texttt{BuildAntenna} using the appropriate option, \texttt{IntegrableForm->True}. It then, internally, plugs the 
+result into \texttt{IntegrateAntenna}. It forwards the controls needed by the combined
+workflow to their respective stages, including component selection and Laurent-expansion 
+order. 
+That means that one can build and integrate only the subleading component,
+expanded only up to $\epsilon^{-1}$, for example. In the diagram, this function goes all the 
+way from its namesake node, down to where $\mathcal X_n^l$ leaves the line, being its 
+schematic solution, the integrated antenna function.
+
 \input{figures/higher-level-funcs.tex}
+
+There are also two bulk wrappers: \texttt{BuildAllAntennae} and \texttt{BuildAndIntegrateAll\\Antennae}.
+These two functions complete exactly what their names imply: the first one builds all 
+public antenna functions and returns an ordered list of all antennae (and components); the 
+second builds and integrates every public antenna function and returns an ordered list of all 
+antennae (and components). In the diagram, the first function is separate from the rest 
+of the workflow due to its own nature. The second is shown at the bottom, since it calls 
+\texttt{BuildAndIntegrateAntenna} for every public, massless, route. Their outputs 
+can be modulated based on the requested order. That is, we can 
+limit the wrappers to generate only antenna functions, built or integrated, up to, 
+for example, NLO. In that case, only the list $\{A_2^0, A_2^1, A_3^0\}$ (or the same 
+but integrated) would be returned. These functions are able to produce (build or build and integrate)
+all publicly available antenna functions, that is, all massless quark-antiquark 
+final-final (SMQCD\footnote{The label SMQCD is not standard in the literature. It is 
+used here to denote the massless QCD sector of the Standard Model.}) 
+antennae, up to NNLO.
+
+We may also retrieve a specific $\mathcal T$-object directly, using \texttt{TObject}. The public supported 
+$\mathcal T$-objects are described in Table~\ref{tab:TObject}, below. These computation routes follow closely the 
+methods discussed in Subsection~\ref{subsec:antFamilies}. The function calls the one-shot integrated routes, using \texttt{BuildAndIntegrateAntenna}
+for the necessary ingredient antennae, then assembles them into the $\mathcal T$-object 
+structure. 
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|c|c|c|} 
+   \hline
+   \textbf{$\mathcal T$-Object} & \textbf{Ingredients} & \textbf{Call} \\ 
+   \hline
+   $\mathcal T_{q\bar q}^2$ & Born contribution & \texttt{TObject[2,"qqbar"]} \\ \hline
+   $\mathcal T_{q\bar q}^4$ & $\mathcal A_2^1$ & \texttt{TObject[4,"qqbar"]} \\ \hline
+   $\mathcal T_{q\bar qg}^4$ & $\mathcal A_3^0$ & \texttt{TObject[4,"qqbarg"]} \\ \hline
+   $\mathcal T_{q\bar q}^6$ & $\mathcal A_2^2$, $\tilde {\mathcal A}_2^2$, $\hat {\mathcal A}_2^2$, $\breve {\mathcal A}_2^2$ & \texttt{TObject[6,"qqbar"]} \\ \hline
+   $\mathcal T_{q\bar qg}^6$ & $\mathcal A_2^1$, $\mathcal A_3^0$, $\mathcal A_3^1$, $\tilde {\mathcal A}_3^1$, $\hat {\mathcal A}_3^1$ & \texttt{TObject[6,"qqbarg"]} \\ \hline
+   $\mathcal T_{q\bar qq^\prime\bar q^\prime}^6$ & $\mathcal B_4^0$ & \texttt{TObject[6,"qqbarqprimeqprimebar"]} \\ \hline
+   $\mathcal T_{q\bar qq\bar q}^6$ & $\mathcal B_4^0$, $\mathcal C_4^0$ & \texttt{TObject[6,"qqbarqqbar"]} \\ \hline
+   $\mathcal T_{q\bar qgg}^6$ & $\mathcal A_4^0$, $\tilde{\mathcal A_4^0}$ & \texttt{TObject[6,"qqbargg"]} \\ \hline
+  \end{tabular}
+   \caption{Overview of the TObject routes.}
+\label{tab:TObject}
+\end{table}
+As an example, let us consider $\mathcal T_{q\bar qg}^6$. As shown in Eq.~\ref{eq:a31Norm}
+and Table~\ref{tab:TObject}, this $\mathcal T$-object requires the $\mathcal A_3^1$ set, 
+$\mathcal A_2^1$, and $\mathcal A_3^0$. Upon calling \texttt{BuildAndIntegrateAntenna}
+for those antennae, \texttt{TObject} assembles them as follows,
+\begin{equation}
+    \mathcal T_{q\bar qg}^6 = \left(N-\frac1N\right)T_{q\bar q}^2\left[N\!\left(\mathcal A_3^1+\mathcal A_2^1\mathcal A_3^0\right)-\frac1N\!\left(\tilde{\mathcal A}_3^1+\mathcal A_2^1\mathcal A_3^0\right)+N_f\hat{\mathcal A}_3^1\right].
+\end{equation}
+
+Lastly, \textit{AntCalc} is also able to generate the massless SMQCD hadronic R-ratio,
+using the integrated antenna ingredients required at the selected perturbative 
+order. The function is called 
+based on the requested perturbative order, that is, to get the complete NNLO 
+massless hadronic R-ratio, we use \texttt{BuildRRatio[SMQCD, maxOrder->NNLO]}, but we may also only
+compute the R-ratio up to NLO using \texttt{BuildRRatio[SMQCD, maxOrder->NLO]}. 
+By default, \texttt{BuildRRatio} returns the computed finite coefficient after 
+application of the observable convention bridge; this result has been validated
+against a literature reference target.
 
 \section{Validation, Diagnostics, and Provenance}
