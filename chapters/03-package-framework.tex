@@ -5,8 +5,10 @@ offer direct access to QCD antenna functions, both before and after integration,
 by automating the symbolic steps required to build and integrate the 
 supported antenna functions. 
 
-To complete its function, \textit{AntCalc} makes use of the \textit{FeynCalc} environment 
-for symbolic-amplitude work, and \textit{LiteRed2} for IBP-backed routes. It uses 
+To complete its function, \textit{AntCalc} makes use of the \textit{FeynCalc}
+\cite{Feyncalc1,Feyncalc2,Feyncalc3,Feyncalc4}
+environment 
+for symbolic-amplitude work, and \textit{LiteRed2} \cite{Litered} for IBP-backed routes. It uses 
 a profile-based system to enable modularity. 
 Its internal architecture is organised as a
 profile-driven route system: route-specific information is centralised in
@@ -40,7 +42,10 @@ variety of options to inspect and configure the backend operations, the default 
 of its two central functions are designed to reflect this objective. 
 For example, for loop antennae, the default \texttt{BuildAntenna[\ldots]} result is given 
 in PaVe-reduced form, as is customary in the literature. The default 
-\texttt{IntegrateAntenna[\ldots]} result is also a Laurent $\epsilon$-series up[] to $\epsilon^0$,
+\texttt{IntegrateAntenna[\ldots]} result is also a Laurent $\epsilon$-series up to $\epsilon^2$ for 
+the NLO-order antennae $\mathcal A_2^1$ and $\mathcal A_3^0$, and up to $\epsilon^0$ for 
+the NNLO-order ones $\mathcal A_4^0$, $\mathcal A_3^1$ and $\mathcal A_2^2$ sets and 
+$\mathcal B_4^0$ and $\mathcal C_4^0$,
 matching the conventional truncation order, 
 though higher order terms are accessible through the use of the 
 aforementioned options.
@@ -548,7 +553,7 @@ The $A_2^1$ PaVe route is the distinct low-multiplicity virtual case. It is the 
 does not involve IBP. Due to being the two-parton one-loop form factor, 
 this $A_2^1$ antenna's integration workflow requires 
 only the reduction and integration of the single loop momentum, making PaVe reduction the 
-best choice. The workflow then uses \textit{Package-X}, which comes pre-installed within \textit{FeynHelpers},
+best choice. The workflow then uses \textit{Package-X} through \textit{FeynHelpers},
 to evaluate the PaVe scalar one-loop functions and, after applying the required branch and scale 
 conventions, the kinematic-scale normalisation, and Laurent expansion in $\epsilon$, it 
 gives the integrated $\mathcal A_2^1$ antenna. This process is shown schematically in 
@@ -581,7 +586,7 @@ Since in Section~\ref{sec:buildStage}, where we discussed the Build stage, the u
 antenna functions were normalised using the loop-order factor, $\Lambda_l$, in this stage, 
 the rest of the normalisations and conventions must be applied. That begins with the 
 application of what remains from the $G_k$ factor and then $C(\epsilon, k)$. Finally, we 
-reach the full $\mathcal N(\epsilon, k)$ by diving out the twp-particle phase-space measure. 
+reach the full $\mathcal N(\epsilon, k)$ by dividing by the two-particle phase-space measure. 
 This is, schematically,
 \begin{equation}
     \begin{split}
@@ -590,7 +595,7 @@ This is, schematically,
     \end{split}
 \end{equation}
 Note, however, that not all routes require that the rest of the $G_k$ be applied, based on 
-their $n$. There also those routes that did not require the application of the $\Lambda_l$
+their $n$. There are also routes that did not require the application of the $\Lambda_l$
 factor in the Build stage. The following Table~\ref{tab:GkNorm} shows how each antenna or 
 antenna set interacts with $G_k$.
 
@@ -620,7 +625,7 @@ Following the literature, the maximum Laurent-expansion order is route-dependent
 antenna functions ($\mathcal A_2^1$ and $\mathcal A_3^0$) are expanded to $\epsilon^2$, 
 while higher-order functions are expanded to $\epsilon^0$. This latter restriction comes 
 from the used and verified master-integral representations, of which some are only encoded 
-throgh $\epsilon^0$.
+through $\epsilon^0$.
 There might be need to expand to a lesser or to a greater term, however. That can be set using the 
 \texttt{ExpansionOrder} option, as,
 \begin{equation}\label{eq:expansionOrderDiag}
@@ -645,7 +650,7 @@ terms and the coefficients relative to each of those terms is labelled as one of
 (leading, subleading, etc.). All multi-component antenna routes are reduced and integrated using 
 IBP reduction, which is independent of colour. That makes it sensible to completely separate 
 the components before reducing. This way, not only does the process become much cheaper if only 
-one component is selected, but the reduction are also made cleaner, since different components 
+one component is selected, but the reductions are also made cleaner, since different components 
 may require different bases and MI. The following diagram in Fig.\ref{fig:component-extraction},
 describes schematically this process, using the $A_3^1$ antenna set as an example.
 
@@ -678,9 +683,9 @@ where \texttt{A31=BuildAntenna[A,3,1,IntegrableForm->True]}, is, once again, the
 
 \subsection{$A_2^2$ Set Integration Routes}
 
-As described in this section, the $A_2^2$ set is composed of two subsets of antennae that come 
-from different provenance. They come from different provenance and use different IBP basis 
-families. Both the build- and the integrate-side routes are completely separate based on 
+As described in this section, the $A_2^2$ set is composed of two subsets of antennae
+with different provenance and IBP basis families. 
+Both the build- and the integrate-side routes are completely separate based on 
 subset. Those routes may be schematically drawn in the spirit of the diagram in 
 Fig.~\ref{fig:component-extraction}, as in the diagram in 
 Fig.~\ref{fig:a22-component-extraction}, below. The workflow interprets the overall 
@@ -787,4 +792,67 @@ By default, \texttt{BuildRRatio} returns the computed finite coefficient after
 application of the observable convention bridge; this result has been validated
 against a literature reference target.
 
-\section{Validation, Diagnostics, and Provenance}
+\section{Validation and Development Diagnostics}
+
+The supported non-trivial massless public release antenna routes are validated against literature 
+results, specifically against those in \cite{Gehrmann-DeRidder:2005btv} and 
+\cite{Gehrmann-DeRidder:2004ttg}, by comparing their Laurent-expanded results. 
+The same integrated antennae are used as ingredients to reproduce the known 
+$\mathcal T$-objects and, with them, assemble the massless hadronic R-ratio
+for their antenna type. These checks test the package at increasing levels: individual
+integrated antenna, exclusive final-state contributions, and the inclusive observable.
+
+As discussed in Section~\ref{sec:profile}, the route system 
+can retain selected diagnostic information from an evaluation, 
+during its calculation. That makes it easy to locate any 
+inconsistency during the route calculation that may then be inspected using the 
+built-in diagnostics tool. One example of its use could be checking how the poles of 
+each R-ratio order's antennae cancel each other to make a finite result. As an 
+example, let us consider the SMQCD R-ratio up to NLO. We can run it and then, 
+in the diagnostics association, see what antennae it uses as ingredients. We may 
+then simply compare those against one another (in this case there are only two, 
+$\mathcal A_2^1$ and $\mathcal A_3^0$), and see how their poles cancel. The 
+check may go as follows. In the following example, the common colour and perturbative 
+prefactors are omitted, since they do not affect the cancellation of the poles in 
+$\mathcal A_2^1 + \mathcal A_3^0$.
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+    \texttt{In[1]:= <<AntCalc`}\\
+    \hfill
+    \texttt{In[2]:= diagNLORRatio = BuildRRatio[SMQCD,maxOrder->NLO,\\ReturnDiagnostics->True][[2]];}\\
+    \hfill
+    \texttt{In[3]:= ingredients = diagNLORRatio["Ingredients"];}\\
+    \hfill
+    \texttt{In[4]:= A21 = ingredients["intA21"]; A30 = ingredients["intA30"];}\\
+    \hfill
+    \texttt{In[5]:= resList = \{\};}\\
+    \hfill
+    \texttt{In[6]:= \\Do[\\
+                        coefA21 = Coefficient[A21,Epsilon,i];\\
+                        coefA30 = Coefficient[A30,Epsilon,i];\\
+                        AppendTo[resList, coefA21+coefA30]\\
+                        ,\\
+                        \{i,-2,2\}\\
+                        ];}\\
+    \hfill
+    \texttt{In[7]:= resList}\\
+    \hfill
+    \texttt{Out[7]:=}
+        \begin{equation*}
+            \left\{0,0,\frac34,\frac{45}8-6\zeta_3,\frac{383}{16}-\frac{7\pi^2}{16}-\frac{\pi^4}{10}-9\zeta_3\right\}
+        \end{equation*}
+\end{mdframed}
+
+The first two entries are the coefficients of $\epsilon^{-2}$ and $\epsilon^{-1}$, 
+respectively, and vanish as required. The remaining entries are the finite and 
+positive-power coefficients, which do not cancel. This diagnostic 
+inspection makes the origin of the NLO pole cancellation explicit. The release-level 
+observable validation additionally compares the raw NNLO $R$-ratio series with the 
+known pole-free and finite result.
+
+The \texttt{Ingredients} entry used above is only one part of the diagnostic 
+information. For a complete retained history of a calculation, \textit{AntCalc} 
+can instead return an \texttt{AntennaRunRecord}, which records the relevant route 
+stages and metadata. This information was used to trace the source of discrepancies 
+during development; the resulting validation comparisons are presented in 
+Chapter~\ref{ch:validation}.
