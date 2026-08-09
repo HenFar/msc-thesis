@@ -1,15 +1,24 @@
-\chapter{Worked Example: $A_3^0$ End To End}\label{ch:workedexample}
+\chapter{Antenna Construction: Selected Case Studies}\label{ch:workedexample}
 
-\section{Purpose of the Example}
+\section{Master Integrals Used in \textit{AntCalc}}\label{sec:masterresults}
+
+\subsection{Three- and Four-Parton Phase-Space Masters}
+
+\subsection{Loop and Cut-Integral Master Bases}
+
+\subsection{Master-Integral Use Across the Implemented Routes}
+
+
+\section{NLO Antenna Results}
 
 The simplest non-trivial SMQCD antenna is $A_3^0$. As such, it may be used as an example of how
 \textcolor{red}{AntCalc} handles the physics involved in building and then integrating it over the
 phase space. In this chapter, we are going to go over how this antenna is mathematically computed by hand, 
 and how \textcolor{red}{AntCalc} handles those same calculations on its end. 
 
-\section{Mathematical Derivation}\label{sec:matDerivation}
+\subsection{The Tree-Level Three-Parton Antenna $A_3^0$}\label{sec:matDerivation}
 
-\subsection{Physics Definition}
+\subsubsection{Analytic Construction of the Unintegrated Antenna}
 
 The $A_3^0$ is the tree-level final-final quark-antiquark-gluon antenna. It represents the normalised 
 $\gamma^*(p)\to q(k_1)g(k_3)\bar q(k_2)$ process. This process, in the current model,
@@ -63,7 +72,6 @@ diagrams are shown below in Figure~\ref{fig:feynDiagsA30}.
     \label{fig:feynDiagsA30}
 \end{figure}
 
-\subsection{Computing the Amplitude}
 
 The amplitude is given as follows directly from the diagrams,
 
@@ -75,7 +83,6 @@ The amplitude is given as follows directly from the diagrams,
 where $(T^{a_3})_{i_1i_2}$ represents the colour matrix for the quark and antiquark in positions 1 and 2 and 
 gluon in position 3.
 
-\subsection{Squared Matrix Element}
 
 The amplitude is now squared as follows,
 
@@ -162,7 +169,6 @@ final-state particles system $s_{12}=q^2$, we get
     \end{split}
 \end{equation}
 
-\subsection{Antenna Building and Normalisation}
 
 The antenna is now finally ready to be built. That is accomplished using the following formula,
 \begin{equation}
@@ -178,7 +184,7 @@ By taking $C_F = (N^2-1)/(2N)$, the formula yields, using Eqs.~\ref{eq:M30interf
     \end{split}
 \end{equation}
 
-\subsection{Antenna Integration}\label{sec:antIntMaths}
+\subsubsection{Phase-Space Integration through $R_3$}\label{sec:antIntMaths}
 
 We now integrate the $A_3^0$ antenna over the appropriate (3 final-state particle, in this case) 
 phase-space. This integral is computed in $d$ dimensions and over the phase-space measure in terms
@@ -238,9 +244,7 @@ arrive at the infrared pole structure,
 where the usual polygamma identities, $\psi^{(2)}(1) = -2\zeta_3$ and $\psi^{(2)}(3) = -2\zeta_3 + \frac94$,
 were employed.
 
-\section{Computational Derivation}
-
-\subsection{Antenna Building}
+\subsubsection{Implementation in \textit{AntCalc}}
 
 Using \textcolor{red}{AntCalc}, building the antenna is very simple, since the
 function \texttt{BuildAntenna[type, numFinalParticles, numLoops]} already encodes the entire 
@@ -287,7 +291,6 @@ Sec.~\ref{sec:matDerivation}. We can see that with,
 where \texttt{Amplitude}, \texttt{Interference} and \texttt{Result} respectively refer to the
 expressions in Eqs.~\ref{eq:M30amplitude}, \ref{eq:M30interference} and \ref{eq:A30}.
 
-\subsection{Antenna Integration}
 
 Integrating antennae using \textcolor{red}{AntCalc} is also simple. Every step in \ref{sec:antIntMaths}
 is handled by a single function: \texttt{IntegrateAntenna[antenna]}.
@@ -359,3 +362,36 @@ The agreement between the two sections in the present chapter confirms that \tex
 completes the same function we would do by-hand, going through the same steps. The same
 pipeline extends to the more complex antennae treated in this thesis, with their integrated 
 results collected in Appendix~\ref{ap:AntennaTrees}.
+
+\subsection{Local Validation of $A_3^0$}
+
+\subsubsection{Soft Limit and the Eikonal Factor}
+
+\subsubsection{Collinear Limit and the Altarelli--Parisi Splitting Function}
+
+\subsection{The Virtual $A_2^1$ Contribution}
+
+
+\section{NNLO Antenna Results}
+
+\subsection{Two-Parton Contributions: the $A_2^2$ Set}
+
+\subsection{Three-Parton Contributions: the $A_3^1$ Set}
+
+\subsection{Four-Parton Contributions}
+
+\subsubsection{The $A_4^0$ Antenna and Its Reduction}
+
+\subsubsection{The $\tilde A_4^0$, $B_4^0$, and $C_4^0$ Results}
+
+
+\section{Summary of the Massless Antenna Set}\label{sec:antennaresultsummary}
+
+
+\section{Exploratory Massive Extension: $A_3^0$}\label{sec:massivea30}
+
+\subsection{Massive Unintegrated Antenna}
+
+\subsection{Reduction to Massive Master Integrals}
+
+\subsection{Present Status and Limitation}

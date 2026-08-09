@@ -1,3 +1,61 @@
 \chapter{Introduction}\label{ch:introduction}
 
-Introduction goes here.
+High-energy collider experiments have, in recent years, provided ever-increasing 
+precision in measurements of processes governed by the strong interaction. To be 
+able to use these measurements fully, theoretical calculations must achieve similar 
+levels of precision. At high energies, Quantum Chromodynamics (QCD) permits such 
+predictions to be organised as a perturbative expansion in powers of the strong coupling 
+constant $\alpha_s$.
+
+Achieving higher orders of perturbation is not simply a matter of calculating 
+additional Feynman diagrams. Real-emission and virtual-loop contributions develop 
+infrared singularities in kinematic configurations involving soft (low energy)
+or collinear (in trajectory) partons. These individual contributions are divergent 
+and must be arranged before they can be evaluated reliably, but in sufficiently 
+inclusive physical observables, like the hadronic R-ratio, they cancel, leaving 
+a finite result.
+
+The antenna subtraction formalism provides the framework for this rearrangement. 
+The formalism describes unresolved radiation between pairs of colour-connected 
+hard partons through universal antenna functions. These functions reproduce the 
+relevant infrared limits locally and, after analytic integration over the 
+unresolved phase space in dimensional regularisation, $d=4-2\epsilon$, 
+yield Laurent series whose $\epsilon$-pole structure cancels that of the 
+virtual contributions. 
+Their systematic construction and integration are therefore central ingredients in 
+higher-order QCD calculations.
+
+This thesis develops and validates \textit{AntCalc}, a symbolic framework for the 
+automated construction and integration of QCD antenna functions. The work focuses 
+on massless final-final quark-antiquark antennae through next-to-next-to-leading
+order (NNLO), combining symbolic amplitude generation with reduction methods for 
+phase-space integrals. The resulting implementation is tested both through the 
+calculation of the NNLO massless hadronic R-ratio, globally, and through the calculation 
+of selected tests like the eikonal factor and the Altarelli-Parisi (AP) splitting 
+function for each antenna, whenever appropriate, locally.
+
+The remainder of the text is organised as follows. Chapter~\ref{ch:physicsbackground}
+introduces the theoretical foundations required throughout the work: perturbative 
+QCD, infrared singularities, dimensional regularisation, and the antenna subtraction 
+formalism. It defines the antenna functions, their colour structure, phase-space 
+factorisation, and their role in fixed-order calculations. Chapter~\ref{ch:packageframework}
+describes \textit{AntCalc}'s framework. It presents the package architecture, the 
+construction and integration workflows, the reduction routes, and the conventions and 
+diagnostics used to obtain the public results. Chapter~\ref{ch:workedexample}
+presents the antenna results obtained using \textit{AntCalc}. It begins by introducing 
+the master integrals used in the implemented reductions. Then, it develops the 
+$A_3^0$ antenna from its unintegrated construction to its integrated form, together with 
+its soft and collinear validation tests, using the eikonal factor and the AP splitting 
+function, before presenting selected NLO and NNLO results in a shorter format, 
+including the $A_2^1$, $B_4^0$ and $C_4^0$ antennae and the $A_3^1$, $A_2^2$ and 
+$A_4^0$ antenna-function sets. The chapter concludes with the exploratory 
+massive $A_3^0$ extension.
+Chapter~\ref{ch:validation} provides a global validation through the construction 
+of the massless hadronic R-ratio through NNLO. There, the antennae are assembled 
+into their respective $T$-objects, and the cancellation of infrared poles and 
+agreement with the known finite result are demonstrated. 
+Chapter~\ref{ch:futurework} discusses future directions for \textit{AntCalc}, including 
+more efficient symbolic and reduction backends, completion of the massive antenna 
+sector, general model support, and extensions to higher perturbative orders, particularly 
+N$^3$LO. Finally, Chapter~\ref{ch:conclusion} summarises the main conclusions of the 
+thesis.
