@@ -1,5 +1,10 @@
 \chapter{Theoretical Foundations}\label{ch:physicsbackground}
 
+\textcolor{red}{Needs restructuring after Chapter 1 is done. Check section on Master 
+Integrals once its own chapter is due.}
+ 
+\vspace{1cm}
+
 The study of quarks and gluons, and related structures like those described 
 throughout the present text, is conducted within 
 the framework of Quantum Chromodynamics (QCD). QCD is the theory behind the 
@@ -52,7 +57,165 @@ predicted to lower experimental uncertainties to sub-$1\%$ level, making the
 development of NNLO (and even N$^3$LO) predictions increasingly essential
 \cite{Heinrich2021,Abada2019}. 
 
-\section{Divergences in Perturbative QCD}
+\section{QCD: Fields, Interactions and Perturbative Amplitudes}
+
+QCD is the quantum field theory of the strong interaction, whose elementary 
+particles are the quarks and
+the gluons. Quarks are fermions that carry colour and interact through 
+the exchange of gluons. Owing to the non-Abelian gauge structure of QCD, gluons 
+themselves also 
+carry colour charge and, therefore, undergo self-interaction. 
+
+At sufficiently high energy scales, the strong coupling, $\alpha_s$, becomes
+sufficiently small for physical observables to be calculated perturbatively, as an expansion 
+in powers of $\alpha_s$. In this framework, the interaction structure of QCD determines
+the amplitudes for quark and gluon radiation that are studied throughout this thesis.
+
+\subsection{Quark and Gluon Fields}\label{subsec:quarksAndGluons}
+
+Quarks are spin-$1/2$ fields carrying flavour and a three-valued colour charge. 
+They are QCD's matter fields. Gluons are the eight gauge fields associated with 
+local $SU(3)_c$ colour symmetry. The QCD Lagrangian describes their propagation 
+and interaction. It is written as follows,
+\begin{equation}
+    \mathcal L_\mathrm{QCD} = -\frac14G_{\mu\nu}^aG^{a\,\mu\nu}+\sum_f\bar\psi_f\!\left(i\gamma^\mu D_\mu-m_f\right)\psi_f.
+\end{equation}
+In this expression, $G_{\mu\nu}^a$ is the non-Abelian field-strength tensor, $D_\mu$
+is the covariant derivative, $\psi_f$ is the quark field and $m_f$ is the quark mass.
+The flavour label $f$ is summed over the quark species included in the theory, while 
+the adjoint colour index $a$ runs from one to eight.
+This Lagrangian is 
+cleanly divided into two pieces, the quark and the gluon pieces. 
+
+Defining the covariant derivative as,
+\begin{equation}
+    D_\mu = \partial_\mu - ig_sT^aA_\mu^a
+\end{equation}
+where $T^a$ represents the generators of the fundamental representation of $SU(3)_c$ and $A_\mu^a$ is the gluon 
+gauge field, the quark Lagrangian term may be expanded to,
+\begin{equation}
+    \mathcal L_q = \sum_f\left[\bar\psi_f\!\left(i\gamma^\mu\partial_\mu-m_f\right)\psi_f+g_s\bar\psi_f\gamma^\mu T^a\psi_f A_\mu^a\right].
+\end{equation}
+Here $g_s$ is the strong coupling. In the expanded quark term, the first piece 
+describes free quark propagation and the second quark-gluon interaction. This second 
+piece is also responsible for generating the $q\bar qg$ vertex. 
+
+We now also define the totally antisymmetric structure constants of the $SU(3)_c$ 
+Lie algebra $f^{abc}$ as,
+\begin{equation}\label{eq:tDontCommute}
+    \left[T^a,T^b\right] = if^{abc}T^c.
+\end{equation}
+They may be used to define the non-Abelian field-strength tensor $G_{\mu\nu}^a$ as,
+\begin{equation}
+    G_{\mu\nu}^a = \partial_\mu A_\nu^a - \partial_\nu A_\mu^a + g_s f^{abc}A_\mu^b A_\nu^c.
+\end{equation}
+The first two terms of the field-strength tensor are Abelian-like and, in fact, they 
+can be rewritten using the Abelian-like linear part of the non-Abelian 
+field-strength tensor $F_{\mu\nu}^a$, as, 
+\begin{equation}
+    G_{\mu\nu}^a = F_{\mu\nu}^a + g_s f^{abc}A_\mu^b A_\nu^c,\quad F_{\mu\nu}^a\equiv\partial_\mu A_\nu^a - \partial_\nu A_\mu^a.
+\end{equation}
+The second term arises because, as shown in Eq.~\ref{eq:tDontCommute}, the $SU(3)_c$ 
+generators do not commute. The non-Abelian field-strength tensor is used to write 
+the gluon Lagrangian term. After expanding it becomes,
+\begin{equation}
+    \mathcal L_g = -\frac14\!\left(F_{\mu\nu}^a\right)^2-\frac{g_s}2f^{abc}F^{a\,\mu\nu}A_\mu^b A_\nu^c - \frac{g_s^2}4f^{abc}f^{ade}A_\mu^b A_\nu^c A^{d\,\mu}A^{e\,\nu}.
+\end{equation}
+Here, much like in $\mathcal L_q$, the gluon Lagrangian is also divided into three terms. 
+The first term is quadratic in the gluon field and describes free gluon propagation.
+After gauge fixing, it supplies the gluon propagator. Unlike the remaining terms, it 
+contains no non-Abelian self-interaction. The cubic and quartic terms in the gluon 
+fields generate, respectively, the three- and four-gluon vertices, $ggg$ and $gggg$\footnote{A gauge-fixing term and the associated Faddeev-Popov ghost sector are 
+required to formulate perturbative gluon propagators. Physical observables are 
+independent of the gauge choice.}.
+
+Together, the two pieces, $\mathcal L_q$ and $\mathcal L_g$, constitute the 
+gauge-invariant core of QCD. They generate the three elementary interaction vertices 
+among the quark and gluon fields: $q\bar qg$, $ggg$ and $gggg$ \cite{Ellis:1996mzs,Schwartz:2014sze}.
+
+\subsection{From the QCD Lagrangian to Feynman Diagrams}\label{subsec:toFeynDiag}
+
+The interaction terms in $\mathcal L_q$ and $\mathcal L_g$ generate Feynman rules 
+which we can use to compute process amplitudes. Importantly, we are able to 
+represent these processes as Feynman diagrams. These diagrams are graphical 
+representations of terms in the perturbative expansion of a quantum amplitude. Each 
+process may require more than one diagram to be fully represented; in that case, 
+the complete amplitude is given as the sum of the amplitudes associated with all 
+contributing diagrams. Fig.~\ref{fig:feynDiagsEx} depicts the two Feynman diagrams 
+contributing to the process $\gamma^*\to q(k_1)g(k_3)\bar q(k_2)$, where a virtual 
+photon splits into a quark-antiquark pair, with the gluon emitted from either the 
+quark or antiquark line. 
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a) {\(\gamma^*\)};
+                \vertex [right=2cm of a] (b);
+                \vertex [above right=2cm of b] (q) {\(q(k_1)\)};
+                \vertex [above right=1cm of b] (mid);
+                \vertex [below right=2cm of b] (barq) {\(\bar q(k_2)\)};
+                \vertex [right=1.41cm of b] (g) {\(g(k_3)\)};
+
+                \diagram* {
+                (a) -- [boson] (b) -- [fermion] (q),
+                (barq) -- [fermion] (b),
+                (mid) -- [gluon, bend right=45] (g),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{Gluon emitted from the quark line.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a) {\(\gamma^*\)};
+                \vertex [right=2cm of a] (b);
+                \vertex [above right=2cm of b] (q) {\(q(k_1)\)};
+                \vertex [below right=1cm of b] (mid);
+                \vertex [below right=2cm of b] (barq) {\(\bar q(k_2)\)};
+                \vertex [right=1.41cm of b] (g) {\(g(k_3)\)};
+
+                \diagram* {
+                (a) -- [boson] (b) -- [fermion] (q),
+                (barq) -- [fermion] (b),
+                (mid) -- [gluon, bend left=45] (g),
+                };
+            \end{feynman}
+        \end{tikzpicture}
+        \caption{Gluon emitted from the antiquark line.}
+    \end{subfigure}
+    \caption{\centering Tree-level diagrams for the process \(\gamma^*\to q(k_1)g(k_3)\bar q(k_2)\).}
+    \label{fig:feynDiagsEx}
+\end{figure}
+The final amplitude in this case would then follow,
+\begin{equation}
+    \mathcal M_{\gamma^*\to qg\bar q}^{(0)}=\mathcal M_{q-\text{emission}}^{(0)}+\mathcal M_{\bar q-\text{emission}}^{(0)}.
+\end{equation}
+
+In the diagrams in Fig.~\ref{fig:feynDiagsEx}, straight, curly, and wavy
+lines denote fermions (quarks), gluons and photons, respectively. 
+These diagrams represent the reduced hadronic-current process with $\gamma^*$ as an 
+off-shell and colourless source. In the full 
+process, $e^+e^-\to\gamma^*\to qg\bar q$, the photon is internal between the 
+lepton (electron-positron) and hadron (quark-antiquark) currents. 
+All other lines are external, meaning that they represent 
+outgoing asymptotic partons, the quarks and gluons. Each of the diagrams features 
+two vertices, where the lines meet. The vertices represent the interactions between 
+the particles, which are determined by their respective Lagrangians. 
+Each diagram contains an electromagnetic $\gamma^*q\bar q$ current insertion and a 
+QCD $q\bar qg$ interaction vertex. The former follows from the QED sector, whereas 
+the latter is generated by $\mathcal L_\mathrm{QCD}$.
+A rate or cross section often depends on the squared amplitude $|\mathcal M|^2$, given as,
+\begin{equation}
+    |\mathcal M|^2 = \sum_{D,D^\prime} \mathcal M_D\mathcal M_{D^\prime}^*.
+\end{equation}
+
+\section{Divergences in Perturbative QCD}\label{sec:divergences}
 
 \subsection{Infrared Divergences}\label{subsec:infDivergences}
 
@@ -361,7 +524,7 @@ to decompose, we must first clarify the Algebra of colour
 
 Quarks carry a fundamental colour index $i\in\{1,2,3\}$ while gluons carry an 
 adjoint colour index $a\in\{1,...,8\}$. The interactions between them are governed 
-by the $SU(3)$ generators $T^a$. Those generators are normalised by the trace 
+by the $ $ generators $T^a$. Those generators are normalised by the trace 
 relation $\operatorname{Tr}\left(T^aT^b\right)=T_R\delta^{ab}$, where by standard 
 convention $T_R=1/2$ \cite{Ellis:1996mzs,Schwartz:2014sze}. 
 This is particularly useful since when the amplitude is 
