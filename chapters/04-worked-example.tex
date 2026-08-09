@@ -1,13 +1,156 @@
-\chapter{Antenna Construction: Selected Case Studies}\label{ch:workedexample}
+\chapter{Antenna Construction and Integration: Selected Case Studies}\label{ch:workedexample}
 
 \section{Master Integrals Used in \textit{AntCalc}}\label{sec:masterresults}
 
-\subsection{Three- and Four-Parton Phase-Space Masters}
+As discussed in Chapter~\ref{ch:packageframework}, \textit{AntCalc} makes use of 
+two reduction methods, Passarino-Veltmann reduction and Interation-By-Parts 
+reduction. Both of those methods reduce a larger loop-momentum or phase-space 
+integral into a linear combination of smaller and often less complex master integrals,
+as discussed in Subsection~\ref{subsec:MIs}\footnote{The PaVe MI are most commonly 
+referred to as \textit{scalar functions}, instead of \textit{master integrals}. 
+They are, in effect, still master integrals, however, and the moniker will be kept 
+throughout the rest of the present text.}. The MI required by each route depend on 
+the antenna being integrated, though some antennae shared the same MI, 
+specially those of the same type and in the same perturbative order, like all 
+tree-level antenna functions at NNLO. \textit{AntCalc} also applies integral reduction 
+at two different stages: loop antennae are reduced before producing the public 
+build-stage output, but only over the loop momenta, and all antennae are reduced over 
+the whole phase space during the integration stage. This means that loop antenna function 
+like $A_3^1$, for example, may require more than one set of MI throughout a complete 
+build-and-integrate run, and the ones required for one stage may not be required for the 
+other. Table~\ref{tab:MI} shows the MI used in each stage for each antenna.
 
-\subsection{Loop and Cut-Integral Master Bases}
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|c|c|c|} 
+   \hline
+   \textbf{Antenna type(s)} & \textbf{Build-Side MI} & \textbf{Integration-Side MI} \\ 
+   \hline
+   $A_2^0$ & -- & -- \\ \hline
+   $A_3^0$ & -- & $R_3$ \\ \hline
+   $A_4^0$, $\tilde A_4^0$, $B_4^0$, $C_4^0$ & -- & $R_4$, $R_6$, $R_{8,a}$, $R_{8,b}$ \\ \hline
+   $A_2^1$ & -- & $B_0$, $C_0$ \\ \hline
+   $A_3^1$, $\tilde A_3^1$, $\hat A_3^1$ & $B_0$, $C_0$, $D_0$ & $V_{5,a}$, $V_{5,b}$, $V_8$ \\ \hline
+   $A_2^2$ & $A_{22,\text{LO}}$, $A_3$, $A_4$, $B_0$, $C_0$ & $A_{22,\text{LO}}$, $A_3$, $A_4$ \\ \hline
+   $\tilde A_2^2$ & $A_{22,\text{LO}}$, $A_3$, $A_4$, $A_6$ & $A_{22,\text{LO}}$, $A_3$, $A_4, A_6$ \\ \hline
+   $\hat A_2^2$ & $A_4$, $B_0$, $C_0$ & $A_4$ \\ \hline
+   $\breve A_2^2$ & $A_{22,\text{LO}}$ & $A_{22,\text{LO}}$ \\ \hline
+  \end{tabular}
+   \caption{Overview of the master integrals used in the build- and integration-stage by each antenna type.}
+\label{tab:MI}
+\end{table}
 
-\subsection{Master-Integral Use Across the Implemented Routes}
+Both PaVe and IBP MI are shown in the table. But these are quite different in structure 
+and integration processes and will be discussed separately. The PaVe are $B_0$, $C_0$. 
+and $D_0$. All others are IBP MI.
 
+\subsection{PaVe Scalar Functions}
+
+As mentioned, only three of the MI considered are PaVe scalar functions. Those are 
+$B_0$, $C_0$ and $D_0$ and are the PaVe two-, three- and four-point 
+scalar integrals, respectively. The PaVe method also features the $A_0$ (one-point)
+scalar function, that does not feature in \textit{AntCalc}. It also accounts for 
+scalar integrals with more than four external legs, as those can be further reduced 
+in four dimensions to combinations of $D_0$ functions.
+
+\subsubsection{The $B_0$ Function}
+
+The $B_0$ function represents a scalar one-loop diagram with two external lines and 
+two internal propagators. It is represented, in $d$ dimensions as,
+\begin{equation}
+    B_0\!\left(k^2, m_0, m_1\right) = \frac{(2\pi\mu)^{4-d}}{i\pi^2}\int d^dp\frac1{\left(p^2-m_0^2+i\varepsilon\right)\Big((p+k)^2-m_1^2+i\varepsilon\Big)}
+\end{equation}
+where $k$ is the external momentum, and $m_0$ and $m_1$ are the internal masses. $\mu$
+is the t'Hooft normalisation scale.
+
+It is also noteworthy that this integral, unlike higher-point ones, is UV divergent and 
+generates the pole term $\Delta_B$, 
+\begin{equation}
+    \Delta_B = \frac2{4-d}-\gamma_E+\log(4\pi)
+\end{equation}
+where $\gamma_E$ is Euler's gamma constant.
+This function may also be written as an integral over the Feynman parameter $x$. That 
+yields the explicit analytical form,
+\begin{equation}
+    B_0\!\left(k^2,m_0,m_1\right) = \Delta_B - \int_0^1 dx\,\log\!\left[\frac{k^2x^2-x\!\left(k^2-m_0^2+m_1^2\right)+m_1^2-i\varepsilon}{\mu^2}\right] + \mathcal O(d-4).
+\end{equation}
+
+\subsubsection{The $C_0$ Function}
+
+The $C_0$ function represents a scalar loop with three external lines and three
+internal propagators. It is a common feature in the vertex corrections of 
+electroweak physics. It is written in $d$ dimensions as,
+\begin{equation}
+    C_0(k_1,k_2,m_0,m_1,m_2)=\frac{(2\pi\mu)^{4-d}}{i\pi^2}\int d^dp\,\frac1{\Big(p^2-m_0^2+i\varepsilon\Big)\Big((p+k_1)^2-m_1^2+i\varepsilon\Big)\Big((p+k_1+k_2)^2-m_2^2+i\varepsilon\Big)}
+\end{equation}
+
+This integral is UV finite and may be rewritten as a double integral over the Feynman 
+parameters $x$ and $y$ as,
+\begin{equation}
+    C_0\propto\int_0^1dx\int_0^1dy\,\left[ax^2+by^2+cxy+dx+ey+f\right]^{-1}
+\end{equation}
+where the coefficients $a, b, c, d, e$ and $f$ are linear combinations of the external 
+momenta and internal mass parameters.
+
+\subsubsection{the $D_0$ Function}
+
+The $D_0$ function describes a scalar loop with four external lines and four internal 
+propagators. It is often called the scalar box integral. It is written as,
+\begin{equation}
+    D_0(k_1,k_2,k_3,m_0,m_1,m_2,m_3)=\frac{(2\pi\mu)^{4-d}}{i\pi^2}\int d^dp\,\frac1{D_0D_1D_2D_3}
+\end{equation}
+with denominator factors,
+\begin{gather}
+    D_0 = p^2-m_0^2+i\varepsilon\\
+    D_i = (p+k_i)^2-m_i^2+i\varepsilon.
+\end{gather}
+
+Evaluating $D_0$ is highly non-trivial as it 
+features numerous physical cuts and branch points. The resulting analytical 
+expression is expressed in terms of Spence functions (dilogarithms).
+This function is also UV-finite, but may exhibit infrared divergences when internal 
+propagators contain massless particles. Near these IR poles, the function factorises 
+into a product of a kinematic factor and a $C_0$ function,
+\begin{equation}
+    D_0^\text{IR} \propto \frac{C_0}{-s_{ij}+M_0^2}.
+\end{equation}
+where $M_0$ is the $W^0$ boson mass.
+
+\subsection{IBP Master Integrals}
+
+The IBP MI employed in \textit{AntCalc} can be divided into four groups, based on the 
+antenna functions they are used with. This division goes as,
+\begin{itemize}
+    \item NLO tree-level: $R_3$;
+    \item NNLO tree-level: $R_4$, $R_6$, $R_{8,a}$, $R_{8,b}$;
+    \item NNLO one-loop: $V_{5,a}$, $V_{5,b}$, $V_8$;
+    \item NNLO two-loop: $A_{22,\text{LO}}$, $A_3$, $A_4$, $A_6$.
+\end{itemize}
+
+\subsubsection{The $R_3$ Integral}
+
+\subsubsection{The $R_4$ Integral}
+
+\subsubsection{The $R_6$ Integral}
+
+\subsubsection{The $R_{8,a}$ Integral}
+
+\subsubsection{The $R_{8,b}$ Integral}
+
+\subsubsection{The $V_{5,a}$ Integral}
+
+\subsubsection{The $V_{5,b}$ Integral}
+
+\subsubsection{The $V_8$ Integral}
+
+\subsubsection{The $A_{22,\text{LO}}$ Integral}
+
+\subsubsection{The $A_3$ Integral}
+
+\subsubsection{The $A_4$ Integral}
+
+\subsubsection{The $A_6$ Integral}
 
 \section{NLO Antenna Results}
 
