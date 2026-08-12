@@ -3,22 +3,23 @@
 \section{Master Integrals Used in \textit{AntCalc}}\label{sec:masterresults}
 
 As discussed in Chapter~\ref{ch:packageframework}, \textit{AntCalc} makes use of 
-two reduction methods, Passarino-Veltmann reduction and Interation-By-Parts 
+two reduction methods, Passarino-Veltmann reduction and integration-by-parts 
 reduction. Both of those methods reduce a larger loop-momentum or phase-space 
 integral into a linear combination of smaller and often less complex master integrals,
 as discussed in Subsection~\ref{subsec:MIs}\footnote{The PaVe MI are most commonly 
 referred to as \textit{scalar functions}, instead of \textit{master integrals}. 
 They are, in effect, still master integrals, however, and the moniker will be kept 
-throughout the rest of the present text.}. The MI required by each route depend on 
-the antenna being integrated, though some antennae shared the same MI, 
-specially those of the same type and in the same perturbative order, like all 
-tree-level antenna functions at NNLO. \textit{AntCalc} also applies integral reduction 
+throughout the rest of the present text \cite{TM_JoanaReis}.}\cite{TM_JoanaReis}. 
+The MI required by each route depend on 
+the antenna being integrated, though some antennae share the same MI, 
+especially those of the same type and in the same perturbative order, like all 
+tree-level antenna functions at NNLO \cite{GehrmannDeRidder0311276}. \textit{AntCalc} also applies integral reduction 
 at two different stages: loop antennae are reduced before producing the public 
 build-stage output, but only over the loop momenta, and all antennae are reduced over 
-the whole phase space during the integration stage. This means that loop antenna function 
+the whole phase space during the integration stage. This means that loop antenna functions 
 like $A_3^1$, for example, may require more than one set of MI throughout a complete 
 build-and-integrate run, and the ones required for one stage may not be required for the 
-other. Table~\ref{tab:MI} shows the MI used in each stage for each antenna.
+other. Table~\ref{tab:MI} shows the MI used in each stage for each antenna \cite{Gehrmann-DeRidder:2005btv}.
 
 \begin{table}[h!]
 \centering
@@ -37,12 +38,12 @@ other. Table~\ref{tab:MI} shows the MI used in each stage for each antenna.
    $\hat A_2^2$ & $A_4$, $B_0$, $C_0$ & $A_4$ \\ \hline
    $\breve A_2^2$ & $A_{22,\text{LO}}$ & $A_{22,\text{LO}}$ \\ \hline
   \end{tabular}
-   \caption{Overview of the master integrals used in the build- and integration-stage by each antenna type.}
+   \caption{Overview of the master integrals used in the build- and integration-stage by each antenna type \cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276}.}
 \label{tab:MI}
 \end{table}
 
-Both PaVe and IBP MI are shown in the table. But these are quite different in structure 
-and integration processes and will be discussed separately. The PaVe are $B_0$, $C_0$. 
+Both PaVe and IBP MI are shown in the table, but they are quite different in structure 
+and integration processes and will be discussed separately. The PaVe are $B_0$, $C_0$, 
 and $D_0$. All others are IBP MI.
 
 \subsection{PaVe Scalar Functions}
@@ -52,9 +53,9 @@ $B_0$, $C_0$ and $D_0$ and are the PaVe two-, three- and four-point
 scalar integrals, respectively. The PaVe method also features the $A_0$ (one-point)
 scalar function, that does not feature in \textit{AntCalc}. It also accounts for 
 scalar integrals with more than four external legs, as those can be further reduced 
-in four dimensions to combinations of $D_0$ functions.
+in four dimensions to combinations of $D_0$ functions \cite{tHooft:1972tcz,Passarino:1979pv}.
 
-\subsubsection{The $B_0$ Function}
+\subsubsection{The $B_0$ Function}\label{subsubsec:B0}
 
 The $B_0$ function represents a scalar one-loop diagram with two external lines and 
 two internal propagators. It is represented, in $d$ dimensions as,
@@ -71,7 +72,7 @@ generates the pole term $\Delta_B$,
 \end{equation}
 where $\gamma_E$ is Euler's gamma constant.
 This function may also be written as an integral over the Feynman parameter $x$. That 
-yields the explicit analytical form,
+yields the explicit analytical form \cite{Passarino:1979pv},
 \begin{equation}
     B_0\!\left(k^2,m_0,m_1\right) = \Delta_B - \int_0^1 dx\,\log\!\left[\frac{k^2x^2-x\!\left(k^2-m_0^2+m_1^2\right)+m_1^2-i\varepsilon}{\mu^2}\right] + \mathcal O(d-4).
 \end{equation}
@@ -82,18 +83,20 @@ The $C_0$ function represents a scalar loop with three external lines and three
 internal propagators. It is a common feature in the vertex corrections of 
 electroweak physics. It is written in $d$ dimensions as,
 \begin{equation}
-    C_0(k_1,k_2,m_0,m_1,m_2)=\frac{(2\pi\mu)^{4-d}}{i\pi^2}\int d^dp\,\frac1{\Big(p^2-m_0^2+i\varepsilon\Big)\Big((p+k_1)^2-m_1^2+i\varepsilon\Big)\Big((p+k_1+k_2)^2-m_2^2+i\varepsilon\Big)}
+    \begin{split}
+        C_0(k_1,k_2,m_0,m_1,m_2)=&\,\frac{(2\pi\mu)^{4-d}}{i\pi^2}\\ &\int d^dp\,\frac1{\Big(p^2-m_0^2+i\varepsilon\Big)\Big((p+k_1)^2-m_1^2+i\varepsilon\Big)\Big((p+k_1+k_2)^2-m_2^2+i\varepsilon\Big)}.
+    \end{split}
 \end{equation}
 
 This integral is UV finite and may be rewritten as a double integral over the Feynman 
 parameters $x$ and $y$ as,
 \begin{equation}
-    C_0\propto\int_0^1dx\int_0^1dy\,\left[ax^2+by^2+cxy+dx+ey+f\right]^{-1}
+    C_0\propto\int_0^1dx\int_0^{1-x}dy\,\left[ax^2+by^2+cxy+dx+ey+f\right]^{-1}
 \end{equation}
 where the coefficients $a, b, c, d, e$ and $f$ are linear combinations of the external 
-momenta and internal mass parameters.
+momenta and internal mass parameters \cite{tHooft:1972tcz}.
 
-\subsubsection{the $D_0$ Function}
+\subsubsection{The $D_0$ Function}\label{subsubsec:D0}
 
 The $D_0$ function describes a scalar loop with four external lines and four internal 
 propagators. It is often called the scalar box integral. It is written as,
@@ -101,21 +104,16 @@ propagators. It is often called the scalar box integral. It is written as,
     D_0(k_1,k_2,k_3,m_0,m_1,m_2,m_3)=\frac{(2\pi\mu)^{4-d}}{i\pi^2}\int d^dp\,\frac1{D_0D_1D_2D_3}
 \end{equation}
 with denominator factors,
-\begin{gather}
-    D_0 = p^2-m_0^2+i\varepsilon\\
-    D_i = (p+k_i)^2-m_i^2+i\varepsilon.
-\end{gather}
+\begin{equation}
+    \begin{split}
+        &D_0 = p^2-m_0^2+i\varepsilon\\
+        &D_i = \left(p+\sum_{a=1}^ik_a\right)^2-m_i^2+i\varepsilon.
+    \end{split}
+\end{equation}
 
 Evaluating $D_0$ is highly non-trivial as it 
 features numerous physical cuts and branch points. The resulting analytical 
-expression is expressed in terms of Spence functions (dilogarithms).
-This function is also UV-finite, but may exhibit infrared divergences when internal 
-propagators contain massless particles. Near these IR poles, the function factorises 
-into a product of a kinematic factor and a $C_0$ function,
-\begin{equation}
-    D_0^\text{IR} \propto \frac{C_0}{-s_{ij}+M_0^2}.
-\end{equation}
-where $M_0$ is the $W^0$ boson mass.
+expression is expressed in terms of Spence functions (dilogarithms) \cite{tHooft:1972tcz}.
 
 \subsection{IBP Master Integrals}
 
@@ -128,36 +126,400 @@ antenna functions they are used with. This division goes as,
     \item NNLO two-loop: $A_{22,\text{LO}}$, $A_3$, $A_4$, $A_6$.
 \end{itemize}
 
+\subsubsection{Phase-Space Measures and Normalisations}
+
+These MI are computed over different phase-space measures, depending on the number of 
+final-state particles. These phase-space integrals are defined over all 
+$n$-particle Mandelstam invariants for each specific phase-space. For that reason, 
+we introduce the shorthands,
+\begin{equation}
+    \begin{split}
+        &\mathcal S_2 = s_{12},\quad d\mathcal S_2 = ds_{12}\\
+        &\mathcal S_3 = s_{12}+s_{13}+s_{23},\quad d\mathcal S_3 = ds_{12}ds_{13}ds_{23}\\
+        &\mathcal S_4 = s_{12}+s_{13}+s_{14}+s_{23}+s_{24}+s_{34},\quad d\mathcal S_4 = ds_{12}ds_{13}ds_{14}ds_{23}ds_{24}ds_{34}.
+    \end{split}
+\end{equation}
+Using the shorthands, the differential phase-spaces are defined in $d$ dimensions as
+\cite{GehrmannDeRidder0311276,Anastasiou:2002yz},
+\begin{equation}
+    \begin{split}
+        &d\Phi_2 = (2\pi)^{2-d}s_{12}^{\frac{d-4}{2}}2^{1-d}d\Omega_{d-1}d\mathcal S_2\delta\!\left(q^2-\mathcal S_2\right)\\
+        &d\Phi_3 = (2\pi)^{3-2d}2^{-1-d}\!\left(q^2\right)^{2-\frac d2}(s_{12}s_{13}s_{23})^{\frac{d-4}{2}}d\Omega_{d-1}d\Omega_{d-2}d\mathcal S_3\delta\!\left(q^2-\mathcal S_3\right)\\
+        &\begin{split}
+            d\Phi_4 = (2\pi)^{4-3d}\!\left(q^2\right)^{3-\frac d2}2^{1-2d}&(-\Delta_4)^{\frac{d-5}{2}}\Theta(-\Delta_4)\\ &d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}d\mathcal S_4\delta\!\left(q^2-\mathcal S_4\right).
+         \end{split}
+    \end{split}
+\end{equation}
+Here $\Delta_4$ is the Gram determinant given by the Källen function $\lambda$
+\cite{GehrmannDeRidder0311276,Anastasiou:2002yz},
+\begin{equation}
+    \Delta_4=\lambda(s_{12}s_{34}, s_{13}s_{24}, s_{14}s_{23}),\quad \lambda(x, y, z) = x^2+y^2+z^2-2(xy+xz+yz).
+\end{equation}
+Also, $\Theta$ is the Heaviside step function and $d\Omega$ the differential solid 
+hyperspherical angle element in $d$ dimensions, given as,
+\begin{equation}
+    \Omega_n=\int d\Omega_n=\frac{2\pi^{\frac n2}}{\Gamma(n/2)}.
+\end{equation}
+
+Some MI appear normalised using the $S_\Gamma$ term, to make the infrared singularity 
+cancellations explicit and absorb common dimensional factors. The normalising term 
+is given as \cite{Gehrmann-DeRidder:2004ttg,GehrmannDeRidder0311276},
+\begin{equation}
+    S_\Gamma = \left(\frac{(4\pi)^\epsilon}{16\pi^2\Gamma(1-\epsilon)}\right)^2.
+\end{equation}
+It is also common to normalise with
+\begin{equation}
+    S_{\Gamma,2} = P_2 S_\Gamma,\quad P_2 = \int d\Phi_2 = \frac{2^{-3+2\epsilon}\pi^{-1+\epsilon}\Gamma(1-\epsilon)}{\Gamma(2-2\epsilon)}\!\left(q^2\right)^{-\epsilon}.
+\end{equation}
+
 \subsubsection{The $R_3$ Integral}
+
+This MI is used only on the integration of the massless $A_3^0$ antenna. It is the 
+direct integral over the three-final-state-particle phase-space. It is written as
+\cite{TM_JoanaReis},
+\begin{equation}
+    \begin{split}
+        R_3 &= \int d\Phi_3\\
+            &= \frac14\frac{\Omega_{d-1}\Omega_{d-2}}{(2\pi)^{2d-3}}\iiint dE_1dE_2d\theta_{12}\,(E_1E_2\sin\theta_{12})^{d-3}\delta\!\left(q^2-\mathcal S_3\right)\\
+            &= \frac1{128q^2\pi^3}\int d\mathcal S_3\,\delta\!\left(q^2-\mathcal S_3\right).
+    \end{split}
+\end{equation}
+After analytical evaluation the integrated result, which is the one substituted in the 
+final integrated antenna expression after IBP reduction becomes \cite{GehrmannDeRidder0311276},
+\begin{equation}
+    R_3 = 2^{-7+4\epsilon}\pi^{-3+2\epsilon}\frac{\Gamma^3(1-\epsilon)}{\Gamma(2-2\epsilon)\Gamma(3-3\epsilon)}\!\left(q^2\right)^{1-2\epsilon}.
+\end{equation}
 
 \subsubsection{The $R_4$ Integral}
 
+The first of the tree-level NNLO MI is $R_4$, which corresponds to the direct integral 
+over the four-final-state-particle phase-space. It is written as,
+\begin{equation}
+    \begin{split}
+        R_4 &= \int d\Phi_4\\
+            &   \begin{split}
+                    = (2\pi)^{4-3d}\!\left(q^2\right)^{3-\frac d2}2^{1-2d}\int &d\mathcal S_4d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}\\ &(-\Delta_4)^{\frac{d-5}{2}}\Theta(-\Delta_4)\delta\!\left(q^2-\mathcal S_4\right).
+                \end{split}
+    \end{split}
+\end{equation}
+To make the integral boundary limits integrable, we start by factorising the 
+phase space into a two-particle phase space and a tripole phase space factor, 
+$d\Phi_4 = d\Phi_2 d\Phi_T$ and then we map the six physical invariants $s_{ij}$ 
+into five dimensionless variables that range strictly between $0$ and $1$, making 
+a five-dimensional hypercube. We start by defining $y_{ij} = s_{ij}/q^2$ and 
+$y_{ijk} = s_{ijk}/q^2$. Our five dimensionless variables become \cite{GehrmannDeRidder0311276}:
+\begin{itemize}
+    \item The rescaled triple-invariant of the emitter jet, $y_{134} = \frac{s_{134}}{q^2}$;
+    \item The longitudinal momentum fraction of the unresolved parton $3$, $z_1 = \frac{p_3\cdot\tilde p_2}{\tilde p_{134}\cdot\tilde p_2}$;
+    \item The rescaled longitudinal momentum fraction of unresolved parton 4, $z_2 = (1-z_1)t = \frac{p_4\cdot\tilde p_2}{\tilde p_{134}\cdot\tilde p_2}$;
+    \item The rescaled invariant, $y_{14}=\frac{s_{14}}{q^2} = y_{134}(1-z_1)v$;
+    \item The alignment variable $\chi$, that parametrises the physical boundaries of the Gram determinant for $y_{13}$ as, $y_{13} = (y_{13,b}-y_{13,a})\chi+y_{13,a}= \Delta y_{13}\chi+y_{13,a}$.
+\end{itemize}
+After applying the mapping, the MI becomes
+\begin{equation}
+    \begin{split}
+        R_4 = P_2\frac{16^{-2}\pi^{-5+2\epsilon}}{\Gamma(1-2\epsilon)}\!\left(q^2\right)^{2-2\epsilon}\int_{[0,1]^5}dy_{134}dz_1dtdv&d\chi\,\Big[y_{134}(1-y_{134})(1-z_1)\Big]^{1-2\epsilon}\\
+                                                                                                                                                  &\Big[z_1t(1-t)v(1-v)\Big]^{-\epsilon}\Big[\chi(1-\chi)\Big]^{-\frac12-\epsilon}.
+    \end{split}
+\end{equation}
+We get \cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276},
+\begin{equation}
+    \begin{split}
+        R_4 &= P_2\!\left(q^2\right)^{2-2\epsilon}\frac{2^{-11+8\epsilon}\pi^{-\frac72+2\epsilon}\Gamma^3(1-\epsilon)}{\Gamma(3-3\epsilon)\Gamma\!\left(\frac52-2\epsilon\right)}\\
+            &= S_{\Gamma,2}\!\left(q^2\right)^{2-2\epsilon}\frac{\Gamma^5(1-\epsilon)\Gamma(2-2\epsilon)}{\Gamma(3-3\epsilon)\Gamma(4-4\epsilon)}\\
+            &= S_\Gamma\!\left(q^2\right)^{2-2\epsilon}\Bigg[\frac1{12}+\frac{59}{72}\epsilon+\mathcal O\!\left(\epsilon^2\right)\Bigg].
+    \end{split}
+\end{equation}
+
 \subsubsection{The $R_6$ Integral}
 
-\subsubsection{The $R_{8,a}$ Integral}
+The $R_6$ MI is written as \cite{GehrmannDeRidder0311276},
+\begin{equation}
+    \begin{split}
+        R_6 &= \int d\Phi_4\,\frac1{s_{134}s_{234}}\\
+            &= (2\pi)^{4-3d}\!\left(q^2\right)^{3-\frac d2}2^{1-2d}\int d\mathcal S_4d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}\,\frac{(-\Delta_4)^{\frac{d-5}{2}}}{s_{134}s_{234}}\Theta(-\Delta_4)\delta\!\left(q^2-\mathcal S_4\right).
+    \end{split}
+\end{equation}
+Because the $s_{234}$ is non-linear in the tripole parametrisation, we may not continue
+using direct integration \cite{GehrmannDeRidder0311276}. We may, however, use the Optical Theorem as a cut of the 
+three-loop vacuum polarisation diagram $I_6$ as,
+\begin{equation}
+    2\operatorname{Im}I_6 = -2P_2\operatorname{Re}A_4 + 2R_6
+\end{equation}
+with $I_6$ and $A_4$ being known from the literature and written as,
+\begin{equation}
+    \begin{split}
+        I_6 = \frac{(4\pi)^{3\epsilon}}{\left(16\pi^2\right)^3}&\frac{\Gamma^6(1-\epsilon)\Gamma^3(1+\epsilon)}{3\epsilon^3\Gamma^3(2-2\epsilon)}\!\left(-q^2\right)^{-3\epsilon}\\
+                                                                      &\Bigg[1+\epsilon+\epsilon^2+\epsilon^3(14\zeta_3-7)+\epsilon^4\left(-67+14\zeta_3+\frac{21\pi^4}{90}\right)+\mathcal O\!\left(\epsilon^5\right)\Bigg]
+    \end{split}
+\end{equation}
+\begin{equation}
+    \begin{split}
+        A_4 = \left(\frac{(4\pi)^\epsilon}{16\pi^2}\frac{\Gamma(1+\epsilon)\Gamma^2(1-\epsilon)}{\Gamma(1-2\epsilon)}\right)^2&\!\left(-q^2\right)^{-2\epsilon}\Bigg[-\frac1{2\epsilon^2}-\frac5{2\epsilon}-\left(\frac{19}2+\frac{\pi^2}6\right)\\
+                                                                                                                              &-\epsilon\left(\frac{65}2+\frac{5\pi^2}6-2\zeta_3\right)-\epsilon^2\left(\frac{211}2+\frac{19\pi^2}6-10\zeta_3\right)+\mathcal O\!\left(\epsilon^3\right)\Bigg].
+    \end{split}
+\end{equation}
+Note that $A_4$ is described in Subsubsection~\ref{subsubsec:A4}.
+
+We then apply the Minkowski boundary prescription \cite{GehrmannDeRidder0311276}
+$\left(q^2\right)^{-\epsilon}=\left(q^2\right)^{-\epsilon}e^{i\pi\epsilon}$, isolate 
+the imaginary and real parts, and get, by using $\mathcal A_4$ and $\mathcal I_6$
+\begin{equation}
+    \begin{split}
+        R_6 &= S_\Gamma\!\left(q^2\right)^{-2\epsilon}\frac{\Gamma^6(1-\epsilon)\Gamma^2(1+\epsilon)}{6}\left(\frac{6\cos(2\pi\epsilon)}{\Gamma^2(1-2\epsilon)}\mathcal A_4+\frac{\Gamma(1-\epsilon)\Gamma(1+\epsilon)\sin(3\pi\epsilon)}{\epsilon^3\pi\Gamma^2(2-2\epsilon)}\mathcal I_6\right)\\
+            &= S_{\Gamma,2}\!\left(q^2\right)^{-2\epsilon}\Bigg[-1+\frac{\pi^2}6+\epsilon\!\left(-12+\frac{5\pi^2}6+9\zeta_3\right)+\mathcal O\!\left(\epsilon^2\right)\Bigg].
+    \end{split}
+\end{equation}
+
+\subsubsection{The $R_{8,a}$ Integral}\label{subsubsec:R8a}
+
+The $R_{8,a}$ is the first of two MI with four denominator invariants. Its complete 
+integral form is written as \cite{GehrmannDeRidder0311276},
+\begin{equation}
+    \begin{split}
+        R_{8,a} &= \int d\Phi_4\,\frac1{s_{13}s_{23}s_{14}s_{24}}\\
+                &= (2\pi)^{4-3d}\!\left(q^2\right)^{3-\frac d2}2^{1-2d}\int d\mathcal S_4d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}\frac{(-\Delta_4)^{\frac{d-5}{2}}}{s_{13}s_{23}s_{14}s_{24}}\Theta(-\Delta_4)\,\delta\!\left(q^2-\mathcal S_4\right)\\
+                &   \begin{split}
+                        = P_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{16^{-2+\epsilon}\pi^{-5+2\epsilon}}{\Gamma(1-2\epsilon)}\int_{[0,1]^5} dy_{134}dz_1dtdvd\chi\\
+                                                              &\Big[(1-y_{134})(1-z_1)\Big]^{-1-2\epsilon}\Big[tvz_1^{-\epsilon}(\Delta y_{13}\chi+y_{13,a})\Big]^{-1}\Big[\chi(1-\chi)\Big]^{-\frac12-\epsilon}.
+                    \end{split}
+    \end{split}
+\end{equation}
+
+This is the most complex MI integration of the set. As such, its computation will be 
+written in detail here as most of the methods used are transferable to other MI. We 
+start by defining the integration order. The computation will advance as,
+\begin{equation*}
+    \chi\to v\to y_{134}\to t\to z_1
+\end{equation*}
+with the inclusion of a $u$ integral, also over the $[0,1]$ interval in between the 
+$t$ and $z_1$ integrals, which will be introduced later.
+
+The first integral is over $\chi$, and gives,
+\begin{equation}
+    I_\chi=\int_0^1 d\chi\,\Big[\chi(1-\chi)\Big]^{-\frac12-\epsilon}(\Delta y_{13}\chi+y_{13,a})^{-1}=\frac{\Delta y_{13}^{-2\epsilon}}{y_{13,a}}\frac{\Gamma^2\!\left(\frac12-\epsilon\right)}{\Gamma(1-2\epsilon)}{}_2F_1\!\left(1, \frac12-\epsilon; 1-2\epsilon; -\frac{\Delta y_{13}}{y_{13,a}}\right)
+\end{equation}
+where $_2F_1(...)$ is a hypergeometric function. We now consider the definition 
+$y_{13,(a,b)}=y_{134}(A\mp B)$, $A=\sqrt{(1-t)(1-v)}$, $B=\sqrt{z_1tv}$, and 
+$Z=-B/A$, and get,
+\begin{equation}
+    -\frac{\Delta y_{13}}{y_{13,a}} = \frac{4Z}{(1+Z)^2},\quad (1+Z)^2 = \frac{y_{13,a}}{y_{134}A^2}.
+\end{equation}
+Finally, by taking,
+\begin{equation}
+    {}_2F_1\!\left(1,b;2b;\frac{4Z}{(1+Z)^2}\right) = (1+Z)^2{}_2F_1\!\left(1,\frac32-b;b+\frac12;Z^2\right)
+\end{equation}
+and
+\begin{equation}
+    16^\epsilon\Delta y_{13}^{-2\epsilon}=\Big[t(1-t)v(1-v)y_{134}^2z_1\Big]^{-\epsilon}
+\end{equation}
+we get,
+\begin{equation}
+    I_\chi = \frac{\pi\Gamma(1-2\epsilon)}{y_{134}\Gamma^2(1-\epsilon)}\!\left(tvy_{134}^2z_1\right)^{-\epsilon}\Big[(1-t)(1-v)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,1+\epsilon;1-\epsilon;\frac{z_1tv}{(1-t)(1-v)}\right).
+\end{equation}
+
+The $R_{8,a}$ expression becomes,
+\begin{equation}
+    \begin{split}
+        R_{8,a} = P_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{16^{-2+\epsilon}\pi^{-4+2\epsilon}}{\Gamma^2(1-\epsilon)}\int_{[0,1]^4}dy_{134}dz_1dtdv\,\Big[y_{134}(1-y_{134})z_1(1-z_1)\Big]^{-1-2\epsilon}\\
+                                                      &\Big[t(1-t)v(1-v)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,1+\epsilon;1-\epsilon;\frac{z_1tv}{(1-t)(1-v)}\right).
+    \end{split}
+\end{equation}
+
+We now continue to the $v$ integral. To start, we restate the hypergeometric function 
+as a series, which enables us to write,
+\begin{equation}
+    \begin{split}
+        I_v &= \int_0^1 dv \Big[v(1-v)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,1+\epsilon;1-\epsilon;\frac{z_1tv}{(1-t)(1-v)}\right)\\
+            &= \sum_{n\geq0}\frac{(1+\epsilon)_n}{(1-\epsilon)_n}\!\left(\frac{z_1t}{1-t}\right)^n\frac{\Gamma(-\epsilon-n)\Gamma(-\epsilon+n)}{\Gamma(-2\epsilon)}\\
+            &= -\frac{2\Gamma^2(1-\epsilon)}{\epsilon\Gamma(1-2\epsilon)}{}_2F_1\!\left(1,-\epsilon;1-\epsilon;-\frac{z_1t}{1-t}\right).
+    \end{split}
+\end{equation}
+
+Plugging this expression back in and computing the trivial $y_{134}$ integral we get,
+\begin{equation}
+    \begin{split}
+        R_{8,a} = -P_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{2^{-7+8\epsilon}\pi^{-\frac72+2\epsilon}}{\epsilon^2\Gamma\!\left(\frac12-2\epsilon\right)}\int_{[0,1]^2}dz_1dt\,(1-z_1)^{-1-2\epsilon}\\
+                                                       &\Big[z_1t(1-t)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,-\epsilon;1-\epsilon;-\frac{z_1t}{1-t}\right).
+    \end{split}
+\end{equation}
+
+We now restate the hypergeometric function as an Euler integral as, 
+\begin{equation}
+    {}_2F_1\!\left(1,-\epsilon;1-\epsilon;-\frac{z_1t}{1-t}\right) = -\epsilon\int_0^1 du\,u^{-1-\epsilon}\!\left[1+\frac{uz_1t}{1-t}\right]^{-1}
+\end{equation}
+and after computing the direct $t$, $u$ and $z_1$ integrals, in that order, we get to 
+the final expression,
+\begin{equation}
+    \begin{split}
+        R_{8,a} = P_2\!\left(q^2\right)^{-2-2\epsilon}&2^{-7+4\epsilon}\pi^{-3+2\epsilon}\csc(\pi\epsilon)\Gamma(-2\epsilon)\Bigg[\frac{2^{8\epsilon}\pi}{\epsilon^2\Gamma^2\!\left(\frac12-2\epsilon\right)}{}_3F_2\!\left(\begin{array}{c} -2\epsilon, -2\epsilon, -2\epsilon \\ 1-2\epsilon, -4\epsilon \end{array};1\right)-\\
+                                                      &-\frac{2\Gamma^3(-\epsilon)}{\Gamma(1-4\epsilon)\Gamma(1-\epsilon)\Gamma(1+\epsilon)\Gamma(-3\epsilon)}{}_4F_3\!\left(\begin{array}{c} 1, -\epsilon, -\epsilon, -\epsilon \\ 1-\epsilon, 1+\epsilon, -3\epsilon \end{array};1\right)\Bigg]
+    \end{split}
+\end{equation}
+which after a final normalisation becomes \cite{GehrmannDeRidder0311276,TM_JoanaReis}, 
+\begin{equation}
+    \begin{split}
+        R_{8,a} = &S_\Gamma\!\left(q^2\right)^{-2-2\epsilon}\Bigg[\frac6{\epsilon^2}\frac{\Gamma^5(1-\epsilon)\Gamma(1-2\epsilon)}{\Gamma(1-3\epsilon)\Gamma(1-4\epsilon)}{}_4F_3\!\left(\begin{array}{c} 1, -\epsilon, -\epsilon, -\epsilon \\ 1-\epsilon, 1+\epsilon, -3\epsilon \end{array};1\right)-\\
+                  &-\frac1{\epsilon^4}\frac{\Gamma^3(1-\epsilon)\Gamma(1+\epsilon)\Gamma^3(1-2\epsilon)}{\Gamma^2(1-4\epsilon)}{}_3F_2\!\left(\begin{array}{c} -2\epsilon, -2\epsilon, -2\epsilon \\ -4\epsilon, 1-2\epsilon \end{array};1\right)\Bigg]\\
+                  &=S_{\Gamma,2}\!\left(q^2\right)^{-2-2\epsilon}\Bigg[\frac5{\epsilon^4}-\frac{20\pi^2}{3\epsilon^2}-\frac{126\zeta_3}{\epsilon}+\frac{7\pi^4}{18}+\mathcal O(\epsilon)\Bigg].
+    \end{split}
+\end{equation}
 
 \subsubsection{The $R_{8,b}$ Integral}
 
+The second of the two four-denominator-invariant MI is $R_{8,b}$. It is written as
+\cite{GehrmannDeRidder0311276},
+\begin{equation}
+    R_{8,b} = \int d\Phi_4\,\frac1{s_{13}s_{134}s_{23}s_{234}}.
+\end{equation}
+Due to the presence of $s_{234}$, this MI must be computed using the Optical Theorem,
+much like $R_6$ was. For this case, we are able to map $R_{8,b}$ as one of the cuts of 
+the three-loop vacuum polarisation diagram $I_8$ as,
+\begin{equation}
+    2\operatorname{Im}I_8 = -2P_2\operatorname{Re}A_6+4\operatorname{Re}V_8+R_{8,a}+4R_{8,b}.
+\end{equation}
+with,
+\begin{equation}
+    I_8 = S + \mathcal O(\epsilon^0),\quad \operatorname{Im}S = -\frac{13\pi^4}{90};
+\end{equation}
+\begin{equation}
+    V_8 = -i\int d\Phi_3\,\frac1{s_{12}}\operatorname{Box}(s_{13}, s_{13}, s_{12});
+\end{equation}
+\begin{equation}
+    A_6 = \left(\frac{(4\pi)^\epsilon}{16\pi^2}\frac{\Gamma(1+\epsilon)\Gamma^2(1-\epsilon)}{\Gamma(1-2\epsilon)}\right)^2\!\left(q^2\right)^{-2-2\epsilon}\Bigg[-\frac1{\epsilon^4}+\frac{5\pi^2}{6\epsilon^2}+\frac{23\zeta_3}\epsilon+\frac{103\pi^4}{180}+\mathcal O(\epsilon)\Bigg].
+\end{equation}
+Note that the $A_6$ and $V_8$ integrals are described in Subsubsections~\ref{subsubsec:A6}
+and \ref{subsubsec:V8}. In those Subsubsections, the integrals are given normalised 
+using the usual $S_\Gamma$ prefactor. 
+
+Using $\mathcal V_8$, $\mathcal A_6$ and $\mathcal R_{8,a}$ to denote the series parts 
+of $\operatorname{Re}V_8$, $P_2\operatorname{Re}A_6$ and $R_{8,a}$, respectively, 
+we get \cite{GehrmannDeRidder0311276},
+\begin{equation}
+    \begin{split}
+        R_{8,b} &= \frac12\operatorname{Im}S+S_\Gamma\!\left(q^2\right)^{-2-2\epsilon}\!\left(\frac12\frac{\cos(2\pi\epsilon)\Gamma^6(1-\epsilon)\Gamma^2(1-\epsilon)}{\Gamma^2(1-2\epsilon)}\mathcal A_6 - \mathcal V_8 - \frac14\mathcal R_{8,a}\right)\\
+                &= S_{\Gamma}\!\left(q^2\right)^{-2-2\epsilon}\Bigg[\frac3{4\epsilon^4}-\frac{17\pi^2}{12\epsilon^2}-\frac{44\zeta_3}{\epsilon}-\frac{61\pi^4}{60}+\mathcal O(\epsilon)\Bigg].
+    \end{split}
+\end{equation}
+
 \subsubsection{The $V_{5,a}$ Integral}
+
+$V_{5,a}$ is a one-loop bubble integrated over a three-particle phase space, written as,
+\begin{equation}
+    \begin{split}
+        V_{5,a} &= \operatorname{Re}\!\left[-i\int d\Phi_3\int\frac{d^dp}{(2\pi)^d}\frac1{p^2(p-k_1-k_2-k_3)^2}\right]\\
+                &= \operatorname{Re}\!\left[\int d\Phi_3\,B_0\!\left(q^2;0,0\right)\right].
+    \end{split}
+\end{equation}
+Since $q^2 = (p_1+p_2+p_3)^2$, this MI factors to the three-particle phase-space 
+integral of the $B_0\!\left(q^2;0,0\right)$ scalar one-loop function, discussed in 
+Subsubsection~\ref{subsubsec:B0}. After parametrising the phase space and applying the 
+methods introduced in Subsubsection~\ref{subsubsec:R8a} we get \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        V_{5,a} &= S_{\Gamma,2}\!\left(q^2\right)^{1-2\epsilon}\cos(\pi\epsilon)\!\left(-\frac1\epsilon\right)\frac{\Gamma^6(1-\epsilon)\Gamma(1+\epsilon)}{\Gamma(2-2\epsilon)\Gamma(3-3\epsilon)}\\
+                &= S_{\Gamma,2}\!\left(q^2\right)^{1-2\epsilon}\!\left[-\frac1{2\epsilon}-\frac{13}4+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
 
 \subsubsection{The $V_{5,b}$ Integral}
 
-\subsubsection{The $V_8$ Integral}
+$V_{5,b}$ is very similar in structure to $V_{5,a}$, also being the three-particle
+phase-space integral of a $B_0$ scalar one-loop function. The integral is also 
+computed in the same manner and yields \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        V_{5,b} &= \int d\Phi_3\,B_0\!\left(s_{13};0,0\right)\\
+                &= S_{\Gamma,2}\!\left(q^2\right)^{1-2\epsilon}\cos(\pi\epsilon)\!\left(-\frac1\epsilon\right)\frac{\Gamma^5(1-\epsilon)\Gamma(1-2\epsilon)\Gamma(1+\epsilon)}{\Gamma(2-2\epsilon)\Gamma(3-4\epsilon)}\\
+                &= S_{\Gamma,2}\!\left(q^2\right)^{1-2\epsilon}\!\left[-\frac1{2\epsilon}-4+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
+
+\subsubsection{The $V_8$ Integral}\label{subsubsec:V8}
+
+The $V_8$ MI is the most complex of the three $V$-type MI. It is given as a four-denominator 
+propagator loop and three-particle phase-space integral. That makes it be restatable 
+as a Box function which, itself, may be restated as a $D_0$ function, as discussed
+in Subsubsection~\ref{subsubsec:D0}. It is written as \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        V_8 &= \operatorname{Re}\!\left[-i\int d\Phi_3\int\frac{d^dp}{(2\pi)^d}\frac1{p^2(p-k_1)^2(p-k_1-k_3)^2(p-k_1-k_2-k_3)^2}\right]\\
+            &= \operatorname{Re}\!\left[-i\int d\Phi_3\,\frac1{s_{12}}\operatorname{Box}(s_{13}, s_{23}, s_{12})\right]\\
+            &= \left(\frac{(4\pi)^\epsilon\mu^{-2\epsilon}}{16\pi^2}\right)\frac{\Gamma^2(1-\epsilon)\Gamma(1+\epsilon)}{\Gamma(1-2\epsilon)}\int d\Phi_3\,\frac1{s_{12}}\operatorname{Re}\Big[D_0\!\left(0,0,0,q^2;s_{13},s_{23};0,0,0,0\right)\Big]\\
+    \end{split}
+\end{equation}
+which, after normalisation and evaluation gives,
+\begin{equation}
+    \begin{split}
+        V_8 &= S_{\Gamma,2}\!\left(q^2\right)^{-2-2\epsilon}\Big[-\frac5{2\epsilon^4}+\frac{9\pi^2}{2\epsilon^2}+\frac{89\zeta_3}{\epsilon}+\frac{13\pi^4}{180}+\mathcal O(\epsilon)\Big].
+    \end{split}
+\end{equation}
 
 \subsubsection{The $A_{22,\text{LO}}$ Integral}
 
+$A_{22,\text{LO}}$ is the first of the four $A$-type MI, and represents a double 
+bubble product. These are loop momenta integrals,
+not phase-space integrals. This first MI is given as \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        A_{22,\text{LO}} &= \int\frac{d^dp}{(2\pi)^d}\int\frac{d^d\ell}{(2\pi)^d}\frac1{p^2(p-k_1-k_2)^2\ell^2(\ell-k_1-k_2)^2}\\
+                         &= -\frac{\mu^{-4\epsilon}}{\left(16\pi^2\right)^2}\Big[B_0\!\left(q^2;0,0\right)\Big]^2\\
+                         &= S_\Gamma\!\left(-q^2\right)^{-2\epsilon}\frac{\Gamma^2(1+\epsilon)\Gamma^6(1-\epsilon)}{\Gamma^2(2-2\epsilon)}\!\left(-\frac1{\epsilon^2}\right)\\
+                         &= S_\Gamma\!\left(-q^2\right)^{-2\epsilon}\!\left[-\frac1{\epsilon^2}-\frac4\epsilon-12+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
+
 \subsubsection{The $A_3$ Integral}
 
-\subsubsection{The $A_4$ Integral}
+$A_3$ represents a three-propagator two-loop sunset vacuum bubble, with $q^2=s_{12}$. 
+It is given as \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        A_3 &= \int \frac{d^dp}{(2\pi)^d}\int\frac{d^d\ell}{(2\pi)^d}\frac1{p^2\ell^2(p-\ell-k_1-k_2)^2}\\
+            &= \int \frac{d^dp}{(2\pi)^d}\frac1{p^2}B_0\!\left((p-k_1-k_2)^2;0,0\right)\\
+            &= S_\Gamma\!\left(-q^2\right)^{1-2\epsilon}\frac{\Gamma(1+2\epsilon)\Gamma^5(1-\epsilon)}{\Gamma(3-3\epsilon)}\!\left(-\frac{1}{2(1-2\epsilon)\epsilon}\right)\\
+            &= S_\Gamma\!\left(-q^2\right)^{1-2\epsilon}\!\left[-\frac1{4\epsilon}-\frac{13}8+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
 
-\subsubsection{The $A_6$ Integral}
+\subsubsection{The $A_4$ Integral}\label{subsubsec:A4}
+
+$A_4$ is a four-propagator two-loop vacuum planar double bubble. It is given as a triangle 
+diagram containing a bubble insertion on one of its legs. That gives \cite{Gehrmann-DeRidder:2005btv},
+
+\begin{equation}
+    \begin{split}
+        A_4 &= \int \frac{d^dp}{(2\pi)^d}\int\frac{d^d\ell}{(2\pi)^d}\frac1{p^2\ell^2(p-k_1-k_2)^2(p-\ell-k_1)^2}\\
+            &= \int\frac{d^dp}{(2\pi)^d}\frac1{p^2(p-k_1-k_2)^2}B_0\!\left((p-k_1)^2;0,0\right)\\
+            &= S_\Gamma\!\left(-q^2\right)^{-2\epsilon}\frac{\Gamma(1-2\epsilon)\Gamma(1+\epsilon)\Gamma^4(1-\epsilon)\Gamma(1+2\epsilon)}{\Gamma(2-3\epsilon)}\!\left(-\frac1{2(1-2\epsilon)\epsilon^2}\right)\\
+            &= S_\Gamma\!\left(-q^2\right)^{-2\epsilon}\!\left[-\frac1{2\epsilon^2}-\frac5{2\epsilon}-\left(\frac{19}2+\frac{\pi^2}6\right)+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
+
+\subsubsection{The $A_6$ Integral}\label{subsubsec:A6}
+
+Lastly, the $A_6$ MI represents the two-loop two-point vertex. It is given as
+\cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    A_6 = \int\frac{d^dp}{(2\pi)^d}\int\frac{d^d\ell}{(2\pi)^d}\frac1{p^2\ell^2(p-k_1-k_2)^2(p-\ell)^2(p-\ell-k_2)^2(\ell-k_1)^2}.
+\end{equation}
+Unlike the other $A$-type antennae, this one cannot be given in terms of the scalar 
+one-loop functions $B_0$, $C_0$ or $D_0$. To compute this integral we have to start 
+by expressing it as a Mellin-Barnes contour integral, then evaluate the residues, and 
+finally expand as a Laurent series around $\epsilon$. This process gives,
+\begin{equation}
+    \begin{split}
+        A_6 &= \frac{S_\Gamma\left(-q^2\right)^{-2-2\epsilon}}{(2\pi i)^2}\int_{-i\infty}^{i\infty}\int_{-i\infty}^{i\infty}dz_1dz_2\,\frac{\Gamma(-z_1)\Gamma(-z_2)\Gamma(2+2\epsilon+z_1+z_2)\Gamma^2(-\epsilon-z_1)\Gamma^2(-\epsilon-z_2)}{\Gamma(-2\epsilon-z_1-z_2)\Gamma(2+\epsilon+z_1+z_2)}\\
+            &= S_\Gamma\!\left(-q^2\right)^{-2-2\epsilon}\!\left[-\frac1{\epsilon^4}+\frac{5\pi^2}{6\epsilon^2}+\frac{27}{\epsilon}\zeta_3+\frac{23\pi^4}{36}+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
 
 \section{NLO Antenna Results}
 
 The simplest non-trivial SMQCD antenna is $A_3^0$. As such, it may be used as an example of how
-\textcolor{red}{AntCalc} handles the physics involved in building and then integrating it over the
+AntCalc handles the physics involved in building and then integrating it over the
 phase space. In this chapter, we are going to go over how this antenna is mathematically computed by hand, 
-and how \textcolor{red}{AntCalc} handles those same calculations on its end. 
+and how AntCalc handles those same calculations on its end. 
 
 \subsection{The Tree-Level Three-Parton Antenna $A_3^0$}\label{sec:matDerivation}
 
@@ -501,12 +863,19 @@ $\epsilon$ Laurent series,
         \end{equation*}
 \end{mdframed}
 
-The agreement between the two sections in the present chapter confirms that \textcolor{red}{AntCalc}
-completes the same function we would do by-hand, going through the same steps. The same
-pipeline extends to the more complex antennae treated in this thesis, with their integrated 
-results collected in Appendix~\ref{ap:AntennaTrees}.
+The agreement between the analytic derivation and the corresponding \textit{AntCalc}
+outputs validates both the construction and the integration workflow for $A_3^0$. 
+Its local soft and collinear behaviour is validated separately in the following 
+subsection.
 
 \subsection{Local Validation of $A_3^0$}
+
+To be usable as a subtraction term, an antenna function's unintegrated form must also
+reproduce the singular behaviour of the corresponding matrix element locally in phase 
+space. In particular, $A_3^0$ must reproduce the universal eikonal factor when the gluon 
+becomes soft and the Altarelli-Parisi splitting function in the relevant collinear limits. 
+These two quantities become good validators for the computed result we got analytically 
+and using \textit{AntCalc}. 
 
 \subsubsection{Soft Limit and the Eikonal Factor}
 
