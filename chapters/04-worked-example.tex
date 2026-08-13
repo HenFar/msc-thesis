@@ -874,12 +874,90 @@ To be usable as a subtraction term, an antenna function's unintegrated form must
 reproduce the singular behaviour of the corresponding matrix element locally in phase 
 space. In particular, $A_3^0$ must reproduce the universal eikonal factor when the gluon 
 becomes soft and the Altarelli-Parisi splitting function in the relevant collinear limits. 
-These two quantities become good validators for the computed result we got analytically 
+These two quantities provide local validation of the results obtained analytically
 and using \textit{AntCalc}. 
 
 \subsubsection{Soft Limit and the Eikonal Factor}
 
+When a gluon becomes soft, gauge theory amplitudes factorise universally to the
+amplitude without the soft gluon times a universal soft current as \cite{Catani:1996vz},
+\begin{equation}
+    |\mathcal M_{n+1}(...,i,j,k,...)|^2\xrightarrow{j\to0}-g_s^2\sum_{i,k}T_i\cdot T_k \mathcal S_{ik}^{(j)}|\mathcal M_{n}(...,i,k,...)|^2
+\end{equation}
+where $T_i$ are colour-charge operators and,
+\begin{equation}
+    \mathcal S_{ik}^{(j)} = \frac{2s_{ik}}{s_{ij}s_{jk}}
+\end{equation}
+is the eikonal factor.
+
+Since this property is universal, we can use it to validate our results. For the 
+$A_3^0$ antenna, the eikonal factor may be computed as,
+\begin{equation}
+    \mathcal S_{12}^{(3)} = \lim_{k_3\to0}A_3^0(1_q, 3_g, 2_{\bar q}).
+\end{equation}
+
+After building the antenna using \textit{AntCalc}, the limit may be computed using 
+\textit{Wolfram Mathematica} as follows,
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+    \texttt{In[2]:= A30 = BuildAntenna[A,3,0];\\
+                    \\
+                    softSubs = \{s13 -> lambda * s13, s23 -> lambda * s23\};\\
+                    A30Soft = A30 /. softSubs;\\
+                    \\
+                    A30SoftSeries = Series[A30Soft, \{lambda, 0, 0\}];\\
+                    \\
+                    eikonalFactor = SeriesCoefficient[A30SoftSeries, -2] /. q2 -> s12\\ 
+                    // Simplify;}\\
+    \hfill
+    \texttt{Out[2]:=}
+        \begin{equation*}
+            \frac{2s_{12}}{s_{13}s_{23}}
+        \end{equation*}
+\end{mdframed}
+
+This result agrees with the expected eikonal factor.
+
 \subsubsection{Collinear Limit and the Altarelli--Parisi Splitting Function}
+
+In the same manner, when two partons $i$ and $j$ become collinear, the amplitude 
+factorises to \cite{Catani:1996vz,Altarelli:1977zs},
+\begin{equation}
+    |\mathcal M_{n+1}(...,i,j,...)|^2\xrightarrow{i||j}\frac{8\pi\alpha_s}{s_{ij}}P_{IJ\to K}(z)|\mathcal M_n(...,K,...)|^2
+\end{equation}
+where $K$ is the parent parton in which $i$ and $j$ recombine, $z$ is the momentum fraction 
+carried by one of the daughter partons, and $P_{IJ\to K}$ is the splitting function. This function
+is universal but channel-dependent and, since it carries the spin and helicity 
+structure of the collinear 
+splitting, it depends on the partons involved. For $A_3^0$, where a gluon may become 
+collinear with a quark, the function appears as,
+\begin{equation}
+    P_{qg\to q}(z) = C_F\frac{1+z^2}{1-z}.
+\end{equation}
+
+Noting that the building process already normalises the fundamental Casimir $C_F$, using 
+\textit{AntCalc} in \textit{Wolfram Mathematica}, the AP splitting function may be 
+computed as,
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+    \texttt{In[3]:= A30 = BuildAntenna[A,3,0];\\
+                    \\
+                    collinearSubs = \{s13 -> lambda, s12 -> z q2, s23 -> (1 - z) q2, \\Epsilon
+                     -> 0\};\\
+                    A30Collinear = A30 /. collinearSubs;\\
+                    \\
+                    A30CollinearSeries = Series[A30Collinear, \{lambda, 0, 0\}];\\
+                    \\
+                    apSplittingFunc = SeriesCoefficient[A30CollinearSeries, -1]\\ 
+                    // Simplify;}\\
+    \hfill
+    \texttt{Out[3]:=}
+        \begin{equation*}
+            \frac{1+z^2}{1-z}
+        \end{equation*}
+\end{mdframed}
+
+This result agrees with the expected colour-stripped $qg\to q$ AP kernel. 
 
 \subsection{The Virtual $A_2^1$ Contribution}
 
