@@ -1,70 +1,40 @@
 \chapter{Future Work}\label{ch:futurework}
 
-\textcolor{red}{AntCalc}, as described in Chapter~\ref{ch:packageframework}
-and validated in Chapter~\ref{ch:validation}, for both its the building and integration 
-engines, currently encompasses all massless antennae in SMQCD up to NNLO.
+In its current version, \textit{AntCalc} is implemented entirely in \textit{Wolfram 
+Mathematica}. This is the right language to build a trial-stage programme of its 
+nature due to its forgiving mathematical environment and its general adoption 
+throughout the field. But this choice of language comes at a cost: efficiency. 
+Though convenient, \textit{Mathematica} is slow and memory-hungry. In its current state,
+running the full \texttt{BuildRRatio} call takes three to four hours and, on 
+machines with less RAM, may cause the calculation to crash halfway through. It is then 
+apparent that the next step in \textit{AntCalc}'s development is taking it mostly out of 
+the \textit{Mathematica} environment and making it a truly modular, multi-language programme 
+that exploits only the best characteristics of each tool, including \textit{Mathematica},
+keeping the current high-level workflow. 
+The current plan for this step is to make the orchestrator a \textit{Python} programme 
+and to store the profiles in plain, machine-readable files, such as those in the \texttt{JSON} format.
+Then, retain \textit{FeynArts} and \textit{FeynCalc} for diagram generation and amplitude 
+manipulation, respectively, but hand the algebraic manipulations required to obtain the 
+antenna, or its components, over to \textit{FORM}. Then, lastly, make IBP reduction faster and more stable by replacing 
+\textit{LiteRed2} with \textit{Kira}, written in \textit{C++}, keeping \textit{Mathematica}
+as an algebraic simplifier. 
 
-Modern fixed-order QCD calculations, however, increasingly require antenna functions beyond this
-scope. Massive quark effects enter heavy-flavour production at hadron colliders, supersymmetric
-models introduce new parton species, and Higgs-plus-jet processes at NNLO require antennae
-derived from an effective $H\to gg$ vertex. Extension to N$^3$LO is also an active frontier,
-as the precision demands of the LHC physics programme continue to tighten. The natural 
-directions for extending \textcolor{red}{AntCalc} are therefore the massive SMQCD sector,
-the massless SUSY and HiggsEFT models, and eventually the full N$^3$LO antenna set.
+\input{figures/next_architecture.tex}
 
-The physical, mathematical and computation challenges introduced by these extensions are discussed
-to a higher level of detail in Appendix~\ref{ap:futureWork}.
+This step will then allow us to keep expanding \textit{AntCalc}'s 
+profile library without fear of hitting a computational bottleneck. The first point of 
+expansion would be to the rest of the massive quark-antiquark final-final antenna functions,
+especially $A_4^0$, $B_4^0$ and $C_4^0$ at first, and then $A_3^1$ and $A_2^2$. 
+After these are completed, expanding the 
+scope to other relevant antenna types, particularly the quark-gluon ($D$ and $E$) 
+and the gluon-gluon ($F$, $G$ and $H$) antennae, both in the massless and in the 
+massive regimes becomes the logical next step. Lastly, extensions to kinematics other than final-final, namely 
+initial-initial and initial-final configurations, 
+and higher perturbative orders, particularly N$^3$LO, antennae would also be relevant. 
 
-\section{Massive Antennae}
-
-As discussed in Chapter~\ref{ch:workedexample}, the $A_3^0$ antenna is the simplest non-trivial
-SMQCD antenna in the model, and as such, is also the best topology to use to extend 
-\textcolor{red}{AntCalc} to the massive framework. This extension has already been 
-implemented in the current version. To access the results, we can run the usual functions, 
-using the \texttt{quarkMass} option,
-\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-    \texttt{In[2]:= BuildAntenna[A,3,0,quarkMass->mQ]}\\
-    \hfill
-    \texttt{Out[2]:=}
-        \begin{equation*}
-            \begin{split}
-                \frac{1}{4s_{13}^2s_{23}^2\left(4m_q^2+s_{12}+s_{13}+s_{23}\right)} \Bigg[&-8m_q^2\left(s_{13}^2+s_{23}^2\right)+s_{13}s_{23}\left(2s_{12}^2+s_{13}^2+s_{23}^2+2s_{12}(s_{13}+s_{23})\right)\\
-                                                                                          &-2m_q^2\Big(s_{13}^2+s_{13}^2s_{23}+s_{13}s_{23}^2+s_{23}^2+s_{12}\left(s_{13}^2-4s_{13}s_{23}+s_{23}^2\right)\Big)\Bigg]
-            \end{split}
-        \end{equation*}
-    \texttt{In[3]:= \\
-            BuildAndIntegrateAntenna[A,3,0,quarkMass->mQ]\\
-            /.\{j[MX30Basis123, 1, 1, 1, 0, 0]->RM1, \\
-            j[MX30Basis123, 2, 1, 1, 0, 0]->RM2,d->4-2Epsilon, eps->Epsilon\}\\
-            //FullSimplify//Collect[\#,\{RM1,RM2\}]\&}\\
-    \hfill
-    \texttt{Out[3]:=}
-        \begin{equation*}
-            \begin{split}
-                &\frac{8\big(2-\epsilon(7-6\epsilon)\big)m_q^4-4\Big(4+\epsilon\big(-11+4\epsilon(1+\epsilon)\big)\Big)m_q^2q^2-(1-2\epsilon)\big(4-\epsilon(3+2\epsilon)\big)q^4}{\epsilon(1+2\epsilon)\left(4m_q^2-q^2\right)q^4}R_1^M\\
-                &+\frac{16(1-2\epsilon)m_q^6+8\big(-1+4\epsilon(1+\epsilon)\big)m_Q^4q^2-4\left(1+2\epsilon+4\epsilon^2\right)m_q^2q^4+2q^6+\epsilon(-1+2\epsilon)q^6}{\epsilon(1-2\epsilon)\left(4m_q^2-q^2\right)q^4}R_2^M
-            \end{split}
-        \end{equation*}
-\end{mdframed}
-
-To get to these results, the same method from Chapter~\ref{ch:workedexample} was used, but
-for the massive case, in which $k^2\neq0\neq m_q$. The results still are not complete, as 
-the massive master integrals, $R_1^M$ and $R_2^M$, have yet to be computed to enable us to 
-expand into the usual $\epsilon$ Laurent series.
-This example does show, however, that the already present framework is able to handle the 
-massive expansion, at least inside SMQCD, seamlessly, opening it up to the possibility of 
-further expansion to the massive SMQCD (and beyond) sector.
-
-\section{SUSY model}
-
-\subsection{Short Introduction To SUSY}
-
-\subsection{Example Implementation}
-
-\section{HiggsEFT model}
-
-\subsection{Short Introduction To HiggsEFT}
-
-\subsection{Example Implementation}
-
-\section{N$^3$LO}
+Connections to other established tools would also be pertinent. A connection to a 
+Feynman diagram generation tool such as \textit{MadGraph} and one to a parton-level 
+event generator
+such as \textit{NNLOJet} could allow us to generate more complex 
+antennae, from more complex topologies and also enable the numerical validation 
+of the results. 
