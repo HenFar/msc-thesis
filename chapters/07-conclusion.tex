@@ -1,3 +1,38 @@
 \chapter{Conclusion}\label{ch:conclusion}
 
-Conclusion goes here.
+This thesis developed the \textit{Mathematica} package \textit{AntCalc} in an effort 
+to make the computation of QCD antenna functions faster than the common from-scratch calculation, 
+easier, standardised, and streamlined.
+
+The resulting framework was implemented completely within \textit{Mathematica}, 
+using the \textit{FeynCalc} environment (including \textit{FeynArts} and 
+\textit{FeynHelpers}) to handle the building stage and
+\textit{LiteRed2} for the IBP reduction in the integration stage. That framework was 
+shown to produce all massless quark-antiquark final-final antennae through NNLO. 
+It was also shown to be able to be extended to the massive regime by implementing the
+massive $A_3^0$ route in its entirety. It begins by 
+using \textit{FeynArts} to produce one or more Feynman diagrams relevant for the 
+process under study and generates their amplitudes. 
+It then develops the amplitude into one antenna or multiple 
+antenna components using \textit{FeynCalc}. 
+The unintegrated antenna is then handed to \textit{LiteRed2} 
+for IBP reduction and, finally, after the pre-computed MI are identified and substituted,
+the integrated antenna is Laurent-expanded around the dimensional regularisation 
+parameter $\epsilon$.
+
+These unintegrated and integrated antennae were shown to be in agreement with 
+established results in the literature. Furthermore, the massless $A_3^0$ antenna, 
+whose workflow was shown in great detail, was locally validated by computing the 
+eikonal factor and the Altarelli--Parisi splitting function, using a method that 
+may be used to validate other appropriate antennae. All massless integrated antenna results 
+were also validated when we computed the massless hadronic R-ratio. 
+
+The package is beginning to reach the computational limits of its current 
+workflow, running completely within Mathematica. As such, the most pressing piece of 
+future work is the overhaul to a new, truly modular and multi-language, workflow,
+that is able to harness the best characteristics of different tools, like Kira for 
+IBP reduction and FORM for algebraic manipulation, without compromising efficiency.
+Once this overhaul is done, \textit{AntCalc} could be expanded 
+to handle much more complex cases, particularly those in the massive regime, 
+other antenna types, such as quark-gluon, other kinematic configurations, such as 
+initial-final antennae, and those in higher perturbative orders, such as N$^3$LO.
