@@ -640,7 +640,7 @@ which in total becomes
     \end{split}
 \end{equation}
 
-Each of the $\Gamma$ terms becomes, using Dirac Algebra \textcolor{red}{[ref to dirac algebra maths]},
+Each of the $\Gamma$ terms becomes, using Dirac Algebra,
 
 \begin{equation}
     \begin{split}
@@ -680,7 +680,7 @@ and computing the colour matrix sum as
     \sum_{a_3,i_1,i_2} (T^{a_3})_{i_1i_2}(T^{a_3})_{i_1i_2} = \frac12(N^2-1)
 \end{equation}
 we are finally able to reach the final result, as follows, using dimensional regularisation as 
-$d\to 4-2\epsilon$ \textcolor{red}{[ref to dimreg]},
+$d\to 4-2\epsilon$,
 
 \begin{equation}\label{eq:M30interference}
     \begin{split}
@@ -748,7 +748,7 @@ use the result to compute the integrated antenna. This process is explained in
 \textcolor{red}{[ref to IBP section]}.
 
 After applying IBP identities and reducing the integral to a linear combination of this master
-integral\footnote{This process is shown completely in \textcolor{red}{[ref to ibp reduction appendix]}.},
+integral,
 we reach the following expression,
 \begin{equation}\label{eq:A30intermsofR3}
     \mathcal A_3^0 = \frac{C(\epsilon,1)}{\Phi_2}\frac{2(2-6\epsilon+5\epsilon^2-2\epsilon^3)}{q^2\epsilon^2}R_3
@@ -759,6 +759,65 @@ This master integral is the integral over phase-space itself,
 \begin{equation}\label{eq:R3}
     R_3 = \int d\Phi_3 = \frac{2^{-7+4\epsilon}\pi^{-3+2\epsilon}\Gamma^3(1-\epsilon)}{\Gamma(2-2\epsilon)\Gamma(3-3\epsilon)}\left(q^2\right)^{1-2\epsilon}.
 \end{equation}
+
+\subsubsection{IBP Reduction of an Example Term}
+
+As an example of the IBP reduction method, we will consider the eikonal term of the 
+unintegrated antenna in Eq.~\ref{eq:A30},
+\begin{equation}
+    \mathcal S_{12}^{(3)} = \frac{2s_{12}}{s_{13}s_{23}}.
+\end{equation}
+We define,
+\begin{equation}
+    \begin{gathered}
+        y_{13} = \frac{s_{13}}{q^2},\quad y_{23} = \frac{s_{23}}{q^2},\quad y_{12} = \frac{s_{12}}{q^2} = 1 - y_{13} - y_{23}\\
+        J(a,b,c) = \int_\Delta dy_{13} dy_{23}\, y_{13}^{a-1}y_{23}^{b-1}y_{12}^{c-1},\quad \Delta:y_{13},y_{23},y_{12}\geq0,\,\,\,y_{13}+y_{23}+y_{12}=1
+    \end{gathered}
+\end{equation}
+and with these,
+\begin{equation}
+    \begin{split}
+        \Phi_3 &\equiv \int d\Phi_3 = R_3\\
+               &= \mathcal K\!\left(q^2,\epsilon\right)\int_\Delta(y_{13}y_{23}y_{12})^{-\epsilon}dy_{13}dy_{23}\\
+               &= \mathcal K\!\left(q^2,\epsilon\right)J(1-\epsilon,1-\epsilon,1-\epsilon),\quad \mathcal K\!\left(q^2,\epsilon\right) = \frac{2^{-7+4\epsilon}\pi^{-3+2\epsilon}}{\Gamma(2-2\epsilon)}\!\left(q^2\right)^{1-2\epsilon}.
+    \end{split}
+\end{equation}
+We are also able to express the integral over the eikonal term using a $J$ function as,
+\begin{equation}
+    \int d\Phi_3\,\mathcal S_{12}^{(3)} = \frac{2\mathcal K}{q^2}J(-\epsilon,-\epsilon,2-\epsilon).
+\end{equation}
+The IBP identity we use to reduce the integral is implemented as, 
+\begin{equation}
+    \begin{split}
+        0 &= \int_\Delta dy_{13} dy_{23}\,\frac\partial{\partial y_{13}}\!\left(y_{13}^a y_{23}^{b-1} y_{12}^{c-1}\right)\\
+          &= aJ(a,b,c) - (c-1)J(a+1,b,c-1)
+    \end{split}
+\end{equation}
+such that, for $y_{13}$,
+\begin{equation}   
+    J(-\epsilon,-\epsilon,2-\epsilon) = -\frac{1-\epsilon}{\epsilon}J(1-\epsilon,-\epsilon,1-\epsilon)
+\end{equation}
+and for $y_{23}$,
+\begin{equation}
+    J(1-\epsilon,-\epsilon,2-\epsilon) = -\frac{1-\epsilon}{\epsilon}J(1-\epsilon,1-\epsilon,1-\epsilon).
+\end{equation}
+By the symmetry $y_{13}\leftrightarrow y_{12}$,
+\begin{equation}
+J(2-\epsilon,-\epsilon,1-\epsilon)
+=
+J(1-\epsilon,-\epsilon,2-\epsilon).
+\end{equation}
+And hence,
+\begin{equation}
+    J(-\epsilon,-\epsilon,2-\epsilon) = \frac{(1-\epsilon)(2-3\epsilon)}{\epsilon^2}J(1-\epsilon,1-\epsilon,1-\epsilon)
+\end{equation}
+which finally makes,
+\begin{equation}
+    \int d\Phi_3\,\frac{2s_{12}}{s_{13}s_{23}} = \frac{2(1-\epsilon)(2-3\epsilon)}{\epsilon^2q^2}R_3.
+\end{equation}
+
+\subsubsection{Master Integral Substitution and Laurent Expansion}
+
 After using the expression in Eq.~\ref{eq:R3} explicitly in Eq.~\ref{eq:A30intermsofR3}becomes
 \begin{equation}\label{eq:A30withR30Sub}
     \begin{split}

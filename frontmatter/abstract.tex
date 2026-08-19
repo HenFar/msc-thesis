@@ -1,7 +1,187 @@
 \chapter*{Resumo}
-Breve resumo em Português.
+A crescente precisão alcançada pelas experiências realizadas em colisores de 
+partículas exige previsões teóricas com um grau de rigor comparável. Uma parte 
+substancial destes processos é governada pela interação forte, descrita pela 
+Cromodinâmica Quântica (QCD). A energias elevadas, esta teoria pode ser tratada 
+perturbativamente, organizando as previsões físicas como uma expansão em potências 
+da constante de acoplamento forte, \(\alpha_s\). Contudo, aumentar a precisão de um 
+cálculo não corresponde apenas a acrescentar diagramas de Feynman: exige controlar 
+uma estrutura complexa de contribuições de emissão real e virtual, bem como as 
+divergências que surgem em cada uma delas.
+
+As divergências infravermelhas constituem uma das principais dificuldades dos 
+cálculos perturbativos em QCD. As contribuições de emissão real tornam-se singulares 
+quando um partão é emitido com energia muito baixa, o limite mole, ou quando dois 
+partões se tornam colineares. Paralelamente, as amplitudes com laços contêm polos 
+infravermelhos associados às mesmas regiões cinemáticas. Embora estas divergências se 
+cancelem em observáveis físicos suficientemente inclusivos, as componentes 
+individuais do cálculo não são finitas. É, por isso, necessário reorganizar a 
+previsão teórica de modo a isolar as singularidades e a efetuar o seu cancelamento 
+de forma analítica e controlada.
+
+O formalismo de subtração por antenas fornece um enquadramento adequado para esse 
+objetivo. Neste método, a radiação não resolvida é descrita entre dois partões duros 
+ligados por cor, designados por radiadores. As funções de antena reproduzem os 
+limites moles e colineares relevantes de forma local no espaço de fase. Quando são 
+subtraídas às contribuições reais, eliminam as singularidades antes da integração 
+numérica. Depois de integradas analiticamente sobre o espaço de fase da radiação 
+não resolvida, originam polos em regularização dimensional que cancelam os polos 
+das contribuições virtuais. O cancelamento destas singularidades permite que cada 
+contribuição seja integrada numericamente em quatro dimensões.
+
+Esta dissertação apresenta o desenvolvimento de \textit{AntCalc}, um pacote simbólico para a 
+construção e integração automatizadas de funções de antena em QCD. O projeto 
+procura automatizar etapas que requerem implementações específicas para cada antena, 
+reunindo num mesmo fluxo as convenções de normalização, construção e integração. O 
+trabalho centra-se nas antenas 
+quark–antiquark sem massa, na configuração cinemática final–final, até à ordem 
+next-to-next-to-leading order (NNLO). Para além deste objetivo principal, é estudada 
+uma extensão exploratória ao regime massivo através da implementação da antena 
+\(A_3^0\).
+
+A base teórica da dissertação inclui uma introdução à QCD perturbativa, aos campos de 
+quarks e gluões e à construção de amplitudes a partir de diagramas de Feynman. São 
+discutidas as divergências ultravioleta, tratadas por renormalização, e as 
+divergências infravermelhas, que exigem a combinação entre várias contribuições 
+perturbativas. Utiliza-se regularização dimensional, na qual o número de dimensões 
+do espaço-tempo é tomado como \(d=4-2\epsilon\). Neste enquadramento, as divergências 
+manifestam-se como polos em \(\epsilon\), e as quantidades integradas são expressas por 
+séries de Laurent. O cancelamento dos polos pode, assim, ser acompanhado explicitamente 
+ao combinar as diferentes contribuições para uma quantidade física.
+
+É também apresentada a estrutura das funções de antena e a sua decomposição em cor. 
+As antenas são obtidas a partir de amplitudes físicas normalizadas e organizadas de 
+acordo com os radiadores e as partículas emitidas. A fatorização do espaço de fase é 
+essencial neste processo, pois permite separar o espaço de fase reduzido, associado 
+aos radiadores após a emissão não resolvida ser removida, do espaço de fase 
+correspondente à própria emissão. A integração pode então ser efetuada apenas sobre 
+o espaço de fase da radiação não resolvida, independentemente do processo duro em 
+que a antena venha a ser inserida. A dissertação introduz ainda 
+os objetos \(\mathcal{T}\), que combinam antenas integradas, fatores de cor e 
+normalizações de forma apropriada para a construção de observáveis inclusivos.
+
+A integração das funções de antena é uma das etapas mais exigentes do cálculo. As 
+integrais de espaço de fase são reescritas como integrais de laço através da técnica 
+de reverse unitarity. Em seguida, são reduzidas a um conjunto finito de integrais 
+mestres usando identidades de integração por partes (integration by parts, IBP) e o 
+algoritmo de Laporta. Em casos adequados, recorre-se também à redução de 
+Passarino–Veltman. Uma vez identificados os integrais mestres e substituídas as 
+respetivas expressões conhecidas, obtém-se a forma integrada da antena como uma 
+expansão em \(\epsilon\). O resultado da redução fica, deste modo, expresso num 
+conjunto limitado de integrais mestres, cujas expansões em \(\epsilon\) determinam 
+as partes singular e finita da antena integrada.
+
+O pacote \textit{AntCalc} foi implementado no ambiente \textit{Wolfram Mathematica} e integra 
+ferramentas especializadas para as diferentes fases do cálculo. FeynArts é utilizado 
+para gerar os diagramas de Feynman relevantes, enquanto \textit{FeynCalc} e \textit{FeynHelpers} apoiam 
+a construção e a manipulação das amplitudes. A redução IBP é realizada com \textit{LiteRed2}. 
+A arquitetura do pacote é orientada por perfis, isto é, por descrições estruturadas 
+que especificam o processo, as amplitudes, as famílias de integrais, os fatores de 
+normalização e os integrais mestres necessários. A informação específica de cada 
+antena fica, assim, concentrada no respetivo perfil, enquanto as rotinas de 
+construção e integração permanecem comuns aos diferentes casos.
+
+O fluxo de trabalho divide-se em duas fases principais: construção e integração. 
+Na fase de construção, o utilizador fornece a descrição do processo e o pacote gera 
+os diagramas e amplitudes correspondentes. São depois efetuadas as manipulações 
+algébricas necessárias para extrair a função de antena não integrada, ou as suas 
+componentes de cor quando aplicável. Na fase de integração, essa expressão é 
+convertida para uma forma apropriada à redução, associada à família de integrais 
+correta e reduzida aos integrais mestres. Finalmente, a substituição dos resultados 
+dos integrais mestres e a expansão em torno de \(\epsilon=0\) produzem a antena 
+integrada. Ao longo deste fluxo são efetuados testes de consistência e apresentados 
+diagnósticos do cálculo.
+
+Como exemplo detalhado, é apresentada a derivação da antena \(A_3^0\), que descreve a 
+emissão de um gluão entre um quark e um antiquark sem massa ao nível de árvore. Este 
+caso ilustra todo o percurso, desde a geração da amplitude até à expressão integrada. 
+A validação local da antena é efetuada através dos seus limites infravermelhos. No 
+limite mole, verifica-se que a expressão reproduz o fator eikonal esperado; nos 
+limites colineares, confirma-se a recuperação da função de separação de 
+Altarelli–Parisi apropriada. A concordância nestes limites constitui uma 
+verificação local da expressão obtida, independente da comparação posterior da 
+antena integrada com resultados da literatura.
+
+Para além de \(A_3^0\), \textit{AntCalc} é aplicado a um conjunto de antenas sem massa até NNLO. 
+São obtidas contribuições de dois, três e quatro partões, incluindo os conjuntos 
+\(A_2^2\), \(A_3^1\) e \(A_4^0\), bem como antenas com outras estruturas de cor, tais como 
+\(B_4^0\) e \(C_4^0\). Os resultados não integrados e integrados são comparados com 
+resultados estabelecidos na literatura, verificando-se concordância. A concordância 
+com os resultados publicados verifica, em simultâneo, as convenções de regularização 
+dimensional e normalização, bem como o tratamento da estrutura de cor e do espaço de 
+fase adotado na implementação.
+
+A validação global é realizada através do cálculo do rácio hadrónico sem massa, ou 
+\(R\)-ratio. Este observável relaciona a secção eficaz de produção de hadrões em 
+aniquilação eletrão–positrão com a secção eficaz de produção de pares de muões. Por 
+ser inclusivo, constitui um teste rigoroso da consistência do formalismo: os polos 
+infravermelhos provenientes das contribuições reais e virtuais devem cancelar 
+exatamente. A montagem do \(R\)-ratio a partir dos objetos integrados produzidos por 
+\textit{AntCalc} confirma esse cancelamento e reproduz o resultado finito conhecido até NNLO. 
+A reprodução do \(R\)-ratio complementa, deste modo, os testes locais das antenas, 
+verificando o cancelamento dos polos quando as diferentes contribuições são 
+combinadas num observável físico.
+
+A dissertação explora ainda a extensão ao caso massivo pela construção e integração 
+da antena massiva \(A_3^0\). A presença de uma massa altera a cinemática, a estrutura 
+do espaço de fase e os limites infravermelhos, eliminando, em particular, algumas 
+singularidades colineares existentes no caso sem massa. Este cálculo fornece uma 
+primeira implementação do fluxo massivo em \textit{AntCalc} e identifica as alterações 
+necessárias à construção e integração de futuras antenas massivas.
+
+A principal limitação da versão atual do pacote é o custo computacional da execução 
+inteiramente em Mathematica. Embora este ambiente seja particularmente útil para 
+desenvolvimento simbólico, alguns cálculos tornam-se lentos e exigentes em memória. 
+O trabalho futuro deverá, por isso, avançar para uma arquitetura modular e 
+multilinguagem. Prevê-se a utilização de Python como orquestrador, FORM para 
+manipulação algébrica eficiente e Kira para reduções IBP mais robustas, mantendo as 
+ferramentas atuais nas tarefas em que são mais adequadas. Entre as extensões 
+previstas encontram-se outras antenas massivas, antenas com radiadores quark–gluão 
+e gluão–gluão, configurações inicial–final e inicial–inicial e, a mais longo prazo, 
+cálculos a ordens perturbativas superiores, incluindo N\(^3\)LO.
+
+Em síntese, o trabalho desenvolvido mostra que as etapas de construção, redução e 
+integração das funções de antena consideradas podem ser reunidas num único 
+procedimento automatizado. O pacote reproduz 
+resultados conhecidos para antenas sem massa até NNLO, valida os limites 
+infravermelhos locais e recupera corretamente o \(R\)-ratio hadrónico. A 
+implementação obtida pode servir de base à inclusão de novas classes de antenas sem 
+exigir que todo o procedimento de construção e integração seja novamente implementado 
+de raíz.
 
 \chapter*{Abstract}
-Short abstract in English.
+High-precision collider measurements need theoretical predictions that are accurate 
+to the same level. In perturbative Quantum Chromodynamics (QCD), these predictions 
+are organised as an expansion in the strong coupling constant, \(\alpha_s\). At higher 
+orders, the calculation is complicated by infrared singularities associated with soft 
+and collinear parton radiation. Although these singularities cancel in physical 
+observables, the real-emission and virtual contributions are separately divergent 
+and therefore cannot be handled numerically without first isolating and cancelling 
+them.
+
+Antenna subtraction provides a systematic way to do this. It uses universal antenna 
+functions to describe unresolved radiation between colour-connected hard partons. 
+These functions are subtracted locally from the real-emission contribution and then 
+integrated analytically in dimensional regularisation, making the cancellation of 
+infrared poles against the virtual terms explicit.
+
+This thesis develops \textit{AntCalc}, a symbolic framework in Wolfram Mathematica 
+for constructing and integrating QCD antenna functions. The package combines 
+\textit{FeynArts}, \textit{FeynCalc}, \textit{FeynHelpers}, and \textit{LiteRed2}, 
+while keeping process-dependent 
+information separate from the general calculation workflow. It generates the required 
+amplitudes, constructs unintegrated antennae or colour components, maps the 
+corresponding phase-space integrals onto integral families, and reduces them to 
+master integrals through integration-by-parts identities.
+
+The implementation reproduces the massless final-final quark-antiquark antennae 
+through next-to-next-to-leading order. The tree-level three-parton antenna \(A_3^0\) 
+is used as a detailed example and is checked in its soft and collinear limits. The 
+integrated results agree with the literature, and the full NNLO massless hadronic 
+\(R\)-ratio is reconstructed as an additional validation. A preliminary massive 
+\(A_3^0\) implementation shows how the same workflow can be extended beyond the 
+massless case. Future work will extend AntCalc to further massive antennae, 
+additional partonic configurations, and a more modular multi-language architecture.
+
 
 \addcontentsline{toc}{chapter}{Resumo e Abstract}
