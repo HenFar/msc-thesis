@@ -735,7 +735,7 @@ of the Mandelstam invariants ($s_{13}$, $q^2$, etc.). The integral takes the for
     \end{split}
 \end{equation}
 with $d\Phi_{ijk} = d\Phi_3/\Phi_2$ and with the derivation of the $d\Phi_3$ measure being 
-present in \textcolor{red}{[ref to this derivation]}.
+present in Appendix~\ref{ap:supportingDerivations}.
 $C(\epsilon,1)$ is the integral normalisation which is here given as 
 \begin{equation}
     C(\epsilon,1) = 8\pi^2(4\pi)^{-\epsilon}e^{\epsilon\gamma_E}.
@@ -745,7 +745,7 @@ This integral is quite complex and spans across all $A_3^0$ terms. Accordingly, 
 going to compute this integral directly: instead we are going to use IBP reduction to reduce the 
 expression to a linear combination of master integrals, compute those master integrals and then 
 use the result to compute the integrated antenna. This process is explained in
-\textcolor{red}{[ref to IBP section]}.
+Subsection~\ref{subsec:ibp}.
 
 After applying IBP identities and reducing the integral to a linear combination of this master
 integral,
@@ -753,14 +753,14 @@ we reach the following expression,
 \begin{equation}\label{eq:A30intermsofR3}
     \mathcal A_3^0 = \frac{C(\epsilon,1)}{\Phi_2}\frac{2(2-6\epsilon+5\epsilon^2-2\epsilon^3)}{q^2\epsilon^2}R_3
 \end{equation}
-This antenna has a single master: $R_3$ \textcolor{red}{[ref to master integrals section/appendix]}.
+This antenna has a single master, $R_3$, discussed in Section~\ref{sec:masterresults}.
 This master integral is the integral over phase-space itself,
 
 \begin{equation}\label{eq:R3}
     R_3 = \int d\Phi_3 = \frac{2^{-7+4\epsilon}\pi^{-3+2\epsilon}\Gamma^3(1-\epsilon)}{\Gamma(2-2\epsilon)\Gamma(3-3\epsilon)}\left(q^2\right)^{1-2\epsilon}.
 \end{equation}
 
-\subsubsection{IBP Reduction of an Example Term}
+\subsubsection{IBP Reduction of an Example Term}\label{subsubsec:a30IBPExample}
 
 As an example of the IBP reduction method, we will consider the eikonal term of the 
 unintegrated antenna in Eq.~\ref{eq:A30},
@@ -818,7 +818,7 @@ which finally makes,
 
 \subsubsection{Master Integral Substitution and Laurent Expansion}
 
-After using the expression in Eq.~\ref{eq:R3} explicitly in Eq.~\ref{eq:A30intermsofR3}becomes
+Substituting Eq.~\ref{eq:R3} into Eq.~\ref{eq:A30intermsofR3} gives
 \begin{equation}\label{eq:A30withR30Sub}
     \begin{split}
         \mathcal A_3^0 &= \frac{C(\epsilon,1)}{\Phi_2}\left(q^2\right)^{-2\epsilon}(4\pi)^{-3+2\epsilon}(2-6\epsilon+5\epsilon^2-2\epsilon^3)\frac{\Gamma^3(1-\epsilon)}{\epsilon^2\Gamma(3-3\epsilon)\Gamma(2-2\epsilon)}\\
@@ -843,7 +843,7 @@ were employed.
 
 \subsubsection{Implementation in \textit{AntCalc}}
 
-Using \textcolor{red}{AntCalc}, building the antenna is very simple, since the
+Using \textit{AntCalc}, building the antenna is very simple, since the
 function \texttt{BuildAntenna[type, numFinalParticles, numLoops]} already encodes the entire 
 logical chain and is able to return all intermediate steps using the appropriate options. 
 
@@ -859,7 +859,7 @@ First, by running the function naively we get the final result in Eq.~\ref{eq:A3
 \end{mdframed}
 
 We can also use the \texttt{ReturnRecord} option to access all intermediate steps, and check that 
-\textcolor{red}{AntCalc} goes through the same steps as the by-hand derivation in
+\textit{AntCalc} goes through the same steps as the by-hand derivation in
 Sec.~\ref{sec:matDerivation}. We can see that with,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
@@ -889,7 +889,7 @@ where \texttt{Amplitude}, \texttt{Interference} and \texttt{Result} respectively
 expressions in Eqs.~\ref{eq:M30amplitude}, \ref{eq:M30interference} and \ref{eq:A30}.
 
 
-Integrating antennae using \textcolor{red}{AntCalc} is also simple. Every step in \ref{sec:antIntMaths}
+Integrating antennae using \textit{AntCalc} is also simple. Every step in Section~\ref{sec:antIntMaths}
 is handled by a single function: \texttt{IntegrateAntenna[antenna]}.
 
 Before going over how this function is used, a small clarification needs to be made: the 
@@ -941,7 +941,7 @@ The results here are given as a combination of $d$ and $\epsilon$. This is a res
 the function processes each step. Since these are snapshots of what is happening inside the
 function itself, they show the expressions before dimension regularisation is applied.
 
-Finally, \textcolor{red}{AntCalc} also enables us to forgo the work we did building and
+Finally, \textit{AntCalc} also enables us to forgo the work we did building and
 the integrating the antenna with the use of the \texttt{BuildAndIntegrateAntenna[type,
 numFinalParticles,numLoops]} function. It goes over the whole process, as we did, and outputs the 
 $\epsilon$ Laurent series,
@@ -1106,7 +1106,7 @@ different antenna components and is the longest-running calculation supported by
 The expressions have been truncated here. These four components represent, respectively, 
 the leading, subleading, quark-loop and self-interference terms, or, $A_2^2$, $\tilde A_2^2$, 
 $\hat A_2^2$ and $\breve A_2^2$, in that order. Their complete unintegrated forms are lengthy and are, therefore 
-collected in Appendix~\textcolor{red}{[ref to appendix]}. 
+collected in Appendix~\ref{ap:antExpressions}. 
 We may then obtain the integrated expressions as,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
@@ -1151,7 +1151,7 @@ term. The unintegrated antennae are computed using,
 The expressions have been truncated here. These three components represent, respectively, 
 the leading, subleading and quark-loop terms, or, $A_3^1$, $\tilde A_3^1$, 
 and $\hat A_3^1$, in that order. Their complete unintegrated forms are lengthy and are, therefore 
-collected in Appendix~\textcolor{red}{[ref to appendix]}. 
+collected in Appendix~\ref{ap:antExpressions}. 
 We may then obtain the integrated expressions as,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
@@ -1210,7 +1210,7 @@ and so does computing the integrated antenna functions,
 where for each case, the lists are $\{A_4^0, \tilde A_4^0\}$ and $\left\{\mathcal A_4^0, \tilde{\mathcal A}_4^0\right\}$, respectively. 
 
 The complete unintegrated expressions are collected in
-Appendix~\textcolor{red}{[ref to appendix]}. The integrated results agree with
+Appendix~\ref{ap:antExpressions}. The integrated results agree with
 the established $\mathcal A_4^0$ antenna results \cite{Gehrmann-DeRidder:2005btv}.
 
 \subsubsection{The $B_4^0$ and $C_4^0$ Antennae}
@@ -1256,7 +1256,7 @@ The integration process follows in the same way,
 \end{mdframed}
 
 The complete unintegrated expressions for both antennae are collected in
-Appendix~\textcolor{red}{[ref to appendix]}. The integrated results of both antennae 
+Appendix~\ref{ap:antExpressions}. The integrated results of both antennae 
 agree with
 the established $\mathcal B_4^0$ and $\mathcal C_4^0$ results \cite{Gehrmann-DeRidder:2005btv}.
 
@@ -1267,7 +1267,7 @@ we are able to build and integrate all quark-antiquark final-final standard-mode
 antenna functions through NNLO. The selected case studies cover tree-level NLO and NNLO,
 one-, and two-loop contributions, showcasing the programme's ability to handle these 
 different cases. Due to the size of the unintegrated antennae, some have been 
-truncated. The complete results are shown in Appendix~\textcolor{red}{[ref to appendix]}.
+truncated. The complete results are shown in Appendix~\ref{ap:antExpressions}.
 The resulting integrated antennae agree with the established results.
 
 The more detailed $A_3^0$ explanation shows a method of local validation of the
@@ -1374,4 +1374,4 @@ $r\to1-4m_q^2$,
 
 These expressions agree with the established literature results \cite{GehrmannDeRidder:2009fz}.
 The full unintegrated and integrated antenna expressions were truncated in this 
-section. They are shown completely in Appendix~\textcolor{red}{[ref to appendix]}.
+section. They are shown completely in Appendix~\ref{ap:antExpressions}.

@@ -20,7 +20,7 @@ Quarks are spin-$1/2$ fields carrying flavour and a three-valued colour charge.
 They are QCD's matter fields. Gluons are the eight gauge fields associated with 
 local $SU(3)_c$ colour symmetry. The QCD Lagrangian describes their propagation 
 and interaction. It is written as follows,
-\begin{equation}
+\begin{equation}\label{eq:qcdLagrangian}
     \mathcal L_\mathrm{QCD} = -\frac14G_{\mu\nu}^aG^{a\,\mu\nu}+\sum_f\bar\psi_f\!\left(i\gamma^\mu D_\mu-m_f\right)\psi_f.
 \end{equation}
 In this expression, $G_{\mu\nu}^a$ is the non-Abelian field-strength tensor, $D_\mu$
@@ -247,7 +247,7 @@ which is UV divergent whenever $d-1-2n_p\geq-1\Rightarrow d\geq 2n_p$
 
 Secondly, this limit tells us that any perturbative series constructed order by order 
 in the bare coupling $\alpha_0$,
-from the QCD Lagrangian \textcolor{red}{[ref to the qcd lagrangian]},
+from the QCD Lagrangian, as shown in Eq.~\ref{eq:qcdLagrangian},
 is, beyond tree level ill-defined since its higher-order coefficients diverge 
 \cite{Ellis:1996mzs}. This property makes the variable unsuitable as the 
 order by order perturbative series variable we require. As such, we need to trade
@@ -412,8 +412,8 @@ labelled as \textit{bare}: it is the general definition without normalisation.
 This normalisation is achieved through the 
 rescaling of the bare coupling constant $\alpha_0$ to the renormalised coupling
 constant $\alpha_s$ through Eq.~\ref{eq:alphaRescaling}. This rescaling applies
-the Ward-Takahashi~\cite{Ward:1950xp, Takahashi:1957xn} and Slavnov-Taylor identities\footnote{These identities are
-explored further in Appendix~\textcolor{red}{[ref to the identities in an Appendix]}.}~\cite{Taylor:1971ff, Slavnov:1972fg},
+the Ward-Takahashi~\cite{Ward:1950xp, Takahashi:1957xn} and Slavnov-Taylor Identities
+\cite{Taylor:1971ff, Slavnov:1972fg},
 which guarantee the conservation of the electric and strong charges\footnote{
 In QCD terminology, "colour charge" (red, green and blue) refers to the 
 fundamental quantum numbers carried by individual quarks and gluons, analogous
@@ -530,8 +530,7 @@ and is particularly useful for four-quark
 topologies like those described in Subsection~\ref{subsec:antFamilies}
 \cite{Ellis:1996mzs, Schwartz:2014sze}.
 
-A complete compilation of the QCD Feynman rules and the full colour trace derivations 
-utilised by the package can be found in Appendix~\textcolor{red}{[ref to qcd appendix]}.
+The QCD conventions and colour identities used by the package were introduced above.
 
 \subsection{Antenna Families and $T$-Objects}\label{subsec:antFamilies}
 
@@ -602,9 +601,8 @@ the SM Feynman diagram describing a Higgs boson decaying into a top-quark triang
 and then each of the other two vertices of that triangle emitting a gluon gets its 
 intermediate triangle step compacted into the vertex, hence creating a $H\to gg$ 
 process and, hence, a gluon-gluon antenna \cite{Gehrmann-DeRidder:2005btv,Demartin2014,Glover2010}. 
-These processes are describing in 
-further detail in Appendix~\textcolor{red}{[ref to SUSY and HiggsEFT explanation
-appendix]}.
+Further details of these effective-theory constructions are given in the cited 
+literature.
 
 As described in Subsection~\ref{subsec:colourAlg}, antenna functions are purely 
 kinematic. By taking all components, we are able to construct a process-wide
@@ -674,8 +672,7 @@ The identical-flavour quark-antiquark-quark-antiquark final state is described b
 the sum of antennae for non-identical-flavour and for identical-flavour-only
 \cite{Gehrmann-DeRidder:2005btv}. Using Eq.~\ref{eq:genTSum} in the interference 
 term, with the identity piece vanishing by tracelessness
-\footnote{This process is derived completely in Appendix~\textcolor{red}{[ref 
-to the derivation]}.}, 
+\footnote{This process is derived completely in Appendix~\ref{ap:supportingDerivations}.}, 
 we can describe the 
 identical-flavour $T$-object as,
 \begin{equation}
@@ -719,8 +716,8 @@ antenna. It has no independent parametrisation and is only accessed by factorisi
 the known $n$-particle phase space 
 \cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276}. 
 Since, through the recursive factorisation of the Lorentz-invariant 
-phase space property\footnote{This property is discussed further in Appendix~
-\textcolor{red}{[ref to relevant appendix]}.} \cite{Catani:1996vz}, 
+phase space property\footnote{This property is discussed further in Subsection 
+\ref{subsec:phaseSpaceFactor}.} \cite{Catani:1996vz}, 
 the phase space factorises, 
 we are able to denote that the $n$-particle phase-space equals the $(n-n_u)$-particle,
 where $n_u$ is the number of unresolved partons, 
@@ -1134,7 +1131,7 @@ inside $\mathcal I$, as \cite{GehrmannDeRidder0311276,Chetyrkin:1981qh},
 as previously introduced in Eq.~\ref{eq:derivativeToZero}. In dimensional regularisation,
 analytic continuation justifies the vanishing of the surface term at infinity,
 leaving an exact relation among regulated integrals\footnote{This method 
-is explored further and completely in Appendix~\textcolor{red}{[ref to this]}.}.
+is explored further and completely in Subsubsection~\ref{subsubsec:a30IBPExample}.}.
 
 Expanding the derivative gives,
 \begin{equation}
@@ -1424,7 +1421,7 @@ which IBP is then able to reduce to the master basis, as \cite{Remiddi:1997ny},
 \end{equation}
 where $\vec M = (M_1,...,M_{N_\text{MI}})^\text T$ is the vector of masters and $A$ is a matrix of coefficient functions.
 Boundary conditions can then be used to determine the solution. These methods 
-are discussed in further detail in Appendix~\textcolor{red}{[ref to appropriate appendix]}.
+are discussed in further detail in Section~\ref{sec:masterresults}.
 
 Once the MI are evaluated, we expand them around $\epsilon = 0$, as a Laurent series
 \cite{GehrmannDeRidder0311276},
