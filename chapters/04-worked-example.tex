@@ -734,8 +734,7 @@ of the Mandelstam invariants ($s_{13}$, $q^2$, etc.). The integral takes the for
                        &= \mathcal N(\epsilon,1)\,(4\pi)^{3-2d}\left(q^2\right)^{1-\frac d2}\int ds_{12}ds_{13}ds_{23}d\Omega\,(s_{12}s_{13}s_{23})^{\frac{d-4}{2}}\delta\left(q^2-s_{12}-s_{13}-s_{23}\right)\,A_3^0.
     \end{split}
 \end{equation}
-with $d\Phi_{ijk} = d\Phi_3/\Phi_2$ and with the derivation of the $d\Phi_3$ measure being 
-present in Appendix~\ref{ap:supportingDerivations}.
+with $d\Phi_{ijk} = d\Phi_3/\Phi_2$.
 $C(\epsilon,1)$ is the integral normalisation which is here given as 
 \begin{equation}
     C(\epsilon,1) = 8\pi^2(4\pi)^{-\epsilon}e^{\epsilon\gamma_E}.
@@ -898,13 +897,13 @@ Before going over how this function is used, a small clarification needs to be m
 useful and easily readable. As described in Chapter~\ref{ch:packageframework}, however, the IBP reduction
 steps are handled by the LiteRed2 package, which does not expect Mandelstam invariants, but rather,
 momenta. Accordingly, to use \texttt{BuildAntenna}'s output in \texttt{IntegrateAntenna} we 
-must toggle the relevant flag: \texttt{BuildAntenna[A,3,0,IntegrableForm->True]}. This
+must toggle the relevant flag: \texttt{BuildAntenna[A,3,0,IntegrableForm -> True]}. This
 will return a large association with all required information for integrating the antenna.
 
 We may now proceed to the integration. The whole process goes as follows,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-    \texttt{In[4]:= intA30 = BuildAntenna[A,3,0,IntegrableForm->True]};\\
+    \texttt{In[4]:= intA30 = BuildAntenna[A,3,0,IntegrableForm -> True]};\\
     \hfill
     \texttt{In[5]:= IntegrateAntenna[intA30,ExpansionOrder->2]}\\
     \hfill
@@ -1162,7 +1161,7 @@ We may then obtain the integrated expressions as,
         \begin{split}
             \Bigg\{&\frac1{4\epsilon^4}+\frac{31}{12\epsilon^3}+\frac{-9540-660\pi^2}{1440\epsilon^2}+\frac{38820-3520\pi^2+11040\zeta_3}{1440\epsilon}\\
                    &+\frac{-156930-12240\pi^2+123\pi^4+55120\zeta_3}{1440}+\mathcal O(\epsilon),\\
-                   &\frac{-15+4\pi^2}{24\epsilon^2}+\frac{-19+\pi^2+28\zeta_3}{4\epsilon}+\frac{1215\pi^2+56\pi^4+540(-35+18\zeta_3)}{760},\\
+                   &\frac{-15+4\pi^2}{24\epsilon^2}+\frac{-19+\pi^2+28\zeta_3}{4\epsilon}+\frac{1215\pi^2+56\pi^4+540(-35+18\zeta_3)}{720},\\
                    &\frac1{3\epsilon^3}-\frac1{2\epsilon^2}+\frac{114-14\pi^2}{72\epsilon}+\frac{327-21\pi^2+200\zeta_3}{72}+\mathcal O(\epsilon)\Bigg\}
         \end{split}
     \end{equation*}

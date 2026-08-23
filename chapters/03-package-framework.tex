@@ -636,7 +636,7 @@ There might be need to expand to a lesser or to a greater term, however. That ca
         \texttt{IntegrateAntenna[A30]} \xrightarrow{\texttt{ExpansionOrder->0}}\frac{1}{\epsilon^2}+\frac{3}{2\epsilon}+\frac{19}{4}-\frac{7\pi^2}{12}
     \end{gathered}
 \end{equation}
-where \texttt{A30=BuildAntenna[A,3,0,IntegrableForm->True]}, is the $A_3^0$ set's \\
+where \texttt{A30=BuildAntenna[A,3,0,IntegrableForm -> True]}, is the $A_3^0$ set's \\
 \texttt{AntennaObject}. Though the example in Eq.\ref{eq:expansionOrderDiag} above shows the 
 truncation of a series whose default expansion is deeper than the one resulting from the 
 option, using \texttt{ExpansionOrder} for a higher-than-default order is also possible 
@@ -677,10 +677,10 @@ as,
 \begin{equation}
     \begin{gathered}
         \texttt{IntegrateAntenna[A31]} \xrightarrow{\text{Default Result}} \{\mathcal A_3^1, \tilde{\mathcal A}_3^1, \hat{\mathcal A}_3^1\}\\
-        \texttt{IntegrateAntenna[A31]} \xrightarrow{\texttt{ReturnTTerms->True}} \{\mathcal T_\text{Lead}, \mathcal T_\text{Sublead}, \mathcal T_\text{QL}\}
+        \texttt{IntegrateAntenna[A31]} \xrightarrow{\texttt{ReturnTTerms -> True}} \{\mathcal T_\text{Lead}, \mathcal T_\text{Sublead}, \mathcal T_\text{QL}\}
     \end{gathered}
 \end{equation}
-where \texttt{A31=BuildAntenna[A,3,1,IntegrableForm->True]}, is, once again, the $A_3^1$ set's
+where \texttt{A31=BuildAntenna[A,3,1,IntegrableForm -> True]}, is, once again, the $A_3^1$ set's
 \texttt{AntennaObject}.
 
 \subsection{$A_2^2$ Set Integration Routes}
@@ -858,3 +858,57 @@ can instead return an \texttt{AntennaRunRecord}, which records the relevant rout
 stages and metadata. This information was used to trace the source of discrepancies 
 during development; the resulting validation comparisons are presented in 
 Chapter~\ref{ch:validation}.
+
+\subsection{Runtime and Memory Characteristics}
+
+To characterise the computational cost and performance of the implemented public 
+routes, each antenna was evaluated in a fresh \textit{Wolfram Mathematica} kernel. 
+Package loading was excluded from the measurements. Both the build 
+and integration stages were timed using the \texttt{AbsoluteTiming} function. 
+Memory usage was measured using \texttt{MaxMemoryUsed[]}, relative to the 
+initial kernel baseline. These measurements were taken using a MacBook Pro (Mac16.8), 
+with an Apple M4 Pro 12 core (8 performance and 4 efficiency) CPU, and 24~GB unified 
+RAM, running macOS 26.6.2 (build 25G83), \textit{Wolfram Mathematica} 15.0.0 for Mac 
+OS X ARM (64-bit), and AntCalc 0.3.0$\beta$2.
+
+The lower-order routes, up to NLO, complete both stages in approximately one second,
+with the cost increasing substantially for the NNLO routes, in particular $A_2^2$, 
+which surpasses 31 minutes. The $A_4^0$ route has the largest memory requirement, 
+reaching 567 MB above the kernel benchmark. The complete results are shown in 
+Table~\ref{tab:runtimeBenchmarks}.
+
+\begin{table}[h!]
+    \centering
+    \small
+    \renewcommand{\arraystretch}{1.15}
+    \begin{tabular}{|c|r|r|r|r|}
+        \hline
+        \textbf{Route} &
+        \textbf{Build} &
+        \textbf{Integration} &
+        \textbf{End-to-end} &
+        \textbf{Peak memory} \\
+        &
+        \textbf{time} &
+        \textbf{time} &
+        \textbf{time} &
+        \textbf{above baseline} \\
+        \hline
+        $A_2^0$ & $0.09\,\mathrm{s}$ & $0.49\,\mathrm{s}$ & $0.58\,\mathrm{s}$ & $22.7\,\mathrm{MiB}$ \\
+        $A_3^0$ & $0.30\,\mathrm{s}$ & $0.85\,\mathrm{s}$ & $1.15\,\mathrm{s}$ & $24.8\,\mathrm{MiB}$ \\
+        $A_2^1$ & $0.57\,\mathrm{s}$ & $0.40\,\mathrm{s}$ & $0.98\,\mathrm{s}$ & $19.3\,\mathrm{MiB}$ \\
+        $A_3^1$ & $74.67\,\mathrm{s}$ & $15\,\mathrm{min}\,27\,\mathrm{s}$ & $16\,\mathrm{min}\,42\,\mathrm{s}$ & $195.3\,\mathrm{MiB}$ \\
+        $A_2^2$ & $21.79\,\mathrm{s}$ & $31\,\mathrm{min}\,06\,\mathrm{s}$ & $31\,\mathrm{min}\,27\,\mathrm{s}$ & $227.7\,\mathrm{MiB}$ \\
+        $A_4^0$ & $3\,\mathrm{min}\,03\,\mathrm{s}$ & $13\,\mathrm{min}\,51\,\mathrm{s}$ & $16\,\mathrm{min}\,53\,\mathrm{s}$ & $567.3\,\mathrm{MiB}$ \\
+        $B_4^0$ & $8.65\,\mathrm{s}$ & $17.27\,\mathrm{s}$ & $25.92\,\mathrm{s}$ & $143.2\,\mathrm{MiB}$ \\
+        $C_4^0$ & $5.56\,\mathrm{s}$ & $5\,\mathrm{min}\,26\,\mathrm{s}$ & $5\,\mathrm{min}\,32\,\mathrm{s}$ & $174.5\,\mathrm{MiB}$ \\
+        \hline
+    \end{tabular}
+    \caption{\centering Representative resource measurements for the implemented massless
+    antenna routes. The build time measures
+    \texttt{BuildAntenna[..., IntegrableForm -> True]}, followed by
+    \texttt{IntegrateAntenna[...]} for the integration time. Each route was
+    evaluated in a fresh Wolfram kernel. Peak memory is the maximum kernel-memory
+    increase relative to the initial baseline.}
+    \label{tab:runtimeBenchmarks}
+\end{table}

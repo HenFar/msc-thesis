@@ -1,13 +1,1530 @@
 \chapter{Complete Antenna Expressions}\label{ap:antExpressions}
 
-Appendix A goes here.
+This appendix includes the complete expressions of the antennae computed using
+\textit{AntCalc}. It shows the unintegrated and integrated antennae, along with 
+the commands used to compute them.
 
-\section{Two-Parton NNLO Antennae}
+\section{LO Antenna}
 
-\section{One-Loop Three-Parton Antennae}
+\subsection{$A_2^0$}
+Running \texttt{BuildAntenna[A,2,0]}, we get the built result,
+\begin{equation}
+    A_2^0 = 1.
+\end{equation}
+By running \texttt{BuildAndIntegrateAntenna[A,2,0]} we get the integrated result, 
+\begin{equation}
+    \mathcal A_2^0 = \frac14 + \epsilon\frac98 - \epsilon^2\!\left(\frac{9}{16}-\frac{\pi^2}{48}\right).
+\end{equation}
 
-\section{Four-Parton Gluon-Emission Antennae}
+\section{NLO Antennae}
 
-\section{Four-Quark Antennae}
+\subsection{$A_2^1$}
+Running \texttt{BuildAntenna[A,2,0]}, we get the built result,
+\begin{equation}
+    A_2^1 = -\frac12(3+2\epsilon)B_0\!\left(q^2;0,0\right) - q^2C_0\!\left(0,0,q^2;0,0,0\right).
+\end{equation}
+By running \texttt{BuildAndIntegrateAntenna[A,2,1]} we get the integrated result, 
+\begin{equation}
+    \mathcal A_2^1 = -\frac1{\epsilon^2}-\frac3{2\epsilon}-4+\frac{7\pi^2}{12}+\epsilon\!\left(\frac{7\zeta_3}{3}-8+\frac{7\pi^2}8\right)+\epsilon^2\!\left(\frac{7\zeta_3}2-16+\frac{7\pi^2}3-\frac{73\pi^4}{1440}\right) + \mathcal O\!\left(\epsilon^3\right).
+\end{equation}
+
+\subsection{$A_3^0$}
+Running \texttt{BuildAntenna[A,3,0]}, we get the built result,
+\begin{equation}
+    A_3^0 = \frac{2s_{12}^2-2s_{12}(s_{13}+s_{23})}{q^2s_{13}s_{23}}+\epsilon\frac{2}{q^2}+(\epsilon-1)\frac{s_{13}^2+s_{23}^2}{q^2s_{13}s_{23}}.
+\end{equation}
+By running \texttt{BuildAndIntegrateAntenna[A,3,0]} we get the integrated result, 
+\begin{equation}
+    \begin{gathered}
+        \mathcal A_3^0 = \frac1{\epsilon^2} + \frac3{2\epsilon} + \frac{19}4 - \frac{7\pi^2}{12} + \epsilon\!\left(-\frac{25\zeta_3}{3}+\frac{109}8-\frac{7\pi^2}8\right)\\ 
+        + \epsilon^2\!\left(-\frac{25\zeta_3}2+\frac{639}{16}-\frac{133\pi^2}{48}-\frac{71\pi^4}{1440}\right) + \mathcal O\!\left(\epsilon^3\right).
+    \end{gathered}
+\end{equation}
+
+\section{NNLO Antennae}
+
+\subsection{$A_2^2$}
+
+Running \texttt{BuildAntenna[A,2,2,Component->Leading]}, we get the built result,
+\begin{equation}
+    A_2^2 = A_2^{2,(0)} + (-s_{12})^{-\epsilon}C_\epsilon A_2^{2,(-\epsilon)} + s_{12}^{-2\epsilon}A_2^{2,(-2\epsilon)}.
+\end{equation}
+where,
+\begin{align*}
+    A_2^{2,(0)} = \frac1{16\epsilon^4}-\frac1{\epsilon^2}\!\left(\frac9{32}-\frac{11\pi^2}{96}\right)-\frac1\epsilon\!\left(\frac{377}{64}-\frac{55\pi^2}{96}\right)+\frac{863}{384}-\frac{319\pi^2}{576}-\frac{13\zeta_3}{36}
+\end{align*}
+\begin{align*}
+    A_2^{2,(-\epsilon)} = -\frac{11}{6\epsilon^3}+\frac{11}{4\epsilon^2}+\frac{22}{3\epsilon}+\frac{44}3+\mathcal O(\epsilon)
+\end{align*}
+\begin{gather*}
+    A_2^{2,(-2\epsilon)} = \frac{3}{16\epsilon^4}+\frac7{24\epsilon^3}+\frac1{\epsilon^2}\!\left(\frac{155}{288}-\frac{37\pi^2}{96}\right)+\frac1\epsilon\!\left(\frac{5597}{1728}-\frac{355\pi^2}{288}+\frac{7\zeta_3}{12}\right)\\
+    -\frac{193531}{10368}-\frac{577\pi^2}{1728}+\frac{263\pi^4}{1440}+\frac{73\zeta_3}{12}.
+\end{gather*}
+
+By running \texttt{BuildAndIntegrateAntenna[A,2,2,Component->Leading]} we get the integrated result, 
+\begin{equation}
+    \begin{gathered}
+        \mathcal A_2^2 = \frac1{4\epsilon^2}+\frac{17}{8\epsilon^3}+\frac1{\epsilon^2}\!\left(\frac{433}{144}-\frac{\pi^2}2\right)+\frac1\epsilon\!\left(\frac{4045}{864}-\frac{83\pi^2}{48}+\frac{7\zeta_3}{12}\right)\\
+        - \frac{9083}{5184}-\frac{2153\pi^2}{864}+\frac{263\pi^4}{1440}+\frac{13\zeta_3}{9}+\mathcal O(\epsilon).
+    \end{gathered}
+\end{equation}
+
+\subsection{$\tilde A_2^2$}
+
+Running \texttt{BuildAntenna[A,2,2,Component->Subleading]}, we get the built result,
+\begin{equation}
+    \tilde A_2^2 = \tilde A_2^{2,(0)} + s_{12}^{-2\epsilon}\tilde A_2^{2,(-2\epsilon)}.
+\end{equation}
+where,
+\begin{gather*}
+    \tilde A_2^{2,(0)} = -\frac3{16\epsilon^4}-\frac{9}{16\epsilon^3}-\frac1{\epsilon^2}\!\left(-\frac{89}{32}+\frac{11\pi^2}{32}\right)+\frac1\epsilon\!\left(\frac{533}{64}-\frac{11\pi^2}6-\frac{13\zeta_3}{12}\right)\\
+    -\frac{1803}{128}-\frac{341\pi^2}{192}+\frac{79\pi^4}{2880}-\frac{39\zeta_3}{8}.
+\end{gather*}
+\begin{gather*}
+    \tilde A_2^{2,(-2\epsilon)} = -\frac1{16\epsilon^4}-\frac{3}{16\epsilon^3}+\frac1{\epsilon^2}\!\left(\frac7{32}+\frac{19\pi^2}{96}\right)+\frac1\epsilon\!\left(-\frac{975}{64}+\frac{10\pi^2}3+\frac{15\zeta_3}{4}\right)\\
+    -\frac{499}{128}+\frac{1291\pi^2}{192}-\frac{233\pi^4}{960}+\frac{97\zeta_3}{8}.
+\end{gather*}
+
+By running \texttt{BuildAndIntegrateAntenna[A,2,2,Component->Subleading]} we get the integrated result, 
+\begin{equation}
+    \begin{gathered}
+        \tilde{\mathcal A}_2^2 = -\frac1{4\epsilon^4}-\frac{3}{4\epsilon^3}-\frac1{\epsilon^2}\!\left(\frac{41}{16}-\frac{13\pi^2}{24}\right) + \frac1\epsilon\!\left(-\frac{221}{32}+\frac{3\pi^2}{2}+\frac{8\zeta_3}{3}\right)\\
+        -\frac{1151}{64}+\frac{475\pi^2}{96}-\frac{59\pi^4}{288}+\frac{29\zeta_3}{4}+\mathcal O(\epsilon).
+    \end{gathered}
+\end{equation}
+
+\subsection{$\hat A_2^2$}
+
+Running \texttt{BuildAntenna[A,2,2,Component->Nf]}, we get the built result,
+\begin{equation}
+    \hat A_2^2 = (-s_{12})^{-\epsilon}C_\epsilon\hat A_2^{2,(-\epsilon)}+s_{12}^{-2\epsilon}\hat A_2^{2,(-2\epsilon)}.
+\end{equation}
+where,
+\begin{gather*}
+    \hat A_2^{2,(-\epsilon)} = \frac1{3\epsilon^3}-\frac1{2\epsilon^2}-\frac4{3\epsilon}-\frac83
+\end{gather*}
+\begin{gather*}
+    \hat A_2^{2,(-2\epsilon)} = \frac1{12\epsilon^3}+\frac7{18\epsilon^2}+\frac1\epsilon\!\left(\frac{353}{216}-\frac{11\pi^2}{72}\right)+\frac{7541}{1296}-\frac{77\pi^2}{108}-\frac{13\zeta_3}{18}.
+\end{gather*}
+
+By running \texttt{BuildAndIntegrateAntenna[A,2,2,Component->Nf]} we get the integrated result, 
+\begin{equation}
+    \begin{gathered}
+        \hat{\mathcal A}_2^2 = -\frac{1}{4\epsilon^3}-\frac1{9\epsilon^2}+\frac1\epsilon\!\left(\frac{65}{216}+\frac{\pi^2}{24}\right) + \frac{4085}{1296} - \frac{91\pi^2}{216} + \frac{\zeta_3}{18} + \mathcal O(\epsilon).
+    \end{gathered}
+\end{equation}
+
+\subsection{$\breve A_2^2$}
+
+Running \texttt{BuildAntenna[A,2,2,Component->Breve]}, we get the built result,
+\begin{equation}
+    \breve A_2^2 = \frac{(-2+\epsilon-2\epsilon^2)\Gamma^6(1-\epsilon)\Gamma^2(1+\epsilon)\!\left(120-20\pi^2\epsilon^2+80(13-42\epsilon)\zeta_3\epsilon^3+\pi^4\epsilon^4\right)}{1920\epsilon^4\Gamma^2(2-2\epsilon)}.
+\end{equation}
+By running \texttt{BuildAndIntegrateAntenna[A,2,2,Component->Breve]} we get the integrated result, 
+\begin{equation}
+    \begin{gathered}
+        \breve{\mathcal A}_2^2 = \frac1{4\epsilon^4}+\frac3{4\epsilon^3}+\frac1{\epsilon^2}\!\left(\frac{41}{16}-\frac{\pi^2}{24}\right)+\frac1\epsilon\!\left(7-\frac{\pi^2}{8}+\frac{7\zeta_3}{6}\right)\\
+        +18-\frac{41\pi^2}{96}-\frac{7\pi^4}{480}-\frac{7\zeta_3}{2}+\mathcal O(\epsilon).
+    \end{gathered}
+\end{equation}
+
+\subsection{$A_3^1$}
+
+Running \texttt{BuildAntenna[A,3,1,Component->Leading]}, we get the built result,
+\begin{align*}
+    A_3^1 = {} &\frac1{2(\epsilon-1)q^2}\Bigg((-s_{13})^{-\epsilon}C_\epsilon A_3^{1,(s_{13})}+(-s_{23})^{-\epsilon}C_\epsilon A_3^{1,(s_{23})}+\!\left(-q^2\right)^{-\epsilon}C_\epsilon A_3^{1,\left(q^2\right)}\\
+    &+\left[\frac{\pi^2q^2}{4}+\frac14\log^2\!\left(\frac{s_{13}}{s_{23}}\right)+\operatorname{Li_2}\!\left(1-\frac{q^2}{s_{13}}\right)+\operatorname{Li_2}\!\left(1-\frac{q^2}{s_{23}}\right)\right]A_3^{1,(\text{Trans.})}\Bigg).
+\end{align*}
+where,
+\begin{gather*}
+    A_3^{1,(s_{13})} = \mathcal F_1(s_{12};s_{13},s_{23}),\quad A_3^{1,(s_{23})} = \mathcal F_1(s_{12};s_{23},s_{13})
+\end{gather*}
+\begin{align*}
+    \mathcal F_1(s_{12};x,y) = {} &\frac{1}{4\!\left(q^2\right)^2(s_{12}+y)^2}\Bigg[\frac1\epsilon\left(10s_{12}^2+4s_{12}(x+4y)+3y(x+2y)\right)\\
+    &-\frac1x\left(s_{12}^3-s_{12}^2(23x-3y)-s_{12}\left(13x^2+36xy-3y^2\right)-10x^2y-13xy^2+y^3\right)\Bigg]
+\end{align*}
+\begin{gather*}
+    A_3^{1,\left(q^2\right)} = \frac{\mathcal P\left(20s_{12}^2\!\left(q^2\right)^2+28s_{12}q^2s_{13}s_{23}+11s_{13}^2s_{23}^2\right)}{12\epsilon\!\left(q^2\right)^2s_{13}s_{23}\left(s_{12}q^2+{13}s_{23}\right)^2}+\mathcal O(\epsilon),\quad \mathcal P = \left(q^2\right)^2+s_{12}^2-2s_{13}s_{23}
+\end{gather*}
+\begin{gather*}
+    A_3^{1,(\text{Trans.})} = -\frac1{2q^2}A_3^0.
+\end{gather*}
+
+By running \texttt{BuildAndIntegrateAntenna[A,3,1,Component->Leading]} we get the integrated result, 
+\begin{equation}
+    \begin{gathered}
+        \mathcal A_3^1 = -\frac1{4\epsilon^4}-\frac{31}{12\epsilon^3} - \frac1{\epsilon^2}\!\left(\frac{53}{8}-\frac{11\pi^2}{24}\right)-\frac1\epsilon\!\left(\frac{647}{24}-\frac{22\pi^2}9-\frac{23\zeta_3}{3}\right)\\
+        -\frac{5231}{48}+\frac{17\pi^2}{2}-\frac{41\pi^4}{480}+\frac{689\zeta_3}{18}+\mathcal O(\epsilon).
+    \end{gathered}
+\end{equation}
+
+\subsection{$\tilde A_3^1$}
+
+Running \texttt{BuildAntenna[A,3,1,Component->Subleading]}, we get the built result,
+\begin{align*}
+    \tilde A_3^1 = {} &\frac{\mathcal R(\epsilon,s_{13},s_{23})}{2(\epsilon-1)q^2}\Bigg[(-s_{12}^{-\epsilon})\tilde A_3^{1,(s_{12})}+(-s_{13})^{-\epsilon}\tilde A_3^{1,(s_{13})}+(-s_{23})^{-\epsilon}\tilde A_3^{1,(s_{23})}+\\
+    &+\frac{(-q^2)^{-\epsilon}}{(s_{12}+s_{13})^3(s_{12}+s_{23})^3}\tilde A_3^{1,\left(q^2\right)}+\epsilon^2(2\epsilon-1)\Bigg(\frac{\pi^2}4+\operatorname{Li_2}\!\left(1-\frac{q^2}{s_{12}}\right)\tilde A_3^{1,(\text{Trans. }s_{12})}\\
+    &+\left(\operatorname{Li_2}\!\left(1-\frac{q^2}{s_{13}}\right)+\frac14\log^2\!\left(\frac{s_{12}}{s_{13}}\right)\right)\tilde A_3^{1,(\text{Trans. }s_{13})}+\left(\operatorname{Li_2}\!\left(1-\frac{q^2}{s_{23}}\right)+\frac14\log^2\!\left(\frac{s_{12}}{s_{23}}\right)\right)\tilde A_3^{1,(\text{Trans. }s_{23})}\Bigg)\Bigg]
+\end{align*}
+\begin{equation*}
+    \mathcal R(\epsilon,s_{13},s_{23}) = \frac{C_\epsilon}{\epsilon^2(2\epsilon-1)s_{13}s_{23}}
+\end{equation*}
+where, using $u=s_{13}+s_{23}$ and $v=s_{13}s_{23}$,
+\begin{align*}
+    \tilde A_3^{1,(s_{12})} = {} &-4s_{12}^2u^2 + 4\epsilon\!\left(3s_{12}^2u^2-s_{12}^2v+s_{12}u^3-2s_{12}uv+u^4-u^2v\right)\\
+    &-2\epsilon^2u\!\left(4s_{12}^2u+4s_{12}u^2-4s_{12}v+7u^3-6uv\right)+2\epsilon^3u^2\!\left(5u^2-4v\right)+4\epsilon^4u^4
+\end{align*}
+\begin{gather*}
+    \tilde A_3^{1,(s_{13})} = \mathcal G(s_{12},s_{13},s_{23}),\quad \tilde A_3^{1,(s_{23})} = \mathcal G(s_{12},s_{23},s_{13})
+\end{gather*}
+\begin{align*}
+    \mathcal G(s_{12},x,y) = {} &-2(s_{12}+y)^2\left[2(s_{12}+y)^2-2y(s_{12}+y)+y^2\right]+\epsilon\bigg(12(s_{12}+y)^4\\
+    &+4(s_{12}+y)^3(x-3y)+4(s_{12}+y)^2(x^2-xy+2y^2)-2xy(s_{12}+y)(x-2y)+x^2y^2\bigg)\\
+    &-\epsilon^2\bigg(8(s_{12}+y)^4+(s_{12}+y)^3(8x-7y)+(s_{12}+y)^2\left(14x^2+xy+10y^2\right)+xy(s_{12}+y)(x+6y)\\
+    &+x^2y^2\bigg)+\epsilon^3(s_{12}+y)\bigg(y(s_{12}+y)^2+(s_{12}+y)^2+(s_{12}+y)\left(10x^2+14xy+5y^2\right)\\
+    &+5x^2y\bigg)+\epsilon^4(s_{12}+y)(x+y)\bigg((s_{12}+y)(4x-y)+2xy\bigg)    
+\end{align*}
+\begin{align*}
+    \tilde A_3^{1,\left(q^2\right)} = {} &2s_{12}^5\!\left(3u^2-2v\right)+12s_{12}^4u\!\left(u^2-v\right)+s_{12}^3\left(9u^4-10u^3v-8v^2\right)+s_{12}^2u\left(3u^4-16v^2\right)\\
+    &+4s_{12}v\left(u^4-2u^2v-v^2\right)+2uv^2\left(u^2-2v^2\right)-\epsilon u\bigg(2s_{12}^5u+4s_{12}^4(u^2-v)+2s_{12}^3u\!\left(3u^2-5v\right)\\
+    &+4s_{12}^2\!\left(u^4-v^2\right)+s_{12}uv\!\left(9u^2-8v\right)+2v^2\!\left(3u^2-2v\right)\bigg)
+\end{align*}
+\begin{gather*}
+    \tilde A_3^{1,(\text{Trans. }s_{12})} = 4s_{12}^2+2s_{12}(x+y)+x^2+y^2-4\epsilon\bigg(s_{12}^2+s_{12}(x+y)+x^2+xy+y^2\bigg)\\
+    +\epsilon^2\bigg(4(x+y)^2-2xy\bigg)+\epsilon^3(x+y)^2
+\end{gather*}
+\begin{gather*}
+    \tilde A_3^{1,(\text{Trans. }s_{13})} = \mathcal H(s_{12},s_{13},s_{23}),\quad \tilde A_3^{1,(\text{Trans. }s_{23})} = \mathcal H(s_{12},s_{23},s_{13})
+\end{gather*}
+\begin{gather*}
+    \mathcal H(s_{12},x,y) = s_{12}^2+(s_{12}+y)^2-2\epsilon\bigg(s_{12}^2+s_{12}(x+y)+x^2+xy+y^2\bigg)\\
+    +\epsilon^2\bigg(3x(x+y)+y^2\bigg)+\epsilon^3x(x+y).
+\end{gather*}
+
+By running \texttt{BuildAndIntegrateAntenna[A,3,1,Component->Subleading]} we get the integrated result, 
+\begin{equation}
+    \begin{gathered}
+        \tilde{\mathcal A}_3^1 = -\frac1{\epsilon^2}\!\left(\frac58-\frac{\pi^2}{6}\right)-\frac1\epsilon\!\left(\frac{19}{4}-\frac{\pi^2}{4}-7\zeta_3\right)-\frac{105}4+\frac{27\pi^2}{16}+\frac{7\pi^4}{90}+\frac{27\zeta_3}{2}+\mathcal O(\epsilon).
+    \end{gathered}
+\end{equation}
+
+\subsection{$\hat A_3^1$}
+
+Running \texttt{BuildAntenna[A,3,1,Component->Nf]}, we get the built result,
+\begin{align*}
+    \hat A_3^1 = {}
+    &\frac{4s_{12}^2}{3s_{13}s_{23}}+\frac{4s_{12}}{3s_{13}}+\frac{4s_{12}}{3s_{23}}+\frac{4s_{23}}{3s_{13}}+\frac{4s_{13}}{3s_{23}}+\frac43\\
+    &-\frac1\epsilon\!\left(\frac{4s_{12}^2}{3s_{13}s_{23}}+\frac{4s_{12}}{3s_{23}}+\frac{2s_{23}}{3s_{13}}+\frac{2s_{13}}{3s_{23}}\right)\\
+    &-\epsilon\!\left(\frac{2s_{13}}{3s_{23}}+\frac{2s_{23}}{3s_{13}}+\frac43\right).
+\end{align*}
+By running \texttt{BuildAndIntegrateAntenna[A,3,1,Component->Nf]} we get the integrated result, 
+\begin{equation}
+    \begin{gathered}
+        \hat{\mathcal A}_3^1 = \frac1{3\epsilon^3}+\frac1{2\epsilon^2}+\frac1\epsilon\!\left(\frac{19}{12}-\frac{7\pi^2}{36}\right)+\frac{109}{24}-\frac{7\pi^2}{24}-\frac{25\zeta_3}{9}+\mathcal O(\epsilon).
+    \end{gathered}
+\end{equation}
+
+\subsection{$A_4^0$}
+
+Running \texttt{BuildAntenna[A,4,0,Component->Leading]}, we get the built result,
+\begin{equation}
+    A_4^0 = \frac{1}{2(\epsilon-1)q^2}\!\left(A_4^{0,(0)}+\epsilon A_4^{0,(1)} + \epsilon^2 A_4^{0,(2)} + \epsilon^3 A_4^{0,(3)}\right)
+\end{equation}
+where,
+\begin{align*}
+    A_4^{0,(0)} = {}
+        & \frac{2s_{12}s_{14}}{s_{13}s_{134}^2} + \frac{s_{14}s_{23}}{s_{13}s_{134}^2} - \frac{4s_{23}}{s_{13}s_{134}} - \frac{4s_{14}s_{24}}{s_{13}s_{134}^2} - \frac{s_{12}s_{24}}{s_{13}s_{134}s_{234}} - \frac{s_{24}}{s_{134}s_{234}} - \frac{5s_{24}}{s_{134}^2} \\
+        & - \frac{2s_{24}s_{34}}{s_{13}s_{134}^2} - \frac{s_{12}s_{34}}{s_{13}s_{134}s_{234}} - \frac{2s_{34}}{s_{13}s_{24}} - \frac{2s_{12}s_{34}}{s_{13}s_{134}s_{24}} - \frac{2s_{12}s_{34}}{s_{13}s_{234}s_{24}} - \frac{s_{12}s_{34}}{s_{134}s_{234}s_{24}} - \frac{4s_{12}^2s_{34}}{s_{13}s_{134}s_{234}s_{24}} \\
+        & - \frac{s_{12}s_{34}}{s_{234}^2s_{24}} - \frac{2s_{13}s_{34}}{s_{234}^2s_{24}} - \frac{s_{12}s_{34}}{s_{13}s_{134}^2} - \frac{2s_{12}}{s_{13}s_{134}} + \frac{2}{s_{134}} - \frac{s_{12}s_{14}}{s_{13}s_{134}s_{234}} + \frac{s_{14}s_{23}}{s_{13}s_{134}s_{234}} \\
+        & - \frac{s_{12}s_{23}}{s_{13}s_{134}s_{234}} + \frac{2s_{12}}{s_{134}s_{234}} - \frac{s_{13}}{s_{134}s_{234}} - \frac{2s_{12}^2}{s_{13}s_{134}s_{234}} + \frac{2}{s_{234}} - \frac{4s_{14}}{s_{13}s_{24}} - \frac{5s_{12}s_{14}}{s_{13}s_{134}s_{24}} \\
+        & + \frac{2s_{14}s_{23}}{s_{13}s_{134}s_{24}} - \frac{4s_{23}}{s_{13}s_{24}} - \frac{3s_{12}s_{23}}{s_{13}s_{134}s_{24}} - \frac{2s_{12}}{s_{13}s_{24}} - \frac{4s_{12}^2}{s_{13}s_{134}s_{24}} - \frac{2s_{12}}{s_{234}s_{24}} - \frac{3s_{12}s_{14}}{s_{13}s_{234}s_{24}} \\
+        & - \frac{s_{12}s_{14}}{s_{134}s_{234}s_{24}} - \frac{2s_{12}^2s_{14}}{s_{13}s_{134}s_{234}s_{24}} - \frac{4s_{14}}{s_{234}s_{24}} + \frac{2s_{14}s_{23}}{s_{13}s_{234}s_{24}} + \frac{6s_{12}s_{14}s_{23}}{s_{13}s_{134}s_{234}s_{24}} + \frac{s_{14}s_{23}}{s_{134}s_{234}s_{24}} \\
+        & - \frac{5s_{12}s_{23}}{s_{13}s_{234}s_{24}} - \frac{s_{12}s_{23}}{s_{134}s_{234}s_{24}} - \frac{2s_{12}^2s_{23}}{s_{13}s_{134}s_{234}s_{24}} - \frac{4s_{12}^2}{s_{13}s_{234}s_{24}} - \frac{2s_{12}^2}{s_{134}s_{234}s_{24}} - \frac{s_{12}s_{13}}{s_{134}s_{234}s_{24}} \\
+        & - \frac{4s_{12}^3}{s_{13}s_{134}s_{234}s_{24}} - \frac{2s_{12}s_{23}}{s_{234}^2s_{24}} - \frac{4s_{13}s_{23}}{s_{234}^2s_{24}} + \frac{s_{14}s_{23}}{s_{234}^2s_{24}} - \frac{3s_{12}s_{14}^2}{s_{13}s_{134}^2s_{34}} - \frac{s_{24}^2}{s_{134}s_{234}s_{34}} \\
+        & - \frac{4s_{12}s_{14}}{s_{13}s_{134}s_{34}} - \frac{s_{14}}{s_{134}s_{34}} - \frac{6s_{12}s_{14}}{s_{134}^2s_{34}} + \frac{2s_{14}^2s_{23}}{s_{13}s_{134}^2s_{34}} - \frac{6s_{14}s_{23}}{s_{13}s_{134}s_{34}} - \frac{3s_{23}}{s_{134}s_{34}} \\
+        & - \frac{4s_{14}^2s_{24}}{s_{13}s_{134}^2s_{34}} - \frac{6s_{14}s_{24}}{s_{134}^2s_{34}} + \frac{2s_{24}}{s_{134}s_{34}} - \frac{s_{12}s_{14}s_{24}}{s_{13}s_{134}s_{234}s_{34}} - \frac{s_{14}s_{24}}{s_{134}s_{234}s_{34}} + \frac{s_{14}s_{23}s_{24}}{s_{13}s_{134}s_{234}s_{34}} \\
+        & - \frac{s_{23}s_{24}}{s_{134}s_{234}s_{34}} + \frac{s_{12}s_{24}}{s_{134}s_{234}s_{34}} - \frac{4s_{13}s_{24}}{s_{134}s_{234}s_{34}} - \frac{4s_{13}s_{24}}{s_{134}^2s_{34}} - \frac{3s_{12}s_{24}}{s_{234}^2s_{34}} - \frac{4s_{13}s_{24}}{s_{234}^2s_{34}} \\
+        & + \frac{4s_{12}}{s_{134}s_{34}} + \frac{s_{14}s_{23}^2}{s_{13}s_{134}s_{234}s_{34}} + \frac{4s_{12}}{s_{234}s_{34}} + \frac{2s_{13}}{s_{234}s_{34}} - \frac{s_{12}s_{14}}{s_{13}s_{234}s_{34}} - \frac{s_{12}s_{14}}{s_{134}s_{234}s_{34}} - \frac{s_{13}s_{14}}{s_{134}s_{234}s_{34}} \\
+        & - \frac{3s_{14}}{s_{234}s_{34}} + \frac{s_{14}^2s_{23}}{s_{13}s_{134}s_{234}s_{34}} + \frac{s_{12}s_{14}s_{23}}{s_{13}s_{134}s_{234}s_{34}} + \frac{6s_{14}s_{23}}{s_{134}s_{234}s_{34}} - \frac{s_{12}s_{23}}{s_{13}s_{234}s_{34}} - \frac{s_{12}s_{23}}{s_{134}s_{234}s_{34}} \\
+        & - \frac{s_{13}s_{23}}{s_{134}s_{234}s_{34}} - \frac{s_{23}}{s_{234}s_{34}} - \frac{2s_{12}^2}{s_{13}s_{234}s_{34}} + \frac{8s_{12}^2}{s_{134}s_{234}s_{34}} - \frac{s_{13}^2}{s_{134}s_{234}s_{34}} + \frac{s_{12}s_{13}}{s_{134}s_{234}s_{34}} \\
+        & - \frac{4s_{14}^2}{s_{13}s_{24}s_{34}} - \frac{3s_{12}s_{14}^2}{s_{13}s_{134}s_{24}s_{34}} + \frac{3s_{14}s_{23}^2}{s_{13}s_{134}s_{24}s_{34}} - \frac{4s_{23}^2}{s_{13}s_{24}s_{34}} - \frac{4s_{12}s_{14}}{s_{13}s_{24}s_{34}} - \frac{s_{12}s_{14}}{s_{134}s_{24}s_{34}} \\
+        & - \frac{6s_{12}^2s_{14}}{s_{13}s_{134}s_{24}s_{34}} + \frac{5s_{14}^2s_{23}}{s_{13}s_{134}s_{24}s_{34}} - \frac{6s_{14}s_{23}}{s_{13}s_{24}s_{34}} + \frac{s_{12}s_{14}s_{23}}{s_{13}s_{134}s_{24}s_{34}} - \frac{4s_{12}s_{23}}{s_{13}s_{24}s_{34}} - \frac{s_{12}s_{23}}{s_{134}s_{24}s_{34}} \\
+        & - \frac{2s_{12}^2}{s_{134}s_{24}s_{34}} - \frac{2s_{14}^2s_{23}^2}{s_{13}s_{134}s_{234}s_{24}s_{34}} + \frac{5s_{14}s_{23}^2}{s_{13}s_{234}s_{24}s_{34}} + \frac{4s_{12}s_{14}s_{23}^2}{s_{13}s_{134}s_{234}s_{24}s_{34}} + \frac{s_{14}s_{23}^2}{s_{134}s_{234}s_{24}s_{34}} \\
+        & - \frac{3s_{12}s_{23}^2}{s_{13}s_{234}s_{24}s_{34}} + \frac{3s_{14}^2s_{23}}{s_{13}s_{234}s_{24}s_{34}} + \frac{4s_{12}s_{14}^2s_{23}}{s_{13}s_{134}s_{234}s_{24}s_{34}} + \frac{s_{14}^2s_{23}}{s_{134}s_{234}s_{24}s_{34}} - \frac{4s_{12}s_{23}}{s_{234}s_{24}s_{34}} \\
+        & + \frac{s_{12}s_{14}s_{23}}{s_{13}s_{234}s_{24}s_{34}} + \frac{s_{12}s_{14}s_{23}}{s_{134}s_{234}s_{24}s_{34}} + \frac{s_{13}s_{14}s_{23}}{s_{134}s_{234}s_{24}s_{34}} + \frac{8s_{12}^2s_{14}s_{23}}{s_{13}s_{134}s_{234}s_{24}s_{34}} - \frac{6s_{14}s_{23}}{s_{234}s_{24}s_{34}} \\
+        & - \frac{6s_{12}^2s_{23}}{s_{13}s_{234}s_{24}s_{34}} - \frac{s_{12}s_{13}s_{23}}{s_{134}s_{234}s_{24}s_{34}} - \frac{3s_{12}s_{23}^2}{s_{234}^2s_{24}s_{34}} - \frac{4s_{13}s_{23}^2}{s_{234}^2s_{24}s_{34}} + \frac{2s_{14}s_{23}^2}{s_{234}^2s_{24}s_{34}} - \frac{3s_{12}s_{13}}{s_{134}^2s_{34}} \\
+        & - \frac{6s_{12}s_{23}}{s_{234}^2s_{34}} - \frac{6s_{13}s_{23}}{s_{234}^2s_{34}} + \frac{2}{s_{34}} - \frac{3s_{12}}{s_{134}^2} - \frac{3s_{12}}{s_{234}^2} - \frac{5s_{13}}{s_{234}^2} - \frac{3s_{14}^2}{s_{134}s_{34}^2} \\
+        & - \frac{5s_{12}s_{14}^2}{s_{134}^2s_{34}^2} - \frac{s_{14}s_{24}^2}{s_{134}s_{234}s_{34}^2} - \frac{3s_{13}s_{24}^2}{s_{134}s_{234}s_{34}^2} - \frac{s_{12}s_{24}^2}{s_{234}^2s_{34}^2} - \frac{s_{13}s_{24}^2}{s_{234}^2s_{34}^2} + \frac{6s_{12}s_{14}}{s_{134}s_{34}^2} \\
+        & - \frac{s_{13}s_{14}}{s_{134}s_{34}^2} - \frac{2s_{12}s_{13}s_{14}}{s_{134}^2s_{34}^2} + \frac{4s_{14}}{s_{34}^2} + \frac{3s_{14}^3s_{23}}{s_{13}s_{134}^2s_{34}^2} - \frac{4s_{14}^2s_{23}}{s_{13}s_{134}s_{34}^2} - \frac{3s_{14}s_{23}}{s_{134}s_{34}^2} + \frac{s_{13}s_{14}s_{23}}{s_{134}^2s_{34}^2} \\
+        & - \frac{s_{13}s_{23}}{s_{134}s_{34}^2} + \frac{4s_{23}}{s_{34}^2} - \frac{3s_{14}^2s_{24}}{s_{134}^2s_{34}^2} + \frac{4s_{14}s_{24}}{s_{134}s_{34}^2} + \frac{2s_{12}s_{24}}{s_{234}s_{34}^2} - \frac{2s_{12}s_{14}s_{24}}{s_{134}s_{234}s_{34}^2} \\
+        & - \frac{s_{13}s_{14}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{s_{14}s_{24}}{s_{234}s_{34}^2} + \frac{s_{14}^2s_{23}s_{24}}{s_{13}s_{134}s_{234}s_{34}^2} + \frac{2s_{14}s_{23}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{s_{13}s_{23}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{s_{23}s_{24}}{s_{234}s_{34}^2} \\
+        & - \frac{3s_{13}^2s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{6s_{12}s_{13}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{s_{13}^2s_{24}}{s_{134}^2s_{34}^2} - \frac{2s_{12}s_{23}s_{24}}{s_{234}^2s_{34}^2} + \frac{s_{14}s_{23}s_{24}}{s_{234}^2s_{34}^2} + \frac{2s_{12}s_{13}}{s_{134}s_{34}^2} \\
+        & + \frac{s_{14}^2s_{23}^2}{s_{13}s_{134}s_{234}s_{34}^2} + \frac{s_{14}s_{23}^2}{s_{13}s_{234}s_{34}^2} + \frac{3s_{14}s_{23}^2}{s_{134}s_{234}s_{34}^2} - \frac{3s_{23}^2}{s_{234}s_{34}^2} + \frac{s_{14}^2s_{23}}{s_{13}s_{234}s_{34}^2} + \frac{3s_{14}^2s_{23}}{s_{134}s_{234}s_{34}^2} \\
+        & + \frac{6s_{12}s_{23}}{s_{234}s_{34}^2} + \frac{4s_{13}s_{23}}{s_{234}s_{34}^2} + \frac{2s_{12}s_{14}s_{23}}{s_{13}s_{234}s_{34}^2} - \frac{2s_{12}s_{14}s_{23}}{s_{134}s_{234}s_{34}^2} + \frac{2s_{13}s_{14}s_{23}}{s_{134}s_{234}s_{34}^2} - \frac{3s_{14}s_{23}}{s_{234}s_{34}^2} \\
+        & - \frac{s_{13}^2s_{23}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{12}s_{13}s_{23}}{s_{134}s_{234}s_{34}^2} + \frac{3s_{14}^2s_{23}^2}{s_{13}s_{134}s_{24}s_{34}^2} - \frac{4s_{14}s_{23}^2}{s_{13}s_{24}s_{34}^2} + \frac{s_{14}s_{23}^2}{s_{134}s_{24}s_{34}^2} + \frac{3s_{14}^3s_{23}}{s_{13}s_{134}s_{24}s_{34}^2} \\
+        & - \frac{4s_{14}^2s_{23}}{s_{13}s_{24}s_{34}^2} + \frac{6s_{12}s_{14}^2s_{23}}{s_{13}s_{134}s_{24}s_{34}^2} + \frac{s_{14}^2s_{23}}{s_{134}s_{24}s_{34}^2} - \frac{8s_{12}s_{14}s_{23}}{s_{13}s_{24}s_{34}^2} + \frac{2s_{12}s_{14}s_{23}}{s_{134}s_{24}s_{34}^2} \\
+        & - \frac{2s_{14}^2s_{23}^3}{s_{13}s_{134}s_{234}s_{24}s_{34}^2} + \frac{3s_{14}s_{23}^3}{s_{13}s_{234}s_{24}s_{34}^2} - \frac{2s_{14}^3s_{23}^2}{s_{13}s_{134}s_{234}s_{24}s_{34}^2} + \frac{3s_{14}^2s_{23}^2}{s_{13}s_{234}s_{24}s_{34}^2} - \frac{4s_{12}s_{14}^2s_{23}^2}{s_{13}s_{134}s_{234}s_{24}s_{34}^2} \\
+        & + \frac{s_{14}^2s_{23}^2}{s_{134}s_{234}s_{24}s_{34}^2} + \frac{6s_{12}s_{14}s_{23}^2}{s_{13}s_{234}s_{24}s_{34}^2} + \frac{s_{13}s_{14}s_{23}^2}{s_{134}s_{234}s_{24}s_{34}^2} - \frac{4s_{14}s_{23}^2}{s_{234}s_{24}s_{34}^2} + \frac{3s_{14}s_{23}^3}{s_{234}^2s_{24}s_{34}^2} \\
+        & - \frac{s_{12}s_{13}^2}{s_{134}^2s_{34}^2} - \frac{5s_{12}s_{23}^2}{s_{234}^2s_{34}^2} - \frac{3s_{13}s_{23}^2}{s_{234}^2s_{34}^2}
+\end{align*}
+\begin{align*}
+    A_4^{0,(1)} = {}
+          & \frac{4s_{12}^3}{s_{13}s_{134}s_{234}s_{24}} + \frac{2s_{12}^2}{s_{13}s_{134}s_{234}} + \frac{4s_{12}^2}{s_{13}s_{134}s_{24}} + \frac{2s_{12}^2s_{14}}{s_{13}s_{134}s_{234}s_{24}} + \frac{2s_{12}^2s_{23}}{s_{13}s_{134}s_{234}s_{24}} + \frac{4s_{12}^2}{s_{13}s_{234}s_{24}} + \frac{2s_{12}^2}{s_{134}s_{234}s_{24}} \\
+  & + \frac{2s_{12}^2}{s_{13}s_{234}s_{34}} - \frac{8s_{12}^2}{s_{134}s_{234}s_{34}} + \frac{6s_{12}^2s_{14}}{s_{13}s_{134}s_{24}s_{34}} + \frac{2s_{12}^2}{s_{134}s_{24}s_{34}} - \frac{8s_{12}^2s_{14}s_{23}}{s_{13}s_{134}s_{234}s_{24}s_{34}} + \frac{6s_{12}^2s_{23}}{s_{13}s_{234}s_{24}s_{34}} - \frac{s_{12}s_{14}}{s_{13}s_{134}^2} \\
+  & + \frac{2s_{12}s_{24}}{s_{13}s_{134}s_{234}} + \frac{2s_{12}s_{34}}{s_{13}s_{134}s_{24}} - \frac{2s_{12}s_{14}s_{34}}{s_{13}s_{134}s_{234}s_{24}} - \frac{2s_{12}s_{23}s_{34}}{s_{13}s_{134}s_{234}s_{24}} + \frac{2s_{12}s_{34}}{s_{13}s_{234}s_{24}} + \frac{2s_{12}s_{34}}{s_{234}^2s_{24}} + \frac{2s_{12}s_{34}}{s_{13}s_{134}^2} \\
+  & + \frac{2s_{12}}{s_{13}s_{134}} + \frac{s_{12}s_{14}}{s_{13}s_{134}s_{234}} + \frac{6s_{12}}{s_{134}s_{234}} + \frac{5s_{12}s_{14}}{s_{13}s_{134}s_{24}} + \frac{5s_{12}s_{23}}{s_{13}s_{134}s_{24}} + \frac{2s_{12}}{s_{13}s_{24}} + \frac{5s_{12}s_{14}}{s_{13}s_{234}s_{24}} \\
+  & + \frac{5s_{12}s_{23}}{s_{13}s_{234}s_{24}} + \frac{s_{12}s_{23}}{s_{134}s_{234}s_{24}} + \frac{2s_{12}s_{13}}{s_{134}s_{234}s_{24}} + \frac{2s_{12}}{s_{234}s_{24}} - \frac{s_{12}s_{23}}{s_{234}^2s_{24}} + \frac{3s_{12}s_{14}^2}{s_{13}s_{134}^2s_{34}} + \frac{4s_{12}s_{14}}{s_{13}s_{134}s_{34}} \\
+  & + \frac{4s_{12}s_{14}}{s_{134}^2s_{34}} + \frac{s_{12}s_{14}s_{24}}{s_{13}s_{134}s_{234}s_{34}} + \frac{s_{12}s_{24}}{s_{134}s_{234}s_{34}} + \frac{5s_{12}s_{24}}{s_{234}^2s_{34}} - \frac{4s_{12}}{s_{134}s_{34}} + \frac{s_{12}s_{14}}{s_{13}s_{234}s_{34}} \\
+  & - \frac{s_{12}s_{14}}{s_{134}s_{234}s_{34}} - \frac{s_{12}s_{14}s_{23}}{s_{13}s_{134}s_{234}s_{34}} + \frac{s_{12}s_{23}}{s_{13}s_{234}s_{34}} - \frac{s_{12}s_{23}}{s_{134}s_{234}s_{34}} + \frac{s_{12}s_{13}}{s_{134}s_{234}s_{34}} - \frac{4s_{12}}{s_{234}s_{34}} \\
+  & + \frac{3s_{12}s_{14}^2}{s_{13}s_{134}s_{24}s_{34}} + \frac{4s_{12}s_{14}}{s_{13}s_{24}s_{34}} + \frac{s_{12}s_{14}}{s_{134}s_{24}s_{34}} - \frac{s_{12}s_{14}s_{23}}{s_{13}s_{134}s_{24}s_{34}} + \frac{4s_{12}s_{23}}{s_{13}s_{24}s_{34}} + \frac{s_{12}s_{23}}{s_{134}s_{24}s_{34}} \\
+  & - \frac{4s_{12}s_{14}s_{23}^2}{s_{13}s_{134}s_{234}s_{24}s_{34}} + \frac{3s_{12}s_{23}^2}{s_{13}s_{234}s_{24}s_{34}} - \frac{4s_{12}s_{14}^2s_{23}}{s_{13}s_{134}s_{234}s_{24}s_{34}} - \frac{s_{12}s_{14}s_{23}}{s_{13}s_{234}s_{24}s_{34}} - \frac{s_{12}s_{14}s_{23}}{s_{134}s_{234}s_{24}s_{34}} \\
+  & + \frac{s_{12}s_{13}s_{23}}{s_{134}s_{234}s_{24}s_{34}} + \frac{4s_{12}s_{23}}{s_{234}s_{24}s_{34}} + \frac{3s_{12}s_{23}^2}{s_{234}^2s_{24}s_{34}} + \frac{5s_{12}s_{13}}{s_{134}^2s_{34}} + \frac{4s_{12}s_{23}}{s_{234}^2s_{34}} + \frac{5s_{12}}{s_{134}^2} \\
+  & + \frac{5s_{12}}{s_{234}^2} + \frac{6s_{12}s_{14}^2}{s_{134}^2s_{34}^2} + \frac{2s_{12}s_{24}^2}{s_{234}^2s_{34}^2} - \frac{6s_{12}s_{14}}{s_{134}s_{34}^2} + \frac{8s_{12}s_{13}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{12}s_{24}}{s_{234}s_{34}^2} \\
+  & - \frac{2s_{12}s_{13}}{s_{134}s_{34}^2} - \frac{2s_{12}s_{14}s_{23}}{s_{13}s_{234}s_{34}^2} + \frac{4s_{12}s_{14}s_{23}}{s_{134}s_{234}s_{34}^2} - \frac{6s_{12}s_{23}}{s_{234}s_{34}^2} - \frac{6s_{12}s_{14}^2s_{23}}{s_{13}s_{134}s_{24}s_{34}^2} + \frac{8s_{12}s_{14}s_{23}}{s_{13}s_{24}s_{34}^2} \\
+  & - \frac{2s_{12}s_{14}s_{23}}{s_{134}s_{24}s_{34}^2} + \frac{4s_{12}s_{14}^2s_{23}^2}{s_{13}s_{134}s_{234}s_{24}s_{34}^2} - \frac{6s_{12}s_{14}s_{23}^2}{s_{13}s_{234}s_{24}s_{34}^2} + \frac{2s_{12}s_{13}^2}{s_{134}^2s_{34}^2} + \frac{6s_{12}s_{23}^2}{s_{234}^2s_{34}^2} \\
+  & + \frac{8s_{14}}{s_{13}s_{134}} - \frac{2s_{14}s_{23}}{s_{13}s_{134}^2} + \frac{8s_{23}}{s_{13}s_{134}} + \frac{8s_{14}s_{24}}{s_{13}s_{134}^2} + \frac{4s_{24}}{s_{134}s_{234}} + \frac{14s_{24}}{s_{134}^2} \\
+  & + \frac{6s_{24}s_{34}}{s_{13}s_{134}^2} + \frac{4s_{34}}{s_{13}s_{134}} + \frac{6s_{34}}{s_{13}s_{24}} + \frac{4s_{34}}{s_{234}s_{24}} + \frac{6s_{13}s_{34}}{s_{234}^2s_{24}} + \frac{4}{s_{134}} + \frac{2s_{14}}{s_{134}s_{234}} \\
+  & + \frac{2s_{23}}{s_{134}s_{234}} + \frac{4s_{13}}{s_{134}s_{234}} + \frac{4}{s_{234}} + \frac{8s_{14}}{s_{13}s_{24}} - \frac{2s_{14}s_{23}}{s_{13}s_{134}s_{24}} + \frac{8s_{23}}{s_{13}s_{24}} + \frac{2s_{14}s_{23}^2}{s_{13}s_{134}s_{234}s_{24}} \\
+  & + \frac{8s_{14}}{s_{234}s_{24}} + \frac{2s_{14}^2s_{23}}{s_{13}s_{134}s_{234}s_{24}} - \frac{2s_{14}s_{23}}{s_{13}s_{234}s_{24}} + \frac{8s_{23}}{s_{234}s_{24}} + \frac{8s_{13}s_{23}}{s_{234}^2s_{24}} - \frac{2s_{14}s_{23}}{s_{234}^2s_{24}} \\
+  & + \frac{8s_{14}^2}{s_{13}s_{134}s_{34}} + \frac{2s_{24}^2}{s_{134}s_{234}s_{34}} + \frac{7s_{14}}{s_{134}s_{34}} + \frac{s_{14}^2s_{23}}{s_{13}s_{134}^2s_{34}} + \frac{6s_{14}s_{23}}{s_{13}s_{134}s_{34}} + \frac{s_{14}s_{23}}{s_{134}^2s_{34}} \\
+  & + \frac{5s_{23}}{s_{134}s_{34}} + \frac{8s_{14}^2s_{24}}{s_{13}s_{134}^2s_{34}} + \frac{11s_{14}s_{24}}{s_{134}^2s_{34}} - \frac{2s_{24}}{s_{134}s_{34}} + \frac{s_{14}s_{24}}{s_{134}s_{234}s_{34}} - \frac{2s_{14}s_{23}s_{24}}{s_{13}s_{134}s_{234}s_{34}} \\
+  & + \frac{6s_{13}s_{24}}{s_{134}s_{234}s_{34}} + \frac{2s_{24}}{s_{234}s_{34}} + \frac{11s_{13}s_{24}}{s_{134}^2s_{34}} + \frac{11s_{13}s_{24}}{s_{234}^2s_{34}} + \frac{2s_{13}}{s_{134}s_{34}} - \frac{2s_{13}}{s_{234}s_{34}} \\
+  & + \frac{5s_{14}}{s_{234}s_{34}} - \frac{s_{14}^2s_{23}}{s_{13}s_{134}s_{234}s_{34}} + \frac{2s_{14}s_{23}}{s_{134}s_{234}s_{34}} + \frac{s_{13}s_{23}}{s_{134}s_{234}s_{34}} + \frac{7s_{23}}{s_{234}s_{34}} + \frac{2s_{13}^2}{s_{134}s_{234}s_{34}} \\
+  & + \frac{8s_{14}^2}{s_{13}s_{24}s_{34}} - \frac{5s_{14}s_{23}^2}{s_{13}s_{134}s_{24}s_{34}} + \frac{8s_{23}^2}{s_{13}s_{24}s_{34}} - \frac{5s_{14}^2s_{23}}{s_{13}s_{134}s_{24}s_{34}} + \frac{6s_{14}s_{23}}{s_{13}s_{24}s_{34}} \\
+  & - \frac{5s_{14}s_{23}^2}{s_{13}s_{234}s_{24}s_{34}} - \frac{s_{14}s_{23}^2}{s_{134}s_{234}s_{24}s_{34}} + \frac{8s_{23}^2}{s_{234}s_{24}s_{34}} - \frac{5s_{14}^2s_{23}}{s_{13}s_{234}s_{24}s_{34}} - \frac{2s_{13}s_{14}s_{23}}{s_{134}s_{234}s_{24}s_{34}} \\
+  & + \frac{6s_{14}s_{23}}{s_{234}s_{24}s_{34}} + \frac{8s_{13}s_{23}^2}{s_{234}^2s_{24}s_{34}} + \frac{s_{14}s_{23}^2}{s_{234}^2s_{24}s_{34}} + \frac{11s_{13}s_{23}}{s_{234}^2s_{34}} + \frac{s_{14}s_{23}}{s_{234}^2s_{34}} - \frac{2}{s_{34}} \\
+  & + \frac{14s_{13}}{s_{234}^2} + \frac{3s_{14}^2}{s_{134}s_{34}^2} + \frac{s_{14}s_{24}^2}{s_{134}s_{234}s_{34}^2} + \frac{5s_{13}s_{24}^2}{s_{134}s_{234}s_{34}^2} + \frac{3s_{13}s_{24}^2}{s_{234}^2s_{34}^2} + \frac{s_{13}s_{14}}{s_{134}s_{34}^2} \\
+  & - \frac{4s_{14}}{s_{34}^2} - \frac{3s_{14}^3s_{23}}{s_{13}s_{134}^2s_{34}^2} + \frac{4s_{14}^2s_{23}}{s_{13}s_{134}s_{34}^2} + \frac{2s_{14}^2s_{23}}{s_{134}^2s_{34}^2} + \frac{3s_{14}s_{23}}{s_{134}s_{34}^2} - \frac{3s_{13}s_{14}s_{23}}{s_{134}^2s_{34}^2} \\
+  & + \frac{s_{13}s_{23}}{s_{134}s_{34}^2} - \frac{4s_{23}}{s_{34}^2} + \frac{3s_{14}^2s_{24}}{s_{134}^2s_{34}^2} - \frac{4s_{14}s_{24}}{s_{134}s_{34}^2} - \frac{2s_{13}s_{14}s_{24}}{s_{134}^2s_{34}^2} - \frac{s_{13}s_{14}s_{24}}{s_{134}s_{234}s_{34}^2} \\
+  & + \frac{s_{14}s_{24}}{s_{234}s_{34}^2} - \frac{s_{14}^2s_{23}s_{24}}{s_{13}s_{134}s_{234}s_{34}^2} - \frac{4s_{14}s_{23}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{s_{13}s_{23}s_{24}}{s_{134}s_{234}s_{34}^2} + \frac{s_{23}s_{24}}{s_{234}s_{34}^2} + \frac{5s_{13}^2s_{24}}{s_{134}s_{234}s_{34}^2} \\
+  & + \frac{3s_{13}^2s_{24}}{s_{134}^2s_{34}^2} - \frac{2s_{13}s_{23}s_{24}}{s_{234}^2s_{34}^2} - \frac{3s_{14}s_{23}s_{24}}{s_{234}^2s_{34}^2} - \frac{s_{14}^2s_{23}^2}{s_{13}s_{134}s_{234}s_{34}^2} - \frac{s_{14}s_{23}^2}{s_{13}s_{234}s_{34}^2} - \frac{s_{14}s_{23}^2}{s_{134}s_{234}s_{34}^2} \\
+  & + \frac{3s_{23}^2}{s_{234}s_{34}^2} - \frac{s_{14}^2s_{23}}{s_{13}s_{234}s_{34}^2} - \frac{s_{14}^2s_{23}}{s_{134}s_{234}s_{34}^2} - \frac{4s_{13}s_{23}}{s_{234}s_{34}^2} - \frac{4s_{13}s_{14}s_{23}}{s_{134}s_{234}s_{34}^2} + \frac{3s_{14}s_{23}}{s_{234}s_{34}^2} \\
+  & + \frac{s_{13}^2s_{23}}{s_{134}s_{234}s_{34}^2} - \frac{3s_{14}^2s_{23}^2}{s_{13}s_{134}s_{24}s_{34}^2} + \frac{4s_{14}s_{23}^2}{s_{13}s_{24}s_{34}^2} - \frac{s_{14}s_{23}^2}{s_{134}s_{24}s_{34}^2} - \frac{3s_{14}^3s_{23}}{s_{13}s_{134}s_{24}s_{34}^2} + \frac{4s_{14}^2s_{23}}{s_{13}s_{24}s_{34}^2} \\
+  & - \frac{s_{14}^2s_{23}}{s_{134}s_{24}s_{34}^2} + \frac{2s_{14}^2s_{23}^3}{s_{13}s_{134}s_{234}s_{24}s_{34}^2} - \frac{3s_{14}s_{23}^3}{s_{13}s_{234}s_{24}s_{34}^2} + \frac{2s_{14}^3s_{23}^2}{s_{13}s_{134}s_{234}s_{24}s_{34}^2} - \frac{3s_{14}^2s_{23}^2}{s_{13}s_{234}s_{24}s_{34}^2} \\
+  & - \frac{s_{14}^2s_{23}^2}{s_{134}s_{234}s_{24}s_{34}^2} - \frac{s_{13}s_{14}s_{23}^2}{s_{134}s_{234}s_{24}s_{34}^2} + \frac{4s_{14}s_{23}^2}{s_{234}s_{24}s_{34}^2} - \frac{3s_{14}s_{23}^3}{s_{234}^2s_{24}s_{34}^2} + \frac{3s_{13}s_{23}^2}{s_{234}^2s_{34}^2} + \frac{2s_{14}s_{23}^2}{s_{234}^2s_{34}^2}
+\end{align*}
+\begin{align*}
+    A_4^{0,(2)} = {}
+          & - \frac{s_{13}^2}{s_{134}s_{234}s_{34}} - \frac{2s_{13}^2s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{13}^2s_{24}}{s_{134}^2s_{34}^2} - \frac{s_{12}s_{13}^2}{s_{134}^2s_{34}^2} - \frac{6s_{13}s_{34}}{s_{234}^2s_{24}} - \frac{7s_{13}}{s_{134}s_{234}} - \frac{s_{12}s_{13}}{s_{134}s_{234}s_{24}} \\
+  & - \frac{4s_{13}s_{23}}{s_{234}^2s_{24}} - \frac{12s_{13}s_{24}}{s_{134}s_{234}s_{34}} - \frac{7s_{13}s_{24}}{s_{134}^2s_{34}} - \frac{7s_{13}s_{24}}{s_{234}^2s_{34}} - \frac{s_{13}}{s_{134}s_{34}} + \frac{s_{13}s_{14}}{s_{134}s_{234}s_{34}} - \frac{2s_{13}s_{23}}{s_{134}s_{234}s_{34}} \\
+  & - \frac{2s_{12}s_{13}}{s_{134}s_{234}s_{34}} + \frac{s_{13}s_{14}s_{23}}{s_{134}s_{234}s_{24}s_{34}} - \frac{4s_{13}s_{23}^2}{s_{234}^2s_{24}s_{34}} - \frac{2s_{12}s_{13}}{s_{134}^2s_{34}} - \frac{5s_{13}s_{23}}{s_{234}^2s_{34}} - \frac{11s_{13}}{s_{234}^2} \\
+  & - \frac{2s_{13}s_{24}^2}{s_{134}s_{234}s_{34}^2} - \frac{2s_{13}s_{24}^2}{s_{234}^2s_{34}^2} + \frac{2s_{12}s_{13}s_{14}}{s_{134}^2s_{34}^2} + \frac{2s_{13}s_{14}s_{23}}{s_{134}^2s_{34}^2} + \frac{2s_{13}s_{14}s_{24}}{s_{134}^2s_{34}^2} + \frac{2s_{13}s_{14}s_{24}}{s_{134}s_{234}s_{34}^2} \\
+  & + \frac{2s_{13}s_{23}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{12}s_{13}s_{24}}{s_{134}s_{234}s_{34}^2} + \frac{2s_{13}s_{23}s_{24}}{s_{234}^2s_{34}^2} + \frac{2s_{13}s_{14}s_{23}}{s_{134}s_{234}s_{34}^2} + \frac{2s_{12}s_{13}s_{23}}{s_{134}s_{234}s_{34}^2} - \frac{7s_{24}}{s_{134}s_{234}} \\
+  & - \frac{11s_{24}}{s_{134}^2} - \frac{2s_{34}}{s_{134}s_{234}} + \frac{s_{12}s_{34}}{s_{134}s_{234}s_{24}} - \frac{8s_{34}}{s_{234}s_{24}} - \frac{3s_{12}s_{34}}{s_{234}^2s_{24}} - \frac{11}{s_{134}} - \frac{4s_{14}}{s_{134}s_{234}} \\
+  & - \frac{4s_{23}}{s_{134}s_{234}} + \frac{2s_{12}}{s_{134}s_{234}} - \frac{11}{s_{234}} - \frac{s_{12}}{s_{134}s_{24}} + \frac{s_{12}s_{14}}{s_{134}s_{234}s_{24}} - \frac{4s_{14}}{s_{234}s_{24}} - \frac{s_{14}s_{23}}{s_{134}s_{234}s_{24}} \\
+  & - \frac{2s_{12}s_{23}}{s_{134}s_{234}s_{24}} - \frac{8s_{23}}{s_{234}s_{24}} + \frac{3s_{12}s_{23}}{s_{234}^2s_{24}} + \frac{3s_{14}s_{23}}{s_{234}^2s_{24}} - \frac{s_{24}^2}{s_{134}s_{234}s_{34}} - \frac{5s_{14}}{s_{134}s_{34}} + \frac{2s_{12}s_{14}}{s_{134}^2s_{34}} \\
+  & - \frac{s_{14}s_{23}}{s_{134}^2s_{34}} - \frac{2s_{23}}{s_{134}s_{34}} - \frac{5s_{14}s_{24}}{s_{134}^2s_{34}} - \frac{2s_{14}s_{24}}{s_{134}s_{234}s_{34}} + \frac{s_{23}s_{24}}{s_{134}s_{234}s_{34}} - \frac{2s_{12}s_{24}}{s_{134}s_{234}s_{34}} \\
+  & - \frac{s_{24}}{s_{234}s_{34}} - \frac{2s_{12}s_{24}}{s_{234}^2s_{34}} + \frac{2s_{12}s_{14}}{s_{134}s_{234}s_{34}} - \frac{2s_{14}}{s_{234}s_{34}} + \frac{4s_{14}s_{23}}{s_{134}s_{234}s_{34}} + \frac{2s_{12}s_{23}}{s_{134}s_{234}s_{34}} \\
+  & - \frac{5s_{23}}{s_{234}s_{34}} + \frac{s_{14}s_{23}}{s_{134}s_{24}s_{34}} + \frac{2s_{14}s_{23}^2}{s_{134}s_{234}s_{24}s_{34}} - \frac{8s_{23}^2}{s_{234}s_{24}s_{34}} - \frac{s_{14}^2s_{23}}{s_{134}s_{234}s_{24}s_{34}} - \frac{3s_{14}s_{23}^2}{s_{234}^2s_{24}s_{34}} \\
+  & + \frac{2s_{12}s_{23}}{s_{234}^2s_{34}} - \frac{s_{14}s_{23}}{s_{234}^2s_{34}} - \frac{4s_{12}}{s_{134}^2} - \frac{4s_{12}}{s_{234}^2} - \frac{s_{12}s_{14}^2}{s_{134}^2s_{34}^2} - \frac{s_{12}s_{24}^2}{s_{234}^2s_{34}^2} \\
+  & - \frac{2s_{14}^2s_{23}}{s_{134}^2s_{34}^2} + \frac{2s_{12}s_{14}s_{24}}{s_{134}s_{234}s_{34}^2} + \frac{2s_{14}s_{23}s_{24}}{s_{134}s_{234}s_{34}^2} + \frac{2s_{12}s_{23}s_{24}}{s_{234}^2s_{34}^2} + \frac{2s_{14}s_{23}s_{24}}{s_{234}^2s_{34}^2} - \frac{2s_{14}s_{23}^2}{s_{134}s_{234}s_{34}^2} \\
+  & - \frac{2s_{14}^2s_{23}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{12}s_{14}s_{23}}{s_{134}s_{234}s_{34}^2} - \frac{s_{12}s_{23}^2}{s_{234}^2s_{34}^2} - \frac{2s_{14}s_{23}^2}{s_{234}^2s_{34}^2} - \frac{2s_{12}s_{34}^2}{s_{13}s_{134}s_{234}s_{24}} - \frac{8s_{14}}{s_{13}s_{134}} \\
+  & + \frac{3s_{12}s_{14}}{s_{13}s_{134}^2} + \frac{3s_{14}s_{23}}{s_{13}s_{134}^2} - \frac{4s_{23}}{s_{13}s_{134}} - \frac{4s_{14}s_{24}}{s_{13}s_{134}^2} - \frac{s_{12}s_{24}}{s_{13}s_{134}s_{234}} - \frac{6s_{24}s_{34}}{s_{13}s_{134}^2} \\
+  & - \frac{8s_{34}}{s_{13}s_{134}} + \frac{s_{12}s_{34}}{s_{13}s_{134}s_{234}} + \frac{s_{12}s_{34}}{s_{13}s_{134}s_{24}} + \frac{s_{12}s_{34}}{s_{13}s_{234}s_{24}} + \frac{2s_{14}s_{23}s_{34}}{s_{13}s_{134}s_{234}s_{24}} - \frac{6s_{34}}{s_{13}s_{24}} \\
+  & - \frac{3s_{12}s_{34}}{s_{13}s_{134}^2} - \frac{s_{12}}{s_{13}s_{234}} - \frac{2s_{12}s_{14}}{s_{13}s_{134}s_{234}} - \frac{s_{14}s_{23}}{s_{13}s_{134}s_{234}} + \frac{s_{12}s_{23}}{s_{13}s_{134}s_{234}} + \frac{3s_{12}s_{14}}{s_{13}s_{134}s_{24}} \\
+  & - \frac{4s_{14}}{s_{13}s_{24}} - \frac{s_{14}s_{23}}{s_{13}s_{134}s_{24}} - \frac{2s_{12}s_{23}}{s_{13}s_{134}s_{24}} - \frac{4s_{23}}{s_{13}s_{24}} - \frac{2s_{12}s_{14}}{s_{13}s_{234}s_{24}} + \frac{3s_{12}s_{23}}{s_{13}s_{234}s_{24}} \\
+  & - \frac{s_{14}s_{23}}{s_{13}s_{234}s_{24}} - \frac{8s_{14}^2}{s_{13}s_{134}s_{34}} - \frac{3s_{14}^2s_{23}}{s_{13}s_{134}^2s_{34}} - \frac{4s_{14}^2s_{24}}{s_{13}s_{134}^2s_{34}} + \frac{s_{14}s_{23}s_{24}}{s_{13}s_{134}s_{234}s_{34}} - \frac{s_{14}s_{23}^2}{s_{13}s_{134}s_{234}s_{34}} \\
+  & + \frac{2s_{14}^2s_{23}}{s_{13}s_{134}s_{234}s_{34}} + \frac{s_{14}s_{23}}{s_{13}s_{234}s_{34}} - \frac{4s_{14}^2}{s_{13}s_{24}s_{34}} + \frac{2s_{14}s_{23}^2}{s_{13}s_{134}s_{24}s_{34}} - \frac{4s_{23}^2}{s_{13}s_{24}s_{34}} - \frac{3s_{14}^2s_{23}}{s_{13}s_{134}s_{24}s_{34}} \\
+  & - \frac{3s_{14}s_{23}^2}{s_{13}s_{234}s_{24}s_{34}} + \frac{2s_{14}^2s_{23}}{s_{13}s_{234}s_{24}s_{34}}
+\end{align*}
+\begin{align*}
+    A_4^{0,(3)} = {}
+          & \frac{2s_{12}s_{34}}{s_{13}s_{134}s_{234}} + \frac{2s_{12}s_{34}}{s_{13}s_{134}s_{24}} + \frac{2s_{12}s_{34}}{s_{13}s_{234}s_{24}} + \frac{2s_{12}s_{34}}{s_{134}s_{234}s_{24}} + \frac{2s_{12}s_{34}}{s_{234}^2s_{24}} + \frac{2s_{12}s_{34}}{s_{13}s_{134}^2} + \frac{4s_{12}}{s_{134}s_{234}} \\
+  & + \frac{2s_{12}}{s_{134}^2} + \frac{2s_{12}}{s_{234}^2} - \frac{2s_{14}s_{23}}{s_{13}s_{134}^2} + \frac{2s_{24}}{s_{134}s_{234}} + \frac{2s_{24}}{s_{134}^2} + \frac{2s_{24}s_{34}}{s_{13}s_{134}^2} + \frac{4s_{34}}{s_{13}s_{134}} \\
+  & + \frac{4s_{34}}{s_{134}s_{234}} + \frac{2s_{34}}{s_{13}s_{24}} + \frac{4s_{34}}{s_{234}s_{24}} + \frac{2s_{13}s_{34}}{s_{234}^2s_{24}} + \frac{2}{s_{134}} - \frac{2s_{14}s_{23}}{s_{13}s_{134}s_{234}} + \frac{2s_{13}}{s_{134}s_{234}} \\
+  & + \frac{2}{s_{234}} - \frac{2s_{14}s_{23}}{s_{13}s_{134}s_{24}} - \frac{2s_{14}s_{23}}{s_{13}s_{234}s_{24}} - \frac{2s_{14}s_{23}}{s_{134}s_{234}s_{24}} - \frac{2s_{14}s_{23}}{s_{234}^2s_{24}} + \frac{2s_{13}}{s_{234}^2}.
+\end{align*}
+
+By running \texttt{BuildAndIntegrateAntenna[A,4,0,Component->Leading]} we get the integrated result, 
+\begin{equation}
+    \begin{gathered}
+        \mathcal A_4^0 = \frac3{4\epsilon^4}+\frac{65}{24\epsilon^3}+\frac{434-39\pi^2}{36\epsilon^2}-\frac1\epsilon\!\left(-\frac{43223}{864}+\frac{589\pi^2}{144}+\frac{71\zeta_3}{4}\right)\\ 
+        +\frac{1076717}{5184}-\frac{7955\pi^2}{432}+\frac{373\pi^4}{1440}-\frac{1327\zeta_3}{18} + \mathcal O\!\left(\epsilon\right).
+    \end{gathered}
+\end{equation}
+
+ \subsection{$\tilde A_4^0$}
+
+Running \texttt{BuildAntenna[A,4,0,Component->Subleading]}, we get the built result,
+\begin{equation}
+    \tilde A_4^0 = \frac{1}{2(\epsilon-1)q^2}\!\left(\tilde A_4^{0,(0)}+\epsilon \tilde A_4^{0,(1)} + \epsilon^2 \tilde A_4^{0,(2)} + \epsilon^3 \tilde A_4^{0,(3)}\right)
+\end{equation}
+where,
+\begin{align*}
+    \tilde A_4^{0,(0)} = {}
+        & -\frac{2}{s_{14}s_{23}\mathcal D_{4,gg}}\Bigg[-\frac{2s_{12}s_{34}^{2}}{s_{13}s_{134}^{2}s_{14}}
++\frac{4s_{14}^{3}s_{23}}{s_{13}s_{134}^{2}s_{34}^{2}}
+\\
+&-\frac{2s_{14}^{2}\left(2s_{12}-3s_{23}+2s_{24}\right)}
+{s_{13}s_{134}^{2}s_{34}}
+-\frac{2\left(
+3s_{12}s_{14}+3s_{12}s_{34}-3s_{14}s_{23}
++2s_{14}s_{24}-s_{23}s_{34}+s_{24}s_{34}
+\right)}
+{s_{13}s_{134}^{2}}
+\\
+&-\frac{2s_{12}s_{34}(s_{12}+s_{24})}
+{s_{13}s_{134}s_{14}s_{23}}
+-\frac{2s_{12}s_{34}(s_{12}+s_{23})}
+{s_{13}s_{134}s_{14}s_{24}}
+\\
+&-\frac{2s_{12}^{2}
+\left(2s_{12}+s_{14}+s_{24}+2s_{34}\right)}
+{s_{13}s_{134}s_{23}s_{234}}
+-\frac{2s_{12}\left(2s_{12}+2s_{24}+s_{34}\right)}
+{s_{13}s_{134}s_{23}}
+\\
+&-\frac{2s_{14}^{2}s_{23}^{2}
+\left(2s_{12}+s_{14}+s_{23}\right)}
+{s_{13}s_{134}s_{234}s_{24}s_{34}^{2}}
++\frac{2s_{14}s_{23}
+\left(4s_{12}^{2}+2s_{12}s_{14}+2s_{12}s_{23}-s_{14}s_{23}\right)}
+{s_{13}s_{134}s_{234}s_{24}s_{34}}
+\\
+&-\frac{2s_{12}
+\left(
+2s_{12}^{2}+s_{12}s_{14}+s_{12}s_{23}
++2s_{12}s_{34}-3s_{14}s_{23}
+\right)}
+{s_{13}s_{134}s_{234}s_{24}}
+-\frac{2s_{14}^{2}s_{23}
+\left(2s_{12}+s_{14}-s_{24}\right)}
+{s_{13}s_{134}s_{234}s_{34}^{2}}
+\\
+&+\frac{2s_{14}
+\left(
+4s_{12}^{2}+2s_{12}s_{14}+2s_{12}s_{23}
++s_{23}^{2}+s_{23}s_{24}
+\right)}
+{s_{13}s_{134}s_{234}s_{34}}
+-\frac{2\left(
+2s_{12}^{2}-2s_{12}s_{14}+s_{12}s_{23}
++s_{12}s_{24}+s_{12}s_{34}-s_{14}s_{23}
+\right)}
+{s_{13}s_{134}s_{234}}
+\\
+&+\frac{4s_{14}^{2}s_{23}
+\left(2s_{12}+s_{14}+s_{23}\right)}
+{s_{13}s_{134}s_{24}s_{34}^{2}}
+-\frac{2s_{14}
+\left(
+4s_{12}^{2}+2s_{12}s_{14}-2s_{12}s_{23}
+-3s_{14}s_{23}-3s_{23}^{2}
+\right)}
+{s_{13}s_{134}s_{24}s_{34}}
+\\
+&-\frac{2\left(
+4s_{12}^{2}+3s_{12}s_{14}+2s_{12}s_{23}
++s_{12}s_{34}-s_{14}s_{23}-s_{23}^{2}
+\right)}
+{s_{13}s_{134}s_{24}}
+-\frac{8s_{14}^{2}s_{23}}
+{s_{13}s_{134}s_{34}^{2}}
+\\
+&+\frac{4s_{14}(s_{12}-2s_{23}+s_{24})}
+{s_{13}s_{134}s_{34}}
++\frac{2(s_{12}+s_{14}-2s_{23}+s_{24})}
+{s_{13}s_{134}}
+\\
+&-\frac{4s_{12}^{3}}{s_{13}s_{14}s_{23}s_{24}}
+-\frac{2s_{12}^{2}}{s_{13}s_{14}s_{23}}
+-\frac{2s_{12}^{2}}{s_{13}s_{14}s_{24}}
+-\frac{2s_{12}}{s_{13}s_{14}}
+\\
+&-\frac{2s_{12}s_{34}(s_{12}+s_{14})}
+{s_{13}s_{23}s_{234}s_{24}}
+-\frac{2s_{12}(2s_{12}+2s_{14}+s_{34})}
+{s_{13}s_{23}s_{234}}
+-\frac{2s_{12}^{2}}{s_{13}s_{23}s_{24}}
+\\
+&+\frac{4s_{14}s_{23}^{2}(2s_{12}+s_{14}+s_{23})}
+{s_{13}s_{234}s_{24}s_{34}^{2}}
+-\frac{2s_{23}
+\left(
+4s_{12}^{2}-2s_{12}s_{14}+2s_{12}s_{23}
+-3s_{14}^{2}-3s_{14}s_{23}
+\right)}
+{s_{13}s_{234}s_{24}s_{34}}
+\\
+&-\frac{2\left(
+4s_{12}^{2}+2s_{12}s_{14}+3s_{12}s_{23}
++s_{12}s_{34}-s_{14}^{2}-s_{14}s_{23}
+\right)}
+{s_{13}s_{234}s_{24}}
++\frac{4s_{14}s_{23}(2s_{12}+s_{14}+s_{23})}
+{s_{13}s_{234}s_{34}^{2}}
+\\
+&-\frac{4\left(
+2s_{12}^{2}+s_{12}s_{23}-s_{14}^{2}-s_{14}s_{23}
+\right)}
+{s_{13}s_{234}s_{34}}
+-\frac{2(2s_{12}-s_{14})}{s_{13}s_{234}}
+\\
+&-\frac{6s_{14}s_{23}(2s_{12}+s_{14}+s_{23})}
+{s_{13}s_{24}s_{34}^{2}}
++\frac{2\left(
+4s_{12}^{2}-2s_{14}^{2}-3s_{14}s_{23}-2s_{23}^{2}
+\right)}
+{s_{13}s_{24}s_{34}}
+\\
+&-\frac{2(s_{12}+2s_{14}+2s_{23}+s_{34})}
+{s_{13}s_{24}}
++\frac{2s_{14}s_{23}}{s_{13}s_{34}^{2}}
++\frac{2s_{23}}{s_{13}s_{34}}
+\\
+&+\frac{4s_{13}^{3}s_{24}}
+{s_{134}^{2}s_{14}s_{34}^{2}}
+-\frac{2s_{13}^{2}(2s_{12}+2s_{23}-3s_{24})}
+{s_{134}^{2}s_{14}s_{34}}
+\\
+&-\frac{2\left(
+3s_{12}s_{13}+3s_{12}s_{34}+2s_{13}s_{23}
+-3s_{13}s_{24}+s_{23}s_{34}-s_{24}s_{34}
+\right)}
+{s_{134}^{2}s_{14}}
+\\
+&-\frac{4\left(
+2s_{12}s_{13}^{2}+4s_{12}s_{13}s_{14}
++2s_{12}s_{14}^{2}
++s_{13}^{2}s_{23}-s_{13}^{2}s_{24}
++s_{13}s_{14}s_{23}+s_{13}s_{14}s_{24}
+-s_{14}^{2}s_{23}+s_{14}^{2}s_{24}
+\right)}
+{s_{134}^{2}s_{34}^{2}}
+\\
+&-\frac{10\left(
+2s_{12}s_{13}+2s_{12}s_{14}
++s_{13}s_{23}+s_{14}s_{24}
+\right)}
+{s_{134}^{2}s_{34}}
+-\frac{2(8s_{12}+s_{23}+s_{24})}{s_{134}^{2}}
+\\
+&-\frac{2s_{13}^{2}s_{24}^{2}
+(2s_{12}+s_{13}+s_{24})}
+{s_{134}s_{14}s_{23}s_{234}s_{34}^{2}}
++\frac{2s_{13}s_{24}
+\left(
+4s_{12}^{2}+2s_{12}s_{13}+2s_{12}s_{24}
+-s_{13}s_{24}
+\right)}
+{s_{134}s_{14}s_{23}s_{234}s_{34}}
+\\
+&-\frac{2s_{12}\left(
+2s_{12}^{2}+s_{12}s_{13}+s_{12}s_{24}
++2s_{12}s_{34}-3s_{13}s_{24}
+\right)}
+{s_{134}s_{14}s_{23}s_{234}}
++\frac{4s_{13}^{2}s_{24}
+(2s_{12}+s_{13}+s_{24})}
+{s_{134}s_{14}s_{23}s_{34}^{2}}
+\\
+&-\frac{2s_{13}\left(
+4s_{12}^{2}+2s_{12}s_{13}-2s_{12}s_{24}
+-3s_{13}s_{24}-3s_{24}^{2}
+\right)}
+{s_{134}s_{14}s_{23}s_{34}}
+\\
+&-\frac{2\left(
+4s_{12}^{2}+3s_{12}s_{13}+2s_{12}s_{24}
++s_{12}s_{34}-s_{13}s_{24}-s_{24}^{2}
+\right)}
+{s_{134}s_{14}s_{23}}
+\\
+&-\frac{2s_{12}^{2}
+(2s_{12}+s_{13}+s_{23}+2s_{34})}
+{s_{134}s_{14}s_{234}s_{24}}
+-\frac{2s_{13}^{2}s_{24}
+(2s_{12}+s_{13}-s_{23})}
+{s_{134}s_{14}s_{234}s_{34}^{2}}
+\\
+&+\frac{2s_{13}\left(
+4s_{12}^{2}+2s_{12}s_{13}+2s_{12}s_{24}
++s_{23}s_{24}+s_{24}^{2}
+\right)}
+{s_{134}s_{14}s_{234}s_{34}}
+\\
+&-\frac{2\left(
+2s_{12}^{2}-2s_{12}s_{13}+s_{12}s_{23}
++s_{12}s_{24}+s_{12}s_{34}-s_{13}s_{24}
+\right)}
+{s_{134}s_{14}s_{234}}
+\\
+&-\frac{2s_{12}(2s_{12}+2s_{23}+s_{34})}
+{s_{134}s_{14}s_{24}}
+-\frac{8s_{13}^{2}s_{24}}
+{s_{134}s_{14}s_{34}^{2}}
+\\
+&+\frac{4s_{13}(s_{12}+s_{23}-2s_{24})}
+{s_{134}s_{14}s_{34}}
++\frac{2(s_{12}+s_{13}+s_{23}-2s_{24})}
+{s_{134}s_{14}}
+\\
+&-\frac{2s_{13}s_{24}^{2}
+(2s_{12}-s_{14}+s_{24})}
+{s_{134}s_{23}s_{234}s_{34}^{2}}
++\frac{2s_{24}\left(
+4s_{12}^{2}+2s_{12}s_{13}+2s_{12}s_{24}
++s_{13}^{2}+s_{13}s_{14}
+\right)}
+{s_{134}s_{23}s_{234}s_{34}}
+\\
+&-\frac{2\left(
+2s_{12}^{2}+s_{12}s_{13}+s_{12}s_{14}
+-2s_{12}s_{24}+s_{12}s_{34}-s_{13}s_{24}
+\right)}
+{s_{134}s_{23}s_{234}}
+\\
+&+\frac{4s_{13}s_{24}(2s_{12}+s_{13}+s_{24})}
+{s_{134}s_{23}s_{34}^{2}}
+-\frac{4\left(
+2s_{12}^{2}+s_{12}s_{13}-s_{13}s_{24}-s_{24}^{2}
+\right)}
+{s_{134}s_{23}s_{34}}
+-\frac{2(2s_{12}-s_{24})}{s_{134}s_{23}}
+\\
+&-\frac{2s_{14}s_{23}^{2}
+(2s_{12}-s_{13}+s_{23})}
+{s_{134}s_{234}s_{24}s_{34}^{2}}
++\frac{2s_{23}\left(
+4s_{12}^{2}+2s_{12}s_{14}+2s_{12}s_{23}
++s_{13}s_{14}+s_{14}^{2}
+\right)}
+{s_{134}s_{234}s_{24}s_{34}}
+\\
+&-\frac{2\left(
+2s_{12}^{2}+s_{12}s_{13}+s_{12}s_{14}
+-2s_{12}s_{23}+s_{12}s_{34}-s_{14}s_{23}
+\right)}
+{s_{134}s_{234}s_{24}}
+\\
+&-\frac{2\left(
+4s_{12}s_{13}s_{23}
++6s_{12}s_{13}s_{24}
++6s_{12}s_{14}s_{23}
++4s_{12}s_{14}s_{24}
+-s_{13}s_{14}s_{23}
+-s_{13}s_{14}s_{24}
+-s_{13}s_{23}s_{24}
+-s_{14}s_{23}s_{24}
+\right)}
+{s_{134}s_{234}s_{34}^{2}}
+\\
+&+\frac{2}
+{s_{134}s_{234}s_{34}}\Big(
+8s_{12}^{2}
+-2s_{12}s_{13}-2s_{12}s_{14}
+-2s_{12}s_{23}-2s_{12}s_{24}
+-s_{13}^{2}-2s_{13}s_{14}+s_{13}s_{24}\\
+&\qquad\qquad-s_{14}^{2}+s_{14}s_{23}
+-s_{23}^{2}-2s_{23}s_{24}-s_{24}^{2}
+\Big)
+\\
+&-\frac{2(2s_{12}+s_{13}+s_{14}+s_{23}+s_{24})}
+{s_{134}s_{234}}
+\\
+&+\frac{4s_{14}s_{23}(2s_{12}+s_{14}+s_{23})}
+{s_{134}s_{24}s_{34}^{2}}
+-\frac{4\left(
+2s_{12}^{2}+s_{12}s_{14}-s_{14}s_{23}-s_{23}^{2}
+\right)}
+{s_{134}s_{24}s_{34}}
+-\frac{2(2s_{12}-s_{23})}{s_{134}s_{24}}
+\\
+&+\frac{4\left(
+4s_{12}s_{13}+4s_{12}s_{14}
+-s_{13}^{2}-2s_{13}s_{14}
++s_{13}s_{23}-s_{13}s_{24}
+-s_{14}^{2}-s_{14}s_{23}+s_{14}s_{24}
+\right)}
+{s_{134}s_{34}^{2}}
+\\
+&+\frac{2(8s_{12}-s_{13}-s_{14}+s_{23}+s_{24})}
+{s_{134}s_{34}}
++\frac{4}{s_{134}}
+\\
+&-\frac{2s_{12}s_{34}(s_{12}+s_{13})}
+{s_{14}s_{23}s_{234}s_{24}}
++\frac{4s_{13}s_{24}^{2}(2s_{12}+s_{13}+s_{24})}
+{s_{14}s_{23}s_{234}s_{34}^{2}}
+\\
+&-\frac{2s_{24}\left(
+4s_{12}^{2}-2s_{12}s_{13}+2s_{12}s_{24}
+-3s_{13}^{2}-3s_{13}s_{24}
+\right)}
+{s_{14}s_{23}s_{234}s_{34}}
+\\
+&-\frac{2\left(
+4s_{12}^{2}+2s_{12}s_{13}+3s_{12}s_{24}
++s_{12}s_{34}-s_{13}^{2}-s_{13}s_{24}
+\right)}
+{s_{14}s_{23}s_{234}}
+-\frac{2s_{12}^{2}}{s_{14}s_{23}s_{24}}
+\\
+&-\frac{6s_{13}s_{24}(2s_{12}+s_{13}+s_{24})}
+{s_{14}s_{23}s_{34}^{2}}
++\frac{2\left(
+4s_{12}^{2}-2s_{13}^{2}-3s_{13}s_{24}-2s_{24}^{2}
+\right)}
+{s_{14}s_{23}s_{34}}
+\\
+&-\frac{2(s_{12}+2s_{13}+2s_{24}+s_{34})}
+{s_{14}s_{23}}
+-\frac{2s_{12}(2s_{12}+2s_{13}+s_{34})}
+{s_{14}s_{234}s_{24}}
+\\
+&+\frac{4s_{13}s_{24}(2s_{12}+s_{13}+s_{24})}
+{s_{14}s_{234}s_{34}^{2}}
+-\frac{4\left(
+2s_{12}^{2}+s_{12}s_{24}-s_{13}^{2}-s_{13}s_{24}
+\right)}
+{s_{14}s_{234}s_{34}}
+\\
+&-\frac{2(2s_{12}-s_{13})}{s_{14}s_{234}}
++\frac{2s_{13}s_{24}}{s_{14}s_{34}^{2}}
++\frac{2s_{24}}{s_{14}s_{34}}
+\\
+&-\frac{2s_{12}s_{34}^{2}}
+{s_{23}s_{234}^{2}s_{24}}
++\frac{4s_{13}s_{24}^{3}}
+{s_{23}s_{234}^{2}s_{34}^{2}}
+\\
+&-\frac{2s_{24}^{2}(2s_{12}-3s_{13}+2s_{14})}
+{s_{23}s_{234}^{2}s_{34}}
+-\frac{2\left(
+3s_{12}s_{24}+3s_{12}s_{34}
+-3s_{13}s_{24}-s_{13}s_{34}
++2s_{14}s_{24}+s_{14}s_{34}
+\right)}
+{s_{23}s_{234}^{2}}
+\\
+&-\frac{8s_{13}s_{24}^{2}}
+{s_{23}s_{234}s_{34}^{2}}
++\frac{4s_{24}(s_{12}-2s_{13}+s_{14})}
+{s_{23}s_{234}s_{34}}
+\\
+&+\frac{2(s_{12}-2s_{13}+s_{14}+s_{24})}
+{s_{23}s_{234}}
+-\frac{2s_{12}}{s_{23}s_{24}}
++\frac{2s_{13}s_{24}}{s_{23}s_{34}^{2}}
++\frac{2s_{13}}{s_{23}s_{34}}
+\\
+&+\frac{4s_{14}s_{23}^{3}}
+{s_{234}^{2}s_{24}s_{34}^{2}}
+-\frac{2s_{23}^{2}(2s_{12}+2s_{13}-3s_{14})}
+{s_{234}^{2}s_{24}s_{34}}
+\\
+&-\frac{2\left(
+3s_{12}s_{23}+3s_{12}s_{34}
++2s_{13}s_{23}+s_{13}s_{34}
+-3s_{14}s_{23}-s_{14}s_{34}
+\right)}
+{s_{234}^{2}s_{24}}
+\\
+&-\frac{4\left(
+2s_{12}s_{23}^{2}
++4s_{12}s_{23}s_{24}
++2s_{12}s_{24}^{2}
++s_{13}s_{23}^{2}
++s_{13}s_{23}s_{24}
+-s_{13}s_{24}^{2}
+-s_{14}s_{23}^{2}
++s_{14}s_{23}s_{24}
++s_{14}s_{24}^{2}
+\right)}
+{s_{234}^{2}s_{34}^{2}}
+\\
+&-\frac{10\left(
+2s_{12}s_{23}+2s_{12}s_{24}
++s_{13}s_{23}+s_{14}s_{24}
+\right)}
+{s_{234}^{2}s_{34}}
+-\frac{2(8s_{12}+s_{13}+s_{14})}{s_{234}^{2}}
+\\
+&-\frac{8s_{14}s_{23}^{2}}
+{s_{234}s_{24}s_{34}^{2}}
++\frac{4s_{23}(s_{12}+s_{13}-2s_{14})}
+{s_{234}s_{24}s_{34}}
+\\
+&+\frac{2(s_{12}+s_{13}-2s_{14}+s_{23})}
+{s_{234}s_{24}}
+\\
+&+\frac{4\left(
+4s_{12}s_{23}+4s_{12}s_{24}
++s_{13}s_{23}-s_{13}s_{24}
+-s_{14}s_{23}+s_{14}s_{24}
+-s_{23}^{2}-2s_{23}s_{24}-s_{24}^{2}
+\right)}
+{s_{234}s_{34}^{2}}
+\\
+&+\frac{2(8s_{12}+s_{13}+s_{14}-s_{23}-s_{24})}
+{s_{234}s_{34}}
++\frac{4}{s_{234}}
+\\
+&+\frac{2s_{14}s_{23}}{s_{24}s_{34}^{2}}
++\frac{2s_{14}}{s_{24}s_{34}}
+-\frac{4(2s_{12}-s_{13}-s_{14}-s_{23}-s_{24})}
+{s_{34}^{2}}
+-\frac{4}{s_{34}}\Bigg]
+\end{align*}
+
+\begin{align*}
+    \tilde A_4^{0,(1)} = {}
+        & \frac{2}{s_{14}s_{23}\mathcal D_{4,gg}}\Bigg[\frac{4s_{12}s_{34}^{2}}{s_{13}s_{134}^{2}s_{14}}
+-\frac{4s_{14}^{3}s_{23}}{s_{13}s_{134}^{2}s_{34}^{2}}
++\frac{2s_{14}^{2}(2s_{12}-3s_{23}+4s_{24})}
+{s_{13}s_{134}^{2}s_{34}}
+\\
+&+\frac{2(3s_{12}s_{14}+6s_{12}s_{34}-6s_{14}s_{23}
++4s_{14}s_{24}-2s_{23}s_{34}+3s_{24}s_{34})}
+{s_{13}s_{134}^{2}}
+\\
+&+\frac{2s_{12}s_{34}(s_{12}+2s_{24}+s_{34})}
+{s_{13}s_{134}s_{14}s_{23}}
++\frac{2s_{12}s_{34}(s_{12}+2s_{23}+s_{34})}
+{s_{13}s_{134}s_{14}s_{24}}
+\\
+&+\frac{2s_{12}(2s_{12}^{2}+s_{12}s_{14}+s_{12}s_{24}
++2s_{14}s_{24}+s_{14}s_{34}+s_{24}s_{34}+2s_{34}^{2})}
+{s_{13}s_{134}s_{23}s_{234}}
+\\
+&+\frac{4s_{12}(s_{12}+2s_{24}+s_{34})}
+{s_{13}s_{134}s_{23}}
++\frac{2s_{14}^{2}s_{23}^{2}(2s_{12}+s_{14}+s_{23})}
+{s_{13}s_{134}s_{234}s_{24}s_{34}^{2}}
+\\
+&-\frac{4s_{12}s_{14}s_{23}(2s_{12}+s_{14}+s_{23})}
+{s_{13}s_{134}s_{234}s_{24}s_{34}}
+\\
+&+\frac{2(2s_{12}^{3}+s_{12}^{2}s_{14}+s_{12}^{2}s_{23}
+-s_{12}s_{14}s_{34}-s_{12}s_{23}s_{34}
++s_{14}^{2}s_{23}+s_{14}s_{23}^{2})}
+{s_{13}s_{134}s_{234}s_{24}}
+\\
+&+\frac{2s_{14}^{2}s_{23}(2s_{12}+s_{14}-s_{24})}
+{s_{13}s_{134}s_{234}s_{34}^{2}}
+\\
+&-\frac{2s_{14}(4s_{12}^{2}+2s_{12}s_{14}+2s_{12}s_{23}
++3s_{14}s_{23}+2s_{14}s_{24}+s_{23}^{2}+s_{23}s_{24})}
+{s_{13}s_{134}s_{234}s_{34}}
+\\
+&+\frac{2(2s_{12}^{2}+3s_{12}s_{14}+s_{12}s_{23}+s_{12}s_{24}
++2s_{12}s_{34}-s_{14}^{2}-2s_{14}s_{23}
+-s_{14}s_{24}-2s_{14}s_{34})}
+{s_{13}s_{134}s_{234}}
+\\
+&-\frac{4s_{14}^{2}s_{23}(2s_{12}+s_{14}+s_{23})}
+{s_{13}s_{134}s_{24}s_{34}^{2}}
+\\
+&+\frac{2s_{14}(4s_{12}^{2}+2s_{12}s_{14}-2s_{12}s_{23}
+-3s_{14}s_{23}-5s_{23}^{2})}
+{s_{13}s_{134}s_{24}s_{34}}
+\\
+&+\frac{2(4s_{12}^{2}+3s_{12}s_{14}+4s_{12}s_{23}
++2s_{12}s_{34}-2s_{14}s_{23}-2s_{23}^{2}-s_{23}s_{34})}
+{s_{13}s_{134}s_{24}}
+\\
+&+\frac{8s_{14}^{2}s_{23}}{s_{13}s_{134}s_{34}^{2}}
++\frac{4s_{14}(-s_{12}+2s_{14}+2s_{23}-2s_{24})}
+{s_{13}s_{134}s_{34}}
+\\
+&+\frac{2(-s_{12}+2s_{14}+4s_{23}-2s_{24}+s_{34})}
+{s_{13}s_{134}}
++\frac{4s_{12}(s_{12}^{2}+s_{12}s_{34}+s_{34}^{2})}
+{s_{13}s_{14}s_{23}s_{24}}
+\\
+&+\frac{2s_{12}(s_{12}+s_{34})}{s_{13}s_{14}s_{23}}
++\frac{2s_{12}(s_{12}+s_{34})}{s_{13}s_{14}s_{24}}
++\frac{2s_{12}}{s_{13}s_{14}}
+\\
+&+\frac{2s_{12}s_{34}(s_{12}+2s_{14}+s_{34})}
+{s_{13}s_{23}s_{234}s_{24}}
++\frac{4s_{12}(s_{12}+2s_{14}+s_{34})}
+{s_{13}s_{23}s_{234}}
+\\
+&+\frac{2s_{12}(s_{12}+s_{34})}{s_{13}s_{23}s_{24}}
++\frac{4s_{12}}{s_{13}s_{23}}
+\\
+&-\frac{4s_{14}s_{23}^{2}(2s_{12}+s_{14}+s_{23})}
+{s_{13}s_{234}s_{24}s_{34}^{2}}
+\\
+&+\frac{2s_{23}(4s_{12}^{2}-2s_{12}s_{14}+2s_{12}s_{23}
+-5s_{14}^{2}-3s_{14}s_{23})}
+{s_{13}s_{234}s_{24}s_{34}}
+\\
+&+\frac{2(4s_{12}^{2}+4s_{12}s_{14}+3s_{12}s_{23}
++2s_{12}s_{34}-2s_{14}^{2}-2s_{14}s_{23}-s_{14}s_{34})}
+{s_{13}s_{234}s_{24}}
+\\
+&-\frac{4s_{14}s_{23}(2s_{12}+s_{14}+s_{23})}
+{s_{13}s_{234}s_{34}^{2}}
++\frac{4(2s_{12}^{2}+s_{12}s_{23}-2s_{14}^{2}-s_{14}s_{23})}
+{s_{13}s_{234}s_{34}}
+\\
+&+\frac{4(s_{12}-s_{14})}{s_{13}s_{234}}
++\frac{6s_{14}s_{23}(2s_{12}+s_{14}+s_{23})}
+{s_{13}s_{24}s_{34}^{2}}
+\\
+&+\frac{8(-s_{12}^{2}+s_{14}^{2}+s_{14}s_{23}+s_{23}^{2})}
+{s_{13}s_{24}s_{34}}
++\frac{2(-2s_{12}+3s_{14}+3s_{23}+s_{34})}
+{s_{13}s_{24}}
+\\
+&-\frac{2s_{14}s_{23}}{s_{13}s_{34}^{2}}
+-\frac{2(2s_{14}+s_{23})}{s_{13}s_{34}}
+-\frac{2}{s_{13}}
+\\
+&-\frac{4s_{13}^{3}s_{24}}{s_{134}^{2}s_{14}s_{34}^{2}}
++\frac{2s_{13}^{2}(2s_{12}+4s_{23}-3s_{24})}
+{s_{134}^{2}s_{14}s_{34}}
+\\
+&+\frac{2(3s_{12}s_{13}+6s_{12}s_{34}+4s_{13}s_{23}
+-6s_{13}s_{24}+3s_{23}s_{34}-2s_{24}s_{34})}
+{s_{134}^{2}s_{14}}
+\\
+&+\frac{4(2s_{12}s_{13}^{2}+4s_{12}s_{13}s_{14}
++2s_{12}s_{14}^{2}+s_{13}^{2}s_{23}-s_{13}^{2}s_{24}
++s_{13}s_{14}s_{23}+s_{13}s_{14}s_{24}
+-s_{14}^{2}s_{23}+s_{14}^{2}s_{24})}
+{s_{134}^{2}s_{34}^{2}}
+\\
+&+\frac{2(10s_{12}s_{13}+10s_{12}s_{14}
++9s_{13}s_{23}+2s_{13}s_{24}+2s_{14}s_{23}+9s_{14}s_{24})}
+{s_{134}^{2}s_{34}}
+\\
+&+\frac{4(5s_{12}+s_{23}+s_{24})}{s_{134}^{2}}
+\\
+&+\frac{2s_{13}^{2}s_{24}^{2}(2s_{12}+s_{13}+s_{24})}
+{s_{134}s_{14}s_{23}s_{234}s_{34}^{2}}
+\\
+&-\frac{4s_{12}s_{13}s_{24}(2s_{12}+s_{13}+s_{24})}
+{s_{134}s_{14}s_{23}s_{234}s_{34}}
+\\
+&+\frac{2(2s_{12}^{3}+s_{12}^{2}s_{13}+s_{12}^{2}s_{24}
+-s_{12}s_{13}s_{34}-s_{12}s_{24}s_{34}
++s_{13}^{2}s_{24}+s_{13}s_{24}^{2})}
+{s_{134}s_{14}s_{23}s_{234}}
+\\
+&-\frac{4s_{13}^{2}s_{24}(2s_{12}+s_{13}+s_{24})}
+{s_{134}s_{14}s_{23}s_{34}^{2}}
+\\
+&+\frac{2s_{13}(4s_{12}^{2}+2s_{12}s_{13}-2s_{12}s_{24}
+-3s_{13}s_{24}-5s_{24}^{2})}
+{s_{134}s_{14}s_{23}s_{34}}
+\\
+&+\frac{2(4s_{12}^{2}+3s_{12}s_{13}+4s_{12}s_{24}
++2s_{12}s_{34}-2s_{13}s_{24}-2s_{24}^{2}-s_{24}s_{34})}
+{s_{134}s_{14}s_{23}}
+\\
+&+\frac{2s_{12}(2s_{12}^{2}+s_{12}s_{13}+s_{12}s_{23}
++2s_{13}s_{23}+s_{13}s_{34}+s_{23}s_{34}+2s_{34}^{2})}
+{s_{134}s_{14}s_{234}s_{24}}
+\\
+&+\frac{2s_{13}^{2}s_{24}(2s_{12}+s_{13}-s_{23})}
+{s_{134}s_{14}s_{234}s_{34}^{2}}
+\\
+&-\frac{2s_{13}(4s_{12}^{2}+2s_{12}s_{13}+2s_{12}s_{24}
++2s_{13}s_{23}+3s_{13}s_{24}+s_{23}s_{24}+s_{24}^{2})}
+{s_{134}s_{14}s_{234}s_{34}}
+\\
+&+\frac{2(2s_{12}^{2}+3s_{12}s_{13}+s_{12}s_{23}+s_{12}s_{24}
++2s_{12}s_{34}-s_{13}^{2}-s_{13}s_{23}
+-2s_{13}s_{24}-2s_{13}s_{34})}
+{s_{134}s_{14}s_{234}}
+\\
+&+\frac{4s_{12}(s_{12}+2s_{23}+s_{34})}
+{s_{134}s_{14}s_{24}}
++\frac{8s_{13}^{2}s_{24}}{s_{134}s_{14}s_{34}^{2}}
+\\
+&+\frac{4s_{13}(-s_{12}+2s_{13}-2s_{23}+2s_{24})}
+{s_{134}s_{14}s_{34}}
++\frac{2(-s_{12}+2s_{13}-2s_{23}+4s_{24}+s_{34})}
+{s_{134}s_{14}}
+\\
+&+\frac{2s_{13}s_{24}^{2}(2s_{12}-s_{14}+s_{24})}
+{s_{134}s_{23}s_{234}s_{34}^{2}}
+\\
+&-\frac{2s_{24}(4s_{12}^{2}+2s_{12}s_{13}+2s_{12}s_{24}
++s_{13}^{2}+s_{13}s_{14}+3s_{13}s_{24}+2s_{14}s_{24})}
+{s_{134}s_{23}s_{234}s_{34}}
+\\
+&+\frac{2(2s_{12}^{2}+s_{12}s_{13}+s_{12}s_{14}
++3s_{12}s_{24}+2s_{12}s_{34}
+-2s_{13}s_{24}-s_{14}s_{24}-s_{24}^{2}-2s_{24}s_{34})}
+{s_{134}s_{23}s_{234}}
+\\
+&-\frac{4s_{13}s_{24}(2s_{12}+s_{13}+s_{24})}
+{s_{134}s_{23}s_{34}^{2}}
++\frac{4(2s_{12}^{2}+s_{12}s_{13}-s_{13}s_{24}-2s_{24}^{2})}
+{s_{134}s_{23}s_{34}}
+\\
+&+\frac{4(s_{12}-s_{24})}{s_{134}s_{23}}
++\frac{2s_{14}s_{23}^{2}(2s_{12}-s_{13}+s_{23})}
+{s_{134}s_{234}s_{24}s_{34}^{2}}
+\\
+&-\frac{2s_{23}(4s_{12}^{2}+2s_{12}s_{14}+2s_{12}s_{23}
++s_{13}s_{14}+2s_{13}s_{23}+s_{14}^{2}+3s_{14}s_{23})}
+{s_{134}s_{234}s_{24}s_{34}}
+\\
+&+\frac{2(2s_{12}^{2}+s_{12}s_{13}+s_{12}s_{14}
++3s_{12}s_{23}+2s_{12}s_{34}
+-s_{13}s_{23}-2s_{14}s_{23}-s_{23}^{2}-2s_{23}s_{34})}
+{s_{134}s_{234}s_{24}}
+\\
+&+\frac{2(4s_{12}s_{13}s_{23}+6s_{12}s_{13}s_{24}
++6s_{12}s_{14}s_{23}+4s_{12}s_{14}s_{24}
+-s_{13}s_{14}s_{23}-s_{13}s_{14}s_{24}
+-s_{13}s_{23}s_{24}-s_{14}s_{23}s_{24})}
+{s_{134}s_{234}s_{34}^{2}}
+\\
+&+\frac{2}
+{s_{134}s_{234}s_{34}}\Big((-8s_{12}^{2}+2s_{12}s_{13}+2s_{12}s_{14}
++2s_{12}s_{23}+2s_{12}s_{24}+s_{13}^{2}
++2s_{13}s_{14}+2s_{13}s_{23}+s_{14}^{2}\\
+&\qquad\qquad +2s_{14}s_{24}+s_{23}^{2}+2s_{23}s_{24}+s_{24}^{2})\Big)
+\\
+&+\frac{2(16s_{12}+3s_{13}+3s_{14}+3s_{23}+3s_{24})}
+{s_{134}s_{234}}
+\\
+&-\frac{4s_{14}s_{23}(2s_{12}+s_{14}+s_{23})}
+{s_{134}s_{24}s_{34}^{2}}
++\frac{4(2s_{12}^{2}+s_{12}s_{14}-s_{14}s_{23}-2s_{23}^{2})}
+{s_{134}s_{24}s_{34}}
+\\
+&+\frac{4(s_{12}-s_{23})}{s_{134}s_{24}}
+\\
+&+\frac{4(-4s_{12}s_{13}-4s_{12}s_{14}+s_{13}^{2}
++2s_{13}s_{14}-s_{13}s_{23}+s_{13}s_{24}
++s_{14}^{2}+s_{14}s_{23}-s_{14}s_{24})}
+{s_{134}s_{34}^{2}}
+\\
+&+\frac{2(-8s_{12}+5s_{13}+5s_{14}-3s_{23}-3s_{24})}
+{s_{134}s_{34}}
+\\
+&+\frac{2s_{12}s_{34}(s_{12}+2s_{13}+s_{34})}
+{s_{14}s_{23}s_{234}s_{24}}
+\\
+&-\frac{4s_{13}s_{24}^{2}(2s_{12}+s_{13}+s_{24})}
+{s_{14}s_{23}s_{234}s_{34}^{2}}
+\\
+&+\frac{2s_{24}(4s_{12}^{2}-2s_{12}s_{13}+2s_{12}s_{24}
+-5s_{13}^{2}-3s_{13}s_{24})}
+{s_{14}s_{23}s_{234}s_{34}}
+\\
+&+\frac{2(4s_{12}^{2}+4s_{12}s_{13}+3s_{12}s_{24}
++2s_{12}s_{34}-2s_{13}^{2}-2s_{13}s_{24}-s_{13}s_{34})}
+{s_{14}s_{23}s_{234}}
+\\
+&+\frac{2s_{12}(s_{12}+s_{34})}{s_{14}s_{23}s_{24}}
++\frac{6s_{13}s_{24}(2s_{12}+s_{13}+s_{24})}
+{s_{14}s_{23}s_{34}^{2}}
+\\
+&+\frac{8(-s_{12}^{2}+s_{13}^{2}+s_{13}s_{24}+s_{24}^{2})}
+{s_{14}s_{23}s_{34}}
++\frac{2(-2s_{12}+3s_{13}+3s_{24}+s_{34})}
+{s_{14}s_{23}}
+\\
+&+\frac{4s_{12}(s_{12}+2s_{13}+s_{34})}
+{s_{14}s_{234}s_{24}}
+-\frac{4s_{13}s_{24}(2s_{12}+s_{13}+s_{24})}
+{s_{14}s_{234}s_{34}^{2}}
+\\
+&+\frac{4(2s_{12}^{2}+s_{12}s_{24}-2s_{13}^{2}-s_{13}s_{24})}
+{s_{14}s_{234}s_{34}}
++\frac{4(s_{12}-s_{13})}{s_{14}s_{234}}
+\\
+&+\frac{4s_{12}}{s_{14}s_{24}}
+-\frac{2s_{13}s_{24}}{s_{14}s_{34}^{2}}
+-\frac{2(2s_{13}+s_{24})}{s_{14}s_{34}}
+-\frac{2}{s_{14}}
+\\
+&+\frac{4s_{12}s_{34}^{2}}{s_{23}s_{234}^{2}s_{24}}
+-\frac{4s_{13}s_{24}^{3}}{s_{23}s_{234}^{2}s_{34}^{2}}
+\\
+&+\frac{2s_{24}^{2}(2s_{12}-3s_{13}+4s_{14})}
+{s_{23}s_{234}^{2}s_{34}}
+\\
+&+\frac{2(3s_{12}s_{24}+6s_{12}s_{34}
+-6s_{13}s_{24}-2s_{13}s_{34}
++4s_{14}s_{24}+3s_{14}s_{34})}
+{s_{23}s_{234}^{2}}
+\\
+&+\frac{8s_{13}s_{24}^{2}}{s_{23}s_{234}s_{34}^{2}}
++\frac{4s_{24}(-s_{12}+2s_{13}-2s_{14}+2s_{24})}
+{s_{23}s_{234}s_{34}}
+\\
+&+\frac{2(-s_{12}+4s_{13}-2s_{14}+2s_{24}+s_{34})}
+{s_{23}s_{234}}
++\frac{2s_{12}}{s_{23}s_{24}}
+\\
+&-\frac{2s_{13}s_{24}}{s_{23}s_{34}^{2}}
+-\frac{2(s_{13}+2s_{24})}{s_{23}s_{34}}
+-\frac{2}{s_{23}}
+\\
+&-\frac{4s_{14}s_{23}^{3}}{s_{234}^{2}s_{24}s_{34}^{2}}
++\frac{2s_{23}^{2}(2s_{12}+4s_{13}-3s_{14})}
+{s_{234}^{2}s_{24}s_{34}}
+\\
+&+\frac{2(3s_{12}s_{23}+6s_{12}s_{34}
++4s_{13}s_{23}+3s_{13}s_{34}
+-6s_{14}s_{23}-2s_{14}s_{34})}
+{s_{234}^{2}s_{24}}
+\\
+&+\frac{4(2s_{12}s_{23}^{2}+4s_{12}s_{23}s_{24}
++2s_{12}s_{24}^{2}+s_{13}s_{23}^{2}
++s_{13}s_{23}s_{24}-s_{13}s_{24}^{2}
+-s_{14}s_{23}^{2}+s_{14}s_{23}s_{24}+s_{14}s_{24}^{2})}
+{s_{234}^{2}s_{34}^{2}}
+\\
+&+\frac{2(10s_{12}s_{23}+10s_{12}s_{24}
++9s_{13}s_{23}+2s_{13}s_{24}
++2s_{14}s_{23}+9s_{14}s_{24})}
+{s_{234}^{2}s_{34}}
+\\
+&+\frac{4(5s_{12}+s_{13}+s_{14})}{s_{234}^{2}}
++\frac{8s_{14}s_{23}^{2}}{s_{234}s_{24}s_{34}^{2}}
+\\
+&+\frac{4s_{23}(-s_{12}-2s_{13}+2s_{14}+2s_{23})}
+{s_{234}s_{24}s_{34}}
+\\
+&+\frac{2(-s_{12}-2s_{13}+4s_{14}+2s_{23}+s_{34})}
+{s_{234}s_{24}}
+\\
+&+\frac{4(-4s_{12}s_{23}-4s_{12}s_{24}
+-s_{13}s_{23}+s_{13}s_{24}
++s_{14}s_{23}-s_{14}s_{24}
++s_{23}^{2}+2s_{23}s_{24}+s_{24}^{2})}
+{s_{234}s_{34}^{2}}
+\\
+&+\frac{2(-8s_{12}-3s_{13}-3s_{14}+5s_{23}+5s_{24})}
+{s_{234}s_{34}}
+\\
+&-\frac{2s_{14}s_{23}}{s_{24}s_{34}^{2}}
+-\frac{2(s_{14}+2s_{23})}{s_{24}s_{34}}
+-\frac{2}{s_{24}}
+\\
+&+\frac{4(2s_{12}-s_{13}-s_{14}-s_{23}-s_{24})}
+{s_{34}^{2}}
+-\frac{8}{s_{34}}\Bigg]
+\end{align*}
+\begin{align*}
+    \tilde A_4^{0,(2)} = {}
+        & \frac{1}{s_{14}s_{23}\mathcal D_{4,gg}}\Bigg[-\frac{4s_{14}^{2}s_{24}}
+{s_{13}s_{134}^{2}s_{34}}
+-\frac{2\left(
+3s_{12}s_{34}-3s_{14}s_{23}
++2s_{14}s_{24}+3s_{24}s_{34}
+\right)}
+{s_{13}s_{134}^{2}}
+\\
+&-\frac{2s_{12}s_{34}(s_{24}+2s_{34})}
+{s_{13}s_{134}s_{14}s_{23}}
+-\frac{2s_{12}s_{34}(s_{23}+2s_{34})}
+{s_{13}s_{134}s_{14}s_{24}}
+\\
+&-\frac{2s_{12}\left(
+2s_{14}s_{24}+s_{14}s_{34}
++s_{24}s_{34}+3s_{34}^{2}
+\right)}
+{s_{13}s_{134}s_{23}s_{234}}
+-\frac{2s_{12}(2s_{24}+s_{34})}
+{s_{13}s_{134}s_{23}}
+\\
+&-\frac{2s_{34}(s_{12}s_{34}-s_{14}s_{23})}
+{s_{13}s_{134}s_{234}s_{24}}
++\frac{4s_{14}^{2}(s_{23}+s_{24})}
+{s_{13}s_{134}s_{234}s_{34}}
+\\
+&-\frac{2\left(
+2s_{12}s_{14}+2s_{12}s_{34}
+-s_{14}^{2}-2s_{14}s_{23}
+-s_{14}s_{24}-3s_{14}s_{34}
+\right)}
+{s_{13}s_{134}s_{234}}
+\\
+&+\frac{4s_{14}s_{23}^{2}}
+{s_{13}s_{134}s_{24}s_{34}}
+-\frac{2\left(
+2s_{12}s_{23}+3s_{12}s_{34}
+-3s_{14}s_{23}-s_{23}^{2}
+-2s_{23}s_{34}
+\right)}
+{s_{13}s_{134}s_{24}}
+\\
+&-\frac{4s_{14}(2s_{14}-s_{24})}
+{s_{13}s_{134}s_{34}}
+-\frac{2(3s_{14}+2s_{23}-s_{24}+2s_{34})}
+{s_{13}s_{134}}
+\\
+&-\frac{6s_{12}s_{34}^{2}}
+{s_{13}s_{14}s_{23}s_{24}}
+-\frac{2s_{12}s_{34}}
+{s_{13}s_{14}s_{23}}
+-\frac{2s_{12}s_{34}}
+{s_{13}s_{14}s_{24}}
+\\
+&-\frac{2s_{12}s_{34}(s_{14}+2s_{34})}
+{s_{13}s_{23}s_{234}s_{24}}
+-\frac{2s_{12}(2s_{14}+s_{34})}
+{s_{13}s_{23}s_{234}}
+\\
+&-\frac{2s_{12}s_{34}}
+{s_{13}s_{23}s_{24}}
+-\frac{4s_{12}}{s_{13}s_{23}}
++\frac{4s_{14}^{2}s_{23}}
+{s_{13}s_{234}s_{24}s_{34}}
+\\
+&-\frac{2\left(
+2s_{12}s_{14}+3s_{12}s_{34}
+-s_{14}^{2}-3s_{14}s_{23}
+-2s_{14}s_{34}
+\right)}
+{s_{13}s_{234}s_{24}}
+\\
+&+\frac{4s_{14}^{2}}
+{s_{13}s_{234}s_{34}}
++\frac{2s_{14}}{s_{13}s_{234}}
+-\frac{4(s_{14}^{2}+s_{23}^{2})}
+{s_{13}s_{24}s_{34}}
+\\
+&-\frac{2(s_{14}+s_{23})}
+{s_{13}s_{24}}
++\frac{4s_{14}}{s_{13}s_{34}}
++\frac{2}{s_{13}}
+\\[1mm]
+&-\frac{4s_{13}^{2}s_{23}}
+{s_{134}^{2}s_{14}s_{34}}
+-\frac{2\left(
+3s_{12}s_{34}+2s_{13}s_{23}
+-3s_{13}s_{24}+3s_{23}s_{34}
+\right)}
+{s_{134}^{2}s_{14}}
+\\
+&-\frac{4\left(
+2s_{13}s_{23}+s_{13}s_{24}
++s_{14}s_{23}+2s_{14}s_{24}
+\right)}
+{s_{134}^{2}s_{34}}
+-\frac{2(2s_{12}+s_{23}+s_{24})}
+{s_{134}^{2}}
+\\
+&-\frac{2s_{34}(s_{12}s_{34}-s_{13}s_{24})}
+{s_{134}s_{14}s_{23}s_{234}}
++\frac{4s_{13}s_{24}^{2}}
+{s_{134}s_{14}s_{23}s_{34}}
+\\
+&-\frac{2\left(
+2s_{12}s_{24}+3s_{12}s_{34}
+-3s_{13}s_{24}-s_{24}^{2}
+-2s_{24}s_{34}
+\right)}
+{s_{134}s_{14}s_{23}}
+\\
+&-\frac{2s_{12}\left(
+2s_{13}s_{23}+s_{13}s_{34}
++s_{23}s_{34}+3s_{34}^{2}
+\right)}
+{s_{134}s_{14}s_{234}s_{24}}
+\\
+&+\frac{4s_{13}^{2}(s_{23}+s_{24})}
+{s_{134}s_{14}s_{234}s_{34}}
+-\frac{2\left(
+2s_{12}s_{13}+2s_{12}s_{34}
+-s_{13}^{2}-s_{13}s_{23}
+-2s_{13}s_{24}-3s_{13}s_{34}
+\right)}
+{s_{134}s_{14}s_{234}}
+\\
+&-\frac{2s_{12}(2s_{23}+s_{34})}
+{s_{134}s_{14}s_{24}}
+-\frac{4s_{13}(2s_{13}-s_{23})}
+{s_{134}s_{14}s_{34}}
+\\
+&-\frac{2(3s_{13}-s_{23}+2s_{24}+2s_{34})}
+{s_{134}s_{14}}
++\frac{4s_{24}^{2}(s_{13}+s_{14})}
+{s_{134}s_{23}s_{234}s_{34}}
+\\
+&-\frac{2\left(
+2s_{12}s_{24}+2s_{12}s_{34}
+-2s_{13}s_{24}-s_{14}s_{24}
+-s_{24}^{2}-3s_{24}s_{34}
+\right)}
+{s_{134}s_{23}s_{234}}
+\\
+&+\frac{4s_{24}^{2}}
+{s_{134}s_{23}s_{34}}
++\frac{2s_{24}}{s_{134}s_{23}}
++\frac{4s_{23}^{2}(s_{13}+s_{14})}
+{s_{134}s_{234}s_{24}s_{34}}
+\\
+&-\frac{2\left(
+2s_{12}s_{23}+2s_{12}s_{34}
+-s_{13}s_{23}-2s_{14}s_{23}
+-s_{23}^{2}-3s_{23}s_{34}
+\right)}
+{s_{134}s_{234}s_{24}}
+\\
+&+\frac{8(s_{13}+s_{14})(s_{23}+s_{24})}
+{s_{134}s_{234}s_{34}}
+-\frac{4\left(
+4s_{12}+2s_{13}+2s_{14}
++2s_{23}+2s_{24}+s_{34}
+\right)}
+{s_{134}s_{234}}
+\\
+&+\frac{4s_{23}^{2}}
+{s_{134}s_{24}s_{34}}
++\frac{2s_{23}}{s_{134}s_{24}}
+-\frac{4(2s_{13}+2s_{14}-s_{23}-s_{24})}
+{s_{134}s_{34}}
+-\frac{4}{s_{134}}
+\\[1mm]
+&-\frac{2s_{12}s_{34}(s_{13}+2s_{34})}
+{s_{14}s_{23}s_{234}s_{24}}
++\frac{4s_{13}^{2}s_{24}}
+{s_{14}s_{23}s_{234}s_{34}}
+\\
+&-\frac{2\left(
+2s_{12}s_{13}+3s_{12}s_{34}
+-s_{13}^{2}-3s_{13}s_{24}
+-2s_{13}s_{34}
+\right)}
+{s_{14}s_{23}s_{234}}
+\\
+&-\frac{2s_{12}s_{34}}
+{s_{14}s_{23}s_{24}}
+-\frac{4(s_{13}^{2}+s_{24}^{2})}
+{s_{14}s_{23}s_{34}}
+-\frac{2(s_{13}+s_{24})}
+{s_{14}s_{23}}
+\\
+&-\frac{2s_{12}(2s_{13}+s_{34})}
+{s_{14}s_{234}s_{24}}
++\frac{4s_{13}^{2}}
+{s_{14}s_{234}s_{34}}
++\frac{2s_{13}}{s_{14}s_{234}}
+\\
+&-\frac{4s_{12}}{s_{14}s_{24}}
++\frac{4s_{13}}{s_{14}s_{34}}
++\frac{2}{s_{14}}
+\\[1mm]
+&-\frac{4s_{14}s_{24}^{2}}
+{s_{23}s_{234}^{2}s_{34}}
+-\frac{2\left(
+3s_{12}s_{34}-3s_{13}s_{24}
++2s_{14}s_{24}+3s_{14}s_{34}
+\right)}
+{s_{23}s_{234}^{2}}
+\\
+&+\frac{4s_{24}(s_{14}-2s_{24})}
+{s_{23}s_{234}s_{34}}
+-\frac{2(2s_{13}-s_{14}+3s_{24}+2s_{34})}
+{s_{23}s_{234}}
+\\
+&+\frac{4s_{24}}{s_{23}s_{34}}
++\frac{2}{s_{23}}
+-\frac{4s_{13}s_{23}^{2}}
+{s_{234}^{2}s_{24}s_{34}}
+\\
+&-\frac{2\left(
+3s_{12}s_{34}+2s_{13}s_{23}
++3s_{13}s_{34}-3s_{14}s_{23}
+\right)}
+{s_{234}^{2}s_{24}}
+\\
+&-\frac{4\left(
+2s_{13}s_{23}+s_{13}s_{24}
++s_{14}s_{23}+2s_{14}s_{24}
+\right)}
+{s_{234}^{2}s_{34}}
+-\frac{2(2s_{12}+s_{13}+s_{14})}
+{s_{234}^{2}}
+\\
+&+\frac{4s_{23}(s_{13}-2s_{23})}
+{s_{234}s_{24}s_{34}}
++\frac{2(s_{13}-2s_{14}-3s_{23}-2s_{34})}
+{s_{234}s_{24}}
+\\
+&+\frac{4(s_{13}+s_{14}-2s_{23}-2s_{24})}
+{s_{234}s_{34}}
+-\frac{4}{s_{234}}
++\frac{4s_{23}}{s_{24}s_{34}}
++\frac{2}{s_{24}}\Bigg]
+\end{align*}
+\begin{align*}
+    \tilde A_4^{0,(3)} = {}
+        & \frac{1}{s_{14}s_{23}\mathcal D_{4,gg}}\Bigg[-\frac{2s_{12}s_{34}^{2}}
+{s_{13}s_{134}^{2}s_{14}}
+-\frac{2s_{12}s_{34}^{2}}
+{s_{13}s_{134}s_{14}s_{23}}
+-\frac{2s_{12}s_{34}^{2}}
+{s_{13}s_{134}s_{14}s_{24}}
+\\
+&-\frac{2s_{12}s_{34}^{2}}
+{s_{13}s_{134}s_{23}s_{234}}
+-\frac{2s_{12}s_{34}^{2}}
+{s_{13}s_{14}s_{23}s_{24}}
+-\frac{2s_{12}s_{34}^{2}}
+{s_{13}s_{23}s_{234}s_{24}}
+\\
+&-\frac{2s_{12}s_{34}^{2}}
+{s_{134}s_{14}s_{234}s_{24}}
+-\frac{2s_{12}s_{34}^{2}}
+{s_{14}s_{23}s_{234}s_{24}}
+-\frac{2s_{12}s_{34}^{2}}
+{s_{23}s_{234}^{2}s_{24}}
+\\[1mm]
+&+\frac{2s_{34}(s_{23}+s_{24})}
+{s_{13}s_{134}^{2}}
++\frac{2s_{14}s_{34}}
+{s_{13}s_{134}s_{234}}
++\frac{2s_{23}s_{34}}
+{s_{13}s_{134}s_{24}}
+\\
+&+\frac{2s_{14}s_{34}}
+{s_{13}s_{234}s_{24}}
++\frac{2s_{34}(s_{23}+s_{24})}
+{s_{134}^{2}s_{14}}
++\frac{2s_{24}s_{34}}
+{s_{134}s_{14}s_{23}}
+\\
+&+\frac{2s_{13}s_{34}}
+{s_{134}s_{14}s_{234}}
++\frac{2s_{24}s_{34}}
+{s_{134}s_{23}s_{234}}
++\frac{2s_{23}s_{34}}
+{s_{134}s_{234}s_{24}}
+\\
+&+\frac{2s_{13}s_{34}}
+{s_{14}s_{23}s_{234}}
++\frac{2s_{34}(s_{13}+s_{14})}
+{s_{23}s_{234}^{2}}
++\frac{2s_{34}(s_{13}+s_{14})}
+{s_{234}^{2}s_{24}}
+\\[1mm]
+&+\frac{6s_{34}}{s_{13}s_{134}}
++\frac{4s_{34}}{s_{13}s_{24}}
++\frac{6s_{34}}{s_{134}s_{14}}
++\frac{8s_{34}}{s_{134}s_{234}}
+\\
+&+\frac{4s_{34}}{s_{14}s_{23}}
++\frac{6s_{34}}{s_{23}s_{234}}
++\frac{6s_{34}}{s_{234}s_{24}}\Bigg]
+\end{align*}
+using,
+\begin{equation*}
+    \mathcal D_{4,gg} = s_{13}s_{24}s_{34}^2s_{134}^2s_{234}^2
+\end{equation*}
+
+By running \texttt{BuildAndIntegrateAntenna[A,4,0,Component->Subleading]} we get the integrated result, 
+\begin{equation}
+    \begin{gathered}
+        \tilde{\mathcal A}_4^0 = \frac1{\epsilon^4}+\frac3{\epsilon^3}+\frac1{\epsilon^2}\!\left(13-\frac{3\pi^2}{2}\right)+\frac1\epsilon\!\left(\frac{845}{16}-\frac{9\pi^2}2-\frac{80\zeta_3}3\right)\\
+        +\frac{6921}{32}-\frac{473\pi^2}{24}+\frac{17\pi^4}{72}-80\zeta_3+\mathcal O(\epsilon).
+    \end{gathered}
+\end{equation}
+
+\subsection{$B_4^0$}
+
+Running \texttt{BuildAntenna[B,4,0]}, we get the built result,
+\begin{align*}
+    B_4^0 = {}
+    & \epsilon^2 \Bigg(
+  \frac{4s_{12}}{s_{134}s_{234}} + \frac{2s_{12}}{s_{134}^2} + \frac{2s_{12}}{s_{234}^2} - \frac{2s_{14}s_{23}}{s_{134}^2s_{34}} - \frac{2s_{13}s_{23}}{s_{134}^2s_{34}} - \frac{2s_{14}s_{24}}{s_{134}^2s_{34}} \\
+  & \quad - \frac{4s_{14}s_{24}}{s_{134}s_{234}s_{34}} - \frac{4s_{13}s_{24}}{s_{134}s_{234}s_{34}} - \frac{2s_{13}s_{24}}{s_{134}^2s_{34}} - \frac{2s_{13}s_{24}}{s_{234}^2s_{34}} - \frac{2s_{14}s_{24}}{s_{234}^2s_{34}} \\
+  & \quad - \frac{4s_{14}s_{23}}{s_{134}s_{234}s_{34}} - \frac{4s_{13}s_{23}}{s_{134}s_{234}s_{34}} - \frac{2s_{13}s_{23}}{s_{234}^2s_{34}} - \frac{2s_{14}s_{23}}{s_{234}^2s_{34}} \Bigg) \\
+& + \epsilon \Bigg(
+  \frac{4s_{12}^2}{s_{134}s_{234}s_{34}} + \frac{4s_{12}}{s_{134}s_{234}} + \frac{2s_{12}s_{14}}{s_{134}^2s_{34}} + \frac{2s_{12}s_{24}}{s_{134}s_{234}s_{34}} + \frac{2s_{12}s_{24}}{s_{234}^2s_{34}} + \frac{2s_{12}s_{14}}{s_{134}s_{234}s_{34}} \\
+  & \quad + \frac{2s_{12}s_{23}}{s_{134}s_{234}s_{34}} + \frac{2s_{12}s_{13}}{s_{134}s_{234}s_{34}} + \frac{2s_{12}s_{13}}{s_{134}^2s_{34}} + \frac{2s_{12}s_{23}}{s_{234}^2s_{34}} - \frac{2s_{12}}{s_{134}^2} - \frac{2s_{12}}{s_{234}^2} \\
+  & \quad + \frac{4s_{12}s_{13}s_{14}}{s_{134}^2s_{34}^2} - \frac{4s_{12}s_{13}s_{24}}{s_{134}s_{234}s_{34}^2} + \frac{4s_{12}s_{23}s_{24}}{s_{234}^2s_{34}^2} - \frac{4s_{12}s_{14}s_{23}}{s_{134}s_{234}s_{34}^2} + \frac{2s_{14}s_{23}}{s_{134}^2s_{34}} + \frac{4s_{13}s_{23}}{s_{134}^2s_{34}} \\
+  & \quad + \frac{4s_{14}s_{24}}{s_{134}^2s_{34}} + \frac{4s_{14}s_{24}}{s_{134}s_{234}s_{34}} + \frac{2s_{13}s_{24}}{s_{134}^2s_{34}} + \frac{2s_{13}s_{24}}{s_{234}^2s_{34}} + \frac{4s_{14}s_{24}}{s_{234}^2s_{34}} + \frac{4s_{13}s_{23}}{s_{134}s_{234}s_{34}} \\
+  & \quad + \frac{4s_{13}s_{23}}{s_{234}^2s_{34}} + \frac{2s_{14}s_{23}}{s_{234}^2s_{34}} - \frac{2s_{13}s_{24}^2}{s_{134}s_{234}s_{34}^2} - \frac{2s_{13}s_{24}^2}{s_{234}^2s_{34}^2} - \frac{2s_{14}^2s_{23}}{s_{134}^2s_{34}^2} + \frac{2s_{13}s_{14}s_{23}}{s_{134}^2s_{34}^2} \\
+  & \quad + \frac{2s_{13}s_{14}s_{24}}{s_{134}^2s_{34}^2} + \frac{2s_{13}s_{14}s_{24}}{s_{134}s_{234}s_{34}^2} + \frac{2s_{14}s_{23}s_{24}}{s_{134}s_{234}s_{34}^2} + \frac{2s_{13}s_{23}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{13}^2s_{24}}{s_{134}s_{234}s_{34}^2} \\
+  & \quad - \frac{2s_{13}^2s_{24}}{s_{134}^2s_{34}^2} + \frac{2s_{13}s_{23}s_{24}}{s_{234}^2s_{34}^2} + \frac{2s_{14}s_{23}s_{24}}{s_{234}^2s_{34}^2} - \frac{2s_{14}s_{23}^2}{s_{134}s_{234}s_{34}^2} - \frac{2s_{14}^2s_{23}}{s_{134}s_{234}s_{34}^2} \\
+  & \quad + \frac{2s_{13}s_{14}s_{23}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{14}s_{23}^2}{s_{234}^2s_{34}^2} \Bigg) \\
+& - \frac{4s_{12}}{s_{134}s_{234}} - \frac{2s_{12}s_{14}}{s_{134}^2s_{34}} - \frac{2s_{13}s_{23}}{s_{134}^2s_{34}} - \frac{2s_{14}s_{24}}{s_{134}^2s_{34}} - \frac{2s_{12}s_{24}}{s_{134}s_{234}s_{34}} - \frac{2s_{12}s_{24}}{s_{234}^2s_{34}} \\
+& - \frac{2s_{14}s_{24}}{s_{234}^2s_{34}} - \frac{2s_{12}s_{14}}{s_{134}s_{234}s_{34}} - \frac{2s_{12}s_{23}}{s_{134}s_{234}s_{34}} - \frac{4s_{12}^2}{s_{134}s_{234}s_{34}} - \frac{2s_{12}s_{13}}{s_{134}s_{234}s_{34}} - \frac{2s_{12}s_{13}}{s_{134}^2s_{34}} \\
+& - \frac{2s_{12}s_{23}}{s_{234}^2s_{34}} - \frac{2s_{13}s_{23}}{s_{234}^2s_{34}} + \frac{2s_{13}s_{24}^2}{s_{134}s_{234}s_{34}^2} + \frac{2s_{13}s_{24}^2}{s_{234}^2s_{34}^2} - \frac{4s_{12}s_{13}s_{14}}{s_{134}^2s_{34}^2} + \frac{2s_{14}^2s_{23}}{s_{134}^2s_{34}^2} \\
+& - \frac{2s_{13}s_{14}s_{23}}{s_{134}^2s_{34}^2} - \frac{2s_{13}s_{14}s_{24}}{s_{134}^2s_{34}^2} - \frac{2s_{13}s_{14}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{14}s_{23}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{13}s_{23}s_{24}}{s_{134}s_{234}s_{34 Nem}^2} \\
+& + \frac{2s_{13}^2s_{24}}{s_{134}s_{234}s_{34}^2} + \frac{4s_{12}s_{13}s_{24}}{s_{134}s_{234}s_{34}^2} + \frac{2s_{13}^2s_{24}}{s_{134}^2s_{34}^2} - \frac{4s_{12}s_{23}s_{24}}{s_{234}^2s_{34}^2} - \frac{2s_{13}s_{23}s_{24}}{s_{234}^2s_{34}^2} - \frac{2s_{14}s_{23}s_{24}}{s_{234}^2s_{34}^2} \\
+& + \frac{2s_{14}s_{23}^2}{s_{134}s_{234}s_{34}^2} + \frac{2s_{14}^2s_{23}}{s_{134}s_{234}s_{34}^2} + \frac{4s_{12}s_{14}s_{23}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{13}s_{14}s_{23}}{s_{134}s_{234}s_{34}^2} + \frac{2s_{14}s_{23}^2}{s_{234}^2s_{34}^2}.
+\end{align*}
+By running \texttt{BuildAndIntegrateAntenna[B,4,0]} we get the integrated result, 
+\begin{equation}
+    \begin{gathered}
+        \mathcal B_4^0 = -\frac1{12\epsilon^3}-\frac7{18\epsilon^2}-\frac1\epsilon\frac{11\!\left(37-3\pi^2\right)}{216}-\frac{11753}{1296}+\frac{77\pi^2}{108}+\frac{67\zeta_3}{18}+\mathcal O(\epsilon).
+    \end{gathered}
+\end{equation}
+
+\subsection{$C_4^0$}
+
+Running \texttt{BuildAntenna[C,4,0]}, we get the built result,
+\begin{align*}
+    C_4^0 = {}
+    & \epsilon^3 \Bigg(
+  \frac{s_{13}s_{24}^2}{s_{123}s_{134}s_{23}s_{34}} + \frac{s_{13}s_{24}^2}{s_{123}s_{23}s_{234}s_{34}} + \frac{s_{13}s_{24}^2}{s_{134}s_{23}s_{234}s_{34}} + \frac{s_{13}s_{24}^2}{s_{23}s_{234}^2s_{34}} + \frac{s_{13}s_{24}}{s_{123}s_{134}s_{23}} \\
+  & \quad - \frac{s_{12}s_{24}}{s_{123}s_{134}s_{23}} + \frac{s_{13}s_{24}}{s_{123}s_{23}s_{234}} - \frac{s_{12}s_{24}}{s_{123}s_{23}s_{234}} - \frac{s_{12}s_{24}}{s_{134}s_{23}s_{234}} + \frac{s_{13}s_{24}}{s_{134}s_{23}s_{234}} \\
+  & \quad - \frac{s_{14}s_{24}}{s_{123}s_{134}s_{34}} + \frac{s_{13}s_{24}}{s_{123}s_{134}s_{34}} + \frac{s_{13}s_{24}}{s_{123}s_{234}s_{34}} - \frac{s_{14}s_{24}}{s_{123}s_{234}s_{34}} - \frac{s_{14}s_{24}}{s_{134}s_{234}s_{34}} \\
+  & \quad + \frac{s_{13}s_{24}}{s_{134}s_{234}s_{34}} + \frac{s_{13}s_{24}}{s_{234}^2s_{34}} - \frac{s_{14}s_{24}}{s_{234}^2s_{34}} - \frac{s_{12}s_{24}}{s_{23}s_{234}^2} + \frac{s_{13}s_{24}}{s_{23}s_{234}^2} \\
+  & \quad + \frac{s_{14}}{s_{123}s_{134}} - \frac{s_{12}s_{34}}{s_{123}s_{134}s_{23}} - \frac{s_{12}s_{34}}{s_{123}s_{23}s_{234}} - \frac{s_{12}s_{34}}{s_{134}s_{23}s_{234}} - \frac{s_{12}s_{34}}{s_{23}s_{234}^2} \\
+  & \quad + \frac{2s_{13}}{s_{123}s_{134}} + \frac{s_{12}}{s_{123}s_{134}} + \frac{2s_{13}}{s_{123}s_{234}} + \frac{s_{14}}{s_{123}s_{234}} + \frac{s_{14}}{s_{134}s_{234}} \\
+  & \quad + \frac{s_{12}}{s_{123}s_{234}} + \frac{s_{12}}{s_{134}s_{234}} + \frac{2s_{13}}{s_{134}s_{234}} - \frac{s_{14}s_{23}}{s_{123}s_{134}s_{34}} - \frac{s_{14}s_{23}}{s_{123}s_{234}s_{34}} \\
+  & \quad - \frac{s_{14}s_{23}}{s_{134}s_{234}s_{34}} - \frac{s_{14}s_{23}}{s_{234}^2s_{34}} + \frac{s_{12}}{s_{234}^2} + \frac{2s_{13}}{s_{234}^2} + \frac{s_{14}}{s_{234}^2} \Bigg) \\
+& + \epsilon^2 \Bigg(
+  - \frac{s_{12}^2}{s_{123}s_{134}s_{23}} - \frac{s_{12}^2}{s_{134}s_{23}s_{234}} - \frac{3s_{12}s_{24}}{s_{123}s_{134}s_{23}} - \frac{2s_{12}s_{24}}{s_{123}s_{23}s_{234}} - \frac{2s_{12}s_{24}}{s_{134}s_{23}s_{234}} \\
+  & \quad - \frac{2s_{12}s_{34}}{s_{123}s_{134}s_{23}} - \frac{s_{12}s_{34}}{s_{123}s_{23}s_{234}} + \frac{2s_{12}s_{34}}{s_{23}s_{234}^2} + \frac{2s_{12}}{s_{123}s_{134}} + \frac{s_{12}s_{14}}{s_{123}s_{134}s_{23}} \\
+  & \quad - \frac{2s_{12}s_{13}}{s_{123}s_{134}s_{23}} - \frac{2s_{12}}{s_{123}s_{234}} + \frac{s_{12}}{s_{134}s_{234}} - \frac{s_{12}s_{13}}{s_{123}s_{23}s_{234}} + \frac{s_{12}s_{14}}{s_{123}s_{23}s_{234}} \\
+  & \quad - \frac{s_{12}s_{13}}{s_{134}s_{23}s_{234}} + \frac{s_{12}s_{14}}{s_{123}s_{134}s_{34}} + \frac{s_{12}s_{13}s_{24}}{s_{123}s_{134}s_{23}s_{34}} - \frac{2s_{12}s_{24}}{s_{123}s_{234}s_{34}} + \frac{s_{12}s_{13}s_{24}}{s_{134}s_{23}s_{234}s_{34}} \\
+  & \quad - \frac{2s_{12}s_{24}}{s_{234}^2s_{34}} + \frac{s_{12}s_{14}}{s_{134}s_{234}s_{34}} - \frac{2s_{12}}{s_{234}^2} + \frac{2s_{14}}{s_{123}s_{134}} + \frac{2s_{13}s_{24}}{s_{123}s_{134}s_{23}} \\
+  & \quad + \frac{s_{13}s_{24}}{s_{123}s_{23}s_{234}} - \frac{2s_{14}s_{24}}{s_{134}s_{23}s_{234}} - \frac{2s_{13}s_{24}}{s_{23}s_{234}^2} - \frac{2s_{14}s_{24}}{s_{23}s_{234}^2} - \frac{2s_{13}}{s_{123}s_{234}} \\
+  & \quad + \frac{s_{14}}{s_{123}s_{234}} - \frac{2s_{14}}{s_{134}s_{234}} - \frac{2s_{13}}{s_{134}s_{234}} - \frac{s_{14}^2}{s_{123}s_{134}s_{34}} + \frac{3s_{13}s_{24}^2}{s_{123}s_{134}s_{23}s_{34}} \\
+  & \quad + \frac{2s_{13}s_{24}^2}{s_{123}s_{23}s_{234}s_{34}} + \frac{2s_{13}s_{24}^2}{s_{134}s_{23}s_{234}s_{34}} - \frac{2s_{13}s_{14}}{s_{123}s_{134}s_{34}} - \frac{2s_{14}s_{23}}{s_{123}s_{134}s_{34}} - \frac{3s_{14}s_{24}}{s_{123}s_{134}s_{34}} \\
+  & \quad + \frac{2s_{13}s_{24}}{s_{123}s_{134}s_{34}} + \frac{s_{13}s_{14}s_{24}}{s_{123}s_{134}s_{23}s_{34}} + \frac{2s_{13}^2s_{24}}{s_{123}s_{134}s_{23}s_{34}} - \frac{2s_{14}s_{24}}{s_{123}s_{234}s_{34}} - \frac{2s_{14}s_{24}}{s_{134}s_{234}s_{34}} \\
+  & \quad + \frac{s_{13}s_{24}}{s_{134}s_{234}s_{34}} + \frac{s_{13}^2s_{24}}{s_{123}s_{23}s_{234}s_{34}} + \frac{s_{13}s_{14}s_{24}}{s_{123}s_{23}s_{234}s_{34}} + \frac{s_{13}^2s_{24}}{s_{134}s_{23}s_{234}s_{34}} - \frac{2s_{13}s_{24}}{s_{234}^2s_{34}} \\
+  & \quad - \frac{s_{14}^2}{s_{123}s_{234}s_{34}} - \frac{s_{13}s_{14}}{s_{123}s_{234}s_{34}} - \frac{s_{13}s_{14}}{s_{134}s_{234}s_{34}} - \frac{s_{14}s_{23}}{s_{134}s_{234}s_{34}} + \frac{2s_{14}s_{23}}{s_{234}^2s_{34}} \\
+  & \quad - \frac{4s_{13}}{s_{234}^2} - \frac{2s_{14}}{s_{234}^2} \Bigg) \\
+& + \epsilon \Bigg(
+  \frac{s_{12}^2}{s_{123}s_{134}s_{23}} - \frac{s_{12}^2}{s_{123}s_{23}s_{234}} + \frac{2s_{12}^2}{s_{134}s_{23}s_{234}} + \frac{2s_{12}s_{24}}{s_{123}s_{134}s_{23}} + \frac{s_{12}s_{24}}{s_{123}s_{23}s_{234}} \\
+  & \quad + \frac{s_{12}s_{24}}{s_{134}s_{23}s_{234}} + \frac{3s_{12}s_{24}}{s_{23}s_{234}^2} + \frac{s_{12}s_{34}}{s_{123}s_{134}s_{23}} - \frac{s_{12}s_{34}}{s_{123}s_{23}s_{234}} + \frac{2s_{12}s_{34}}{s_{134}s_{23}s_{234}} \\
+  & \quad - \frac{s_{12}s_{34}}{s_{23}s_{234}^2} - \frac{s_{12}}{s_{123}s_{134}} - \frac{s_{12}s_{14}}{s_{123}s_{134}s_{23}} - \frac{2s_{12}s_{13}}{s_{123}s_{134}s_{23}} + \frac{s_{12}}{s_{134}s_{234}} \\
+  & \quad + \frac{s_{12}s_{13}}{s_{123}s_{23}s_{234}} - \frac{2s_{12}s_{14}}{s_{123}s_{23}s_{234}} + \frac{s_{12}s_{14}}{s_{134}s_{23}s_{234}} + \frac{s_{12}s_{13}}{s_{134}s_{23}s_{234}} - \frac{s_{12}s_{14}}{s_{123}s_{134}s_{34}} \\
+  & \quad - \frac{s_{12}s_{13}s_{24}}{s_{123}s_{134}s_{23}s_{34}} + \frac{2s_{12}s_{24}}{s_{123}s_{234}s_{34}} + \frac{s_{12}s_{13}s_{24}}{s_{123}s_{23}s_{234}s_{34}} - \frac{2s_{12}s_{13}s_{24}}{s_{134}s_{23}s_{234}s_{34}} + \frac{4s_{12}s_{24}}{s_{234}^2s_{34}} \\
+  & \quad - \frac{2s_{12}s_{13}s_{14}}{s_{123}s_{134}s_{23}s_{34}} + \frac{s_{12}s_{14}}{s_{123}s_{234}s_{34}} - \frac{2s_{12}s_{14}}{s_{134}s_{234}s_{34}} + \frac{s_{12}}{s_{234}^2} - \frac{s_{14}}{s_{123}s_{134}} \\
+  & \quad - \frac{s_{13}s_{24}}{s_{123}s_{134}s_{23}} + \frac{s_{13}s_{24}}{s_{123}s_{23}s_{234}} + \frac{2s_{14}s_{24}}{s_{134}s_{23}s_{234}} + \frac{s_{13}s_{24}}{s_{23}s_{234}^2} + \frac{4s_{14}s_{24}}{s_{23}s_{234}^2} \\
+  & \quad - \frac{4s_{13}}{s_{123}s_{134}} + \frac{s_{14}}{s_{123}s_{234}} + \frac{s_{14}^2}{s_{123}s_{134}s_{34}} - \frac{2s_{13}s_{24}^2}{s_{123}s_{134}s_{23}s_{34}} - \frac{s_{13}s_{24}^2}{s_{123}s_{23}s_{234}s_{34}} \\
+  & \quad - \frac{s_{13}s_{24}^2}{s_{134}s_{23}s_{234}s_{34}} - \frac{3s_{13}s_{24}^2}{s_{23}s_{234}^2s_{34}} - \frac{2s_{13}s_{14}}{s_{123}s_{134}s_{34}} + \frac{s_{14}s_{23}}{s_{123}s_{134}s_{34}} + \frac{2s_{14}s_{24}}{s_{123}s_{134}s_{34}} \\
+  & \quad - \frac{s_{13}s_{24}}{s_{123}s_{134}s_{34}} - \frac{s_{13}s_{14}s_{24}}{s_{123}s_{134}s_{23}s_{34}} + \frac{s_{14}s_{24}}{s_{123}s_{234}s_{34}} + \frac{s_{14}s_{24}}{s_{134}s_{234}s_{34}} + \frac{s_{13}s_{24}}{s_{134}s_{234}s_{34}} \\
+  & \quad - \frac{s_{13}^2s_{24}}{s_{123}s_{23}s_{234}s_{34}} - \frac{2s_{13}s_{14}s_{24}}{s_{123}s_{23}s_{234}s_{34}} + \frac{s_{13}s_{14}s_{24}}{s_{134}s_{23}s_{234}s_{34}} - \frac{s_{13}^2s_{24}}{s_{134}s_{23}s_{234}s_{34}} + \frac{s_{13}s_{24}}{s_{234}^2s_{34}} \\
+  & \quad + \frac{3s_{14}s_{24}}{s_{234}^2s_{34}} + \frac{2s_{14}^2}{s_{123}s_{234}s_{34}} - \frac{s_{14}^2}{s_{134}s_{234}s_{34}} + \frac{s_{13}s_{14}}{s_{123}s_{234}s_{34}} + \frac{s_{13}s_{14}}{s_{134}s_{234}s_{34}} \\
+  & \quad + \frac{2s_{14}s_{23}}{s_{123}s_{234}s_{34}} - \frac{s_{14}s_{23}}{s_{134}s_{234}s_{34}} - \frac{s_{14}s_{23}}{s_{234}^2s_{34}} + \frac{2s_{13}}{s_{234}^2} + \frac{s_{14}}{s_{234}^2} \Bigg) \\
+& - \frac{s_{13}s_{24}}{s_{123}s_{23}s_{234}} - \frac{s_{13}s_{24}}{s_{134}s_{23}s_{234}} - \frac{2s_{12}s_{24}}{s_{23}s_{234}^2} - \frac{2s_{14}s_{24}}{s_{23}s_{234}^2} + \frac{s_{12}s_{34}}{s_{123}s_{23}s_{234}} \\
+& - \frac{s_{12}s_{34}}{s_{134}s_{23}s_{234}} + \frac{2s_{13}}{s_{123}s_{134}} + \frac{2s_{12}s_{13}}{s_{123}s_{134}s_{23}} - \frac{s_{14}}{s_{123}s_{234}} + \frac{s_{14}}{s_{134}s_{234}} \\
+& + \frac{s_{12}}{s_{123}s_{234}} - \frac{s_{12}}{s_{134}s_{234}} + \frac{s_{12}s_{14}}{s_{123}s_{23}s_{234}} - \frac{s_{12}s_{14}}{s_{134}s_{23}s_{234}} + \frac{s_{12}^2}{s_{123}s_{23}s_{234}} \\
+& - \frac{s_{12}^2}{s_{134}s_{23}s_{234}} + \frac{2s_{13}s_{24}^2}{s_{23}s_{234}^2s_{34}} + \frac{2s_{13}s_{14}}{s_{123}s_{134}s_{34}} - \frac{s_{13}s_{24}}{s_{123}s_{234}s_{34}} - \frac{s_{13}s_{24}}{s_{134}s_{234}s_{34}} \\
+& - \frac{s_{12}s_{13}s_{24}}{s_{123}s_{23}s_{234}s_{34}} + \frac{s_{13}s_{14}s_{24}}{s_{123}s_{23}s_{234}s_{34}} - \frac{s_{13}s_{14}s_{24}}{s_{134}s_{23}s_{234}s_{34}} + \frac{s_{12}s_{13}s_{24}}{s_{134}s_{23}s_{234}s_{34}} - \frac{2s_{12}s_{24}}{s_{234}^2s_{34}} \\
+& - \frac{2s_{14}s_{24}}{s_{234}^2s_{34}} + \frac{2s_{12}s_{13}s_{14}}{s_{123}s_{134}s_{23}s_{34}} - \frac{s_{14}^2}{s_{123}s_{234}s_{34}} + \frac{s_{14}^2}{s_{134}s_{234}s_{34}} - \frac{s_{12}s_{14}}{s_{123}s_{234}s_{34}} \\
+& + \frac{s_{12}s_{14}}{s_{134}s_{234}s_{34}} - \frac{s_{14}s_{23}}{s_{123}s_{234}s_{34}} + \frac{s_{14}s_{23}}{s_{134}s_{234}s_{34}}.
+\end{align*}
+By running \texttt{BuildAndIntegrateAntenna[C,4,0]} we get the integrated result, 
+\begin{equation}
+    \begin{gathered}
+        \mathcal C_4^0 = \frac1\epsilon\frac{\left(-13+2\pi^2-8\zeta_3\right)}{32} - \frac{339}{64} + \frac{17\pi^2}{48} - \frac{\pi^4}{45} + \frac{21\zeta_3}{8} + \mathcal O(\epsilon).
+    \end{gathered}
+\end{equation}
 
 \section{Exploratory Massive \texorpdfstring{$A_3^0$}{A30}}
+
+Running \texttt{BuildAntenna[A,3,0,quarkMass->mQ]}, we get the built result,
+\begin{gather*}
+    A_3^{0, (m_q)} = \frac1{s_{13}s_{23}\!\left(2m_q^2+q^2\right)}\Bigg[\frac1{\epsilon^2}\frac{m_q^2}{\left(2m_q^2+q^2\right)^2}\bigg(m_q^2\left(s_{13}^2+4s_{13}s_{23}+s_{23}^2\right)+s_{13}s_{23}s_{123}\bigg)\\
+    -\frac1\epsilon\frac{1}{4\!\left(2m_q^2+q^2\right)}\bigg(2m_q^2\left(3s_{13}^2+4s_{13}s_{23}+3s_{23}^2\right)+s_{12}\left(s_{13}+s_{23}\right)^2+(s_{13}+s_{23})^3\bigg)\\
+    -\frac{1}{4s_{13}s_{23}}\bigg(-8m_q^4\left(s_{13}^2+s_{23}^2\right)-2m_q^2\left(s_{12}\left(s_{13}^2-s_{13}s_{23}+s_{23}^2\right)+\left(s_{13}+s_{23}\right)^3\right)\\
+    +2s_{12}s_{13}s_{23}s_{123}+s_{13}s_{23}\left(s_{13}^2+s_{23}^2\right)\bigg)\Bigg]+\mathcal O\!\left(\epsilon^3\right).
+\end{gather*}
+By running \texttt{BuildAndIntegrateAntenna[A,3,0,quarkMass->mQ]} we get the integrated result, 
+\begin{gather*}
+    \mathcal A_3^{0, (m_q)} = \frac{2^{-2(1+\epsilon)}(1-\epsilon)\pi^{\epsilon-2}\!\left(1-4m_q^2\right)^{1-2\epsilon}}{\epsilon(2\epsilon-1)m_q^2\!\left(\epsilon-2m_q^2-1\right)}\Bigg[-\frac{24\Gamma(4-3\epsilon)\Gamma(3-2\epsilon)}{\Gamma(8-6\epsilon)}(\epsilon-1)\!\left(4m_q^2-1\right)\\
+    \cdot\bigg(\epsilon^2\left(8m_q^2-2\right)+\epsilon\left(3-4m_q^2\right)-4m_q^2-2\bigg){}_2F_1\!\left(\frac12,3-2\epsilon;\frac92-3\epsilon;1-4m_q^2\right)\\
+    -\frac{4\Gamma(3-3\epsilon)\Gamma(2-2\epsilon)}{\Gamma(6-6\epsilon)}\bigg(4m_q^4+\epsilon^3\left(8m_q^2-2\right)+6m_q^2+\epsilon^2\left(16m_q^4-12m_q^2+5\right)\\
+    -\epsilon\left(16m_q^4+4m_q^2+5\right)+2\bigg){}_2F_1\!\left(\frac12,2-2\epsilon;\frac72-3\epsilon;1-4m_q^2\right)\Bigg].
+\end{gather*}
