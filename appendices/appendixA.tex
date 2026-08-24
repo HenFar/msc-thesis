@@ -1,8 +1,18 @@
 \chapter{Complete Antenna Expressions}\label{ap:antExpressions}
 
 This appendix includes the complete expressions of the antennae computed using
-\textit{AntCalc}. It shows the unintegrated and integrated antennae, along with 
+\textit{AntCalc}. It shows the unintegrated and integrated antennae, along with
 the commands used to compute them.
+
+A note on conventions: the unintegrated antenna functions below are given exactly as
+\textit{AntCalc} returns them, in terms of $s_{ij}$ and $q^2$. The integrated antennae,
+however, are quoted at $q^2=1$, matching \texttt{IntegrateAntenna}'s default convention. This
+does not break generality as established in Subsection~\ref{subsec:MIs} and Eq.~\ref{eq:MIscaling}, a
+quantity of this kind scales with $q^2$ as a single power fixed by its mass dimension and
+$\epsilon$-scaling, so the complete $q^2$-dependent result is recovered by multiplying the
+expression given here by $(q^2)^{\lambda+\kappa\epsilon}$ for the appropriate $\lambda$ and
+$\kappa$. The explicit case of $\mathcal A_3^0$, which scales as $(q^2)^{-\epsilon}$, is worked
+out in full in Eq.~\ref{eq:A30withR30Sub}.
 
 \section{LO Antenna}
 
@@ -1115,10 +1125,9 @@ where,
 +2s_{14}s_{24}+3s_{24}s_{34}
 \right)}
 {s_{13}s_{134}^{2}}
-\\
-&-\frac{2s_{12}s_{34}(s_{24}+2s_{34})}
-{s_{13}s_{134}s_{14}s_{23}}
--\frac{2s_{12}s_{34}(s_{23}+2s_{34})}
+-\frac{2s_{12}s_{34}(s_{24}+2s_{34})}
+{s_{13}s_{134}s_{14}s_{23}}\\
+&-\frac{2s_{12}s_{34}(s_{23}+2s_{34})}
 {s_{13}s_{134}s_{14}s_{24}}
 \\
 &-\frac{2s_{12}\left(
@@ -1352,22 +1361,20 @@ where,
 +\frac{2}{s_{24}}\Bigg]
 \end{align*}
 \begin{align*}
-    \tilde A_4^{0,(3)} = {}
-        & \frac{1}{s_{14}s_{23}\mathcal D_{4,gg}}\Bigg[-\frac{2s_{12}s_{34}^{2}}
+\tilde A_4^{0,(3)} = {}
+& \frac{1}{s_{14}s_{23}\mathcal D_{4,gg}}\Bigg[-\frac{2s_{12}s_{34}^{2}}
 {s_{13}s_{134}^{2}s_{14}}
 -\frac{2s_{12}s_{34}^{2}}
 {s_{13}s_{134}s_{14}s_{23}}
 -\frac{2s_{12}s_{34}^{2}}
 {s_{13}s_{134}s_{14}s_{24}}
-\\
-&-\frac{2s_{12}s_{34}^{2}}
+-\frac{2s_{12}s_{34}^{2}}
 {s_{13}s_{134}s_{23}s_{234}}
 -\frac{2s_{12}s_{34}^{2}}
-{s_{13}s_{14}s_{23}s_{24}}
--\frac{2s_{12}s_{34}^{2}}
-{s_{13}s_{23}s_{234}s_{24}}
-\\
+{s_{13}s_{14}s_{23}s_{24}}\\
 &-\frac{2s_{12}s_{34}^{2}}
+{s_{13}s_{23}s_{234}s_{24}}
+-\frac{2s_{12}s_{34}^{2}}
 {s_{134}s_{14}s_{234}s_{24}}
 -\frac{2s_{12}s_{34}^{2}}
 {s_{14}s_{23}s_{234}s_{24}}
@@ -1406,8 +1413,7 @@ where,
 +\frac{4s_{34}}{s_{13}s_{24}}
 +\frac{6s_{34}}{s_{134}s_{14}}
 +\frac{8s_{34}}{s_{134}s_{234}}
-\\
-&+\frac{4s_{34}}{s_{14}s_{23}}
++\frac{4s_{34}}{s_{14}s_{23}}
 +\frac{6s_{34}}{s_{23}s_{234}}
 +\frac{6s_{34}}{s_{234}s_{24}}\Bigg]
 \end{align*}
@@ -1445,7 +1451,7 @@ Running \texttt{BuildAntenna[B,4,0]}, we get the built result,
 & - \frac{4s_{12}}{s_{134}s_{234}} - \frac{2s_{12}s_{14}}{s_{134}^2s_{34}} - \frac{2s_{13}s_{23}}{s_{134}^2s_{34}} - \frac{2s_{14}s_{24}}{s_{134}^2s_{34}} - \frac{2s_{12}s_{24}}{s_{134}s_{234}s_{34}} - \frac{2s_{12}s_{24}}{s_{234}^2s_{34}} \\
 & - \frac{2s_{14}s_{24}}{s_{234}^2s_{34}} - \frac{2s_{12}s_{14}}{s_{134}s_{234}s_{34}} - \frac{2s_{12}s_{23}}{s_{134}s_{234}s_{34}} - \frac{4s_{12}^2}{s_{134}s_{234}s_{34}} - \frac{2s_{12}s_{13}}{s_{134}s_{234}s_{34}} - \frac{2s_{12}s_{13}}{s_{134}^2s_{34}} \\
 & - \frac{2s_{12}s_{23}}{s_{234}^2s_{34}} - \frac{2s_{13}s_{23}}{s_{234}^2s_{34}} + \frac{2s_{13}s_{24}^2}{s_{134}s_{234}s_{34}^2} + \frac{2s_{13}s_{24}^2}{s_{234}^2s_{34}^2} - \frac{4s_{12}s_{13}s_{14}}{s_{134}^2s_{34}^2} + \frac{2s_{14}^2s_{23}}{s_{134}^2s_{34}^2} \\
-& - \frac{2s_{13}s_{14}s_{23}}{s_{134}^2s_{34}^2} - \frac{2s_{13}s_{14}s_{24}}{s_{134}^2s_{34}^2} - \frac{2s_{13}s_{14}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{14}s_{23}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{13}s_{23}s_{24}}{s_{134}s_{234}s_{34 Nem}^2} \\
+& - \frac{2s_{13}s_{14}s_{23}}{s_{134}^2s_{34}^2} - \frac{2s_{13}s_{14}s_{24}}{s_{134}^2s_{34}^2} - \frac{2s_{13}s_{14}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{14}s_{23}s_{24}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{13}s_{23}s_{24}}{s_{134}s_{234}s_{34}^2} \\
 & + \frac{2s_{13}^2s_{24}}{s_{134}s_{234}s_{34}^2} + \frac{4s_{12}s_{13}s_{24}}{s_{134}s_{234}s_{34}^2} + \frac{2s_{13}^2s_{24}}{s_{134}^2s_{34}^2} - \frac{4s_{12}s_{23}s_{24}}{s_{234}^2s_{34}^2} - \frac{2s_{13}s_{23}s_{24}}{s_{234}^2s_{34}^2} - \frac{2s_{14}s_{23}s_{24}}{s_{234}^2s_{34}^2} \\
 & + \frac{2s_{14}s_{23}^2}{s_{134}s_{234}s_{34}^2} + \frac{2s_{14}^2s_{23}}{s_{134}s_{234}s_{34}^2} + \frac{4s_{12}s_{14}s_{23}}{s_{134}s_{234}s_{34}^2} - \frac{2s_{13}s_{14}s_{23}}{s_{134}s_{234}s_{34}^2} + \frac{2s_{14}s_{23}^2}{s_{234}^2s_{34}^2}.
 \end{align*}

@@ -167,18 +167,6 @@ dimensional-regularisation conventions, through its separately defined
 \texttt{BuildAntennaConventionProfile} association.
 
 \section{The Build Stage}\label{sec:buildStage}
-%%%%%%%%%%%%%%%
-% Comments:
-%
-%   \mathcal J is chosen here to represent the amplitude interference as the closest symbol to 
-%   I that isnt confused in the regular literature for either the imaginary unit i, or the 
-%   Catani operators I.
-%
-%   As of 29/07, this chapter still includes mentions to the UV counterterms on A22. Those are 
-%   yet to be implemented in AntCalc. They will be as soon as possible and will be implemented 
-%   upon defence.
-%
-%%%%%%%%%%%%%%%
 
 This first stage is tasked with building the unintegrated antenna functions from their respective
 Feynman diagrams. Its central function is \texttt{BuildAntenna[type, multiplicity, loop order]}. 
@@ -724,7 +712,7 @@ retrieval of the integrated antenna result to a single function, instead of havi
 the unintegrated antenna using the \texttt{IntegrableForm} option and then to plug the 
 intermediate result into the integration workflow. This function essentially follows the top 
 path on the diagram in Fig.~\ref{fig:component-extraction}, for the $A_3^1$ route: it starts 
-by calling \texttt{BuildAntenna} using the appropriate option, \texttt{IntegrableForm->True}. It then, internally, plugs the 
+by calling \texttt{BuildAntenna} using the appropriate option, \texttt{IntegrableForm -> True}. It then, internally, plugs the 
 result into \texttt{IntegrateAntenna}. It forwards the controls needed by the combined
 workflow to their respective stages, including component selection and Laurent-expansion 
 order. 
@@ -794,9 +782,9 @@ By default, \texttt{BuildRRatio} returns the computed finite coefficient after
 application of the observable convention bridge; this result has been validated
 against a literature reference target.
 
-\section{Validation and Development Diagnostics}
+\section{Validation and Development Diagnostics}\label{sec:validationDiagnostics}
 
-The supported non-trivial massless public release antenna routes are validated against literature 
+The supported non-trivial massless public release antenna routes are validated against literature
 results, specifically against those in \cite{Gehrmann-DeRidder:2005btv} and 
 \cite{Gehrmann-DeRidder:2004ttg}, by comparing their Laurent-expanded results. 
 The same integrated antennae are used as ingredients to reproduce the known 
@@ -821,7 +809,7 @@ $\mathcal A_2^1 + \mathcal A_3^0$.
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
     \texttt{In[1]:= <<AntCalc`}\\
     \hfill
-    \texttt{In[2]:= diagNLORRatio = BuildRRatio[SMQCD,maxOrder->NLO,\\ReturnDiagnostics->True][[2]];}\\
+    \texttt{In[2]:= diagNLORRatio = BuildRRatio[SMQCD,maxOrder -> NLO,\\ReturnDiagnostics -> True][[2]];}\\
     \hfill
     \texttt{In[3]:= ingredients = diagNLORRatio["Ingredients"];}\\
     \hfill
@@ -856,8 +844,36 @@ The \texttt{Ingredients} entry used above is only one part of the diagnostic
 information. For a complete retained history of a calculation, \textit{AntCalc} 
 can instead return an \texttt{AntennaRunRecord}, which records the relevant route 
 stages and metadata. This information was used to trace the source of discrepancies 
-during development; the resulting validation comparisons are presented in 
+during development; the resulting validation comparisons are presented in
 Chapter~\ref{ch:validation}.
+
+\subsection{Amplitude-Level and Release-Acceptance Validation}\label{subsec:wardAndRelease}
+
+The checks described above validate an antenna function against an external reference: a
+published Laurent series, or a known finite observable. \textit{AntCalc} also implements a
+complementary validation family that requires no such reference. The function
+\texttt{VerifyWardIdentity[type, numFinalParticles, loopOrder]} acts directly on the unsquared
+amplitude produced by the build stage, before spin summation, colour decomposition, or
+phase-space integration is performed. For a chosen external gluon leg, it replaces that gluon's
+polarisation vector by its own momentum, $\varepsilon^\mu(k)\to k^\mu$, while keeping every other
+external gluon polarisation explicitly transverse, and checks whether the resulting expression
+vanishes. This is the standard amplitude-level Ward identity, applied leg by leg to the raw
+generated amplitude rather than inferred from a property of the extracted or integrated antenna.
+It is currently applied to every public route with an external gluon leg, that is, to $A_3^0$,
+$A_4^0$ and the $A_3^1$ set, and returns a structured pass, fail, or time-out report for each
+checked leg. Because it depends only on the internal gauge structure of the generated amplitude,
+and not on comparison with any external result, it certifies a property the literature-comparison
+checks above cannot: that the amplitude's diagrams were assembled with the correct relative signs
+and couplings before extraction even begins. In principle, this makes it applicable to a route for
+which no literature result exists at all.
+
+Separately from this route-level testing, \textit{AntCalc}'s development also relies on a
+release-acceptance practice. Before a version is prepared, every public route is re-evaluated in a
+fresh kernel, with any stored or cached intermediate result disabled, and its build, integration,
+and one-shot outputs are compared against each other and against the literature target discussed
+above. Each run is recorded, together with its timing and the specific checks it satisfied, as
+dated evidence. This practice has already caught, and allowed the correction of, release-worker
+issues that were not visible from the final Laurent-series outputs alone.
 
 \subsection{Runtime and Memory Characteristics}
 

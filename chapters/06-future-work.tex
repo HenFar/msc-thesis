@@ -30,7 +30,20 @@ scope to other relevant antenna types, particularly the quark-gluon ($D$ and $E$
 and the gluon-gluon ($F$, $G$ and $H$) antennae, both in the massless and in the 
 massive regimes becomes the logical next step. Lastly, extensions to kinematics other than final-final, namely 
 initial-initial and initial-final configurations, 
-and higher perturbative orders, particularly N$^3$LO, antennae would also be relevant. 
+and higher perturbative orders, particularly N$^3$LO, antennae would also be relevant.
+
+A further, more structural, direction is to generalise \textit{AntCalc} from a validated library
+of known antenna functions into a construction tool for antenna functions that have not yet been
+computed at all. The profile-driven architecture described in Chapter~\ref{ch:packageframework}
+already separates the process-specific description of a route, its profile, from the shared build
+and integration workflows; letting a user supply their own process description, rather than only
+selecting an existing route key, is a natural continuation of that design rather than a new one.
+Such user-defined routes would not, by definition, have a published result to validate against.
+This is precisely the gap that the amplitude-level Ward-identity check described in
+Section~\ref{subsec:wardAndRelease} is suited to: since it certifies gauge invariance directly from
+the generated amplitude, independently of any external reference, it, and checks like it, could be
+run automatically on a newly constructed antenna as a first, literature-independent certificate of
+correctness, before any attempt is made to compare it with an established result.
 
 Connections to other established tools would also be pertinent. A connection to a 
 Feynman diagram generation tool such as \textit{MadGraph} \cite{Madgraph} and one to a parton-level 
