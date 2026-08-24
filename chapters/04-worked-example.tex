@@ -1118,7 +1118,7 @@ We may then obtain the integrated expressions as,
                    &+\frac{-45415-64590\pi^2+4734\pi^4+37440\zeta_3}{25920},\\
                    &-\frac1{4\epsilon^4}-\frac3{4\epsilon^3}+\frac{-1476+312\pi^2}{576\epsilon^2}+\frac{-3978+864\pi^2+1536\zeta_3}{576\epsilon}\\
                    &+\frac{-10359+2850\pi^2-118\pi^4+4176\zeta_3}{576},\\
-                   &-\frac1{4\epsilon^3}-\frac1{9\epsilon^2}+\frac{65+9\pi^2}{216\epsilon}+\frac{4085-546\pi^2+72\zeta_2}{1296},\\
+                   &-\frac1{4\epsilon^3}-\frac1{9\epsilon^2}+\frac{65+9\pi^2}{216\epsilon}+\frac{4085-546\pi^2+72\zeta_3}{1296},\\
                    &\frac1{4\epsilon^4}+\frac3{4\epsilon^3}+\frac{1230-20\pi^2}{480\epsilon^2}+\frac{-60\pi^2+560(6+\zeta_3)}{480\epsilon}\\
                    &+\frac{-205\pi^2-7\pi^4-240(-36+7\zeta_3)}{480}\Bigg\}
         \end{split}
@@ -1159,10 +1159,10 @@ We may then obtain the integrated expressions as,
 \texttt{Out[3]:=}
     \begin{equation*}
         \begin{split}
-            \Bigg\{&\frac1{4\epsilon^4}+\frac{31}{12\epsilon^3}+\frac{-9540-660\pi^2}{1440\epsilon^2}+\frac{38820-3520\pi^2+11040\zeta_3}{1440\epsilon}\\
-                   &+\frac{-156930-12240\pi^2+123\pi^4+55120\zeta_3}{1440}+\mathcal O(\epsilon),\\
+            \Bigg\{&-\frac1{4\epsilon^4}-\frac{31}{12\epsilon^3}+\frac{-9540+660\pi^2}{1440\epsilon^2}+\frac{-38820+3520\pi^2+11040\zeta_3}{1440\epsilon}\\
+                   &+\frac{-156930+12240\pi^2-123\pi^4+55120\zeta_3}{1440}+\mathcal O(\epsilon),\\
                    &\frac{-15+4\pi^2}{24\epsilon^2}+\frac{-19+\pi^2+28\zeta_3}{4\epsilon}+\frac{1215\pi^2+56\pi^4+540(-35+18\zeta_3)}{720},\\
-                   &\frac1{3\epsilon^3}-\frac1{2\epsilon^2}+\frac{114-14\pi^2}{72\epsilon}+\frac{327-21\pi^2+200\zeta_3}{72}+\mathcal O(\epsilon)\Bigg\}
+                   &\frac1{3\epsilon^3}+\frac1{2\epsilon^2}+\frac{114-14\pi^2}{72\epsilon}+\frac{327-21\pi^2-200\zeta_3}{72}+\mathcal O(\epsilon)\Bigg\}
         \end{split}
     \end{equation*}
 \end{mdframed}
@@ -1372,5 +1372,70 @@ $r\to1-4m_q^2$,
 \end{mdframed}
 
 These expressions agree with the established literature results \cite{GehrmannDeRidder:2009fz}.
-The full unintegrated and integrated antenna expressions were truncated in this 
+The full unintegrated and integrated antenna expressions were truncated in this
 section. They are shown completely in Appendix~\ref{ap:antExpressions}.
+
+\section{Overview of Implemented Routes}\label{sec:masterValidationOverview}
+
+Having covered both the massless antenna set and the exploratory massive extension,
+this section collects every implemented route in one place. Table~\ref{tab:masterValidationConstruction}
+summarises how each route is constructed and integrated; Table~\ref{tab:masterValidationStatus}
+summarises the corresponding validation evidence and status. Together, they replace
+the individual validation statements given throughout this chapter with a single point
+of reference.
+
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
+\begin{center}
+\begin{longtable}{|p{1.9cm}|>{\raggedright\arraybackslash}p{2.3cm}|p{2.1cm}|p{3.0cm}|p{3.4cm}|}
+\hline
+\textbf{Route} & \textbf{Process / Scope} & \textbf{API Call\footnote{All calls use \texttt{BuildAndIntegrateAntenna[type, multiplicity, loop order]}; only the arguments are shown here.}} & \textbf{Construction Check} & \textbf{Integration Route} \\
+\hline
+\endfirsthead
+\multicolumn{5}{l}{\textit{Table~\ref{tab:masterValidationConstruction} continued.}}\\
+\hline
+\textbf{Route} & \textbf{Process / Scope} & \textbf{API Call} & \textbf{Construction Check} & \textbf{Integration Route} \\
+\hline
+\endhead
+\hline
+\caption{Construction and integration overview of every antenna route implemented in \textit{AntCalc}.}
+\label{tab:masterValidationConstruction}\\
+\endlastfoot
+$A_2^0$ & $\gamma^*\to q\bar q$, LO & \texttt{[A,2,0]} & Self-interference, Born-normalised reference & Trivial (reference, $A_2^0\equiv1$) \\ \hline
+$A_3^0$ & $\gamma^*\to qg\bar q$, NLO real & \texttt{[A,3,0]} & Self-interference; colour-coefficient extraction; matched to by-hand derivation & IBP / \textit{LiteRed2}, \texttt{X30} basis; MI: $R_3$ \\ \hline
+$A_2^1$ & $\gamma^*\to q\bar q$, NLO virtual & \texttt{[A,2,1]} & Tree--loop interference; PaVe-reduced scalar extraction & PaVe / \textit{FeynHelpers}; MI: $B_0$, $C_0$ \\ \hline
+$A_3^1$ set ($A_3^1$, $\tilde A_3^1$, $\hat A_3^1$) & $\gamma^*\to qg\bar q$, NNLO, one loop & \texttt{[A,3,1]} & Tree--loop interference; colour-coefficient extraction (leading/subleading/quark-loop) & IBP / \textit{LiteRed2}, \texttt{A31} basis; build-side MI are PaVe scalars ($B_0,C_0,D_0$, Table~\ref{tab:MI}); integration MI: $V_{5,a}$, $V_{5,b}$, $V_8$ \\ \hline
+$A_2^2$ set ($A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$) & $\gamma^*\to q\bar q$, NNLO, two loops & \texttt{[A,2,2]} & Two-loop tree interference and one-loop self-interference (two source contributions) & IBP / \textit{LiteRed2}, \texttt{A22TwoLoopTree}/\allowbreak\texttt{A22OneLoopSelf} bases; MI: $A_{22,\text{LO}}$, $A_3$, $A_4$ (also $A_6$ for $\tilde A_2^2$) \\ \hline
+$A_4^0$, $\tilde A_4^0$ & $\gamma^*\to qgg\bar q$, NNLO, double-real & \texttt{[A,4,0]} & Colour-ordered amplitude; colour-coefficient extraction & IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$, $R_{8,a}$, $R_{8,b}$ \\ \hline
+$B_4^0$ & $\gamma^*\to q\bar q q^\prime\bar q^\prime$, NNLO & \texttt{[B,4,0]} & Sector self-interference (direct amplitude only) & IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$, $R_{8,a}$, $R_{8,b}$ \\ \hline
+$C_4^0$ & $\gamma^*\to q\bar q q\bar q$, NNLO & \texttt{[C,4,0]} & Sector symmetrised interference (direct and exchange) & IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$, $R_{8,a}$, $R_{8,b}$ \\ \hline
+Massive $A_3^0$ & $\gamma^*\to q(m_q)g\bar q(m_q)$, exploratory & \texttt{[A,3,0,\newline quarkMass->\newline mQ]} & Same route as massless $A_3^0$, with the \texttt{quarkMass} option & IBP / \textit{LiteRed2}, massive family; MI mapped from \textit{LiteRed2}'s $J_1$, $J_2$ to the literature $I_1^{(m_q,0,m_q)}$, $I_2^{(m_q,0,m_q)}$ \\ \hline
+\end{longtable}
+\end{center}
+
+\begin{center}
+\begin{longtable}{|p{1.9cm}|p{2.8cm}|p{3.2cm}|p{2.4cm}|p{3.3cm}|}
+\hline
+\textbf{Route} & \textbf{Literature Reference (Order Checked)} & \textbf{Local Validation} & \textbf{Global Validation} & \textbf{Status} \\
+\hline
+\endfirsthead
+\multicolumn{5}{l}{\textit{Table~\ref{tab:masterValidationStatus} continued.}}\\
+\hline
+\textbf{Route} & \textbf{Literature Reference (Order Checked)} & \textbf{Local Validation} & \textbf{Global Validation} & \textbf{Status} \\
+\hline
+\endhead
+\hline
+\caption{Validation evidence and status of every antenna route implemented in \textit{AntCalc}. ``Not applicable'' marks routes with no real unresolved parton to take a soft/collinear limit of ($A_2^0$, $A_2^1$, $A_2^2$); ``Not performed'' marks routes where such a limit exists but was not checked in this work --- see Section~\ref{sec:antennaresultsummary} for why $A_3^0$ was chosen to demonstrate the method rather than repeating it on every route. The massive $A_3^0$ route is deliberately marked as less mature than the massless set: it agrees with the literature locally, but has not yet been checked against any global observable.}
+\label{tab:masterValidationStatus}\\
+\endlastfoot
+$A_2^0$ & --- (reference normalisation) & Not applicable & LO normalisation of the $R$-ratio & By construction \\ \hline
+$A_3^0$ & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Eikonal factor and AP splitting function reproduced & Feeds $r_\text{NLO}$ & Pass \\ \hline
+$A_2^1$ & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Not applicable & Feeds $r_\text{NLO}$ & Pass \\ \hline
+$A_3^1$ set & \cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg} (NNLO) & Not performed & Feeds $r_\text{NNLO}$ & Pass \\ \hline
+$A_2^2$ set & \cite{Gehrmann-DeRidder:2004ttg} (NNLO) & Not applicable & Feeds $r_\text{NNLO}$ & Pass \\ \hline
+$A_4^0$, $\tilde A_4^0$ & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Not performed & Feeds $r_\text{NNLO}$ & Pass \\ \hline
+$B_4^0$ & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Not performed & Feeds $r_\text{NNLO}$ & Pass \\ \hline
+$C_4^0$ & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Not performed & Feeds $r_\text{NNLO}$ & Pass \\ \hline
+Massive $A_3^0$ & \cite{GehrmannDeRidder:2009fz} & Not performed & Not applicable (does not feed the massless $R$-ratio) & Literature agreement; no global observable validation yet \\ \hline
+\end{longtable}
+\end{center}
