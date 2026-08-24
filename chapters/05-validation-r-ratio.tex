@@ -3,10 +3,8 @@
 \section{R-Ratio Definition}
 
 The hadronic R-ratio is usually defined as the ratio of total cross-section for $e^+e^-$
-annihilation into hadrons to the point-like cross-section for $e^+e^-\to\mu^+\mu^-$, that is,
-it is the ratio of the cross-sections of the topologies where the electron-positron pair
-annihilates into hadrons and into a muon-antimuon pair. It is mathematically described 
-as follows,
+annihilation into hadrons to the point-like cross-section for $e^+e^-\to\mu^+\mu^-$. It is
+mathematically described as follows,
 \begin{equation}
     \begin{split}
         R_\text{hadr} &= \frac{\sigma(e^+e^-\to\text{hadrons})}{\sigma(e^+e^-\to\mu^+\mu^-)}\\
@@ -17,26 +15,26 @@ as follows,
 Looking closely, the $\sigma(e^+e^-\to\text{hadrons})$ term is what QCD predicts for the 
 $\gamma^*\to\text{hadrons}$, computed via the optical theorem \cite{GehrmannDeRidder0311276}.
 What makes the R-ratio a clean QCD observable, and a good benchmark for \textit{AntCalc}
-is that the ratio features terms for higher perturbation orders as a perturbative series in $\alpha_s$,
+is that the ratio features terms for higher perturbative orders as a perturbative series in $\alpha_s$,
 \begin{equation}
     R_\text{hadr} = \left(c_\text{LO}+\frac{\alpha_s}{\pi}c_\text{NLO}+\left(\frac{\alpha_s}{\pi}\right)^2c_\text{NNLO}+\mathcal O\left(\alpha_s^3\right)\right)
 \end{equation}
-here the perturbative coefficients, $c_\text{LO}$, $c_\text{NLO}$ and $c_\text{NNLO}$, respectively receive 
-contributions from the multiparticle final states at the relative orders, and respective antennae, 
-as described in Chapter~\ref{ch:physicsbackground}. For example, 
+here the perturbative coefficients, $c_\text{LO}$, $c_\text{NLO}$ and $c_\text{NNLO}$, respectively receive
+contributions from the multiparticle final states at the relative orders via their respective
+antennae, as described in Chapter~\ref{ch:physicsbackground}. For example,
 $A_3^0$ as described in Chapter~\ref{ch:workedexample} contributes to $c_\text{NLO}$.
-Moreover, the leading order term $R^{(0)}$ simply counts the number of quark colours and flavours
+Moreover, the leading-order term $R^{(0)}$ simply counts the number of quark colours and flavours
 weighted by their electric charges,
 \begin{equation}
     R^{(0)} = N_c\sum_q e_q^2
 \end{equation}
-from $R_\text{hadr}=R^{(0)}\big(1+\mathcal O(\alpha_s)\big)=R^{(0)}R(\alpha_s)$. 
+since $R_\text{hadr}=R^{(0)}\big(1+\mathcal O(\alpha_s)\big)=R^{(0)}R(\alpha_s)$.
 
 \section{Global Validation with \textit{AntCalc}}
 
 As discussed, the hadronic R-ratio is a very useful quantity to compute using the 
 integrated antenna functions we computed using \textit{AntCalc}. As such, the programme 
-provides an R-ratio calculator. It is the longest running function 
+provides an R-ratio calculator. It is the longest-running function
 in the whole package. Its result gives,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
