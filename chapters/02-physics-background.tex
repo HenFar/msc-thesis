@@ -386,9 +386,11 @@ for some antenna with $n$-final-state particles and $l$ loops\footnote{Loops wil
 be discussed and the $k$ index widely used in Subsection~\ref{subsec:antennaFuncs}.}.
 
 Since multi-particle phase spaces recursively factorise, we must also normalise
-our phase-space integral by the $d$-dimensional two-body phase space volume $\Phi_2$
-\footnote{This factorisation and subsequent normalisation is explored in detail 
-in Subsection~\ref{subsec:phaseSpaceFactor}}.
+our phase-space integral by the $d$-dimensional two-body phase space volume $\Phi_2$,
+as is convention in the antenna-subtraction literature \cite{Gehrmann-DeRidder:2005btv}. 
+The factorisation method 
+used is discussed in Subsection~\ref{subsec:phaseSpaceFactor}, and written in 
+Eq.~\ref{eq:phi2Factor}.
 This normalisation, together with the previous combined normalisation factor 
 make the global normalisation factor $\mathcal N(\epsilon,k)$, used throughout the present work,
 \begin{equation}\label{eq:normN}
@@ -783,11 +785,11 @@ $n_u\in\{1,2\}$. The perturbative order above, N$^3$LO, presents more complex
 identities for which this blueprint may not work. It also does not fit when 
 $n_u = 0$. That case is discussed in further detail in Subsubsection~\ref{subsubsec:noteOn}.}. 
 For our case, two useful identities are produced for this formula \cite{Gehrmann-DeRidder:2005btv},
-\begin{equation*}
-    d\Phi_3 = d\Phi_2d\Phi_{ijk}
-\end{equation*}
-\begin{equation}
-    d\Phi_4 = d\Phi_2d\Phi_{ijkl}.
+\begin{equation}\label{eq:phi2Factor}
+    \begin{split}
+        &d\Phi_3 = d\Phi_2d\Phi_{ijk}\\
+        &d\Phi_4 = d\Phi_2d\Phi_{ijkl}.
+    \end{split}
 \end{equation}
 
 Since $d\Phi_n$ is perfectly factorised \cite{Catani:1996vz}, and the $X_n^l$ antenna functions are 
