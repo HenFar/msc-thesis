@@ -65,12 +65,32 @@ the gluon Lagrangian term. After expanding it becomes,
     \mathcal L_g = -\frac14\!\left(F_{\mu\nu}^a\right)^2-\frac{g_s}2f^{abc}F^{a\,\mu\nu}A_\mu^b A_\nu^c - \frac{g_s^2}4f^{abc}f^{ade}A_\mu^b A_\nu^c A^{d\,\mu}A^{e\,\nu}.
 \end{equation}
 Here, much like in $\mathcal L_q$, the gluon Lagrangian is also divided into three terms. 
-The first term is quadratic in the gluon field and describes free gluon propagation.
-After gauge fixing, it supplies the gluon propagator. Unlike the remaining terms, it 
+The first term is quadratic in the gluon field and, after gauge-fixing, 
+describes free gluon propagation as \cite{Ellis:1996mzs},
+\begin{equation}
+    \Delta_{ab, \mu\nu}(k) = \delta_{ab}\frac i{k^2}\left(-g_{\mu\nu}+(1-\lambda)\frac{k_\mu k_\nu}{k^2}\right),\quad \mathcal L_\text{gf}=-\frac1{2\lambda}\!\left(\partial^\mu A_\mu^a\right)^2
+\end{equation}
+where $\mathcal L_\text{gf}$ is the gauge-fixing Lagrangian, $\delta_{ab}$ is the 
+Kronecker delta, and $\lambda$ is the gauge parameter. 
+Throughout this text the t'Hooft-Feynman convention is used, which makes $\lambda=1$,
+following the default convention from \textit{FeynArts} \cite{Hahn:2000kx}. It is 
+important to note, however, that physical observables are independent of the gauge 
+choice.
+Unlike the remaining terms, the first 
 contains no non-Abelian self-interaction. The cubic and quartic terms in the gluon 
-fields generate, respectively, the three- and four-gluon vertices, $ggg$ and $gggg$\footnote{A gauge-fixing term and the associated Faddeev-Popov ghost sector are 
-required to formulate perturbative gluon propagators. Physical observables are 
-independent of the gauge choice.}.
+fields generate, respectively, the three- and four-gluon vertices, $ggg$ and $gggg$.
+
+Using a covariant gauge-fixing term in a non-Abelian theory like QCD requires it to 
+be supplemented by a ghost Lagrangian, described as \cite{Ellis:1996mzs},
+\begin{equation}
+    \mathcal L_\text{ghost}=\partial_\mu\eta^{a\,\dagger}\!\left(D_{ab}^\mu\eta^B\right).
+\end{equation}
+This is the default ghost sector as used in \textit{FeynArts} \cite{Hahn:2000kx} and, as for the 
+$\lambda$ convention, is the one used for the duration of the present text and 
+in \textit{AntCalc}. These ghost fields cancel the unphysical timelike and longitudinal 
+gluon polarisations that would, otherwise, propagate in covariant-gauge loop 
+diagrams. This ensures that only the two physical transverse 
+polarisation states contribute to physical amplitudes \cite{Ellis:1996mzs}.
 
 Together, the two pieces, $\mathcal L_q$ and $\mathcal L_g$, constitute the 
 gauge-invariant core of QCD. They generate the three elementary interaction vertices 
@@ -494,7 +514,7 @@ to decompose, we must first clarify the Algebra of colour
 
 Quarks carry a fundamental colour index $i\in\{1,2,3\}$ while gluons carry an 
 adjoint colour index $a\in\{1,...,8\}$. The interactions between them are governed 
-by the $ $ generators $T^a$. Those generators are normalised by the trace 
+by the $SU(3)_c$ generators $T^a$. Those generators are normalised by the trace
 relation $\operatorname{Tr}\left(T^aT^b\right)=T_R\delta^{ab}$, where by standard 
 convention $T_R=1/2$ \cite{Ellis:1996mzs,Schwartz:2014sze}. 
 This is particularly useful since when the amplitude is 
@@ -741,10 +761,9 @@ the two hard radiators, it is the unresolved-parton phase space of the
 antenna. It has no independent parametrisation and is only accessed by factorising 
 the known $n$-particle phase space 
 \cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276}. 
-Since, through the recursive factorisation of the Lorentz-invariant 
-phase space property\footnote{This property is discussed further in Subsection 
-\ref{subsec:phaseSpaceFactor}.} \cite{Catani:1996vz}, 
-the phase space factorises, 
+Since, through the recursive factorisation of the Lorentz-invariant
+phase space property \cite{Catani:1996vz},
+the phase space factorises,
 we are able to denote that the $n$-particle phase-space equals the $(n-n_u)$-particle,
 where $n_u$ is the number of unresolved partons, 
 phase-space times the antenna phase-space
@@ -912,26 +931,25 @@ this text, as follows \cite{Gehrmann-DeRidder:2005btv},
 
 \section{Phase-Space Integration and IBP Reduction}\label{sec:integration}
 
-In the previous sections we went over what an antenna function is, why they are 
-necessary and how we use them. In Eq.~\ref{eq:antennaIntegral} we defined the 
-method we use to integrate the antenna functions $X_n^l$, to integrated 
-antenna functions $\mathcal X_n^l$. These antennae are integrated over the
-phase-space and also, when loops are present, their loop momenta $\ell_r$, as pointed out 
-in Footnote~\ref{footnote:integratedAntenna}.
+In the previous sections, antenna functions were introduced together with their role
+in the local subtraction of infrared singularities. Eq.~\ref{eq:antennaIntegral} defined
+their integration over the unresolved phase space, leading from an unintegrated antenna
+$X_n^l$ to its integrated counterpart $\mathcal X_n^l$. For loop-level antennae ($l\geq1$),
+the loop momenta must additionally be integrated.
 
-Though integration has been made to seem the natural endpoint of this present work,
-and to an extent it is, there is still use among phenomenologists for the unintegrated 
-antenna function $X_n^l$, namely when using Monte Carlo (MC) integrators. These 
-integrators evaluate the phase space numerically point-by-point and require our 
-unintegrated antennae to perform subtractions over local divergences, as described in 
-Subsection~\ref{subsec:nloAndNnloSubtraction} \cite{Gehrmann-DeRidder:2005btv}. Since the MC generator throws random 
-phase-space points, and the subtraction happens dynamically with each throw, the
-unintegrated antenna functions used must be given in terms of the exact same local 
-kinematics as the real-emission matrix elements, the Mandelstam invariants $s_{ij}$.
-For this reason, we need to perform the loop-momentum integral before using these 
-antennae in these integrators, if $l\geq 1$\footnote{Note that in standard antenna 
-language, the term \textit{unintegrated} already refers to phase-space integration, 
-over $\Phi_X$.}.
+Both the unintegrated and integrated forms are required in a subtraction calculation,
+but they play different roles. The unintegrated antenna functions provide local
+counterterms for real-radiation matrix elements and are therefore required in numerical
+Monte Carlo phase-space integration. They must retain the dependence on the local
+kinematics of each phase-space point, which can be expressed in terms of Mandelstam
+invariants $s_{ij}$. This allows the subtraction term to reproduce the singular
+behaviour of the real-emission matrix element point by point in the unresolved limits.
+For loop-level antennae, the term \textit{unintegrated} refers here to the unresolved
+phase space: the loop-momentum integration is first performed analytically, leaving an
+antenna function that depends on the external kinematic invariants and can be evaluated
+locally within the phase-space integration. The subsequent analytic integration over the
+unresolved phase space then produces the corresponding integrated antenna function,
+whose explicit infrared poles enter the cancellation against virtual contributions.
 
 From Eq.~\ref{eq:antPhaseSpaceFact}, we have seen that through phase-space 
 factorisation, the antennae are integrated over the antenna phase space $\Phi_{X}$.
@@ -940,14 +958,14 @@ used to describe this integration setup is,
 \begin{equation}
     \mathcal X_n^l\sim\int\left(\prod_{r=1}^l d^d\ell_r\right)d\Phi_{X}\,\frac{N_s(\ell_r,p_a)}{\prod_{j=1}^N D_j^{a_j}(\ell_r,p_a)},\quad d=4-2\epsilon
 \end{equation}
-where $\ell_r$ denote the loop momenta, and the set $p_a$ 
-consists of a fixed mapped hard-radiator momenta $\tilde p_\text{hard}$
-and the unresolved antenna momenta $p_\text{unresolved}$, the latter of which 
-are integrated through $\Phi_X$. $N_s$
-is a numerator built from scalar products, $D_j$ are propagator or invariant 
-denominators and $a_j$ are integer powers. An algebraic expansion of the integrand 
-of a single amplitude can generate multiple integrals with the same kinematic 
-structure but different numerator and denominator powers. 
+where $\ell_r$ denote the loop momenta, and the set $p_a$
+consists of hard-radiator momenta $\tilde p_\text{hard}$
+and the unresolved antenna momenta $p_\text{unresolved}$, which
+are integrated over $\Phi_X$. $N_s$
+is a numerator built from scalar products, $D_j$ are propagator or Mandelstam
+invariants $s_{ij}$'s and $a_j$ are integer powers. An algebraic expansion of the integrand
+of an antenna function can generate multiple integrals with the same kinematic
+structure but different numerator and denominator powers.
 These 
 integrals may then be organised into integral families, which fix the denominators 
 and integration variables, and may then be systematically reduced. These families 
@@ -960,18 +978,19 @@ with,
     I(\vec a) = \int\left[\prod_{r=1}^ld^d\ell_r\right]d\Phi_X\,\frac1{D_1^{a_1}...D_N^{a_N}},\quad \vec a = (a_1,...,a_N).
 \end{equation}
 
-To reduce these families' terms, denoted as $I$ here, is to write them in terms of a 
-finite basis as,
+The integrals within each family are not independent. Through integral reduction, they
+can be expressed in terms of a finite and substantially smaller set of master integrals,
 \begin{equation}
     I(\vec a) = \sum_{k=1}^{N_\text{MI}}c_k(\vec a, \epsilon, \{s_{ij}\})M_k
 \end{equation}
-where $M_k$ are the master integrals (MI). In essence, it takes the problem of integrating 
-those many family terms $I$ and separates into two parts. 
-In $I$, positive $a_j$ indices denote propagator powers while non-positive indices 
-account for absent denominators or irreducible scalar products in the numerator.
-The reduction separates the calculation into determining the family-specific 
-coefficients $c_k$ and evaluating the master integrals $M_k$, so that every required 
-family member is expressed through a substantially smaller basis.
+where $M_k$ are the master integrals and $c_k$ are coefficients that depend on the
+integral indices, the dimensional regulator $\epsilon$, and the relevant kinematic
+invariants. The original integration problem is therefore separated into two tasks:
+determining the reduction coefficients $c_k$ and evaluating the much smaller set of
+master integrals $M_k$. Once these are known, every required integral in the family can
+be reconstructed from the same master-integral basis. In $\vec a$, positive $a_j$
+indices denote propagator powers, while non-positive indices account for absent
+denominators or irreducible scalar products in the numerator.
 
 As stated previously, MC integrators require the unintegrated antenna functions in terms
 of the Mandelstam invariants $s_{ij}$, since they must evaluate the subtractions at 
@@ -1265,7 +1284,7 @@ antenna expression schematically as,
     \mathcal X_n^l\sim \int\left[\prod_{r=1}^ld^d\ell_r\right]\left[\prod_u d^dp_u\right]\frac{N_s\!\left(\ell_r,p_u;\tilde p_\text{hard}\right)}{\prod_\alpha D_{v,\alpha}^{a_\alpha}\prod_\beta D_{c,\beta}^{a_\beta}}
 \end{equation}
 where $D_{v,\alpha}$ are ordinary virtual propagators, $D_{c,\beta}$ are cut propagators,
-$\tilde p_\text{hard}$ remains fixed as the hard-radiator combined momenta and 
+$\tilde p_\text{hard}$ is the hard-radiator combined momenta and
 $p_u$ are integrated unresolved momenta.
 
 After rewriting the integral in this way, the total derivative introduced in the 
@@ -1459,134 +1478,17 @@ and often is, negative, resulting in an expansion similar to,
 \begin{equation}
     M_k=\frac{m_{k,-2}}{\epsilon^2}+\frac{m_{k,-1}}{\epsilon}+m_{k,0}+\mathcal O(\epsilon).
 \end{equation}
-The required expansion depth is determined by the reduction coefficient. If 
-$c_k\sim\epsilon^{-p}$, the $M_k$ must be expanded through to $\epsilon^{p}$ to obtain 
+The required expansion depth is determined by the reduction coefficient. If
+$c_k\sim\epsilon^{-p}$, the $M_k$ must be expanded through to $\epsilon^{p}$ to obtain
 the finite contribution to $c_kM_k$.
 
-\section{The Massive Extension}
-
-Up until now every part of the theory has been explained generally, but with a clear 
-preference for the massless regime. That is because the vast majority of the present 
-work's ensuing chapters will focus on that regime. But a still significant part of 
-it will explore an extension of the discussed methods into the massive regime. 
-
-The fundamental change is the massive on-shell condition; the remainder of this 
-section traces its consequences for the antenna construction and integration. 
-Since final-state particles now have mass, their squared momenta are not 
-set to zero, they are set to their squared mass.
-\begin{equation}
-    p_q^2 = p_{\bar q}^2 = 0\,\xrightarrow{\text{Massive Regime}}\, p_q^2=p_{\bar q}^2=m_q^2.
-\end{equation}
-where $p_i$ represents the momentum and $m_i$ represents the mass 
-of particle $i$.
-
-The antenna subtraction formalism and the reduction architecture that was developed 
-and described throughout this chapter are retained, however. What changes is the
-intermediate steps and kinematics: the massive on-shell condition changes the 
-kinematics themselves and the unresolved limits, with soft radiation remaining 
-singular but heavy-quark collinear behaviour becoming quasi-collinear. Massive 
-integration is also different as the massive phase-scale is not equal to its 
-massless counterpart. A new scale of $m_q^2/q^2$ is also introduced and leads to 
-distinct cut-integral families and master integrals \cite{GehrmannDeRidder:2009fz}. 
-
-\subsection{Massive Kinematics and Infrared Structure}
-
-In Subsection~\ref{subsec:infDivergences}, the Mandelstam invariants were introduced
-for the massless regime. The general definition is,
-\begin{equation}
-    \begin{split}
-        s_{ij} = (p_i+p_j)^2 &= p_i^2 + 2p_i\cdot p_j + p_j^2\\
-                             &= m_i^2 + m_j^2 + 2p_i\cdot p_j.
-    \end{split}
-\end{equation}
-Through momentum conservation, which states that $q=\sum_i p_i$, we also have to 
-reconsider the $q^2$ expression, as,
-\begin{equation}
-    q^2 = \sum_i m_i^2 + 2\sum_{i<j}p_i\cdot p_j.
-\end{equation}
-
-Soft radiation remains singular in the massive regime and therefore continues to 
-generate explicit infrared poles after integration. A non-zero mass regulates 
-collinear limits involving a massive parton, whereas collinear 
-limits between two massless partons remain singular. 
-If the two final-state collinear partons are massless, then the limit 
-follows the massless collinear limit from the massless regime. If the two partons 
-are massive, no strict collinear singularity exists. But if one of the collinear 
-partons is massive, consider that particle $i$ of mass $m_i$ and energy $E_i$, and the other 
-is massless, consider that particle $j$, such that $m_j=0$, then,
-\begin{equation}
-    p_i\cdot p_j = E_iE_j(1-\beta_i\cos\theta),\quad \beta_i=\sqrt{1-\frac{m_i^2}{E_i^2}}<1.
-\end{equation}
-As the angle between the partons $\theta$ tends towards zero, the mass prevents the 
-invariant from reaching the collinear singular surface,
-\begin{equation}
-    \lim_{\theta\to 0}p_i\cdot p_j = E_iE_j(1-\beta_i)\neq 0.
-\end{equation}
-
-This regulated collinear region still carries physically important information, 
-particularly in the joint high-energy and small-angle region, 
-$E_i>>m_i$ and $\theta<<1$,
-\begin{equation}
-    p_i\cdot p_j\sim\frac{E_iE_j}{2}\left(\theta^2+\frac{m_i^2}{E_i^2}\right)
-\end{equation}
-and consequently since,
-\begin{equation}
-    \int_0^{\theta_\text{max}^2} d\theta^2\,\frac{1}{p_i\cdot p_j}\sim\int_0^{\theta_\text{max}^2} d\theta^2\,\left(\theta^2+\frac{m_i^2}{E_i^2}\right)^{-1}\sim\ln\!\left(\frac{E_i^2}{m_i^2}\right)
-\end{equation}
-the massive-massless quasi-collinear region replaces the strict collinear pole by 
-a mass logarithm. The
-quasi-collinear limit, then, is the limit in which both the mass $m_i$ and the opening angle 
-$\theta$ become small together. It is through this limit that the massive antennae 
-recover the massless splitting behaviour, as $m_i\to 0$ \cite{GehrmannDeRidder:2009fz}.
-
-Mass does not regulate UV divergences, as $\ell^2>>m_i^2,p_i^2$. It is noteworthy, 
-however, that in a theory with massive quarks, the quark mass and quark field must 
-be renormalised as,
-\begin{equation}
-    g_{s,0} = \mu^\epsilon Z_g g_s,\quad m_{q,0} = Z_m m_q,\quad \psi_{q,0} = \sqrt{Z_2^q}\psi_q.
-\end{equation}
-
-\subsection{Massive Phase-Space Integration and Reduction Methods}
-
-For final-state particles of momenta $p_i$ and masses $m_i$, the phase-space 
-becomes,
-\begin{equation}
-    d\Phi_n(q;p_1,...,p_n) = (2\pi)^d\delta^{(d)}\!\left(q-\sum_{i=1}^n p_i\right)\prod_{i=1}^n\frac{d^dp_i}{(2\pi)^{d-1}}\delta^+\!\left(p_i^2-m_i^2\right).
-\end{equation}
-At the level of the phase-space measure, the formal change from the massless case, 
-as described in
-Subsubsection~\ref{subsubsec:revUnit}, is,
-\begin{equation}
-    \delta^+(p_i^2)\,\to\,\delta^+(p_i^2-m_i^2)
-\end{equation}
-which physically imposes that $p_i^2 = m_i^2$ and $p_i^0>0$.
-
-Phase-space factorisation still holds for the massive regime, but the momentum mapping 
-must preserve the relevant mass-shell conditions. So,
-\begin{equation}
-    d\Phi_{m+r}(\{p\};q) = d\Phi_m(\{\tilde p\};q)d\Phi_X.
-\end{equation}
-For a final-final antenna with hard radiator $i$, $k$ and unresolved particles 
-between them, this is schematically,
-\begin{equation}
-    d\Phi_{m+r} = d\Phi_m(...,\tilde p_I, \tilde p_K, ...; q)d\Phi_{X_{ijk}}
-\end{equation}
-while $\tilde p_I^2 = m_i^2$, $\tilde p_K^2 = m_k^2$ and momentum conservation is 
-satisfied,
-\begin{equation}
-    \tilde p_I + \tilde p_K = p_i + \left(\sum_{\text{unresolved }j}p_j\right) + p_k.
-\end{equation}
-
-Antenna integration is computed in the same manner as in the massless regime,
-\begin{equation}
-    \mathcal X_n^l\sim\int d\Phi_X\,\left(\prod_{r=1}^l d^d\ell_r\right)X_n^l(\{p\},\{\ell\})\sim\left(q^2\right)^{\lambda+\kappa\epsilon}f\!\left(\left\{\frac{m^2}{q^2}\right\},\epsilon\right).
-\end{equation}
-
-PaVe and IBP reduction remain applicable in the massive regime, following the same 
-principles introduced for the massless case.
-For IBP reduction, however, the massive case is significantly harder analytically:
-the phase-space in non-trivial and has mass-dependent thresholds; the master 
-integrals are generally multi-scale, and can involve 
-logarithms, polylogarithms and more complicated transcendental functions;
-and lastly, boundary conditions are less direct, although common choices are 
-the massless limit at $m\to0$ and the threshold limit at $\beta\to0$ \cite{GehrmannDeRidder:2009fz}.
+The reduction techniques introduced in this chapter provide the computational tools
+required for the analytic integration of the antenna functions considered in this
+work. In particular, the IBP identities are systematically solved through the
+Laporta algorithm, reducing the phase-space and loop integrals to a finite set of
+master integrals. As described in Chapter~\ref{ch:packageframework}, this reduction
+procedure is implemented within the \textit{AntCalc} workflow and is subsequently
+applied in Chapter~\ref{ch:workedexample} to obtain the integrated antenna functions
+in dimensional regularisation. The resulting Laurent expansions in $\epsilon$ provide
+the explicit infrared pole structure required for their use in higher-order
+subtraction at NLO and NNLO.

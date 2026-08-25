@@ -1,1 +1,129 @@
 \chapter{Supporting Derivations}\label{ap:supportingDerivations}
+
+\section{The Massive Extension}
+
+Up until now every part of the theory has been explained generally, but with a clear
+preference for the massless regime. That is because the vast majority of the present
+work's ensuing chapters will focus on that regime. But a still significant part of
+it will explore an extension of the discussed methods into the massive regime.
+
+The fundamental change is the massive on-shell condition; the remainder of this
+section traces its consequences for the antenna construction and integration.
+Since final-state particles now have mass, their squared momenta are not
+set to zero, they are set to their squared mass.
+\begin{equation}
+    p_q^2 = p_{\bar q}^2 = 0\,\xrightarrow{\text{Massive Regime}}\, p_q^2=p_{\bar q}^2=m_q^2.
+\end{equation}
+where $p_i$ represents the momentum and $m_i$ represents the mass
+of particle $i$.
+
+The antenna subtraction formalism and the reduction architecture that was developed
+and described throughout Chapter~\ref{ch:physicsbackground} are retained, however. What changes is the
+intermediate steps and kinematics: the massive on-shell condition changes the
+kinematics themselves and the unresolved limits, with soft radiation remaining
+singular but heavy-quark collinear behaviour becoming quasi-collinear. Massive
+integration is also different as the massive phase-scale is not equal to its
+massless counterpart. A new scale of $m_q^2/q^2$ is also introduced and leads to
+distinct cut-integral families and master integrals \cite{GehrmannDeRidder:2009fz}.
+
+\subsection{Massive Kinematics and Infrared Structure}
+
+In Subsection~\ref{subsec:infDivergences}, the Mandelstam invariants were introduced
+for the massless regime. The general definition is,
+\begin{equation}
+    \begin{split}
+        s_{ij} = (p_i+p_j)^2 &= p_i^2 + 2p_i\cdot p_j + p_j^2\\
+                             &= m_i^2 + m_j^2 + 2p_i\cdot p_j.
+    \end{split}
+\end{equation}
+Through momentum conservation, which states that $q=\sum_i p_i$, we also have to
+reconsider the $q^2$ expression, as,
+\begin{equation}
+    q^2 = \sum_i m_i^2 + 2\sum_{i<j}p_i\cdot p_j.
+\end{equation}
+
+Soft radiation remains singular in the massive regime and therefore continues to
+generate explicit infrared poles after integration. A non-zero mass regulates
+collinear limits involving a massive parton, whereas collinear
+limits between two massless partons remain singular.
+If the two final-state collinear partons are massless, then the limit
+follows the massless collinear limit from the massless regime. If the two partons
+are massive, no strict collinear singularity exists. But if one of the collinear
+partons is massive, consider that particle $i$ of mass $m_i$ and energy $E_i$, and the other
+is massless, consider that particle $j$, such that $m_j=0$, then,
+\begin{equation}
+    p_i\cdot p_j = E_iE_j(1-\beta_i\cos\theta),\quad \beta_i=\sqrt{1-\frac{m_i^2}{E_i^2}}<1.
+\end{equation}
+As the angle between the partons $\theta$ tends towards zero, the mass prevents the
+invariant from reaching the collinear singular surface,
+\begin{equation}
+    \lim_{\theta\to 0}p_i\cdot p_j = E_iE_j(1-\beta_i)\neq 0.
+\end{equation}
+
+This regulated collinear region still carries physically important information,
+particularly in the joint high-energy and small-angle region,
+$E_i>>m_i$ and $\theta<<1$,
+\begin{equation}
+    p_i\cdot p_j\sim\frac{E_iE_j}{2}\left(\theta^2+\frac{m_i^2}{E_i^2}\right)
+\end{equation}
+and consequently since,
+\begin{equation}
+    \int_0^{\theta_\text{max}^2} d\theta^2\,\frac{1}{p_i\cdot p_j}\sim\int_0^{\theta_\text{max}^2} d\theta^2\,\left(\theta^2+\frac{m_i^2}{E_i^2}\right)^{-1}\sim\ln\!\left(\frac{E_i^2}{m_i^2}\right)
+\end{equation}
+the massive-massless quasi-collinear region replaces the strict collinear pole by
+a mass logarithm. The
+quasi-collinear limit, then, is the limit in which both the mass $m_i$ and the opening angle
+$\theta$ become small together. It is through this limit that the massive antennae
+recover the massless splitting behaviour, as $m_i\to 0$ \cite{GehrmannDeRidder:2009fz}.
+
+Mass does not regulate UV divergences, as $\ell^2>>m_i^2,p_i^2$. It is noteworthy,
+however, that in a theory with massive quarks, the quark mass and quark field must
+be renormalised as,
+\begin{equation}
+    g_{s,0} = \mu^\epsilon Z_g g_s,\quad m_{q,0} = Z_m m_q,\quad \psi_{q,0} = \sqrt{Z_2^q}\psi_q.
+\end{equation}
+
+\subsection{Massive Phase-Space Integration and Reduction Methods}
+
+For final-state particles of momenta $p_i$ and masses $m_i$, the phase-space
+becomes,
+\begin{equation}
+    d\Phi_n(q;p_1,...,p_n) = (2\pi)^d\delta^{(d)}\!\left(q-\sum_{i=1}^n p_i\right)\prod_{i=1}^n\frac{d^dp_i}{(2\pi)^{d-1}}\delta^+\!\left(p_i^2-m_i^2\right).
+\end{equation}
+At the level of the phase-space measure, the formal change from the massless case,
+as described in
+Subsubsection~\ref{subsubsec:revUnit}, is,
+\begin{equation}
+    \delta^+(p_i^2)\,\to\,\delta^+(p_i^2-m_i^2)
+\end{equation}
+which physically imposes that $p_i^2 = m_i^2$ and $p_i^0>0$.
+
+Phase-space factorisation still holds for the massive regime, but the momentum mapping
+must preserve the relevant mass-shell conditions. So,
+\begin{equation}
+    d\Phi_{m+r}(\{p\};q) = d\Phi_m(\{\tilde p\};q)d\Phi_X.
+\end{equation}
+For a final-final antenna with hard radiator $i$, $k$ and unresolved particles
+between them, this is schematically,
+\begin{equation}
+    d\Phi_{m+r} = d\Phi_m(...,\tilde p_I, \tilde p_K, ...; q)d\Phi_{X_{ijk}}
+\end{equation}
+while $\tilde p_I^2 = m_i^2$, $\tilde p_K^2 = m_k^2$ and momentum conservation is
+satisfied,
+\begin{equation}
+    \tilde p_I + \tilde p_K = p_i + \left(\sum_{\text{unresolved }j}p_j\right) + p_k.
+\end{equation}
+
+Antenna integration is computed in the same manner as in the massless regime,
+\begin{equation}
+    \mathcal X_n^l\sim\int d\Phi_X\,\left(\prod_{r=1}^l d^d\ell_r\right)X_n^l(\{p\},\{\ell\})\sim\left(q^2\right)^{\lambda+\kappa\epsilon}f\!\left(\left\{\frac{m^2}{q^2}\right\},\epsilon\right).
+\end{equation}
+
+PaVe and IBP reduction remain applicable in the massive regime, following the same
+principles introduced for the massless case.
+For IBP reduction, however, the massive case is significantly harder analytically:
+the phase-space in non-trivial and has mass-dependent thresholds; the master
+integrals are generally multi-scale, and can involve
+logarithms, polylogarithms and more complicated transcendental functions;
+and lastly, boundary conditions are less direct, although common choices are
+the massless limit at $m\to0$ and the threshold limit at $\beta\to0$ \cite{GehrmannDeRidder:2009fz}.
