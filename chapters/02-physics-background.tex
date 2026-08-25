@@ -666,10 +666,11 @@ kinematic. By taking all components, we are able to construct a process-wide
 kinematics- and colour-conscious object. These are the $\mathcal T$-objects. 
 These objects are defined, before integration and hence notated by $T$, 
 conceptually as
-\footnote{The $T$-objects are commonly notated by $T^2$, $T^4$ and $T^6$, depending 
-on their perturbative order: LO, NLO and NNLO, respectively. That is the same as 
-using twice our previous $k$-index, introduced in \ref{subsec:antennaFuncs}, plus one. This 
-is the notation used in \cite{Gehrmann-DeRidder:2004ttg} and the one that will be 
+\footnote{The $T$-objects are commonly notated by $T^2$, $T^4$ and $T^6$, depending
+on their perturbative order: LO, NLO and NNLO, respectively. That is the same as
+our previous $k$-index, introduced in \ref{subsec:antennaFuncs}, incremented by one
+and then doubled, $2(k+1)$. This
+is the notation used in \cite{Gehrmann-DeRidder:2004ttg} and the one that will be
 used for the rest of the present work.}
 ,
 \begin{equation}
@@ -805,8 +806,8 @@ Hence, finally, the integrated antenna $\mathcal X_n^l$ is given generally\footn
 \label{footnote:integratedAntenna}
 This definition is general for antenna functions that are already cleanly and 
 completely given in terms of Mandelstam invariants and $\epsilon$. This is only 
-automatically true for antenna where $l=0$. When $l\geq0$, which happens for all 
-loop antennae by definition, a prior loop-momentum integration step is necessary. 
+automatically true for antenna where $l=0$. When $l\geq1$, which happens for all
+loop antennae by definition, a prior loop-momentum integration step is necessary.
 This step is explored further in Section~\ref{sec:integration}.}
 as, taking 
 the aforementioned overall $\mathcal N$ normalisation factor \cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276},
@@ -904,7 +905,7 @@ and $d\sigma^T$ coincide identically with $d\sigma^R$, $d\sigma^{RR}$, and $d\si
 at every point in the phase space, for either perturbative order, not merely in the 
 singular unresolved limit, as the general subtraction formalism only guarantees
 \cite{Catani:1996vz}.
-an example, $\sigma^\text{NNLO}$, from Eq.\ref{eq:nnloCross}, simplifies to,
+As an example, $\sigma^\text{NNLO}$, from Eq.~\ref{eq:nnloCross}, simplifies to,
 \begin{equation}
     \sigma^\text{NNLO}=\int_m\left(d\sigma^{VV}+\int_1d\sigma^T+\int_2 d\sigma^S\right)
 \end{equation}
@@ -931,8 +932,8 @@ respective antenna functions, after the normalisation procedures described throu
 this text, as follows \cite{Gehrmann-DeRidder:2005btv},
 \begin{equation*}
     \begin{split}
-        &\sigma^\text{NNLO} = \left(N-\frac1N\right)\Bigg[N\left(\mathcal A_2^1\mathcal A_3^0+\mathcal A_3^1+\mathcal A_4^0+\mathcal A_2^2\right)-\frac1N\left(\mathcal A_2^1\mathcal A_3^0 + \tilde{\mathcal A_3^1}+\tilde{\mathcal A_4^0}+\mathcal C_4^0-\tilde{\mathcal A_2^2}\right)\\
-        &\hspace{4.8cm} +N_f\left(\mathcal B_4^0+\hat{\mathcal A_3^1}+\hat{\mathcal A_2^2}\right)+\left(N-\frac1N\right)\breve{\mathcal A_2^2}\Bigg]
+        &\sigma^\text{NNLO} = \left(N-\frac1N\right)\Bigg[N\left(\mathcal A_2^1\mathcal A_3^0+\mathcal A_3^1+\mathcal A_4^0+\mathcal A_2^2\right)-\frac1N\left(\mathcal A_2^1\mathcal A_3^0 + \tilde{\mathcal A}_3^1+\tilde{\mathcal A}_4^0+\mathcal C_4^0-\tilde{\mathcal A}_2^2\right)\\
+        &\hspace{4.8cm} +N_f\left(\mathcal B_4^0+\hat{\mathcal A}_3^1+\hat{\mathcal A}_2^2\right)+\left(N-\frac1N\right)\breve{\mathcal A}_2^2\Bigg]
     \end{split}
 \end{equation*}
 \begin{equation}
@@ -1116,10 +1117,8 @@ with $p_j$ gives,
 \begin{equation}
     p_j\cdot I_N = \sum_i(p_j\cdot p_i)C_i = \frac12\sum_iG_{ji}C_i.
 \end{equation}
-If we now define $R_j\equiv p_j\cdot I_N$, we are then able to compute the $C_i$ 
-coefficients in the Lorentz decomposition by taking\footnote{The inversion in 
-Eq.\ref{eq:gramInversion} assumes a non-singular Gram matrix. Exceptional kinematics 
-may require a limiting procedure or an alternative reduction method.},
+If we now define $R_j\equiv p_j\cdot I_N$, we are then able to compute the $C_i$
+coefficients in the Lorentz decomposition by taking,
 \begin{equation}\label{eq:gramInversion}
     G_{ji}C_i = 2R_j\Rightarrow C_i = 2\left(G^{-1}\right)_{ij}R_j.
 \end{equation}

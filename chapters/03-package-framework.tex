@@ -26,7 +26,7 @@ current version compute all massless quark-antiquark final-final antenna functio
 NNLO, have been validated against the literature. Experimental routes are 
 unfinished or unchecked and should not be considered validated.
 
-\textit{AntCalc}'s inner working structure can be described using the diagram in Figure~\ref{fig:antcalc-architecture}.
+\textit{AntCalc}'s inner working structure can be described using the diagram in Fig.~\ref{fig:antcalc-architecture}.
 
 \input{figures/antcalc-architecture}
 
@@ -202,7 +202,7 @@ normalised interference. Depending on the route, the context might also retain p
 full colour components, reference square components or loop-specific amplitudes. 
 
 A diagram in the spirit of the one in Fig.~\ref{fig:antcalc-architecture}, but only relative to 
-the Build stage is shown below, in Fig.~\ref{fig:antcalc-architecture-buildstage}.
+the build stage is shown below, in Fig.~\ref{fig:antcalc-architecture-buildstage}.
 
 \input{figures/antcalc-architecture-buildstage}
 
@@ -214,7 +214,7 @@ the profile and the interference type (\texttt{BornInterference} in this case), 
 process's amplitude. It uses the profile's \texttt{Production} field to select the physical construction path,
 and the \texttt{Extraction} and \texttt{ColourNorm} fields to select the extraction mode and 
 the colour normalisation used for each antenna. The colour normalisation used by default 
-has been described previously in Eq.\ref{eq:colourNorm}, as $c_N\equiv N-\frac1N$. 
+has been described previously in Eq.~\ref{eq:colourNorm}, as $c_N\equiv N-\frac1N$.
 The \texttt{Extraction} mode 
 also introduces the Born normalisation as described in Eq.~\ref{eq:bornNorm} as 
 $B_0\equiv|\mathcal M_2^0|^2$.
@@ -572,7 +572,7 @@ route process is shown schematically in Fig.~\ref{fig:ibp-reduction}.
 
 As discussed in Section~\ref{sec:dimreg}, before integration, the antenna functions must be 
 normalised using the $\mathcal N(\epsilon, k)$ factor, introduced in Eq.~\ref{eq:normN}. 
-Since in Section~\ref{sec:buildStage}, where we discussed the Build stage, the unintegrated 
+Since in Section~\ref{sec:buildStage}, where we discussed the build stage, the unintegrated
 antenna functions were normalised using the loop-order factor, $\Lambda_l$, in this stage, 
 the rest of the normalisations and conventions must be applied. That begins with the 
 application of what remains from the $G_k$ factor and then $C(\epsilon, k)$. Finally, we 
@@ -586,7 +586,7 @@ This is, schematically,
 \end{equation}
 Note, however, that not all routes require that the rest of the $G_k$ be applied, based on 
 their $n$. There are also routes that did not require the application of the $\Lambda_l$
-factor in the Build stage. The following Table~\ref{tab:GkNorm} shows how each antenna or 
+factor in the build stage. The following Table~\ref{tab:GkNorm} shows how each antenna or
 antenna set interacts with $G_k$.
 
 \begin{table}[h!]
@@ -625,7 +625,7 @@ There might be need to expand to a lesser or to a greater term, however. That ca
     \end{gathered}
 \end{equation}
 where \texttt{A30=BuildAntenna[A,3,0,IntegrableForm -> True]}, is the $A_3^0$ set's \\
-\texttt{AntennaObject}. Though the example in Eq.\ref{eq:expansionOrderDiag} above shows the 
+\texttt{AntennaObject}. Though the example in Eq.~\ref{eq:expansionOrderDiag} above shows the
 truncation of a series whose default expansion is deeper than the one resulting from the 
 option, using \texttt{ExpansionOrder} for a higher-than-default order is also possible 
 and supported. That call, however, is not validated against the literature, as the MI 
@@ -633,7 +633,7 @@ and supported. That call, however, is not validated against the literature, as t
 
 \subsection{Component Extraction and Integrated $\mathcal T$-Objects}
 
-The last part of the Build stage, before it generates the output, is component extraction.
+The last part of the build stage, before it generates the output, is component extraction.
 In that part,  
 the full result of the calculations the workflow went over is separated into colour-dependent
 terms and the coefficients relative to each of those terms is labelled as one of the components
@@ -641,18 +641,18 @@ terms and the coefficients relative to each of those terms is labelled as one of
 IBP reduction, which is independent of colour. That makes it sensible to completely separate 
 the components before reducing. This way, not only does the process become much cheaper if only 
 one component is selected, but the reductions are also made cleaner, since different components 
-may require different bases and MI. The following diagram in Fig.\ref{fig:component-extraction},
+may require different bases and MI. The following diagram in Fig.~\ref{fig:component-extraction},
 describes schematically this process, using the $A_3^1$ antenna set as an example.
 
 \input{figures/component-extraction.tex}
 
 It is also important to note here that the result of the $A_3^1$ set's 
-integration is given, much like it was for the Build stage in \ref{eq:a31Norm}, as,
+integration is given, much like it was for the build stage in \ref{eq:a31Norm}, as,
 \begin{equation}\label{eq:a31WithTs}
     \begin{split}
         &\mathcal A_3^1 = \mathcal T_\text{Lead} - \mathcal A_2^1\mathcal A_3^0\\
-        &\tilde{\mathcal A_3^1} = -\left(\mathcal T_\text{Sublead} + \mathcal A_2^1\mathcal A_3^0\right)\\
-        &\hat{\mathcal A_3^1} = \mathcal T_\text{QL}.
+        &\tilde{\mathcal A}_3^1 = -\left(\mathcal T_\text{Sublead} + \mathcal A_2^1\mathcal A_3^0\right)\\
+        &\hat{\mathcal A}_3^1 = \mathcal T_\text{QL}.
     \end{split}
 \end{equation}
 These resulting $\mathcal A_3^1$ and $\tilde{\mathcal A}_3^1$ are already
@@ -759,7 +759,7 @@ structure.
    $\mathcal T_{q\bar qg}^6$ & $\mathcal A_2^1$, $\mathcal A_3^0$, $\mathcal A_3^1$, $\tilde {\mathcal A}_3^1$, $\hat {\mathcal A}_3^1$ & \texttt{TObject[6,"qqbarg"]} \\ \hline
    $\mathcal T_{q\bar qq^\prime\bar q^\prime}^6$ & $\mathcal B_4^0$ & \texttt{TObject[6,"qqbarqprimeqprimebar"]} \\ \hline
    $\mathcal T_{q\bar qq\bar q}^6$ & $\mathcal B_4^0$, $\mathcal C_4^0$ & \texttt{TObject[6,"qqbarqqbar"]} \\ \hline
-   $\mathcal T_{q\bar qgg}^6$ & $\mathcal A_4^0$, $\tilde{\mathcal A_4^0}$ & \texttt{TObject[6,"qqbargg"]} \\ \hline
+   $\mathcal T_{q\bar qgg}^6$ & $\mathcal A_4^0$, $\tilde{\mathcal A}_4^0$ & \texttt{TObject[6,"qqbargg"]} \\ \hline
   \end{tabular}
    \caption{Overview of the TObject routes.}
 \label{tab:TObject}

@@ -9,8 +9,8 @@ integral into a linear combination of smaller and often less complex master inte
 as discussed in Subsection~\ref{subsec:MIs}\footnote{The PaVe MI are most commonly 
 referred to as \textit{scalar functions}, instead of \textit{master integrals}. 
 They are, in effect, still master integrals, however, and the moniker will be kept 
-throughout the rest of the present text \cite{TM_JoanaReis}.}\cite{TM_JoanaReis}. 
-The MI required by each route depend on 
+throughout the rest of the present text \cite{TM_JoanaReis}.}.
+The MI required by each route depend on
 the antenna being integrated, though some antennae share the same MI, 
 especially those of the same type and in the same perturbative order, like all 
 tree-level antenna functions at NNLO \cite{GehrmannDeRidder0311276}. \textit{AntCalc} also applies integral reduction 
@@ -150,7 +150,7 @@ Using the shorthands, the differential phase-spaces are defined in $d$ dimension
          \end{split}
     \end{split}
 \end{equation}
-Here $\Delta_4$ is the Gram determinant given by the Källen function $\lambda$
+Here $\Delta_4$ is the Gram determinant given by the Källén function $\lambda$
 \cite{GehrmannDeRidder0311276,Anastasiou:2002yz},
 \begin{equation}
     \Delta_4=\lambda(s_{12}s_{34}, s_{13}s_{24}, s_{14}s_{23}),\quad \lambda(x, y, z) = x^2+y^2+z^2-2(xy+xz+yz).
@@ -561,7 +561,7 @@ and how AntCalc handles those same calculations on its end.
 The $A_3^0$ is the tree-level final-final quark-antiquark-gluon antenna. It represents the normalised 
 $\gamma^*(p)\to q(k_1)g(k_3)\bar q(k_2)$ process. This process, in the current model,
 is able to produce two distinct topologies which differ by what quark line the gluon is emitted from. Those
-diagrams are shown below in Figure~\ref{fig:feynDiagsA30}.
+diagrams are shown below in Fig.~\ref{fig:feynDiagsA30}.
 
 \begin{figure}[h]
     \centering
@@ -615,7 +615,7 @@ The amplitude is given as follows directly from the diagrams,
 
 \begin{equation}\label{eq:M30amplitude}
     \begin{split}
-        \mathcal M_3^0 = e_qg_s(T^{a_3})_{i_1i_2}\left[\bar u(k_1) /\!\!\!\varepsilon^*(k_3)\frac{/\!\!\!k_1+/\!\!\!k_3}{s_{13}}/\!\!\!\varepsilon(p)\varv(k_2)-\bar u(k_1) /\!\!\!\varepsilon^*(p)\frac{/\!\!\!k_2+/\!\!\!k_3}{s_{23}}/\!\!\!\varepsilon(k_3)\varv(k_2)\right]
+        \mathcal M_3^0 = e_qg_s(T^{a_3})_{i_1i_2}\left[\bar u(k_1) \slashed{\varepsilon}^*(k_3)\frac{\slashed{k_1}+\slashed{k_3}}{s_{13}}\slashed{\varepsilon}(p)\varv(k_2)-\bar u(k_1) \slashed{\varepsilon}^*(p)\frac{\slashed{k_2}+\slashed{k_3}}{s_{23}}\slashed{\varepsilon}(k_3)\varv(k_2)\right]
     \end{split}
 \end{equation}
 where $(T^{a_3})_{i_1i_2}$ represents the colour matrix for the quark and antiquark in positions 1 and 2 and 
@@ -627,8 +627,8 @@ The amplitude is now squared as follows,
 \begin{equation}
     \begin{split}
         |\mathcal M_3^0|^2 &= e_q^2g_s^2(T^{a_3})_{i_1i_2}(T^{a_3})_{i_1i_2}\left(M_AM_A^\dagger+M_BM_B^\dagger-M_AM_B^\dagger-M_BM_A^\dagger\right)\\
-                           &\text{with } M_A = \bar u(k_1) /\!\!\!\varepsilon^*(k_3)\frac{/\!\!\!k_1+/\!\!\!k_3}{s_{13}}/\!\!\!\varepsilon(p)\varv(k_2)= \bar u(k_1) \Gamma_A\varv(k_2),\\
-                           &\,\,\,\,\,\,\,\,\,\,\,\, M_B = \bar u(k_1) /\!\!\!\varepsilon^*(p)\frac{/\!\!\!k_2+/\!\!\!k_3}{s_{23}}/\!\!\!\varepsilon(k_3)\varv(k_2) = \bar u(k_1) \Gamma_B\varv(k_2).
+                           &\text{with } M_A = \bar u(k_1) \slashed{\varepsilon}^*(k_3)\frac{\slashed{k_1}+\slashed{k_3}}{s_{13}}\slashed{\varepsilon}(p)\varv(k_2)= \bar u(k_1) \Gamma_A\varv(k_2),\\
+                           &\,\,\,\,\,\,\,\,\,\,\,\, M_B = \bar u(k_1) \slashed{\varepsilon}^*(p)\frac{\slashed{k_2}+\slashed{k_3}}{s_{23}}\slashed{\varepsilon}(k_3)\varv(k_2) = \bar u(k_1) \Gamma_B\varv(k_2).
     \end{split}
 \end{equation}
 which in total becomes
@@ -645,10 +645,10 @@ Each of the $\Gamma$ terms becomes, using Dirac Algebra,
 \begin{equation}
     \begin{split}
         \sum_{s_1,s_2,\lambda_g,\lambda_\gamma} \bar u(k_1,s_1) u(k_1,s_1)&\left(\Gamma_A \bar\Gamma_A\right)v(k_2,s_2)\bar v(k_2,s_2) = \\
-                                                                        &=\frac1{s_{13}^2}\sum_{\lambda_g,\lambda_\gamma}\varepsilon_\mu^*\varepsilon_\nu\varepsilon_\rho\varepsilon_\sigma^*\operatorname{Tr}\Big(/\!\!\!k_1\gamma^\mu(/\!\!\!k_1+/\!\!\!k_3)\gamma^\rho/\!\!\!k_2\gamma^\sigma(/\!\!\!k_1+/\!\!\!k_3)\gamma^\nu\Big)\\
-                                                                        &=\frac1{s_{13}^2}g_{\mu\nu}g_{\rho\sigma}\operatorname{Tr}\Big(/\!\!\!k_1\gamma^\mu(/\!\!\!k_1+/\!\!\!k_3)\gamma^\rho/\!\!\!k_2\gamma^\sigma(/\!\!\!k_1+/\!\!\!k_3)\gamma^\nu\Big)\\
-                                                                        &=\frac1{s_{13}^2}\operatorname{Tr}\Big(/\!\!\!k_1\gamma^\mu(/\!\!\!k_1+/\!\!\!k_3)\gamma^\rho/\!\!\!k_2\gamma_\rho(/\!\!\!k_1+/\!\!\!k_3)\gamma_\mu\Big)\\
-                                                                        &=\left(\frac{2-d}{s_{13}}\right)^2\operatorname{Tr}(/\!\!\!k_1/\!\!\!P/\!\!\!k_2/\!\!\!P),\,\,\,/\!\!\!P = (/\!\!\!k_1+/\!\!\!k_3)\\
+                                                                        &=\frac1{s_{13}^2}\sum_{\lambda_g,\lambda_\gamma}\varepsilon_\mu^*\varepsilon_\nu\varepsilon_\rho\varepsilon_\sigma^*\operatorname{Tr}\Big(\slashed{k_1}\gamma^\mu(\slashed{k_1}+\slashed{k_3})\gamma^\rho\slashed{k_2}\gamma^\sigma(\slashed{k_1}+\slashed{k_3})\gamma^\nu\Big)\\
+                                                                        &=\frac1{s_{13}^2}g_{\mu\nu}g_{\rho\sigma}\operatorname{Tr}\Big(\slashed{k_1}\gamma^\mu(\slashed{k_1}+\slashed{k_3})\gamma^\rho\slashed{k_2}\gamma^\sigma(\slashed{k_1}+\slashed{k_3})\gamma^\nu\Big)\\
+                                                                        &=\frac1{s_{13}^2}\operatorname{Tr}\Big(\slashed{k_1}\gamma^\mu(\slashed{k_1}+\slashed{k_3})\gamma^\rho\slashed{k_2}\gamma_\rho(\slashed{k_1}+\slashed{k_3})\gamma_\mu\Big)\\
+                                                                        &=\left(\frac{2-d}{s_{13}}\right)^2\operatorname{Tr}(\slashed{k_1}\slashed{P}\slashed{k_2}\slashed{P}),\,\,\,\slashed{P} = (\slashed{k_1}+\slashed{k_3})\\
                                                                         &=4\left(\frac{2-d}{s_{13}}\right)^2\Big(2(k_1\cdot P)(k_2\cdot P)-(k_1\cdot k_2)P^2\Big)\\
                                                                         &=2(d-2)^2\frac{s_{23}}{s_{13}}
     \end{split}
@@ -694,7 +694,7 @@ The $A_3^0$ antenna also requires the $\mathcal M_2^0$ amplitude. This amplitude
 $\gamma^*\to q\bar q$ Born process. The amplitude is
 
 \begin{equation}
-    \mathcal M_2^0 = e_q\delta_{i_1i_2}\bar u(k_1)/\!\!\!\varepsilon(p)\varv(k_2).
+    \mathcal M_2^0 = e_q\delta_{i_1i_2}\bar u(k_1)\slashed{\varepsilon}(p)\varv(k_2).
 \end{equation}
 
 Applying the same spin, polarisation and colour sums as above, and considering that, for a two
@@ -859,7 +859,7 @@ First, by running the function naively we get the final result in Eq.~\ref{eq:A3
 
 We can also use the \texttt{ReturnRecord} option to access all intermediate steps, and check that 
 \textit{AntCalc} goes through the same steps as the by-hand derivation in
-Sec.~\ref{sec:matDerivation}. We can see that with,
+Section~\ref{sec:matDerivation}. We can see that with,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
     \texttt{In[3]:= \\BuildAntenna[A,3,0,ReturnRecord->True]["IntermediateSteps"]}\\
@@ -868,9 +868,9 @@ Sec.~\ref{sec:matDerivation}. We can see that with,
     \texttt{Amplitude:}
     \begin{equation*}
         T^{a_3}_{i_1 i_2}\left[
-        \frac{\bar{u}(k_1)\,/\!\!\!\varepsilon^*(k_3)\,(/\!\!\!k_1+/\!\!\!k_3)\,/\!\!\!\varepsilon(p)\,v(k_2)}{(k_1+k_3)^2}
+        \frac{\bar{u}(k_1)\,\slashed{\varepsilon}^*(k_3)\,(\slashed{k_1}+\slashed{k_3})\,\slashed{\varepsilon}(p)\,v(k_2)}{(k_1+k_3)^2}
         -
-        \frac{\bar{u}(k_1)\,/\!\!\!\varepsilon(p)\,(/\!\!\!k_2+/\!\!\!k_3)\,/\!\!\!\varepsilon^*(k_3)\,v(k_2)}{(k_2+k_3)^2}
+        \frac{\bar{u}(k_1)\,\slashed{\varepsilon}(p)\,(\slashed{k_2}+\slashed{k_3})\,\slashed{\varepsilon}^*(k_3)\,v(k_2)}{(k_2+k_3)^2}
         \right]
     \end{equation*}
 
