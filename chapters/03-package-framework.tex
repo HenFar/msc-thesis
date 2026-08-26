@@ -1,17 +1,17 @@
 \chapter{Package Framework}\label{ch:packageframework}
 
-\textit{AntCalc} is an active research \textit{Wolfram Language} package developed to 
-offer direct access to QCD antenna functions, both before and after integration, 
-by automating the symbolic steps required to build and integrate the 
-supported antenna functions. The results presented in this thesis were produced with 
-\textit{AntCalc}, version 0.3.0$\beta$2, corresponding to commit 
-\texttt{4ceb991}. The source code is available at \url{https://github.com/HenFar/AntCalc/tree/release/0.3.x}.
+A central contribution of this thesis is the development of
+\textit{AntCalc}\footnote{Source code available at
+\url{https://github.com/HenFar/AntCalc/tree/release/0.3.x}.}, a \textit{Wolfram Language}
+package created from scratch as part of this thesis work to automate the symbolic
+construction and integration of QCD antenna functions. The package provides direct access to
+both unintegrated and integrated antenna functions and implements the computational framework
+described in the previous chapter. The results presented in this thesis were produced with
+\textit{AntCalc}, version 0.3.0$\beta$2, corresponding to commit \texttt{4ceb991}.
 
-To complete its function, \textit{AntCalc} makes use of the \textit{FeynCalc}
-\cite{Feyncalc1,Feyncalc2,Feyncalc3,Feyncalc4}
-environment 
-for symbolic-amplitude work, and \textit{LiteRed2} \cite{Litered} for IBP-backed routes. It uses 
-a profile-based system to enable modularity. 
+\textit{AntCalc} makes use of \textit{FeynCalc} \cite{Feyncalc1,Feyncalc2,Feyncalc3,Feyncalc4}
+for symbolic amplitude manipulation and interfaces with \textit{LiteRed2} \cite{Litered} for
+IBP reduction.
 Its internal architecture is organised as a
 profile-driven route system: route-specific information is centralised in
 profiles, which guide the selection and configuration of the appropriate build,
@@ -22,9 +22,10 @@ are introduced.
 
 The package supports public and experimental routes. The public antenna building and 
 integration routes, which for the
-current version compute all massless quark-antiquark final-final antenna functions up to 
-NNLO, have been validated against the literature. Experimental routes are 
-unfinished or unchecked and should not be considered validated.
+current version compute all massless quark-antiquark final-final antenna functions up to
+NNLO, have been validated against the literature. Experimental routes correspond to
+functionality that is still under development or has not yet been fully validated and
+should therefore not be regarded as part of the validated public implementation.
 
 \textit{AntCalc}'s inner working structure can be described using the diagram in Fig.~\ref{fig:antcalc-architecture}.
 
@@ -37,20 +38,21 @@ FeynCalc environment with the IBP-reduction capabilities of LiteRed2, adapting a
 orchestrating the parts of those systems required for the construction and integration
 of QCD antenna functions. 
 
-The central design objective of the package is to return results in the conventional 
-forms used in antenna calculations. 
-Though it supports a wide 
-variety of options to inspect and configure the backend operations, the default outputs 
-of its two central functions are designed to reflect this objective. 
-For example, for loop antennae, the default \texttt{BuildAntenna[\ldots]} result is given 
-in PaVe-reduced form, as is customary in the literature. The default 
-\texttt{IntegrateAntenna[\ldots]} result is also a Laurent $\epsilon$-series up to $\epsilon^2$ for 
-the NLO-order antennae $\mathcal A_2^1$ and $\mathcal A_3^0$, and up to $\epsilon^0$ for 
-the NNLO-order ones $\mathcal A_4^0$, $\mathcal A_3^1$ and $\mathcal A_2^2$ sets and 
-$\mathcal B_4^0$ and $\mathcal C_4^0$,
-matching the conventional truncation order, 
-though higher order terms are accessible through the use of the 
-aforementioned options.
+The central design objective of the package is to return antenna functions in the
+conventional forms required for higher-order QCD calculations using the antenna
+subtraction method.
+Though it supports a wide
+variety of options to inspect and configure the backend operations, the default outputs
+of its two central functions are designed to reflect this objective.
+For example, the unintegrated one-loop three-parton antennae $X_3^1$ returned by
+\texttt{BuildAntenna[\ldots]} are expressed after Passarino-Veltman reduction, in terms of
+scalar one-loop functions and the external kinematic invariants, following the conventional
+representation used in the literature. By default, \texttt{IntegrateAntenna[\ldots]} returns
+the integrated antennae as Laurent series in $\epsilon$, with the truncation order chosen to
+match the conventions used in the antenna literature. The NLO antennae $\mathcal A_2^1$ and
+$\mathcal A_3^0$ are expanded through $\mathcal O(\epsilon^2)$, while the NNLO antennae
+$\mathcal A_4^0$, $\mathcal A_3^1$, $\mathcal A_2^2$, $\mathcal B_4^0$, and $\mathcal C_4^0$ are
+returned through $\mathcal O(\epsilon^0)$.
 
 Its structure was also designed to be modular and extensible.
 Each of the two central functions (\texttt{BuildAntenna} and \texttt{IntegrateAntenna}) is 
@@ -58,29 +60,40 @@ implemented as an encapsulated public module, which communicates with the rest o
 using the profile system: the route profile selects and configures the appropriate 
 workflows and the route context carries the evolving results and diagnostics between 
 stages.
-Using route profiles and route contexts, as described in Section~\ref{sec:profile}, 
-the addition of further modules is made easier, reducing duplicated logic and 
-direct dependencies. These new modules need not be 
+Using route profiles and route contexts, as described in Section~\ref{sec:profile},
+facilitates the addition of further modules while reducing duplicated logic and
+direct dependencies. These new modules need not be
 compatible with previous implemented functions through function-specific 
 couplings. They need only conform with the profile system, being selected and 
 configured by route profiles, and accepting inputs from and delivering outputs 
 to the route contexts. 
 
-Currently, \textit{AntCalc} is organised into two tiers: public and experimental. It 
-already has all massless quark-antiquark final-final antenna functions up to NNLO 
-implemented as part of the public tier, along with every other object required to 
-compute the massless $R$-ratio up to that perturbative order. These are:
-\begin{itemize}
-    \item $A_2^0$;
-    \item $A_2^1$;
-    \item $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$;
-    \item $A_3^0$;
-    \item $A_3^1$, $\tilde A_3^1$, $\hat A_3^1$;
-    \item $A_4^0$, $\tilde A_4^0$;
-    \item $B_4^0$;
-    \item $C_4^0$.
-\end{itemize}
-The massive $A_3^0$ route is also accessible, but remains experimental.
+Currently, \textit{AntCalc} is organised into two tiers: public and experimental. The
+public tier contains all massless quark-antiquark final-final antenna functions required
+through NNLO (all partons are present in final-state kinematics), including the objects
+needed for the calculation of the massless hadronic $R$-ratio at this order. The antenna
+functions currently implemented are summarised in Table~\ref{tab:antennaTiers}.
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|c|c|c|}
+   \hline
+   \textbf{Perturbative Order} & \textbf{Antenna} & \textbf{Status} \\
+   \hline
+   LO & $A_2^0$ & Public \\ \hline
+   NLO & $A_2^1$, $A_3^0$ & Public \\ \hline
+   NNLO & $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$, $A_3^1$, $\tilde A_3^1$,
+   $\hat A_3^1$, $A_4^0$, $\tilde A_4^0$, $B_4^0$, $C_4^0$ & Public \\ \hline
+   NLO, massive & $A_3^0$ & Experimental \\ \hline
+  \end{tabular}
+  \caption{Overview of the antenna functions currently implemented in \textit{AntCalc}, by
+  perturbative order and tier.}
+\label{tab:antennaTiers}
+\end{table}
+
+In addition to the validated public implementation, a massive $A_3^0$ route is available as
+experimental functionality.
 
 \section{Profile-Driven Architecture}\label{sec:profile}
 
@@ -93,14 +106,15 @@ whose execution may be refined by options. The route key takes the form,
 \begin{equation}
     \{\text{Antenna Type}, \text{Final-State Multiplicity}, \text{Loop Order}\}.
 \end{equation}
-As an example, the route key for  
+As an example, the route key for
 the one-loop three-parton
-\footnote{It is understood that throughout the rest of the present 
-work, unless explicitly mentioned, all antenna functions considered are massless 
-quark-antiquark final-final antennae.} antenna set is $\{\text A,3,1\}$, and represents 
-not only the leading $A_3^1$ antenna, but also its subleading and quark-loop 
-counterparts, and its default public output is the ordered list
-$\{A_3^1, \tilde A_3^1, \hat A_3^1\}$, in this specific order.
+\footnote{It is understood that throughout the rest of the present
+work, unless explicitly mentioned, all antenna functions considered are massless
+quark-antiquark final-final antennae.} antenna set is $\{\text A,3,1\}$. This key
+represents the complete set of colour contributions, comprising the leading-colour
+antenna $A_3^1$, the subleading-colour antenna $\tilde A_3^1$, and the quark-loop
+contribution $\hat A_3^1$. The default public output is therefore the ordered list
+$\{A_3^1, \tilde A_3^1, \hat A_3^1\}$.
 
 The package links this key to the profile it identifies and follows that profile's 
 directions on how the route should be constructed and/or integrated. The data produced 
@@ -111,7 +125,7 @@ while the route executes. The principal build-side profile is
 \texttt{AntennaProfile[key]}, which specifies information such as antenna type, 
 multiplicity and loop order, colour normalisation, extraction rules, components, etc.
 \texttt{AntennaReductionProfile[key]} is separate, but still build-side. It specifies 
-the PaVe-reduction preferences for the appropriate routes. In this case, up to 
+the Passarino-Veltman-reduction preferences for the appropriate routes. In this case, up to
 NNLO, these are the $\{\text A,2,1\}$ and 
 $\{\text A,3,1\}$ loop routes. \texttt{AntennaIntegrationProfile[key]} is the 
 integration-side profile, which specifies its side's backend, IBP basis 
@@ -158,8 +172,8 @@ selecting what particles are not to be considered in the
 Feynman diagram generation step and requesting the removal of external \texttt{SumOver}
 structures. Lastly, \texttt{ReductionProfile} commands the workflow to complete 
 a lookup on the selected route's 
-antenna, $A_2^1$ in this case, and determines whether it requires the PaVe reduction 
-backend, from within its \texttt{AntennaReductionProfile} association. Since it is a 
+antenna, $A_2^1$ in this case, and determines whether it requires the Passarino-Veltman
+reduction backend, from within its \texttt{AntennaReductionProfile} association. Since it is a
 one-loop antenna, it does.
 \texttt{ConventionProfile} selects the convention
 bridge so the public results follow \textit{AntCalc}'s stated normalisation and 
@@ -168,13 +182,17 @@ dimensional-regularisation conventions, through its separately defined
 
 \section{The Build Stage}\label{sec:buildStage}
 
-This first stage is tasked with building the unintegrated antenna functions from their respective
-Feynman diagrams. Its central function is \texttt{BuildAntenna[type, multiplicity, loop order]}. 
-The route through this stage begins by taking the route key from some public call, like 
-\texttt{BuildAntenna[A, 3, 1]}. It then resolves the corresponding build workflow from the route key,
-and implements it. Finally, it produces a rich build-side, backend, association which is then 
-reformatted into the public unintegrated antenna expression or component list. 
-This workflow is structured as follows,
+The build stage constructs the unintegrated antenna functions from the corresponding matrix
+elements obtained from Feynman diagrams. Its main public interface is
+\texttt{BuildAntenna[type, multiplicity, loop order]}. The workflow begins with a route key
+specified through a public call, for example \texttt{BuildAntenna[A, 3, 1]}. From this key,
+\textit{AntCalc} identifies the appropriate construction workflow and the ingredients required
+for the corresponding antenna set. The relevant amplitudes are then constructed and combined
+according to the route definition, after which the resulting expressions are processed into the
+required unintegrated antenna functions. Internally, the intermediate results are stored in an
+association containing the different components of the calculation. The final step reformats
+this internal representation into the antenna expression, or ordered set of antenna components,
+returned to the user. The build workflow can therefore be summarised as follows,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \begin{lstlisting}
@@ -189,11 +207,10 @@ BuildAntenna[type, multiplicity, loop order]
 \end{lstlisting}
 \end{mdframed}
 
-The loop-order dispatcher is the most important element of this workflow. It dispatches the route, 
-using its key,
-to its loop order's path, as different loop orders
-necessitate different mechanisms, the most important of which being the introduction of the 
-reduction of the loop momenta $\ell^\mu$ for one- and two-loop antennae.
+The loop-order dispatcher is a central element of this workflow. Using the route key, it
+directs each antenna to the appropriate computational path, since different loop orders
+require different computational treatments, most notably the tensor reduction required for
+the loop-momentum dependence of one- and two-loop antennae.
 
 Functionally, the route-context for this stage usually contains the initial profile itself (the declarative 
 \texttt{AntennaProfile}), the amplitude 
@@ -291,17 +308,18 @@ into the colour-free $C_4^0$ antenna.
 
 \subsection{One-Loop Routes}\label{subsec:oneLoopRoutes}
 
-One-loop routes are dispatched to \texttt{BuildLoopAntennaData} where the primary backend reduction 
-method is selected through the nested \texttt{ReductionProfile}, which by default is the 
-reduction using PaVe, as described in Subsection~\ref{subsec:PaVe}.
+One-loop routes are dispatched to \texttt{BuildLoopAntennaData} where the primary backend
+reduction method is selected through the nested \texttt{ReductionProfile}, which by default is
+Passarino-Veltman reduction, as described in Subsection~\ref{subsec:PaVe}.
 
 The production method consists of generating the tree-level and one-loop amplitudes, using \\
 \texttt{TreeAmplitude} and \texttt{MAmpOneLoop}, respectively, and then forming the tree-loop 
 interference. The interference is colour- and one-loop-normalised, using $c_N$ and 
 $\Lambda_l=(8\pi^2)^l$, for loop order $l$, as described in Eq.~\ref{eq:loopNorm}.
 To this normalised interference is then applied the reduction and the components extracted.
-These antenna functions also differ in production and extraction method, however. Their 
-production and extraction modes are shown in Table~\ref{tab:oneLoopProdModes}, below.
+The one-loop antennae require different extraction procedures depending on their colour
+structure. The production and extraction modes implemented for the supported one-loop routes
+are summarised in Table~\ref{tab:oneLoopProdModes}, below.
 
 \begin{table}[h!]
 \centering
@@ -329,9 +347,11 @@ where $n$ represents the number of final-state particles, as usual.
 
 Since $A_2^1$'s interference does not decompose into colour components, $A_2^1 = \Lambda_1\mathcal J_2^{1\prime} = \Lambda_1\mathcal J_2^1/(c_NB_0)$.
 The $A_3^1$ set, on the other hand, appears closely like the $A_4^0$ set, but with three,
-rather than two components, the leading, subleading and quark loop antenna functions. The 
-interference is given as in Eq.~\ref{eq:regularInterf}. Lastly, as discussed in Eq.~\ref{eq:alphaRescaling},
-together with Eq.~\ref{eq:bornNorm}, the $A_3^1$ set needs to be UV renormalised. Consider 
+rather than two components, the leading-colour, subleading-colour and quark-loop antenna
+functions. The
+interference is given as in Eq.~\ref{eq:regularInterf}. Lastly, as discussed in
+Section~\ref{sec:dimreg} and Eq.~\ref{eq:alphaRescaling},
+together with Eq.~\ref{eq:bornNorm}, the $A_3^1$ set needs to be UV renormalised. Consider
 the notation $X_{n}^{l,\text{bare}}$ here to denote a bare antenna, such that, for example, $A_2^{1,\text{bare}}=A_2^1$.
 For the $A_3^1$ set, the interference expands to,
 \begin{equation}
@@ -419,7 +439,8 @@ They, then, become,
     \end{split}
 \end{equation}
 
-The antenna objects have to then be UV renormalised as follows,
+The antenna objects have to then be UV renormalised as follows, following the coupling
+renormalisation described in Section~\ref{sec:dimreg} and Eq.~\ref{eq:alphaRescaling},
 \begin{equation}
     \begin{split}
         &A_2^2 = A_2^{2,\text{bare}} - \frac{11}{6\epsilon}A_2^1\\
@@ -445,34 +466,54 @@ $\mathcal J$ notation as,
     \end{split}
 \end{equation}
 
-\section{Public Boundary and Integration handoff}
+\section{From the Build Stage to Integration}
 
-As previously discussed, each \texttt{BuildAntenna} workflow produces a route context. That 
-context contains the initial profile alongside some selected pieces of data acquired during the 
-building process. The ordinary, default, \texttt{BuildAntenna[...]} call formats this contexts 
-into the conventional public output, which consists of a single expression or ordered list 
-of components. This output is not compatible with a following \texttt{IntegrateAntenna[...]}
-call, as this second call requires the route profile information. To make the two functions 
-compatible we must use the handoff option \texttt{IntegrableForm}. Calling
-\texttt{BuildAntenna[..., IntegrableForm -> True]} returns an \texttt{AntennaObject} instead of 
-the default public output. It retains the route key, the selected output, the profile, 
-the complete build data and the source-contribution provenance. This \texttt{AntennaObject} is
-the intended input of the \texttt{IntegrateAntenna[...]} function.
+The build stage described above produces the unintegrated antenna functions in terms of the
+external kinematic invariants $s_{ij}$. This is the natural public representation of the
+antenna and is suitable for its use as a local subtraction term in a numerical phase-space
+integration, as discussed in Chapter~\ref{ch:physicsbackground}. A standard
+\texttt{BuildAntenna[...]} call therefore returns either a single antenna expression or, where
+several colour structures are present, an ordered list of antenna components.
+
+For the analytic calculation of the integrated antennae, however, the final expression in
+terms of Mandelstam invariants is not by itself sufficient. The integration stage requires
+additional information from the construction of the antenna, including the route definition
+and the integral structures needed for the subsequent reduction and phase-space integration.
+\textit{AntCalc} therefore provides the option \texttt{IntegrableForm -> True}. With this
+option, \texttt{BuildAntenna[...]} returns an \texttt{AntennaObject} that retains both the
+constructed antenna and the additional information required by \texttt{IntegrateAntenna[...]}.
+This object provides the interface between the build and integration stages.
+
+At this point, \textit{AntCalc} can therefore provide the unintegrated antennae in the
+kinematic form required for local subtraction. The next stage addresses the complementary part
+of the antenna subtraction procedure: their analytic integration over the unresolved phase
+space in dimensional regularisation. These integrated antennae are required to combine the
+subtraction terms with the virtual contributions and achieve the cancellation of explicit
+infrared poles. The implementation of this integration stage is described in the following
+section.
 
 \section{The Integration Stage}\label{sec:integrateStage}
 
-The integration stage is tasked with taking the complete \texttt{AntennaObject}, as produced by 
-a \texttt{BuildAntenna[..., IntegrableForm -> True]}, resolving the integration route from the key,
-performing all intermediate calculations and applying all necessary conventions, and finally 
-returning a Laurent-expanded integrated antenna or component list. The workflow's structure 
-is,
+The integration stage performs the analytic integration of the antenna functions constructed
+in the build stage over the corresponding unresolved phase space in $d=4-2\epsilon$ dimensions,
+as in Eq.~\ref{eq:antennaIntegral}. Its purpose is to obtain the integrated antennae as Laurent
+series in $\epsilon$, in the form required for their use in the antenna subtraction framework.
+The integrated antennae are denoted with calligraphic letters.
+
+Within \textit{AntCalc}, this stage is initiated by passing the \texttt{AntennaObject} produced
+by \texttt{BuildAntenna[..., IntegrableForm -> True]} to \texttt{IntegrateAntenna[...]}. The
+route key stored in this object determines the appropriate integration workflow, including the
+required reduction procedure, master integrals, and normalisation conventions. After these
+steps have been applied, \texttt{IntegrateAntenna[...]} returns the integrated antenna, or the
+corresponding set of antenna components, expanded as a Laurent series in $\epsilon$. The
+integration workflow is structured as follows,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \begin{lstlisting}
 IntegrateAntenna[AntennaObject]
     -> recover route key and resolve profile;
     -> choose integration backend;
-    -> complete IBP/PaVe reduction;
+    -> complete IBP/Passarino-Veltman reduction;
     -> substitute master integrals when applicable;
     -> extract public integrated antennae;
     -> output: selected component, list, diagnostics, run record, or 
@@ -504,9 +545,10 @@ external package workflow used), and the basis family required for the process. 
 are divided by topology, that is, number of final-state particles and number of loops, and all 
 of those that share the same topology in the current implementation, share the same basis-family 
 set. The exception to this rule is the $A_2^2$ set, in which different sets are used depending on
-configuration. The $A_2^1$ antenna is also an exception to the use of basis families, as it 
-is reduced using PaVe reduction and then the PaVe MI are substituted by their analytical results 
-in terms of $\epsilon$. An overview of these is shown in the following Table~\ref{tab:intModes}.
+configuration. The $A_2^1$ antenna is also an exception to the use of integral families. Its
+loop integrals are reduced directly to scalar one-loop integrals using Passarino-Veltman
+reduction, whose known analytic expressions are then substituted and expanded as Laurent
+series in $\epsilon$. An overview of these is shown in the following Table~\ref{tab:intModes}.
 
 \begin{table}[h!]
 \centering
@@ -515,56 +557,70 @@ in terms of $\epsilon$. An overview of these is shown in the following Table~\re
    \hline
    \textbf{Default Backend} & \textbf{Bases-Family Set} & \textbf{Current Route} \\ 
    \hline
-   PaVe / \textit{FeynHelpers} & massless two-parton vertex & $A_2^1$ \\ \hline
-   IBP / \textit{LiteRed2} & \texttt{X30} & $A_3^0$ \\ \hline
-   IBP / \textit{LiteRed2} & \texttt{X40} & $A_4^0$, $\tilde A_4^0$, $B_4^0$, $C_4^0$ \\ \hline
-   IBP / \textit{LiteRed2} & \texttt{A31} & $A_3^1$, $\tilde A_3^1$, $\hat A_3^1$ \\ \hline
-   IBP / \textit{LiteRed2} & \texttt{A22TwoLoopTree} & $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$ \\ \hline
-   IBP / \textit{LiteRed2} & \texttt{A22OneLoopSelf} & $\breve A_2^2$ \\ \hline
+   Passarino-Veltman / \textit{FeynHelpers} & massless two-parton vertex & $\mathcal A_2^1$ \\ \hline
+   IBP / \textit{LiteRed2} & \texttt{X30} & $\mathcal A_3^0$ \\ \hline
+   IBP / \textit{LiteRed2} & \texttt{X40} & $\mathcal A_4^0$, $\tilde{\mathcal A}_4^0$, $\mathcal B_4^0$, $\mathcal C_4^0$ \\ \hline
+   IBP / \textit{LiteRed2} & \texttt{A31} & $\mathcal A_3^1$, $\tilde{\mathcal A}_3^1$, $\hat{\mathcal A}_3^1$ \\ \hline
+   IBP / \textit{LiteRed2} & \texttt{A22TwoLoopTree} & $\mathcal A_2^2$, $\tilde{\mathcal A}_2^2$, $\hat{\mathcal A}_2^2$ \\ \hline
+   IBP / \textit{LiteRed2} & \texttt{A22OneLoopSelf} & $\breve{\mathcal A}_2^2$ \\ \hline
   \end{tabular}
   
   \caption{Overview of the integration-side route-profiles.}
 \label{tab:intModes}
 \end{table}
 
-As discussed previously for the build-side, the profile here also does not complete any 
-calculations itself. It simply provides the workflow with the required information for it 
-to work. For example, consider the integration of the $B_4^0$ antenna: it reaches \texttt{IntegrateAntenna}
-as an \texttt{AntennaObject}. For the key, the workflow is able to resolve the integration-side 
-route-profile and then it reduces the input unintegrated antenna from \texttt{AntennaObject}
-with the IBP method, using \textit{LiteRed2}, and using the bases and MI from the \texttt{X40}
-basis-family set.
+As on the build side, the integration profile does not itself perform any calculation; rather,
+it specifies the information required to execute the corresponding integration workflow.
+Consider, for example, the integration of the $B_4^0$ antenna. From the route key stored in
+the \texttt{AntennaObject}, \textit{AntCalc} identifies the appropriate integration profile and
+the integral family associated with the $X_4^0$ phase-space topology. The unintegrated antenna
+is then mapped onto this integral family and reduced by IBP, using \textit{LiteRed2}, to the
+corresponding set of master integrals. Their known analytic expressions are subsequently
+substituted to obtain the integrated antenna.
+
+The master-integral basis used in these reductions is discussed in
+Chapter~\ref{ch:workedexample}, where selected master integrals are evaluated explicitly and
+their role in the analytic integration of antenna functions is illustrated through
+representative examples.
 
 \subsection{Integration Routes}
 
-\subsubsection{PaVe Route}
+\subsubsection{Passarino-Veltman Route}
 
-The $A_2^1$ PaVe route is the distinct low-multiplicity virtual case. It is the only route that 
-does not involve IBP. Due to being the two-parton one-loop form factor, 
-this $A_2^1$ antenna's integration workflow requires 
-only the reduction and integration of the single loop momentum, making PaVe reduction the 
-best choice. The workflow then uses \textit{Package-X} through \textit{FeynHelpers},
-to evaluate the PaVe scalar one-loop functions and, after applying the required branch and scale 
-conventions, the kinematic-scale normalisation, and Laurent expansion in $\epsilon$, it 
-gives the integrated $\mathcal A_2^1$ antenna. This process is shown schematically in 
-Fig.~\ref{fig:pave-reduction}, below.
+The $A_2^1$ antenna constitutes a special low-multiplicity virtual case and is the only
+integration route implemented without IBP reduction. As a two-parton one-loop form-factor
+contribution, its loop integrals can be treated directly using Passarino-Veltman reduction,
+which reduces the tensor loop integrals to scalar one-loop functions. \textit{AntCalc}
+evaluates these scalar functions analytically using \textit{Package-X} \cite{PackageX} through
+\textit{FeynHelpers} \cite{FeynHelpers}. The required branch and scale conventions are then
+applied, followed by the appropriate kinematic normalisation and Laurent expansion in
+$\epsilon$, yielding the integrated $\mathcal A_2^1$ antenna. The workflow is summarised
+schematically in Fig.~\ref{fig:pave-reduction}.
 
 \input{figures/pave-reduction.tex}
 
 \subsubsection{IBP Route}
 
-All other antenna functions are integrated using IBP reduction using \textit{LiteRed2} and as 
-described in Sections~\ref{sec:integration}. The workflow rewrites the momenta, invariants, and
-denominators in \textit{LiteRed2}'s terms. It then adds the phase-space cut structure for the 
-selected family, loads its bases and after expanding the unintegrated antenna expression, 
-going term-by-term, matches each one to its relevant family. After each match, the term is IBP 
-reduced relative to its matched family-basis MI. This last step is handled completely by 
-\textit{LiteRed2}'s internal engine. After all terms have been reduced, they are summed 
-to form the final reduced antenna function. For the public routes, the MI have already been 
-hand-matched with known MI. These known MI are then substituted by their values after integration, 
-which is also hand-calculated and finally, after applying all required normalisation and 
-conventions, the integrated antenna functions are Laurent-expanded in $\epsilon$. The IBP 
-route process is shown schematically in Fig.~\ref{fig:ibp-reduction}.
+All remaining antenna functions are integrated using IBP reduction, implemented through
+\textit{LiteRed2} \cite{Litered}, following the formalism described in
+Section~\ref{sec:integration}. The antenna integrand is first expressed in terms of the
+momenta, invariants, and denominator structures defining the relevant integral families. The
+appropriate phase-space cut propagators are then introduced, allowing the phase-space integrals
+to be treated within the same integral-family framework as loop integrals. After expanding the
+antenna into individual integral terms, each term is assigned to the corresponding integral
+family and reduced by \textit{LiteRed2} to a linear combination of master integrals. The
+reduced terms are subsequently recombined to obtain the complete integrated antenna in terms of
+the corresponding master-integral basis.
+
+For the public routes, the master integrals (MIs) identified by the IBP reduction are matched
+to their corresponding analytic expressions known from the literature and evaluated explicitly
+in this work. Their expressions are then substituted by \textit{AntCalc}. Finally, the required
+normalisation and dimensional-regularisation conventions are applied, and the result is
+expanded as a Laurent series in $\epsilon$, yielding the integrated antenna function. Selected
+master integrals and explicit examples of their analytic evaluation are presented in
+Chapter~\ref{ch:workedexample}, together with representative applications of this procedure to
+the integration of antenna functions. The complete IBP-based integration workflow is summarised
+schematically in Fig.~\ref{fig:ibp-reduction}.
 
 \input{figures/ibp-reduction.tex}
 
@@ -609,14 +665,15 @@ antenna set interacts with $G_k$.
 
 \subsubsection{Expansion Order}
 
-The last step before reaching the integrated antenna function $\mathcal X_n^l$, or the ordered 
-list of component integrated antennae, is to expand the working expression as a Laurent series.
-Following the literature, the maximum Laurent-expansion order is route-dependent. Lower-order 
-antenna functions ($\mathcal A_2^1$ and $\mathcal A_3^0$) are expanded to $\epsilon^2$, 
-while higher-order functions are expanded to $\epsilon^0$. This latter restriction comes 
-from the used and verified master-integral representations, of which some are only encoded 
-through $\epsilon^0$.
-There might be need to expand to a lesser or to a greater term, however. That can be set using the 
+The final step in obtaining an integrated antenna $\mathcal X_n^l$, or an ordered list of its
+components, is to expand the result as a Laurent series in $\epsilon$. The default truncation
+order depends on the perturbative order of the antenna. Following the conventions used in the
+literature, the NLO antennae $\mathcal A_2^1$ and $\mathcal A_3^0$ are provided through
+$\mathcal O(\epsilon^2)$, whereas the NNLO antennae are provided through $\mathcal O(\epsilon^0)$.
+For the currently implemented routes, the available expansion depth is also determined by the
+analytic master-integral expressions used by \textit{AntCalc}, some of which have been
+implemented and validated only through finite order. The expansion order can nevertheless be
+adjusted when the required higher-order coefficients are available, using the
 \texttt{ExpansionOrder} option, as,
 \begin{equation}\label{eq:expansionOrderDiag}
     \begin{gathered}
@@ -625,24 +682,26 @@ There might be need to expand to a lesser or to a greater term, however. That ca
     \end{gathered}
 \end{equation}
 where \texttt{A30=BuildAntenna[A,3,0,IntegrableForm -> True]}, is the $A_3^0$ set's \\
-\texttt{AntennaObject}. Though the example in Eq.~\ref{eq:expansionOrderDiag} above shows the
-truncation of a series whose default expansion is deeper than the one resulting from the 
-option, using \texttt{ExpansionOrder} for a higher-than-default order is also possible 
-and supported. That call, however, is not validated against the literature, as the MI 
-\textit{AntCalc} uses are, some, truncated.
+\texttt{AntennaObject}. Equation~\ref{eq:expansionOrderDiag} illustrates the use of
+\texttt{ExpansionOrder} to override the default truncation order. The option can request
+either lower or higher orders; however, the maximum accessible order is route-dependent and is
+limited by the available $\epsilon$-expansions of the corresponding master integrals. For the
+example shown, all required terms are available and the result has been validated against the
+literature.
 
-\subsection{Component Extraction and Integrated $\mathcal T$-Objects}
+\subsection{Reconstruction of Colour Components}
 
-The last part of the build stage, before it generates the output, is component extraction.
-In that part,  
-the full result of the calculations the workflow went over is separated into colour-dependent
-terms and the coefficients relative to each of those terms is labelled as one of the components
-(leading, subleading, etc.). All multi-component antenna routes are reduced and integrated using 
-IBP reduction, which is independent of colour. That makes it sensible to completely separate 
-the components before reducing. This way, not only does the process become much cheaper if only 
-one component is selected, but the reductions are also made cleaner, since different components 
-may require different bases and MI. The following diagram in Fig.~\ref{fig:component-extraction},
-describes schematically this process, using the $A_3^1$ antenna set as an example.
+For antenna sets containing several colour structures, the corresponding components are
+identified during the build stage and kept separate throughout the integration workflow. For
+example, the $A_3^1$ set contains leading-colour, subleading-colour, and closed-quark-loop
+components, corresponding to $A_3^1$, $\tilde A_3^1$, and $\hat A_3^1$, respectively. Since IBP
+reduction acts on the kinematic integral structure and is independent of the colour
+coefficients, the components can be treated separately during the reduction. \textit{AntCalc}
+can therefore integrate either the complete set of components or only a selected component. The
+latter avoids unnecessary IBP reductions and can significantly reduce the computational cost.
+Keeping the components separate also allows each contribution to be mapped to the integral
+families and master integrals required by its particular kinematic structure.
+Fig.~\ref{fig:component-extraction} illustrates this procedure for the $A_3^1$ antenna set.
 
 \input{figures/component-extraction.tex}
 
@@ -673,10 +732,10 @@ where \texttt{A31=BuildAntenna[A,3,1,IntegrableForm -> True]}, is, once again, t
 
 \subsection{$A_2^2$ Set Integration Routes}
 
-As described in this section, the $A_2^2$ set is composed of two subsets of antennae
-with different provenance and IBP basis families. 
-Both the build- and the integrate-side routes are completely separate based on 
-subset. Those routes may be schematically drawn in the spirit of the diagram in 
+As summarised in Table~\ref{tab:twoLoopProdModes}, the $A_2^2$ antenna set is divided into two
+subsets, and require distinct integral families for the IBP reduction. Consequently, the two
+subsets follow separate integration routes in \textit{AntCalc}.
+Those routes may be schematically drawn in the spirit of the diagram in
 Fig.~\ref{fig:component-extraction}, as in the diagram in 
 Fig.~\ref{fig:a22-component-extraction}, below. The workflow interprets the overall 
 \texttt{[A,2,2]}, then separates the process into different build-side production modes 
@@ -691,7 +750,8 @@ default output.
 
 \section{Higher-Level Functions}
 
-Besides the two canonical functions, \textit{AntCalc} also supports a number of higher-level 
+Besides the two canonical functions, \texttt{BuildAntenna} and \texttt{IntegrateAntenna},
+\textit{AntCalc} also supports a number of higher-level
 functions. This higher-level layer does not introduce new antenna-construction or integration
 methodology; instead it 
 orchestrates the use of the two canonical functions to compute observables like the $R$-ratio, 
@@ -741,7 +801,7 @@ antennae, up to NNLO.
 
 We may also retrieve a specific $\mathcal T$-object directly, using \texttt{TObject}. The public supported 
 $\mathcal T$-objects are described in Table~\ref{tab:TObject}, below. These computation routes follow closely the 
-methods discussed in Subsection~\ref{subsec:antFamilies}. The function calls the one-shot integrated routes, using \texttt{BuildAndIntegrateAntenna}
+methods discussed in Subsection~\ref{subsec:Tobjects} of Chapter~\ref{ch:validation}. The function calls the one-shot integrated routes, using \texttt{BuildAndIntegrateAntenna}
 for the necessary ingredient antennae, then assembles them into the $\mathcal T$-object 
 structure. 
 

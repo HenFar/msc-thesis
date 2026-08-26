@@ -75,7 +75,7 @@ Kronecker delta, and $\lambda$ is the gauge parameter.
 Throughout this text the t'Hooft-Feynman convention is used, which makes $\lambda=1$,
 following the default convention from \textit{FeynArts} \cite{Hahn:2000kx}. It is 
 important to note, however, that physical observables are independent of the gauge 
-choice.
+choice. 
 Unlike the remaining terms, the first 
 contains no non-Abelian self-interaction. The cubic and quartic terms in the gluon 
 fields generate, respectively, the three- and four-gluon vertices, $ggg$ and $gggg$.
@@ -432,6 +432,133 @@ where $d\sigma^B$ denotes the Born process $\gamma^*\to q\bar q$, cross-section 
 $\mathcal S_j$ is the singular factor for each of the $j$ particles being summed 
 over.
 
+\subsection{NLO and NNLO Subtraction Terms}
+
+As described in previous sections, we use $d\sigma^S$ in the antenna subtraction
+formalism. We use this method to create a finite differential prediction tool 
+(the differential cross-section) for some $F_n$ infrared-safe quantity or observable, 
+for $n$ final-state particles. $F_n$, in this case, is a distribution. The terms 
+of the subtraction formula must carry their respective infrared-safe quantities through 
+the process. As an example, the differential ($F_n$-dependent) NLO finite cross-section 
+is given by,
+\begin{equation}\label{eq:genSub}
+    d\sigma^\text{NLO} = \int_{m+1}\left(d\sigma^R_\text{NLO} F_{m+1}-d\sigma^S_\text{NLO} F_m\right)+\int_m\left(d\sigma^V_\text{NLO}+\int_1 d\sigma^S_\text{NLO}\right)F_m
+\end{equation}
+where, at NLO, $m=2$ is the number of final-state particles at Born-level \cite{Ellis:1996mzs}.
+
+The observable considered throughout this work, the hadronic $R$-ratio,
+is fully-inclusive and makes no distinction between resolved and unresolved 
+final states at any multiplicity. Its measurement distribution $F_n$ is, therefore,
+equal to one for every $n$. The cross-section is, therefore, no longer a differential 
+prediction in $F_n$, but rather reduces to the plain, fully-summed total. At NLO, the 
+formula remains close in shape to Eq.~\ref{eq:genSub}, but at NNLO, due to the 
+larger number of possible corrections, it must account for contributions where 
+the two additional orders of $\alpha_s$ are realised as two extra real partons 
+($RR$), one extra real parton and one loop ($RV$), or two loops with no extra 
+final-state partons ($VV$). The NLO and NNLO antenna subtraction formulae are 
+written as,
+\begin{equation}\label{eq:nnloCross}
+    \begin{gathered}
+        \sigma^\text{NLO} = \int_{m+1}\left(d\sigma^R_\text{NLO}-d\sigma^S_\text{NLO}\right)+\int_m\left(d\sigma^V_\text{NLO}+\int_1 d\sigma^S_\text{NLO}\right)\\
+        \begin{aligned}
+            \sigma^\text{NNLO} = \int_{m+2}\left(d\sigma^{RR}_\text{NNLO}-d\sigma^S_\text{NNLO}\right)&+\int_{m+1}\left(d\sigma^{RV}_\text{NNLO}-d\sigma^T_\text{NNLO}\right)\\
+                                                                                                      &+\int_m\Bigg(d\sigma^{VV}_\text{NNLO}+\int_1 d\sigma^T_\text{NNLO}+\int_2 d\sigma^S_\text{NNLO}\Bigg).
+        \end{aligned}
+    \end{gathered}
+\end{equation}
+Where the NLO formula is restricted to a single subtraction counterterm, the NNLO 
+formula has two, $d\sigma^S$ and $d\sigma^T$, which respectively subtract the 
+singularities of $d\sigma^{RR}$ at single- and double-unresolved level, and 
+$d\sigma^{RV}$ at single-unresolved level \cite{Gehrmann-DeRidder:2005btv}.  
+This inadvertently adds another level of
+complexity for NNLO: the KLN theorem guarantees only that the fully inclusive sum over degenerate
+configurations is finite, but says nothing about any particular piece of a decomposition being finite on its
+own. With the split including multiple subtractions at the same time, we are implying that each of these
+differences is separately, pointwise finite, everywhere in its own phase space.
+
+As hinted at throughout this text but not yet stated explicitly: the subtraction 
+terms are exact, not merely asymptotic, matches to the original cross-section terms. 
+This follows from two facts specific to this process. First, because the antenna 
+functions are built as exact, unique expressions (Eq.~\ref{eq:antennaTree}), and the 
+sum in Eq.~\ref{eq:sigmaSDef} runs over all unresolved pairs, of which there is only 
+one, since the Born process $\gamma^*\to q\bar q$ has a single colour-connected pair. 
+Second, because the Born factor $|\mathcal M_2^0|^2$ 
+depends only on the conserved quantity $q^2$, and therefore takes the same value 
+whether evaluated on the exact real-emission momenta or on the reconstructed momenta 
+used in the subtraction term. Together, these mean $d\sigma^S$
+and $d\sigma^T$ coincide identically with $d\sigma^R$, $d\sigma^{RR}$, and $d\sigma^{RV}$
+at every point in the phase space, for either perturbative order, not merely in the 
+singular unresolved limit, as the general subtraction formalism only guarantees
+\cite{Catani:1996vz}.
+These subtraction cross-sections are expressed generally using the usual antenna 
+notation, as defined in Subsection~\ref{subsec:antennaFuncs}, as,
+\begin{equation}\label{eq:subTerms}
+    \begin{gathered}
+        d\sigma^V_\text{NLO} = 2C_F\sum_{a}f_a(N,N_f)X_{ij,(a)}^1 d\sigma^B\\
+        d\sigma^S_\text{NLO} = 2C_F\sum_{a,s}f_a(N,N_f)X_{ij,(a,s)}^0 d\sigma^B\\
+        d\sigma^{VV}_\text{NNLO} = 2C_F\sum_{a}f_a(N,N_f)X_{ij,(a)}^2 d\sigma^B\\
+        d\sigma^{T}_\text{NNLO} = 2C_F\sum_{a,s}f_a(N,N_f)X_{ij,(a,s)}^1 d\sigma^B\\
+        d\sigma^{S}_\text{NNLO} = 2C_F\sum_{a,s}f_a(N,N_f)X_{ij,(a,s)}^0 d\sigma^B\\
+    \end{gathered}
+\end{equation}
+where $C_F$ is the Fundamental Casimir invariant, $f_a$ is the function that describes
+the colour prefactor per colour component: $N$ for the leading order, $1/N$ for subleading, etc., 
+and $s$ is summed over all possible extra final-state particle sets. That is, for
+example, for the quark-antiquark final-final antenna functions considered throughout
+this text, the $s$-sum in $d\sigma^S_\text{NNLO}$ would produce $gg$, $q\bar q$,
+and $q^\prime\bar q^\prime$, relative to the $A$, $B$, $C$ antenna types.
+
+Each real-emission antenna function in Eq.~\ref{eq:subTerms} ($d\sigma^S$ and
+$d\sigma^T$, at either order) is evaluated on reconstructed, on-shell momenta
+$\tilde p_I$, $\tilde p_K$, built from the hard radiators and the unresolved
+momenta in between them, through a momentum mapping which conserves total
+momentum, $\tilde p_I+\tilde p_K=p_i+p_j+p_k$, and keeps
+$\tilde p_I^2=\tilde p_K^2=0$. The pure-virtual terms, $d\sigma^V_\text{NLO}$
+and $d\sigma^{VV}_\text{NNLO}$, need no such mapping, since they carry no
+unresolved parton to begin with.
+Without this reconstruction, the reduced matrix element inside $d\sigma^B$ would only
+be well-defined at the unresolved limit. The mapping allows the
+antenna subtraction term to act as a local counterterm over the whole unresolved-parton
+phase space, not merely asymptotically close to it.
+Using these expressions, $\sigma^\text{NLO}$ and $\sigma^\text{NNLO}$, from Eq.~\ref{eq:nnloCross}, simplify to,
+\begin{equation}
+    \begin{gathered}
+        \sigma^\text{NLO}=\int_m\left(d\sigma^{V}_\text{NLO}+\int_1 d\sigma^S_\text{NLO}\right)=2C_F\left[\sum_{a}f_a\int_{m}X_{ij,(a)}^1d\sigma^B+\sum_{a,s}f_a\int_{m+1}X_{ij,(a,s)}^0d\sigma^B\right]\\
+        \begin{aligned}
+            \sigma^\text{NNLO}&=\int_m\left(d\sigma^{VV}_\text{NNLO}+\int_1d\sigma^T_\text{NNLO}+\int_2 d\sigma^S_\text{NNLO}\right)\\
+                              &=2C_F\left[\sum_{a}f_a\int_{m}X_{ij,(a)}^2d\sigma^B+\sum_{a,s}f_a\int_{m+1}X_{ij,(a,s)}^1d\sigma^B+\sum_{a,s}f_a\int_{m+2}X_{ij,(a,s)}^0d\sigma^B\right]
+        \end{aligned}
+    \end{gathered}
+\end{equation}
+Each order's antenna subtraction formula is
+given in the following Table~\ref{tab:sigmaByOrder} in terms of the antenna functions,
+for the relevant quark-antiquark final-final antennae considered
+in this text.
+
+\begin{table}[h]
+    \centering
+    \footnotesize
+    \renewcommand{\arraystretch}{1.8}
+    \begin{tabular}{|c|p{11cm}|}
+        \hline
+        \textbf{Order} & \textbf{Antenna-function form} \\
+        \hline
+        LO & --- \\
+        \hline
+        NLO & $\sigma^\text{NLO} = \left(N-\dfrac1N\right)\left(\mathcal A_2^1+\mathcal A_3^0\right)$ \\
+        \hline
+        NNLO &
+        $\begin{gathered}
+            \sigma^\text{NNLO} = \left(N-\tfrac1N\right)\Bigg[N\left(\mathcal A_2^1\mathcal A_3^0+\mathcal A_3^1+\mathcal A_4^0+\mathcal A_2^2\right)\\
+            -\tfrac1N\left(\mathcal A_2^1\mathcal A_3^0 + \tilde{\mathcal A}_3^1+\tilde{\mathcal A}_4^0+\mathcal C_4^0-\tilde{\mathcal A}_2^2\right)\\
+            +N_f\left(\mathcal B_4^0+\hat{\mathcal A}_3^1+\hat{\mathcal A}_2^2\right)+\left(N-\tfrac1N\right)\breve{\mathcal A}_2^2\Bigg]
+        \end{gathered}$ \\
+        \hline
+    \end{tabular}
+    \caption{Antenna subtraction formulae for $\sigma^\text{NLO}$ and $\sigma^\text{NNLO}$, in terms of the antenna functions \cite{Gehrmann-DeRidder:2005btv}. The $\sigma^\text{LO}$ row has no antenna-function form: it is the un-normalised Born term itself.}
+    \label{tab:sigmaByOrder}
+\end{table}
+
 \subsection{Antenna Functions}\label{subsec:antennaFuncs}
 
 Since the singular factor $\mathcal S_j$ must work smoothly across all unresolved limits 
@@ -591,7 +718,7 @@ topologies like those described in Subsection~\ref{subsec:antFamilies}
 
 The QCD conventions and colour identities used by the package were introduced above.
 
-\subsection{Antenna Families and $T$-Objects}\label{subsec:antFamilies}
+\subsection{Antenna Families}\label{subsec:antFamilies}
 
 Throughout this work the Born-level process under study is $\gamma^*\to q\bar q$. 
 This process is represented at higher perturbative orders by the $A$, $B$ and 
@@ -663,82 +790,6 @@ process and, hence, a gluon-gluon antenna \cite{Gehrmann-DeRidder:2005btv,Demart
 Further details of these effective-theory constructions are given in the cited 
 literature.
 
-As described in Subsection~\ref{subsec:colourAlg}, antenna functions are purely 
-kinematic. By taking all components, we are able to construct a process-wide
-kinematics- and colour-conscious object. These are the $\mathcal T$-objects. 
-These objects are defined, before integration and hence notated by $T$, 
-conceptually as
-\footnote{The $T$-objects are commonly notated by $T^2$, $T^4$ and $T^6$, depending
-on their perturbative order: LO, NLO and NNLO, respectively. That is the same as
-our previous $k$-index, introduced in \ref{subsec:antennaFuncs}, incremented by one
-and then doubled, $2(k+1)$. This
-is the notation used in \cite{Gehrmann-DeRidder:2004ttg} and the one that will be
-used for the rest of the present work.}
-,
-\begin{equation}
-    T_\text{topology}^{2(k+1)}=\text{(colour/flavour weight)}\times T_{q\bar q}^2\times\text{(colour-weighted sum of antennae at $k$-order)}.
-\end{equation}
-This structure creates a very elegant structure for the $A$-type antenna relative 
-$T$-objects. It goes like,
-\begin{equation}\label{eq:ATypeTObj}
-    T_\text{topology}^{2(k+1)}=2C_F T_{q\bar q}^2\sum_{c} F_cA_{n, (k), c}^l
-\end{equation}
-where $c$ denotes the component (leading, subleading, fermion loop, etc), $F_c$ 
-is the colour weight, that is $N$, $1/N$, $N_f$, etc, and $A_{n, (k), c}^l$ is the 
-relative component antenna with $n$ final-state particles and $l$ loops. For this 
-antenna type, this definition needs two extensions at NNLO that do not cleanly 
-fit into an algorithmic formula:
-\begin{itemize}
-    \item The $A_3^1$ antenna set represents a particularly interesting process.
-    Unlike in lower order loop processes, here two very distinct kinds of 
-    Feynman diagram appear: those in which the loop and the emission of the 
-    final-state gluon are completely separate events, and those in which the 
-    loop involves all three external legs. The first kind of diagram maps exactly 
-    a $A_2^1$ antenna topology followed by a $A_3^0$ topology: first the two hard 
-    quarks exchange a gluon and then one of the hard quarks emits a final-state 
-    gluon\footnote{This is merely a conceptual, diagrammatic interpretation, 
-    as the actual process is much less sequential than this description suggests.}. 
-    Since this behaviour is not singular to the $A_3^1$ antenna, it must 
-    be subtracted from the bare result to retain the antenna's singular behaviour.
-    When we then construct back the $T$-object, the $A_2^1A_3^0$ term has to be 
-    added back on such that the process is considered in its totality \cite{Gehrmann-DeRidder:2005btv}.
-    \item The $A_2^2$ antenna set, also at NNLO, is the first time we find a 
-    double-loop topology. Here the extension required is not a subtraction of 
-    some kind of behaviour, but rather an addition of a new one. This set is, in
-    reality, composed of two different processes: the first follows the standard 
-    rule closely, as it produces a leading, a subleading and a fermion loop 
-    component. The second, however, has a singular antenna which describes the 
-    self-interference of the one-loop correction with itself, now that the system 
-    presents with two loops. 
-    This antenna is notated by $\breve A_2^2$. It is also the only
-    genuinely square (not cross) term at NNLO. This means that it requires a 
-    normalisation of $(2C_F)^2$ \cite{Gehrmann-DeRidder:2005btv}.
-\end{itemize}
-
-As mentioned before Eq.~\ref{eq:ATypeTObj}, the equation is only valid for
-$T$-objects constructed from $A$-type antenna functions. In this work we consider 
-all quark-antiquark antennae up to NNLO. This includes $B_4^0$ and $C_4^0$. These
-antennae populate the $T_{q\bar qq^\prime\bar q^\prime}^6$ and $T_{q\bar qq\bar q}^6$
-objects, respectively. 
-
-$T_{q\bar qq^\prime\bar q^\prime}^6$ is built in the same way as other single-topology 
-antenna $T$-objects, like $T_{q\bar qg}^4$, with the only difference being that 
-here all quark flavours are summed over, requiring the inclusion of a $(N_f-1)$
-term, constructing,
-\begin{equation}
-    T_{q\bar qq^\prime\bar q^\prime}^6=2C_FT_{q\bar q}^2(N_f-1)B_4^0.
-\end{equation}
-The identical-flavour quark-antiquark-quark-antiquark final state is described by 
-the sum of antennae for non-identical-flavour and for identical-flavour-only
-\cite{Gehrmann-DeRidder:2005btv}. Using Eq.~\ref{eq:genTSum} in the interference 
-term, with the identity piece vanishing by tracelessness, 
-we can describe the 
-identical-flavour $T$-object as,
-\begin{equation}
-    T_{q\bar q q\bar q}^6 = 2C_FT_{q\bar q}^2\left[B_4^0-\frac1N C_4^0\right]
-\end{equation}
-importantly without the inclusion of the quark-flavour sum term $(N_f-1)$.
-
 \subsection{Phase-Space Factorisation}\label{subsec:phaseSpaceFactor}
 
 The previous Subsections focused on the antenna functions as objects: how they 
@@ -760,9 +811,8 @@ partons and their interactions with the unresolved partons must also be
 integrated over. The integral becomes over the $n$-final-state-particle antenna 
 phase space. This makes,
 \begin{equation}
-    \int_1 d\sigma^S\sim\int d\Phi_{ijkl...}\,X_n^l
+    \int_1 d\sigma^S=\sum_\text{unresolved pairs}\!\left(\int d\Phi_{ijkl...}\,X_n^l\right)d\sigma^B.
 \end{equation}
-up to normalisation \cite{Gehrmann-DeRidder:2005btv}. 
 
 The $n$-final-state-particle antenna phase space $\Phi_{ijkl...}$\footnote{This 
 phase space is notated by $\Phi_{ijk}$ for three-final-state-particle antennae like
@@ -797,9 +847,9 @@ explicitly built to be a function of the antenna's internal invariants alone and
 to have no dependence on how the reduced system is oriented \cite{Gehrmann-DeRidder:2005btv}, 
 the two phase spaces are integrated 
 separately, with the two-particle phase-space integral producing $\Phi_2$ directly.
-The integrated antenna $\mathcal X_n^l$ is then computed as,
+The antenna's own phase-space integral is then rewritten as,
 \begin{equation}\label{eq:antPhaseSpaceFact}
-    \mathcal X_n^l\sim\int d\Phi_{ijkl...}\,X_n^l = \frac1{\Phi_2}\int d\Phi_n\,X_n^l
+    \int d\Phi_{ijkl...}\,X_n^l = \frac1{\Phi_2}\int d\Phi_n\,X_n^l
 \end{equation}
 which is how the phase-space prefactor appears in $\mathcal N(\epsilon, k)$, 
 as described in Section~\ref{sec:dimreg}.
@@ -824,123 +874,6 @@ as they do not present with unresolved partons, but rather only with loops, and
 are completely virtual antennae. These antennae are only integrated over the 
 loop momenta rather over the phase space, thus not requiring normalisation 
 using the two-particle phase-space \cite{GehrmannDeRidder0507061}.
-
-\subsubsection{Implications on the $T$-objects}
-
-With this definition of the integrated antenna $\mathcal X_n^l$, we are now also able 
-to introduce the often used integrated $T$-object as,
-\begin{equation}\label{eq:integratedT}
-    \mathcal T_\text{topology}^{2(k+1)} = 2C_FT_{q\bar q}\sum_c F_c \mathcal X_{n,(k),c}^l
-\end{equation}
-written schematically from Eq.~\ref{eq:ATypeTObj}, though the structure may change 
-with the antenna type used to define the relevant $T$-object. This equation describes
-that the integrated $T$-object, $\mathcal T_\text{topology}^{2(k+1)}$ is defined 
-using the integrated antennae $\mathcal X_n^l$, integrated over their respective 
-phase-spaces rather than blindly integrating the unintegrated $T$-object directly
-\cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg}.
-
-\subsection{NLO and NNLO Subtraction Structure}\label{subsec:nloAndNnloSubtraction}
-
-So far, throughout the present Section~\ref{sec:antSubForm}, we have discussed what 
-antenna functions are and represent, how they are normalised, what conventions are 
-used when using them and the overall objects we use the antenna functions to 
-compute, the $T$-objects. What we have not yet done, and hence not closed the 
-section's loop is to explain why we require both the antenna functions and the 
-$T$-objects. We require them, as hinted at in Subsection~\ref{subsec:infDivergences},
-to compute the $d\sigma^S$ differential subtraction counterterm used in the 
-antenna subtraction scheme, as schematically described in Eq.~\ref{eq:subScheme}
-\cite{Catani:1996vz}.
-
-The main reason behind the antenna subtraction scheme is to create a finite 
-differential prediction tool (the differential cross-section) for some $F_n$ 
-infrared-safe quantity, or observable, for $n$ final-state particles, which here 
-acts as a distribution. The 
-terms of the subtraction formula must, then, carry their own infrared-safe 
-quantities through the process. As a matter of example, the differential 
-($F_n$-dependent) NLO finite cross-section is given by,
-\begin{equation}
-    d\sigma^\text{NLO}=\int_{m+1}\left(d\sigma^RF_{m+1}-d\sigma^SF_m\right)+\int_m\left(d\sigma^V+\int_1d\sigma^S\right)F_m.
-\end{equation}
-where $m = 2$ and is the number of final-state particles at Born-level \cite{Ellis:1996mzs}.
-
-Since the observable considered throughout this work, the hadronic R-ratio, is
-fully-inclusive, making no distinction between resolved and unresolved final states
-at any multiplicity, the measurement distribution function $F_n$ equals one identically,
-for every $n$. The cross-section, in our case, is therefore no longer a 
-differential prediction in $F_n$ but rather reduces to the plain, fully-summed total.
-This enables us to write,
-\begin{equation}
-    \sigma^\text{NLO}=\int_{m+1}\left(d\sigma^R-d\sigma^S\right)+\int_m\left(d\sigma^V+\int_1d\sigma^S\right)
-\end{equation}
-which maps directly to Eq.~\ref{eq:subScheme} and represents the scheme at NLO.
-
-The scheme looks different at NNLO, simply due to the larger number of possible 
-corrections. Instead of only real and virtual cases, this order's correction receives 
-contributions where the two additional orders of $\alpha_s$ are realised as two 
-extra real partons ($RR$), one extra real parton and one loop ($RV$), or two loops with no extra
-partons ($VV$). The expression then expands to meet these new terms to,
-\begin{equation}\label{eq:nnloCross}
-    \sigma^\text{NNLO}=\int_{m+2}\left(d\sigma^{RR}-d\sigma^S\right)+\int_{m+1}\left(d\sigma^{RV}-d\sigma^T\right)+\int_m\left(d\sigma^{VV}+\int_1d\sigma^T+\int_2 d\sigma^S\right)
-\end{equation}
-where instead of only one, there are two distinct subtraction counterterms. These are 
-$d\sigma^S$, which subtracts the singularities of $d\sigma^{RR}$, at both single- and 
-double-unresolved level, and $d\sigma^T$, which subtracts the remaining single-unresolved
-singularities of $d\sigma^{RV}$ \cite{Gehrmann-DeRidder:2005btv}. 
-This inadvertently adds another level of complexity 
-for NNLO: the KLN theorem guarantees only that the fully inclusive sum over 
-degenerate configurations is finite, but says nothing about any particular piece 
-of a decomposition being finite on its own. With the split including multiple 
-subtractions at the same time, we are implying that each of these differences is
-separately, pointwise finite, everywhere in its own phase space. 
-
-As hinted at throughout this text but not yet stated explicitly: the subtraction 
-terms are exact, not merely asymptotic, matches to the original cross-section terms. 
-This follows from two facts specific to this process. First, because the antenna 
-functions are built as exact, unique expressions (Eq.~\ref{eq:antennaTree}), and the 
-sum in Eq.~\ref{eq:sigmaSDef} runs over all unresolved pairs, of which there is only 
-one, since the Born process $\gamma^*\to q\bar q$has a single colour-connected pair. 
-Second, because the Born factor $|\mathcal M_2^0|^2$ 
-depends only on the conserved quantity $q^2$, and therefore takes the same value 
-whether evaluated on the exact real-emission momenta or on the reconstructed momenta 
-used in the subtraction term. Together, these mean $d\sigma^S$
-and $d\sigma^T$ coincide identically with $d\sigma^R$, $d\sigma^{RR}$, and $d\sigma^{RV}$
-at every point in the phase space, for either perturbative order, not merely in the 
-singular unresolved limit, as the general subtraction formalism only guarantees
-\cite{Catani:1996vz}.
-As an example, $\sigma^\text{NNLO}$, from Eq.~\ref{eq:nnloCross}, simplifies to,
-\begin{equation}
-    \sigma^\text{NNLO}=\int_m\left(d\sigma^{VV}+\int_1d\sigma^T+\int_2 d\sigma^S\right)
-\end{equation}
-in which each of the terms is described by a different $T$-object, as described in 
-Subsection~\ref{subsec:antFamilies}. The objects then describe each of the 
-cross-section terms directly, and a clear hierarchy of objects to cross-sections 
-can be made looking at the number of unresolved partons in each of them. The expression
-then becomes,
-\begin{equation}
-    \sigma^\text{NNLO} =\frac{1}{T^2_{q\bar q}}\Bigg[\mathcal T_{q\bar q}^6 + \mathcal T_{q\bar q g}^6 + \left(\mathcal T_{q\bar q q\bar q}^6+\mathcal T_{q\bar q q^\prime\bar q^\prime}^6+\mathcal T_{q\bar q g g}^6\right)\Bigg]
-\end{equation}
-where the $1/T_{q\bar q}^2$ term is added to normalise the LO order to one, as 
-$\sigma^\text{LO}=T_{q\bar q}^2$ and where $\mathcal T$ denotes the integrated form 
-of a certain $T$-object, as described in Eq.~\ref{eq:integratedT}.
-
-The NLO case goes in the same direction exactly. Its cross-section becomes,
-\begin{equation}
-    \sigma^\text{NLO}=\frac1{T_{q\bar q}^2}\left(\mathcal T_{q\bar q}^4+\mathcal T_{q\bar q g}^4\right).
-\end{equation}
-
-Since the $T$-objects are described using the antenna functions, by necessity, both 
-$\sigma^\text{NLO}$ and $\sigma^\text{NNLO}$ may also be given in terms of the 
-respective antenna functions, after the normalisation procedures described throughout 
-this text, as follows \cite{Gehrmann-DeRidder:2005btv},
-\begin{equation*}
-    \begin{split}
-        &\sigma^\text{NNLO} = \left(N-\frac1N\right)\Bigg[N\left(\mathcal A_2^1\mathcal A_3^0+\mathcal A_3^1+\mathcal A_4^0+\mathcal A_2^2\right)-\frac1N\left(\mathcal A_2^1\mathcal A_3^0 + \tilde{\mathcal A}_3^1+\tilde{\mathcal A}_4^0+\mathcal C_4^0-\tilde{\mathcal A}_2^2\right)\\
-        &\hspace{4.8cm} +N_f\left(\mathcal B_4^0+\hat{\mathcal A}_3^1+\hat{\mathcal A}_2^2\right)+\left(N-\frac1N\right)\breve{\mathcal A}_2^2\Bigg]
-    \end{split}
-\end{equation*}
-\begin{equation}
-    \sigma^\text{NLO} = \left(N-\frac1N\right)\left(\mathcal A_2^1 + \mathcal A_3^0\right).
-\end{equation}
 
 \section{Phase-Space Integration and IBP Reduction}\label{sec:integration}
 

@@ -50,12 +50,88 @@ As expected, the results for each perturbative order are finite. This validates 
 normalisation and assembly of the integrated antennae: at each perturbative order, their 
 infrared poles cancel in the inclusive sum, leaving a finite coefficient. 
 
-\subsection{Assembly from Integrated Antennae}
+\subsection{Assembly from Integrated Antennae}\label{subsec:Tobjects}
 
-Using \textit{AntCalc}, we are also able to compute the R-ratio step-by-step, without 
-having to resort to the automated function by just computing the intermediate steps 
-ourselves. The R-ratio is assembled using the $\mathcal T$-objects discussed in 
-Chapter~\ref{ch:physicsbackground}. We simply sum the normalised objects 
+Using \textit{AntCalc}, we are also able to compute the R-ratio step-by-step, without
+having to resort to the automated function by just computing the intermediate steps
+ourselves. As described in Subsection~\ref{subsec:colourAlg}, antenna functions are purely
+kinematic. By taking all components, we are able to construct a process-wide
+kinematics- and colour-conscious object. These are the $\mathcal T$-objects.
+These objects are defined, before integration and hence notated by $T$,
+conceptually as
+\footnote{The $T$-objects are commonly notated by $T^2$, $T^4$ and $T^6$, depending
+on their perturbative order: LO, NLO and NNLO, respectively. That is the same as
+the $k$-index, introduced in Subsection~\ref{subsec:antennaFuncs} of Chapter~\ref{ch:physicsbackground}, incremented by one
+and then doubled, $2(k+1)$. This
+is the notation used in \cite{Gehrmann-DeRidder:2004ttg} and the one that will be
+used for the rest of the present work.}
+,
+\begin{equation}
+    T_\text{topology}^{2(k+1)}=\text{(colour/flavour weight)}\times T_{q\bar q}^2\times\text{(colour-weighted sum of antennae at $k$-order)}.
+\end{equation}
+This structure creates a very elegant structure for the $A$-type antenna relative
+$T$-objects. It goes like,
+\begin{equation}\label{eq:ATypeTObj}
+    T_\text{topology}^{2(k+1)}=2C_F T_{q\bar q}^2\sum_{c} F_cA_{n, (k), c}^l
+\end{equation}
+where $c$ denotes the component (leading, subleading, fermion loop, etc), $F_c$
+is the colour weight, that is $N$, $1/N$, $N_f$, etc, and $A_{n, (k), c}^l$ is the
+relative component antenna with $n$ final-state particles and $l$ loops. For this
+antenna type, this definition needs two extensions at NNLO that do not cleanly
+fit into an algorithmic formula:
+\begin{itemize}
+    \item The $A_3^1$ antenna set represents a particularly interesting process.
+    Unlike in lower order loop processes, here two very distinct kinds of
+    Feynman diagram appear: those in which the loop and the emission of the
+    final-state gluon are completely separate events, and those in which the
+    loop involves all three external legs. The first kind of diagram maps exactly
+    a $A_2^1$ antenna topology followed by a $A_3^0$ topology: first the two hard
+    quarks exchange a gluon and then one of the hard quarks emits a final-state
+    gluon\footnote{This is merely a conceptual, diagrammatic interpretation,
+    as the actual process is much less sequential than this description suggests.}.
+    Since this behaviour is not singular to the $A_3^1$ antenna, it must
+    be subtracted from the bare result to retain the antenna's singular behaviour.
+    When we then construct back the $T$-object, the $A_2^1A_3^0$ term has to be
+    added back on such that the process is considered in its totality \cite{Gehrmann-DeRidder:2005btv}.
+    \item The $A_2^2$ antenna set, also at NNLO, is the first time we find a
+    double-loop topology. Here the extension required is not a subtraction of
+    some kind of behaviour, but rather an addition of a new one. This set is, in
+    reality, composed of two different processes: the first follows the standard
+    rule closely, as it produces a leading, a subleading and a fermion loop
+    component. The second, however, has a singular antenna which describes the
+    self-interference of the one-loop correction with itself, now that the system
+    presents with two loops.
+    This antenna is notated by $\breve A_2^2$. It is also the only
+    genuinely square (not cross) term at NNLO. This means that it requires a
+    normalisation of $(2C_F)^2$ \cite{Gehrmann-DeRidder:2005btv}.
+\end{itemize}
+
+As mentioned before Eq.~\ref{eq:ATypeTObj}, the equation is only valid for
+$T$-objects constructed from $A$-type antenna functions. In this work we consider
+all quark-antiquark antennae up to NNLO. This includes the $B_4^0$ and $C_4^0$ antennae
+introduced in Subsection~\ref{subsec:antFamilies} of Chapter~\ref{ch:physicsbackground}. These
+antennae populate the $T_{q\bar qq^\prime\bar q^\prime}^6$ and $T_{q\bar qq\bar q}^6$
+objects, respectively.
+
+$T_{q\bar qq^\prime\bar q^\prime}^6$ is built in the same way as other single-topology
+antenna $T$-objects, like $T_{q\bar qg}^4$, with the only difference being that
+here all quark flavours are summed over, requiring the inclusion of a $(N_f-1)$
+term, constructing,
+\begin{equation}
+    T_{q\bar qq^\prime\bar q^\prime}^6=2C_FT_{q\bar q}^2(N_f-1)B_4^0.
+\end{equation}
+The identical-flavour quark-antiquark-quark-antiquark final state is described by
+the sum of antennae for non-identical-flavour and for identical-flavour-only
+\cite{Gehrmann-DeRidder:2005btv}. Using Eq.~\ref{eq:genTSum} in the interference
+term, with the identity piece vanishing by tracelessness,
+we can describe the
+identical-flavour $T$-object as,
+\begin{equation}
+    T_{q\bar q q\bar q}^6 = 2C_FT_{q\bar q}^2\left[B_4^0-\frac1N C_4^0\right]
+\end{equation}
+importantly without the inclusion of the quark-flavour sum term $(N_f-1)$.
+
+The R-ratio is assembled using these $\mathcal T$-objects. We simply sum the normalised objects
 order-by-order as,
 \begin{equation}
     \begin{split}

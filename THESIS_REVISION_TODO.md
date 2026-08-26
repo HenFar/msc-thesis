@@ -4,6 +4,58 @@ Consolidated from three independent reviews of the current thesis draft on 17 Au
 
 Known placeholder references to the appendices are deliberately not repeated here, as they are already tracked separately.
 
+## How to read and update this file (protocol for any Claude instance, added 26 Aug 2026)
+
+**This file is the single source of truth, edited by multiple Claude Code sessions over time, not just
+whichever one you're in right now.** Treat it accordingly:
+
+- **Always re-read this file fresh at the start of a session and before acting on it, even if you
+  remember editing it recently.** Another instance may have advanced it further than your own memory
+  of it — the entries below already show this happening in practice (a second session found and fixed
+  the real footnote 17 after an earlier session's guess was wrong; re-lettered tasks after one was
+  retired; pulled a "Mechanical Pile" out of the whole document, not just the section a prior session
+  was focused on). If a memory note or your own recollection disagrees with what's actually in this
+  file, **this file wins** — it reflects real edits to real source files, a memory note is a summary
+  that can go stale within the same day.
+- **If the file (or `memory/thesis-review-antcalc.md`) shows as changed since you last read it,
+  that's expected, not an error.** Read the new content, take it as current state, and only push back
+  if something in it looks actually wrong on its own merits (a physics claim you can check and
+  disagree with, a classification that doesn't hold up) — not just because it differs from what you
+  remembered. Don't silently revert another session's work.
+- **Task-labelling conventions in use, keep them consistent:**
+  - Items requiring Henrique's own composition/judgement (the "Yours" bucket) get single capital
+    letters — **A, B, C, ...** — assigned once and kept stable; if an earlier letter gets retired
+    (folded into a later task), leave a `~~struck~~` pointer rather than reusing the letter or leaving
+    a gap.
+  - Purely mechanical items (no physics judgement, no composition, a fix or relocation anyone could
+    verify and execute) live in the **Mechanical Pile** section, numbered **Mech-1, Mech-2, ...** in
+    roughly execution order. If you find a mechanical item still sitting in its original
+    section elsewhere in this file, that's a sign no one's swept it into the pile yet, not that it
+    doesn't belong there.
+  - When an item is finished, resolved as already-satisfied, found stale, or retired, mark it `[x]`
+    (or leave `[ ]` with a clear stale/deferred note — see Mech-6, Mech-9) and **say what actually
+    happened**, not just "done" — the entries in this file that hold up best are the ones that record
+    what was checked and why, so a later session (or Henrique) doesn't have to re-derive the
+    reasoning. If an item duplicates one already resolved elsewhere in the file, mark it done with a
+    pointer to where, rather than leaving two copies of the same open task.
+  - Before marking anything "Mine"/mechanical and executing it, verify it's actually still mechanical
+    against the *current* source — grep for cross-chapter references, check whether a cited equation
+    or subsection still means what the task assumes. Several items in this file were reclassified
+    from Mine to Yours mid-review after this check turned up a real dependency (`subsec:antFamilies`,
+    `subsec:PaVe`, the §2.4 `\sim`-equation fixes) — that reclassify-and-flag discipline is the point,
+    not a failure mode to avoid.
+- **New Prof. Pires review emails get processed the same way every time**, in order: read the whole
+  email before reacting to any single point (check for repeats of earlier feedback first); ground
+  every point against the actual current source, including verifying his own technical claims where
+  checkable, not just his paraphrase of the text; explain each point back to Henrique in plain terms
+  *before* touching any file; classify into Mine/Mechanical vs. Yours and write the result into this
+  file as the durable record; then execute Mine items directly (showing the real diff afterward) and
+  build Yours items through grounding/worked examples rather than drafting the prose, reviewing
+  Henrique's own draft afterward the same way you'd review anyone's. Full version of this protocol,
+  plus the working history behind it, is in `memory/mechanical-vs-yours-workflow.md` and
+  `memory/thesis-review-antcalc.md` — read those too, but this file's actual task state is authoritative
+  over both if they ever disagree.
+
 ## 0. PRIORITY — Advisor feedback from Prof. Pires (Ch1 Introduction + Ch2 partial, received 24 August 2026)
 
 Advisor feedback takes priority over everything below where they overlap. This is a **partial** pass — Prof. Pires said more corrections for the rest of Chapter 2 are coming later this week; fold those in here when they arrive. Where he supplied ready-made replacement text, go back to his email for the exact wording rather than re-deriving it.
@@ -53,11 +105,42 @@ Advisor feedback takes priority over everything below where they overlap. This i
 Prof confirmed §2.4 needs an actual rewrite: confusing, needs more rigour in places, and the subsection order is wrong. Re-checked every item below against the current source on 25 Aug 2026 — all confirmed genuinely non-mechanical, so **all of §2.4 is [Yours]**, none of it automatic. Split into two tasks: **Task D** is the core rewrite, where the sub-items are entangled around one underlying decision (how much T-object content survives in Ch2 vs. moves to Ch5, and how the antenna-sum equations get written once that's settled) — treat as one unit of work so it lands as one commit. **Task E** is the separable readability cleanup, confirmed in the original pass as *unaffected* by the Task D entanglement — it can be done independently, though doing it after Task D means the taxonomy table/figure can reflect the finished §2.4 structure rather than the current one.
 
 **Task D — core §2.4 rewrite (entangled, one commit):**
-- [ ] **Reorder subsections.** `subsec:nloAndNnloSubtraction` (currently 2.4.5) should open §2.4 — it explains *why* antenna functions and T-objects are needed, and currently comes last. **But its own back half (roughly the last third) is itself a detailed T-object discussion** — the $\sigma^{\rm NNLO}$/$\sigma^{\rm NLO}$ equations written in terms of $\mathcal T^4_{q\bar q}$, $\mathcal T^6_{q\bar q}$ etc., with an explicit cite to `subsec:antFamilies`. Since T-objects are moving to Ch5 (see below), simply relocating this subsection unchanged would open the rewritten §2.4 with exactly the T-object content Pires wants kept out of Ch2. Needs an actual decision — how much of the T-object material to cut vs. keep as a light forward-reference to Ch5.
-- [ ] **Write the general dσ^S (and dσ^T) equations as explicit antenna sums**, not just the abstract `dσ^S = Σ S_j · dσ^B` form already at `chapters/02-physics-background.tex:396-401`, and not just the cross-section-level "=" equations already in `eq:nnloCross` (`chapters/02-physics-background.tex:851`). Model: reference paper's eq. 2.5, `dσ^S_NLO = 𝒩 Σ dΦ (1/S) Σ_j X^0_ijk |M_m|^2 J_m`. Once written explicitly for NLO and NNLO, "NLO only needs X₃⁰-type antennae" and "NNLO needs X₄⁰ and X₃¹-type antennae" follow visibly from the sum (single extra parton vs. double-real/real-virtual respectively) instead of needing separate prose assertion — this is the upgraded replacement for the old retired Task C motivation paragraph (see §2.2.1 above), do this instead of a purely prose version there.
-- [ ] **Add a momentum-mappings discussion — currently essentially absent.** Grepped the whole chapter: "mapping" appears exactly once, at `chapters/02-physics-background.tex:1564`, buried in the massive-extension section, never introduced where it's actually needed. The mapping (reduced on-shell momenta $\tilde p_I,\tilde p_K$ used away from the singular point) is what makes the subtraction well-defined over the *whole* phase space, not just at the unresolved limit — a real content gap, not a wording one. Likely belongs right after the antenna function definition (2.4.1).
-- [ ] **Move `subsec:antFamilies` ("Antenna Families and T-Objects") to Chapter 5.** Checked more than originally planned: it's not just Ch5 that depends on this content. `chapters/03-package-framework.tex:744` and `:288` both cite `\ref{subsec:antFamilies}` and `\ref{eq:cAntTheory}` (an equation inside this subsection) directly. Moving the subsection to Ch5 wouldn't break the build (LaTeX labels resolve across chapters fine), but it would leave Chapter 3 — an *earlier* chapter — pointing forward to Chapter 5 for content it discusses as part of its own build-stage explanation, which reads backwards for a thesis. Needs a judgment call: does Ch3's reference get rephrased to not depend on the exact equation, does a short version of what Ch3 needs stay in Ch2, or is the forward reference just acceptable? Stems from the same underlying question as the reorder item above — how much T-object material survives in Ch2 vs. moves wholesale.
-- [ ] **Replace the `\sim` equations with exact ones**, at the un-numbered equation right after `eq:sigmaSDef` (~`chapters/02-physics-background.tex:761`, "$\int_1 d\sigma^S\sim\int d\Phi_{ijkl...}\,X_n^l$") and at `eq:antPhaseSpaceFact` (~line 804). Reclassified into Task D from a candidate-mechanical fix during this review: the reference paper's eq. 3.2 gives an exact equality with the symmetry factor spelled out, but the correct factor here also has to stay consistent with whatever form the antenna-sum equations above end up taking, and with the still-unverified "matches Ch4/Ch5 conventions" caveat already flagged on the `C(\epsilon,k)` item in §2.3 — not a safe blind transcription, so it belongs in this same commit rather than being done in isolation.
+- [x] **Reorder subsections.** Done earlier in this session (before the transcript segment this file's later entries describe). Verified 26 Aug 2026 against current source, since the checkbox had gone stale: `chapters/02-physics-background.tex:435`, "NLO and NNLO Subtraction Terms," is now the first subsection of §2.4, immediately after `sec:antSubForm` opens at `:415` — matches the planned reorder exactly.
+- [x] **Write the general dσ^S (and dσ^T) equations as explicit antenna sums.** Done earlier in this session, same stale-checkbox situation as above. `eq:subTerms` (in the new 2.4.1) gives the abstracted $2C_F\sum_{a(,s)}f_a(N,N_f)X_{ij,(a(,s))}^l\,d\sigma^B$ form for all five terms ($d\sigma^V_\text{NLO}$, $d\sigma^S_\text{NLO}$, $d\sigma^{VV}_\text{NNLO}$, $d\sigma^T_\text{NNLO}$, $d\sigma^S_\text{NNLO}$) — an abstracted alternative to the reference paper's fully-expanded eq. 2.5, chosen because it matches this thesis's actual scope (assembling known antenna combinations, not deriving numerical MC subtraction machinery) — see the session's earlier back-and-forth on this before it landed.
+- [x] **Add a momentum-mappings discussion.** Done earlier in this session, same stale-checkbox situation. Verified 26 Aug 2026: present at `chapters/02-physics-background.tex:514-522`, right after the antenna-sum equations, covering the reduced on-shell momenta $\tilde p_I,\tilde p_K$ and explicitly noting the pure-virtual terms ($d\sigma^V_\text{NLO}$, $d\sigma^{VV}_\text{NNLO}$) need no mapping.
+- [x] **Move `subsec:antFamilies` ("Antenna Families and T-Objects") to Chapter 5.** Done 26 Aug 2026. `chapters/02-physics-background.tex`'s `subsec:antFamilies` retitled to "Antenna Families" and trimmed to the taxonomy + $B_4^0$/$C_4^0$ definitions only (`eq:cAntTheory` unaffected, stays put). The $T$-object machinery (general $T$-object definition/footnote, `eq:ATypeTObj`, the $A_3^1$/$\breve A_2^2$ NNLO-extension itemize, and the $B_4^0$/$C_4^0$-specific $T$-object equations) moved into `chapters/05-validation-r-ratio.tex`'s §5.2 "Assembly from Integrated Antennae", which now carries a new label `subsec:Tobjects` and opens with the moved definitional content before the pre-existing $R$-ratio assembly equations that actually use it. `chapters/03-package-framework.tex:744` (the `TObject`-build-route reference) retargeted from `\ref{subsec:antFamilies}` to `\ref{subsec:Tobjects}`/Ch5 — see resolution note below. Full clean rebuild confirmed no undefined/duplicate references. **Still open:** the new Ch5 prose is a mechanical transplant, not yet reviewed for flow/continuity in its new home — see the new Ch5-review item added below, to run after the logical-coherence pass on Ch2.
+- [x] **Replace the `\sim` equations with exact ones.** Done 26 Aug 2026. Went to the primary literature (Gehrmann-De Ridder, Gehrmann, Glover, hep-ph/0505111, eqs. 2.8/2.10/2.11/2.18/2.19/2.23/2.35) rather than the paraphrase. First equation (`\int_1 d\sigma^S\sim\int d\Phi_{ijkl...}\,X_n^l`): the Born/jet-function piece factors out exactly by the phase-space factorisation, so `eq:sigmaSDef`'s $\sum_\text{unresolved pairs}$ structure carries straight through — now reads `\int_1 d\sigma^S=\sum_\text{unresolved pairs}\left(\int d\Phi_{ijkl...}\,X_n^l\right)d\sigma^B`. Second equation (`eq:antPhaseSpaceFact`): found it was doing two things at once — the $\int d\Phi_{ijkl...}X_n^l=\frac1{\Phi_2}\int d\Phi_n\,X_n^l$ half was already exact (follows directly from `eq:phi2Factor` divided by the constant $\Phi_2$), only the leading "$\mathcal X_n^l\sim$" was inexact, and redundant besides — `eq:antennaIntegral`, two equations later, already states $\mathcal X_n^l$ exactly with the correct $\mathcal N(\epsilon,k)$ prefactor. Dropped "$\mathcal X_n^l\sim$" from the equation and softened the lead-in sentence ("is then rewritten as," not "is then computed as,") to match. One near-miss caught in review: an intermediate edit briefly left `eq:antPhaseSpaceFact` claiming `$\mathcal X_n^l = \frac1{\Phi_2}\int d\Phi_n X_n^l$` outright — contradicting `eq:antennaIntegral`'s `$\mathcal N(\epsilon,k)$` four lines later by a factor of `$C(\epsilon,k)$`. Caught and fixed before it reached the build. Also surfaced, unprompted: `C(\epsilon,k)=(8\pi^2)^k(4\pi)^{-\epsilon}e^{\epsilon\gamma_E}` (`:378`) doesn't actually match the reference paper's own usage at $k=2$ — their NNLO 4-particle case (eq. 2.23) squares the *entire* prefactor including $S_\epsilon$, while their one-loop 3-particle case (eq. 2.35, also nominally $k=2$ under the thesis's own $k=(n-2)+l$) does *not* square $S_\epsilon$ at all, suggesting the correct power might track $(n-2)$ alone, not $k$. Left unresolved and un-fixed — this is the same "unverified 'matches Ch4/Ch5 conventions'" caveat already flagged on `C(\epsilon,k)` in §2.3, now with a concrete literature discrepancy attached, not something to silently patch. Full clean rebuild confirmed after each step.
+
+**Roadmap for Task D (drafted 26 Aug 2026, for execution ~27 Aug) — a proposed shape, not a final decision.** Went through all five current subsections of §2.4 line by line, plus the reference paper's actual §2.1/Table 1 (not just the paraphrase) and every cross-chapter dependency, to ground this. Henrique reacts/adjusts before writing.
+
+*§2.4 intro + `subsec:antennaFuncs` (`chapters/02-physics-background.tex:415-515`) — KEEP, mostly as-is.* The singular-factor factorisation, tree-level antenna definition (`eq:antennaTree`), generalisation to loop antennae, and the $k$-index are all foundational and not T-object content. `eq:bornNorm` (`:503-509`) is the index-heavy equation (Task E, not D). Candidate spot for the reference paper's colour-connection figure (their Fig. 2) — nothing here currently illustrates the $i,j,k\to I,K$ parent/daughter relationship pictorially, it's prose-only.
+
+*`subsec:colourAlg` (`:517-593`) — KEEP as-is.* Colour algebra, Casimir invariants, the leading/subleading/fermion-loop ($N$/$1/N$/$N_f$, i.e. tilde/hat) taxonomy, the four-quark Fierz identity. Not T-object content, no restructuring needed — just the 2 footnotes here that are part of Task E's "three footnotes" trim (`:454` and `:586`; the third is `:476`, also in `subsec:antennaFuncs`).
+
+*`subsec:antFamilies` (`:594-738`) — SPLIT, this is the crux.* Confirmed it bundles two genuinely different things:
+  - **(a) Antenna-family letter taxonomy + $B_4^0$/$C_4^0$ definitions** (`:596-664`, including `eq:cAntTheory` at `:641`) — KEEP in Ch2, compress into the Task E taxonomy table (this *is* the content Table 1 in the reference paper compresses). Not what Prof's T-object complaint was about.
+  - **(b) The $T$-object machinery itself** (`:666-738`: definitions, the $A_3^1$/$\breve A_2^2$ NNLO extensions, the $B_4^0$/$C_4^0$-specific $T$-object equations `eq:cAntTheory`-derived) — CUT from Ch2, MOVE to Ch5.
+  - This split resolves `chapters/03-package-framework.tex:288` (cites `eq:cAntTheory`) for free, since that equation stays in part (a). `chapters/03-package-framework.tex:744` (cites the subsection for the `TObject` build-route explanation) — **resolved 26 Aug 2026:** retargeted to `\ref{subsec:Tobjects}` in Ch5 rather than rephrased away. Accepted as a legitimate forward reference: Ch3 describes the `TObject` function's build route (assembling Ch2 antennae per the method now formally defined in Ch5), and that assembly method genuinely isn't defined in prose until Ch5, for the same reason Prof gave for moving it out of Ch2 in the first place. Left unrephrased rather than softened, since the earlier concern (Ch2 pointing forward to Ch5) doesn't reapply the same way here — Ch3 explaining an API call whose full definition comes later is ordinary technical-writing practice, not the "reads backwards" problem Prof flagged.
+
+*`subsec:phaseSpaceFactor` (`:739-841`) — KEEP the antenna phase-space factorisation and `eq:antennaIntegral`/`eq:phi2Factor` machinery.* The closing "Implications on the $T$-objects" subsubsection (`eq:integratedT`) — **done 26 Aug 2026**, cut from Ch2, landed in Ch5's `subsec:Tobjects` (see the destination-history entry below). This is also the natural place for the new momentum-mappings material (Task D item 3) — still open.
+
+*`subsec:nloAndNnloSubtraction` (`:842-941`) — DISSOLVES as a standalone subsection.* Front two-thirds (`:842-909`: why $d\sigma^S$/$d\sigma^T$ are needed, the NLO/NNLO cross-section splits, the exactness argument specific to this process) is genuine motivation — becomes the new, un-subsectioned **opening of §2.4** (mirroring the reference paper's own §2.1, which isn't subdivided either). Needs real rewriting, not cut-and-paste: it currently opens "So far... we have discussed what antenna functions are..." — a recap framing that assumes antenna functions were already introduced. Once this opens the section instead, that framing inverts to a preview ("we will build...", not "we have built..."). This is also where the new explicit $d\sigma^S$/$d\sigma^T$ antenna-sum equations (Task D item 2) land, right where "NLO only needs $X_3^0$-type, NNLO needs $X_4^0$/$X_3^1$-type" gets to follow visibly from the sum, exactly as Prof asked. Back third (`:910-941`: the $T$-object-heavy rewriting of $\sigma^\text{NLO}$/$\sigma^\text{NNLO}$, `eq:nnloCross`) — **resolved for free, checked 26 Aug 2026**: this was never carried over verbatim during drafting. The current `eq:nnloCross` (`chapters/02-physics-background.tex:460`) is already the clean, antenna-based form written for Task D item 2, not the old $T$-object version. Nothing to cut here.
+
+*Destination history, 26 Aug 2026 — tried Appendix B, reverted the same day.* Ch2's own $T$-object content (`tab:sigmaByOrder`'s column, the "Implications" subsubsection) was cut and, together with the `subsec:Tobjects` block already sitting in Ch5 from the earlier `antFamilies` move, relocated wholesale to a new `appendices/appendixB.tex` section, "The $\mathcal T$-Object Notation." Reasoning at the time: $T$-objects are a derived notation, not independent physics, and Ch5's own text already reaches the correct final $R$-ratio result via the antenna-only form, so nothing physical is lost keeping them out of the main narrative anywhere.
+
+**Reverted after further discussion with Henrique, same day — his point, on reflection correct.** The $T$-object form of the $R$-ratio equation groups terms by *final-state topology* ($\mathcal T_{q\bar q}^4$, $\mathcal T_{q\bar qg}^4$, $\mathcal T_{q\bar qq\bar q}^6$, ...), which is exactly what motivates "why these particular terms, at this order" — the antenna form groups by colour structure instead, essential for computation but not as direct an answer to that question. Since the $T$-object *equation* genuinely earns its place in Ch5's main argument, splitting its *definition* into an appendix would recreate the same "notation used before it's defined" problem this whole exercise exists to fix, just one level down (Ch5 using $T$-objects with the definition sitting in an appendix, instead of Ch2 using them with no definition at all). Also a more literal reading of Pires's own conditional after all — his "if useful, move to Ch5" test comes back *positive*, not negative as first assessed, once the topology-grouping argument is accounted for.
+
+**Net result: back to the state documented in the `Move subsec:antFamilies` entry above, plus `eq:integratedT` joining it.** Ch2 stays fully clean (that part of the appendix attempt was correct and stands). The full $T$-object narrative — general definition, `eq:ATypeTObj`, the two NNLO extensions, the $B_4^0$/$C_4^0$ $T$-objects, and now also `eq:integratedT` (newly joining on this pass) — lives in `chapters/05-validation-r-ratio.tex`'s `subsec:Tobjects`. `chapters/03-package-framework.tex:804`'s reference points there again. Full clean rebuild confirmed after the revert; `appendices/appendixB.tex` shows no net diff from before the appendix attempt.
+
+**Still open:**
+- `chapters/05-validation-r-ratio.tex` — the pacing/coherence review flagged when the `antFamilies` split first landed (see the `Item added 26 Aug 2026` entry below) still applies, now covering a slightly larger block since `eq:integratedT` joined it on this second landing.
+- Chapter 3's own T-object-heavy sections (§3.3.2, §3.3.3, §3.5.4, §3.6 — see the scope-extension note below) — untouched. Same kind of call as before: how much moves to Ch5 outright vs. gets trimmed to a light pointer, still entangled with Tasks O and P. Destination is Ch5 again, not the appendix.
+
+*Net effect on length:* §2.4 goes from 5 subsections to roughly 4 (intro+`antennaFuncs`, `colourAlg`, compressed `antFamilies`, `phaseSpaceFactor`), loses ~180 lines of T-object content to Ch5, gains the new explicit-sum equations and mapping discussion (a few paragraphs) and, separately via Task E, the taxonomy table replacing prose. Should net out similar length or shorter than today, not longer — consistent with Prof's own "couple of pages" reference-paper anchor.
+
+*Final item, added 27 Aug 2026, deliberately deferred to the very end of Task D (and, if needed, Task E) — a systematic logical-coherence and cross-reference pass.* Not a re-read; a checklist pass once the structure has actually stopped moving: grep every `\ref{}`/`\label{}` touched by the restructuring and confirm each resolves to content that still makes sense in its new position; separately scan for "as described above/below"-type phrasing left pointing the wrong way after a move. Deferred deliberately rather than skipped — doing this mid-restructuring means doing it again after every subsequent move, so it only gets done once, after everything else in Task D (and Task E, if the two end up finishing close together) has landed.
+
+*Item added 26 Aug 2026, once the `antFamilies` split landed — review the Ch5 $T$-object content and run a logical-coherence/pacing check on Chapter 5.* The `subsec:Tobjects` block (`chapters/05-validation-r-ratio.tex`, now also including `eq:integratedT`) is a mechanical transplant from Ch2, not yet reviewed as Ch5 prose: it still opens with "As described in Subsection~\ref{subsec:colourAlg}..." — phrasing written for a reader arriving straight from `subsec:colourAlg` in Ch2, not one arriving at Ch5 after three intervening chapters — and the whole block was written to *introduce* antenna machinery, whereas by Ch5 the reader has long since met it, so tone/pacing may now be off. Also check how it sits against the *existing* Ch5 material immediately after it (the $R = \dots$ assembly equations) — there may be overlap or a register jump between the transplanted definitional prose and the pre-existing assembly walkthrough. **Sequencing unchanged: run this only after the systematic logical-coherence and cross-reference pass on Chapter 2 (the item directly above) is done** — Ch2's pass may still trigger further edits upstream of this block.
 
 **Task E — §2.4 readability cleanup (separable from Task D, can be done independently):**
 - [x] Two of the three original mechanical items already done in the §2.5/§2.6 pass above: the empty `$ $` placeholder and the self-citing footnote at `subsec:phaseSpaceFactor`.
@@ -88,6 +171,182 @@ Prof's first paragraph in this batch (§2.4 reorder/exact-equations/mappings/T-o
 
 ### Still pending
 - [ ] Prof said corrections for the remainder of Chapter 2 (beyond §2.4.2) are coming later this week — re-open this section when they arrive.
+
+## Chapter 3 review — Prof. Pires, received 26 Aug 2026
+
+Full-chapter review of `chapters/03-package-framework.tex`, grounded against the current source before
+classifying (line numbers below refer to that file as of this pass). One point is a **repeat with
+extended scope**: the "move T-objects out" note already tracked as Task D (Ch2) turns out to apply to
+Chapter 3 too — see the Task D extension below, not a new task. Section numbers in Pires's email drift
+slightly from the compiled numbering in places; items below are matched by content, not by his stated
+number.
+
+**[Mine] — DONE (26 Aug 2026).** All items below executed in one pass directly on
+`chapters/03-package-framework.tex`, `references.bib`. Full clean rebuild confirmed afterward
+(`latexmk -pdf -gg`, 4 pdflatex passes + biber): no undefined references, no undefined citations,
+no LaTeX errors — every new `\ref{}` added below (to `eq:antennaIntegral`, `sec:dimreg`,
+`eq:expansionOrderDiag`, `tab:twoLoopProdModes`, `ch:workedexample`) resolves correctly, and the
+two new bibliography entries (`PackageX`, `FeynHelpers`) compile and cite correctly. Individual
+items:
+- [x] Opening 3 paragraphs (`:1-27`): footnote the GitHub link, state AntCalc was built from scratch
+  for this thesis (supplied text); swap the FeynCalc/LiteRed2 sentence for the tighter supplied version;
+  swap the "Experimental routes" sentence for the supplied version.
+- [x] §3.1 opening objective sentence (`:40-41`) — supplied replacement (names "antenna subtraction
+  method" instead of vague "antenna calculations").
+- [x] §3.1 PaVe-reduced example sentence (`:45-46`) — supplied replacement describing $X_3^1$ via
+  Passarino-Veltman reduction into scalar one-loop functions.
+- [x] §3.1 `IntegrateAntenna` default-truncation sentence (`:47-51`) — supplied replacement naming the
+  NLO/NNLO antennae explicitly.
+- [x] §3.1 "Using route profiles..." grammar fix (`:61-63`) — supplied replacement.
+- [x] §3.1 tier itemize (`:69-83`) → table, per Pires's sketch. Populate the full antenna list
+  (already present in the current itemize) into the table columns he specified
+  (Perturbative Order / Antenna / Status), plus his connecting sentences before and after.
+- [x] §3.2 route-key example (`:96-103`) — supplied replacement naming "leading-colour"/"subleading-colour"
+  explicitly instead of bare "leading"/"subleading".
+- [x] §3.2 renormalisation cross-reference: add a pointer to `\ref{sec:dimreg}` (Section 2.3) alongside
+  the existing `\ref{eq:alphaRescaling}` citation, in both the $A_3^1$ (`:333`) and $A_2^2$ (`:422`)
+  UV-renormalisation paragraphs — label already exists, this is a straightforward addition, not a new
+  derivation.
+- [x] §3.3 build-stage opening paragraph (`:171-177`) — supplied replacement.
+- [x] §3.3 loop-order-dispatcher sentence (`:192-196`) — supplied replacement (fixes the physics: tensor
+  reduction of loop-momentum dependence, not "reduction of the loop momenta").
+- [x] §3.3.2 "These antenna functions also differ..." grammar fix (`:303`) — supplied replacement.
+- [x] §3.4 full section: rename to "From the Build Stage to Integration", replace the whole paragraph
+  (`:448-460`) with the supplied text.
+- [x] §3.5 opening paragraph (`:464-469`) — supplied replacement; resolve the placeholder
+  "equation (X.YY)" to `\ref{eq:antennaIntegral}` (Ch2, the antenna phase-space integral definition).
+- [x] §3.5.1 $A_2^1$-exception sentence (`:507-509`) — supplied replacement (Passarino-Veltman wording).
+- [x] §3.5.1 Table `tab:intModes` "Current Route" column (`:518-523`): these are *integrated* routes,
+  so the antenna symbols should be calligraphic ($\mathcal A_2^1$, etc.), matching the convention used
+  everywhere else once an antenna is integrated — currently plain-letter, inconsistent with its own
+  table's subject.
+- [x] §3.5.1 closing paragraph (`:530-536`) — supplied $B_4^0$-example replacement, plus the new
+  forward-reference to Chapter 4 for the master-integral basis.
+- [x] §3.5.2 heading "PaVe Route" → "Passarino-Veltman Route"; opening paragraph (`:542-550`) — supplied
+  replacement. Needs a real citation for Package-X/FeynHelpers where the text says "(add reference)" —
+  not currently in `references.bib` (checked); source and add the correct entries rather than leave a
+  placeholder (likely Patel 1503.01469 for Package-X, Shtabovenko 1611.06793 for FeynHelpers — verify
+  before citing, don't transcribe from memory).
+- [x] §3.5.2 IBP Route paragraph (`:554-567`) — supplied replacement, keeps the existing
+  `\ref{sec:integration}` citation.
+- [x] §3.5.3.1 "Expansion Order" subsection (`:612-619`) — supplied replacement.
+- [x] §3.5.3.1 comment below `eq:expansionOrderDiag` (`:628-632`) — supplied replacement (fixes the
+  apparent self-contradiction about literature validation); use `\ref{eq:expansionOrderDiag}` instead
+  of the hardcoded "(3.15)".
+- [x] §3.5.4 title → "Reconstruction of Colour Components"; first paragraph (`:634-647`) — supplied
+  replacement. **Stop there** — the rest of this subsection (`:649-673`, the $\mathcal T_\text{Lead}$
+  etc. content) is T-object material now in scope for the Task D extension below, not this pass.
+- [x] §3.5.5 opening paragraph (`:676-679`) — supplied replacement; resolve "Table 3.4" to
+  `\ref{tab:twoLoopProdModes}` (the two-loop contributions table in §3.3.3 — not `tab:intModes`, which
+  is a different table also numbered 3.4 in his draft numbering).
+- [x] §3.6 opening sentence (`:694`): name the two canonical functions explicitly —
+  `\texttt{BuildAntenna}` and `\texttt{IntegrateAntenna}` — instead of "the two canonical functions".
+
+**New Mechanical Pile items (sweep across the whole thesis, not just Ch3):**
+- [x] **Mech-19 — DONE for Chapter 3 (26 Aug 2026).** "PaVe" → "Passarino-Veltman" wherever it named
+  the reduction method in running prose: fixed all 5 remaining prose instances in Ch3 (the
+  `AntennaReductionProfile`/`ReductionProfile` walkthrough at `:128,175,313`, the `tab:intModes`
+  backend-name cell, and the `IntegrateAntenna[...]` workflow pseudocode's "IBP/PaVe reduction" line).
+  Left the `subsec:PaVe` LaTeX label itself untouched, correctly — it's an internal identifier, not
+  rendered text. **Not yet done in Chapter 2** — `subsec:PaVe`'s own prose still says "PaVe" throughout;
+  deliberately left alone since that whole subsection is mid-relocation per Task G and would need the
+  same fix regardless of where it ends up — do it once, as part of executing Task G, not twice.
+- [x] **Mech-20 — DONE for Chapter 3 (26 Aug 2026).** "leading"/"subleading" (unqualified) →
+  "leading-colour"/"subleading-colour" in running prose: fixed the `{A,3,1}` route-key example and the
+  $A_3^1$-vs-$A_4^0$ comparison sentence in §3.3.2. Left alone, correctly: the literal code/option
+  identifiers `Leading`/`SubLead`/`Subleading` (`Component->Subleading`, the `\texttt{}` profile-field
+  names, the $X_\text{Lead}$/$X_\text{SubLead}$ subscripts) — these name actual package internals, not
+  prose, and renaming them would misrepresent the code; and the generic "the subleading component" in
+  §3.6, which reads unambiguously in its own context. **§3.3.1 (Tree-Level Routes) not swept** — that
+  whole subsection is Task J territory (entangled terminology rewrite), left for that pass. **Ch2 not
+  checked yet** — flagged, not done.
+- [x] **Mech-21 — DONE (26 Aug 2026).** Added `PackageX` (Patel, Comput. Phys. Commun. 197 (2015)
+  276-290, arXiv:1503.01469) and `FeynHelpers` (Shtabovenko, Comput. Phys. Commun. 218 (2017) 48-65,
+  arXiv:1611.06793) to `references.bib` — verified via live web search against arXiv/ADS before adding,
+  not transcribed from memory, since neither existed in the bibliography yet. Cited from the new
+  Passarino-Veltman Route paragraph in Ch3. Confirmed resolving correctly in a full rebuild.
+
+**New Yours tasks (continuing the letter sequence from Task G):**
+- [ ] **Task H — §3.1, "Higher-order terms in the ϵ-expansion can be obtained through the options
+  described above" (`:52-53`).** Pires flagged this as unclear — no specific option was actually named
+  above it. Decide: cut the sentence, or point to the real option (`ExpansionOrder`, introduced later
+  in §3.5.3.1) — either needs a judgment call about what this paragraph should promise this early.
+- [ ] **Task I — Add an equation to the `AntennaProfile[{A,2,1}]` discussion (`:149-167`)** clarifying
+  what `TreeAmplitude`/`BornInterference` actually compute for $A_2^1$ — Pires's suggestion, not
+  supplied text; needs deciding which equation belongs here (likely `eq:treeLoopInterf`, already defined
+  later at `:325-328`, or a purpose-built normalised version) and how it interacts with that later
+  definition.
+- [ ] **Task J — Full rewrite of §3.3.1 "Tree-Level Routes" (`:209-290`), entangled, several linked
+  issues:** (a) "self-interference"/`BornInterference` terminology is confusing at tree level, since
+  there's no actual interference except for $C_4^0$ — Pires wants "squared matrix element" in prose
+  while the code field itself stays named `BornInterference` (can't rename the code); (b) the $B_0$
+  letter clashes with the $B_4^0$ antenna — Pires suggests replacing the prose definition with the
+  actual normalisation equation from hep-ph/0505111 eq. (3.2) directly (ground against
+  `thesis_docs/pdfs/0505111v3.pdf` before writing); (c) "Leading"/"Subleading" needs the physical
+  explanation — that $A_4^0$'s two-quark-two-gluon process generates exactly two colour terms ($N$,
+  $1/N$) from its own colour algebra, not just named coefficients; (d) "profile-defined sectors" is
+  internal package language and needs an actual physical definition of what a sector is; (e)
+  "colour-independent" → "colour-stripped" (Pires: current wording is physically wrong, not just
+  informal); (f) the $B_4^0$ description ("primary-current sector has been self-interfered") needs to
+  state plainly whether this is an interference or a squared amplitude. One commit, not split — the
+  paragraphs share the same terminology decisions throughout.
+- [ ] **Task K — One-loop routes (§3.3.2, `:292-364`):** clarify "the components extracted" (`:302`,
+  which components, and when there are none vs. three); add the missing antenna-definition equation
+  (hep-ph/0505111 eq. 3.3-style) before the $T_\text{Lead}$/$T_\text{Sublead}$/$T_\text{QL}$ discussion
+  so the later decomposition is motivated rather than dropped in; and the "using PaVe... as described in
+  the appendix" cross-reference (`:296`) is **blocked on Task G** (the `subsec:PaVe`→appendix move isn't
+  executed yet).
+- [ ] **Task L — Two-loop $A_2^2$ (§3.3.3, `:366-434`): explain physically why $A_2^2$ has four
+  components** (the two-loop quark form factor for $\gamma^*\to q\bar q$, split by the two distinct
+  interference contributions) — currently just asserted, not derived or motivated. Pires separately
+  raised, here and previously in conversation, that **Feynman-diagram figures for the antenna types
+  themselves** ($A_2^2$, $A_2^1$, $C_4^0$, $A_3^1$, ...) would make the physical process each symbol
+  represents legible to a reader who doesn't already know the antenna-subtraction literature — this is
+  a bigger scope item, ties into the existing "expand the worked example" bullets in Section 4 below;
+  treat as one open item rather than duplicating it there.
+- [ ] **Task M — §3.5.3 "Normalisations and Convention Bridge" (`:571-608`), including `tab:GkNorm`.**
+  Pires: this section doesn't explain why some routes need extra multiplicative factors and others
+  don't, and an examiner won't care about the mechanics of an $8\pi^2\cdot e^{\epsilon\gamma}$-type
+  factor — he explicitly suggested cutting it if a clear rewrite isn't achievable. Genuine editorial
+  judgment call: rewrite around simple equations, or remove and fold anything essential elsewhere.
+- [ ] **Task N — §3.5.1 "The $A_2^2$ exception" sentence (`:506`).** Needs one explanatory clause tying
+  back to the two-source-contribution split already established in §3.3.3 (Task L) — smaller than the
+  others, but still requires composing the connective explanation, not a supplied swap.
+- [ ] **Task O — §3.7 "Validation and Development Diagnostics" (`:785-930`) — move to Chapter 5, per
+  Pires.** Looked mechanical at first (same shape as the Massive Extension move), but checking cross-
+  chapter references first (per the established red-flag rule — see
+  `memory/mechanical-vs-yours-workflow.md`) found `chapters/06-future-work.tex:43` citing
+  `\ref{subsec:wardAndRelease}` directly — the Ward-identity validation subsection inside this block is
+  referenced forward from Ch6. **Reclassified Yours** for that reason alone, same pattern as Task D
+  (`antFamilies`) and Task G (`subsec:PaVe`): needs a judgment call on whether to rephrase Ch6's
+  reference or keep the forward pointer into Ch5.
+- [ ] **Task P — §3.6 "Higher-Level Functions" (`:692-783`) — condense.** Pires: replace the long prose
+  walkthrough of each of the five functions with the 1-2 line description already itemised, using his
+  supplied one-liners as a starting point. Entangled with the Task D extension below, since the
+  `TObject`/`BuildRRatio` descriptions here overlap with T-object content moving to Ch5 — do after that
+  lands so the compressed description doesn't have to be rewritten twice.
+
+**Task D — scope extension (repeat of the "T-objects belong in Ch5" note, now covering Chapter 3 too):**
+Pires repeated the instruction explicitly for Ch3: the whole $\mathcal T$-object description belongs in
+Chapter 5, not Chapter 3 either. This is the same underlying decision as the Ch2 T-object move already
+tracked as Task D, not a new task — but it now also covers: §3.3.2's $T_\text{Lead}$/$T_\text{Sublead}$/
+$T_\text{QL}$ interference-decomposition content (`:330-360`); §3.3.3's $T_{q\bar q}^6$ assembly
+(`:436-446`); §3.5.4's $\mathcal T$-object equations, the "why already UV renormalised" question, and
+the `ReturnTTerms` option (`:649-673`, everything after the first paragraph already scheduled as Mine
+above); and §3.6's `TObject` function description and `tab:TObject` (`:742-773`, feeding into Task P).
+Resolve as one decision alongside the rest of Task D's Ch2 roadmap — don't draft the Ch3 side of this
+independently, since how much of this Ch3 content is a light forward-reference versus needs to move
+wholesale depends on where the destination ends up.
+
+**Update, 26 Aug 2026: the destination is Chapter 5** (`subsec:Tobjects` in
+`chapters/05-validation-r-ratio.tex`) — briefly moved to `appendices/appendixB.tex` the same day, then
+reverted (see Task D's "Destination history" entry above): the $T$-object form of the $R$-ratio equation
+genuinely earns its place in Ch5's main argument, so its definition belongs there with it, not in an
+appendix. That still resolves the "don't draft independently" blocker above: the Ch3 side can now be
+scoped against a concrete, stable target. Still genuinely open, still Henrique's call — how much of
+§3.3.2 (`:330-360`), §3.3.3 (`:436-446`), §3.5.4 (`:649-673`), and §3.6 (`:742-773`, `tab:TObject`) moves
+to Ch5 outright versus gets trimmed to a short pointer at `\ref{subsec:Tobjects}`. Not executed this
+session — flagged, not touched.
 
 ## Mechanical Pile — [Mine], reassigned 26 Aug 2026
 
