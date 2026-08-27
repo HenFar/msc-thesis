@@ -1,5 +1,204 @@
 \chapter{Supporting Derivations}\label{ap:supportingDerivations}
 
+\section{PaVe Reduction}\label{subsec:PaVe}
+
+At one-loop, amplitudes produce tensor integrals similar
+to those in Eq.~\ref{eq:PaVeSchematic} \cite{Passarino:1979pv}. With the general massive\footnote{
+Throughout this section, the general and massive case will be considered for
+completeness. The rest of the present work, however, heavily leans towards the
+massless regime. In that regime the internal masses vanish and the physical external
+partons satisfy $p_a^2=0$. The shifted momenta $r_i$, introduced in Eq.~\ref{eq:paveDens},
+entering propagators are combinations of external momenta and need not be lightlike.}
+denominators defined as,
+\begin{equation}\label{eq:paveDens}
+    D_0 = \ell^2-m_0^2+i0,\quad D_i = (\ell + r_i)^2 - m_i^2 + i0
+\end{equation}
+the tensor integral takes the form,
+\begin{equation}
+    I_N^{\mu_1...\mu_R} = \mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac{\ell^{\mu_1}...\ell^{\mu_R}}{D_0D_1...D_{N-1}}
+\end{equation}
+where $R$ is the tensor rank, $r_i$ are the combinations of 
+external momenta and $m_i$ is the mass associated with the $i$-th propagator. 
+The reduction is carried out in $d=4-2\epsilon$ dimensions, so that,
+\begin{equation}
+    g_{\mu\nu}g^{\mu\nu} = d.
+\end{equation}
+
+PaVe reduces the Lorentz indices in the numerator 
+$\ell^\mu\ell^\nu\ell^\rho...$ terms and expresses them 
+in terms of external momenta $p_i^\mu$, the metric 
+tensor $g_{\mu\nu}$ and scalar one-loop integrals, through 
+Lorentz covariance \cite{Passarino:1979pv}.
+
+For a rank-one $N$-point integral, the only available 
+vectors are the independent external momenta, such that,
+\begin{equation}\label{eq:paveRankOne}
+    I_N^\mu = \sum_{i=1}^{N-1}p_i^\mu C_i
+\end{equation}
+where $C_i$ are scalar coefficient functions.
+For rank-two, the relation becomes,
+\begin{equation}
+    I_N^{\mu\nu} = \sum_{i,j=1}^{N-1}p_i^\mu p_j^\nu C_{ij} + g^{\mu\nu}C_{00}
+\end{equation}
+and for rank-three,
+\begin{equation}
+    I_N^{\mu\nu\rho} = \sum_{i,j,k=1}^{N-1}p_i^\mu p_j^\nu p_k^\rho C_{ijk} + \sum_{i=1}^{N-1} \left(g^{\mu\nu}p_i^\rho + g^{\mu\rho}p_i^\nu + g^{\nu\rho}p_i^\mu\right)C_{00i}
+\end{equation}
+and so on for higher ranks.
+
+The reduction mechanism works because scalar products 
+involving the loop momentum can be rewritten using the
+propagator denominators as,
+\begin{equation}\label{eq:ellToDens}
+    2\ell\cdot r_i = D_i - D_0 - r_i^2 + m_i^2 - m_0^2
+\end{equation}
+which lets us cancel denominator terms, through a method 
+like the following example set at $i=1$,
+\begin{equation}
+    \frac{\ell\cdot r_1}{D_0D_1} = \frac12\left(\frac{1}{D_0}-\frac1{D_1}+\frac{1}{D_0D_1}\left(-m_0^2+m_1^2-r_1^2\right)\right)
+\end{equation}
+thereby rewriting loop-momentum scalar products in terms of denominators and 
+scalar integrals.
+
+While using this reduction scheme, we might also encounter Gram matrices, defined as,
+\begin{equation}
+    G_{ji} = 2p_j\cdot p_i.
+\end{equation}
+Contracting a general rank-one integral, as described in Eq.~\ref{eq:paveRankOne},
+with $p_j$ gives,
+\begin{equation}
+    p_j\cdot I_N = \sum_i(p_j\cdot p_i)C_i = \frac12\sum_iG_{ji}C_i.
+\end{equation}
+If we now define $R_j\equiv p_j\cdot I_N$, we are then able to compute the $C_i$
+coefficients in the Lorentz decomposition by taking,
+\begin{equation}\label{eq:gramInversion}
+    G_{ji}C_i = 2R_j\Rightarrow C_i = 2\left(G^{-1}\right)_{ij}R_j.
+\end{equation}
+
+\subsection{Rank-One Bubble Example}
+
+To illustrate the method, let us consider the rank-one bubble,
+\begin{equation}
+    B^\mu\!\left(p;m_0^2,m_1^2\right)=\mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac{\ell^\mu}{D_0D_1}
+\end{equation}
+where the denominators follow Eq.~\ref{eq:paveDens}. Lorentz covariance gives,
+\begin{equation}
+    B^\mu = p^\mu B_1
+\end{equation}
+Contracting with $p_\mu$ yields,
+\begin{equation}
+    p^2B_1 = p_\mu B^\mu = \mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac{\ell\cdot p}{D_0D_1}.
+\end{equation}
+Using the relation in Eq.~\ref{eq:ellToDens}, setting $r_1 = p$, we get,
+\begin{equation}
+    p^2B_1 = \frac12\left[A_0\!\left(m_0^2\right)-A_0\!\left(m_1^2\right)+\left(m_1^2-m_0^2-p^2\right)B_0\!\left(p^2;m_0^2,m_1^2\right)\right]
+\end{equation}
+and therefore\footnote{The result shown in Eq.~\ref{eq:bubbleResult} assumes generic 
+kinematics with $p^2\neq 0$. Exceptional cases are obtained through an appropriate 
+limit or alternative reduction.},
+\begin{equation}\label{eq:bubbleResult}
+    B^\mu = p^\mu\frac{A_0\!\left(m_0^2\right)-A_0\!\left(m_1^2\right)+\left(m_1^2-m_0^2-p^2\right)B_0}{2p^2}.
+\end{equation}
+Here, $A_0$ and $B_0$ are the scalar one-loop integrals mentioned throughout. These 
+two types can be defined as,
+\begin{equation*}
+    A_0\!\left(m^2\right) = \mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac1{\ell^2-m^2+i0}
+\end{equation*}
+\begin{equation}
+    B_0\!\left(p^2;m_0^2,m_1^2\right) = \mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac1{D_0D_1}.
+\end{equation}
+
+\section{IBP Reduction Example}\label{sec:IBPRedEx}
+
+The method behind IBP reduction, as discussed in Subsection~\ref{subsec:ibp} 
+may be made easier to visualise with an example. Consider a one-loop 
+bubble, akin to that studied via PaVe reduction in Section~\ref{subsec:PaVe}. 
+Take,
+\begin{equation}
+    \mathcal I(a_0,a_1) = \int d^d\ell\,\frac{1}{D_0^{a_0}D_1^{a_1}}
+\end{equation}
+where,
+\begin{equation}
+    D_0 = \ell^2-m_0^2,\quad D_1 = (\ell + p)^2 - m_1^2.
+\end{equation}
+We now choose $v^\mu = \ell^\mu$, and build and expand the relation from 
+Eq.~\ref{eq:derivativeToZero} as,
+\begin{equation}
+    \begin{split}
+        0 &= \int d^d\ell\,\frac\partial{\partial\ell^\mu}\left(\frac{\ell^\mu}{D_0^{a_0}D_1^{a_1}}\right)\\
+          &= d\mathcal I(a_0,a_1) - 2a_0\int d^d\ell\,\frac{\ell^2}{D_0^{a_0+1}D_1^{a_1}}-2a_1\int d^d\ell\,\frac{\ell\cdot (\ell+p)}{D_0^{a_0}D_1^{a_1+1}}.
+    \end{split}
+\end{equation}
+
+We can now use,
+\begin{gather}
+    \ell^2 = D_0 + m_0^2\\
+    2\ell\cdot (\ell + p) = D_0 + D_1 + m_0^2 + m_1^2 - p^2
+\end{gather}
+and finally get the explicit shifted-index identity,
+\begin{equation}
+    \begin{split}
+        0 = \,&(d-2a_0-a_1)\mathcal I(a_0,a_1)\\
+            &- 2a_0m_0^2\mathcal I(a_0+1,a_1)\\
+            &- a_1\mathcal I(a_0-1,a_1+1)\\
+            &-a_1\!\left(m_0^2+m_1^2-p^2\right)\mathcal I(a_0, a_1+1).
+    \end{split}
+\end{equation}
+
+\section{Three-Particle Phase-Space to Cut Propagators}\label{sec:PhiToCuts}
+
+Let us now consider the massless three-particle phase-space $\Phi_3$. 
+It may be described as,
+\begin{equation}
+    d\Phi_3(q;p_1,p_2,p_3)\propto d^dp_1 d^dp_2 d^dp_3\,\delta^+\!\left(p_1^2\right)\,\delta^+\!\left(p_2^2\right)\,\delta^+\!\left(p_3^2\right)\,\delta^{(d)}(q-p_1-p_2-p_3).
+\end{equation}
+We start by using momentum conservation to eliminate $p_3$,
+\begin{equation}
+    p_3 = q - p_1 - p_2.
+\end{equation}
+This first step eliminates the rightmost $\delta$-function.
+Then, using reverse unitarity, each of the remaining $\delta$-functions may be 
+rewritten as cut propagators. Schematically, it gives,
+\begin{equation}
+    d\Phi_3\sim d^dp_1 d^dp_2 \frac1{[p_1^2]_c[p_2^2]_c[(q-p_1-p_2)^2]_c}
+\end{equation}
+with
+\begin{equation}
+    \left[\frac1{p^2}\right]_c\equiv \frac1{2\pi i}\left[\frac1{p^2-i0}-\frac1{p^2+i0}\right]_+.
+\end{equation}
+
+\section{Laporta Algorithm Implementation Example}\label{sec:laportaByHand}
+
+Consider an arbitrary family defined as $\mathcal F[\{D_1, D_2, D_3\};d\Phi]$,
+with the denominators chosen as $D_1 = s_{12}$, $D_2 = s_{13}$ and $D_3 = s_{23}$. 
+We may take the integrals below, all members of this family, and organise them 
+using their respective sector vectors as follows,
+\begin{gather}
+    I_1 = \int d\Phi\,\frac{s_{13}}{s_{12}}\Rightarrow I_1=I(1,-1,0),\\
+    I_2 = \int d\Phi\,\frac2{s_{12}s_{13}s_{23}}\Rightarrow I_2=2I(1,1,1),\\
+    I_3 = \int d\Phi\,\frac1{s_{12}^3}\Rightarrow I_3=I(3,0,0)
+\end{gather}
+where $d\Phi$ is the common phase-space measure.
+Importantly, two integrals may share a sector if they contain the same denominators,
+independently of those denominators' powers. Also, only positive indices denote 
+denominator presence, meaning that integrals $I_1$ and $I_3$ in the example above 
+are members of the same sector, $I_1, I_3\in (1,0,0)$. In our example, only two 
+sectors appear: $(1,0,0)$ and $(1,1,1)$. These are our two target sectors. The 
+three integrals are organised in terms of the $t$, $r$ and $s$ as follows,
+\begin{equation}
+    \begin{array}{c|ccc}
+        & t & r & s\\
+        \hline
+        I(1,-1,0) & 1 & 0 & 1\\
+        I(1,1,1)  & 3 & 0 & 0\\
+        I(3,0,0)  & 1 & 2 & 0
+    \end{array}
+\end{equation}
+then, by order of complexity, the algorithm orders the integrals as,
+\begin{equation}
+    I(1,1,1) \succ I(3,0,0) \succ I(1,-1,0).
+\end{equation}
+
 \section{The Massive Extension}
 
 The main body of this thesis focused primarily on the massless regime, since the
@@ -126,111 +325,3 @@ integrals are generally multi-scale, and can involve
 logarithms, polylogarithms and more complicated transcendental functions;
 and lastly, boundary conditions are less direct, although common choices are
 the massless limit at $m\to0$ and the threshold limit at $\beta\to0$ \cite{GehrmannDeRidder:2009fz}.
-
-\section{PaVe Reduction}\label{subsec:PaVe}
-
-At one-loop, amplitudes produce tensor integrals similar
-to those in Eq.~\ref{eq:PaVeSchematic} \cite{Passarino:1979pv}. With the general massive\footnote{
-Throughout this section, the general and massive case will be considered for
-completeness. The rest of the present work, however, heavily leans towards the
-massless regime. In that regime the internal masses vanish and the physical external
-partons satisfy $p_a^2=0$. The shifted momenta $r_i$, introduced in Eq.~\ref{eq:paveDens},
-entering propagators are combinations of external momenta and need not be lightlike.}
-denominators defined as,
-\begin{equation}\label{eq:paveDens}
-    D_0 = \ell^2-m_0^2+i0,\quad D_i = (\ell + r_i)^2 - m_i^2 + i0
-\end{equation}
-the tensor integral takes the form,
-\begin{equation}
-    I_N^{\mu_1...\mu_R} = \mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac{\ell^{\mu_1}...\ell^{\mu_R}}{D_0D_1...D_{N-1}}
-\end{equation}
-where $R$ is the tensor rank, $r_i$ are the combinations of 
-external momenta and $m_i$ is the mass associated with the $i$-th propagator. 
-The reduction is carried out in $d=4-2\epsilon$ dimensions, so that,
-\begin{equation}
-    g_{\mu\nu}g^{\mu\nu} = d.
-\end{equation}
-
-PaVe reduces the Lorentz indices in the numerator 
-$\ell^\mu\ell^\nu\ell^\rho...$ terms and expresses them 
-in terms of external momenta $p_i^\mu$, the metric 
-tensor $g_{\mu\nu}$ and scalar one-loop integrals, through 
-Lorentz covariance \cite{Passarino:1979pv}.
-
-For a rank-one $N$-point integral, the only available 
-vectors are the independent external momenta, such that,
-\begin{equation}\label{eq:paveRankOne}
-    I_N^\mu = \sum_{i=1}^{N-1}p_i^\mu C_i
-\end{equation}
-where $C_i$ are scalar coefficient functions.
-For rank-two, the relation becomes,
-\begin{equation}
-    I_N^{\mu\nu} = \sum_{i,j=1}^{N-1}p_i^\mu p_j^\nu C_{ij} + g^{\mu\nu}C_{00}
-\end{equation}
-and for rank-three,
-\begin{equation}
-    I_N^{\mu\nu\rho} = \sum_{i,j,k=1}^{N-1}p_i^\mu p_j^\nu p_k^\rho C_{ijk} + \sum_{i=1}^{N-1} \left(g^{\mu\nu}p_i^\rho + g^{\mu\rho}p_i^\nu + g^{\nu\rho}p_i^\mu\right)C_{00i}
-\end{equation}
-and so on for higher ranks.
-
-The reduction mechanism works because scalar products 
-involving the loop momentum can be rewritten using the
-propagator denominators as,
-\begin{equation}\label{eq:ellToDens}
-    2\ell\cdot r_i = D_i - D_0 - r_i^2 + m_i^2 - m_0^2
-\end{equation}
-which lets us cancel denominator terms, through a method 
-like the following example set at $i=1$,
-\begin{equation}
-    \frac{\ell\cdot r_1}{D_0D_1} = \frac12\left(\frac{1}{D_0}-\frac1{D_1}+\frac{1}{D_0D_1}\left(-m_0^2+m_1^2-r_1^2\right)\right)
-\end{equation}
-thereby rewriting loop-momentum scalar products in terms of denominators and 
-scalar integrals.
-
-While using this reduction scheme, we might also encounter Gram matrices, defined as,
-\begin{equation}
-    G_{ji} = 2p_j\cdot p_i.
-\end{equation}
-Contracting a general rank-one integral, as described in Eq.~\ref{eq:paveRankOne},
-with $p_j$ gives,
-\begin{equation}
-    p_j\cdot I_N = \sum_i(p_j\cdot p_i)C_i = \frac12\sum_iG_{ji}C_i.
-\end{equation}
-If we now define $R_j\equiv p_j\cdot I_N$, we are then able to compute the $C_i$
-coefficients in the Lorentz decomposition by taking,
-\begin{equation}\label{eq:gramInversion}
-    G_{ji}C_i = 2R_j\Rightarrow C_i = 2\left(G^{-1}\right)_{ij}R_j.
-\end{equation}
-
-\subsection{Rank-One Bubble Example}
-
-To illustrate the method, let us consider the rank-one bubble,
-\begin{equation}
-    B^\mu\!\left(p;m_0^2,m_1^2\right)=\mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac{\ell^\mu}{D_0D_1}
-\end{equation}
-where the denominators follow Eq.~\ref{eq:paveDens}. Lorentz covariance gives,
-\begin{equation}
-    B^\mu = p^\mu B_1
-\end{equation}
-Contracting with $p_\mu$ yields,
-\begin{equation}
-    p^2B_1 = p_\mu B^\mu = \mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac{\ell\cdot p}{D_0D_1}.
-\end{equation}
-Using the relation in Eq.~\ref{eq:ellToDens}, setting $r_1 = p$, we get,
-\begin{equation}
-    p^2B_1 = \frac12\left[A_0\!\left(m_0^2\right)-A_0\!\left(m_1^2\right)+\left(m_1^2-m_0^2-p^2\right)B_0\!\left(p^2;m_0^2,m_1^2\right)\right]
-\end{equation}
-and therefore\footnote{The result shown in Eq.~\ref{eq:bubbleResult} assumes generic 
-kinematics with $p^2\neq 0$. Exceptional cases are obtained through an appropriate 
-limit or alternative reduction.},
-\begin{equation}\label{eq:bubbleResult}
-    B^\mu = p^\mu\frac{A_0\!\left(m_0^2\right)-A_0\!\left(m_1^2\right)+\left(m_1^2-m_0^2-p^2\right)B_0}{2p^2}.
-\end{equation}
-Here, $A_0$ and $B_0$ are the scalar one-loop integrals mentioned throughout. These 
-two types can be defined as,
-\begin{equation*}
-    A_0\!\left(m^2\right) = \mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac1{\ell^2-m^2+i0}
-\end{equation*}
-\begin{equation}
-    B_0\!\left(p^2;m_0^2,m_1^2\right) = \mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac1{D_0D_1}.
-\end{equation}

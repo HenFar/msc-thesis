@@ -491,8 +491,14 @@ terms and does not hold for generic multi-jet observables. Since the $R$-ratio i
 fully inclusive, $F_n=1$ at every multiplicity, meaning that no measurement 
 mismatch remains. Consequently, the real-subtracted contributions vanish rather 
 than only approaching zero in unresolved limits. 
-These subtraction cross-sections are expressed generally using the usual antenna 
-notation, as defined in Subsection~\ref{subsec:antennaFuncs}, as,
+These subtraction cross-sections are expressed generally using the usual antenna
+notation, as defined in Subsection~\ref{subsec:antennaFuncs}. Here, $X_{ij,(a,s)}^l$
+labels the antenna sitting on the unresolved pair $\{ij\}$ from Eq.~\ref{eq:sigmaSDef}.
+For the two-hard-radiator process considered throughout this work there is only
+ever one such pair, $\{q\bar q\}$, making this the same object as the multiplicity-based $X_n^l$
+used from Subsection~\ref{subsec:antennaFuncs} onward, with $n$ simply counting
+that pair's own final-state particles rather than tracking which pair it is.
+The subtraction terms are then,
 \begin{equation}\label{eq:subTerms}
     \begin{gathered}
         d\sigma^V_\text{NLO} = 2C_F\sum_{a}f_a(N,N_f)X_{ij,(a)}^1 d\sigma^B\\
@@ -556,7 +562,7 @@ in this text.
         \end{gathered}$ \\
         \hline
     \end{tabular}
-    \caption{Antenna subtraction formulae for $\sigma^\text{NLO}$ and $\sigma^\text{NNLO}$, in terms of the antenna functions \cite{Gehrmann-DeRidder:2005btv}. The $\sigma^\text{LO}$ row has no antenna-function form: it is the un-normalised Born term itself.}
+    \caption{Antenna subtraction formulae for $\sigma^\text{NLO}$ and $\sigma^\text{NNLO}$, in terms of the antenna functions described in Subsection~\ref{subsec:antennaFuncs} \cite{Gehrmann-DeRidder:2005btv}. The $\sigma^\text{LO}$ row has no antenna-function form: it is the un-normalised Born term itself.}
     \label{tab:sigmaByOrder}
 \end{table}
 
@@ -670,11 +676,11 @@ require renormalisation, and why Eq.~\ref{eq:antennaTree} is
 labelled as \textit{bare}: it is the general definition before UV renormalisation.
 This renormalisation is achieved through the
 rescaling of the bare coupling constant $\alpha_0$ to the renormalised coupling
-constant $\alpha_s$ through Eq.~\ref{eq:alphaRescaling}. This rescaling applies
-the Ward-Takahashi~\cite{Ward:1950xp, Takahashi:1957xn} and Slavnov-Taylor Identities
-\cite{Taylor:1971ff, Slavnov:1972fg},
-which guarantee the conservation of the electric and colour charges,
-respectively, through all topologies of the same process. Loop antennae also require us to denote the number
+constant $\alpha_s$ through Eq.~\ref{eq:alphaRescaling}. This single rescaling is
+guaranteed to hold universally, across every diagram topology of the same process,
+by the Ward-Takahashi~\cite{Ward:1950xp, Takahashi:1957xn} and Slavnov-Taylor Identities
+\cite{Taylor:1971ff, Slavnov:1972fg}, which enforce the conservation of the
+electric and colour charges, respectively. Loop antennae also require us to denote the number
 of loops their process supports. That number is the superscript in $X_n^l$, $l$,
 which up until now had been kept at zero for the loopless processes. $n$, on the 
 other hand, represents the number of final-state particles in the process.
@@ -1023,7 +1029,7 @@ generally be defined as,
 \end{equation}
 where $r_j$ is built from momenta held fixed during the loop integration, including
 the mapped hard partons and unresolved antenna momenta. For the massless, on-shell
-external partons considered throughout this work, $D_j$ reduces to a
+external partons considered throughout this work, $r_j$ reduces to a
 combination of Mandelstam invariants $s_{ij}$.
 
 An algebraic expansion of the integrand of an antenna function can generate multiple
@@ -1146,39 +1152,7 @@ where each vector $\vec b$ labels a family member obtained from $\vec a$
 through index shifts in one or more denominator
 powers. $\rho_{\vec b}$ is the corresponding coefficient in the IBP relation.
 
-The method may be made easier to visualise with an example. Consider a one-loop 
-bubble, akin to that studied via PaVe reduction in Section~\ref{subsec:PaVe}. 
-Take,
-\begin{equation}
-    \mathcal I(a_0,a_1) = \int d^d\ell\,\frac{1}{D_0^{a_0}D_1^{a_1}}
-\end{equation}
-where,
-\begin{equation}
-    D_0 = \ell^2-m_0^2,\quad D_1 = (\ell + p)^2 - m_1^2.
-\end{equation}
-We now choose $v^\mu = \ell^\mu$, and build and expand the relation from 
-Eq.~\ref{eq:derivativeToZero} as,
-\begin{equation}
-    \begin{split}
-        0 &= \int d^d\ell\,\frac\partial{\partial\ell^\mu}\left(\frac{\ell^\mu}{D_0^{a_0}D_1^{a_1}}\right)\\
-          &= d\mathcal I(a_0,a_1) - 2a_0\int d^d\ell\,\frac{\ell^2}{D_0^{a_0+1}D_1^{a_1}}-2a_1\int d^d\ell\,\frac{\ell\cdot (\ell+p)}{D_0^{a_0}D_1^{a_1+1}}.
-    \end{split}
-\end{equation}
-
-We can now use,
-\begin{gather}
-    \ell^2 = D_0 + m_0^2\\
-    2\ell\cdot (\ell + p) = D_0 + D_1 + m_0^2 + m_1^2 - p^2
-\end{gather}
-and finally get the explicit shifted-index identity,
-\begin{equation}
-    \begin{split}
-        0 = \,&(d-2a_0-a_1)\mathcal I(a_0,a_1)\\
-            &- 2a_0m_0^2\mathcal I(a_0+1,a_1)\\
-            &- a_1\mathcal I(a_0-1,a_1+1)\\
-            &-a_1\!\left(m_0^2+m_1^2-p^2\right)\mathcal I(a_0, a_1+1).
-    \end{split}
-\end{equation}
+An example of the application of this method is written in Section~\ref{sec:IBPRedEx}.
 
 \subsubsection{Reverse Unitarity and Cut Integrals}\label{subsubsec:revUnit}
 
@@ -1242,25 +1216,8 @@ both virtual and cut denominators. This then allows us to reduce loop and
 phase-space integrals simultaneously using IBP reduction 
 \cite{GehrmannDeRidder0311276,Anastasiou:2002yz}.
 
-As an example, let us now consider the massless three-particle phase-space $\Phi_3$. 
-It may be described as,
-\begin{equation}
-    d\Phi_3(q;p_1,p_2,p_3)\propto d^dp_1 d^dp_2 d^dp_3\,\delta^+\!\left(p_1^2\right)\,\delta^+\!\left(p_2^2\right)\,\delta^+\!\left(p_3^2\right)\,\delta^{(d)}(q-p_1-p_2-p_3).
-\end{equation}
-We start by using momentum conservation to eliminate $p_3$,
-\begin{equation}
-    p_3 = q - p_1 - p_2.
-\end{equation}
-This first step eliminates the rightmost $\delta$-function.
-Then, using reverse unitarity, each of the remaining $\delta$-functions may be 
-rewritten as cut propagators. Schematically, it gives,
-\begin{equation}
-    d\Phi_3\sim d^dp_1 d^dp_2 \frac1{[p_1^2]_c[p_2^2]_c[(q-p_1-p_2)^2]_c}
-\end{equation}
-with
-\begin{equation}
-    \left[\frac1{p^2}\right]_c\equiv \frac1{2\pi i}\left[\frac1{p^2-i0}-\frac1{p^2+i0}\right]_+.
-\end{equation}
+An example of the method used to rewrite $d\Phi_3$ in terms of cut propagators 
+is available in Section~\ref{sec:PhiToCuts}.
 
 \subsubsection{Laporta Algorithm}
 
@@ -1298,35 +1255,8 @@ by comparing $t$ first, then $r$ and finally $s$. The algorithm uses
 this chosen hierarchy to select, within each IBP relation, the most complex integral 
 to eliminate first.
 
-As an example, consider an arbitrary family defined as $\mathcal F[\{D_1, D_2, D_3\};d\Phi]$,
-with the denominators chosen as $D_1 = s_{12}$, $D_2 = s_{13}$ and $D_3 = s_{23}$. 
-We may take the integrals below, all members of this family, and organise them 
-using their respective sector vectors as follows,
-\begin{gather}
-    I_1 = \int d\Phi\,\frac{s_{13}}{s_{12}}\Rightarrow I_1=I(1,-1,0),\\
-    I_2 = \int d\Phi\,\frac2{s_{12}s_{13}s_{23}}\Rightarrow I_2=2I(1,1,1),\\
-    I_3 = \int d\Phi\,\frac1{s_{12}^3}\Rightarrow I_3=I(3,0,0)
-\end{gather}
-where $d\Phi$ is the common phase-space measure.
-Importantly, two integrals may share a sector if they contain the same denominators,
-independently of those denominators' powers. Also, only positive indices denote 
-denominator presence, meaning that integrals $I_1$ and $I_3$ in the example above 
-are members of the same sector, $I_1, I_3\in (1,0,0)$. In our example, only two 
-sectors appear: $(1,0,0)$ and $(1,1,1)$. These are our two target sectors. The 
-three integrals are organised in terms of the $t$, $r$ and $s$ as follows,
-\begin{equation}
-    \begin{array}{c|ccc}
-        & t & r & s\\
-        \hline
-        I(1,-1,0) & 1 & 0 & 1\\
-        I(1,1,1)  & 3 & 0 & 0\\
-        I(3,0,0)  & 1 & 2 & 0
-    \end{array}
-\end{equation}
-then, by order of complexity, the algorithm orders the integrals as,
-\begin{equation}
-    I(1,1,1) \succ I(3,0,0) \succ I(1,-1,0).
-\end{equation}
+An example of the application of the Laporta algorithm is written by hand in 
+Section~\ref{sec:laportaByHand}.
 
 After determining the integral families and sectors present, we apply the IBP 
 identities to the seed integrals. These seed integrals are a part of a finite, bounded set 
@@ -1411,7 +1341,8 @@ which IBP is then able to reduce to the master basis, as \cite{Remiddi:1997ny},
     \frac{d}{dx}\vec M(x,\epsilon) = A(x,\epsilon)\vec M(x,\epsilon).
 \end{equation}
 where $\vec M = (M_1,...,M_{N_\text{MI}})^\text T$ is the vector of masters and $A$ is a matrix of coefficient functions.
-Boundary conditions can then be used to determine the solution. These methods 
+Boundary conditions can then be used to determine the solution. The MI used 
+through this work and the methods used to compute them
 are discussed in further detail in Section~\ref{sec:masterresults}.
 
 Once the MI are evaluated, we expand them around $\epsilon = 0$, as a Laurent series

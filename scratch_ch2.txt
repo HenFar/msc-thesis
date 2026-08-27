@@ -1,0 +1,1338 @@
+=== PAGE 16 ===
+Chapter 2
+
+Theoretical Foundations
+
+2.1     QCD: Fields, Interactions and Perturbative Amplitudes
+    QCD is the quantum field theory of the strong interaction, whose elementary particles are the quarks
+and the gluons. Quarks are fermions that carry colour and interact through the exchange of gluons. Owing
+to the non-Abelian gauge structure of QCD, gluons themselves also carry colour charge and, therefore,
+undergo self-interaction.
+    At sufficiently high energy scales, the strong coupling, 𝛼𝑠 , becomes sufficiently small for physical
+observables to be calculated perturbatively, as an expansion in powers of 𝛼𝑠 . In this framework, the
+interaction structure of QCD determines the amplitudes for quark and gluon radiation that are studied
+throughout this thesis.
+
+2.1.1   Quark and Gluon Fields
+     Quarks are spin-1/2 fields carrying flavour and a three-valued colour charge. They are QCD’s matter
+fields. Gluons are the eight gauge fields associated with local 𝑆𝑈 (3) 𝑐 colour symmetry. The QCD
+Lagrangian describes their propagation and interaction. It is written as follows,
+
+                                    1               ∑︁                    
+                            LQCD = − 𝐺 𝑎𝜇𝜈 𝐺 𝑎 𝜇𝜈 +    𝜓¯ 𝑓 𝑖𝛾 𝜇 𝐷 𝜇 − 𝑚 𝑓 𝜓 𝑓 .                         (2.1)
+                                    4                𝑓
+
+In this expression, 𝐺 𝑎𝜇𝜈 is the non-Abelian field-strength tensor, 𝐷 𝜇 is the covariant derivative, 𝜓 𝑓 is the
+quark field and 𝑚 𝑓 is the quark mass. The flavour label 𝑓 is summed over the quark species included in
+the theory, while the adjoint colour index 𝑎 runs from one to eight. This Lagrangian is cleanly divided
+into two pieces, the quark and the gluon pieces.
+    Defining the covariant derivative as,
+
+                                               𝐷 𝜇 = 𝜕𝜇 − 𝑖𝑔𝑠 𝑇 𝑎 𝐴 𝑎𝜇                                   (2.2)
+
+where 𝑇 𝑎 represents the generators of the fundamental representation of 𝑆𝑈 (3) 𝑐 and 𝐴 𝑎𝜇 is the gluon
+gauge field, the quark Lagrangian term may be expanded to,
+                                  ∑︁                                                    
+                           L𝑞 =          𝜓¯ 𝑓 𝑖𝛾 𝜇 𝜕𝜇 − 𝑚 𝑓 𝜓 𝑓 + 𝑔𝑠 𝜓¯ 𝑓 𝛾 𝜇 𝑇 𝑎 𝜓 𝑓 𝐴 𝑎𝜇 .             (2.3)
+                                   𝑓
+
+Here 𝑔𝑠 is the strong coupling. In the expanded quark term, the first piece describes free quark propagation
+
+
+                                                          15
+
+
+=== PAGE 17 ===
+and the second quark-gluon interaction. This second piece is also responsible for generating the 𝑞 ¯   𝑞𝑔
+vertex.
+    We now also define the totally antisymmetric structure constants of the 𝑆𝑈 (3) 𝑐 Lie algebra 𝑓 𝑎𝑏𝑐 as,
+                                             𝑎 𝑏
+                                             𝑇 , 𝑇 = 𝑖 𝑓 𝑎𝑏𝑐 𝑇 𝑐 .                                     (2.4)
+
+They may be used to define the non-Abelian field-strength tensor 𝐺 𝑎𝜇𝜈 as,
+
+                                  𝐺 𝑎𝜇𝜈 = 𝜕𝜇 𝐴 𝜈𝑎 − 𝜕𝜈 𝐴 𝑎𝜇 + 𝑔𝑠 𝑓 𝑎𝑏𝑐 𝐴𝑏𝜇 𝐴𝑐𝜈 .                       (2.5)
+
+The first two terms of the field-strength tensor are Abelian-like and, in fact, they can be rewritten using
+                                                                        𝑎 , as,
+the Abelian-like linear part of the non-Abelian field-strength tensor 𝐹𝜇𝜈
+
+                          𝐺 𝑎𝜇𝜈 = 𝐹𝜇𝜈
+                                   𝑎
+                                      + 𝑔𝑠 𝑓 𝑎𝑏𝑐 𝐴𝑏𝜇 𝐴𝑐𝜈 ,     𝑎
+                                                              𝐹𝜇𝜈 ≡ 𝜕𝜇 𝐴 𝜈𝑎 − 𝜕𝜈 𝐴 𝑎𝜇 .                (2.6)
+
+The second term arises because, as shown in Eq. 2.4, the 𝑆𝑈 (3) 𝑐 generators do not commute. The non-
+Abelian field-strength tensor is used to write the gluon Lagrangian term. After expanding it becomes,
+
+                          1  𝑎  2 𝑔𝑠 𝑎𝑏𝑐 𝑎 𝜇𝜈 𝑏 𝑐 𝑔𝑠2 𝑎𝑏𝑐 𝑎𝑑𝑒 𝑏 𝑐 𝑑 𝜇 𝑒 𝜈
+                 L𝑔 = −      𝐹     −   𝑓  𝐹    𝐴 𝜇 𝐴𝜈 −   𝑓 𝑓  𝐴 𝜇 𝐴𝜈 𝐴 𝐴 .                            (2.7)
+                          4 𝜇𝜈       2                  4
+Here, much like in L𝑞 , the gluon Lagrangian is also divided into three terms. The first term is quadratic
+in the gluon field and, after gauge-fixing, describes free gluon propagation as [1],
+                                                          
+                                     𝑖                𝑘𝜇𝑘𝜈                          1  𝜇 𝑎 2
+                  Δ𝑎𝑏, 𝜇𝜈 (𝑘) = 𝛿 𝑎𝑏 2 −𝑔 𝜇𝜈 + (1 − 𝜆) 2 ,               Lgf = −       𝜕 𝐴𝜇            (2.8)
+                                    𝑘                  𝑘                           2𝜆
+
+where Lgf is the gauge-fixing Lagrangian, 𝛿 𝑎𝑏 is the Kronecker delta, and 𝜆 is the gauge parameter.
+Throughout this text the t’Hooft-Feynman convention is used, which makes 𝜆 = 1, following the default
+convention from FeynArts [2]. It is important to note, however, that physical observables are independent
+of the gauge choice. Unlike the remaining terms, the first contains no non-Abelian self-interaction. The
+cubic and quartic terms in the gluon fields generate, respectively, the three- and four-gluon vertices, 𝑔𝑔𝑔
+and 𝑔𝑔𝑔𝑔.
+    Using a covariant gauge-fixing term in a non-Abelian theory like QCD requires it to be supplemented
+by a ghost Lagrangian, described as [1],
+                                                                 
+                                        Lghost = 𝜕𝜇 𝜂 𝑎 † 𝐷 𝑎𝑏 𝜂 𝑏 .
+                                                            𝜇
+                                                                                                       (2.9)
+
+This is the default ghost sector as used in FeynArts [2] and, as for the 𝜆 convention, is the one used for
+the duration of the present text and in AntCalc. These ghost fields cancel the unphysical timelike and
+longitudinal gluon polarisations that would, otherwise, propagate in covariant-gauge loop diagrams. This
+ensures that only the two physical transverse polarisation states contribute to physical amplitudes [1].
+    Together, the two pieces, L𝑞 and L𝑔 , constitute the gauge-invariant core of QCD. They generate the
+three elementary interaction vertices among the quark and gluon fields: 𝑞 ¯ 𝑞𝑔, 𝑔𝑔𝑔 and 𝑔𝑔𝑔𝑔 [1, 3].
+
+2.1.2   From the QCD Lagrangian to Feynman Diagrams
+    The interaction terms in L𝑞 and L𝑔 determine the interaction vertices of QCD, which, together
+with the corresponding propagators, form the Feynman rules we use to compute scattering amplitudes
+
+
+                                                       16
+
+
+=== PAGE 18 ===
+perturbatively. Feynman diagrams are graphical representations of the individual contributions to the
+perturbative expansion of an amplitude. Each process may require more than one diagram to be fully
+represented; in that case, the complete amplitude is given as the sum of the amplitudes associated
+with all contributing diagrams. Fig. 2.1 depicts the two Feynman diagrams contributing to the process
+𝛾 ∗ → 𝑞(𝑘 1 )𝑔(𝑘 3 ) ¯
+                    𝑞(𝑘 2 ), where a virtual photon splits into a quark-antiquark pair, with the gluon emitted
+from either the quark or antiquark line.
+
+                                      𝑞(𝑘 1 )                                                              𝑞(𝑘 1 )
+
+
+
+        𝛾∗                            𝑔(𝑘 3 )                                  𝛾∗                          𝑔(𝑘 3 )
+
+
+
+                                      𝑞(𝑘 2 )
+                                      ¯                                                                    𝑞(𝑘 2 )
+                                                                                                           ¯
+        (a) Gluon emitted from the quark line.                             (b) Gluon emitted from the antiquark line.
+
+                     Figure 2.1: Tree-level diagrams for the process 𝛾 ∗ → 𝑞(𝑘 1 )𝑔(𝑘 3 ) ¯
+                                                                                         𝑞(𝑘 2 ).
+
+    The final amplitude in this case would then follow,
+
+                                                      (0)            (0)
+                                     M 𝛾(0)
+                                         ∗ →𝑞𝑔 𝑞¯ = M 𝑞−emission + M ¯
+                                                                    𝑞−emission
+                                                                               .                                     (2.10)
+
+    In the diagrams in Fig. 2.1, straight, curly, and wavy lines denote fermions (quarks), gluons and
+photons, respectively. These diagrams represent the reduced hadronic-current process with 𝛾 ∗ as an off-
+shell and colourless source. In the full process, 𝑒 + 𝑒 − → 𝛾 ∗ → 𝑞𝑔 ¯
+                                                                    𝑞, the photon is internal between the
+lepton (electron-positron) and hadron (quark-antiquark) currents. All other lines are external, meaning
+that they represent outgoing asymptotic partons, the quarks and gluons. Each of the diagrams features
+two vertices, where the lines meet. The vertices represent the interactions between the particles, which
+are determined by their respective Lagrangians. Each diagram contains an electromagnetic 𝛾 ∗ 𝑞 𝑞¯ current
+insertion and a QCD 𝑞 ¯𝑞𝑔 interaction vertex. The former follows from the QED sector, whereas the latter
+is generated by LQCD . A rate or cross section often depends on the squared amplitude |M | 2 , given as,
+                                                            ∑︁
+                                                                        ∗
+                                                 |M | 2 =           M𝐷 M𝐷 ′,                                         (2.11)
+                                                            𝐷,𝐷 ′
+
+where 𝐷 and 𝐷 ′ index the Feynman diagrams contributing to the amplitude, so that the sum includes
+both the diagonal 𝐷 = 𝐷 ′ terms and the interference between distinct diagrams.
+
+
+2.2     Divergences in Perturbative QCD
+2.2.1   Infrared Divergences
+    Beyond leading order in perturbation theory, QCD predictions receive contributions from both real
+and virtual corrections. Real corrections correspond to processes with additional parton emission in the
+final state, while virtual corrections arise from loop contributions to the amplitude. Both are required
+at a given perturbative order and can develop infrared singularities, which must ultimately cancel in
+infrared-safe physical observables.
+
+
+                                                              17
+
+
+=== PAGE 19 ===
+    The two QCD infrared limits, soft and collinear, can be derived explicitly as follows. We start
+by defining the physical system under study: consider two massless final-state partons 𝑖 and 𝑗 with
+four-momenta 𝑝 𝑖 and 𝑝 𝑗 . By momentum conservation, the four-momentum of the internal virtual
+propagator is 𝑃 = 𝑝 𝑖 + 𝑝 𝑗 . The matrix element contains this propagator and in the square amplitude
+it appears as a 1/𝑃2 factor. Expanding it and applying the massless condition ( 𝑝 2 = 0), we get
+𝑃2 = 2𝑝 𝑖 · 𝑝 𝑗 = 2𝐸 𝑖 𝐸 𝑗 (1 − cos 𝜃 𝑖 𝑗 ) [1]. Importantly, this quantity defines the Mandelstam invariants
+as 𝑠𝑖 𝑗 = 2𝑝 𝑖 · 𝑝 𝑗 = 𝑃2 , in the massless regime1 , which will serve as the natural integration variable
+throughout the work. The limits are then apparent: the soft limit is hit when one of the energies goes to
+zero and the collinear limit, when 𝜃 𝑖 𝑗 does. In both cases,
+
+                                                             lim 𝑠𝑖 𝑗 = 0
+                                                            𝐸𝑖 →0
+
+                                                             lim 𝑠𝑖 𝑗 = 0.                                                       (2.12)
+                                                            𝜃𝑖 𝑗 →0
+
+As an example, let us consider the 𝛾 ∗ → 𝑞(𝑘 1 )𝑔(𝑘 3 ) ¯    𝑞(𝑘 2 ) process. If one of the quarks and the
+gluon become collinear, say 𝑞(𝑘 1 ) and 𝑔(𝑘 3 ), then 𝑠13 → 0 and the amplitude has a single pole,
+|M| 2 ∼ 1/𝑠13 → ∞. If the gluon is soft, then both 𝑠13 , 𝑠23 → 0, and the amplitude has two poles,
+|M| 2 ∼ 1/(𝑠13 𝑠23 ) → ∞. Finally, if only one of the quarks is soft, then the pole formed is the same as
+in the collinear limit, and requires no separate dedicated soft-quark counterterm [1]. Furthermore, there
+is also the case for the NNLO process 𝛾 ∗ → 𝑞(𝑘 1 ) ¯   𝑞(𝑘 2 )𝑞 ′ (𝑘 4 ) 𝑞¯ ′ (𝑘 5 ) in which the 𝑞 ′ (𝑘 4 ) and 𝑞¯ ′ (𝑘 5 )
+become simultaneously soft. In that case, the amplitude has a double pole around the relevant invariant,
+𝑠45 , which appears as |M | 2 ∼ 1/𝑠45
+                                    2 → ∞ [4].
+
+     From an experimental point of view, a real emission that becomes soft or collinear may be unre-
+solved, meaning that it cannot be distinguished from a configuration in which that emission is absent.
+For an infrared-safe observable, the two configurations yield the same value of the observable in the
+corresponding limit.
+     The virtual corrections contain infrared singularities related to those arising from unresolved real
+radiation. According to the Kinoshita–Lee–Nauenberg (KLN) theorem, these singularities cancel once
+all degenerate contributions to an infrared-safe physical observable are appropriately combined [5, 6].
+The resulting observable is therefore finite, despite the presence of infrared divergences in the individual
+real and virtual contributions.
+     In practice, however, this cancellation cannot be performed directly at the integrand level, since the
+real and virtual contributions are separately divergent and are defined on phase spaces with different
+particle multiplicities. At NLO, the real contribution contains one additional final-state parton and is
+integrated over the (𝑛 + 1)-particle phase space, whereas the virtual contribution is integrated over the
+𝑛-particle phase space. A subtraction method resolves this mismatch by introducing a local counterterm
+𝑑𝜎 𝑆 that reproduces the singular behaviour of the real contribution 𝑑𝜎 𝑅 in all unresolved limits. The
+counterterm can then be subtracted from the real contribution, rendering their difference finite and
+suitable for numerical integration. The same counterterm is analytically integrated over the unresolved
+one-particle phase space and added to the virtual contribution, where its explicit infrared poles cancel
+those of the virtual correction. Schematically, at NLO, this is expressed as,
+                                           ∫                                ∫           ∫            
+                                                        𝑅         𝑆                  𝑉              𝑆
+                                    𝜎=                𝑑𝜎 − 𝑑𝜎             +         𝑑𝜎 +       𝑑𝜎                                (2.13)
+                                            𝑛+1                                𝑛           1
+
+                                                                 𝑖 𝑗 = ( 𝑝 𝑖 + 𝑝 𝑗 ) , but as 𝑝 𝑘 = 0 for any 𝑘, in this massless regime,
+   1 The general definition of the Mandelstam invariant is 𝑠                        2           2
+
+then the massless Mandelstam invariant is defined as 𝑠𝑖 𝑗 = 2𝑝 𝑖 · 𝑝 𝑗 .
+
+
+                                                                      18
+
+
+=== PAGE 20 ===
+where 𝑑𝜎 𝑅 represents the differential real radiation cross-section, 𝑑𝜎 𝑉 the differential virtual corrections
+cross-section and 𝑑𝜎 𝑆 the differential subtraction counterterm [7]. Importantly, 𝑑𝜎 𝑆 must reproduce
+𝑑𝜎 𝑅 ’s exact singular behaviour at every point in the phase space, such that the divergences cancel locally.
+
+2.2.2   Ultraviolet Divergences
+    Infrared divergences are not the only kind of divergences we find in QCD. In loop diagrams, the
+loop momentum 𝑙 is integrated over the whole of momentum space. Regions in which 𝑙 becomes soft
+or collinear to an external massless momentum can give rise to infrared singularities, which contribute
+to the singular structure of 𝑑𝜎 𝑉 . In addition, loop integrals may become divergent when the magnitude
+of the loop momentum becomes arbitrarily large, |𝑙 | → ∞. These are referred to as ultraviolet (UV)
+divergences.
+    The UV behaviour of a loop integral can be understood through simple power counting. In 𝑑
+dimensions, the loop integration measure can be written in spherical coordinates as,
+
+                                              𝑑 𝑑 𝑙 = 𝑙 𝑑−1 𝑑𝑙 𝑑Ω𝑑−1 .                                 (2.14)
+
+    Whether the integral diverges or not depends on whether the integrand converges fast enough to
+counter the 𝑙 𝑑−1 measure term. Since each propagator contributes ∼ 1/𝑙 2 to the integrand, schematically,
+a diagram with 𝑛 𝑝 propagators in the loop and no extra powers of 𝑙 in the numerator becomes,
+                                    ∫ ∞                            ∫ ∞
+                                                      1
+                                          𝑙   𝑑−1
+                                                    · 2𝑛 =               𝑙 𝑑−1−2𝑛 𝑝 𝑑𝑙                 (2.15)
+                                                      𝑙 𝑝
+
+which is UV divergent whenever 𝑑 − 1 − 2𝑛 𝑝 ≥ −1 ⇒ 𝑑 ≥ 2𝑛 𝑝 [3, 8].
+     The presence of UV divergences means that loop corrections expressed in terms of the bare coupling
+𝛼0 , implicit in the covariant derivative of the QCD Lagrangian in Eq. 2.1, are not finite beyond tree level,
+since their higher-order coefficients diverge [1]. This property makes 𝛼0 unsuitable as the order-by-order
+perturbative series variable we require. These divergences are removed through renormalisation, in which
+the bare coupling is traded for a finite renormalised coupling, 𝛼𝑠 , defined at a renormalisation scale 𝜇
+[8]. This renormalisation is made explicit for the one-loop antenna sets in Subsection 3.3.2.
+
+
+2.3     Dimensional Regularisation
+    The subtraction scheme from Eq. 2.13 separates the NLO cross-section into contributions that can
+ultimately be evaluated numerically. The difference 𝑑𝜎 𝑅 − 𝑑𝜎 𝑆 is finite in the unresolved regions and
+can therefore be integrated numerically in four dimensions. The subtraction term must, however, still be
+integrated analytically over the unresolved one-parton phase space,
+                                                 ∫
+                                                    𝑑𝜎 𝑆 .                                       (2.16)
+                                                          1
+
+    Since 𝑑𝜎 𝑆 is designed explicitly to carry over all of 𝑑𝜎 𝑅 ’s divergent structures, this integral blows
+up once integrated over four dimensions – as does the virtual contribution 𝑑𝜎 𝑉 , whose infrared diver-
+gences originate from the loop integration, as explored in Subsection 2.2.2. To regulate these divergent
+contributions we continue the number of space-time dimensions away from four, via,
+
+                                                     𝑑 = 4 − 2𝜖                                        (2.17)
+
+                                                              19
+
+
+=== PAGE 21 ===
+so that infrared divergences appear as explicit analytic poles in 𝜖. After analytic integration over the
+unresolved phase space, this leaves us with two 𝜖-dependent expressions, for the virtual corrections and
+for the now unresolved-parton-integrated subtraction cross-section,
+                                           ∫              
+                                               𝑑𝜎 𝑉 + 𝑑𝜎1𝑆 .                                      (2.18)
+                                                    𝑛
+
+    From the KLN theorem, as described in Subsection 2.2.1, we know that these poles must cancel. This
+combination is therefore finite as 𝜖 → 0, allowing the remaining phase-space integration to be performed
+numerically in four dimensions.
+    Though the underlying principle is always the same, dimensional regularisation can be implemented
+using different schemes. The most common are ’t Hooft-Veltman [9], Four-Dimensional Helicity [10] and
+Conventional Dimensional Regularisation (CDR) [1]. In CDR, all momenta and polarisation states are
+treated in 𝑑 = 4 − 2𝜖 dimensions. This is the scheme used throughout the present work, since AntCalc’s
+primary objective is the simplification and democratisation of the antenna framework established in [4],
+which uses CDR throughout.
+    The use of CDR, and in particular the complete continuation to 𝑑-dimensional space, introduces
+some complications, however. The move to 𝑑-dimensional spherical coordinates means that the phase-
+space integrals are now performed over 𝑑-dimensional solid angles, which produce characteristic factors
+such as powers of 4𝜋, Euler’s constant 𝛾 𝐸 , and Gamma functions like Γ(1 − 𝜖). These factors are a
+consequence of performing the angular and radial integrations away from four dimensions, and depend
+on the conventions adopted for dimensional regularisation. To express the integrated antennae in the MS
+(modified minimal subtraction)-compatible convention [11] used throughout this work, we multiply the
+raw 𝑑-dimensional integrals by the normalisation factor 𝑆 𝜖 = (4𝜋) − 𝜖 𝑒 𝜖 𝛾𝐸 . This convention removes the
+ubiquitous 4𝜋 and 𝛾 𝐸 factors from the coefficients of the perturbative expansion.
+    A separate normalisation arises from the convention used to express the perturbative expansion in
+the strong coupling. In the standard QCD convention adopted here, the expansion is written in terms of
+𝛼𝑠 /(2𝜋), instead of just 𝛼𝑠 , since the squared matrix elements scale with the whole raw coupling constant
+𝑔𝑠2 = 4𝜋𝛼𝑠 = 8𝜋 2 (𝛼𝑠 /(2𝜋)) rather than with 𝛼𝑠 alone. This makes a further normalisation parameter
+necessary. The scale normalisation,
+                                                  𝑘
+                                        𝐺 𝑘 = 8𝜋 2
+                                                   𝑛−2                    𝑙                     (2.19)
+                                            = 8𝜋 2       Λ𝑙 ,      Λ𝑙 ≡ 8𝜋 2
+
+is then introduced to normalise those expansion terms, and the loop-order-only normalisation Λ𝑙 explicitly
+shown as the virtual-loop contribution. The combined normalisation here introduced is thus,
+                                                             𝑘
+                                     𝐶 (𝜖, 𝑘) = 𝐺 𝑘 𝑆 𝜖 = 8𝜋 2 (4𝜋) − 𝜖 𝑒 𝜖 𝛾𝐸                      (2.20)
+
+where 𝑘 represents the perturbative order as 𝑘 = 1 for NLO, 𝑘 = 2 for NNLO, . . . and is, itself defined
+as,
+                                            𝑘 = (𝑛 − 2) + 𝑙                                       (2.21)
+
+for some antenna with 𝑛-final-state particles and 𝑙 loops2 .
+    Since multi-particle phase spaces recursively factorise, we must also normalise our phase-space inte-
+  2 Loops will be discussed and the 𝑘 index widely used in Subsection 2.4.2.
+
+
+
+
+                                                            20
+
+
+=== PAGE 22 ===
+gral by the 𝑑-dimensional two-body phase space volume Φ2 , as is convention in the antenna-subtraction
+literature [4]. The factorisation method used is discussed in Subsection 2.4.5, and written in Eq. 2.48. This
+normalisation, together with the previous combined normalisation factor, makes the global normalisation
+factor N (𝜖, 𝑘), used throughout the present work,
+
+                                                               𝐶 (𝜖, 𝑘)
+                                               N (𝜖, 𝑘) =               .                             (2.22)
+                                                                 Φ2
+
+The form given above is representative of this convention rather than an exact, route-by-route prescription:
+the precise multiplicative bridging applied to a given antenna also depends on the specific master-integral
+basis its integration reduces to, and is validated numerically against the literature result for each public
+route (Chapter 4), rather than derived symbolically here.
+    As described in Subsection 2.2.2, we need to trade the bare coupling constant 𝛼0 for a suitable order
+by order perturbative series variable. That is achieved as follows [4],
+                                                              
+                                              𝛽0 𝛼 𝑠                                  11𝑁 − 2𝑁 𝑓
+                     𝛼0 𝜇02𝜖 𝑆 𝜖 = 𝛼𝑠 𝜇2𝜖 1 −        + O (𝛼𝑠2 ) ,              𝛽0 =                   (2.23)
+                                              𝜖 2𝜋                                        6
+
+where 𝜇0 is the bare mass parameter that keeps 𝛼0 dimensionless, 𝜇 is the renormalisation scale (the
+renormalised mass parameter) that functions equally for 𝛼𝑠 . It is more commonly scaled as 𝜇2 = 𝑞 2
+for the massless case. 𝛽0 is the one-loop coefficient of the QCD beta function [1, 8], that tracks how
+the renormalised coupling 𝛼𝑠 changes with the renormalisation scale 𝜇, and finally 𝑁 is the number of
+colours, 3, and 𝑁 𝑓 the number of massless active quark flavours.
+
+
+2.4     The Antenna Subtraction Formalism
+   In perturbative QCD, when a particle like a gluon, 𝑗, becomes unresolved as described above, its
+squared matrix element |M 𝑛+1 | 2 factorises into a universal singular factor for this process, S 𝑗 and a
+lower-multiplicity squared matrix element (a level below), as follows [7, 4],
+
+                            |M 𝑛+1 (..., 𝑖, 𝑗, 𝑘, ...)| 2 → S 𝑗 · |M 𝑛 (..., 𝐼, 𝐾, ...)| 2 .          (2.24)
+
+   Since this is a universal property, it is possible to compute the subtraction cross-section 𝑑𝜎 𝑆 by
+summing over all possible unresolved pairs. Therefore,
+                                                        ∑︁
+                                         𝑑𝜎 𝑆 =                       S 𝑗 · 𝑑𝜎 𝐵                      (2.25)
+                                                   unresolved pairs
+
+
+where 𝑑𝜎 𝐵 denotes the Born process 𝛾 ∗ → 𝑞 ¯
+                                           𝑞, cross-section and S 𝑗 is the singular factor for each of the
+𝑗 particles being summed over.
+
+2.4.1   NLO and NNLO Subtraction Terms
+    As described in previous sections, we use 𝑑𝜎 𝑆 in the antenna subtraction formalism. We use this
+method to create a finite differential prediction tool (the differential cross-section) for an infrared-safe
+observable, using the measurement function 𝐹𝑛 for 𝑛 final-state particles. The terms of the subtraction
+formula must carry their respective infrared-safe quantities through the process. As an example, the
+
+
+
+
+                                                          21
+
+
+=== PAGE 23 ===
+differential (𝐹𝑛 -dependent) NLO finite cross-section is given by,
+                               ∫                                           ∫               ∫           
+                     NLO                   𝑅            𝑆                            𝑉              𝑆
+                𝑑𝜎         =             𝑑𝜎NLO 𝐹𝑚+1 − 𝑑𝜎NLO 𝐹𝑚           +         𝑑𝜎NLO +        𝑑𝜎NLO       𝐹𝑚   (2.26)
+                               𝑚+1                                           𝑚                1
+
+where, at NLO, 𝑚 = 2 is the number of final-state particles at Born-level [1].
+    The observable considered throughout this work, the hadronic 𝑅-ratio, is fully-inclusive and makes no
+distinction between resolved and unresolved final states at any multiplicity. Its measurement distribution
+𝐹𝑛 is, therefore, equal to one for every 𝑛. The cross-section is, therefore, no longer a differential prediction
+in 𝐹𝑛 , but rather reduces to the plain, fully-summed total. At NLO, the formula remains close in shape to
+Eq. 2.26, but at NNLO, due to the larger number of possible corrections, it must account for contributions
+where the two additional orders of 𝛼𝑠 are realised as two extra real partons (𝑅𝑅), one extra real parton
+and one loop (𝑅𝑉), or two loops with no extra final-state partons (𝑉𝑉). The NLO and NNLO antenna
+subtraction formulae are written as,
+                              ∫                       ∫               ∫          
+                       NLO               𝑅         𝑆               𝑉             𝑆
+                     𝜎      =         𝑑𝜎NLO − 𝑑𝜎NLO +          𝑑𝜎NLO + 𝑑𝜎NLO
+                                𝑚+1                         𝑚              1
+                     ∫                            ∫                         
+         𝜎 NNLO =              𝑅𝑅
+                            𝑑𝜎NNLO         𝑆
+                                     − 𝑑𝜎NNLO     +           𝑅𝑉
+                                                           𝑑𝜎NNLO        𝑇
+                                                                    − 𝑑𝜎NNLO                              (2.27)
+                      𝑚+2                            𝑚+1
+                                                    ∫               ∫              ∫           !
+                                                                  𝑉𝑉                   𝑇                𝑆
+                                                    +           𝑑𝜎NNLO +             𝑑𝜎NNLO +         𝑑𝜎NNLO .
+                                                           𝑚                     1                2
+
+
+Where the NLO formula is restricted to a single subtraction counterterm, the NNLO formula has two:
+𝑑𝜎 𝑆 subtracts the singularities of 𝑑𝜎 𝑅𝑅 at single- and double-unresolved level, whereas 𝑑𝜎𝑇 subtracts
+the singularities of 𝑑𝜎 𝑅𝑉 at single-unresolved level [4]. This introduces an additional level of complexity
+for NNLO: the KLN theorem guarantees only that the fully inclusive sum over degenerate configurations
+is finite, but says nothing about any particular piece of a decomposition being finite on its own. With the
+split including multiple subtractions at the same time, we are implying that each of these differences is
+separately, pointwise finite, everywhere in its own phase space.
+     For the two-hard-radiator process considered here, 𝑑𝜎NLO    𝑆 , 𝑑𝜎 𝑆                 𝑇
+                                                                             NNLO , and 𝑑𝜎NNLO are constructed
+from their respective full matrix elements and, as such, coincide with 𝑑𝜎NLO         𝑅 , 𝑑𝜎 𝑅𝑅 , and 𝑑𝜎 𝑅𝑉
+                                                                                            NNLO         NNLO
+pointwise [4]. This is a special property of these subtraction terms and does not hold for generic multi-
+jet observables. Since the 𝑅-ratio is fully inclusive, 𝐹𝑛 = 1 at every multiplicity, meaning that no
+measurement mismatch remains. Consequently, the real-subtracted contributions vanish rather than only
+approaching zero in unresolved limits. These subtraction cross-sections are expressed generally using the
+usual antenna notation, as defined in Subsection 2.4.2, as,
+                                                 ∑︁
+                                     𝑉
+                                  𝑑𝜎NLO  = 2𝐶𝐹       𝑓 𝑎 (𝑁, 𝑁 𝑓 ) 𝑋𝑖1𝑗, (𝑎) 𝑑𝜎 𝐵
+                                                     𝑎
+                                                    ∑︁
+                                       𝑆
+                                     𝑑𝜎NLO = 2𝐶𝐹           𝑓 𝑎 (𝑁, 𝑁 𝑓 ) 𝑋𝑖0𝑗, (𝑎,𝑠) 𝑑𝜎 𝐵
+                                                     𝑎,𝑠
+                                                      ∑︁
+                                       𝑉𝑉
+                                     𝑑𝜎NNLO = 2𝐶𝐹              𝑓 𝑎 (𝑁, 𝑁 𝑓 ) 𝑋𝑖2𝑗, (𝑎) 𝑑𝜎 𝐵                        (2.28)
+                                                      𝑎
+                                                     ∑︁
+                                       𝑇
+                                     𝑑𝜎NNLO = 2𝐶𝐹          𝑓 𝑎 (𝑁, 𝑁 𝑓 ) 𝑋𝑖1𝑗, (𝑎,𝑠) 𝑑𝜎 𝐵
+                                                     𝑎,𝑠
+                                                     ∑︁
+                                       𝑆
+                                     𝑑𝜎NNLO = 2𝐶𝐹          𝑓 𝑎 (𝑁, 𝑁 𝑓 ) 𝑋𝑖0𝑗, (𝑎,𝑠) 𝑑𝜎 𝐵
+                                                     𝑎,𝑠
+
+
+
+
+                                                               22
+
+
+=== PAGE 24 ===
+where 𝐶𝐹 is the fundamental Casimir invariant, 𝑓 𝑎 is the function that describes the colour prefactor per
+colour component: 𝑁 for the leading colour, 1/𝑁 for subleading, etc., and 𝑠 is summed over all possible
+extra final-state particle sets. That is, for example, for the quark-antiquark final-final antenna functions
+considered throughout this text, the 𝑠-sum in 𝑑𝜎NNLO 𝑆                        𝑞, and 𝑞 ′ 𝑞¯ ′ , relative to the 𝐴,
+                                                          would produce 𝑔𝑔, 𝑞 ¯
+𝐵, 𝐶 antenna types.
+    Each real-emission antenna function in Eq. 2.28 (𝑑𝜎 𝑆 and 𝑑𝜎 𝑇 , at either order) is evaluated on
+reconstructed, on-shell momenta 𝑝˜ 𝐼 , 𝑝˜ 𝐾 , built from the hard radiators and the unresolved momenta in
+between them, through a momentum mapping which conserves total momentum, 𝑝˜ 𝐼 + 𝑝˜ 𝐾 = 𝑝 𝑖 + 𝑝 𝑗 + 𝑝 𝑘 ,
+and keeps 𝑝˜2𝐼 = 𝑝˜2𝐾 = 0. The pure-virtual terms, 𝑑𝜎NLO𝑉           𝑉𝑉 , need no such mapping, since they
+                                                            and 𝑑𝜎NNLO
+carry no unresolved parton to begin with. Without this reconstruction, the reduced matrix element inside
+𝑑𝜎 𝐵 would only be well-defined at the unresolved limit. The mapping allows the antenna subtraction term
+to act as a local counterterm over the whole unresolved-parton phase space, not merely asymptotically
+close to it. Using these expressions, 𝜎 NLO and 𝜎 NNLO , from Eq. 2.27, simplify to,
+                ∫              ∫                        "             ∫                                     ∫                            #
+                                                              ∑︁                                   ∑︁
+      NLO
+  𝜎         =           𝑉
+                      𝑑𝜎NLO +           𝑆
+                                      𝑑𝜎NLO       = 2𝐶𝐹            𝑓𝑎           𝑋𝑖1𝑗, (𝑎) 𝑑𝜎 𝐵 +         𝑓𝑎             𝑋𝑖0𝑗, (𝑎,𝑠) 𝑑𝜎 𝐵
+                𝑚                 1                           𝑎             𝑚                      𝑎,𝑠        𝑚+1
+                ∫                  ∫                ∫                  
+ 𝜎 NNLO =            𝑉𝑉
+                  𝑑𝜎NNLO  + 𝑑𝜎NNLO 𝑇           𝑆
+                                         + 𝑑𝜎NNLO                                                                                              (2.29)
+                 𝑚          1               2
+                  "                                                                                                                        #
+                    ∑︁ ∫                    ∑︁ ∫                     ∑︁ ∫
+            = 2𝐶𝐹      𝑓𝑎  𝑋𝑖2𝑗, (𝑎) 𝑑𝜎 𝐵 +   𝑓𝑎  𝑋𝑖1𝑗, (𝑎,𝑠) 𝑑𝜎 𝐵 +   𝑓𝑎                                               𝑋𝑖0𝑗, (𝑎,𝑠) 𝑑𝜎 𝐵
+                        𝑎        𝑚                    𝑎,𝑠          𝑚+1                             𝑎,𝑠            𝑚+2
+
+
+Each order’s antenna subtraction formula is given in the following Table 2.1 in terms of the antenna
+functions, for the relevant quark-antiquark final-final antennae considered in this text.
+
+                Order       Antenna-function form
+
+                 LO         —
+                                          
+                                        1  1           
+                 NLO        𝜎 NLO = 𝑁 −        A2 + A30
+                                        𝑁 "
+                                                                     
+                            𝜎 NNLO = 𝑁 − 𝑁1 𝑁 A21 A30 + A31 + A40 + A22
+                                                                        
+                NNLO             − 𝑁1 A21 A30 + Ã31 + Ã40 + C40 − Ã22
+                                                                                 #
+                                                            
+                                +𝑁 𝑓 B40 + Â31 + Â22 + 𝑁 − 𝑁1 Ă22
+
+
+Table 2.1: Antenna subtraction formulae for 𝜎 NLO and 𝜎 NNLO , in terms of the antenna functions [4]. The 𝜎 LO
+row has no antenna-function form: it is the un-normalised Born term itself.
+
+
+
+2.4.2       Antenna Functions
+     Since the singular factor S 𝑗 must work smoothly across all unresolved limits and must also handle
+all spin correlations correctly, it should, optimally, be a function that preserves all the unresolved parton
+information without the noise coming from the hard parton process. This is easily achieved by dividing
+our 𝑛-level process squared matrix element by the fixed two-parton Born-level squared matrix element,
+common to all quark-antiquark antenna functions. The resulting quantity is gauge-invariant. It is the
+
+
+
+
+                                                                    23
+
+
+=== PAGE 25 ===
+antenna, most usually notated by 𝑋𝑛0 and defined as [4, 12, 13],
+                                                                          2
+                                                                   M 𝑛0
+                                              𝑋𝑛0, bare = N𝑋              2
+                                                                                                              (2.30)
+                                                                   M20
+
+where |M 𝑛 | 2 represents the 𝑛-level squared matrix element and 𝑋𝑛0, bare is the antenna that represents that
+                      2
+same 𝑛-level. M20 is the Born-level squared matrix element.
+      Fig. 2.2 illustrates this factorisation for the NLO quark-antiquark antenna, using the same 𝛾 ∗ →
+𝑞(𝑖)𝑔( 𝑗) ¯𝑞(𝑘) process as Fig. 2.1. As particle 𝑗 becomes unresolved, the process collapses onto its Born-
+level configuration, with the two hard radiators 𝑖 and 𝑘 mapped onto 𝑝˜ 𝐼 and 𝑝˜ 𝐾 . The antenna function
+𝑋30 , together with its own local phase space, is exactly the ratio that this factorisation leaves behind.
+
+                                                                                      fixed 𝑝˜ 𝐼 + 𝑝˜ 𝐾
+
+                               𝑞(𝑖)                                   𝑞( 𝑝˜ 𝐼 )                𝑞(𝑖)
+
+                𝛾∗                                  ∗
+                                                                                  ×
+                                      𝑔( 𝑗)
+                                              = 𝛾                                                     𝑔( 𝑗)
+
+                               ¯
+                               𝑞(𝑘)                                   𝑞( 𝑝˜ 𝐾 )
+                                                                      ¯                        ¯
+                                                                                               𝑞(𝑘)
+
+                     |M3 (𝑖, 𝑗, 𝑘)| 2 𝑑Φ3               |M2 (𝐼, 𝐾)| 2 𝑑Φ2              𝑋30 𝑑Φ𝑋𝑖 𝑗 𝑘
+
+Figure 2.2: Factorisation of the squared matrix element and phase space as particle 𝑗 becomes unresolved, for the
+NLO quark-antiquark antenna. The hard radiators 𝑖, 𝑘 map onto the reduced Born momenta 𝑝˜ 𝐼 , 𝑝˜ 𝐾 ; the antenna
+function 𝑋30 depends only on the antenna’s own internal invariants, evaluated at fixed total momentum 𝑝˜ 𝐼 + 𝑝˜ 𝐾 .
+
+    The same construction extends directly to 𝐴40 , with two unresolved partons mapping the process onto
+the same reduced Born configuration. The four-quark antennae 𝐵40 and 𝐶40 , by contrast, are not built this
+way at all: they come from interfering flavour-flow amplitudes instead, as described in Subsection 2.4.4.
+    N𝑋 represents the necessary normalisation over colour and coupling terms, whose general form
+depends on the specific antenna family under consideration. The colour-algebraic machinery required
+to construct it explicitly is developed in Subsection 2.4.3. It is defined, for quark-antiquark antennae
+(other antenna types are described in Subsection 2.4.4 and require different normalisations), using the
+                                                                          √
+fundamental Casimir invariant 𝐶𝐹 and the strong coupling constant 𝑔𝑠 = 4𝜋𝛼𝑠 , as
+
+                                                               1
+                                              N𝑋 =                        .                                   (2.31)
+                                                        2𝑔𝑠2(𝑛−2) 𝐶𝐹
+
+    This definition is strictly correct and complete for real-emission, so called tree-level, antenna func-
+tions. These antenna functions represent loopless processes. QCD allows for the exchange of gluons in
+between quarks and the self-absorption (by the same quark) of a previously emitted gluon. These are the
+so-called virtual corrections. As described in Subsection 2.2.2, these corrections lead to UV divergences,
+which is why loop antenna functions require renormalisation, and why Eq. 2.30 is labelled as bare: it is
+the general definition before UV renormalisation. This renormalisation is achieved through the rescal-
+ing of the bare coupling constant 𝛼0 to the renormalised coupling constant 𝛼𝑠 through Eq. 2.23. This
+rescaling applies the Ward-Takahashi [14, 15] and Slavnov-Taylor Identities [16, 17], which guarantee the
+conservation of the electric and colour charges, respectively, through all topologies of the same process.
+Loop antennae also require us to denote the number of loops their process supports. That number is the
+superscript in 𝑋𝑛𝑙 , 𝑙, which up until now had been kept at zero for the loopless processes. 𝑛, on the other
+
+                                                          24
+
+
+=== PAGE 26 ===
+hand, represents the number of final-state particles in the process.
+    These antenna functions may now be ordered by perturbative order based on their 𝑘 index. Let
+us define an antenna completely as 𝑋𝑛,   𝑙      where 𝑘 is the perturbative order index, 𝑛 is the number of
+                                           (𝑘 )
+final-state particles and 𝑙 is the number of loops. Let us also define the perturbative expansion in Eq. 2.23
+as,
+                                             𝛼           𝛽0 𝛼 𝑠      𝛼 
+                                                     𝑠                   𝑠
+                                         Δ                   =1−  +O
+                                                 2𝜋         𝜖 2𝜋        2𝜋                                 (2.32)
+                                                                    𝛼𝑠      𝛼𝑠
+                                                    = Δ (0) + Δ (1)    +O      .
+                                                                    2𝜋      2𝜋
+    We are now able to generalise Eq. 2.30 to all antenna functions as follows,
+
+
+                                                          𝑙
+                                                         ∑︁
+                       𝑙
+                      𝑋𝑛,         𝑙, bare
+                          (𝑘 ) = 𝑋𝑛, (𝑘 ) +                    Δ (𝑚) 𝑋𝑛,
+                                                                      𝑙−𝑚, bare
+                                                                         (𝑘−𝑚)
+                                            𝑚=1
+
+                               = 𝑋𝑛, (𝑘 ) + Δ (1) 𝑋𝑛,
+                                  𝑙, bare          𝑙−1, bare
+                                                      (𝑘−1)
+                                                             + Δ (2) 𝑋𝑛,
+                                                                      𝑙−2, bare
+                                                                         (𝑘−2)
+                                                                                + ...                        (2.33)
+                                         1       h       2              2              2
+                                                                                             i
+                               =             2
+                                                     M 𝑛𝑙 + Δ (1) M 𝑛𝑙−1 + Δ (2) M 𝑛𝑙−2 + ... .
+                                       M20
+
+    Lastly, the N𝑋 normalisation factor will also need to be generalised. It becomes,
+
+                                                                            1
+                                                             N𝑋 =                    .                       (2.34)
+                                                                    2𝑔𝑠2(𝑛−2+𝑙) 𝐶𝐹
+
+2.4.3   Colour Algebra and the Antenna Colour Decomposition
+    The processes represented by the 𝑋𝑛𝑙 antenna functions are composed of colour-carrying particles,
+namely quarks and gluons. When the amplitudes M 𝑛𝑙 are evaluated, the kinematics and colour are not
+explicitly separate algebraically, but since we require the antenna functions to be purely kinematic, we
+need to decompose them into inner colour structures. To be able to decompose, we must first clarify the
+Algebra of colour [4, 12].
+    Quarks carry a fundamental colour index 𝑖 ∈ {1, 2, 3} while gluons carry an adjoint colour index
+𝑎 ∈ {1, ..., 8}. The interactions between them are governed by the 𝑆𝑈 (3) 𝑐 generators 𝑇 𝑎 . Those
+                                                             
+generators are normalised by the trace relation Tr 𝑇 𝑎𝑇 𝑏 = 𝑇𝑅 𝛿 𝑎𝑏 , where by standard convention
+𝑇𝑅 = 1/2 [1, 3]. This is particularly useful since when the amplitude is squared, the two colour
+generators must be contracted with one another, that is 𝑇 𝑎 and (𝑇 𝑎 ) † , and since the generators are
+Hermitian, (𝑇 𝑎 ) † = 𝑇 𝑎 . Hence, summing over all colour we get,
+                            ∑︁                                        ∑︁                    ∑︁
+                                       (𝑇 𝑎 ) 𝑖1 𝑖2 (𝑇 𝑎 ) 𝑖2 𝑖1 =         Tr (𝑇 𝑎𝑇 𝑎 ) =        𝑇𝑅 𝛿 𝑎𝑎 .   (2.35)
+                           𝑖1 ,𝑖2 ,𝑎                                   𝑎                    𝑎
+
+
+For a fixed 𝑎, the trace equals 𝑇𝑅 . Summing this result over all 𝑁 2 − 1 adjoint indices we get,
+                                                     ∑︁                    1 2  
+                                                              𝑇𝑅 𝛿 𝑎𝑎 =      𝑁 −1 .                          (2.36)
+                                                         𝑎
+                                                                           2
+
+   We now also introduce the Casimir invariants: the fundamental and adjoint Casimir invariants, 𝐶𝐹
+and 𝐶 𝐴. These represent, respectively, the total colour charge squared of the quark and of the gluon.
+
+
+                                                                      25
+
+
+=== PAGE 27 ===
+They are defined as,
+                                                                    𝑁2 − 1
+                                                             𝐶𝐹 =
+                                                                      2𝑁
+                                                                𝐶 𝐴 = 𝑁.                                         (2.37)
+
+   The invariants are particularly useful to normalise the two hard quarks’ colour from the antenna
+functions, by taking out a factor of 2𝐶𝐹 . This factor equals,
+
+                                                                                     1
+                                                            2𝐶𝐹 = 𝑁 −                                            (2.38)
+                                                                                     𝑁
+which will be a normalisation used throughout the present work.
+    In loop processes, colour can flow in different ways depending on the virtual particles inside the
+loops. So, instead of only simplifying using the fundamental Casimir invariant, we must also decompose
+the antenna structures into their distinct colour components. These are,
+
+    • The leading colour component (𝑁): these come from planar Feynman diagrams (where virtual
+      gluons are exchanged without crossing over each other). This component is represented by the base
+      antenna in standard notation, e.g. 𝐴31 .
+
+    • The subleading colour component (1/𝑁): these come from non-planar diagrams (where gluon
+      lines do cross each other). This component is represented by the tilde antenna, e.g. 𝐴˜ 31 .
+
+    • The fermion loop (𝑁 𝑓 ): Instead of a virtual gluon, the loop can have a virtual quark-antiquark
+      pair. This contribution depends strictly on the number of active flavours, 𝑁 𝑓 . This component is
+      represented by the hat antenna, e.g. 𝐴ˆ 31 [4].
+
+   The direct expansion to Eq. 2.35 is to generalise to the four quark colour indices, instead of only two.
+That expansion is                                                             
+                          ∑︁
+                                 𝑎         𝑎          1              1
+                              (𝑇 ) 𝑖1 𝑖2 (𝑇 ) 𝑖3 𝑖4 =     𝛿𝑖 𝑖 𝛿𝑖 𝑖 − 𝛿𝑖 𝑖 𝛿𝑖 𝑖 .                    (2.39)
+                           𝑎
+                                                      2 14 23 𝑁 12 34
+
+It is the 𝑆𝑈 (𝑁) completeness relation, also called the colour Fierz identity, and is particularly useful for
+four-quark topologies like those described in Subsection 2.4.4 [1, 3].
+     The QCD conventions and colour identities used by the package were introduced above.
+
+𝑇-objects
+
+    Since the leading, subleading and fermion loop (and later the self-interference for 𝐴22 , as described
+in Subsection 4.3.1) components describe the same process, it is useful to use an object that carries all
+colour components from the same process. Those are the 𝑇-objects, and they are defined as,
+                                                              ∑︁
+                             multiplicity
+                           𝑇final-state particles = 2𝐶𝐹 𝑇𝑞2𝑞¯         𝑙
+                                                                 𝑓 𝑎 𝑋𝑛, (𝑎)
+                                                                                 𝑎
+                                                                                                               (2.40)
+                                                                                        1
+                                                          = 2𝐶𝐹 𝑇𝑞2𝑞¯            𝑁 𝑋𝑛𝑙 + 𝑋˜ 𝑛𝑙 + 𝑁 𝑓 𝑋ˆ 𝑛𝑙
+                                                                                          𝑁
+
+where 𝑇𝑞2𝑞¯ is the 𝑇-object relative to the LO 𝛾 ∗ → 𝑞 𝑞¯ process. Here, a multiplicity of 2 represents LO, 4
+represents NLO and 6 NNLO [18]. In the case of the examples used in List 2.4.3, the 𝑇-object is,
+                                                                                                     
+                                                                              1  ˜1   1 0
+                                                                                            
+                       𝑇𝑞6 ¯𝑞𝑔 = 2𝐶𝐹 𝑇𝑞2𝑞¯       𝑁       𝐴31 + 𝐴21 𝐴30       −                       1
+                                                                                  𝐴3 + 𝐴2 𝐴3 + 𝑁 𝑓 𝐴3 .
+                                                                                                   ˆ             (2.41)
+                                                                               𝑁
+
+                                                                    26
+
+
+=== PAGE 28 ===
+The extra 𝐴21 𝐴30 terms, and the sign of the subleading contribution, follow directly from how the 𝐴31 set’s
+own components are built (Eq. 3.7 of Chapter 3): the leading and subleading components each have the
+iterated 𝐴21 𝐴30 term subtracted out individually during construction, to avoid double-counting a diagram
+topology that is not unique to 𝐴31 , so it must be added back here for the process to be represented in full.
+This is a feature of how this particular set is built, not a general pattern shared by every antenna family.
+    These objects are also often represented as integrated 𝑇-, or T -objects, which are defined in the same
+way, but after phase-space and loop momenta integration as,
+                                                                                 ∑︁
+                                                multiplicity
+                                           Tfinal-state particles = 2𝐶𝐹 𝑇𝑞2𝑞¯                𝑙
+                                                                                        𝑓 𝑎 X𝑛, (𝑎)                        (2.42)
+                                                                                  𝑎
+
+    The 𝑇-objects are explored in further detail in Subsection 5.2.1.
+
+2.4.4     Antenna Families
+    Throughout this work the Born-level process under study is 𝛾 ∗ → 𝑞 ¯    𝑞. Antenna families are desig-
+nations used to identify the type of process that underlies a certain antenna function; for quark-antiquark
+antennae these are labelled 𝐴, 𝐵 and 𝐶, summarised in Table 2.2.
+
+                              Final state            Tree level      One loop               Two loop
+                                    𝑞 𝑞¯                  𝐴20             𝐴21             𝐴2 , 𝐴˜ 2 , 𝐴ˆ 2 , 𝐴˘ 2
+                                                                                            2     2      2     2
+                                   𝑞𝑔 𝑞¯                  𝐴30        𝐴1 , 𝐴˜ 1 , 𝐴ˆ 1
+                                                                       3     3     3               —
+                                  𝑞𝑔𝑔 𝑞¯               𝐴40 , 𝐴˜ 40         —                       —
+                                 𝑞𝑞 ′ 𝑞¯ ′ 𝑞¯            𝐵40               —                       —
+                                  𝑞𝑞 𝑞¯ 𝑞¯               𝐶40               —                       —
+
+Table 2.2: Quark-antiquark antenna families used in this work, modelled on Table 1 of [4]. Final states are
+ordered with the two hard radiators listed first and last, following that paper’s convention; this differs from the plain
+flavour-pairing order used when these processes are written out in the surrounding prose. The tilde denotes the
+subleading-colour contribution, the hat the fermion-loop contribution, and the breve (only present at two loops) the
+genuine self-interference term.
+
+    We here require two different families for the four-quark final state because the process may present
+with either like (identical) or unlike-flavour pairs with the 𝐵 antenna carrying the unlike-flavour case,
+often notated by 𝛾 ∗ → 𝑞 ¯𝑞𝑞 ′ 𝑞¯ ′ , and the 𝐶 antenna carrying the like-flavour case, denoted as 𝛾 ∗ → 𝑞 ¯
+                                                                                                          𝑞𝑞 ¯
+                                                                                                             𝑞.
+This last process, due to its topology, requires symmetrisation.
+    To compute these two antenna functions we start by writing the four-quark tree-level amplitude as a
+sum of two flavour-flow sub-amplitudes as,
+
+                                                         M 𝑞 ¯𝑞𝑞 𝑞¯ = M 𝐷 + M 𝐸                                            (2.43)
+
+where M 𝐷 is the direct and M 𝐸 is the exchanged 3 assignment amplitude.
+   For 𝐵40 , the flavours are non-identical, so only the direct assignment amplitude is used. The antenna
+   3 The words direct and exchange denote the way in which the like- and unlike-flavour quarks are paired amongst each other.
+
+When all flavours are identical, the pairing may be blind, since either of the quarks pairing with either of the antiquarks results
+in the same pair. If the flavours are not alike, however, the pairing order matters and must be considered, hence the use of the
+exchanged amplitude.
+
+
+
+
+                                                                     27
+
+
+=== PAGE 29 ===
+is built from self-interference [4],
+                                                                        ∗
+                                                                    M𝐷 M𝐷
+                                                     𝐵40 = N𝑋                2
+                                                                                 .                                         (2.44)
+                                                                       M20
+    For 𝐶40 , the flavours are identical, and the two subamplitudes must interfere. The antenna is given as
+[1, 4],
+                                          0
+                                                  M 𝐷 M 𝐸∗ + M 𝐸 M 𝐷
+                                                                   ∗
+                                        𝐶4 = N𝑋              2
+                                                                     .                               (2.45)
+                                                         M20
+    Though not deeply included in the present work, there are two other final-final antenna types: there
+are quark-gluon antennae, organised under the 𝐷 and 𝐸 families, and gluon-gluon antennae, organised
+under the 𝐹, 𝐺 and 𝐻 families. These types represent different Born-level processes: the first represents
+the boson → 𝑞𝑔 process, and the second the boson → 𝑔𝑔 process. Remarkably, these processes do not
+neatly fit into the Standard Model of Particle Physics (SM), as the vertices required to make a virtual
+photon split into either of those pairs do not exist inside the model. The implementation of those antenna
+functions, then, requires the use of Effective Field Theories (EFT), specifically SUSY [4, 19] and the
+𝐻 → 𝑔𝑔 EFT [20, 21]. The future implementation of these antenna families in AntCalc is discussed in
+Chapter 6.
+
+2.4.5       Phase-Space Factorisation
+    The previous Subsections focused on the antenna functions as objects: how they are built, combined,
+normalised, etc. But the antenna functions as described in Subsection 2.4.2 are the singular factor S 𝑗 , as
+described in Eq. 2.25, up to some normalisation factor. The antenna functions, then, as part of 𝑑𝜎 𝑆 must
+be integrated as, schematically, as described in Eq. 2.13,
+                                                  ∫
+                                                     𝑑𝜎 𝑆                                           (2.46)
+                                                              1
+        ∫
+where 1 denotes the integral over the unresolved parton phase-space. This integral does not only denote
+the integral over the single unresolved parton, alone, on two counts: first the fact that the integral must
+cover all unresolved partons which, for three-final-particle antennae is only one, but for four-final-particle
+antennae it becomes two. Second, the hard partons and their interactions with the unresolved partons
+must also be integrated over. The integral becomes over the 𝑛-final-state-particle antenna phase space.
+This makes,                   ∫                      ∫                   
+                                             ∑︁
+                                    𝑆
+                                 𝑑𝜎 =                      𝑑Φ𝑖 𝑗 𝑘𝑙... 𝑋𝑛 𝑑𝜎 𝐵 .
+                                                                        𝑙
+                                                                                                       (2.47)
+                                      1          unresolved pairs
+
+    The 𝑛-final-state-particle antenna phase space Φ𝑖 𝑗 𝑘𝑙... 4 is not the standard 𝑛-particle phase space, as in
+Φ3 or Φ4 . It is, rather, the antenna’s own phase space: the unresolved-parton phase space associated with
+the unresolved-parton emission between the two hard radiators. It has no independent parametrisation
+and is only accessed by factorising the known 𝑛-particle phase space [4, 22]. Since, through the recursive
+factorisation of the Lorentz-invariant phase space property [7], the phase space factorises, we are able to
+denote that the 𝑛-particle phase-space equals the (𝑛 − 𝑛𝑢 )-particle, where 𝑛𝑢 is the number of unresolved
+partons, phase-space times the antenna phase-space for 𝑛 final-state particles5 . For our case, two useful
+   4 This phase space is notated by Φ
+                                   𝑖 𝑗 𝑘 for three-final-state-particle antennae like 𝐴3 and Φ𝑖 𝑗 𝑘𝑙 for four-parton-final-particle
+                                                                                       1
+               0
+antennae like 𝐴4 .
+   5 This mechanism, as described, works at 𝑛 ∈ {1, 2}. The perturbative order above, N3 LO, presents more complex
+                                                 𝑢
+identities for which this blueprint may not work. It also does not fit when 𝑛𝑢 = 0. That case is discussed in further detail in
+
+
+                                                                  28
+
+
+=== PAGE 30 ===
+identities are produced for this formula [4],
+
+                                                   𝑑Φ3 = 𝑑Φ2 𝑑Φ𝑖 𝑗 𝑘
+                                                                                                                     (2.48)
+                                                   𝑑Φ4 = 𝑑Φ2 𝑑Φ𝑖 𝑗 𝑘𝑙 .
+
+     Since 𝑑Φ𝑛 is perfectly factorised [7], and the 𝑋𝑛𝑙 antenna functions are explicitly built to be functions
+of the antenna’s internal invariants alone and to have no dependence on how the reduced system is oriented
+[4], the two phase spaces are integrated separately, with the two-particle phase-space integral producing
+Φ2 directly. The antenna’s own phase-space integral is then rewritten as [4],
+                                      ∫                      ∫
+                                                      𝑙   1
+                                         𝑑Φ𝑖 𝑗 𝑘𝑙... 𝑋𝑛 =       𝑑Φ𝑛 𝑋𝑛𝑙                                 (2.49)
+                                                          Φ2
+
+which is how the phase-space prefactor appears in N (𝜖, 𝑘), as described in Section 2.3.
+   Hence, finally, the integrated antenna X𝑛𝑙 is given generally6 as, taking the aforementioned overall N
+normalisation factor [4, 22],                          ∫
+                                              X𝑛𝑙 = N (𝜖, 𝑘)        𝑑Φ𝑛 𝑋𝑛𝑙 .                                        (2.50)
+
+
+A Note On 𝑛𝑢 = 0 Cases
+
+    Two antenna types are exempt from this rule: 𝐴21 and 𝐴22 , as they do not present with unresolved
+partons, but rather only with loops, and are completely virtual antennae. These antennae are only
+integrated over the loop momenta rather than over the phase space, thus not requiring normalisation using
+the two-particle phase-space [23]. 𝐴20 also has no unresolved parton, but is excluded here for a different
+reason: it is the un-normalised Born-level antenna itself, not an integrated subtraction ingredient.
+
+
+2.5     Phase-Space Integration and IBP Reduction
+    In the previous sections, antenna functions were introduced together with their role in the local
+subtraction of infrared singularities. Eq. 2.50 defined their integration over the unresolved phase space,
+leading from an unintegrated antenna 𝑋𝑛𝑙 to its integrated counterpart X𝑛𝑙 . For loop-level antennae (𝑙 ≥ 1),
+the loop momenta must additionally be integrated.
+    Both the unintegrated and integrated forms are required in a subtraction calculation, but they play
+different roles. The unintegrated antenna functions provide local counterterms for real-radiation matrix
+elements and are therefore required in numerical Monte Carlo phase-space integration. They must retain
+the dependence on the local kinematics of each phase-space point, which can be expressed in terms
+of Mandelstam invariants 𝑠𝑖 𝑗 . This allows the subtraction term to reproduce the singular behaviour of
+the real-emission matrix element point by point in the unresolved limits. For loop-level antennae, the
+term unintegrated refers here to the unresolved phase space: the loop-momentum integration is first
+performed analytically, leaving an antenna function that depends on the external kinematic invariants and
+can be evaluated locally within the phase-space integration. The subsequent analytic integration over
+the unresolved phase space then produces the corresponding integrated antenna function, whose explicit
+infrared poles enter the cancellation against virtual contributions.
+Subsubsection 2.4.5.
+    6 This definition is general for antenna functions that are already cleanly and completely given in terms of Mandelstam
+
+invariants and 𝜖. This is only automatically true for antenna where 𝑙 = 0. When 𝑙 ≥ 1, which happens for all loop antennae by
+definition, a prior loop-momentum integration step is necessary. This step is explored further in Section 2.5.
+
+
+                                                            29
+
+
+=== PAGE 31 ===
+    From Eq. 2.49, we have seen that through phase-space factorisation, the antennae are integrated over
+the antenna phase space Φ𝑋 . If required, they are also integrated over their loop momenta ℓ𝑟 , 𝑟 = 1, ..., 𝑙.
+The propagator or Mandelstam-invariant denominators entering these integrals may generally be defined
+as,
+                                             𝑙
+                                                            !2
+                                            ∑︁
+                                   𝐷𝑗 =        𝑐 𝑗𝑟 ℓ𝑟 + 𝑟 𝑗 − 𝑚 2𝑗 + 𝑖0                             (2.51)
+                                               𝑟=1
+
+where 𝑟 𝑗 is built from momenta held fixed during the loop integration, including the mapped hard partons
+and unresolved antenna momenta. For the massless, on-shell external partons considered throughout this
+work, 𝐷 𝑗 reduces to a combination of Mandelstam invariants 𝑠𝑖 𝑗 .
+    An algebraic expansion of the integrand of an antenna function can generate multiple integrals with
+the same kinematic structure but different numerator and denominator powers, since any numerator built
+from scalar products can itself be absorbed into the same propagator basis {𝐷 𝑗 }. These integrals may
+then be organised into integral families, which fix the denominators and integration variables, and may
+then be systematically reduced. These families are denoted as the complete collection [22],
+
+                            F [{𝐷 𝑗 }; {ℓ𝑟 }, 𝑑Φ𝑋 ] = {𝐼 (𝑎 1 , ..., 𝑎 𝑁 )},        𝑎𝑗 ∈ Z             (2.52)
+
+with,
+                                ∫ " 𝑙          #
+                                   Ö
+                                           𝑑                    1
+                       𝐼(®
+                         𝑎) =             𝑑 ℓ𝑟 𝑑Φ𝑋                       ,   𝑎® = (𝑎 1 , ..., 𝑎 𝑁 ).   (2.53)
+                                    𝑟=1
+                                                          𝐷 1𝑎1 ...𝐷 𝑎𝑁𝑁
+
+   The integrals within each family are not independent. Through integral reduction, they can be
+expressed in terms of a finite and substantially smaller set of master integrals,
+
+                                                   𝑁MI
+                                                   ∑︁
+                                          𝐼(®
+                                            𝑎) =         𝑐𝑘 ( ®
+                                                             𝑎, 𝜖, {𝑠𝑖 𝑗 }) 𝑀𝑘                         (2.54)
+                                                   𝑘=1
+
+where 𝑀𝑘 are the master integrals and 𝑐 𝑘 are coefficients that depend on the integral indices, the
+dimensional regulator 𝜖, and the relevant kinematic invariants. The original integration problem is
+therefore separated into two tasks: determining the reduction coefficients 𝑐 𝑘 and evaluating the much
+smaller set of master integrals 𝑀𝑘 . Once these are known, every required integral in the family can be
+reconstructed from the same master-integral basis. In ®    𝑎, positive 𝑎 𝑗 indices denote propagator powers,
+while non-positive indices account for absent denominators or irreducible scalar products in the numerator.
+    As stated previously, MC integrators require the unintegrated antenna functions in terms of the
+Mandelstam invariants 𝑠𝑖 𝑗 , since they must evaluate the subtractions at a sampled physical external
+phase-space point 𝑝. The loop-level antenna required by an MC is ultimately evaluated as a function
+of the external invariants. Its calculation, however, involves tensor loop integrals with loop-momentum
+dependence, which must be reduced before the antenna can be evaluated at a sampled phase-space point.
+This reduction is performed through the Passarino-Veltman (PaVe) reduction mechanism, described in
+detail in Section B.1, which reduces the tensor loop integrals to linear combinations of scalar one-
+loop functions, usually denoted by 𝐴0 , 𝐵0 , ..., while keeping the phase-space variables and integration
+untouched, as [24],
+                       ∫
+                                 ℓ 𝜇1 ...ℓ 𝜇𝑅 PaVe ∑︁            
+                           𝑑 𝑑 ℓ Î 𝑎 𝑗 −−−→           𝑐 𝑘 {𝑠𝑖 𝑗 } { 𝐴0 , 𝐵0 , 𝐶0 , 𝐷 0 , ...} 𝑘 .     (2.55)
+                                      𝑗 𝐷𝑗          𝑘
+
+
+
+
+                                                           30
+
+
+=== PAGE 32 ===
+    To finally reach the integrated antenna functions X𝑛𝑙 we do require integrating over the phase-space.
+For this integral we also use a reduction method: Integration By Parts (IBP) reduction, described in detail
+in Subsection 2.5.1. This method generates relations among scalar integrals in a common family through
+vanishing total derivatives, as [25],
+                                                ∫                   !
+                                                          𝜕
+                                                          𝑑  𝜇  1
+                                           0=         𝑑 ℓ 𝜇 𝑣 Î 𝑎𝑗 .                                                     (2.56)
+                                                         𝜕ℓ    𝑗 𝐷𝑗
+
+
+As mentioned in previous sections, emitted final-state particles are real and on shell. That condition is
+enforced in the phase-space through the use of Dirac-delta functions like 𝛿+ 𝑝 2𝑖 . Note that these are not
+                                                                                   
+
+ordinary Feynman propagators. To bring the phase-space integration into the same algebraic framework
+as the loop integrals, we introduce the method of reverse unitarity to represent these Dirac-delta functions
+as cut propagators, through the discontinuity relation as [22],
+                                                              "               #
+                                                              1         1
+                                        2𝜋𝑖 𝛿+ 𝑝 2𝑖       = 2       −            .                                       (2.57)
+                                                            𝑝 𝑖 − 𝑖0 𝑝 2𝑖 + 𝑖0 +
+
+where both + signs, in 𝛿+ and ] + , represent the positive-energy prescription.
+    The family now contains ordinary propagators from virtual loops and cut propagators representing the
+unresolved phase-space. The IBP identities can then reduce the resulting combined cut-integral family
+to a finite set of MI.
+    After UV renormalisation and evaluation of the MI, the result is expanded as a Laurent series in 𝜖,
+making the remaining explicit IR poles visible order by order [4, 9].
+
+2.5.1     IBP Identities and the Laporta Algorithm
+IBP Identities
+
+    The integral family has already been defined in Eq. 2.53. This definition allows for the factorisation
+of the integral into a loop and a phase-space integral term. That factorisation results in,
+                 ∫                                                                      𝑙
+                                                                                      ∫ Ö
+                                                                                                             1
+        𝐼(®
+          𝑎) =       𝑑Φ𝑋 I ( ®
+                            𝑎; {𝐷 1 , ..., 𝐷 𝑁 }),        I( ®
+                                                            𝑎; {𝐷 1 , ..., 𝐷 𝑁 }) =          𝑑 𝑑 ℓ𝑟                  .   (2.58)
+                                                                                       𝑟=1
+                                                                                                      𝐷 1𝑎1 ...𝐷 𝑎𝑁𝑁
+
+The overall normalisation factors are irrelevant to the identities and will, therefore, be suppressed through-
+out the following explanation. The denominators 𝐷 𝑗 were already defined generally in Eq. 2.51. Take
+one loop momentum ℓ𝑠 , for 𝑠 = 1, ..., 𝑙, and one vector 𝑣 𝜇 from the available loop and external momenta.
+Dimensional regularisation allows us to set a total derivative to zero inside I, as [22, 25],
+
+                                              𝑙
+                                            ∫ Ö               "              #
+                                                           𝜕         1
+                                       0=           𝑑 𝑑 ℓ𝑟 𝜇 𝑣 𝜇 𝑎1                                                      (2.59)
+                                                𝑟=1
+                                                          𝜕ℓ𝑠   𝐷 1 ...𝐷 𝑎𝑁𝑁
+
+as previously introduced in Eq. 2.56. In dimensional regularisation, analytic continuation justifies the
+vanishing of the surface term at infinity, leaving an exact relation among regulated integrals7 .
+  7 This method is explored further and completely in Subsubsection 4.2.1.
+
+
+
+
+                                                                  31
+
+
+=== PAGE 33 ===
+    Expanding the derivative gives,
+
+                                𝑙                     𝑁           𝑣 𝜇 𝜕ℓ𝑠𝜇 𝐷 𝑗
+                                                                                    
+                                            𝜕ℓ𝑠 · 𝑣
+                              ∫ Ö                    ∑︁
+                                        𝑑
+                                                                                     
+                         0=           𝑑 ℓ𝑟  Î 𝑎 𝑗 −
+                                                        𝑎𝑗           𝑎 𝑗 +1
+                                                                                     .                      (2.60)
+                                                 𝐷            𝑎1                  𝑎𝑁 
+                                  𝑟=1         𝑗   𝑗 𝑗=1    𝐷 1  ...𝐷  𝑗     ...𝐷 𝑁 
+                                                                                     
+                                           
+                                                                                          𝜇
+For these quadratic denominators 𝐷 𝑗 , differentiation with respect to ℓ𝑠 is linear in momenta,
+                                                                                  !
+                                                             ∑︁
+                                        𝜕ℓ𝑠𝜇 𝐷 𝑗 = 2𝑐 𝑗𝑠          𝑐 𝑗𝑟 ℓ𝑟 + 𝑟 𝑗                              (2.61)
+                                                              𝑟                       𝜇
+
+and therefore, 𝑣 𝜇 𝜕ℓ𝑠𝜇 𝐷 𝑗 is a scalar product. Scalar products may be expressed in terms of chosen
+denominators and irreducible scalar products. The latter are represented by negative family indices 𝑎 𝑗 ,
+while zero indices denote absent denominators. We are then able to write schematically,
+                                            ∑︁
+                                                      𝑎, 𝜖, {𝑠𝑖 𝑗 } I ( ®𝑏) = 0
+                                                                   
+                                                 𝜌 𝑏® ®                                                      (2.62)
+                                            𝑏®
+
+
+where each vector 𝑏® labels a family member obtained from 𝑎® through index shifts in one or more
+denominator powers. 𝜌 𝑏® is the corresponding coefficient in the IBP relation.
+   An example of the application of this method is written in Section B.2.
+
+Reverse Unitarity and Cut Integrals
+
+    In the previous subsubsection, we have derived the IBP identities relative to I. As described in
+Eq. 2.58, the entire integrated antenna is not merely I, but rather,
+                                                  ∫
+                                           𝐼(®
+                                             𝑎) =    𝑑Φ𝑋 I ( ®𝑎).                             (2.63)
+
+    The unresolved phase-space measure is not originally an ordinary loop integral, however. Instead, it
+has on-shell constraints, which have to be considered and transformed before 𝐼 ( ®           𝑎) is reducible via the
+present method.
+    As described in Subsection 2.4.5, phase-space factorisation isolates the antenna measure through
+𝑑Φ𝑚+𝑟 = 𝑑Φ𝑚 𝑑Φ𝑋 , or in the two-hard-radiator final-final case we are considering throughout the
+present work, 𝑑Φ𝑋 = 𝑑Φ𝑛 /𝑑Φ2 , for 𝑛 final-state particles. That 𝑛-particle phase space is given generally
+as,                                                                 ! 𝑛
+                                                              𝑛
+                                                             ∑︁      Ö 𝑑 𝑑 𝑝𝑖                      
+                𝑑Φ𝑛 (𝑞 : 𝑝 1 , ..., 𝑝 𝑛 ) = (2𝜋) 𝑑 𝛿 (𝑑) 𝑞 −     𝑝𝑖                𝛿 +
+                                                                                         𝑝 2
+                                                                                           𝑖 − 𝑚  2
+                                                                                                  𝑖           (2.64)
+                                                             𝑖=1      𝑖=1
+                                                                          (2𝜋) 𝑑−1
+
+where the 𝛿 (𝑑) -function enforces overall momentum conservation, and each 𝛿+ -function imposes the
+mass-shell condition for the 𝑖-th final-state particle, with the superscript + selecting its positive-energy
+solution. This may be written as,
+                                                                     
+                                    𝛿+ 𝑝 2𝑖 − 𝑚 𝑖2 = 𝜃 𝑝 0𝑖 𝛿 𝑝 2𝑖 − 𝑚 𝑖2                              (2.65)
+
+
+
+
+                                                            32
+
+
+=== PAGE 34 ===
+     This 𝛿+ -function may be reexpressed as a discontinuity as follows [22, 26],
+                                                            "                               #
+                                                                1                1
+                                 2𝜋𝑖 𝛿+ 𝑝 2𝑖 − 𝑚 𝑖2       = 2              −                                          (2.66)
+                                                            𝑝 𝑖 − 𝑚 𝑖2 − 𝑖0 𝑝 2𝑖 − 𝑚 𝑖2 + 𝑖0 +
+
+where the ±𝑖0 terms specify the propagator prescriptions. The subscript + represents the positive-energy
+cut selection.
+    These objects are called cut propagators, because they come about from cutting a propagator line,
+thus putting the represented particle on-shell, as a real final-state particle. Algebraically, it also allows
+phase-space constraints to be written in the same denominator language as virtual propagators. A cut
+propagator associated with a required final-state particle must be retained during the reduction and sectors
+in which such a cut is absent do not represent the physical phase-space integral and thus, vanish [22].
+Using the discontinuity relation to refactor the 𝛿-functions, we are able to rewrite the integrated antenna
+expression schematically as,
+                                         ∫ "Ö
+                                            𝑙
+                                                            #"               #
+                                                                 Ö         𝑁 𝑠 (ℓ𝑟 , 𝑝 𝑢 ; 𝑝˜hard )
+                                 X𝑛𝑙 ∼             𝑑 𝑑 ℓ𝑟          𝑑 𝑑 𝑝𝑢 Î      𝑎𝛼 Î           𝑎𝛽                    (2.67)
+                                             𝑟=1                 𝑢          𝛼 𝐷 𝑣, 𝛼       𝛽 𝐷 𝑐,𝛽
+
+
+where 𝐷 𝑣, 𝛼 are ordinary virtual propagators, 𝐷 𝑐,𝛽 are cut propagators, 𝑝˜hard is the hard-radiator combined
+momenta and 𝑝 𝑢 are integrated unresolved momenta.
+     After rewriting the integral in this way, the total derivative introduced in the previous Subsubsec-
+                                                                     𝜇
+tion 2.5.1 may now be taken with respect to any loop momentum ℓ𝑟 or integrated unresolved momentum
+  𝜇
+𝑝 𝑢 . This process produces relations involving both virtual and cut denominators. This then allows us to
+reduce loop and phase-space integrals simultaneously using IBP reduction [22, 26].
+     An example of the method used to rewrite 𝑑Φ3 in terms of cut propagators is available in Section B.3.
+
+Laporta Algorithm
+
+   At NLO and NNLO these reduction systems become very complex and their solution ever more
+time-intensive. The Laporta algorithm is a systematic-elimination method that uses IBP relations to
+express more complicated integrals in terms of a smaller set of unreduced ones (master integrals) [27].
+   The algorithm first classifies the family members into sectors. These sectors are defined as,
+
+                                                   
+                                                    1,
+                                                               𝑎 𝑗 > 0,
+                                                                                   𝜃® = (𝜃 1 , ..., 𝜃 𝑁 ).
+                                                   
+                                  𝜃 𝑗 ≡ 𝜃 (𝑎 𝑗 ) =                                                                    (2.68)
+                                                    0,
+                                                               𝑎 𝑗 ≤ 0,
+                                                   
+    After fixing an integral family and identifying its admissible sectors, the Laporta algorithm assigns an
+ordering to the resulting integrals according to their complexity. This hierarchy is based on the number
+of propagators present 𝑡, the excess denominator power 𝑟, and the numerator complexity encoded through
+negative indices 𝑠8 . These quantities are defined using each integral’s 𝑎-index, taken from the family’s 𝑎®
+vector, as previously defined. They are, generally,
+
+                                                                  𝑁
+                                                                 ∑︁
+                                                            𝑡=         𝜃 (𝑎 𝑗 ),                                      (2.69)
+                                                                 𝑗=1
+
+   8 The present 𝑡, 𝑟 and 𝑠 metrics are not to be taken as unique Laporta orderings, as these vary by implementation. Instead,
+
+they are illustrative objects.
+
+
+
+                                                                   33
+
+
+=== PAGE 35 ===
+                                                 𝑁
+                                                ∑︁
+                                           𝑟=          max(𝑎 𝑗 − 1, 0),                                  (2.70)
+                                                 𝑗=1
+                                                  𝑁
+                                                 ∑︁
+                                            𝑠=          max(−𝑎 𝑗 , 0).                                   (2.71)
+                                                  𝑗=1
+
+
+Here, 𝜃 (𝑎 𝑗 ) records whether denominator 𝐷 𝑗 is present. The hierarchy is defined by comparing 𝑡 first,
+then 𝑟 and finally 𝑠. The algorithm uses this chosen hierarchy to select, within each IBP relation, the
+most complex integral to eliminate first.
+     An example of the application of the Laporta algorithm is written by hand in Section B.4.
+     After determining the integral families and sectors present, we apply the IBP identities to the seed
+integrals. These seed integrals are a part of a finite, bounded set of integrals chosen from each relevant
+sector, whose IBP identities must be sufficiently numerous to reduce every target integral and every
+non-zero subtopology reached along the way.
+     After generating IBP identities for the selected seed integrals, any relation containing these represen-
+tatives is first solved for 𝐼 (1, 1, 1), the highest-ranked member, and the resulting expression is substituted
+recursively into the remaining system [27].
+     IBP reduction may produce lower sectors, but may also generate new integrals from the initially
+relevant sectors. Lastly, some sectors may be cancelled due to symmetry, if one denominator is shifted
+to another under loop-momentum shift or a relabelling of external momenta. If two sectors become
+equivalent, one is discarded from the independent reduction and the other is retained as its representative.
+In short, a sector is deemed relevant if it is an original target sector, or a lower sector reached from another
+via IBP reduction. The relevant sector must also be non-scaleless in a chosen kinematics, not redundant
+under a family symmetry and, for a cut family, it must retain all required cut denominators throughout.
+     It is important to note that cut families add a physical restriction: if an IBP reduction step cancels a
+cut propagator, the sector it produces is missing one of the required on-shell final-state particles and it no
+longer represents the intended phase-space. If that happens, the integral is set to zero [22].
+     The reduction is complete when the remaining non-zero family members cannot be eliminated by the
+available identities. These survivors form a master-integral basis.
+
+2.5.2   Master Integrals
+    The IBP reduction method reduces the integral to a linear combination of master integrals as,
+
+                                                 𝑁MI
+                                                 ∑︁
+                                        𝐼(®
+                                          𝑎) =          𝑐𝑘 ( ®
+                                                            𝑎, 𝜖, {𝑠𝑖 𝑗 }) 𝑀𝑘                            (2.72)
+                                                 𝑘=1
+
+where 𝑐 𝑘 are the reduction coefficients and represent what comes from the reduction algebra and 𝑀𝑘 are
+the MI. Our remaining task is evaluating the finite set 𝑀𝑘 [27].
+    Master integrals are not uniquely defined: an integral is a master only relative to the chosen family,
+kinematics, IBP system, and basis. This means that a different basis with different masters may be used
+to reduce the same integrals and span the exact same integral space [27].
+    Master integrals are scalar integrals with a fixed denominator/cut structure. They are generically
+represented as,
+                                ∫ "Ö           #"         #
+                                           𝑑
+                                                  Ö
+                                                       𝑑              1
+                          𝑀𝑘 =            𝑑 ℓ𝑟       𝑑 𝑝𝑢 Î       𝑎𝛼 Î      𝑎𝛽 .                    (2.73)
+                                       𝑟          𝑢           𝛼 𝐷 𝑣, 𝛼  𝛽 𝐷 𝑐,𝛽
+
+
+
+                                                          34
+
+
+=== PAGE 36 ===
+For integrated antennae, the cut denominators in these master integrals encode the real unresolved
+phase space. Hence, a master may be a pure phase-space volume, a phase-space integral with invariant
+denominators, or a loop-plus-phase-space cut integral. The MI are also not necessarily finite; in fact, in
+dimensional regularisation they commonly contain 𝜖 poles [22].
+    For a massless fully inclusive antenna system, 𝑞 2 is often the only independent kinematic scale once
+the dimensional-regularisation normalisation factors have been separated. Through dimensional analysis,
+the MI are strongly constrained to take the form,
+                                                      𝜆𝑘 +𝜅𝑘 𝜖
+                                      𝑀𝑘 (𝑞 2 , 𝜖) = 𝑞 2         𝑓 𝑘 (𝜖)                              (2.74)
+
+where 𝜆 𝑘 is fixed by mass dimension and 𝑓 𝑘 is dimensionless, depending only on 𝜖. For this reason,
+phase-space MI can often be written in terms of Gamma functions, as [22],
+
+                                                       Γ 𝑚 (1 − 𝑎𝜖)
+                                           𝑓 𝑘 (𝜖) ∼                .                                 (2.75)
+                                                       Γ 𝑛 (1 − 𝑏𝜖)
+
+    When evaluating master integrals, different types often call for different approaches. Simple one-
+scale phase-space masters often integrate directly after the phase-space is parametrised. Angular and
+energy-fraction integrations typically reduce to Beta functions. When a master depends on a non-trivial
+kinematic variable, such as 𝑥 = 𝑚 2 /𝑞 2 , the most common approach is to differentiate the master with
+respect to that variable. The derivative produces integrals in the same family, which IBP is then able to
+reduce to the master basis, as [28],
+
+                                       𝑑 ®                   ® (𝑥, 𝜖).
+                                          𝑀 (𝑥, 𝜖) = 𝐴(𝑥, 𝜖) 𝑀                                        (2.76)
+                                       𝑑𝑥
+
+where 𝑀® = (𝑀1 , ..., 𝑀 𝑁MI ) T is the vector of masters and 𝐴 is a matrix of coefficient functions. Boundary
+conditions can then be used to determine the solution. These methods are discussed in further detail in
+Section 4.1.
+   Once the MI are evaluated, we expand them around 𝜖 = 0, as a Laurent series [22],
+                                                        ∞
+                                                       ∑︁
+                                            𝑀𝑘 =            𝑚 𝑘,𝑛 𝜖 𝑛                                 (2.77)
+                                                   𝑛=𝑛min
+
+to expose their pole and finite structure. The lowest power 𝑛min can be, and often is, negative, resulting
+in an expansion similar to,
+                                          𝑚 𝑘,−2 𝑚 𝑘,−1
+                                   𝑀𝑘 =          +        + 𝑚 𝑘,0 + O (𝜖).                            (2.78)
+                                            𝜖2        𝜖
+The required expansion depth is determined by the reduction coefficient. If 𝑐 𝑘 ∼ 𝜖 − 𝑝 , the 𝑀𝑘 must be
+expanded through to 𝜖 𝑝 to obtain the finite contribution to 𝑐 𝑘 𝑀𝑘 .
+     The reduction techniques introduced in this chapter provide the computational tools required for the
+analytic integration of the antenna functions considered in this work. In particular, the IBP identities are
+systematically solved through the Laporta algorithm, reducing the phase-space and loop integrals to a
+finite set of master integrals. As described in Chapter 3, this reduction procedure is implemented within
+the AntCalc workflow and is subsequently applied in Chapter 4 to obtain the integrated antenna functions
+in dimensional regularisation. The resulting Laurent expansions in 𝜖 provide the explicit infrared pole
+structure required for their use in higher-order subtraction at NLO and NNLO.
+
+
+
+                                                       35
+
+

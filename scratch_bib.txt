@@ -1,0 +1,147 @@
+=== BIB PAGE 114 ===
+Bibliography
+
+ [1]   R. Keith Ellis, W. James Stirling, and B. R. Webber. QCD and collider physics. Vol. 8. Cambridge
+       University Press, Feb. 2011. isbn: 978-0-511-82328-2, 978-0-521-54589-1. doi: 10 . 1017 /
+       CBO9780511628788.
+ [2]   Thomas Hahn. “Generating Feynman diagrams and amplitudes with FeynArts 3”. In: Comput.
+       Phys. Commun. 140 (2001), pp. 418–431. doi: 10 . 1016 / S0010 - 4655(01 ) 00290 - 9.
+       arXiv: hep-ph/0012260.
+ [3]   Matthew D. Schwartz. Quantum Field Theory and the Standard Model. Cambridge University
+       Press, Mar. 2014. isbn: 978-1-107-03473-0, 978-1-107-03473-0. doi: 10.1017/9781139540940.
+ [4]   A. Gehrmann-De Ridder, T. Gehrmann, and E. W. Nigel Glover. “Antenna subtraction at NNLO”.
+       In: JHEP 09 (2005), p. 056. doi: 10 . 1088 / 1126 - 6708 / 2005 / 09 / 056. arXiv: hep -
+       ph/0505111.
+ [5]   Toichiro Kinoshita. “Mass Singularities of Feynman Amplitudes”. In: Journal of Mathematical
+       Physics 3.4 (1962), pp. 650–677. issn: 1089-7658. doi: 10.1063/1.1724268. url: http:
+       //dx.doi.org/10.1063/1.1724268.
+ [6]   T. D. Lee and M. Nauenberg. “Degenerate Systems and Mass Singularities”. In: Phys. Rev. 133
+       (1964). Ed. by G. Feinberg, B1549–B1562. doi: 10.1103/PhysRev.133.B1549.
+ [7]   S. Catani and M. H. Seymour. “A General algorithm for calculating jet cross-sections in NLO
+       QCD”. In: Nucl. Phys. B 485 (1997). [Erratum: Nucl.Phys.B 510, 503–504 (1998)], pp. 291–419.
+       doi: 10.1016/S0550-3213(96)00589-5. arXiv: hep-ph/9605323.
+ [8]   Michael E. Peskin and Daniel V. Schroeder. An Introduction to quantum field theory. Reading,
+       USA: Addison-Wesley, 1995. isbn: 978-0-201-50397-5, 978-0-429-50355-9, 978-0-429-49417-8.
+       doi: 10.1201/9780429503559.
+ [9]   Gerard ’t Hooft and M. J. G. Veltman. “Regularization and Renormalization of Gauge Fields”. In:
+       Nucl. Phys. B 44 (1972), pp. 189–213. doi: 10.1016/0550-3213(72)90279-9.
+[10]   Zvi Bern and David A. Kosower. “The Computation of loop amplitudes in gauge theory”. In: Nucl.
+       Phys. B 379 (1992), pp. 451–461. doi: 10.1016/0550-3213(92)90240-Y.
+[11]   William A. Bardeen et al. “Deep Inelastic Scattering Beyond the Leading Order in Asymptotically
+       Free Gauge Theories”. In: Phys. Rev. D 18 (1978), pp. 3998–4019. doi: 10.1103/PhysRevD.
+       18.3998.
+[12]   David A. Kosower. “Antenna factorization of gauge theory amplitudes”. In: Phys. Rev. D 57 (1998),
+       pp. 5410–5416. doi: 10.1103/PhysRevD.57.5410. arXiv: hep-ph/9710213.
+
+
+
+
+                                                  113
+
+
+=== BIB PAGE 115 ===
+[13]   John M. Campbell, M. A. Cullen, and E. W. N. Glover. “Four jet event shapes in electron - positron
+       annihilation”. In: Eur. Phys. J. C 9 (1999), pp. 245–265. doi: 10.1007/s100520050630.
+       arXiv: hep-ph/9809429.
+[14]   John Clive Ward. “An Identity in Quantum Electrodynamics”. In: Phys. Rev. 78 (1950), p. 182.
+       doi: 10.1103/PhysRev.78.182.
+[15]   Yasushi Takahashi. “On the generalized Ward identity”. In: Nuovo Cim. 6 (1957), pp. 371–375.
+       doi: 10.1007/BF02832514.
+[16]   J. C. Taylor. “Ward Identities and Charge Renormalization of the Yang-Mills Field”. In: Nucl.
+       Phys. B 33 (1971), pp. 436–444. doi: 10.1016/0550-3213(71)90297-5.
+[17]   A. A. Slavnov. “Ward Identities in Gauge Theories”. In: Theor. Math. Phys. 10 (1972), pp. 99–104.
+       doi: 10.1007/BF01090719.
+[18]   A. Gehrmann-De Ridder, T. Gehrmann, and E. W. Nigel Glover. “Infrared structure of e+ e- —>
+       2 jets at NNLO”. In: Nucl. Phys. B 691 (2004), pp. 195–222. doi: 10.1016/j.nuclphysb.
+       2004.05.017. arXiv: hep-ph/0403057.
+[19]   A. Gehrmann-De Ridder, T. Gehrmann, and E.W.N. Glover. “Quark–gluon antenna functions from
+       neutralino decay”. In: Physics Letters B 612.1-2 (Apr. 2005), pp. 36–48. issn: 0370-2693. doi:
+       10.1016/j.physletb.2005.02.039. url: http://dx.doi.org/10.1016/j.
+       physletb.2005.02.039.
+[20]   Federico Demartin et al. “Higgs characterisation at NLO in QCD: CP properties of the top-quark
+       Yukawa interaction”. In: The European Physical Journal C 74.9 (2014). issn: 1434-6052. doi:
+       10.1140/epjc/s10052- 014- 3065- 2. url: http://dx.doi.org/10.1140/
+       epjc/s10052-014-3065-2.
+[21]   E. W. Nigel Glover and Joao Pires. “Antenna subtraction for gluon scattering at NNLO”. In: Journal
+       of High Energy Physics 2010.6 (2010). issn: 1029-8479. doi: 10.1007/jhep06(2010)096.
+       url: http://dx.doi.org/10.1007/jhep06(2010)096.
+[22]   A. Gehrmann-De Ridder, T. Gehrmann, and G. Heinrich. “Four-Particle Phase Space Integrals
+       in Massless QCD”. In: (2003). doi: 10.48550/ARXIV.HEP-PH/0311276. url: https:
+       //arxiv.org/abs/hep-ph/0311276.
+[23]   T. Gehrmann, T. Huber, and D. Maitre. “Two-Loop Quark and Gluon Form Factors in Dimensional
+       Regularisation”. In: (2005). doi: 10 . 48550 / ARXIV . HEP - PH / 0507061. url: https :
+       //arxiv.org/abs/hep-ph/0507061.
+[24]   G. Passarino and M. J. G. Veltman. “One-Loop Corrections for 𝑒 + 𝑒 − Annihilation into 𝜇+ 𝜇 −
+       in the Weinberg Model”. In: Nucl. Phys. B 160 (1979), pp. 151–207. doi: 10.1016/0550-
+       3213(79)90234-7.
+[25]   K. G. Chetyrkin and F. V. Tkachov. “Integration by Parts: The Algorithm to Calculate 𝛽-Functions
+       in 4 Loops”. In: Nucl. Phys. B 192 (1981), pp. 159–204. doi: 10.1016/0550- 3213(81)
+       90199-1.
+[26]   Charalampos Anastasiou and Kirill Melnikov. “Higgs Boson Production at Hadron Colliders in
+       NNLO QCD”. In: Nucl. Phys. B 646 (2002), pp. 220–256. doi: 10.1016/S0550-3213(02)
+       00837-4. arXiv: hep-ph/0207004.
+
+
+
+                                                  114
+
+
+=== BIB PAGE 116 ===
+[27]   Stefano Laporta. “High-Precision Calculation of Multi-Loop Feynman Integrals by Difference
+       Equations”. In: Int. J. Mod. Phys. A 15 (2000), pp. 5087–5159. doi: 10.1142/S0217751X00002159.
+       arXiv: hep-ph/0102033.
+[28]   Ettore Remiddi. “Differential Equations for Feynman Graph Amplitudes”. In: Nuovo Cim. A 110
+       (1997), pp. 1435–1452. doi: 10.1007/BF03185566. arXiv: hep-th/9711188.
+[29]   Vladyslav Shtabovenko, Rolf Mertig, and Frederik Orellana. “FeynCalc 10: Do multiloop integrals
+       dream of computer codes?” In: Computer Physics Communications 306 (Jan. 2025), p. 109357.
+       issn: 0010-4655. doi: 10.1016/j.cpc.2024.109357. url: http://dx.doi.org/
+       10.1016/j.cpc.2024.109357.
+[30]   Vladyslav Shtabovenko, Rolf Mertig, and Frederik Orellana. “FeynCalc 9.3: New features and
+       improvements”. In: Computer Physics Communications 256 (Nov. 2020), p. 107478. issn: 0010-
+       4655. doi: 10.1016/j.cpc.2020.107478. url: http://dx.doi.org/10.1016/j.
+       cpc.2020.107478.
+[31]   Vladyslav Shtabovenko, Rolf Mertig, and Frederik Orellana. “New developments in FeynCalc
+       9.0”. In: Computer Physics Communications 207 (Oct. 2016), pp. 432–444. issn: 0010-4655. doi:
+       10.1016/j.cpc.2016.06.008. url: http://dx.doi.org/10.1016/j.cpc.
+       2016.06.008.
+[32]   R. Mertig, M. Böhm, and A. Denner. “Feyn Calc - Computer-algebraic calculation of Feynman
+       amplitudes”. In: Computer Physics Communications 64.3 (1991), pp. 345–359. issn: 0010-4655.
+       doi: https://doi.org/10.1016/0010-4655(91)90130-D. url: https://www.
+       sciencedirect.com/science/article/pii/001046559190130D.
+[33]   R. N. Lee. Presenting LiteRed: a tool for the Loop InTEgrals REDuction. 2012. arXiv: 1212.2685
+       [hep-ph]. url: https://arxiv.org/abs/1212.2685.
+[34]   Hiren H. Patel. “Package-X: A Mathematica package for the analytic calculation of one-loop
+       integrals”. In: Comput. Phys. Commun. 197 (2015), pp. 276–290. doi: 10 . 1016 / j . cpc .
+       2015.08.017. arXiv: 1503.01469 [hep-ph].
+[35]   Vladyslav Shtabovenko. “FeynHelpers: Connecting FeynCalc to FIRE and Package-X”. In: Com-
+       put. Phys. Commun. 218 (2017), pp. 48–65. doi: 10.1016/j.cpc.2017.04.014. arXiv:
+       1611.06793 [hep-ph].
+[36]   Joana Maria Rodrigues Reis. “Implementation of Quark Mass Effects in QCD Three-Jet Production
+       Observables Produced by Hadronic Decays of the Z-Boson at the FCC-ee Collider”. Master’s
+       thesis. Lisbon, Portugal: Faculdade de Ciências, Universidade de Lisboa, 2024. url: https:
+       / / repositorio . ulisboa . pt / bitstreams / 998ca0e7 - 1783 - 41c1 - b5eb -
+       d6625da33324/download (visited on 08/12/2026).
+[37]   A. Gehrmann-De Ridder and M. Ritzmann. “NLO Antenna Subtraction with Massive Fermions”.
+       In: JHEP 07 (2009), p. 041. doi: 10.1088/1126-6708/2009/07/041. arXiv: 0904.3297
+       [hep-ph].
+[38]   Guido Altarelli and G. Parisi. “Asymptotic Freedom in Parton Language”. In: Nucl. Phys. B 126
+       (1977), pp. 298–318. doi: 10.1016/0550-3213(77)90384-4.
+[39]   J. Alwall et al. “The automated computation of tree-level and next-to-leading order differential
+       cross sections, and their matching to parton shower simulations”. In: JHEP 07 (2014), p. 079. doi:
+       10.1007/JHEP07(2014)079. arXiv: 1405.0301 [hep-ph].
+
+                                                  115
+
+
+=== BIB PAGE 117 ===
+[40]   Alexander Huss et al. “NNLOJET: A parton-level event generator for jet cross sections at NNLO
+       QCD accuracy”. In: SciPost Physics Codebases (Apr. 2026). issn: 2949-804X. doi: 10.21468/
+       scipostphyscodeb.69. url: http://dx.doi.org/10.21468/SciPostPhysCodeb.
+       69.
+
+
+
+
+                                               116
+
+
