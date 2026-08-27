@@ -396,6 +396,11 @@ makes the global normalisation factor $\mathcal N(\epsilon,k)$, used throughout 
 \begin{equation}\label{eq:normN}
     \mathcal N(\epsilon,k) = \frac{C(\epsilon, k)}{\Phi_2}.
 \end{equation}
+The form given above is representative of this convention rather than an exact,
+route-by-route prescription: the precise multiplicative bridging applied to a given
+antenna also depends on the specific master-integral basis its integration reduces
+to, and is validated numerically against the literature result for each public
+route (Chapter~\ref{ch:workedexample}), rather than derived symbolically here.
 
 As described in Subsection~\ref{subsec:uvDivergences}, we need to trade the bare 
 coupling constant $\alpha_0$ for a suitable order by order perturbative series 
@@ -788,7 +793,7 @@ from the same process. Those are the $T$-objects, and they are defined as,
 \begin{equation}
     \begin{split}
         T_\text{final-state particles}^\text{multiplicity} &= 2C_FT_{q\bar q}^2\sum_a f_a X_{n,(a)}^l\\
-                                                     &= 2C_FT_{q\bar q}^2\left(NX_n^l + \frac1N \tilde X_n^l + N_f \hat X_n^l\right)
+                                                           &= 2C_FT_{q\bar q}^2\left(NX_n^l + \frac1N \tilde X_n^l + N_f \hat X_n^l\right)
     \end{split}
 \end{equation}
 where $T_{q\bar q}^2$ is the 
@@ -796,8 +801,17 @@ $T$-object relative to the LO $\gamma^*\to q\bar q$ process. Here, a multiplicit
 of $2$ represents LO, $4$ represents NLO and $6$ NNLO \cite{Gehrmann-DeRidder:2004ttg}. 
 In the case of the examples used in List~\ref{list:A31Comps}, the $T$-object is,
 \begin{equation}
-    T^6_{q\bar qg} = 2C_FT_{q\bar q}^2\left(NA_3^1 + \frac1N \tilde A_3^1 + N_f \hat A_3^1\right).
-\end{equation} 
+    T^6_{q\bar qg} = 2C_FT_{q\bar q}^2\left[N\left(A_3^1+A_2^1A_3^0\right) - \frac1N\left(\tilde A_3^1+A_2^1A_3^0\right) + N_f\hat A_3^1\right].
+\end{equation}
+The extra $A_2^1A_3^0$ terms, and the sign of the subleading contribution, follow
+directly from how the $A_3^1$ set's own components are built (Eq.~\ref{eq:a31Norm}
+of Chapter~\ref{ch:packageframework}): the leading and subleading components each
+have the iterated $A_2^1A_3^0$ term subtracted out individually during construction,
+to avoid double-counting a diagram topology that is not unique to $A_3^1$, so it
+must be added back here for the process to be represented in full. This is a
+feature of how this particular set is built, not a general pattern shared by
+every antenna family.
+
 These objects are also often represented as integrated $T$-, or 
 $\mathcal T$-objects, which are defined in the same way, but after phase-space 
 and loop momenta integration as,
