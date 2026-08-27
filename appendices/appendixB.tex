@@ -2,10 +2,9 @@
 
 \section{The Massive Extension}
 
-Up until now every part of the theory has been explained generally, but with a clear
-preference for the massless regime. That is because the vast majority of the present
-work's ensuing chapters will focus on that regime. But a still significant part of
-it will explore an extension of the discussed methods into the massive regime.
+The main body of this thesis focused primarily on the massless regime, since the
+vast majority of the present work's chapters focus on that regime. This appendix
+collects the supporting extension of the discussed methods into the massive regime.
 
 The fundamental change is the massive on-shell condition; the remainder of this
 section traces its consequences for the antenna construction and integration.
@@ -22,8 +21,8 @@ and described throughout Chapter~\ref{ch:physicsbackground} are retained, howeve
 intermediate steps and kinematics: the massive on-shell condition changes the
 kinematics themselves and the unresolved limits, with soft radiation remaining
 singular but heavy-quark collinear behaviour becoming quasi-collinear. Massive
-integration is also different as the massive phase-scale is not equal to its
-massless counterpart. A new scale of $m_q^2/q^2$ is also introduced and leads to
+integration is also different, as the characteristic phase-space scale in the massive
+regime is not equal to its massless counterpart. A new scale of $m_q^2/q^2$ is also introduced and leads to
 distinct cut-integral families and master integrals \cite{GehrmannDeRidder:2009fz}.
 
 \subsection{Massive Kinematics and Infrared Structure}
@@ -122,8 +121,116 @@ Antenna integration is computed in the same manner as in the massless regime,
 PaVe and IBP reduction remain applicable in the massive regime, following the same
 principles introduced for the massless case.
 For IBP reduction, however, the massive case is significantly harder analytically:
-the phase-space in non-trivial and has mass-dependent thresholds; the master
+the phase-space is non-trivial and has mass-dependent thresholds; the master
 integrals are generally multi-scale, and can involve
 logarithms, polylogarithms and more complicated transcendental functions;
 and lastly, boundary conditions are less direct, although common choices are
 the massless limit at $m\to0$ and the threshold limit at $\beta\to0$ \cite{GehrmannDeRidder:2009fz}.
+
+\section{PaVe Reduction}\label{subsec:PaVe}
+
+At one-loop, amplitudes produce tensor integrals similar
+to those in Eq.~\ref{eq:PaVeSchematic} \cite{Passarino:1979pv}. With the general massive\footnote{
+Throughout this section, the general and massive case will be considered for
+completeness. The rest of the present work, however, heavily leans towards the
+massless regime. In that regime the internal masses vanish and the physical external
+partons satisfy $p_a^2=0$. The shifted momenta $r_i$, introduced in Eq.~\ref{eq:paveDens},
+entering propagators are combinations of external momenta and need not be lightlike.}
+denominators defined as,
+\begin{equation}\label{eq:paveDens}
+    D_0 = \ell^2-m_0^2+i0,\quad D_i = (\ell + r_i)^2 - m_i^2 + i0
+\end{equation}
+the tensor integral takes the form,
+\begin{equation}
+    I_N^{\mu_1...\mu_R} = \mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac{\ell^{\mu_1}...\ell^{\mu_R}}{D_0D_1...D_{N-1}}
+\end{equation}
+where $R$ is the tensor rank, $r_i$ are the combinations of 
+external momenta and $m_i$ is the mass associated with the $i$-th propagator. 
+The reduction is carried out in $d=4-2\epsilon$ dimensions, so that,
+\begin{equation}
+    g_{\mu\nu}g^{\mu\nu} = d.
+\end{equation}
+
+PaVe reduces the Lorentz indices in the numerator 
+$\ell^\mu\ell^\nu\ell^\rho...$ terms and expresses them 
+in terms of external momenta $p_i^\mu$, the metric 
+tensor $g_{\mu\nu}$ and scalar one-loop integrals, through 
+Lorentz covariance \cite{Passarino:1979pv}.
+
+For a rank-one $N$-point integral, the only available 
+vectors are the independent external momenta, such that,
+\begin{equation}\label{eq:paveRankOne}
+    I_N^\mu = \sum_{i=1}^{N-1}p_i^\mu C_i
+\end{equation}
+where $C_i$ are scalar coefficient functions.
+For rank-two, the relation becomes,
+\begin{equation}
+    I_N^{\mu\nu} = \sum_{i,j=1}^{N-1}p_i^\mu p_j^\nu C_{ij} + g^{\mu\nu}C_{00}
+\end{equation}
+and for rank-three,
+\begin{equation}
+    I_N^{\mu\nu\rho} = \sum_{i,j,k=1}^{N-1}p_i^\mu p_j^\nu p_k^\rho C_{ijk} + \sum_{i=1}^{N-1} \left(g^{\mu\nu}p_i^\rho + g^{\mu\rho}p_i^\nu + g^{\nu\rho}p_i^\mu\right)C_{00i}
+\end{equation}
+and so on for higher ranks.
+
+The reduction mechanism works because scalar products 
+involving the loop momentum can be rewritten using the
+propagator denominators as,
+\begin{equation}\label{eq:ellToDens}
+    2\ell\cdot r_i = D_i - D_0 - r_i^2 + m_i^2 - m_0^2
+\end{equation}
+which lets us cancel denominator terms, through a method 
+like the following example set at $i=1$,
+\begin{equation}
+    \frac{\ell\cdot r_1}{D_0D_1} = \frac12\left(\frac{1}{D_0}-\frac1{D_1}+\frac{1}{D_0D_1}\left(-m_0^2+m_1^2-r_1^2\right)\right)
+\end{equation}
+thereby rewriting loop-momentum scalar products in terms of denominators and 
+scalar integrals.
+
+While using this reduction scheme, we might also encounter Gram matrices, defined as,
+\begin{equation}
+    G_{ji} = 2p_j\cdot p_i.
+\end{equation}
+Contracting a general rank-one integral, as described in Eq.~\ref{eq:paveRankOne},
+with $p_j$ gives,
+\begin{equation}
+    p_j\cdot I_N = \sum_i(p_j\cdot p_i)C_i = \frac12\sum_iG_{ji}C_i.
+\end{equation}
+If we now define $R_j\equiv p_j\cdot I_N$, we are then able to compute the $C_i$
+coefficients in the Lorentz decomposition by taking,
+\begin{equation}\label{eq:gramInversion}
+    G_{ji}C_i = 2R_j\Rightarrow C_i = 2\left(G^{-1}\right)_{ij}R_j.
+\end{equation}
+
+\subsection{Rank-One Bubble Example}
+
+To illustrate the method, let us consider the rank-one bubble,
+\begin{equation}
+    B^\mu\!\left(p;m_0^2,m_1^2\right)=\mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac{\ell^\mu}{D_0D_1}
+\end{equation}
+where the denominators follow Eq.~\ref{eq:paveDens}. Lorentz covariance gives,
+\begin{equation}
+    B^\mu = p^\mu B_1
+\end{equation}
+Contracting with $p_\mu$ yields,
+\begin{equation}
+    p^2B_1 = p_\mu B^\mu = \mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac{\ell\cdot p}{D_0D_1}.
+\end{equation}
+Using the relation in Eq.~\ref{eq:ellToDens}, setting $r_1 = p$, we get,
+\begin{equation}
+    p^2B_1 = \frac12\left[A_0\!\left(m_0^2\right)-A_0\!\left(m_1^2\right)+\left(m_1^2-m_0^2-p^2\right)B_0\!\left(p^2;m_0^2,m_1^2\right)\right]
+\end{equation}
+and therefore\footnote{The result shown in Eq.~\ref{eq:bubbleResult} assumes generic 
+kinematics with $p^2\neq 0$. Exceptional cases are obtained through an appropriate 
+limit or alternative reduction.},
+\begin{equation}\label{eq:bubbleResult}
+    B^\mu = p^\mu\frac{A_0\!\left(m_0^2\right)-A_0\!\left(m_1^2\right)+\left(m_1^2-m_0^2-p^2\right)B_0}{2p^2}.
+\end{equation}
+Here, $A_0$ and $B_0$ are the scalar one-loop integrals mentioned throughout. These 
+two types can be defined as,
+\begin{equation*}
+    A_0\!\left(m^2\right) = \mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac1{\ell^2-m^2+i0}
+\end{equation*}
+\begin{equation}
+    B_0\!\left(p^2;m_0^2,m_1^2\right) = \mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac1{D_0D_1}.
+\end{equation}

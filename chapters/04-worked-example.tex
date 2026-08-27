@@ -3,7 +3,7 @@
 \section{Master Integrals Used in \textit{AntCalc}}\label{sec:masterresults}
 
 As discussed in Chapter~\ref{ch:packageframework}, \textit{AntCalc} makes use of 
-two reduction methods, Passarino-Veltmann reduction and integration-by-parts 
+two reduction methods, Passarino-Veltman reduction and integration-by-parts
 reduction. Both of those methods reduce a larger loop-momentum or phase-space 
 integral into a linear combination of smaller and often less complex master integrals,
 as discussed in Subsection~\ref{subsec:MIs}\footnote{The PaVe MI are most commonly 
@@ -859,7 +859,7 @@ First, by running the function naively we get the final result in Eq.~\ref{eq:A3
 
 We can also use the \texttt{ReturnRecord} option to access all intermediate steps, and check that 
 \textit{AntCalc} goes through the same steps as the by-hand derivation in
-Section~\ref{sec:matDerivation}. We can see that with,
+Subsection~\ref{sec:matDerivation}. We can see that with,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
     \texttt{In[3]:= \\BuildAntenna[A,3,0,ReturnRecord->True]["IntermediateSteps"]}\\
@@ -888,7 +888,7 @@ where \texttt{Amplitude}, \texttt{Interference} and \texttt{Result} respectively
 expressions in Eqs.~\ref{eq:M30amplitude}, \ref{eq:M30interference} and \ref{eq:A30}.
 
 
-Integrating antennae using \textit{AntCalc} is also simple. Every step in Section~\ref{sec:antIntMaths}
+Integrating antennae using \textit{AntCalc} is also simple. Every step in Subsubsection~\ref{sec:antIntMaths}
 is handled by a single function: \texttt{IntegrateAntenna[antenna]}.
 
 Before going over how this function is used, a small clarification needs to be made: the 
@@ -1342,7 +1342,7 @@ with,
 \subsection{Build and Integrate Results}
 
 To build and integrate the massive $A_3^0$ in \textit{AntCalc}, we use the same 
-commands as for the massless $A_3^0$ route, as discussed in Subsection~\ref{subsec:masslessA30},
+commands as for the massless $A_3^0$ route, as discussed in Subsubsection~\ref{subsec:masslessA30},
 with the added option \texttt{quarkMass -> mQ}, where \texttt{mQ} is the quark mass,
 so far written here as $m_q$. The building process is completed as,
 

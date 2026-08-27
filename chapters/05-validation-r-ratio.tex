@@ -2,7 +2,7 @@
 
 \section{R-Ratio Definition}
 
-The hadronic R-ratio is usually defined as the ratio of total cross-section for $e^+e^-$
+The hadronic R-ratio is usually defined as the ratio of the total cross-section for $e^+e^-$
 annihilation into hadrons to the point-like cross-section for $e^+e^-\to\mu^+\mu^-$. It is
 mathematically described as follows,
 \begin{equation}
@@ -12,7 +12,7 @@ mathematically described as follows,
     \end{split}
 \end{equation}
 
-Looking closely, the $\sigma(e^+e^-\to\text{hadrons})$ term is what QCD predicts for the 
+Looking closely, the $\sigma(e^+e^-\to\text{hadrons})$ term is what QCD predicts for
 $\gamma^*\to\text{hadrons}$, computed via the optical theorem \cite{GehrmannDeRidder0311276}.
 What makes the R-ratio a clean QCD observable, and a good benchmark for \textit{AntCalc}
 is that the ratio features terms for higher perturbative orders as a perturbative series in $\alpha_s$,
@@ -32,8 +32,8 @@ since $R_\text{hadr}=R^{(0)}\big(1+\mathcal O(\alpha_s)\big)=R^{(0)}R(\alpha_s)$
 
 \section{Global Validation with \textit{AntCalc}}
 
-As discussed, the hadronic R-ratio is a very useful quantity to compute using the 
-integrated antenna functions we computed using \textit{AntCalc}. As such, the programme 
+As discussed, the hadronic R-ratio is a very useful quantity to compute using the
+integrated antenna functions obtained from \textit{AntCalc}. As such, the programme
 provides an R-ratio calculator. It is the longest-running function
 in the whole package. Its result gives,
 
@@ -56,9 +56,9 @@ Using \textit{AntCalc}, we are also able to compute the R-ratio step-by-step, wi
 having to resort to the automated function by just computing the intermediate steps
 ourselves. As described in Subsection~\ref{subsec:colourAlg}, antenna functions are purely
 kinematic. By taking all components, we are able to construct a process-wide
-kinematics- and colour-conscious object. These are the $\mathcal T$-objects.
-These objects are defined, before integration and hence notated by $T$,
-conceptually as
+object carrying both kinematic and colour information. These are $T$-objects; their unintegrated
+and integrated forms are denoted $T$ and $\mathcal T$, respectively. Conceptually,
+the unintegrated $T$-object is defined as
 \footnote{The $T$-objects are commonly notated by $T^2$, $T^4$ and $T^6$, depending
 on their perturbative order: LO, NLO and NNLO, respectively. That is the same as
 the $k$-index, introduced in Subsection~\ref{subsec:antennaFuncs} of Chapter~\ref{ch:physicsbackground}, incremented by one
@@ -69,8 +69,8 @@ used for the rest of the present work.}
 \begin{equation}
     T_\text{topology}^{2(k+1)}=\text{(colour/flavour weight)}\times T_{q\bar q}^2\times\text{(colour-weighted sum of antennae at $k$-order)}.
 \end{equation}
-This structure creates a very elegant structure for the $A$-type antenna relative
-$T$-objects. It goes like,
+This construction takes a simple form for the $A$-type antenna relative
+$T$-objects \cite{Gehrmann-DeRidder:2005btv}:
 \begin{equation}\label{eq:ATypeTObj}
     T_\text{topology}^{2(k+1)}=2C_F T_{q\bar q}^2\sum_{c} F_cA_{n, (k), c}^l
 \end{equation}
@@ -89,9 +89,9 @@ fit into an algorithmic formula:
     quarks exchange a gluon and then one of the hard quarks emits a final-state
     gluon\footnote{This is merely a conceptual, diagrammatic interpretation,
     as the actual process is much less sequential than this description suggests.}.
-    Since this behaviour is not singular to the $A_3^1$ antenna, it must
+    Since this behaviour is not unique to the $A_3^1$ antenna, it must
     be subtracted from the bare result to retain the antenna's singular behaviour.
-    When we then construct back the $T$-object, the $A_2^1A_3^0$ term has to be
+    When we then reconstruct the $T$-object, the $A_2^1A_3^0$ term has to be
     added back on such that the process is considered in its totality \cite{Gehrmann-DeRidder:2005btv}.
     \item The $A_2^2$ antenna set, also at NNLO, is the first time we find a
     double-loop topology. Here the extension required is not a subtraction of
@@ -101,12 +101,12 @@ fit into an algorithmic formula:
     component. The second, however, has a singular antenna which describes the
     self-interference of the one-loop correction with itself, now that the system
     presents with two loops.
-    This antenna is notated by $\breve A_2^2$. It is also the only
+    This antenna is denoted by $\breve A_2^2$. It is also the only
     genuinely square (not cross) term at NNLO. This means that it requires a
     normalisation of $(2C_F)^2$ \cite{Gehrmann-DeRidder:2005btv}.
 \end{itemize}
 
-As mentioned before Eq.~\ref{eq:ATypeTObj}, the equation is only valid for
+As mentioned before, Eq.~\ref{eq:ATypeTObj} is only valid for
 $T$-objects constructed from $A$-type antenna functions. In this work we consider
 all quark-antiquark antennae up to NNLO. This includes the $B_4^0$ and $C_4^0$ antennae
 introduced in Subsection~\ref{subsec:antFamilies} of Chapter~\ref{ch:physicsbackground}. These
@@ -135,13 +135,13 @@ With this definition of the integrated antenna $\mathcal X_n^l$ (Eq.~\ref{eq:ant
 of Chapter~\ref{ch:physicsbackground}), we are now also able to introduce the often used
 integrated $T$-object as,
 \begin{equation}\label{eq:integratedT}
-    \mathcal T_\text{topology}^{2(k+1)} = 2C_FT_{q\bar q}\sum_c F_c \mathcal X_{n,(k),c}^l
+    \mathcal T_\text{topology}^{2(k+1)} = 2C_FT_{q\bar q}^2\sum_c F_c \mathcal X_{n,(k),c}^l
 \end{equation}
 written schematically from Eq.~\ref{eq:ATypeTObj}, though the structure may change
 with the antenna type used to define the relevant $T$-object. This equation describes
 that the integrated $T$-object, $\mathcal T_\text{topology}^{2(k+1)}$ is defined
 using the integrated antennae $\mathcal X_n^l$, integrated over their respective
-phase-spaces rather than blindly integrating the unintegrated $T$-object directly
+phase-spaces rather than integrating the composite unintegrated $T$-object directly
 \cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg}.
 
 The R-ratio is assembled using these $\mathcal T$-objects. We simply sum the normalised objects
@@ -167,5 +167,5 @@ Assembling these pieces together, using the integrated antenna results from
 \begin{equation}
     R=1+\left(\frac{\alpha_s}{2\pi}\right)\frac32C_F+\left(\frac{\alpha_s}{2\pi}\right)^2C_F\!\left[N\left(\frac{243}{16}-11\zeta_3\right)+\frac3{16N}+N_f\left(-\frac{11}4+2\zeta_3\right)\right]
 \end{equation}
-which is the exact expression for the massless hadronic R-ratio at NNLO \cite{Gehrmann-DeRidder:2004ttg} 
+which is the exact massless hadronic R-ratio coefficient through NNLO \cite{Gehrmann-DeRidder:2004ttg}
 and is also exactly the expression we get by running \texttt{BuildRRatio[SMQCD]}. 
