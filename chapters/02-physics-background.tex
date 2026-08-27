@@ -970,24 +970,25 @@ locally within the phase-space integration. The subsequent analytic integration 
 unresolved phase space then produces the corresponding integrated antenna function,
 whose explicit infrared poles enter the cancellation against virtual contributions.
 
-From Eq.~\ref{eq:antPhaseSpaceFact}, we have seen that through phase-space 
+From Eq.~\ref{eq:antPhaseSpaceFact}, we have seen that through phase-space
 factorisation, the antennae are integrated over the antenna phase space $\Phi_{X}$.
-If required, they are also integrated over their loop momenta. The general expression 
-used to describe this integration setup is,
-\begin{equation}
-    \mathcal X_n^l\sim\int\left(\prod_{r=1}^l d^d\ell_r\right)d\Phi_{X}\,\frac{N_s(\ell_r,p_a)}{\prod_{j=1}^N D_j^{a_j}(\ell_r,p_a)},\quad d=4-2\epsilon
+If required, they are also integrated over their loop momenta $\ell_r$, $r=1,...,l$.
+The propagator or Mandelstam-invariant denominators entering these integrals may
+generally be defined as,
+\begin{equation}\label{eq:denomDef}
+    D_j = \left(\sum_{r=1}^l c_{jr}\ell_r+r_j\right)^2-m_j^2+i0
 \end{equation}
-where $\ell_r$ denote the loop momenta, and the set $p_a$
-consists of hard-radiator momenta $\tilde p_\text{hard}$
-and the unresolved antenna momenta $p_\text{unresolved}$, which
-are integrated over $\Phi_X$. $N_s$
-is a numerator built from scalar products, $D_j$ are propagator or Mandelstam
-invariants $s_{ij}$'s and $a_j$ are integer powers. An algebraic expansion of the integrand
-of an antenna function can generate multiple integrals with the same kinematic
-structure but different numerator and denominator powers.
-These 
-integrals may then be organised into integral families, which fix the denominators 
-and integration variables, and may then be systematically reduced. These families 
+where $r_j$ is built from momenta held fixed during the loop integration, including
+the mapped hard partons and unresolved antenna momenta. For the massless, on-shell
+external partons considered throughout this work, $D_j$ reduces to a
+combination of Mandelstam invariants $s_{ij}$.
+
+An algebraic expansion of the integrand of an antenna function can generate multiple
+integrals with the same kinematic structure but different numerator and denominator
+powers, since any numerator built from scalar products can itself be absorbed into
+the same propagator basis $\{D_j\}$. These
+integrals may then be organised into integral families, which fix the denominators
+and integration variables, and may then be systematically reduced. These families
 are denoted as the complete collection \cite{GehrmannDeRidder0311276},
 \begin{equation}
     \mathcal F[\{D_j\};\{\ell_r\},d\Phi_X] = \{I(a_1,...,a_N)\},\quad a_j\in\mathbb Z
@@ -1176,13 +1177,8 @@ integral term. That factorisation results in,
     I(\vec a) = \int d\Phi_X\,\mathcal I(\vec a;\{D_1,...,D_N\}),\quad \mathcal I(\vec a;\{D_1,...,D_N\}) = \int\prod_{r=1}^l d^d\ell_r\,\frac1{D_1^{a_1}...D_N^{a_N}}.
 \end{equation}
 The overall normalisation factors are irrelevant to the identities and will, therefore,
-be suppressed throughout the following explanation. The denominators may generally be 
-defined as,
-\begin{equation}
-    D_j = \left(\sum_{r=1}^l c_{jr}\ell_r+r_j\right)^2-m_j^2+i0
-\end{equation}
-where $r_j$ is built from momenta held fixed during the loop integration, including 
-the mapped hard partons and unresolved antenna momenta. 
+be suppressed throughout the following explanation. The denominators $D_j$ were
+already defined generally in Eq.~\ref{eq:denomDef}.
 Take one loop momentum $\ell_s$,
 for $s=1,...,l$, and one vector $v^\mu$ from the available loop and external 
 momenta. Dimensional regularisation allows us to set a total derivative to zero
