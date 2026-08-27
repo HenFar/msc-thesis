@@ -571,16 +571,88 @@ notated by $X_{n}^0$ and defined as \cite{Gehrmann-DeRidder:2005btv,Kosower:1997
 \begin{equation}\label{eq:antennaTree}
     X_{n}^{0\text{, bare}}=\mathcal N_X\frac{\left|\mathcal M_{n}^0\right|^2}{\left|\mathcal M_2^0\right|^2}
 \end{equation}
-where $|\mathcal M_n|^2$ represents the $n$-level squared matrix element and 
-$X_{n}^{0\text{, bare}}$ is the antenna that represents that same $n$-level. 
+where $|\mathcal M_n|^2$ represents the $n$-level squared matrix element and
+$X_{n}^{0\text{, bare}}$ is the antenna that represents that same $n$-level.
 $\left|\mathcal M_2^0\right|^2$ is the Born-level squared matrix element.
+
+Fig.~\ref{fig:antennaFactorisation} illustrates this factorisation for the
+NLO quark-antiquark antenna, using the same $\gamma^*\to q(i)g(j)\bar q(k)$
+process as Fig.~\ref{fig:feynDiagsEx}. As particle $j$ becomes unresolved, the
+process collapses onto its Born-level configuration, with the two hard radiators
+$i$ and $k$ mapped onto $\tilde p_I$ and $\tilde p_K$. The antenna function
+$X_{3}^0$, together with its own local phase space, is exactly the ratio that
+this factorisation leaves behind.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[baseline=0pt]
+        % Panel 1: full 3-particle process
+        \begin{feynman}
+            \vertex (g1) {\(\gamma^*\)};
+            \vertex [right=1.1cm of g1] (b1);
+            \vertex [above right=1.0cm of b1] (q1) {\(q(i)\)};
+            \vertex [right=1.4cm of b1] (gl1) {\(g(j)\)};
+            \vertex [below right=1.0cm of b1] (qb1) {\(\bar q(k)\)};
+            \diagram* {
+                (g1) -- [boson] (b1) -- [fermion] (q1),
+                (qb1) -- [fermion] (b1),
+                (b1) -- [gluon] (gl1),
+            };
+        \end{feynman}
+        \node at ($(b1)+(0.8,-2)$) {\(|\mathcal M_3(i,j,k)|^2\,d\Phi_3\)};
+
+        \node at ($(b1)+(2.9,-0.2)$) {\Large\(=\)};
+
+        % Panel 2: reduced Born process
+        \begin{feynman}
+            \vertex [right=4.6cm of g1] (g2) {\(\gamma^*\)};
+            \vertex [right=1.1cm of g2] (b2);
+            \vertex [above right=1.2cm of b2] (I2) {\(q(\tilde p_I)\)};
+            \vertex [below right=1.2cm of b2] (K2) {\(\bar q(\tilde p_K)\)};
+            \diagram* {
+                (g2) -- [boson] (b2) -- [fermion] (I2),
+                (K2) -- [fermion] (b2),
+            };
+        \end{feynman}
+        \node at ($(b2)+(0.6,-2)$) {\(|\mathcal M_2(I,K)|^2\,d\Phi_2\)};
+
+        \node at ($(b2)+(2.5,0)$) {\Large\(\times\)};
+
+        % Panel 3: the antenna piece, at fixed p_I+p_K
+        \begin{feynman}
+            \vertex [right=9cm of g1] (b3);
+            \vertex [above right=1.0cm of b3] (q3) {\(q(i)\)};
+            \vertex [right=1.4cm of b3] (gl3) {\(g(j)\)};
+            \vertex [below right=1.0cm of b3] (qb3) {\(\bar q(k)\)};
+            \diagram* {
+                (b3) -- [fermion] (q3),
+                (qb3) -- [fermion] (b3),
+                (b3) -- [gluon] (gl3),
+            };
+        \end{feynman}
+        \node at ($(b3)+(0.8,-2)$) {\(X_{3}^0\,d\Phi_{X_{ijk}}\)};
+        \node[align=center] at ($(b3)+(0.8,1.7)$) {\footnotesize fixed \(\tilde p_I+\tilde p_K\)};
+    \end{tikzpicture}
+    \caption{Factorisation of the squared matrix element and phase space as
+    particle $j$ becomes unresolved, for the NLO quark-antiquark antenna. The
+    hard radiators $i,k$ map onto the reduced Born momenta $\tilde p_I,\tilde p_K$;
+    the antenna function $X_3^0$ depends only on the antenna's own internal
+    invariants, evaluated at fixed total momentum $\tilde p_I+\tilde p_K$.}
+    \label{fig:antennaFactorisation}
+\end{figure}
+
+The same construction extends directly to $A_4^0$, with two unresolved partons
+mapping the process onto the same reduced Born configuration. The four-quark
+antennae $B_4^0$ and $C_4^0$, by contrast, are not built this way at all: they
+come from interfering flavour-flow amplitudes instead, as described in
+Subsection~\ref{subsec:antFamilies}.
+
 $\mathcal N_X$ represents the necessary normalisation over colour and coupling
 terms, whose general form depends on the specific antenna family under consideration.
 The colour-algebraic machinery required to construct it explicitly is developed 
 in Subsection~\ref{subsec:colourAlg}. It is defined, for quark-antiquark antennae
-\footnote{Other antenna types are described in Subsection~\ref{subsec:antFamilies}. 
-These require different normalisations.},
-using the fundamental Casimir 
+(other antenna types are described in Subsection~\ref{subsec:antFamilies} and require
+different normalisations), using the fundamental Casimir
 invariant $C_F$ and the strong coupling constant $g_s=\sqrt{4\pi\alpha_s}$, as
 \begin{equation}
     \mathcal N_X=\frac{1}{2g_s^{2(n-2)}C_F}.
@@ -600,13 +672,7 @@ rescaling of the bare coupling constant $\alpha_0$ to the renormalised coupling
 constant $\alpha_s$ through Eq.~\ref{eq:alphaRescaling}. This rescaling applies
 the Ward-Takahashi~\cite{Ward:1950xp, Takahashi:1957xn} and Slavnov-Taylor Identities
 \cite{Taylor:1971ff, Slavnov:1972fg},
-which guarantee the conservation of the electric and strong charges\footnote{
-In QCD terminology, "colour charge" (red, green and blue) refers to the 
-fundamental quantum numbers carried by individual quarks and gluons, analogous
-to positive or negative electric charges. The "strong charge", more formally
-known as the strong coupling constant ($g_s$, where $\alpha_s = g_s^2/(4\pi)$),
-refers to the universal strength of the interaction between those colour-charged
-particles.}, 
+which guarantee the conservation of the electric and colour charges,
 respectively, through all topologies of the same process. They also require us to denote the number 
 of loops their process supports. That number is the superscript in $X_n^l$, $l$,
 which up until now had been kept at zero for the loopless processes. $n$, on the 
@@ -629,7 +695,7 @@ follows,
 
 \begin{equation}\label{eq:bornNorm}
     \begin{split}
-        X_{n,(k)}^l&=X_{n,(k)}^{l\text{, bare}}+\sum_{m=1}^{\min(l, k-1)}\Delta^{(m)}X_{n,(k-m)}^{l-m\text{, bare}}\\
+        X_{n,(k)}^l&=X_{n,(k)}^{l\text{, bare}}+\sum_{m=1}^{l}\Delta^{(m)}X_{n,(k-m)}^{l-m\text{, bare}}\\
                    &=X_{n,(k)}^{l\text{, bare}}+\Delta^{(1)}X_{n,(k-1)}^{l-1\text{, bare}}+\Delta^{(2)}X_{n,(k-2)}^{l-2\text{, bare}}+...\\
                    &=\frac1{\left|\mathcal M_2^0\right|^2}\left[\left|\mathcal M_n^l\right|^2+\Delta^{(1)}\left|\mathcal M_n^{l-1}\right|^2+\Delta^{(2)}\left|\mathcal M_n^{l-2}\right|^2+...\right].
     \end{split}
@@ -710,9 +776,8 @@ colour indices, instead of only two. That expansion is
 \begin{equation}\label{eq:genTSum}
     \sum_a\left(T^a\right)_{i_1i_2}\left(T^a\right)_{i_3i_4}=\frac12\left(\delta_{i_1i_4}\delta_{i_2i_3}-\frac1N\delta_{i_1i_2}\delta_{i_3i_4}\right).
 \end{equation}
-It is the $SU(N)$ completeness relation\footnote{This expression is also called 
-the \textit{colour Fierz identity}.} 
-and is particularly useful for four-quark 
+It is the $SU(N)$ completeness relation, also called the \textit{colour Fierz identity},
+and is particularly useful for four-quark
 topologies like those described in Subsection~\ref{subsec:antFamilies}
 \cite{Ellis:1996mzs, Schwartz:2014sze}.
 
@@ -720,22 +785,37 @@ The QCD conventions and colour identities used by the package were introduced ab
 
 \subsection{Antenna Families}\label{subsec:antFamilies}
 
-Throughout this work the Born-level process under study is $\gamma^*\to q\bar q$. 
-This process is represented at higher perturbative orders by the $A$, $B$ and 
-$C$ antenna families. Antenna families are designations we use to identify the 
-type of process that underlies a certain function. Consider the $A_2^1$ antenna:
-from our previous description, this antenna is a quark-antiquark antenna with a 
-gluon loop. $A_3^0$ is a part of that same antenna family, the $A$ family, those 
-quark-antiquark antennae where gluons are exchanged or produced as final-state 
-particles, but does not present with any loops. Instead, the gluon here is one 
-of the now three final-state particles. Going to a higher level on the perturbative 
-series, at NNLO, the quark-antiquark processes begin to allow for four final-state 
-particle systems, in which the two unresolved partons may be other quark-antiquark 
-pairs. This necessitates the creation of new antenna families since the aforementioned
-definition is now broken. We then designate the $A_4^0$ antenna for the 
-$\gamma^*\to qgg\bar q$ process and the $B_4^0$ and $C_4^0$ antennae for the 
-$\gamma^*\to q\bar q q\bar q$ \cite{Gehrmann-DeRidder:2005btv}. 
-We here require two different families because the 
+Throughout this work the Born-level process under study is $\gamma^*\to q\bar q$.
+Antenna families are designations used to identify the type of process that
+underlies a certain antenna function; for quark-antiquark antennae these are
+labelled $A$, $B$ and $C$, summarised in Table~\ref{tab:antFamilies}.
+
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Final state} & \textbf{Tree level} & \textbf{One loop} & \textbf{Two loop} \\
+        \hline
+        $q\bar q$ & $A_2^0$ & $A_2^1$ & $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$ \\
+        \hline
+        $qg\bar q$ & $A_3^0$ & $A_3^1$, $\tilde A_3^1$, $\hat A_3^1$ & --- \\
+        \hline
+        $qgg\bar q$ & $A_4^0$, $\tilde A_4^0$ & --- & --- \\
+        \hline
+        $qq^\prime\bar q^\prime\bar q$ & $B_4^0$ & --- & --- \\
+        \hline
+        $qq\bar q\bar q$ & $C_4^0$ & --- & --- \\
+        \hline
+    \end{tabular}
+    \caption{Quark-antiquark antenna families used in this work, modelled on Table 1 of
+    \cite{Gehrmann-DeRidder:2005btv}. The tilde denotes the subleading-colour contribution,
+    the hat the fermion-loop contribution, and the breve (only present at two loops) the
+    genuine self-interference term.}
+    \label{tab:antFamilies}
+\end{table}
+
+We here require two different families for the four-quark final state because the
 process may present with either like (identical) or unlike-flavour pairs with the 
 $B$ antenna carrying the unlike-flavour case, often notated by 
 $\gamma^*\to q\bar q q^\prime\bar q^\prime$, and the $C$ antenna carrying the 
