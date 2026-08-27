@@ -753,7 +753,7 @@ particles inside the loops. So, instead of only simplifying using the
 fundamental Casimir invariant, we must also decompose the antenna structures into 
 their distinct colour components. These are,
 
-\begin{itemize}
+\begin{itemize}\label{list:A31Comps}
     \item The leading colour component ($N$): these come from planar Feynman 
     diagrams (where virtual gluons are exchanged without crossing over each other).
     This component is represented by the base antenna in standard notation, e.g. 
@@ -781,7 +781,31 @@ The QCD conventions and colour identities used by the package were introduced ab
 
 \subsubsection{$T$-objects}
 
+Since the leading, subleading and fermion loop (and later the self-interference
+for $A_2^2$, as described in Subsection~\ref{subsec:A22}) components describe the 
+same process, it is useful to use an object that carries all colour components 
+from the same process. Those are the $T$-objects, and they are defined as,
+\begin{equation}
+    \begin{split}
+        T_\text{final-state particles}^\text{multiplicity} &= 2C_FT_{q\bar q}^2\sum_a f_a X_{n,(a)}^l\\
+                                                     &= 2C_FT_{q\bar q}^2\left(NX_n^l + \frac1N \tilde X_n^l + N_f \hat X_n^l\right)
+    \end{split}
+\end{equation}
+where $T_{q\bar q}^2$ is the 
+$T$-object relative to the LO $\gamma^*\to q\bar q$ process. Here, a multiplicity 
+of $2$ represents LO, $4$ represents NLO and $6$ NNLO \cite{Gehrmann-DeRidder:2004ttg}. 
+In the case of the examples used in List~\ref{list:A31Comps}, the $T$-object is,
+\begin{equation}
+    T^6_{q\bar qg} = 2C_FT_{q\bar q}^2\left(NA_3^1 + \frac1N \tilde A_3^1 + N_f \hat A_3^1\right).
+\end{equation} 
+These objects are also often represented as integrated $T$-, or 
+$\mathcal T$-objects, which are defined in the same way, but after phase-space 
+and loop momenta integration as,
+\begin{equation}
+    \mathcal T_\text{final-state particles}^\text{multiplicity} = 2C_FT_{q\bar q}^2\sum_a f_a \mathcal X_{n,(a)}^l
+\end{equation}
 
+The $T$-objects are explored in further detail in Subsection~\ref{subsec:Tobjects}.
 
 \subsection{Antenna Families}\label{subsec:antFamilies}
 
