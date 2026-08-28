@@ -72,7 +72,7 @@ describes free gluon propagation as \cite{Ellis:1996mzs},
 \end{equation}
 where $\mathcal L_\text{gf}$ is the gauge-fixing Lagrangian, $\delta_{ab}$ is the 
 Kronecker delta, and $\lambda$ is the gauge parameter. 
-Throughout this text the t'Hooft-Feynman convention is used, which makes $\lambda=1$,
+Throughout this text the 't Hooft-Feynman convention is used, which makes $\lambda=1$,
 following the default convention from \textit{FeynArts} \cite{Hahn:2000kx}. It is 
 important to note, however, that physical observables are independent of the gauge 
 choice. 
@@ -609,11 +609,11 @@ this factorisation leaves behind.
         \end{feynman}
         \node at ($(b1)+(0.8,-2)$) {\(|\mathcal M_3(i,j,k)|^2\,d\Phi_3\)};
 
-        \node at ($(b1)+(2.9,-0.2)$) {\Large\(=\)};
+        \node at ($(b1)+(2.9,0)$) {\Large\(=\)};
 
         % Panel 2: reduced Born process
         \begin{feynman}
-            \vertex [right=4.6cm of g1] (g2) {\(\gamma^*\)};
+            \vertex [right=4.8cm of g1] (g2) {\(\gamma^*\)};
             \vertex [right=1.1cm of g2] (b2);
             \vertex [above right=1.2cm of b2] (I2) {\(q(\tilde p_I)\)};
             \vertex [below right=1.2cm of b2] (K2) {\(\bar q(\tilde p_K)\)};
@@ -628,7 +628,7 @@ this factorisation leaves behind.
 
         % Panel 3: the antenna piece, at fixed p_I+p_K
         \begin{feynman}
-            \vertex [right=9cm of g1] (b3);
+            \vertex [right=9.2cm of g1] (b3);
             \vertex [above right=1.0cm of b3] (q3) {\(q(i)\)};
             \vertex [right=1.4cm of b3] (gl3) {\(g(j)\)};
             \vertex [below right=1.0cm of b3] (qb3) {\(\bar q(k)\)};
@@ -639,7 +639,7 @@ this factorisation leaves behind.
             };
         \end{feynman}
         \node at ($(b3)+(0.8,-2)$) {\(X_{3}^0\,d\Phi_{X_{ijk}}\)};
-        \node[align=center] at ($(b3)+(0.8,1.7)$) {\footnotesize fixed \(\tilde p_I+\tilde p_K\)};
+        \node[align=center] at ($(b3)+(0.8,1.7)$) {\footnotesize fixed (\(\tilde p_I+\tilde p_K\))};
     \end{tikzpicture}
     \caption{Factorisation of the squared matrix element and phase space as
     particle $j$ becomes unresolved, for the NLO quark-antiquark antenna. The
@@ -950,10 +950,7 @@ the phase space factorises,
 we are able to denote that the $n$-particle phase-space equals the $(n-n_u)$-particle,
 where $n_u$ is the number of unresolved partons, 
 phase-space times the antenna phase-space
-for $n$ final-state particles\footnote{This mechanism, as described, works at 
-$n_u\in\{1,2\}$. The perturbative order above, N$^3$LO, presents more complex 
-identities for which this blueprint may not work. It also does not fit when 
-$n_u = 0$. That case is discussed in further detail in Subsubsection~\ref{subsubsec:noteOn}.}. 
+for $n$ final-state particles. 
 For our case, two useful identities are produced for this formula \cite{Gehrmann-DeRidder:2005btv},
 \begin{equation}\label{eq:phi2Factor}
     \begin{split}
@@ -987,11 +984,9 @@ the aforementioned overall $\mathcal N$ normalisation factor \cite{Gehrmann-DeRi
     \mathcal X_n^l = \mathcal N(\epsilon, k) \int d\Phi_n\,X_n^l.
 \end{equation}
 
-\subsubsection{A Note On $n_u=0$ Cases}\label{subsubsec:noteOn}
-
 Two antenna types are exempt from this rule: $A_2^1$ and $A_2^2$,
-as they do not present with unresolved partons, but rather only with loops, and
-are completely virtual antennae. These antennae are only integrated over the
+as they do not present with unresolved partons, but rather only with loops, and thus
+are completely virtual. These antennae are only integrated over the
 loop momenta rather than over the phase space, thus not requiring normalisation
 using the two-particle phase-space \cite{GehrmannDeRidder0507061}. $A_2^0$ also has no
 unresolved parton, but is excluded here for a different reason: it is the un-normalised
@@ -1246,8 +1241,8 @@ Laporta orderings, as these vary by implementation. Instead, they are illustrati
 objects.}. These quantities are defined using each integral's $a$-index, taken from the 
 family's $\vec a$ vector, as previously defined. They are, generally,
 \begin{gather}
-    t=\sum_{j=1}^N\theta(a_j),\\
-    r=\sum_{j=1}^N\max(a_j-1,0),\\
+    t=\sum_{j=1}^N\theta(a_j),\quad
+    r=\sum_{j=1}^N\max(a_j-1,0),\quad
     s=\sum_{j=1}^N\max(-a_j,0).
 \end{gather}
 Here, $\theta(a_j)$ records whether denominator $D_j$ is present. The hierarchy is defined 
@@ -1321,14 +1316,10 @@ kinematic scale once the dimensional-regularisation normalisation factors have b
 separated. Through dimensional analysis, the MI are strongly constrained to take 
 the form,
 \begin{equation}\label{eq:MIscaling}
-    M_k(q^2,\epsilon) = \left(q^2\right)^{\lambda_k+\kappa_k\epsilon}f_k(\epsilon)
+    M_k(q^2,\epsilon) = \left(q^2\right)^{\lambda_k+\kappa_k\epsilon}f_k(\epsilon),\quad f_k(\epsilon)\sim\frac{\Gamma^m(1-a\epsilon)}{\Gamma^n(1-b\epsilon)}
 \end{equation}
 where $\lambda_k$ is fixed by mass dimension and $f_k$ is dimensionless, depending 
-only on $\epsilon$. For this reason, phase-space MI can often be written in terms 
-of Gamma functions, as \cite{GehrmannDeRidder0311276},
-\begin{equation}
-    f_k(\epsilon)\sim\frac{\Gamma^m(1-a\epsilon)}{\Gamma^n(1-b\epsilon)}.
-\end{equation}
+only on $\epsilon$ \cite{GehrmannDeRidder0311276}.
 
 When evaluating master integrals, different types often call for different approaches.
 Simple one-scale phase-space masters often integrate directly after the phase-space 
