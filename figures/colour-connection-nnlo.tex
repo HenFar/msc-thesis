@@ -1,0 +1,101 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  >=Stealth,
+  stage/.style={
+    draw=black!65,
+    rounded corners=2pt,
+    fill=white,
+    align=center,
+    minimum height=10mm,
+    text width=19mm,
+    inner sep=3pt
+  },
+  profile/.style={
+    stage,
+    fill=violet!7,
+    text width=34mm,
+    minimum height=12mm
+  },
+  public/.style={
+    stage,
+    fill=blue!7,
+    text width=24mm
+  },
+  flow/.style={->, line width=.75pt},
+  config/.style={->, dashed, gray!75, line width=.6pt}
+]
+
+% 1st colour-con diag
+    % initial 2 dots
+    \fill (0,0) circle[radius=2pt];
+    \fill (0.5,0) circle[radius=2pt];
+
+    % brackets
+        % 1 
+        \draw (1,-0.5) -- (1,0.5);
+        \draw (1,-0.5) -- (1.5,-0.5);
+        \draw (1.5,-0.5) -- (1.5,0.5);
+        % 2
+        \draw (2,-0.5) -- (2,0.5);
+        \draw (2,-0.5) -- (2.5,-0.5);
+        \draw (2.5,-0.5) -- (2.5,0.5);
+        % 3
+        \draw (3,-0.5) -- (3,0.5);
+        \draw (3,-0.5) -- (3.5,-0.5);
+        \draw (3.5,-0.5) -- (3.5,0.5);
+        % 4
+        \draw (4,-0.5) -- (4,0.5);
+        \draw (4,-0.5) -- (4.5,-0.5);
+        \draw (4.5,-0.5) -- (4.5,0.5);
+        % 5
+        \draw (5,-0.5) -- (5,0.5);
+        \draw (5,-0.5) -- (5.5,-0.5);
+        \draw (5.5,-0.5) -- (5.5,0.5);
+
+
+    % final 2 dots
+    \fill (6,0) circle[radius=2pt];
+    \fill (6.5,0) circle[radius=2pt];
+
+    \draw[->] (7,0) -- (7.5,0);
+
+% 2nd colour-con diag
+    % initial 2 dots
+    \fill (8,0) circle[radius=2pt];
+    \fill (8.5,0) circle[radius=2pt];    
+
+    % brackets
+        % 1 
+        \draw (9,-0.5) -- (9,0.5);
+        \draw (9,-0.5) -- (9.5,-0.5);
+        \draw (9.5,-0.5) -- (9.5,0.5);  
+        % 2
+        \draw (10,-0.5) -- (10,0.5);
+        \draw (10,-0.5) -- (11.5,-0.5);
+        \draw (11.5,-0.5) -- (11.5,0.5);  
+        % 3
+        \draw (12,-0.5) -- (12,0.5);
+        \draw (12,-0.5) -- (12.5,-0.5);
+        \draw (12.5,-0.5) -- (12.5,0.5); 
+
+    % final 2 dots
+    \fill (13,0) circle[radius=2pt];
+    \fill (13.5,0) circle[radius=2pt];
+
+    % text
+    \node[above] at (1.75,0.5) {$i$};
+    \node[above] at (2.75,0.5) {$j$};
+    \node[above] at (3.75,0.5) {$k$};
+    \node[above] at (4.75,0.5) {$l$};
+
+    \node[above] at (9.75,0.5) {$I$};
+    \node[above] at (11.75,0.5) {$L$};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{tikzpicture}
+\caption{\centering The colour connection of the partons for the double unresolved antenna.}
+\label{fig:colourConnectionNNLO}
+\end{figure}

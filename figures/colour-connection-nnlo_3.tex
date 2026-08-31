@@ -1,0 +1,103 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  >=Stealth,
+  stage/.style={
+    draw=black!65,
+    rounded corners=2pt,
+    fill=white,
+    align=center,
+    minimum height=10mm,
+    text width=19mm,
+    inner sep=3pt
+  },
+  profile/.style={
+    stage,
+    fill=violet!7,
+    text width=34mm,
+    minimum height=12mm
+  },
+  public/.style={
+    stage,
+    fill=blue!7,
+    text width=24mm
+  },
+  flow/.style={->, line width=.75pt},
+  config/.style={->, dashed, gray!75, line width=.6pt}
+]
+
+% 1st colour-con diag
+    % initial 2 dots
+    \fill (1,-2) circle[radius=2pt];
+    \fill (1.5,-2) circle[radius=2pt];
+
+    % brackets
+        % 2
+        \draw (2,-2.5) -- (2,-1.5);
+        \draw (2,-2.5) -- (2.5,-2.5);
+        \draw (2.5,-2.5) -- (2.5,-1.5);
+        % 3
+        \draw (3,-2.5) -- (3,-1.5);
+        \draw (3,-2.5) -- (3.5,-2.5);
+        \draw (3.5,-2.5) -- (3.5,-1.5);
+
+        \fill (4,-2) circle[radius=2pt];
+        \fill (4.5,-2) circle[radius=2pt];
+
+        % 5
+        \draw (5,-2.5) -- (5,-1.5);
+        \draw (5,-2.5) -- (5.5,-2.5);
+        \draw (5.5,-2.5) -- (5.5,-1.5);
+        % 6
+        \draw (6,-2.5) -- (6,-1.5);
+        \draw (6,-2.5) -- (6.5,-2.5);
+        \draw (6.5,-2.5) -- (6.5,-1.5);
+
+
+    % final 2 dots
+    \fill (7,-2) circle[radius=2pt];
+    \fill (7.5,-2) circle[radius=2pt];
+
+    \draw[->] (8,-2) -- (8.5,-2);
+
+% 2nd colour-con diag
+    % initial 2 dots
+    \fill (9,-2) circle[radius=2pt];
+    \fill (9.5,-2) circle[radius=2pt];    
+
+    % brackets
+        % 1 
+        \draw (10,-2.5) -- (10,-1.5);
+        \draw (10,-2.5) -- (11.5,-2.5);
+        \draw (11.5,-2.5) -- (11.5,-1.5);
+
+        \fill (12,-2) circle[radius=2pt];
+        \fill (12.5,-2) circle[radius=2pt];        
+
+        % 2 
+        \draw (13,-2.5) -- (13,-1.5);
+        \draw (13,-2.5) -- (14.5,-2.5);
+        \draw (14.5,-2.5) -- (14.5,-1.5);
+
+    % final 2 dots
+    \fill (15,-2) circle[radius=2pt];
+    \fill (15.5,-2) circle[radius=2pt];
+
+    % text
+    \node[above] at (1.75,-1.5) {$i$};
+    \node[above] at (2.75,-1.5) {$j$};
+    \node[above] at (3.75,-1.5) {$k$};
+    \node[above] at (4.75,-1.5) {$n$};
+    \node[above] at (5.75,-1.5) {$o$};
+    \node[above] at (6.75,-1.5) {$p$};
+
+    \node[above] at (9.75,-1.5) {$I$};
+    \node[above] at (11.75,-1.5) {$K$};
+    \node[above] at (12.75,-1.5) {$N$};
+    \node[above] at (14.75,-1.5) {$P$};
+
+\end{tikzpicture}
+\caption{\centering The colour connections of the partons for two disconnected single unresolved antennae.}
+\label{fig:colourConnectionNNLO3}
+\end{figure}

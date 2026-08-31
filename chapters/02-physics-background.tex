@@ -428,15 +428,220 @@ As described in Subsection~\ref{subsec:uvDivergences}, we need to trade the bare
 coupling constant $\alpha_0$ for a suitable order by order perturbative series 
 variable. That is achieved as follows \cite{Gehrmann-DeRidder:2005btv},
 \begin{equation}\label{eq:alphaRescaling}
-    \alpha_0\mu_0^{2\epsilon}S_\epsilon = \alpha_s\mu^{2\epsilon}\left[1-\frac{\beta_0}{\epsilon}\frac{\alpha_s}{2\pi}+\mathcal O(\alpha_s^2)\right],\quad\beta_0=\frac{11N-2N_f}{6}
+    \begin{gathered}
+        \alpha_0\mu_0^{2\epsilon}S_\epsilon = \alpha_s\mu^{2\epsilon}\left[1-\frac{\beta_0}{\epsilon}\frac{\alpha_s}{2\pi}+\left(\frac{\beta_0^2}{\epsilon^2}-\frac{\beta_1}{2\epsilon}\right)\left(\frac{\alpha_s}{2\pi}\right)^2+\mathcal O(\alpha_s^3)\right],\\
+        \beta_0=\frac{11N-2N_f}{6},\,\beta_1=\frac{34N^3-13N^2N_f+3N_f}{12N}
+    \end{gathered}
 \end{equation}
 where for the massless case, the renormalisation scale is set to $\mu^2=q^2$.
 Here, $\mu_0$ is the bare mass parameter keeping $\alpha_0$ dimensionless and $\beta_0$
 is the one-loop coefficient of the QCD beta function, with $N=3$ the number 
-of colours and $N_f$ the number of light quark flavours \cite{Ellis:1996mzs}.
+of colours and $N_f$ the number of light quark flavours \cite{Ellis:1996mzs,Gehrmann-DeRidder:2005btv}.
 
 \section{The Antenna Subtraction Formalism}\label{sec:antSubForm}
 
+In perturbative QCD, computing the perturbative corrections to a certain jet 
+observable $J_m^{(n)}$, requires summing over all partonic multiplicity channels 
+up to the desired order. As the orders increase in complexity, so does the 
+number of channels: there is one at LO, two at NLO, five at NNLO, and so on. 
+Each channel contains ultraviolet and infrared singularities. The former are 
+removed via renormalisation, as shown in Eq.~\ref{eq:alphaRescaling}, and the 
+latter cancel among each other when all channels are summed over, 
+as per the KLN theorem \cite{Gehrmann-DeRidder:2005btv}.
+
+At LO, the approximation to the $m$-jet cross section is computed as the integral 
+over the appropriate phase space,
+\begin{equation}\label{eq:bornLevel}
+    d\sigma_\text{LO} = \int_{d\Phi_m}d\sigma^B,\quad d\sigma^B=\sum_nd\Phi_n(p_1,...,p_n;q)\frac1{S_n}|\mathcal M_n(p_1,...,p_n)|^2J_m^{(n)}(p_1,...,p_n)
+\end{equation}
+where $d\sigma^B$ is the tree-level $n$-parton contribution to the $m$-jet cross 
+section. $S_n$ is a symmetry factor for identical partons in the final state, and 
+$\Phi_n$ is the $n$-parton final-state phase space in $d$ dimensions \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    d\Phi_n(p_1,...,p_n;q)=\frac{d^{d-1}p_1}{2E_1(2\pi)^{d-1}}...\frac{d^{d-1}p_n}{2E_n(2\pi)^{d-1}}(2\pi)^n\delta^n(q-p_1-...-p_n).
+\end{equation}
+
+At NLO, however, the $m$-jet cross section is now written using the two contributions, 
+a real emission channel characterised by the $\gamma^*\to q\bar q g$ process, and 
+a virtual channel, where a gluon is exchanged by the hard quarks, $\gamma^*\to q\bar q$.
+These contributions are summed to reach,
+\begin{equation}
+    d\sigma_\text{NLO} = \int_{d\Phi_{m+1}}d\sigma^R_\text{NLO}+\int_{d\Phi_m}d\sigma^V_\text{NLO}.
+\end{equation}
+
+At NNLO, the $m$-jet cross section is written using the three contributions that 
+come from five different channels: RR has three, $\gamma^*\to q\bar qgg,\,q\bar q q\bar q,\,q\bar qq^\prime\bar q^\prime$,
+and RV and VV only have one each, $\gamma^*\to q\bar qg$, with a gluon loop, and 
+$\gamma^*\to q\bar q$ with two gluon loops,
+\begin{equation}
+    d\sigma_\text{NNLO}=\int_{d\Phi_{m+2}}d\sigma^{RR}_\text{NNLO}+\int_{d\Phi_{m+1}}d\sigma^{RV}_\text{NNLO}+\int_{d\Phi_m}d\sigma^{VV}_\text{NNLO}.
+\end{equation}
+
+\subsection{Subtraction Terms}
+
+The contributions introduced for the NLO and NNLO $m$-jet cross sections are finite 
+when summed, but not individually. As such, when the naive integrals are
+numerically computed, they do not converge. Our solution to this problem is the 
+introduction of subtraction terms for each contribution, that follow their respective 
+contributions' infrared-singularity structure for the whole phase space. After 
+subtracting the singularities, the subtraction terms are added to the last term, 
+integrated over $d\Phi_m$.
+
+\subsubsection{NLO}
+
+At NLO, there is need of one subtraction term, $d\sigma^S_\text{NLO}$, which 
+cancels $d\sigma_\text{NLO}^R$'s singularities. Using it, the $m$-jet cross section 
+becomes,
+\begin{equation}
+    d\sigma_\text{NLO} = \int_{d\Phi_{m+1}}\left(d\sigma^R_\text{NLO}-d\sigma^S_\text{NLO}\right)+\int_{d\Phi_m}\left(d\sigma^V_\text{NLO}+\int_{d\Phi_1} d\sigma^S_\text{NLO}\right)=\int_{d\Phi_m}\left(d\sigma^V_\text{NLO}+\int_1 d\sigma^S_\text{NLO}\right).
+\end{equation}
+The real-emission contribution is essentially equal to the Born-level 
+cross-section, as written in Eq.~\ref{eq:bornLevel}, but for $m+1$ particles. Its 
+subtraction counterterm has its same unintegrated behaviour for every singular 
+limit and must be analytically integrable over the required phase space. 
+It must also be local and not introduce spurious singularities elsewhere.
+From the KLN theorem, the 
+sum of the virtual contribution and the subtraction counterterm is infrared-finite,
+that is, after analytic integration, the integrated real-emission subtraction
+cross-section carries explicit $\epsilon$-poles which cancel virtual-correction's 
+singularity structure pole-by-pole.
+It is obtained as a sum of antenna functions, as follows,
+\begin{equation}
+    \begin{aligned}
+        d\sigma^S_\text{NLO} = \sum_{m+1}&d\Phi_{m+1}(p_1,...,p_{m+1};q)\frac1{S_{m+1}}\\&\sum_j X_{ijk}^0|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}).
+    \end{aligned}
+\end{equation}
+The subtraction term is defined in terms of the redefined on-shell momenta
+$p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}$, where $\tilde p_I$ and $\tilde p_K$
+are linear combinations of $p_i, p_j, p_k$ and denote the momenta of the parent 
+partons, in our case the $q\bar q$ hard pair, with $i,j,k$ denoting the daughter
+partons after the gluon emission, that is $qg\bar q$. Parent partons $I$ and $K$ 
+are colour connected. Daughter partons $i$ and $j$, and $j$ and $k$ are also 
+connected, but $i$ and $k$ are not. A diagram of these relationships is shown in 
+Fig.~\ref{fig:colourConnectionNLO}.
+
+\input{figures/colour-connection-nlo.tex}
+
+The jet observable considered throughout this work is the massless hadronic $R$-ratio. 
+This quantity is wholesome in the phase space, which means that $J_m^{(n)}=1$
+everywhere, independent of the order. Without the jet function in the expression, 
+the phase space can be factorised as,
+\begin{equation}
+    d\Phi_{m+1}(p_1,...,p_{m+1};q) = d\Phi_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})d\Phi_{X_{ijk}}(p_i,p_j,p_k;q=\tilde p_I+\tilde p_K)
+\end{equation}
+which here equals,
+\begin{equation}
+    d\Phi_3=P_2d\Phi_{X_{ijk}},\quad P_2=\int d\Phi_2.
+\end{equation}
+
+\subsubsection{NNLO}
+
+Analogously, at NNLO, there is need of two subtraction counterterms, $d\sigma_\text{NNLO}^S$
+and $d\sigma_\text{NNLO}^T$, subtracting respectively $d\sigma_\text{NNLO}^{RR}$
+and $d\sigma_\text{NNLO}^{RV}$. Using them, the $m$-jet cross section becomes,
+\begin{equation}
+    \begin{aligned}
+        d\sigma_\text{NNLO} &= \int_{d\Phi_{m+2}}\left(d\sigma_\text{NNLO}^{RR}-d\sigma_\text{NNLO}^{S}\right)+\int_{d\Phi_{m+1}}\left(d\sigma_\text{NNLO}^{RV}-d\sigma_\text{NNLO}^T\right)+\int_{d\Phi_m}d\sigma_\text{NNLO}^{VV}\\
+                            &= \int_{d\Phi_m}\left(d\sigma_\text{NNLO}^{VV}+\int_{d\Phi_2}d\sigma_\text{NNLO}^S+\int_{d\Phi_2}d\sigma_\text{NNLO}^T\right).
+    \end{aligned}
+\end{equation}
+
+At this order, the complexity rises. The subtraction counterterms must take into
+account the multiple possible configurations. The subtraction counterterms are 
+written as,
+\begin{equation}
+    \begin{gathered}
+        d\sigma_\text{NNLO}^S = d\sigma^{S,a}+d\sigma^{S,b}+d\sigma^{S,c}+d\sigma^{S,d}\\
+        d\sigma_\text{NNLO}^T = d\sigma^{T,a}+d\sigma^{T,b}+d\sigma^{T,c}.
+    \end{gathered}
+\end{equation}
+The subterms of each of the counterterms match the real-real and real-virtual 
+configurations present at this order. This matching is shown in 
+Table~\ref{tab:counterterms}.
+
+\begin{table}[htbp]
+    \centering
+    % Left Table
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Configuration} & \textbf{SubTerm} \\ \hline
+        \multicolumn{2}{|Sc|}{RR subtraction counterterm -- $d\sigma_\text{NNLO}^S$} \\ \hline
+        Single unresolved parton & $d\sigma^{S,a}$ \\ \hline
+        Two colour-connected unresolved partons & $d\sigma^{S,b}$ \\ \hline
+        Two almost colour-unconnected unresolved partons & $d\sigma^{S,c}$ \\ \hline
+        Two fully colour-unconnected unresolved partons & $d\sigma^{S,d}$ \\ \hline
+        \multicolumn{2}{|Sc|}{RV subtraction counterterm -- $d\sigma_\text{NNLO}^T$} \\ \hline
+        Explicit infrared poles from the one-loop matrix elements & $d\sigma^{T,a}$ \\ \hline
+        One of the partons becomes soft or collinear & $d\sigma^{T,b}$ \\ \hline
+        Spurious poles introduced by the other two subterms & $d\sigma^{T,c}$ \\ \hline
+    \end{tabular}
+    \caption{\centering NNLO unresolved configurations and their matching subterm, part of the $d\sigma^S_\text{NNLO}$ and $d\sigma^T_\text{NNLO}$ subtraction counterterms.}
+    \label{tab:counterterms}
+\end{table}
+
+The subterms for both counterterms are given in terms of the antenna 
+functions as follows, noting that at this order, four-parton and three-parton 
+one-loop antenna functions are necessary, written as $X_{ijkl}^0$ and $X_{ijk}^1$. 
+First for the real-real subtraction counterterm,
+\begin{equation}
+    \begin{gathered}
+        \begin{aligned}
+            d\sigma^{S,a} = \sum_{m+2}&d\Phi_{m+2}(p_1,...,p_{m+2};q)\frac1{S_{m+2}}\\
+                                      &\sum_j X_{ijk}^0|\mathcal M_{m+1}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+2})|^2J_m^{(m+1)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+2}),
+        \end{aligned}\\
+        \begin{aligned}
+            d\sigma^{S,b} = \sum_{m+2}&d\Phi_{m+2}(p_1,...,p_{m+2};q)\frac1{S_{m+2}}\\
+                                      &\sum_{j,k}\left(X_{ijkl}^0-X_{ijk}^0X_{IKl}^0-X_{jkl}^0X_{iJL}^0\right)|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+2}|^2\\
+                                      & J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+2}),
+        \end{aligned}
+    \end{gathered}
+\end{equation}
+And then the real-virtual counterterm,
+\begin{equation}
+    \begin{gathered}
+        \begin{aligned}
+            d\sigma^{T,a} = \sum_{m+1}&d\Phi_{m+1}(p_1,...,p_{m+1};q)\frac1{S_{m+1}}\\
+                                      &\sum_{i,k}-\mathcal X_{ijk}^0(s_{ik})|\mathcal M_{m+1}(p_1,...,p_i,p_k,...,p_{m+1})|^2J_m^{(m+1)}(p_1,...,p_i,p_k,...,p_{m+1}),\\
+                                      &\text{with }\mathcal X_{ijk}^0=C(\epsilon,1)\int d\Phi_{X_{ijk}} X_{ijk}^0,
+        \end{aligned}\\
+        \begin{aligned}
+            d\sigma^{T,b} = \sum_{m+1}&d\Phi_{m+1}(p_1,...,p_{m+1};q)\frac1{S_{m+1}}\\
+                                      &\sum_jX_{ijk}^0|\mathcal M_m^1(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})\\
+                                      &+X_{ijk}^1|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}),\\
+                                      &\text{with }X_{ijk}^1\rightarrow X_{ijk}^1+\frac{\beta_0}\epsilon\frac{(4\pi)^\epsilon e^{-\epsilon\gamma_E}}{8\pi^2}X_{ijk}^0\left(s_{ijk}^{-\epsilon}-(\mu^2)^{-\epsilon}\right),
+        \end{aligned}
+    \end{gathered}
+\end{equation}
+$d\sigma^{S,c}$, $d\sigma^{S,d}$, and $d\sigma^{T,c}$ are only required for 
+higher-multiplicity processes than those considered in the current text. Their 
+complete from is written in \cite{Gehrmann-DeRidder:2005btv}.
+
+Where the colour-connection notation goes as,
+\begin{equation}
+    \begin{gathered}
+        (i,j,k)\to(\tilde I,\tilde K)\\
+        (\tilde K,l,m) \to (\tilde{\tilde{K}}, \tilde{\tilde{M}})
+    \end{gathered}
+\end{equation}
+
+and the three characteristic colour-connection configurations and shown in 
+Figs.~\ref{fig:colourConnectionNNLO}, \ref{fig:colourConnectionNNLO2}, and \ref{fig:colourConnectionNNLO3}.
+
+\input{figures/colour-connection-nnlo.tex}
+\input{figures/colour-connection-nnlo_2.tex}
+\input{figures/colour-connection-nnlo_3.tex}
+
+Once again, as for NLO, the massless hadronic $R$-ratio is the jet observable
+considered, and hence $J_m^{(n)}=1$. The phase space factorises as,
+\begin{equation}
+    d\Phi_{m+2}(p_1,...,p_{m+2};q) = d\Phi_m(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+1};q)d\Phi_{X_{ijkl}}(p_i,p_j,p_k,p_l;q=\tilde p_I+\tilde p_L)
+\end{equation}
+and hence,
+\begin{equation}
+    d\Phi_4 = P_2d\Phi_{X_{ijkl}}.
+\end{equation}
+
+\iffalse
 In perturbative QCD, when a particle like a gluon, $j$, becomes unresolved as 
 described above, its squared matrix element $|\mathcal M_{n+1}|^2$ factorises
 into a universal singular factor for this process, $\mathcal S_j$ and a lower-multiplicity squared 
@@ -454,6 +659,7 @@ Therefore,
 where $d\sigma^B$ denotes the Born process $\gamma^*\to q\bar q$, cross-section and
 $\mathcal S_j$ is the singular factor for each of the $j$ particles being summed 
 over.
+
 
 \subsection{NLO and NNLO Subtraction Terms}
 
@@ -583,6 +789,8 @@ in this text.
     \caption{Antenna subtraction formulae for $\sigma^\text{NLO}$ and $\sigma^\text{NNLO}$, in terms of the antenna functions described in Subsection~\ref{subsec:antennaFuncs} \cite{Gehrmann-DeRidder:2005btv}. The $\sigma^\text{LO}$ row has no antenna-function form: it is the un-normalised Born term itself.}
     \label{tab:sigmaByOrder}
 \end{table}
+
+\fi
 
 \subsection{Antenna Functions}\label{subsec:antennaFuncs}
 
