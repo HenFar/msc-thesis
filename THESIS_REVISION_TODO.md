@@ -60,6 +60,128 @@ whichever one you're in right now.** Treat it accordingly:
 
 Advisor feedback takes priority over everything below where they overlap. This is a **partial** pass — Prof. Pires said more corrections for the rest of Chapter 2 are coming later this week; fold those in here when they arrive. Where he supplied ready-made replacement text, go back to his email for the exact wording rather than re-deriving it.
 
+---
+
+### Meeting with Prof. Pires — 28 August 2026 (in person)
+
+**Nature of this pass:** a live meeting, *not* an email. There is no verbatim advisor text — Henrique's notes plus his recollection are the source of record, so his correction of this map carries more weight than usual. Every point below was grounded against the *current* `.tex` and against hep-ph/0505111 on 28 Aug 2026. Compiled section numbers (from `main.toc`), for disambiguation: §2.1.2 = "From the QCD Lagrangian to Feynman Diagrams" (p16); §2.2.1 = "Infrared Divergences" (p17); §2.3 = "Dimensional Regularisation" (p19); §2.4.1 = "NLO and NNLO Subtraction Terms" (p21); §2.4.2 = "Antenna Functions" (p23); §2.4.3 = "Colour Algebra and the Antenna Colour Decomposition" (p25, and it currently contains a `\subsubsection{$T$-objects}` at `:793`); §2.4.4 = "Antenna Families" (p27); §2.4.5 = "Phase-Space Factorisation" (p28).
+
+**Overall verdict from Prof:**
+- Ch2 is still too dense. Take notation *and* diagrams from hep-ph/0505111 much more directly. Read the chapter as an examiner would.
+- What he is happy with: the integration material (§2.5 — keep **one** IBP example), and §2.1.1 Lagrangian / §2.2 divergences / §2.3 dim-reg. **The problems are concentrated in §2.4 (subtraction).** Converges with the "Chapter 2 — cross-cutting concern" already in this file.
+
+**STRUCTURAL DECISION — RESOLVED 28 Aug 2026 (Henrique): §2.4.1 gets a CLEAN REWRITE against hep-ph/0505111 §2.1, not a patch.** It moves from the thesis's own abstracted notation (`eq:subTerms`: `d\sigma^X = 2C_F\sum_{a(,s)}f_a(N,N_f)X^l_{ij,(a,s)}d\sigma^B`) to 0505111's *exact* eq. (2.5) structure (`d\sigma^S = N\sum_{m+1}\int d\Phi_{m+1}\frac{1}{S_{m+1}}\sum_j X^0_{ijk}\,|M_m(\ldots\tilde p_I,\tilde p_K\ldots)|^2\,J^{(m)}_m`). This **supersedes most of Task D** (T-object content in Ch2, `tab:sigmaByOrder`, the abstracted-sum equations, the `\sim`→exact work — all committed in `a572aa8`/`785a2fd`/`9744c15`). Task D's roadmap note "keep `subsec:antennaFuncs` mostly as-is" is also overridden — Prof wants §2.4.2 redone (see below). **Prof numbers §2.4.x by the current compiled draft** (confirmed 28 Aug): 2.4.2 = Antenna Functions, 2.4.3 = Colour Algebra.
+
+#### Chapter 2
+
+**§2.4.1 CLEAN REWRITE — supersedes the §2.4.1 half of Task D. [Yours] — one commit. Task Q.**
+Ground the whole subsection on hep-ph/0505111 §2.1 (eqs. 2.1, 2.3, 2.4, 2.5, 2.6, 2.8; Figures 1–3). Specific asks, all pulled toward "match the paper exactly":
+- Write `d\sigma^S` in the exact form of **0505111 eq. (2.5)**, not the abstracted `2C_F\sum f_a X d\sigma^B`. Prof said more than once he is "not a fan of the `d\sigma` expressions" (`eq:subTerms`, `eq:nnloCross` tail, the `\sigma^\text{NLO}/\sigma^\text{NNLO}` block at `:531-539`).
+- **Drop the `2C_F f_a(N,N_f)` prefactor bookkeeping.** (Henrique confirmed: "2C_F f_a" = the colour-prefactor terms carried with the antennae in `eq:subTerms`.) 0505111's notation folds all of this into the normalisation `N` and the colour-ordered `|M_m|^2`; adopt that.
+- **Use matrix elements, not antennae, in the schematic** (Henrique confirmed — meaning: keep `|M_m(\ldots)|^2` explicit and multiply by the tree antenna `X^0_{ijk}`, exactly as eq. 2.5/2.6 do; don't collapse the reduced matrix element into a `d\sigma^B` blob).
+- **The Born / reduced matrix element must be written in terms of the mapped `I, K` momenta** — `|M_m(p_1,\ldots,\tilde p_I,\tilde p_K,\ldots)|^2`, per eq. (2.6). (Henrique confirmed reading.)
+- **`S_j` (the single-unresolved / soft factor) does not depend on the process — use the exact formula from 0505111**, not the "universal singular factor for this process" phrasing at `:422-428`. For a soft gluon `j` between radiators `i,k` the paper gives `|M_{m+1}|^2 \to (2s_{ik}/s_{ij}s_{jk})|M_m|^2` explicitly (p6–7, just after eq. 2.6), with the colour factor modification `T^a_{ikj}\leftrightarrow\delta_{iI}\delta_{IK}\delta_{Kk}`.
+- **Jet / measurement function: state `J = F_n` explicitly, and `= 1` for the R-ratio** (Henrique confirmed). Thesis already says `F_n=1` for every `n` (`:454-457`); the ask is to identify it with 0505111's `J^{(n)}_m` and use that notation.
+- **`d\sigma_\text{NLO}` and `d\sigma_\text{NNLO}` must be explicitly defined**; explain **why both NLO and NNLO subtraction are needed**; explain **why the analytic integration is needed** and **why there are `\epsilon` poles**. (Some of this exists at `:459-482`, `eq:nnloCross` — needs to be foregrounded and tightened, not buried after the equation.)
+- **Mention the non-antennae `A^2_2`, `A^2_1`** (and `\tilde A^2_2` etc.): state plainly that they are *not* antenna functions **by definition** but *are* required ingredients, and why. Prof wants this as a short **addendum near `tab:antFamilies`** (see the tab:antFamilies item below) as well as in the §2.4.1 narrative.
+- **All colour-independent objects → "colour-stripped"** (not "colour-independent"); state that colour is handled inside FeynCalc/FeynArts. (Same wording fix as Task J item (e) in the Ch3 review — apply consistently.)
+- **`tab:sigmaByOrder` (`:545`, "dσ in terms of antennae") is badly placed** — reposition (or fold into the rewrite).
+- **T-objects — REMOVE the Ch2 `\subsubsection{$T$-objects}` entirely** (`02-physics-background.tex:793-828`, from commit `8292d57`). Confirmed 28 Aug (Henrique): the whole subsubsection goes, not a trim. 0505111 uses no T-objects. Ch5's `subsec:Tobjects` + `eq:integratedT` are a **separate matter** — they stay (Task D's topology-grouping argument + Task W both need them); this removal is Ch2-only. Check inbound refs to the removed block before cutting (`eq:genTSum`/`list:A31Comps` are referenced nearby — verify what points at the T-object equations specifically).
+- **Framing to use instead of T-object bookkeeping:** "every antenna carries all colour components; the ones a given antenna doesn't have are simply zero." (Henrique's note, confirmed.)
+- Diagrams to bring in from 0505111: the **colour-connection chain** (their Fig. 1), the **parent/daughter `i,j,k \to I,K`** picture (their Fig. 2), and the **mapping/factorisation diagram showing the division** (their Fig. 3 — the `[...]` bracket = antenna function × antenna phase space). Thesis already has `fig:antennaFactorisation` (Task E) — Prof wants the *division* to read more clearly, Fig. 3 style. This is the "digram on the mapping should have the division" + "colour coupling diagrams" notes.
+
+**§2.4.2 "Antenna Functions" — redo. [Yours]. Task Q2 (fold into Q or keep adjacent — same commit series).**
+Prof: "redo 2.4.2" (= Antenna Functions, confirmed his numbering matches the compiled draft). "2.4.3 stays" (= Colour Algebra body — but the T-objects subsubsection currently inside it is removed, see above). This overrides Task D's roadmap line "keep `subsec:antennaFuncs` mostly as-is." Scope to settle with Henrique: `eq:bornNorm` density (already a Task E follow-up), the antenna-definition presentation, and whether the per-antenna-type Feynman-diagram figures (already noted under Task L) land here.
+
+**§2.4 — `tab:antFamilies` (was "Table 1 of 0505111"). Layout is GOOD (confirmed 28 Aug). Two additions. [Yours, small]. Task Q3.**
+- **Show the defining/relative partons of each antenna as a reference** — e.g. `A^0_3(q,g,\bar q)`, `A^0_4(q,g,g,\bar q)`, `B^0_4(q,q',\bar q',\bar q)`, … the way 0505111 Table 1 gives the explicit argument list. Add as a column or an inline annotation.
+- **Addendum on the non-antennae**: a short note at/under the table stating that the `q\bar q`-row entries (`A^1_2`, `A^2_2`, `\tilde A^2_2`, `\hat A^2_2`, `\breve A^2_2`) are **not antenna functions by definition** (an antenna requires at least one unresolved parton radiated between two hard radiators), but are needed as assembly ingredients. Same content as the §2.4.1 "mention the non-antennae" bullet — write once, reference from both places.
+
+**§2.4 — AP and eikonal checks on `A^0_4`. [Yours]. Provisional Task R.**
+Add explicit Altarelli–Parisi (collinear) and eikonal (soft) limit checks for the `A^0_4` antenna, demonstrating it reproduces the known singular factors. 0505111 §8.2.2 has the target limits. Related to the existing "local eikonal/AP-splitting validation" mention in Ch1.
+
+**§2.4 — PaVe pointer / move.** Already **Task G (DONE, `9744c15`-era)** — `subsec:PaVe` moved to Appendix B.2, all three refs retargeted. Prof's note ("point to PaVe in the appendix, maybe transfer them there") is now satisfied. Treat as closed; just confirm he's seen it.
+
+**§2.2.1 — soft-quark explanation is wrong. Reopens the closed "Task B" item. [Yours]. Task U — DONE (30 Aug 2026).**
+Current text (`:218-229`): "if only one of the quarks is soft, then the pole formed is the same as in the collinear limit, and requires no separate dedicated soft-quark counterterm." **Prof says this is physically impossible as stated** — for `\gamma^*\to q(k_1)g(k_3)\bar q(k_2)`, a soft `q(k_1)` would require an underlying Born process `\gamma^*\to g\bar q`, which does not exist (colour / fermion-number). So there is no soft-single-quark limit to describe for this process at all. (Henrique: "he didn't like the current logic, he said it's physically impossible; there should be information about it in 0505111.") This **overturns the refinement committed under the old Task B** (`56e2311`). Grounding needed against 0505111 §8 (single unresolved factors — soft quark appears only where a `q\bar q` pair can factor onto a genuine lower process, e.g. `E`/`G`-type antennae), before rewriting. Cross-check the §2.2.1 `\cite{Ellis:1996mzs}` claim.
+- **DONE:** grounded against 0505111 §8.2 — `A^0_3` has exactly two single-unresolved limits (soft gluon eq. 8.14, `q\|g` collinear eq. 8.15), no soft-quark entry anywhere in the whole §8 catalogue; §8.1.1's single-unresolved factor list is soft-gluon eikonal + three AP splittings only. The wrong worked-example paragraph was deleted; Henrique wrote a replacement (`:215-220`): a soft limit exists only where removing the parton leaves a physical lower-multiplicity process, so `\gamma^*\to qg\bar q` admits a soft gluon but not a soft quark (no `\gamma^*\to g\bar q`); a quark can only go unresolved collinearly; a `q\bar q` pair can go soft as a unit at NNLO. `\cite{Ellis:1996mzs}` dropped from the deleted claim (the `:202` kinematics cite stays). Build clean.
+
+**§2.4 (or new) — table/list of the limits considered. [Yours, small]. Task R2 — DONE (30 Aug 2026).**
+Explicit list or table of the unresolved limits actually relevant here: soft gluon, collinear, double-soft gluon, soft `q\bar q` pair, etc. — with which invariant each singularity sits on and which antenna handles it. Must be consistent with the corrected soft-quark story (Task U). The retired §2.2.1 "motivation paragraph" bullet noted a table like this would do that motivational work.
+- **DONE:** `tab:limits` added to §2.2.1 (`02-physics-background.tex:227-`) as an inline `longtable` (not a float — it was orphaning a page), caption below. Organised by final-state configuration (`(1_q,3_g,2_{\bar q})` NLO; `(1_q,3_g,4_g,2_{\bar q})`, `(1_q,3_{q'},4_{\bar q'},2_{\bar q})`, `(1_q,3_q,4_{\bar q},2_{\bar q})` NNLO), each row: limit / kinematic condition (`p_3\to0`, `1_q \parallel 3_g`, …) / vanishing invariants. All 14 rows verified against 0505111 §8.2 eqs. 8.14–8.30. **No antenna column** — Task Q adds the antenna→limit mapping later so R2 isn't reworked. Referenced from `:227`. Build clean.
+
+**§2.1.2 — Feynman rules. [Yours-light]. Task S — DONE (30 Aug 2026).**
+~~move Feynman rules elsewhere, maybe an appendix~~ — **re-scoped 30 Aug (Henrique's meeting recollection): NOT a relocation and NOT a trim of §2.1.2.** Prof *liked* §2.1.2 as it is; his point was that "how the `\mathcal M` amplitudes appear" is left unanswered — he wants the Feynman rules *explained somewhere*. So Task S is purely **additive**: §2.1.2 unchanged except a one-line pointer.
+- **DONE:** new `\section{Feynman Rules}` in Appendix B (`appendices/appendixB.tex`, `sec:FeynmanRules`, B.1): propagator table (quark/gluon/ghost, massless + massive-quark parenthetical, graphical reps), external-state completeness relations (`\sum u\bar u=\slashed p`, `\sum \varepsilon_\mu\varepsilon_\nu^*=-g_{\mu\nu}+\text{gauge}`), vertex table (`q\bar qg`, `ggg`, `gggg`, `c\bar cg`, `\gamma^*q\bar q` with graphical reps). All expressions checked against Peskin/ESW conventions as a consistent set (`ggg`/ghost carry no explicit `i` in that convention; `gggg` sign `-ig_s^2` and colour `f^{abe}f^{cde}` fixed in review). Cited `\cite{Ellis:1996mzs,Peskin:1995ev}` on both tables. §2.1.2 (`:185-186`) adds "An amplitude … is computed from a Feynman diagram using Feynman rules. This ruleset is given in Section~\ref{sec:FeynmanRules}." B.1 points back to Ch4's full application (`subsec:masslessA30`). No full worked example in B.1 — Ch4 has it. Build clean, 119 pp.
+- Loose end (minor): B.1's `\ref{subsec:masslessA30}` prints "Subsection" but the target is a `\subsubsection` — same label-type mismatch family the 27-Aug coherence pass fixed 7 of.
+
+**Normalisations — it's a PRESENTATION problem, not a section. [Yours]. Task T — §2.3 HALF DONE (30 Aug); structural `G_k`/`Λ_l`/`𝒩` unification with §3.5.3 still bundled with Task M.** Entangled with Task M (Ch3 §3.5.3).
+- **DONE 30 Aug (finish of the §2.3 half):** the `S_ε` / `G_k` / `C(ε,k)` / `𝒩` apparatus collapsed to one short paragraph + `eq:loopNorm` (`G_k=(8π²)^{n-2}Λ_l`) + `eq:normN` (`𝒩=C/Φ_2`, `C=G_kS_ε`), with the hedge compressed to a one-line pointer to `tab:GkNorm` (§3.5.3). `eq:alphaRescaling` prose tail cut from ~6 lines to 2 (`μ_0`, `β_0`, `N=3`, `N_f` glossed). Both deleted labels (`eq:loopNorm`, `eq:normN`) re-added — Ch3 `:318`/`:630` resolve again. `S_ε` cite switched `Bardeen:1978yd`→`Gehrmann-DeRidder:2005btv`. Build clean. This went a bit past the "two quick wins" scope but stopped short of the shared-symbol unification with §3.5.3, which stays in Task M.
+- Tiny nit not yet fixed: "the renormalisation scale **is scaled as** `μ²=q²`" → "is set to".
+Clarified 28 Aug (Henrique): Prof was not pointing at one section. His complaint is the **overall presentation** of the normalisation factors — too much prose, it breaks the narrative flow. The apparatus (`S_\epsilon`, `G_k`, `\Lambda_l`, `C(\epsilon,k)`, `\Phi_2`, `\mathcal N(\epsilon,k)`) sits in **§2.3** (`:338-405`) and is bridged again in **Ch3 §3.5.3** ("Normalisations and Convention Bridge", `tab:GkNorm`).
+- **Done 28–29 Aug (§2.3 half, `02-physics-background.tex:338-405`):** cut the "why 4π/γ_E/Γ(1−ε) appear from d-dimensional spherical coordinates" textbook paragraph (pure over-explanation); tightened the `S_ε` sentence (MS̄ + `\cite{Bardeen:1978yd}` retained, "using CDR" clumsiness removed); kept a one-clause `α_s/(2π)` justification (load-bearing — `β_0=(11N−2N_f)/6` is only right in that convention, and `(8π²)^k` needs it); moved `k=(n-2)+l` into the `C(ε,k)` equation line and killed the resulting dangling "and is, itself defined as," fragment; de-fragmented the `Λ_l` sentence; `n`/`l` now defined right after `eq:loopNorm`. Rebuilt clean, all 7 inbound labels (`eq:loopNorm`/`eq:normN`/`eq:alphaRescaling` from Ch3/Ch4) resolve. **Assessed honestly as only ~20% of Prof's density complaint** — cut ~4 of ~50 lines. The passage still hits 4 displayed normalisation equations + 5 symbols back to back.
+- **Still open, deferred to the Task M joint pass:** `eq:alphaRescaling` prose tail → one sentence (or move the whole coupling-renorm eq to §2.2.2 where UV renorm is discussed); the `G_k→C(ε,k)→𝒩` three-step chain → collapse to `𝒩(ε,k) = (8π²)^k(4π)^{−ε}e^{εγ_E}/Φ_2` + pointer; defer `Λ_l` introduction to Ch3; hedge paragraph (`:386-390`) → one line. Can't finish in §2.3 alone — the symbols are shared with §3.5.3, which Prof separately suggested cutting; do both files at once.
+- "Simplify equations and review normalisations" (his §2.4 note) is the same theme. The unverified-`C(\epsilon,k)` caveat is still flagged in §2.3 and Task D.
+
+#### Chapter 3
+
+**§3.6 "Higher-Level Functions" — condense to a list/table.** Already **Task P**. Prof repeated it verbatim in the meeting ("going on too much on the inner workings, just list them or show a table"). Confirms Task P; no change, still blocked on the Task D T-object destination.
+
+#### Chapter 4
+
+**Rename `\mathcal S_3 \to s_{123}`, `\mathcal S_4 \to s_{1234}`; do NOT touch `d\mathcal S_3`. Mech-22 — DONE 28 Aug 2026 by Henrique himself.** Not reviewed by Claude; if a diff review is wanted later, check the `:138-281` block plus any prose mentions.
+
+**Show antenna results reduced to the quoted master integrals. [Yours]. Provisional Task V.**
+For each antenna result in Ch4, show the reduction to the stated master-integral basis before the master substitution. Overlaps with the existing §4 items "Expand the `A_3^0` worked example with one representative IBP reduction term" and "Replace repeated 'agrees with the literature' claims with one evidence-dense summary table." Treat as one task.
+
+#### Chapter 5
+
+**Show the integrated T-objects with their `\epsilon` poles, à la hep-ph/0403057. [Yours]. Provisional Task W.**
+`subsec:Tobjects` (`chapters/05-validation-r-ratio.tex:53`), `eq:integratedT` (`:137`). Prof wants each integrated `\mathcal T`-object shown with its explicit Laurent expansion so the pole cancellation is visible and the subtraction reads as clearly complete — the way `Gehrmann-DeRidder:2004ttg` (hep-ph/0403057, "Infrared structure of e+e- -> 2 jets at NNLO") lays it out. Directly overlaps the existing §5 item "Add a compact table of the pole cancellation by perturbative order and NNLO colour/flavour channel." One task.
+
+#### Considered and deferred — NOT a task
+
+**Numerical validation with NNLOJET.** Prof raised it as "a further point that might be interesting," explicitly **not** a "do it." Henrique's own view: it's a stretch to claim NNLOJET validates AntCalc when both use the same underlying antenna expressions. Sketch, if ever pursued: NNLOJET 4.1, the e⁺e⁻ setup from arXiv:2503.22804, `\sqrt{s}` = 900 and 365 GeV, `\mu=\sqrt{s}`, three runs (LO/NLO/NNLO), observable TBD (`p_T^\text{jet}`, invariant mass, …), likely a case-studies chapter. Leave parked here; do not letter it. (Related to the existing §4 item "State in the conclusion that an independent numerical MC check remains future work" — that stays.)
+
+### Open questions — RESOLVED with Henrique 28 Aug 2026
+
+1. **§2.4.1 rewrite depth** → **clean rewrite** against 0505111 §2.1.
+2. **"§2.1 normalisations"** → not section-specific; it's the overall *presentation* (too much text, breaks flow). Task T reframed accordingly, spanning §2.3 + Ch3 §3.5.3.
+3. **T-objects in Ch2** → **remove the `\subsubsection{$T$-objects}` entirely** (`:793-828`). Ch5 T-objects untouched (Task W needs them).
+4. **Prof's §2.4 sub-numbering** → he uses the **current compiled draft numbers** (2.4.2 = Antenna Functions, 2.4.3 = Colour Algebra).
+5. **`tab:antFamilies`** → layout is **good as-is**; add (a) the defining partons of each antenna as a reference, (b) an addendum that the non-antennae aren't antennae by definition. → Task Q3.
+6. **Task lettering** → convention confirmed; Q, Q2, Q3, R, R2, S, T, U, V, W + Mech-22 stand. Reletter to strict one-letter-per-commit when sequencing the work.
+
+**Still to settle at execution time (not blocking):** whether Q2/Q3 fold into Q's commit or sit adjacent; how much of §2.1.2's Feynman-rules content moves vs. stays as a pointer (Task S); whether removing the Ch2 T-objects subsubsection leaves Ch3 (`03-package-framework.tex:~358`, `T_\text{Lead}` etc.) with no upstream definition — the Ch3 T-primer was already an open Task-D-extension item, re-confirm it covers this.
+
+### Execution plan (walked through with Henrique 28–29 Aug, to start in full 30 Aug)
+
+**Core rule that prevents rework:** *nothing fine-grained inside §2.4 happens before Task Q.* Everything that can safely precede Q is outside §2.4. No polishing `tab:sigmaByOrder`, `eq:subTerms`, the T-objects subsubsection, `eq:bornNorm`, or `fig:antennaFactorisation` before Q/Q2 — all of it gets rewritten.
+
+**Phase 1 — outside §2.4 (no rework risk, any order) — COMPLETE (30 Aug 2026).**
+- **U — soft-quark fix, §2.2.1. DONE.** Grounded vs. 0505111 §8.2 (no soft-quark limit anywhere in the antenna catalogue), wrong paragraph deleted, Henrique wrote the replacement, `Ellis:1996mzs` dropped from the bad claim.
+- **R2 — limits list/table. DONE.** `tab:limits` in §2.2.1, inline `longtable`, by-configuration (limit / kinematic condition / vanishing invariants), 14 rows checked vs. eqs. 8.14–8.30, no antenna column (Q adds it).
+- **S — Feynman rules. DONE (re-scoped — additive, not a relocation).** Appendix B.1 `\section{Feynman Rules}`: propagator + vertex tables + external-state relations, Peskin/ESW-consistent, cited; §2.1.2 gets a one-line pointer, unchanged otherwise.
+- **T (§2.3 half). DONE.** Apparatus collapsed to one paragraph + `eq:loopNorm` + `eq:normN`; `eq:alphaRescaling` tail trimmed; deleted labels restored; hedge → one-line pointer to `tab:GkNorm`. Structural `G_k`/`Λ_l`/`𝒩` unification with §3.5.3 still in Task M.
+
+**Phase 2 — the §2.4 rewrite (strict order):**
+- **Q — rewrite `sec:antSubForm` intro + §2.4.1 against 0505111 §2.1.** Sets the whole §2.4 narrative, notation, and figure plan (0505111 Figs 1/2/3). Deletes the T-objects subsubsection (`:793-828`). Writes the non-antennae explanation **once**.
+- **Q — paired: add the Ch3 T-primer.** Same logical change as deleting the Ch2 T-block — otherwise `03-package-framework.tex:358` etc. (`T_\text{Lead}`/`T_\text{Sublead}`/`T_\text{QL}`) point at nothing. Own small commit right after Q, no gap between them.
+- **Q2 — redo §2.4.2 "Antenna Functions."** Built to serve the narrative Q just fixed. Folds in: the `eq:bornNorm` explicit-`l=1`/`l=2`-cases follow-up (do *not* do separately), the figure execution, and Task L per-antenna Feynman diagrams if they land here.
+- **Q3 — `tab:antFamilies`.** Add the defining-partons reference (`A^0_3(q,g,\bar q)` style) + the non-antennae addendum (references the explanation written in Q).
+- **R — AP + eikonal checks on `A^0_4`.** Needs the antenna definitions in final form → after Q2. Ties to the Ch1 "local eikonal/AP-splitting validation" mention.
+
+**Phase 3 — Ch3, then Ch4/5:**
+- **Task M + T (structural half)** — joint §2.3 / §3.5.3 normalisation collapse, both files open at once. Defer `Λ_l` introduction to Ch3.
+- **Ch3 T-object extension** (§3.3.2 / §3.3.3 / §3.5.4 / §3.6 → Ch5 `subsec:Tobjects` outright vs. short pointer) **+ Task P** (condense §3.6 to the itemised one-liners / table).
+- Remaining Ch3 review tasks (H, I, J, K, L, N, O) as they fit.
+- **V — Ch4 antenna results reduced to the quoted masters.** Merge the existing §4 "one representative IBP term" + "replace 'agrees with literature' prose with a validation table" items.
+- **W — Ch5 integrated T-objects with their ε poles**, à la hep-ph/0403057. Merge the existing §5 "compact pole-cancellation table" item.
+
+**Done outside this order:** Mech-22 (Ch4 `\mathcal S_3 → s_{123}`) — completed by Henrique 28 Aug, not Claude-reviewed.
+
+---
+
 ### Chapter 1 — Introduction — DONE (25 Aug 2026) [Mine — all Prof-supplied text or minimal-diff edits]
 - [x] Opening sentence: name the LHC/CERN explicitly as the motivating example of "high-energy collider experiments," not just an unspecified reference.
 - [x] "Achieving higher orders of perturbation is not simply..." → "Obtaining higher-order perturbative predictions is not simply a matter of...".

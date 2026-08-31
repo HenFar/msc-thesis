@@ -157,7 +157,7 @@ quark or antiquark line.
     \label{fig:feynDiagsEx}
 \end{figure}
 The final amplitude in this case would then follow,
-\begin{equation}
+\begin{equation}\label{eq:amplitude}
     \mathcal M_{\gamma^*\to qg\bar q}^{(0)}=\mathcal M_{q-\text{emission}}^{(0)}+\mathcal M_{\bar q-\text{emission}}^{(0)}.
 \end{equation}
 
@@ -181,6 +181,9 @@ A rate or cross section often depends on the squared amplitude $|\mathcal M|^2$,
 where $D$ and $D^\prime$ index the Feynman diagrams contributing to the amplitude, so
 that the sum includes both the diagonal $D=D^\prime$ terms and the interference between
 distinct diagrams.
+
+An amplitude $\mathcal M$ is computed from a Feynman diagram using Feynman rules. 
+This ruleset is given in Section~\ref{sec:FeynmanRules}.
 
 \section{Divergences in Perturbative QCD}\label{sec:divergences}
 
@@ -209,24 +212,80 @@ which will serve as the
 natural integration variable throughout the work.
 The limits are then apparent: the soft limit is hit when one of the energies goes 
 to zero and the collinear limit, when $\theta_{ij}$ does. In both cases,
-\begin{equation*}
-    \lim_{E_i\to0}s_{ij}=0
-\end{equation*}
 \begin{equation}
-    \lim_{\theta_{ij}\to 0}s_{ij}=0.
+    \lim_{E_i\to0}s_{ij}=0,\quad \lim_{\theta_{ij}\to 0}s_{ij}=0.
 \end{equation}
-As an example, let us consider the 
-$\gamma^*\to q(k_1)g(k_3)\bar q(k_2)$ process. If one of the quarks and the gluon 
-become collinear, say $q(k_1)$ and $g(k_3)$, then $s_{13}\to 0$ and the amplitude 
-has a single pole, $|\mathcal M|^2\sim1/s_{13}\to\infty$. If the gluon is soft,
-then both $s_{13}, s_{23}\to0$, and the amplitude has two poles, 
-$|\mathcal M|^2\sim1/(s_{13}s_{23})\to\infty$. Finally, if only one of the quarks is soft,
-then the pole formed is the same as in the collinear limit, and requires no 
-separate dedicated soft-quark counterterm \cite{Ellis:1996mzs}. Furthermore, there 
-is also the case for the NNLO process $\gamma^*\to q(k_1)\bar q(k_2) q^\prime(k_4)\bar q^\prime(k_5)$ 
-in which the $q^\prime(k_4)$ and $\bar q^\prime(k_5)$ become simultaneously soft. In that case, 
-the amplitude has a double pole around the relevant invariant, $s_{45}$, which 
-appears as $|\mathcal M|^2\sim1/s_{45}^2\to\infty$ \cite{Gehrmann-DeRidder:2005btv}.
+A soft limit exists only where removing the unresolved parton leaves a physical
+lower-multiplicity process. For the $\gamma^*\to q(k_1)\,g(k_3)\,\bar q(k_2)$
+process, this permits only a soft gluon because, since $\gamma^*\to g\bar q$ does not 
+exist, the soft quark limit is not possible. That means that a quark can only 
+become unresolved collinearly. At NNLO, however, a quark-antiquark pair can 
+become soft as a unit, when being emitted by an intermediate gluon. In that 
+topology, apart from the soft gluon limit, only the collinear $gq$ and $\bar q$
+limits exist, with the collinear $q\bar q$ limit not existing at this perturbative 
+order. These and all other limits considered throughout this thesis are shown 
+in Table~\ref{tab:limits}.
+
+{
+    \renewcommand{\arraystretch}{1.3}
+    \begin{longtable}{|c|c|c|}
+        \hline
+        \textbf{Unresolved limit} & \textbf{Kinematic condition} & \textbf{Vanishing invariant(s)} \\
+        \hline
+        \endfirsthead
+        \hline
+        \textbf{Unresolved limit} & \textbf{Kinematic condition} & \textbf{Vanishing invariant(s)} \\
+        \hline
+        \endhead
+        \hline
+        \endfoot
+        \hline
+        \caption{\centering Infrared limits of the real-radiation matrix elements for
+        $\gamma^*\to q\bar q$ through NNLO, listed by final-state parton configuration.
+        Each configuration is colour-ordered, with the hard quark and antiquark first and
+        last; $p_i$ is the momentum of parton $i$, $\parallel$ denotes a collinear pair, and
+        $s_{i\ldots k}=(p_i+\ldots+p_k)^2$. Limits related by $q\leftrightarrow\bar q$ or by
+        gluon relabelling are not listed separately. The subtraction counterterm of
+        Eq.~\ref{eq:subScheme} must reproduce the matrix element in each of these limits
+        \cite{Gehrmann-DeRidder:2005btv}.}
+        \label{tab:limits}\\
+        \endlastfoot
+        \multicolumn{3}{|c|}{$(1_q,\,3_g,\,2_{\bar q})$ --- NLO real radiation} \\
+        \hline
+        Soft gluon              & $p_3\to 0$                                  & $s_{13},\ s_{23}$ \\
+        \hline
+        Collinear               & $1_q\parallel3_g$                          & $s_{13}$ \\
+        \hline
+        \multicolumn{3}{|c|}{$(1_q,\,3_g,\,4_g,\,2_{\bar q})$ --- NNLO real radiation} \\
+        \hline
+        Soft gluon              & $p_3\to0$                                  & $s_{13},\ s_{34}$ \\
+        \hline
+        Collinear ($qg$)        & $1_q\parallel3_g$                          & $s_{13}$ \\
+        \hline
+        Collinear ($gg$)        & $3_g\parallel4_g$                          & $s_{34}$ \\
+        \hline
+        Double soft             & $p_3,\,p_4\to0$                            & $s_{13},\ s_{34},\ s_{24}$ \\
+        \hline
+        Soft--collinear         & $p_3\to0,\ 4_g\parallel2_{\bar q}$         & $s_{13},\ s_{34},\ s_{24}$ \\
+        \hline
+        Triple collinear        & $1_q\parallel3_g\parallel4_g$              & $s_{134}$ \\
+        \hline
+        Double single collinear & $1_q\parallel3_g,\ 2_{\bar q}\parallel4_g$ & $s_{13},\ s_{24}$ \\
+        \hline
+        \multicolumn{3}{|c|}{$(1_q,\,3_{q'},\,4_{\bar q'},\,2_{\bar q})$ --- NNLO real radiation} \\
+        \hline
+        Soft $q'\bar q'$ pair   & $p_3,\,p_4\to0$                            & $s_{34}$ (double pole) \\
+        \hline
+        Collinear ($q'\bar q'$) & $3_{q'}\parallel4_{\bar q'}$               & $s_{34}$ \\
+        \hline
+        Triple collinear        & $1_q\parallel3_{q'}\parallel4_{\bar q'}$   & $s_{134}$ \\
+        \hline
+        \multicolumn{3}{|c|}{$(1_q,\,3_q,\,4_{\bar q},\,2_{\bar q})$ --- NNLO real radiation, identical flavour} \\
+        \hline
+        Triple collinear        & $2_{\bar q}\parallel3_q\parallel4_{\bar q}$ & $s_{234}$ \\
+        \hline
+    \end{longtable}
+}
 
 From an experimental point of view, a real emission that becomes soft or collinear
 may be unresolved, meaning that it cannot be distinguished from a configuration in
@@ -313,7 +372,7 @@ be integrated analytically over the unresolved one-parton phase space,
 \end{equation}
 
 Since $d\sigma^S$ is designed explicitly to carry over all of $d\sigma^R$'s divergent
-structures, this integral blows up once integrated over four dimensions -- as does
+structures, this integral blows up once integrated over four dimensions, as does
 the virtual contribution $d\sigma^V$, whose infrared divergences originate from the
 loop integration, as explored in Subsection~\ref{subsec:uvDivergences}.
 To regulate these divergent contributions we continue the number of space-time
@@ -344,63 +403,26 @@ the scheme used throughout the present work, since \textit{AntCalc}'s primary
 objective is the simplification and democratisation of the antenna framework
 established in \cite{Gehrmann-DeRidder:2005btv}, which uses CDR throughout.
 
-The use of CDR, and in particular the complete continuation to $d$-dimensional
-space, introduces some complications, however. The move to $d$-dimensional
-spherical coordinates means that the phase-space integrals are now performed over
-$d$-dimensional solid angles, which produce characteristic factors such as powers
-of $4\pi$, Euler's constant $\gamma_E$, and Gamma functions like $\Gamma(1-\epsilon)$.
-These factors are a consequence of performing the angular and radial integrations
-away from four dimensions, and depend on the conventions adopted for dimensional
-regularisation. To express the integrated antennae in the $\overline{\text{MS}}$
-(modified minimal subtraction)-compatible convention~\cite{Bardeen:1978yd} used
-throughout this work, we multiply the raw $d$-dimensional integrals by the
-normalisation factor $S_\epsilon=(4\pi)^{-\epsilon}e^{\epsilon\gamma_E}$. This
-convention removes the ubiquitous $4\pi$ and $\gamma_E$ factors from the coefficients
-of the perturbative expansion.
-
-A separate normalisation arises from the convention used to express the
-perturbative expansion in the strong coupling. In the standard QCD convention
-adopted here, the expansion is written in terms of $\alpha_s/(2\pi)$, instead of
-just $\alpha_s$, since the squared matrix elements scale with the whole raw
-coupling constant $g_s^2=4\pi\alpha_s=8\pi^2(\alpha_s/(2\pi))$ rather than with
-$\alpha_s$ alone. This makes a further normalisation parameter necessary. The scale
-normalisation,
+While using CDR, the integrated and unintegrated antennae considered in this 
+work are normalised using the following convention. First, the antennae are 
+expressed in the $\overline{\text{MS}}$ (modified minimal subtraction)-convention 
+using $S_\epsilon=(4\pi)^{-\epsilon}e^{\epsilon\gamma_E}$ \cite{Gehrmann-DeRidder:2005btv}. 
+Second, they are also normalised in relation to the strong coupling constant 
+expansion using,
 \begin{equation}\label{eq:loopNorm}
-    \begin{split}
-        G_k &= \left(8\pi^2\right)^k\\
-            &= \left(8\pi^2\right)^{n-2}\Lambda_l,\quad \Lambda_l\equiv\left(8\pi^2\right)^l
-    \end{split}
+    G_k=\left(8\pi^2\right)^{n-2}\Lambda_l=\left(8\pi^2\right)^{n-2}\left(8\pi^2\right)^{l}
 \end{equation}
-is then introduced to normalise those
-expansion terms, and the loop-order-only normalisation $\Lambda_l$ explicitly shown as the 
-virtual-loop contribution. The combined normalisation here introduced is thus,
-\begin{equation}
-    C(\epsilon,k) = G_kS_\epsilon = \left(8\pi^2\right)^k(4\pi)^{-\epsilon}e^{\epsilon\gamma_E}
-\end{equation} 
-where $k$ represents the perturbative order as $k=1$ for NLO, $k=2$ for NNLO, …
-and is, itself defined as,
-\begin{equation}
-    k = (n-2)+l
-\end{equation}
-for some antenna with $n$-final-state particles and $l$ loops\footnote{Loops will 
-be discussed and the $k$ index widely used in Subsection~\ref{subsec:antennaFuncs}.}.
-
-Since multi-particle phase spaces recursively factorise, we must also normalise
-our phase-space integral by the $d$-dimensional two-body phase space volume $\Phi_2$,
-as is convention in the antenna-subtraction literature \cite{Gehrmann-DeRidder:2005btv}. 
-The factorisation method 
-used is discussed in Subsection~\ref{subsec:phaseSpaceFactor}, and written in 
-Eq.~\ref{eq:phi2Factor}.
-This normalisation, together with the previous combined normalisation factor,
-makes the global normalisation factor $\mathcal N(\epsilon,k)$, used throughout the present work,
+defining also $k=n-2+l$ as the perturbative-order index, which is zero for LO, 
+one for NLO and two for NNLO, for $n$ final-state particles and $l$ loops. 
+These two normalisations are then bundled into a general convention used 
+throughout, which is written as,
 \begin{equation}\label{eq:normN}
-    \mathcal N(\epsilon,k) = \frac{C(\epsilon, k)}{\Phi_2}.
+    \mathcal N(\epsilon,k)=\frac{C(\epsilon,k)}{\Phi_2},\quad C(\epsilon,k)=G_kS_\epsilon
 \end{equation}
-The form given above is representative of this convention rather than an exact,
-route-by-route prescription: the precise multiplicative bridging applied to a given
-antenna also depends on the specific master-integral basis its integration reduces
-to, and is validated numerically against the literature result for each public
-route (Chapter~\ref{ch:workedexample}), rather than derived symbolically here.
+using the $d$-dimensional two-particle phase-space measure $\Phi_2$. This is the 
+general representation of the work's normalisation convention. Different antenna 
+functions may require additional normalisation steps. These are discussed in 
+Table~\ref{tab:GkNorm}.
 
 As described in Subsection~\ref{subsec:uvDivergences}, we need to trade the bare 
 coupling constant $\alpha_0$ for a suitable order by order perturbative series 
@@ -408,14 +430,10 @@ variable. That is achieved as follows \cite{Gehrmann-DeRidder:2005btv},
 \begin{equation}\label{eq:alphaRescaling}
     \alpha_0\mu_0^{2\epsilon}S_\epsilon = \alpha_s\mu^{2\epsilon}\left[1-\frac{\beta_0}{\epsilon}\frac{\alpha_s}{2\pi}+\mathcal O(\alpha_s^2)\right],\quad\beta_0=\frac{11N-2N_f}{6}
 \end{equation}
-where $\mu_0$ is the bare mass parameter that keeps $\alpha_0$ dimensionless, 
-$\mu$ is the renormalisation scale (the renormalised mass parameter) that functions
-equally for $\alpha_s$. It is more commonly scaled as $\mu^2=q^2$ for the massless 
-case. $\beta_0$ is the one-loop coefficient of the QCD beta
-function~\cite{Ellis:1996mzs,Peskin:1995ev}, that tracks
-how the renormalised coupling $\alpha_s$ changes with the renormalisation scale
-$\mu$, and finally $N$ is the number of colours, $3$, and $N_f$ the number of
-massless active quark flavours.
+where for the massless case, the renormalisation scale is set to $\mu^2=q^2$.
+Here, $\mu_0$ is the bare mass parameter keeping $\alpha_0$ dimensionless and $\beta_0$
+is the one-loop coefficient of the QCD beta function, with $N=3$ the number 
+of colours and $N_f$ the number of light quark flavours \cite{Ellis:1996mzs}.
 
 \section{The Antenna Subtraction Formalism}\label{sec:antSubForm}
 
