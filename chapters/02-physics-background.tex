@@ -794,6 +794,190 @@ in this text.
 
 \subsection{Antenna Functions}\label{subsec:antennaFuncs}
 
+In this thesis all quark-antiquark final-final antenna functions are considered
+and will be computed.
+All considered antennae have the same underlying hard parton pair, and 
+might have as many as one unresolved parton at NLO and two at NNLO, two. 
+We also consider 
+three antenna-like structures, one per order, which are quark-antiquark form
+factors. Since their structure is very similar to other antenna functions, 
+as a shorthand, they will also be called that throughout this text.
+
+Each antenna is generally determined by its external state and the hard 
+parton pair it collapses to. In this thesis, the hard parton pair is 
+always $q\bar q$. Up to NNLO, quark-antiquark final-final antennae are 
+organised into three families, which differ in the type of particle 
+the hard parton pair particles emit. $A$-type antennae are characterised by 
+gluon emissions, leading to final states like $qgg\bar q$ at NNLO or $qg\bar q$
+at NLO; $C$-type antennae are characterised by a final-state quark-antiquark pair 
+with the original hard pair's flavour, as $q\bar qq\bar q$; and $B$-type 
+by a quark-antiquark pair of a different flavour, notated as 
+$q\bar qq^\prime\bar q^\prime$. Following QCD vertex rules, described in 
+Section~\ref{sec:FeynmanRules}, $A$-type antennae may exist at any order, 
+while $B$- and $C$-type antennae can only exist at NNLO.
+
+Throughout the rest of the present text, a general $X$-type antenna will be 
+written as $X_n^l$, for $n$ final-state particles and $l$ loops. An antenna 
+may have up to three non-zero terms (or components): leading, written plainly 
+as $X_n^l$; subleading, 
+written as $\tilde X_n^l$; and quark-loop, as $\hat X_n^l$. An antenna topology 
+that has more than one term is called an antenna set and is likewise called 
+the $X_n^l$ set. All antenna functions are part of larger sets, but only some have 
+non-zero subleading or quark-loop terms. The $A_2^2$ antenna set will
+appear with four terms, with the extra one written as $\breve A_2^2$. This
+is not an exception to the rule, however, but rather a shorthand notation, 
+bundling two processes with the same final-state particles in a single set.
+The antenna functions (and $q\bar q$ form factors) considered are organised by order, 
+loop number, and final state in Table~\ref{tab:antFamilies}.
+
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Final state} & \textbf{Tree level} & \textbf{One loop} & \textbf{Two loop} \\
+        \hline
+        $q\bar q$ & $A_2^0$ & $A_2^1$ & $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$ \\
+        \hline
+        $qg\bar q$ & $A_3^0$ & $A_3^1$, $\tilde A_3^1$, $\hat A_3^1$ & --- \\
+     \hline
+        $qgg\bar q$ & $A_4^0$, $\tilde A_4^0$ & --- & --- \\
+        \hline
+        $qq^\prime\bar q^\prime\bar q$ & $B_4^0$ & --- & --- \\
+        \hline
+        $qq\bar q\bar q$ & $C_4^0$ & --- & --- \\
+        \hline
+    \end{tabular}
+    \caption{\centering Quark-antiquark antenna families used in this work, including 
+    the $q\bar q$ form factors \cite{Gehrmann-DeRidder:2005btv}. Final states are 
+    ordered with the two hard radiator listed first and last, following that paper's convention.}
+    \label{tab:antFamilies}
+\end{table}
+
+Antenna functions are derived from physical matrix elements following the structure of the 
+subtraction terms they are used in. These matrix elements are written following the 
+antenna functions' own notation.
+Tree-level ($l=0$) antennae are derived as \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{gathered}
+        X_{ijk}^0 = S_{ijk, IK}\frac{|\mathcal M_{ijk}^0|^2}{|\mathcal M_{IK}^0|^2}\\
+        X_{ijkl}^0 = S_{ijkl, IL}\frac{|\mathcal M_{ijkl}^0|^2}{|\mathcal M_{IL}^0|^2}
+    \end{gathered}
+\end{equation}
+where for $n=3$ the three final-state partons take the notation $ijk$, and for 
+$n=4$ take $ijkl$, for both 
+antenna function and matrix elements. One-loop 
+antennae are derived using the colour-ordered renormalised one-loop three-parton 
+matrix element as \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{gathered}
+        X_{ij}^1 = S_{ij,IJ}\frac{|\mathcal M_{ij}^1|^2}{|\mathcal M_{IJ}^0|^2}\\
+        X_{ijk}^1 = S_{ijk,IK}\frac{|\mathcal M_{ijk}^1|^2}{|\mathcal M_{IK}^0|^2} - X_{ijk}^0\frac{\mathcal M_{IK}^1}{|\mathcal M_{IK}^0|^2}.
+    \end{gathered}
+\end{equation}
+The two-loop two-parton antenna, which here is only used for the $A_2^2$ antenna set, 
+is defined as,
+\begin{equation}
+    X_{ij}^2 = S_{ij,IJ}\frac{|\mathcal M_{ij}^2|^2}{|\mathcal M_{IJ}^0|^2}.
+\end{equation}
+
+To compute the considered antenna functions, we require three colour-ordered squared matrix 
+element loop-configurations for a given colour structure\footnote{Equivalently, this 
+corresponds to stripping a factor of $2C_F g_s^{2(n-2+l)}$.}: for one, two, and three loops, given
+as,
+\begin{equation}
+    \begin{gathered}
+        |\mathcal M_n^0|^2 = \mathcal M_n^{0\,\dagger}\mathcal M_n^0\\
+        |\mathcal M_n^1|^2 = 2\operatorname{Re}\left(\mathcal M_n^{0\,\dagger}\mathcal M_n^1\right)\\
+        |\mathcal M_n^2|^2 = 2\operatorname{Re}\left(\mathcal M_n^{0\,\dagger}\mathcal M_n^2\right)+\mathcal M_n^{1\,\dagger}\mathcal M_n^{1}.
+    \end{gathered}
+\end{equation}
+Lastly, the whole system is normalised by the $|\mathcal M_2^0|^2$ squared matrix element, 
+setting the Born-level antenna to one. The symmetry factors are also all equal 
+to one, for all $q\bar q$ topologies. 
+
+The colour-ordered matrix elements carry colour structure and the results they produce have 
+to be decomposed into the three components for each set. The methods and tools used to 
+complete that decomposition is discussed in the next subsection \cite{Gehrmann-DeRidder:2005btv}. 
+
+\subsection{Colour Algebra and the Antenna Colour Decomposition}\label{subsec:colourAlg}
+
+Quarks carry a fundamental colour index $i\in\{1,2,3\}$ while gluons carry an 
+adjoint colour index $a\in\{1,...,8\}$. The interactions between them are governed 
+by the $SU(3)_c$ generators $T^a$. Those generators are normalised by the trace
+relation $\operatorname{Tr}\left(T^aT^b\right)=T_R\delta^{ab}$, where by standard 
+convention $T_R=1/2$ \cite{Ellis:1996mzs,Schwartz:2014sze}. 
+This is particularly useful since when the amplitude is 
+squared, the two colour generators must be contracted with one another, that is
+$T^a$ and $\left(T^a\right)^\dagger$, and since the generators are Hermitian, 
+$\left(T^a\right)^\dagger=T^a$. Hence, summing over all colour we get,
+\begin{equation}\label{eq:colourSum}
+    \sum_{i_1,i_2,a}\left(T^a\right)_{i_1i_2}\left(T^a\right)_{i_2i_1}=\sum_a\operatorname{Tr}\left(T^aT^a\right)=\sum_aT_R\delta^{aa}.
+\end{equation}
+For a fixed $a$, the trace equals $T_R$. Summing this result over all $N^2-1$ 
+adjoint indices we get,
+\begin{equation}
+    \sum_a T_R\delta^{aa}=\frac12\left(N^2-1\right).
+\end{equation}
+Eq.~\ref{eq:colourSum} may also be generalised to four quark colour indices 
+instead of only two. The generalised expression is the \textit{colour Fierz identity},
+or $SU(N)$ completeness relation and is particularly useful for the decomposition 
+of the $B_4^0$ and $C_4^0$ antenna functions \cite{Ellis:1996mzs, Schwartz:2014sze}. 
+It is written as,
+\begin{equation}\label{eq:genTSum}
+    \sum_a\left(T^a\right)_{i_1i_2}\left(T^a\right)_{i_3i_4}=\frac12\left(\delta_{i_1i_4}\delta_{i_2i_3}-\frac1N\delta_{i_1i_2}\delta_{i_3i_4}\right).
+\end{equation}
+
+We now also introduce the Casimir invariants: the fundamental and adjoint Casimir
+invariants, $C_F$ and $C_A$. These represent, respectively, the total colour 
+charge squared of the quark and of the gluon. They are defined as,
+\begin{equation*}
+    C_F=\frac{N^2-1}{2N}
+\end{equation*}
+\begin{equation}
+    C_A=N.
+\end{equation}
+
+The invariants are particularly useful to normalise the two hard quarks' colour
+from the antenna functions, by taking out a factor of $2C_F$. This factor equals,
+\begin{equation}\label{eq:colourNorm}
+    2C_F=N-\frac1N
+\end{equation}
+which will be a normalisation used throughout the present work. 
+
+In some processes, colour can flow in different ways depending on the 
+ways emitted particles couple with the hard partons. These different topologies 
+may be understood as planar, non-planar, and quark-loop topologies, 
+each yielding a different antenna-set component.
+These components, after decomposition become:
+
+\begin{itemize}\label{list:A31Comps}
+    \item The leading colour component ($N$): these come from planar topologies
+    (where virtual gluons are exchanged without crossing over each other).
+    This component is represented by the base antenna in standard notation, e.g. 
+    $A_3^1$. As an example, an NNLO leading antenna-set component is
+    proportional to the diagonal pieces, $X_4^0\sim|\mathcal M_4^0(1,3,4,2)|^2$ or 
+    $X_4^0\sim|\mathcal M_4^0(1,4,3,2)|^2$.
+    \item The subleading colour component ($1/N$): these come from non-planar
+    topologies (where gluon lines do cross each other). This component is represented
+    by the tilde antenna, e.g. $\tilde A_3^1$. An NNLO leading antenna-set 
+    component is proportional to the interference pieces, 
+    $\tilde X_4^0\sim2\operatorname{Re}\left(\mathcal M_4^{0\,\dagger}(1,3,4,2)\mathcal M_4^0(1,4,3,2)\right)$.
+    \item The fermion loop ($N_f$): Instead of a virtual gluon, the loop can have
+    a virtual quark-antiquark pair. This contribution depends strictly on the number
+    of active flavours, $N_f$. This component is represented by the hat antenna,
+    e.g. $\hat A_3^1$. An NNLO quark-loop one-loop-antenna-set component is 
+    proportional to the pieces with quark-loop terms,
+    $\hat X_n^1\sim2\operatorname{Re}\left(\mathcal M_n^{0\,\dagger}\mathcal M_{n,q-\text{loop}}^1\right)$ 
+    \cite{Gehrmann-DeRidder:2005btv}.
+\end{itemize}
+
+\subsection{Antenna Families}\label{subsec:antFamilies}
+
+
+
+\iffalse
+
 Since the singular factor $\mathcal S_j$ must work smoothly across all unresolved limits 
 and must also handle all spin correlations correctly, it should, optimally, be 
 a function that preserves all the unresolved parton information without the noise 
@@ -1135,6 +1319,8 @@ The implementation of those antenna functions, then, requires the use of Effecti
 Field Theories (EFT), specifically SUSY \cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder2005:neutralino} and the $H\to gg$ EFT \cite{Demartin2014,Glover2010}.
 The future implementation of these antenna families in \textit{AntCalc} is discussed 
 in Chapter~\ref{ch:futurework}.
+
+\fi
 
 \subsection{Phase-Space Factorisation}\label{subsec:phaseSpaceFactor}
 

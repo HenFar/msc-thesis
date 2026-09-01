@@ -74,7 +74,26 @@ Advisor feedback takes priority over everything below where they overlap. This i
 
 #### Chapter 2
 
-**§2.4.1 CLEAN REWRITE — supersedes the §2.4.1 half of Task D. [Yours] — one commit. Task Q.**
+**§2.4.1 CLEAN REWRITE — supersedes the §2.4.1 half of Task D. [Yours] — one commit. Task Q — IN PROGRESS (30 Aug 2026).**
+
+**PROGRESS (30 Aug 2026) — the intro + subtraction-terms part is drafted and committed.** Henrique wrote it; Claude reviewed structure only (no mistakes pass yet, at his request). Old §2.4 content left in place inside `\iffalse … \fi` blocks, to be deleted after the *whole* §2.4 rewrite is done.
+- **`sec:antSubForm` intro (unnumbered, `:441–478`):** mirrors 0505111 §2 opening — sum over partonic channels (1 LO / 2 NLO / 5 NNLO), UV via renorm + IR via KLN, then the LO (`eq:bornLevel`, `d\sigma^B` in the `\sum_n d\Phi_n (1/S_n)|M_n|^2 J` form + explicit `d\Phi_n`), NLO (`d\sigma^R + d\sigma^V`), and NNLO (`d\sigma^{RR}+d\sigma^{RV}+d\sigma^{VV}`, five channels) *naive* decompositions.
+- **`\subsection{Subtraction Terms}` (§2.4.1) with unnumbered `NLO` / `NNLO` heads** (kept unnumbered deliberately — Prof's fragmentation complaint; no 2.4.1.1/2.4.1.2).
+  - **NLO — content-complete.** naive→subtracted cross section; requirements list (all four: every singular limit / analytically integrable / local / no spurious); KLN + the loop *closed* ("after analytic integration … explicit `\epsilon`-poles which cancel … pole-by-pole"); `d\sigma^S_\text{NLO}` in the 0505111 (2.5) antenna-sum form; mapped momenta `\tilde p_I,\tilde p_K` + parent/daughter + colour connection + `fig:colourConnectionNLO`; `R`-ratio → `J=1` → phase-space factorisation `d\Phi_{m+1}=d\Phi_m\,d\Phi_{X_{ijk}}` → `d\Phi_3 = P_2\,d\Phi_{X_{ijk}}`.
+  - **NNLO — structurally complete.** naive (2.14-form) → subtracted; `d\sigma^S = S,a+S,b+S,c+S,d`, `d\sigma^T = T,a+T,b+T,c`; `tab:counterterms` (config → subterm, all seven rows); the takeaway sentence ("at this order four-parton `X^0_{ijkl}` and one-loop three-parton `X^1_{ijk}` antennae are necessary"); **`S,a`, `S,b`, `T,a`, `T,b` in full** (the ones that apply to a two-hard-radiator process; `S,b`'s `X^0_{ijkl}-X^0_{ijk}X^0_{IKl}-…` and `T,b`'s `X^1\to X^1+(\beta_0/\epsilon)(…)X^0` shift kept as bare formulas — deliberately *not* explained here, that's §2.4.2's job when `B_4^0`/`C_4^0`/`A_3^1` come up); **`S,c`, `S,d`, `T,c` cut to one sentence + `\cite{Gehrmann-DeRidder:2005btv}`**; colour-connection notation + three NNLO figures; `R`-ratio → `J=1` → `d\Phi_4 = P_2\,d\Phi_{X_{ijkl}}`.
+
+**PARKED — pick up when resuming §2.4 (do NOT lose these):**
+1. **Dangling refs.** `eq:sigmaSDef` now lives inside `\iffalse`; downstream text still `\ref`s it at `02-physics-background.tex:720` and `:1144`. Fix after the *complete* §2.4 rewrite (the downstream subsections `subsec:antennaFuncs` onward will be rewritten anyway — Q2).
+2. **"higher-multiplicity processes" (`:615`) → "processes with three or more hard partons."** Physics-accuracy wording, not polish — `S,c/S,d/T,c` are about hard-radiator count, not final-state multiplicity (`q\bar qgg` is higher multiplicity but still two hard radiators). Don't let this get lost in the typo pass.
+3. **`R`-ratio → Ch5 pointer.** The NNLO-R-ratio-via-antennae result is Henrique's headline selling point (Prof, 28 Aug meeting: "not something everybody is able to do", cited Joana Reis's thesis leaving it undone). It is currently mentioned *nowhere* in §2.4. Decide deliberately where it lands — end of the NNLO subtraction part, §2.4.2, or the later results discussion — stated as a contribution + forward-ref, not as a boast.
+4. **Scope statement** ("this work treats final-final `q\bar q` antennae; qg/gg families + initial-state = future work"): does NOT live in §2.4 (Henrique's call, agreed). Homes: Ch1 intro (already partly there) + a **new Ch2 opening paragraph** (Ch2 currently jumps straight from `\chapter{Theoretical Foundations}` into `\section{QCD…}` with no chapter intro / roadmap — add one). §2.4.4/`tab:antFamilies` gets at most a one-clause "qg/gg follow the same construction, see Ch6".
+5. Full **mistakes pass** on the new §2.4.1 (the `\sum_n d\Phi_n` missing `\int`, `tab:counterterms` cosmetics, typos) — deliberately deferred at Henrique's request.
+
+**Still open in Task Q proper (not started):** §2.4.2 "Antenna Functions" rewrite (Q2), `tab:antFamilies` additions (Q3), the paired Ch3 T-primer, deleting the Ch2 `\subsubsection{$T$-objects}` (now at `02-physics-background.tex:897`), the non-antennae explanation.
+
+---
+
+**Original Task Q spec (unchanged):**
 Ground the whole subsection on hep-ph/0505111 §2.1 (eqs. 2.1, 2.3, 2.4, 2.5, 2.6, 2.8; Figures 1–3). Specific asks, all pulled toward "match the paper exactly":
 - Write `d\sigma^S` in the exact form of **0505111 eq. (2.5)**, not the abstracted `2C_F\sum f_a X d\sigma^B`. Prof said more than once he is "not a fan of the `d\sigma` expressions" (`eq:subTerms`, `eq:nnloCross` tail, the `\sigma^\text{NLO}/\sigma^\text{NNLO}` block at `:531-539`).
 - **Drop the `2C_F f_a(N,N_f)` prefactor bookkeeping.** (Henrique confirmed: "2C_F f_a" = the colour-prefactor terms carried with the antennae in `eq:subTerms`.) 0505111's notation folds all of this into the normalisation `N` and the colour-ordered `|M_m|^2`; adopt that.
@@ -165,7 +184,7 @@ For each antenna result in Ch4, show the reduction to the stated master-integral
 - **T (§2.3 half). DONE.** Apparatus collapsed to one paragraph + `eq:loopNorm` + `eq:normN`; `eq:alphaRescaling` tail trimmed; deleted labels restored; hedge → one-line pointer to `tab:GkNorm`. Structural `G_k`/`Λ_l`/`𝒩` unification with §3.5.3 still in Task M.
 
 **Phase 2 — the §2.4 rewrite (strict order):**
-- **Q — rewrite `sec:antSubForm` intro + §2.4.1 against 0505111 §2.1.** Sets the whole §2.4 narrative, notation, and figure plan (0505111 Figs 1/2/3). Deletes the T-objects subsubsection (`:793-828`). Writes the non-antennae explanation **once**.
+- **Q — rewrite `sec:antSubForm` intro + §2.4.1 against 0505111 §2.1.** Sets the whole §2.4 narrative, notation, and figure plan (0505111 Figs 1/2/3). Deletes the T-objects subsubsection (`:793-828`). Writes the non-antennae explanation **once**. *(IN PROGRESS 30 Aug — intro + `\subsection{Subtraction Terms}` (NLO + NNLO) drafted and committed, old content in `\iffalse`; see the full progress + PARKED list under the "§2.4.1 CLEAN REWRITE … Task Q" entry above.)*
 - **Q — paired: add the Ch3 T-primer.** Same logical change as deleting the Ch2 T-block — otherwise `03-package-framework.tex:358` etc. (`T_\text{Lead}`/`T_\text{Sublead}`/`T_\text{QL}`) point at nothing. Own small commit right after Q, no gap between them.
 - **Q2 — redo §2.4.2 "Antenna Functions."** Built to serve the narrative Q just fixed. Folds in: the `eq:bornNorm` explicit-`l=1`/`l=2`-cases follow-up (do *not* do separately), the figure execution, and Task L per-antenna Feynman diagrams if they land here.
 - **Q3 — `tab:antFamilies`.** Add the defining-partons reference (`A^0_3(q,g,\bar q)` style) + the non-antennae addendum (references the explanation written in Q).
