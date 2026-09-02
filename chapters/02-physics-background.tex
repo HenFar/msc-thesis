@@ -464,7 +464,7 @@ where $d\sigma^B$ is the tree-level $n$-parton contribution to the $m$-jet cross
 section. $S_n$ is a symmetry factor for identical partons in the final state, and 
 $\Phi_n$ is the $n$-parton final-state phase space in $d$ dimensions \cite{Gehrmann-DeRidder:2005btv},
 \begin{equation}
-    d\Phi_n(p_1,...,p_n;q)=\frac{d^{d-1}p_1}{2E_1(2\pi)^{d-1}}...\frac{d^{d-1}p_n}{2E_n(2\pi)^{d-1}}(2\pi)^n\delta^n(q-p_1-...-p_n).
+    d\Phi_n(p_1,...,p_n;q)=\frac{d^{d-1}p_1}{2E_1(2\pi)^{d-1}}...\frac{d^{d-1}p_n}{2E_n(2\pi)^{d-1}}(2\pi)^d\delta^{(d)}(q-p_1-...-p_n).
 \end{equation}
 
 At NLO, however, the $m$-jet cross section is now written using the two contributions, 
@@ -514,7 +514,7 @@ singularity structure pole-by-pole.
 It is obtained as a sum of antenna functions, as follows,
 \begin{equation}
     \begin{aligned}
-        d\sigma^S_\text{NLO} = \sum_{m+1}&d\Phi_{m+1}(p_1,...,p_{m+1};q)\frac1{S_{m+1}}\\&\sum_j X_{ijk}^0|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}).
+        d\sigma^S_\text{NLO} = \sum_{m+1}&d\Phi_{m+1}(p_1,...,p_{m+1};q)\frac1{S_{m+1}}\\&\sum_j X_{ijk}^0|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}).
     \end{aligned}
 \end{equation}
 The subtraction term is defined in terms of the redefined on-shell momenta
@@ -529,7 +529,7 @@ Fig.~\ref{fig:colourConnectionNLO}.
 \input{figures/colour-connection-nlo.tex}
 
 The jet observable considered throughout this work is the massless hadronic $R$-ratio. 
-This quantity is wholesome in the phase space, which means that $J_m^{(n)}=1$
+This quantity is fully inclusive in the phase space, which means that $J_m^{(n)}=1$
 everywhere, independent of the order. Without the jet function in the expression, 
 the phase space can be factorised as,
 \begin{equation}
@@ -597,7 +597,7 @@ First for the real-real subtraction counterterm,
         \end{aligned}\\
         \begin{aligned}
             d\sigma^{S,b} = \sum_{m+2}&d\Phi_{m+2}(p_1,...,p_{m+2};q)\frac1{S_{m+2}}\\
-                                      &\sum_{j,k}\left(X_{ijkl}^0-X_{ijk}^0X_{IKl}^0-X_{jkl}^0X_{iJL}^0\right)|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+2}|^2\\
+                                      &\sum_{j,k}\left(X_{ijkl}^0-X_{ijk}^0X_{IKl}^0-X_{jkl}^0X_{iJL}^0\right)|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+2})|^2\\
                                       & J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+2}),
         \end{aligned}
     \end{gathered}
@@ -618,11 +618,11 @@ And then the real-virtual counterterm,
         \end{aligned}
     \end{gathered}
 \end{equation}
-$d\sigma^{S,c}$, $d\sigma^{S,d}$, and $d\sigma^{T,c}$ are only required for 
-higher-multiplicity processes than those considered in the current text. Their 
-complete from is written in \cite{Gehrmann-DeRidder:2005btv}.
+$d\sigma^{S,c}$, $d\sigma^{S,d}$, and $d\sigma^{T,c}$ are only required for
+processes with three or more hard partons, beyond those considered in the current text. Their
+complete form is written in \cite{Gehrmann-DeRidder:2005btv}.
 
-Where the colour-connection notation goes as,
+The colour-connection notation is,
 \begin{equation}
     \begin{gathered}
         (i,j,k)\to(\tilde I,\tilde K)\\
@@ -630,7 +630,7 @@ Where the colour-connection notation goes as,
     \end{gathered}
 \end{equation}
 
-and the three characteristic colour-connection configurations and shown in 
+and the three characteristic colour-connection configurations are shown in
 Figs.~\ref{fig:colourConnectionNNLO}, \ref{fig:colourConnectionNNLO2}, and \ref{fig:colourConnectionNNLO3}.
 
 \input{figures/colour-connection-nnlo.tex}
@@ -640,7 +640,7 @@ Figs.~\ref{fig:colourConnectionNNLO}, \ref{fig:colourConnectionNNLO2}, and \ref{
 Once again, as for NLO, the massless hadronic $R$-ratio is the jet observable
 considered, and hence $J_m^{(n)}=1$. The phase space factorises as,
 \begin{equation}
-    d\Phi_{m+2}(p_1,...,p_{m+2};q) = d\Phi_m(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+1};q)d\Phi_{X_{ijkl}}(p_i,p_j,p_k,p_l;q=\tilde p_I+\tilde p_L)
+    d\Phi_{m+2}(p_1,...,p_{m+2};q) = d\Phi_m(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+2};q)d\Phi_{X_{ijkl}}(p_i,p_j,p_k,p_l;q=\tilde p_I+\tilde p_L)
 \end{equation}
 and hence,
 \begin{equation}
@@ -803,7 +803,7 @@ in this text.
 In this thesis all quark-antiquark final-final antenna functions are considered
 and will be computed.
 All considered antennae have the same underlying hard parton pair, and 
-might have as many as one unresolved parton at NLO and two at NNLO, two. 
+might have as many as one unresolved parton at NLO and two at NNLO.
 We also consider 
 three antenna-like structures, one per order, which are quark-antiquark form
 factors. Since their structure is very similar to other antenna functions, 
@@ -890,11 +890,9 @@ Loop antennae are additionally coupling-renormalised using Eq.~\ref{eq:alphaResc
 the reduced process carries a strong coupling. This
 procedure is described in further detail in Subsection~\ref{subsec:antFamilies}.
 
-To compute the considered antenna functions, we require three colour-ordered squared matrix 
-element loop-configurations for a given colour structure implicitly normalised with 
-$N(n)$, as described in Eq.~\ref{eq:gehrN}.
-for one, two, and three loops, given
-as,
+To compute the considered antenna functions, we require the squared matrix element at each
+loop order, implicitly normalised with $N(n)$ as described in Eq.~\ref{eq:gehrN}. For the
+tree-level, one-loop, and two-loop cases these are given as,
 \begin{equation}
     \begin{gathered}
         |\mathcal M_n^0|^2 = \mathcal M_n^{0\,\dagger}\mathcal M_n^0\\
@@ -909,15 +907,15 @@ cases, particularly at NNLO. It is defined as,
 \begin{equation}
     M_{p_1p_2...p_n}^l = \frac{1}{|\mathcal M_2^0|^2}\sum_{r=0}^l\mathcal M_n^{r\,\dagger}(p_1,...,p_n)\mathcal M_n^{l-r}(p_1,...,p_n).
 \end{equation}
-where final-states admitting more than one colour ordering, flavour assignment, or coupling configuration,
-the product of the amplitudes is understood to be a complete process-level contraction, 
+where, for final states admitting more than one colour ordering, flavour assignment, or coupling
+configuration, the product of the amplitudes is understood to be a complete process-level contraction,
 including the corresponding squared contributions and interference terms.
 The symmetry factors are also all equal 
 to one, for all $q\bar q$ topologies. 
 
 The colour-ordered matrix elements carry colour structure and the results they produce have 
-to be decomposed into the three components for each set. The methods and tools used to 
-complete that decomposition is discussed in the next subsection \cite{Gehrmann-DeRidder:2005btv}. 
+to be decomposed into the three components for each set. The methods and tools used to
+complete that decomposition are discussed in the next subsection \cite{Gehrmann-DeRidder:2005btv}.
 
 \subsection{Colour Algebra and the Antenna Colour Decomposition}\label{subsec:colourAlg}
 
@@ -970,12 +968,12 @@ may be understood as planar, non-planar, and quark-loop topologies,
 each yielding a different antenna-set component.
 These components, after decomposition become:
 
-\begin{itemize}\label{list:A31Comps}
-    \item The leading colour component ($N$): these come from planar topologies
+\begin{itemize}
+    \item\label{list:A31Comps} The leading colour component ($N$): these come from planar topologies
     (where virtual gluons are exchanged without crossing over each other).
     This component is represented by the base antenna in standard notation, e.g. 
-    $A_3^1$. As an example, an NNLO leading antenna-set component is
-    proportional to the diagonal pieces, $X_4^0\sim|\mathcal M_4^0(1,3,4,2)|^2$ or 
+    $A_3^1$. An NNLO leading antenna-set component is
+    proportional to the diagonal pieces, $X_4^0\sim|\mathcal M_4^0(1,3,4,2)|^2$ or
     $X_4^0\sim|\mathcal M_4^0(1,4,3,2)|^2$.
     \item The subleading colour component ($1/N$): these come from non-planar
     topologies (where gluon lines do cross each other). This component is represented
@@ -987,7 +985,7 @@ These components, after decomposition become:
     of active flavours, $N_f$. This component is represented by the hat antenna,
     e.g. $\hat A_3^1$. An NNLO quark-loop one-loop-antenna-set component is 
     proportional to the pieces with quark-loop terms,
-    $\hat X_n^1\sim2\operatorname{Re}\left(\mathcal M_n^{0\,\dagger}\mathcal M_{n,q-\text{loop}}^1\right)$ 
+    $\hat X_n^1\sim2\operatorname{Re}\left(\mathcal M_n^{0\,\dagger}\mathcal M_{n,q\text{-loop}}^1\right)$
     \cite{Gehrmann-DeRidder:2005btv}.
 \end{itemize}
 
@@ -999,8 +997,7 @@ As mentioned, every antenna is normalised by the Born-level squared amplitude gi
 \begin{equation}
     |\mathcal M_2^0|^2 = 4(1-\epsilon)q^2.
 \end{equation}
-That makes the 
-LO antenna becomes,
+The LO antenna then becomes,
 \begin{equation}
     A_2^0(1_q,2_{\bar q}) = \frac{|\mathcal M_2^0(1_q,2_{\bar q})|^2}{|\mathcal M_2^0(1_q,2_{\bar q})|^2}=1.
 \end{equation}
@@ -1012,7 +1009,7 @@ considered within the same squared amplitude. The antenna becomes,
 \end{equation}
 The NLO one-loop antenna introduces the squared one-loop two-particle amplitude as,
 \begin{equation}
-    A_2^1(1_q,2_{\bar q}) = \frac{2\operatorname{Re}\!\left(\mathcal M_2^{0\,\dagger}(1_q,2_{\bar q})\mathcal M_2^1(1_q,2_{\bar q})\right)}{|\mathcal M_2^0(1_1,2_{\bar q})|^2}.
+    A_2^1(1_q,2_{\bar q}) = \frac{2\operatorname{Re}\!\left(\mathcal M_2^{0\,\dagger}(1_q,2_{\bar q})\mathcal M_2^1(1_q,2_{\bar q})\right)}{|\mathcal M_2^0(1_q,2_{\bar q})|^2}.
 \end{equation}
 
 The NNLO $A$-type tree-level antenna set is the first one of this list with multiple components,
@@ -1023,29 +1020,31 @@ The complete set linear combination is given,
     \begin{gathered}
         \begin{aligned}
             M_{qgg\bar q}^0 = \frac1{|\mathcal M_2^0|^2}\Bigg(N&\left(|\mathcal M_4^0(1_q,3_g,4_g,2_{\bar q})|^2+|\mathcal M_4^0(1_q,4_g,3_g,2_{\bar q})|^2\right)\\
-                                                                               &-\frac1N\left|\mathcal M_4^0(1_q,3_g,4_g,2_{\bar q}+\mathcal M_4^0(1_q,4_g,3_g,2_{\bar q}\right|^2\Bigg)
+                                                                               &-\frac1N\left|\mathcal M_4^0(1_q,3_g,4_g,2_{\bar q})+\mathcal M_4^0(1_q,4_g,3_g,2_{\bar q})\right|^2\Bigg)
         \end{aligned}\\
-        = \left(NA_4^0(1_q,3_g,4_g,2_{\bar q})-\frac1N\tilde A_4^0{1_q,3_g,4_g,2_{\bar q}}\right).
+        = \left(NA_4^0(1_q,3_g,4_g,2_{\bar q})-\frac1N\tilde A_4^0(1_q,3_g,4_g,2_{\bar q})\right)
     \end{gathered}
 \end{equation}
+reaching the two components that make up the set $\left\{A_4^0,\tilde A_4^0\right\}$.
 
 The NNLO one-loop antenna set is given following the methods shown for the one-loop NLO and the 
 tree-level NNLO antennae, appearing with three bare components,
 \begin{equation}
     \begin{gathered}
         M_{qg\bar q}^1 = \frac{2\operatorname{Re}\!\left(\mathcal M_3^{0\,\dagger}(1_q,3_g,2_{\bar q})\mathcal M_3^1(1_q,3_g,2_{\bar q})\right)}{|\mathcal M_2^0|^2}\\
-        = \left(NA_{3,\text{bare}}^1(1_q,3_g,2_{\bar q}) + \frac1N \tilde A_{3,\text{bare}}^1(1_q,3_g,2_{\bar q}) + N_f\hat A_{3,\text{bare}}^1(1_q,3_g,2_{\bar q})\right).
+        = \left(NA_{3,\text{bare}}^1(1_q,3_g,2_{\bar q}) - \frac1N \tilde A_{3,\text{bare}}^1(1_q,3_g,2_{\bar q}) + N_f\hat A_{3,\text{bare}}^1(1_q,3_g,2_{\bar q})\right).
     \end{gathered}
 \end{equation}
 As mentioned, this set needs to be renormalised according to Eq.~\ref{eq:alphaRescaling} as,
 \begin{equation}
-    M_{qg\bar q}^1 = \left(N\!\left(A_{3,\text{ren}}^1+\frac{11}{6\epsilon}A_3^0\right)+\frac1N\tilde A_{3,\text{ren}}^1+N_f\!\left(\hat A_{3,\text{ren}}^1-\frac{1}{3\epsilon}A_3^0\right)\right).
+    M_{qg\bar q}^1 = \left(N\!\left(A_{3,\text{ren}}^1+\frac{11}{6\epsilon}A_3^0\right)-\frac1N\tilde A_{3,\text{ren}}^1+N_f\!\left(\hat A_{3,\text{ren}}^1-\frac{1}{3\epsilon}A_3^0\right)\right).
 \end{equation}
 Finally, the renormalised source still contains the one-loop correction to the underlying $q\bar q$
 pair. This correction term has to also be subtracted and is as follows,
 \begin{equation}
-    M_{qg\bar q}^1 = \left(N\!\left(A_{3}^1+A_3^0\left(\frac{11}{6\epsilon}+A_2^1\right)\right)+\frac1N\left(\tilde A_{3}^1+A_2^1A_3^0\right)+N_f\!\left(\hat A_{3}^1-\frac{1}{3\epsilon}A_3^0\right)\right).
+    M_{qg\bar q}^1 = \left(N\!\left(A_{3}^1+A_3^0\left(\frac{11}{6\epsilon}+A_2^1\right)\right)-\frac1N\left(\tilde A_{3}^1+A_2^1A_3^0\right)+N_f\!\left(\hat A_{3}^1-\frac{1}{3\epsilon}A_3^0\right)\right)
 \end{equation}
+leaving the final antenna set $\left\{A_3^1,\tilde A_3^1,\hat A_3^1\right\}$.
 
 The NNLO two-loop antenna-set is made up of two different configurations which generate four 
 components. These need to be UV renormalised but do not require subtracting further 
@@ -1054,16 +1053,18 @@ correction terms. The set linear combination is given as,
     \begin{gathered}
         M_{q\bar q}^2 = \left(\frac{2\operatorname{Re}\!\left(\mathcal M_2^{0\,\dagger}(1_q,2_{\bar q})\mathcal M_2^2(1_q,2_{\bar q})\right)+\mathcal M_2^{1\,\dagger}(1_q,2_{\bar q})\mathcal M_2^1(1_q,2_{\bar q})}{|\mathcal M_2^0(1_q,2_{\bar q})|^2}\right)\\
         = \left(NA_{2,\text{bare}}^2 + \frac1N \tilde A_{2,\text{bare}}^2 + N_f \hat A_{2,\text{bare}}^2 + \left(N-\frac1N\right)\breve A_{2,\text{bare}}^2\right)\\
-        = \left(N\!\left(A_{2}^2+\frac{11}{6\epsilon}A_2^1\right) + \frac1N \tilde A_{2}^2 + N_f\!\left(\hat A_{2}^2-\frac1{3\epsilon}A_2^1\right) + \left(N-\frac1N\right)\breve A_{2}^2\right).
+        = \left(N\!\left(A_{2}^2+\frac{11}{6\epsilon}A_2^1\right) + \frac1N \tilde A_{2}^2 + N_f\!\left(\hat A_{2}^2-\frac1{3\epsilon}A_2^1\right) + \left(N-\frac1N\right)\breve A_{2}^2\right)
     \end{gathered}
 \end{equation}
+reaching the four components that make up the set
+$\left\{A_2^2,\tilde A_2^2,\hat A_2^2,\breve A_2^2\right\}$.
 
 The remaining two NNLO tree-level antenna functions considered throughout this thesis come from the
 same process, $\gamma^*\to q\bar q q\bar q$. This process produces the two relevant antennae, 
 $B_4^0$ and $C_4^0$, and a third antenna $\hat B_4^0$, which exchanges which quark pair couples 
 to the electroweak current. This is out of the current scope of this work and will not 
 be derived past this mention. The three antennae appear as a set-like linear combination, as,
-\begin{equation}
+\begin{equation}\label{eq:M4q}
     \begin{gathered}
         \begin{aligned}
             M_{4q}^0 = \frac1{|\mathcal M_2^0|^2}\left(|\mathcal M_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q})|^2+|\mathcal M_4^0(1_q,3_{q},4_{\bar q},2_{\bar q})|^2\right)
@@ -1079,15 +1080,15 @@ where $N_{f,\gamma}$ is the charge weighted sum of the quark flavours, given as,
     N_{f,\gamma} = \frac{\left(\sum_q e_q\right)^2}{\sum_q e_q^2}.
 \end{equation}
 We can decouple the two relevant antennae from the general expression and write proper antenna-specific 
-expressions. For that, we begin by defining $q\bar q-\gamma$ coupling amplitude using the Fierz identity,
+expressions. For that, we begin by defining $q\bar q\text{-}\gamma$ coupling amplitude using the Fierz identity,
 \begin{equation}
-    \mathcal M_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q}) = ie_qg^2\delta_{q_1,q_2}\delta_{q_3q_4}\left(\frac1N\delta_{i_1i_2}\delta_{i_3i_4}\right)\mathcal M_{q\bar q-\gamma}(1_q,3_q,4_{\bar q},2_{\bar q}).
+    \mathcal M_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q}) = ie_qg^2\,\delta_{q_1q_2}\delta_{q_3q_4}\left(\delta_{i_1i_4}\delta_{i_3i_2}-\frac1N\delta_{i_1i_2}\delta_{i_3i_4}\right)\mathcal M_{q\bar q\text{-}\gamma}(1_q,3_q,4_{\bar q},2_{\bar q}) + (1\leftrightarrow3,\,2\leftrightarrow4).
 \end{equation}
-With this amplitude we are now able to write,
+Using this amplitude, and comparing its structure with Eq.~\ref{eq:M4q}'s, we are able to write,
 \begin{equation}
     \begin{gathered}
-        B_4^0(1_q,3_{q^\prime}, 4_{\bar q^\prime},2_{\bar q}) = \frac{|\mathcal M_{q\bar q-\gamma}(1_q,3_q,4_{\bar q},2_{\bar q})|^2}{|\mathcal M_2^0|^2}\\
-        C_4^0(1_q,3_q,4_{\bar q},2_{\bar q}) = -\frac{\operatorname{Re}\!\left(\mathcal M_{q\bar q-\gamma}(1_q,3_q,4_{\bar q},2_{\bar q})\mathcal M_{q\bar q-\gamma}^\dagger(1_q,4_{\bar q},3_{q},2_{\bar q})\right)}{|\mathcal M_2^0|^2}.
+        B_4^0(1_q,3_{q^\prime}, 4_{\bar q^\prime},2_{\bar q}) = \frac{|\mathcal M_{q\bar q\text{-}\gamma}(1_q,3_q,4_{\bar q},2_{\bar q})|^2}{|\mathcal M_2^0|^2}\\
+        C_4^0(1_q,3_q,4_{\bar q},2_{\bar q}) = -\frac{\operatorname{Re}\!\left(\mathcal M_{q\bar q\text{-}\gamma}(1_q,3_q,4_{\bar q},2_{\bar q})\mathcal M_{q\bar q\text{-}\gamma}^\dagger(1_q,4_{\bar q},3_{q},2_{\bar q})\right)}{|\mathcal M_2^0|^2}.
     \end{gathered}
 \end{equation}
 
@@ -1439,12 +1440,11 @@ in Chapter~\ref{ch:futurework}.
 
 \subsection{Phase-Space Factorisation}\label{subsec:phaseSpaceFactor}
 
-The previous Subsections focused on the antenna functions as objects: how they 
-are built, combined, normalised, etc. But the antenna functions as described in 
-Subsection~\ref{subsec:antennaFuncs} are the singular factor $\mathcal S_j$, 
-as described in Eq.~\ref{eq:sigmaSDef}, up to some normalisation factor. 
-The antenna functions, then, as part of $d\sigma^S$ must be integrated as,
-schematically, as described in Eq.~\ref{eq:subScheme},
+The previous Subsections focused on the antenna functions as objects: how they
+are built, combined, and normalised. As ingredients of the subtraction term
+$d\sigma^S$, the antenna functions must then be integrated over the unresolved-parton
+phase space. Schematically, as described in Eq.~\ref{eq:subScheme}, this is the
+integral,
 \begin{equation}
     \int_1 d\sigma^S
 \end{equation}
@@ -1516,7 +1516,7 @@ as they do not present with unresolved partons, but rather only with loops, and 
 are completely virtual. These antennae are only integrated over the
 loop momenta rather than over the phase space, thus not requiring normalisation
 using the two-particle phase-space \cite{GehrmannDeRidder0507061}. $A_2^0$ also has no
-unresolved parton, but is excluded here for a different reason: it is the un-normalised
+unresolved parton, but is excluded here for a different reason: it is the
 Born-level antenna itself, not an integrated subtraction ingredient.
 
 \section{Phase-Space Integration and IBP Reduction}\label{sec:integration}
