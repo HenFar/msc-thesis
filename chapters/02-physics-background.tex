@@ -424,6 +424,12 @@ general representation of the work's normalisation convention. Different antenna
 functions may require additional normalisation steps. These are discussed in 
 Table~\ref{tab:GkNorm}.
 
+Furthermore, the square matrix element amplitudes used to compute the antenna functions
+are normalised according to their number of final-state particles $n$, using,
+\begin{equation}\label{eq:gehrN}
+    N(n) = 4\pi\alpha\sum_q e_q^2\left(g^2\right)^{n-2}\left(N^2-1\right)|\mathcal M_2^0|^2.
+\end{equation}
+
 As described in Subsection~\ref{subsec:uvDivergences}, we need to trade the bare 
 coupling constant $\alpha_0$ for a suitable order by order perturbative series 
 variable. That is achieved as follows \cite{Gehrmann-DeRidder:2005btv},
@@ -826,7 +832,7 @@ the $X_n^l$ set. All antenna functions are part of larger sets, but only some ha
 non-zero subleading or quark-loop terms. The $A_2^2$ antenna set will
 appear with four terms, with the extra one written as $\breve A_2^2$. This
 is not an exception to the rule, however, but rather a shorthand notation, 
-bundling two processes with the same final-state particles in a single set.
+bundling two distinct perturbative contributions with the same final-state particles in a single set.
 The antenna functions (and $q\bar q$ form factors) considered are organised by order, 
 loop number, and final state in Table~\ref{tab:antFamilies}.
 
@@ -872,7 +878,7 @@ matrix element as \cite{Gehrmann-DeRidder:2005btv},
 \begin{equation}
     \begin{gathered}
         X_{ij}^1 = S_{ij,IJ}\frac{|\mathcal M_{ij}^1|^2}{|\mathcal M_{IJ}^0|^2}\\
-        X_{ijk}^1 = S_{ijk,IK}\frac{|\mathcal M_{ijk}^1|^2}{|\mathcal M_{IK}^0|^2} - X_{ijk}^0\frac{\mathcal M_{IK}^1}{|\mathcal M_{IK}^0|^2}.
+        X_{ijk}^1 = S_{ijk,IK}\frac{|\mathcal M_{ijk}^1|^2}{|\mathcal M_{IK}^0|^2} - X_{ijk}^0\frac{|\mathcal M_{IK}^1|^2}{|\mathcal M_{IK}^0|^2}.
     \end{gathered}
 \end{equation}
 The two-loop two-parton antenna, which here is only used for the $A_2^2$ antenna set, 
@@ -880,10 +886,14 @@ is defined as,
 \begin{equation}
     X_{ij}^2 = S_{ij,IJ}\frac{|\mathcal M_{ij}^2|^2}{|\mathcal M_{IJ}^0|^2}.
 \end{equation}
+Loop antennae are additionally coupling-renormalised using Eq.~\ref{eq:alphaRescaling} wherever 
+the reduced process carries a strong coupling. This
+procedure is described in further detail in Subsection~\ref{subsec:antFamilies}.
 
 To compute the considered antenna functions, we require three colour-ordered squared matrix 
-element loop-configurations for a given colour structure\footnote{Equivalently, this 
-corresponds to stripping a factor of $2C_F g_s^{2(n-2+l)}$.}: for one, two, and three loops, given
+element loop-configurations for a given colour structure implicitly normalised with 
+$N(n)$, as described in Eq.~\ref{eq:gehrN}.
+for one, two, and three loops, given
 as,
 \begin{equation}
     \begin{gathered}
@@ -893,7 +903,16 @@ as,
     \end{gathered}
 \end{equation}
 Lastly, the whole system is normalised by the $|\mathcal M_2^0|^2$ squared matrix element, 
-setting the Born-level antenna to one. The symmetry factors are also all equal 
+setting the Born-level antenna to one. It is also useful to define the notation for a 
+full-process normalised squared matrix element amplitude for more complex 
+cases, particularly at NNLO. It is defined as,
+\begin{equation}
+    M_{p_1p_2...p_n}^l = \frac{1}{|\mathcal M_2^0|^2}\sum_{r=0}^l\mathcal M_n^{r\,\dagger}(p_1,...,p_n)\mathcal M_n^{l-r}(p_1,...,p_n).
+\end{equation}
+where final-states admitting more than one colour ordering, flavour assignment, or coupling configuration,
+the product of the amplitudes is understood to be a complete process-level contraction, 
+including the corresponding squared contributions and interference terms.
+The symmetry factors are also all equal 
 to one, for all $q\bar q$ topologies. 
 
 The colour-ordered matrix elements carry colour structure and the results they produce have 
@@ -960,7 +979,7 @@ These components, after decomposition become:
     $X_4^0\sim|\mathcal M_4^0(1,4,3,2)|^2$.
     \item The subleading colour component ($1/N$): these come from non-planar
     topologies (where gluon lines do cross each other). This component is represented
-    by the tilde antenna, e.g. $\tilde A_3^1$. An NNLO leading antenna-set 
+    by the tilde antenna, e.g. $\tilde A_3^1$. An NNLO subleading antenna-set 
     component is proportional to the interference pieces, 
     $\tilde X_4^0\sim2\operatorname{Re}\left(\mathcal M_4^{0\,\dagger}(1,3,4,2)\mathcal M_4^0(1,4,3,2)\right)$.
     \item The fermion loop ($N_f$): Instead of a virtual gluon, the loop can have
@@ -972,9 +991,105 @@ These components, after decomposition become:
     \cite{Gehrmann-DeRidder:2005btv}.
 \end{itemize}
 
-\subsection{Antenna Families}\label{subsec:antFamilies}
+\subsection{Antenna Construction}\label{subsec:antFamilies}
 
+Each antenna set considered in Table~\ref{tab:antFamilies} is now built explicitly in this 
+subsection.
+As mentioned, every antenna is normalised by the Born-level squared amplitude given as,
+\begin{equation}
+    |\mathcal M_2^0|^2 = 4(1-\epsilon)q^2.
+\end{equation}
+That makes the 
+LO antenna becomes,
+\begin{equation}
+    A_2^0(1_q,2_{\bar q}) = \frac{|\mathcal M_2^0(1_q,2_{\bar q})|^2}{|\mathcal M_2^0(1_q,2_{\bar q})|^2}=1.
+\end{equation}
 
+Advancing to the NLO tree-level antenna, there are only two possible similar processes, both 
+considered within the same squared amplitude. The antenna becomes,
+\begin{equation}
+    A_3^0(1_q,3_g,2_{\bar q}) =\frac{|\mathcal M_3^0(1_q,3_g,2_{\bar q})|^2}{|\mathcal M_2^0(1_q,2_{\bar q})|^2}.
+\end{equation}
+The NLO one-loop antenna introduces the squared one-loop two-particle amplitude as,
+\begin{equation}
+    A_2^1(1_q,2_{\bar q}) = \frac{2\operatorname{Re}\!\left(\mathcal M_2^{0\,\dagger}(1_q,2_{\bar q})\mathcal M_2^1(1_q,2_{\bar q})\right)}{|\mathcal M_2^0(1_1,2_{\bar q})|^2}.
+\end{equation}
+
+The NNLO $A$-type tree-level antenna set is the first one of this list with multiple components,
+due to the way in which its two unresolved partons may couple with different hard partons and 
+may also interfere.
+The complete set linear combination is given,
+\begin{equation}
+    \begin{gathered}
+        \begin{aligned}
+            M_{qgg\bar q}^0 = \frac1{|\mathcal M_2^0|^2}\Bigg(N&\left(|\mathcal M_4^0(1_q,3_g,4_g,2_{\bar q})|^2+|\mathcal M_4^0(1_q,4_g,3_g,2_{\bar q})|^2\right)\\
+                                                                               &-\frac1N\left|\mathcal M_4^0(1_q,3_g,4_g,2_{\bar q}+\mathcal M_4^0(1_q,4_g,3_g,2_{\bar q}\right|^2\Bigg)
+        \end{aligned}\\
+        = \left(NA_4^0(1_q,3_g,4_g,2_{\bar q})-\frac1N\tilde A_4^0{1_q,3_g,4_g,2_{\bar q}}\right).
+    \end{gathered}
+\end{equation}
+
+The NNLO one-loop antenna set is given following the methods shown for the one-loop NLO and the 
+tree-level NNLO antennae, appearing with three bare components,
+\begin{equation}
+    \begin{gathered}
+        M_{qg\bar q}^1 = \frac{2\operatorname{Re}\!\left(\mathcal M_3^{0\,\dagger}(1_q,3_g,2_{\bar q})\mathcal M_3^1(1_q,3_g,2_{\bar q})\right)}{|\mathcal M_2^0|^2}\\
+        = \left(NA_{3,\text{bare}}^1(1_q,3_g,2_{\bar q}) + \frac1N \tilde A_{3,\text{bare}}^1(1_q,3_g,2_{\bar q}) + N_f\hat A_{3,\text{bare}}^1(1_q,3_g,2_{\bar q})\right).
+    \end{gathered}
+\end{equation}
+As mentioned, this set needs to be renormalised according to Eq.~\ref{eq:alphaRescaling} as,
+\begin{equation}
+    M_{qg\bar q}^1 = \left(N\!\left(A_{3,\text{ren}}^1+\frac{11}{6\epsilon}A_3^0\right)+\frac1N\tilde A_{3,\text{ren}}^1+N_f\!\left(\hat A_{3,\text{ren}}^1-\frac{1}{3\epsilon}A_3^0\right)\right).
+\end{equation}
+Finally, the renormalised source still contains the one-loop correction to the underlying $q\bar q$
+pair. This correction term has to also be subtracted and is as follows,
+\begin{equation}
+    M_{qg\bar q}^1 = \left(N\!\left(A_{3}^1+A_3^0\left(\frac{11}{6\epsilon}+A_2^1\right)\right)+\frac1N\left(\tilde A_{3}^1+A_2^1A_3^0\right)+N_f\!\left(\hat A_{3}^1-\frac{1}{3\epsilon}A_3^0\right)\right).
+\end{equation}
+
+The NNLO two-loop antenna-set is made up of two different configurations which generate four 
+components. These need to be UV renormalised but do not require subtracting further 
+correction terms. The set linear combination is given as,
+\begin{equation}
+    \begin{gathered}
+        M_{q\bar q}^2 = \left(\frac{2\operatorname{Re}\!\left(\mathcal M_2^{0\,\dagger}(1_q,2_{\bar q})\mathcal M_2^2(1_q,2_{\bar q})\right)+\mathcal M_2^{1\,\dagger}(1_q,2_{\bar q})\mathcal M_2^1(1_q,2_{\bar q})}{|\mathcal M_2^0(1_q,2_{\bar q})|^2}\right)\\
+        = \left(NA_{2,\text{bare}}^2 + \frac1N \tilde A_{2,\text{bare}}^2 + N_f \hat A_{2,\text{bare}}^2 + \left(N-\frac1N\right)\breve A_{2,\text{bare}}^2\right)\\
+        = \left(N\!\left(A_{2}^2+\frac{11}{6\epsilon}A_2^1\right) + \frac1N \tilde A_{2}^2 + N_f\!\left(\hat A_{2}^2-\frac1{3\epsilon}A_2^1\right) + \left(N-\frac1N\right)\breve A_{2}^2\right).
+    \end{gathered}
+\end{equation}
+
+The remaining two NNLO tree-level antenna functions considered throughout this thesis come from the
+same process, $\gamma^*\to q\bar q q\bar q$. This process produces the two relevant antennae, 
+$B_4^0$ and $C_4^0$, and a third antenna $\hat B_4^0$, which exchanges which quark pair couples 
+to the electroweak current. This is out of the current scope of this work and will not 
+be derived past this mention. The three antennae appear as a set-like linear combination, as,
+\begin{equation}
+    \begin{gathered}
+        \begin{aligned}
+            M_{4q}^0 = \frac1{|\mathcal M_2^0|^2}\left(|\mathcal M_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q})|^2+|\mathcal M_4^0(1_q,3_{q},4_{\bar q},2_{\bar q})|^2\right)
+        \end{aligned}\\
+        \begin{aligned}
+            =\Bigg[N_fB_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q})+N_{f,\gamma}&\hat B_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q})\\
+                                                                                 &-\frac1N\!\left(C_4^0(1_q,3_q,4_{\bar q},2_{\bar q})+C_4^0(2_{\bar q},4_{\bar q},3_q,1_q)\right)\Bigg]
+        \end{aligned}
+    \end{gathered}
+\end{equation}
+where $N_{f,\gamma}$ is the charge weighted sum of the quark flavours, given as,
+\begin{equation}
+    N_{f,\gamma} = \frac{\left(\sum_q e_q\right)^2}{\sum_q e_q^2}.
+\end{equation}
+We can decouple the two relevant antennae from the general expression and write proper antenna-specific 
+expressions. For that, we begin by defining $q\bar q-\gamma$ coupling amplitude using the Fierz identity,
+\begin{equation}
+    \mathcal M_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q}) = ie_qg^2\delta_{q_1,q_2}\delta_{q_3q_4}\left(\frac1N\delta_{i_1i_2}\delta_{i_3i_4}\right)\mathcal M_{q\bar q-\gamma}(1_q,3_q,4_{\bar q},2_{\bar q}).
+\end{equation}
+With this amplitude we are now able to write,
+\begin{equation}
+    \begin{gathered}
+        B_4^0(1_q,3_{q^\prime}, 4_{\bar q^\prime},2_{\bar q}) = \frac{|\mathcal M_{q\bar q-\gamma}(1_q,3_q,4_{\bar q},2_{\bar q})|^2}{|\mathcal M_2^0|^2}\\
+        C_4^0(1_q,3_q,4_{\bar q},2_{\bar q}) = -\frac{\operatorname{Re}\!\left(\mathcal M_{q\bar q-\gamma}(1_q,3_q,4_{\bar q},2_{\bar q})\mathcal M_{q\bar q-\gamma}^\dagger(1_q,4_{\bar q},3_{q},2_{\bar q})\right)}{|\mathcal M_2^0|^2}.
+    \end{gathered}
+\end{equation}
 
 \iffalse
 
