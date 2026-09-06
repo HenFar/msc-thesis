@@ -226,11 +226,9 @@ directs each antenna to the appropriate computational path, since different loop
 require different computational treatments, most notably the tensor reduction required for
 the loop-momentum dependence of one- and two-loop antennae.
 
-Functionally, the route-context for this stage usually contains the initial profile itself (the declarative 
-\texttt{AntennaProfile}), the amplitude generated from it, the sectors, computed interferences, 
-components after separation, diagnostics, and its normalised interference. Depending on the 
-route, the context might also retain prototype components, full colour components, reference 
-square components or loop-specific amplitudes. 
+Functionally, the route context for this stage holds the profile, the generated amplitude, the
+computed and normalised interference, the extracted components, and the diagnostics; some routes
+retain additional route-specific intermediates.
 
 A diagram in the spirit of the one in Fig.~\ref{fig:antcalc-architecture}, but only relative to 
 the build stage is shown below, in Fig.~\ref{fig:antcalc-architecture-buildstage}.
@@ -277,14 +275,14 @@ Table~\ref{tab:treeLevelProdModes}.
 \label{tab:treeLevelProdModes}
 \end{table}
 
-These production paths all lead to the extraction of the required antenna functions, but the way in which 
-they do it changes with the antenna's multiplicity. The different production methods are shown in completeness 
-in Subsection~\ref{subsec:antFamilies}, when each of the elements of the \textit{Current Route} column is
-discussed. 
-The extraction paths are also implicitly discussed in that subsection. $A_2^0$ is set to $1$ as discussed. 
-Both $A_3^0$ and the $A_4^0$-set antennae are directly extracted from the usual structure of 
-$NX_n^l + 1/N\tilde X_n^l$. Lastly we extract the $B_4^0$ and $C_4^0$ antennae from the more complex 
-inner structure of the $M_{4q}^0$ full-process amplitude and hence require a more complex extraction process.
+These production paths all lead to the extraction of the required antenna functions, but the way in which
+they do it changes with the antenna's multiplicity. Each production and extraction mode is
+\textit{AntCalc}'s operational implementation of the construction derived, in mathematical terms, for the
+corresponding \textit{Current Route} entry in Subsection~\ref{subsec:antFamilies}. On the extraction side,
+$A_2^0$ is set to $1$; both $A_3^0$ and the $A_4^0$-set antennae are extracted from the usual
+$NX_n^l + \frac1N\tilde X_n^l$ structure; and the $B_4^0$ and $C_4^0$ antennae are extracted from the more
+involved inner structure of the $M_{4q}^0$ full-process amplitude, requiring a correspondingly more complex
+extraction process.
 
 \subsection{One-Loop Routes}\label{subsec:oneLoopRoutes}
 
