@@ -32,18 +32,19 @@ This thesis develops and validates \textit{AntCalc}, a symbolic framework for th
 automated construction and integration of QCD antenna functions. The work focuses 
 on massless final-final quark-antiquark antennae through next-to-next-to-leading
 order (NNLO), combining symbolic amplitude generation with reduction methods for 
-phase-space integrals. The resulting implementation is tested globally through the calculation of the NNLO
+phase-space integrals. The resulting implementation is tested globally through the calculation of the
 massless hadronic \textit{R}-ratio, a well-known inclusive observable in $e^+e^-$
-annihilation that provides a benchmark for the complete implementation. Locally,
+annihilation that provides a benchmark for the complete implementation, up to NNLO. Locally,
 individual antenna functions are tested, where appropriate, by verifying that they
 reproduce the expected eikonal factors and Altarelli-Parisi (AP) splitting functions
-in the relevant unresolved limits.
+in the relevant unresolved limits. 
 
 The remainder of the thesis is organised as follows. Chapter~\ref{ch:physicsbackground}
 introduces the theoretical foundations required throughout this work, including
 perturbative QCD, infrared singularities, dimensional regularisation, and the antenna
 subtraction formalism. It defines the massless antenna functions and discusses their
-colour structure, phase-space factorisation, and role in fixed-order calculations.
+colour structure, phase-space factorisation, and role in fixed-order calculations. The
+chapter also introduces the normalisation conventions used throughout. 
 Chapter~\ref{ch:packageframework} describes \textit{AntCalc}'s framework, including its
 architecture, antenna construction and integration workflows, reduction procedures, and
 the conventions and validation tools used to obtain the results.
