@@ -218,12 +218,13 @@ to zero and the collinear limit, when $\theta_{ij}$ does. In both cases,
 A soft limit exists only where removing the unresolved parton leaves a physical
 lower-multiplicity process. For the $\gamma^*\to q(k_1)\,g(k_3)\,\bar q(k_2)$
 process, this permits only a soft gluon because, since $\gamma^*\to g\bar q$ does not 
-exist, the soft quark limit is not possible. That means that a quark can only 
-become unresolved collinearly. At NNLO, however, a quark-antiquark pair can 
-become soft as a unit, when being emitted by an intermediate gluon. In that 
-topology, apart from the soft gluon limit, only the collinear $gq$ and $\bar q$
-limits exist, with the collinear $q\bar q$ limit not existing at this perturbative 
-order. These and all other limits considered throughout this thesis are shown 
+exist, the soft quark limit is not possible. That means that a quark can only
+become unresolved collinearly. At NNLO, however, a secondary quark-antiquark pair,
+produced by the splitting of an intermediate gluon, can become soft as a unit, giving a
+double pole in the pair's invariant. The same final state also has a collinear limit when
+the secondary pair itself becomes collinear, $q^\prime\parallel\bar q^\prime$, and a
+triple-collinear limit when the pair is additionally collinear with one of the hard partons.
+These and all other limits considered throughout this thesis are shown
 in Table~\ref{tab:limits}.
 
 {
@@ -456,7 +457,7 @@ as per the KLN theorem \cite{Gehrmann-DeRidder:2005btv}.
 At LO, the approximation to the $m$-jet cross section is computed as the integral 
 over the appropriate phase space,
 \begin{equation}\label{eq:bornLevel}
-    d\sigma_\text{LO} = \int_{d\Phi_m}d\sigma^B,\quad d\sigma^B=\sum_nd\Phi_n(p_1,...,p_n;q)\frac1{S_n}|\mathcal M_n(p_1,...,p_n)|^2J_m^{(n)}(p_1,...,p_n)
+    d\sigma_\text{LO} = \int_m d\sigma^B,\quad d\sigma^B=\sum_nd\Phi_n(p_1,...,p_n;q)\frac1{S_n}|\mathcal M_n(p_1,...,p_n)|^2J_m^{(n)}(p_1,...,p_n)
 \end{equation}
 where $d\sigma^B$ is the tree-level $n$-parton contribution to the $m$-jet cross 
 section. $S_n$ is a symmetry factor for identical partons in the final state, and 
@@ -470,7 +471,7 @@ a real emission channel characterised by the $\gamma^*\to q\bar q g$ process, an
 a virtual channel, where a gluon is exchanged by the hard quarks, $\gamma^*\to q\bar q$.
 These contributions are summed to reach,
 \begin{equation}
-    d\sigma_\text{NLO} = \int_{d\Phi_{m+1}}d\sigma^R_\text{NLO}+\int_{d\Phi_m}d\sigma^V_\text{NLO}.
+    d\sigma_\text{NLO} = \int_{m+1}d\sigma^R_\text{NLO}+\int_m d\sigma^V_\text{NLO}.
 \end{equation}
 
 At NNLO, the $m$-jet cross section is written using the three contributions that 
@@ -478,7 +479,7 @@ come from five different channels: RR has three, $\gamma^*\to q\bar qgg,\,q\bar 
 and RV and VV only have one each, $\gamma^*\to q\bar qg$, with a gluon loop, and 
 $\gamma^*\to q\bar q$ with two gluon loops,
 \begin{equation}
-    d\sigma_\text{NNLO}=\int_{d\Phi_{m+2}}d\sigma^{RR}_\text{NNLO}+\int_{d\Phi_{m+1}}d\sigma^{RV}_\text{NNLO}+\int_{d\Phi_m}d\sigma^{VV}_\text{NNLO}.
+    d\sigma_\text{NNLO}=\int_{m+2}d\sigma^{RR}_\text{NNLO}+\int_{m+1}d\sigma^{RV}_\text{NNLO}+\int_m d\sigma^{VV}_\text{NNLO}.
 \end{equation}
 
 \subsection{Subtraction Terms}
@@ -497,7 +498,7 @@ At NLO, there is need of one subtraction term, $d\sigma^S_\text{NLO}$, which
 cancels $d\sigma_\text{NLO}^R$'s singularities. Using it, the $m$-jet cross section 
 becomes,
 \begin{equation}
-    d\sigma_\text{NLO} = \int_{d\Phi_{m+1}}\left(d\sigma^R_\text{NLO}-d\sigma^S_\text{NLO}\right)+\int_{d\Phi_m}\left(d\sigma^V_\text{NLO}+\int_{d\Phi_1} d\sigma^S_\text{NLO}\right)=\int_{d\Phi_m}\left(d\sigma^V_\text{NLO}+\int_1 d\sigma^S_\text{NLO}\right).
+    d\sigma_\text{NLO} = \int_{m+1}\left(d\sigma^R_\text{NLO}-d\sigma^S_\text{NLO}\right)+\int_m\left(d\sigma^V_\text{NLO}+\int_1 d\sigma^S_\text{NLO}\right)=\int_m\left(d\sigma^V_\text{NLO}+\int_1 d\sigma^S_\text{NLO}\right).
 \end{equation}
 The real-emission contribution is essentially equal to the Born-level 
 cross-section, as written in Eq.~\ref{eq:bornLevel}, but for $m+1$ particles. Its 
@@ -526,16 +527,22 @@ Fig.~\ref{fig:colourConnectionNLO}.
 
 \input{figures/colour-connection-nlo.tex}
 
-The jet observable considered throughout this work is the massless hadronic $R$-ratio. 
+The jet observable considered throughout this work is the massless hadronic $R$-ratio.
 This quantity is fully inclusive in the phase space, which means that $J_m^{(n)}=1$
-everywhere, independent of the order. Without the jet function in the expression, 
-the phase space can be factorised as,
+everywhere, independent of the order. For the two-hard-radiator process considered here,
+$d\sigma^S_\text{NLO}$ is built from the full real-radiation matrix element and therefore
+coincides with $d\sigma^R_\text{NLO}$ pointwise, not only in the unresolved limits
+\cite{Gehrmann-DeRidder:2005btv} --- a special property of two-jet production that does not
+hold for generic multi-jet observables. With $J_m^{(n)}=1$, the $d\sigma^R_\text{NLO}-d\sigma^S_\text{NLO}$
+term therefore vanishes identically rather than integrating to a finite remainder, leaving only
+the analytically integrated contribution. Without the jet function in the expression,
+the phase space can also be factorised as,
 \begin{equation}
     d\Phi_{m+1}(p_1,...,p_{m+1};q) = d\Phi_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})d\Phi_{X_{ijk}}(p_i,p_j,p_k;q=\tilde p_I+\tilde p_K)
 \end{equation}
 which here equals,
 \begin{equation}
-    d\Phi_3=P_2d\Phi_{X_{ijk}},\quad P_2=\int d\Phi_2.
+    d\Phi_3=\Phi_2\,d\Phi_{X_{ijk}},\quad \Phi_2=\int d\Phi_2.
 \end{equation}
 
 \subsubsection{NNLO}
@@ -545,8 +552,8 @@ and $d\sigma_\text{NNLO}^T$, subtracting respectively $d\sigma_\text{NNLO}^{RR}$
 and $d\sigma_\text{NNLO}^{RV}$. Using them, the $m$-jet cross section becomes,
 \begin{equation}
     \begin{aligned}
-        d\sigma_\text{NNLO} &= \int_{d\Phi_{m+2}}\left(d\sigma_\text{NNLO}^{RR}-d\sigma_\text{NNLO}^{S}\right)+\int_{d\Phi_{m+1}}\left(d\sigma_\text{NNLO}^{RV}-d\sigma_\text{NNLO}^T\right)+\int_{d\Phi_m}d\sigma_\text{NNLO}^{VV}\\
-                            &= \int_{d\Phi_m}\left(d\sigma_\text{NNLO}^{VV}+\int_{d\Phi_2}d\sigma_\text{NNLO}^S+\int_{d\Phi_2}d\sigma_\text{NNLO}^T\right).
+        d\sigma_\text{NNLO} &= \int_{m+2}\left(d\sigma_\text{NNLO}^{RR}-d\sigma_\text{NNLO}^{S}\right)+\int_{m+1}\left(d\sigma_\text{NNLO}^{RV}-d\sigma_\text{NNLO}^T\right)+\int_m d\sigma_\text{NNLO}^{VV}\\
+                            &= \int_m\left(d\sigma_\text{NNLO}^{VV}+\int_2 d\sigma_\text{NNLO}^S+\int_1 d\sigma_\text{NNLO}^T\right).
     \end{aligned}
 \end{equation}
 
@@ -620,29 +627,39 @@ $d\sigma^{S,c}$, $d\sigma^{S,d}$, and $d\sigma^{T,c}$ are only required for
 processes with three or more hard partons, beyond those considered in the current text. Their
 complete form is written in \cite{Gehrmann-DeRidder:2005btv}.
 
-The colour-connection notation is,
+The iterated mapping for the four-parton system $(i,j,k,l)$ proceeds in two stages,
 \begin{equation}
     \begin{gathered}
         (i,j,k)\to(\tilde I,\tilde K)\\
-        (\tilde K,l,m) \to (\tilde{\tilde{K}}, \tilde{\tilde{M}})
+        (\tilde I,\tilde K,l) \to (\tilde{\tilde{I}}, \tilde{\tilde{L}})
     \end{gathered}
 \end{equation}
 
 and the three characteristic colour-connection configurations are shown in
-Figs.~\ref{fig:colourConnectionNNLO}, \ref{fig:colourConnectionNNLO2}, and \ref{fig:colourConnectionNNLO3}.
+Fig.~\ref{fig:colourConnectionNNLOall}.
 
+\begin{figure}[h!]
+\centering
 \input{figures/colour-connection-nnlo.tex}
+\par\medskip
 \input{figures/colour-connection-nnlo_2.tex}
+\par\medskip
 \input{figures/colour-connection-nnlo_3.tex}
+\caption{\centering The three characteristic double-unresolved colour-connection configurations at NNLO: (a) two colour-connected unresolved partons, (b) two adjacent single-unresolved antennae, and (c) two disconnected single-unresolved antennae.}
+\label{fig:colourConnectionNNLOall}
+\end{figure}
 
 Once again, as for NLO, the massless hadronic $R$-ratio is the jet observable
-considered, and hence $J_m^{(n)}=1$. The phase space factorises as,
+considered, and hence $J_m^{(n)}=1$. As at NLO, $d\sigma^S_\text{NNLO}$ and $d\sigma^T_\text{NNLO}$
+are built from the full real-radiation matrix elements, so the $d\sigma^{RR}_\text{NNLO}-d\sigma^S_\text{NNLO}$
+and $d\sigma^{RV}_\text{NNLO}-d\sigma^T_\text{NNLO}$ terms likewise vanish identically for this
+observable \cite{Gehrmann-DeRidder:2005btv}. The phase space factorises as,
 \begin{equation}
     d\Phi_{m+2}(p_1,...,p_{m+2};q) = d\Phi_m(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+2};q)d\Phi_{X_{ijkl}}(p_i,p_j,p_k,p_l;q=\tilde p_I+\tilde p_L)
 \end{equation}
 and hence,
 \begin{equation}
-    d\Phi_4 = P_2d\Phi_{X_{ijkl}}.
+    d\Phi_4 = \Phi_2\,d\Phi_{X_{ijkl}}.
 \end{equation}
 
 \iffalse

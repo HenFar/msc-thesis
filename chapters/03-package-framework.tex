@@ -453,7 +453,7 @@ series in $\epsilon$. An overview of these is shown in the following Table~\ref{
 \renewcommand{\arraystretch}{1.3}
   \begin{tabular}{|c|c|c|} 
    \hline
-   \textbf{Default Backend} & \textbf{Bases-Family Set} & \textbf{Current Route} \\ 
+   \textbf{Default Backend} & \textbf{Basis-Family Set} & \textbf{Current Route} \\
    \hline
    Passarino-Veltman / \textit{FeynHelpers} & massless two-parton vertex & $\mathcal A_2^1$ \\ \hline
    IBP / \textit{LiteRed2} & \texttt{X30} & $\mathcal A_3^0$ \\ \hline
@@ -680,10 +680,10 @@ evaluation. The five higher-level functions are:
 
 The $R$-ratio produced by \texttt{BuildRRatio} is the observable used for \textit{AntCalc}'s
 global validation. Called as
-\texttt{BuildRRatio[SMQCD\footnote{The label SMQCD is not standard in the literature. It is
-used here to denote the massless QCD sector of the Standard Model.}, maxOrder -> \ldots]}, it
-generates the $R$-ratio through NNLO and, by default, returns the finite coefficient after
-application of the observable convention bridge. This result has been validated against a
+\texttt{BuildRRatio[SMQCD, maxOrder -> \ldots]}\footnote{The label \texttt{SMQCD} is not
+standard in the literature. It is used here to denote the massless QCD sector of the Standard
+Model.}, it generates the $R$-ratio through NNLO and, by default, returns the finite
+coefficient after application of the observable convention bridge. This result has been validated against a
 literature reference target, as discussed in Chapter~\ref{ch:validation}.
 
 \iffalse
@@ -815,7 +815,7 @@ polarisation vector by its own momentum, $\varepsilon^\mu(k)\to k^\mu$, while ke
 external gluon polarisation explicitly transverse, and checks whether the resulting expression
 vanishes. This is the standard amplitude-level Ward identity, applied leg by leg to the raw
 generated amplitude rather than inferred from a property of the extracted or integrated antenna.
-It is currently applied to every public route with an external gluon leg, that is, to $A_3^0$,
+It is currently applied to every massless public route with an external gluon leg, that is, to $A_3^0$,
 $A_4^0$ and the $A_3^1$ set, and returns a structured pass, fail, or time-out report for each
 checked leg. Because it depends only on the internal gauge structure of the generated amplitude,
 and not on comparison with any external result, it certifies a property the literature-comparison
