@@ -821,7 +821,7 @@ Substituting Eq.~\ref{eq:R3} into Eq.~\ref{eq:A30intermsofR3} gives
 \begin{equation}\label{eq:A30withR30Sub}
     \begin{split}
         \mathcal A_3^0 &= \frac{C(\epsilon,1)}{\Phi_2}\left(q^2\right)^{-2\epsilon}(4\pi)^{-3+2\epsilon}(2-6\epsilon+5\epsilon^2-2\epsilon^3)\frac{\Gamma^3(1-\epsilon)}{\epsilon^2\Gamma(3-3\epsilon)\Gamma(2-2\epsilon)}\\
-                       &= \left(q^2\right)^{-\epsilon}e^{\epsilon\gamma_E}(1-2\epsilon)\big(2+\epsilon(\epsilon+2)\big)\frac{\Gamma^2(-\epsilon)}{\Gamma(3-3\epsilon)}
+                       &= \left(q^2\right)^{-\epsilon}e^{\epsilon\gamma_E}(1-2\epsilon)\big(2-2\epsilon+\epsilon^2\big)\frac{\Gamma^2(-\epsilon)}{\Gamma(3-3\epsilon)}
     \end{split}
 \end{equation}
 
@@ -1097,7 +1097,7 @@ different antenna components and is the longest-running calculation supported by
             \Bigg\{&\frac{11\Big[(3+2\epsilon)B_0\!\left(s_{12};0,0\right)+2s_{12}C_0\!\left(0,0,s_{12};0,0,0\right)\Big]}{12\epsilon}+...,\\
               &24\epsilon^{14}\!\left(391\pi^{12}-1149918\pi^8\zeta_3-62009136\pi^4\zeta_3^2-823011840\zeta_3^3\right)+...,\\
               &-\frac16\frac{(3+2\epsilon)B_0\!\left(s_{12};0,0\right)+2s_{12}C_0\!\left(0,0,s_{12};0,0,0\right)}{\epsilon}+...,\\
-              &80(13-42\epsilon)\frac{\zeta_3}{1920\epsilon\Gamma^2(2-2\epsilon)}+...\Bigg\}
+              &\frac{\Gamma^2(1+\epsilon)\Gamma^6(1-\epsilon)}{4\epsilon^4\Gamma^2(2-2\epsilon)}+...\Bigg\}
         \end{split}
     \end{equation*}
 \end{mdframed}
@@ -1119,14 +1119,31 @@ We may then obtain the integrated expressions as,
                    &-\frac1{4\epsilon^4}-\frac3{4\epsilon^3}+\frac{-1476+312\pi^2}{576\epsilon^2}+\frac{-3978+864\pi^2+1536\zeta_3}{576\epsilon}\\
                    &+\frac{-10359+2850\pi^2-118\pi^4+4176\zeta_3}{576},\\
                    &-\frac1{4\epsilon^3}-\frac1{9\epsilon^2}+\frac{65+9\pi^2}{216\epsilon}+\frac{4085-546\pi^2+72\zeta_3}{1296},\\
-                   &\frac1{4\epsilon^4}+\frac3{4\epsilon^3}+\frac{1230-20\pi^2}{480\epsilon^2}+\frac{-60\pi^2+560(6+\zeta_3)}{480\epsilon}\\
-                   &+\frac{-205\pi^2-7\pi^4-240(-36+7\zeta_3)}{480}\Bigg\}
+                   &\frac1{4\epsilon^4}+\frac3{4\epsilon^3}+\frac{1}{\epsilon^2}\left(\frac{41}{16}-\frac{\pi^2}{24}\right)+\frac{1}{\epsilon}\left(7-\frac{\pi^2}8-\frac{7\zeta_3}{6}\right)\\
+                   &+18-\frac{41\pi^2}{96}-\frac{7\pi^4}{480}-\frac{7\zeta_3}{2}\Bigg\}
         \end{split}
     \end{equation*}
 \end{mdframed}
 
 The integrated Laurent series agree with the established $\mathcal A_2^2$ set results 
-\cite{Gehrmann-DeRidder:2004ttg}.
+\cite{Gehrmann-DeRidder:2004ttg} apart from the exception discussed in 
+Subsubsection~\ref{subsubsec:breveA22}, below.
+
+\subsubsection{A Note on Sources}\label{subsubsec:breveA22}
+
+During the construction of the $\breve A_2^2$ antenna the exact formulation of the $\epsilon^{-1}$ 
+antenna infrared pole failed to match the expression in Eq.~(4.10) of \cite{Gehrmann-DeRidder:2004ttg}, 
+our main source. Using the paper's expression also resulted in a failed cancellation on the massless 
+hadronic $R$-ratio's $\epsilon^{-1}$ infrared pole on the NNLO term. Tracing this discrepancy through 
+the assembly of colour channels revealed an uncancelled $28C_F^2\zeta_3/(3\epsilon)$ residue, which pointed 
+at a sign error in the $7\zeta_3/(6\epsilon)$ term of the antenna.
+
+This discrepancy with the main source was independently confirmed in the literature by Jakubčík, Marcoli, 
+and Stagnitto~\cite{Jakubcik:2022zdi} (Eq.~B.7) formally identified and published the typographical 
+error in Eq.~(4.10) of \cite{Gehrmann-DeRidder:2004ttg}. In \textit{AntCalc}, 
+the $\breve A_2^2$ antenna is integrated directly from the one-loop self-interference 
+matrix element, natively reproducing the corrected Laurent series of \cite{Jakubcik:2022zdi} 
+and ensuring exact pole cancellation in the NNLO $R$-ratio term.
 
 \subsection{Three-Parton Contributions: the $A_3^1$ Set}
 
@@ -1199,7 +1216,7 @@ and so does computing the integrated antenna functions,
 \texttt{Out[3]:=}
     \begin{equation*}
         \begin{split}
-            \Bigg\{&\frac3{4\epsilon^4}+\frac{65}{24\epsilon^3}-\frac{1}{\epsilon^2}\!\left(\frac{217}{18}-\frac{13\pi^2}{12}\right)+\frac1\epsilon\!\left(\frac{43224}{864}-\frac{589\pi^2}{144}-\frac{71\zeta_3}{4}\right)\\
+            \Bigg\{&\frac3{4\epsilon^4}+\frac{65}{24\epsilon^3}+\frac{1}{\epsilon^2}\!\left(\frac{217}{18}-\frac{13\pi^2}{12}\right)+\frac1\epsilon\!\left(\frac{43223}{864}-\frac{589\pi^2}{144}-\frac{71\zeta_3}{4}\right)\\
                    &+\frac{1076717}{5184}-\frac{7955\pi^2}{432}+\frac{373\pi^4}{1440}-\frac{1327\zeta_3}{18}+\mathcal O(\epsilon),\\
                    &\frac1{\epsilon^4}+\frac3{\epsilon^3}+\frac1{\epsilon^2}\!\left(13-\frac{3\pi^2}2\right)+\frac1\epsilon\!\left(\frac{845}{16}-\frac{9\pi^2}{2}-\frac{80\zeta_3}{3}\right)\\
                    &+\frac{6921}{32}-\frac{473\pi^2}{24}+\frac{17\pi^4}{72}-80\zeta_3+\mathcal O(\epsilon)\Bigg\}
@@ -1432,7 +1449,8 @@ $A_2^0$ & --- (reference normalisation) & Not applicable & LO normalisation of t
 $A_3^0$ & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Eikonal factor and AP splitting function reproduced & Feeds $r_\text{NLO}$ & Pass \\ \hline
 $A_2^1$ & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Not applicable & Feeds $r_\text{NLO}$ & Pass \\ \hline
 $A_3^1$ set & \cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg} (NNLO) & Not performed & Feeds $r_\text{NNLO}$ & Pass \\ \hline
-$A_2^2$ set & \cite{Gehrmann-DeRidder:2004ttg} (NNLO) & Not applicable & Feeds $r_\text{NNLO}$ & Pass \\ \hline
+$A_2^2, \tilde A_2^2, \hat A_2^2$ & \cite{Gehrmann-DeRidder:2004ttg} (NNLO) & Not applicable & Feeds $r_\text{NNLO}$ & Pass \\ \hline
+$\breve A_2^2$ & \cite{Jakubcik:2022zdi} (NNLO) & Not applicable & Feeds $r_\text{NNLO}$ & Pass \\ \hline
 $A_4^0$, $\tilde A_4^0$ & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Not performed & Feeds $r_\text{NNLO}$ & Pass \\ \hline
 $B_4^0$ & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Not performed & Feeds $r_\text{NNLO}$ & Pass \\ \hline
 $C_4^0$ & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Not performed & Feeds $r_\text{NNLO}$ & Pass \\ \hline

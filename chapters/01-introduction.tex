@@ -2,13 +2,34 @@
 
 High-energy collider experiments, such as the proton-proton collisions studied at the
 Large Hadron Collider (LHC) at CERN, have, in recent years, provided ever-increasing
-precision in measurements of processes governed by the strong interaction. To be 
-able to use these measurements fully, theoretical calculations must achieve similar 
-levels of precision. At high energies, Quantum Chromodynamics (QCD) permits such 
-predictions to be organised as a perturbative expansion in powers of the strong coupling 
-constant $\alpha_s$.
+precision in measurements of processes governed by the strong interaction. 
 
-Obtaining higher-order perturbative predictions is not simply a matter of calculating
+The strong interaction is one of the four fundamental physical interactions. Its charge is colour charge.
+The interaction is mediated by gauge bosons called gluons, and carried by fermions called quarks, which come in 
+six flavours distinguished by mass and by one of two possible electric charges. Fig.~\ref{fig:SM} shows 
+the usual representation of the Standard Model's elementary particles, including quarks and gluons.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/SM1.png}
+    \caption{\centering A diagram representing the Standard Model of Particle Physics. In it, the six quark flavours are 
+            visible on the top left in purple, among the fermions, and the gluon is represented close as the topmost 
+            gauge bosons, in red. Image by Matic Lubej~\cite{lubejStandardModel}.}
+    \label{fig:SM}
+\end{figure}
+
+The very-high centre-of-mass (COM) energy $q$ at which the protons are collided is quite
+important, as the strong coupling constant $\alpha_s$ decreases in value as the COM energy increases.
+This fact allows phenomenologists to build their predictions as perturbative expansions in powers 
+of the constant. As perturbative order increases from leading (LO), to next-to-leading (NLO), to 
+next-to-next-to-leading order (NNLO), and beyond, theoretical uncertainty decreases. This increase 
+in theoretical precision, however, comes at the cost of a rapidly compounding increase in the algebraic 
+complexity of the computation of the required mathematical operations. As an illustrative example, as shown in 
+Table~\ref{tab:antFamilies}, for the quark-antiquark final-final antenna functions and $q\bar q$ form factors considered in this work,
+their number increases as one at LO, two at NLO (one tree-level and one one-loop), and eleven at NNLO 
+(four tree-level, three one-loop, and four two-loop).
+Obtaining higher-order 
+perturbative predictions is not simply a matter of calculating
 additional Feynman diagrams. Real-emission and virtual-loop contributions develop
 infrared singularities in kinematic configurations involving soft (low energy)
 or collinear partons. These individual contributions are divergent, and their

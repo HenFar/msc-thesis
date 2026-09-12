@@ -46,7 +46,7 @@ By running \texttt{BuildAndIntegrateAntenna[A,2,1]} we get the integrated result
 \subsection{$A_3^0$}
 Running \texttt{BuildAntenna[A,3,0]}, we get the built result,
 \begin{equation}
-    A_3^0 = \frac{2s_{12}^2-2s_{12}(s_{13}+s_{23})}{q^2s_{13}s_{23}}+\epsilon\frac{2}{q^2}+(\epsilon-1)\frac{s_{13}^2+s_{23}^2}{q^2s_{13}s_{23}}.
+    A_3^0 = \frac{2s_{12}^2+2s_{12}(s_{13}+s_{23})}{q^2s_{13}s_{23}}-\epsilon\frac{2}{q^2}+(1-\epsilon)\frac{s_{13}^2+s_{23}^2}{q^2s_{13}s_{23}}.
 \end{equation}
 By running \texttt{BuildAndIntegrateAntenna[A,3,0]} we get the integrated result, 
 \begin{equation}
@@ -79,7 +79,7 @@ where,
 By running \texttt{BuildAndIntegrateAntenna[A,2,2,Component->Leading]} we get the integrated result, 
 \begin{equation}
     \begin{gathered}
-        \mathcal A_2^2 = \frac1{4\epsilon^2}+\frac{17}{8\epsilon^3}+\frac1{\epsilon^2}\!\left(\frac{433}{144}-\frac{\pi^2}2\right)+\frac1\epsilon\!\left(\frac{4045}{864}-\frac{83\pi^2}{48}+\frac{7\zeta_3}{12}\right)\\
+        \mathcal A_2^2 = \frac1{4\epsilon^4}+\frac{17}{8\epsilon^3}+\frac1{\epsilon^2}\!\left(\frac{433}{144}-\frac{\pi^2}2\right)+\frac1\epsilon\!\left(\frac{4045}{864}-\frac{83\pi^2}{48}+\frac{7\zeta_3}{12}\right)\\
         - \frac{9083}{5184}-\frac{2153\pi^2}{864}+\frac{263\pi^4}{1440}+\frac{13\zeta_3}{9}+\mathcal O(\epsilon).
     \end{gathered}
 \end{equation}
@@ -133,12 +133,12 @@ By running \texttt{BuildAndIntegrateAntenna[A,2,2,Component->Nf]} we get the int
 
 Running \texttt{BuildAntenna[A,2,2,Component->Breve]}, we get the built result,
 \begin{equation}
-    \breve A_2^2 = \frac{(-2+\epsilon-2\epsilon^2)\Gamma^6(1-\epsilon)\Gamma^2(1+\epsilon)\!\left(120-20\pi^2\epsilon^2+80(13-42\epsilon)\zeta_3\epsilon^3+\pi^4\epsilon^4\right)}{1920\epsilon^4\Gamma^2(2-2\epsilon)}.
+    \breve A_2^2 = \frac{\Gamma^6(1-\epsilon)\Gamma^2(1+\epsilon)}{\Gamma^2(2-2\epsilon)}\frac{\left(-2+\epsilon-2\epsilon^2\right)^2\left(\pi^4\epsilon^4-80\zeta_3\epsilon^3-20\pi^2\epsilon^2+120\right)}{1920\epsilon^4}.
 \end{equation}
 By running \texttt{BuildAndIntegrateAntenna[A,2,2,Component->Breve]} we get the integrated result, 
 \begin{equation}
     \begin{gathered}
-        \breve{\mathcal A}_2^2 = \frac1{4\epsilon^4}+\frac3{4\epsilon^3}+\frac1{\epsilon^2}\!\left(\frac{41}{16}-\frac{\pi^2}{24}\right)+\frac1\epsilon\!\left(7-\frac{\pi^2}{8}+\frac{7\zeta_3}{6}\right)\\
+        \breve{\mathcal A}_2^2 = \frac1{4\epsilon^4}+\frac3{4\epsilon^3}+\frac1{\epsilon^2}\!\left(\frac{41}{16}-\frac{\pi^2}{24}\right)+\frac1\epsilon\!\left(7-\frac{\pi^2}{8}-\frac{7\zeta_3}{6}\right)\\
         +18-\frac{41\pi^2}{96}-\frac{7\pi^4}{480}-\frac{7\zeta_3}{2}+\mathcal O(\epsilon).
     \end{gathered}
 \end{equation}
