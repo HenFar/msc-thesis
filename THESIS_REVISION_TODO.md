@@ -1,5 +1,13 @@
 # Thesis revision checklist
 
+**Deadline update (14 Sep 2026):** Prof. Pires agreed to send Henrique feedback today
+(14 Sep) so he can send the first half (through Ch3) to his second advisor, Prof.
+Sampaio, for review/acceptance. Plan: second half follows about a week later
+(~21 Sep). Hard deadline: full thesis to the school by **30 Sep 2026 at the latest**.
+Ch4 work (this file's Task V equivalent, the antenna-family rewrite) is not on the
+critical path for today's send but needs to be in good shape before the second-half
+send in about a week.
+
 Consolidated from three independent reviews of the current thesis draft on 17 August 2026.  This is a prioritised working list, not a claim that every item is an established physics error.  Items marked **verify** require comparison with the cited source or a trusted symbolic calculation before changing the thesis.
 
 Known placeholder references to the appendices are deliberately not repeated here, as they are already tracked separately.

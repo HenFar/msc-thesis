@@ -1,0 +1,747 @@
+Universidade de Lisboa
+Faculdade de Ciências
+Departamento de Fı́sica
+
+Computation of Multi-Particle Phase-Space Integrals and
+Their Applications in High-Energy Physics
+
+Henrique Gomes da Cruz Martins Farinha
+
+Mestrado em Engenharia Fı́sica
+Versão Provisória
+
+Dissertação orientada por:
+Dr. João Nuno Ramalho Gonçalves Pires
+Dr. Jorge Miguel de Brito Almeida Sampaio
+
+2026
+
+Agradecimentos
+
+1
+
+Resumo
+A crescente precisão alcançada pelas experiências realizadas em colisores de partı́culas exige previsões teóricas com um grau de rigor comparável. Uma parte substancial destes processos é governada
+pela interação forte, descrita pela Cromodinâmica Quântica (QCD). A energias elevadas, esta teoria
+pode ser tratada perturbativamente, organizando as previsões fı́sicas como uma expansão em potências
+da constante de acoplamento forte, 𝛼𝑠 . Contudo, aumentar a precisão de um cálculo não corresponde
+apenas a acrescentar diagramas de Feynman: exige controlar uma estrutura complexa de contribuições
+de emissão real e virtual, bem como as divergências que surgem em cada uma delas.
+As divergências infravermelhas constituem uma das principais dificuldades dos cálculos perturbativos
+em QCD. As contribuições de emissão real tornam-se singulares quando um partão é emitido com energia
+muito baixa, o limite mole, ou quando dois partões se tornam colineares. Paralelamente, as amplitudes
+com laços contêm polos infravermelhos associados às mesmas regiões cinemáticas. Embora estas
+divergências se cancelem em observáveis fı́sicos suficientemente inclusivos, as componentes individuais
+do cálculo não são finitas. É, por isso, necessário reorganizar a previsão teórica de modo a isolar as
+singularidades e a efetuar o seu cancelamento de forma analı́tica e controlada.
+O formalismo de subtração por antenas fornece um enquadramento adequado para esse objetivo.
+Neste método, a radiação não resolvida é descrita entre dois partões duros ligados por cor, designados
+por radiadores. As funções de antena reproduzem os limites moles e colineares relevantes de forma
+local no espaço de fase. Quando são subtraı́das às contribuições reais, eliminam as singularidades antes
+da integração numérica. Depois de integradas analiticamente sobre o espaço de fase da radiação não
+resolvida, originam polos em regularização dimensional que cancelam os polos das contribuições virtuais.
+O cancelamento destas singularidades permite que cada contribuição seja integrada numericamente em
+quatro dimensões.
+Esta dissertação apresenta o desenvolvimento de AntCalc, um pacote simbólico para a construção
+e integração automatizadas de funções de antena em QCD. O projeto procura automatizar etapas que
+requerem implementações especı́ficas para cada antena, reunindo num mesmo fluxo as convenções de
+normalização, construção e integração. O trabalho centra-se nas antenas quark–antiquark sem massa, na
+configuração cinemática final–final, até à ordem next-to-next-to-leading order (NNLO). Para além deste
+objetivo principal, é estudada uma extensão exploratória ao regime massivo através da implementação
+da antena 𝐴30 .
+A base teórica da dissertação inclui uma introdução à QCD perturbativa, aos campos de quarks e
+gluões e à construção de amplitudes a partir de diagramas de Feynman. São discutidas as divergências ultravioleta, tratadas por renormalização, e as divergências infravermelhas, que exigem a combinação entre
+várias contribuições perturbativas. Utiliza-se regularização dimensional, na qual o número de dimensões
+do espaço-tempo é tomado como 𝑑 = 4 − 2𝜖. Neste enquadramento, as divergências manifestam-se
+como polos em 𝜖, e as quantidades integradas são expressas por séries de Laurent. O cancelamento dos
+polos pode, assim, ser acompanhado explicitamente ao combinar as diferentes contribuições para uma
+2
+
+quantidade fı́sica.
+É também apresentada a estrutura das funções de antena e a sua decomposição em cor. As antenas
+são obtidas a partir de amplitudes fı́sicas normalizadas e organizadas de acordo com os radiadores e as
+partı́culas emitidas. A fatorização do espaço de fase é essencial neste processo, pois permite separar o
+espaço de fase reduzido, associado aos radiadores após a emissão não resolvida ser removida, do espaço
+de fase correspondente à própria emissão. A integração pode então ser efetuada apenas sobre o espaço
+de fase da radiação não resolvida, independentemente do processo duro em que a antena venha a ser
+inserida. A dissertação introduz ainda os objetos T , que combinam antenas integradas, fatores de cor e
+normalizações de forma apropriada para a construção de observáveis inclusivos.
+A integração das funções de antena é uma das etapas mais exigentes do cálculo. As integrais de
+espaço de fase são reescritas como integrais de laço através da técnica de reverse unitarity. Em seguida,
+são reduzidas a um conjunto finito de integrais mestres usando identidades de integração por partes
+(integration by parts, IBP) e o algoritmo de Laporta. Em casos adequados, recorre-se também à redução
+de Passarino–Veltman. Uma vez identificados os integrais mestres e substituı́das as respetivas expressões
+conhecidas, obtém-se a forma integrada da antena como uma expansão em 𝜖. O resultado da redução
+fica, deste modo, expresso num conjunto limitado de integrais mestres, cujas expansões em 𝜖 determinam
+as partes singular e finita da antena integrada.
+O pacote AntCalc foi implementado no ambiente Wolfram Mathematica e integra ferramentas especializadas para as diferentes fases do cálculo. FeynArts é utilizado para gerar os diagramas de Feynman
+relevantes, enquanto FeynCalc e FeynHelpers apoiam a construção e a manipulação das amplitudes.
+A redução IBP é realizada com LiteRed2. A arquitetura do pacote é orientada por perfis, isto é, por
+descrições estruturadas que especificam o processo, as amplitudes, as famı́lias de integrais, os fatores
+de normalização e os integrais mestres necessários. A informação especı́fica de cada antena fica, assim,
+concentrada no respetivo perfil, enquanto as rotinas de construção e integração permanecem comuns aos
+diferentes casos.
+O fluxo de trabalho divide-se em duas fases principais: construção e integração. Na fase de construção,
+o utilizador fornece a descrição do processo e o pacote gera os diagramas e amplitudes correspondentes.
+São depois efetuadas as manipulações algébricas necessárias para extrair a função de antena não integrada,
+ou as suas componentes de cor quando aplicável. Na fase de integração, essa expressão é convertida
+para uma forma apropriada à redução, associada à famı́lia de integrais correta e reduzida aos integrais
+mestres. Finalmente, a substituição dos resultados dos integrais mestres e a expansão em torno de 𝜖 = 0
+produzem a antena integrada. Ao longo deste fluxo são efetuados testes de consistência e apresentados
+diagnósticos do cálculo.
+Como exemplo detalhado, é apresentada a derivação da antena 𝐴30 , que descreve a emissão de um
+gluão entre um quark e um antiquark sem massa ao nı́vel de árvore. Este caso ilustra todo o percurso, desde
+a geração da amplitude até à expressão integrada. A validação local da antena é efetuada através dos seus
+limites infravermelhos. No limite mole, verifica-se que a expressão reproduz o fator eikonal esperado;
+nos limites colineares, confirma-se a recuperação da função de separação de Altarelli–Parisi apropriada.
+A concordância nestes limites constitui uma verificação local da expressão obtida, independente da
+comparação posterior da antena integrada com resultados da literatura.
+Para além de 𝐴30 , AntCalc é aplicado a um conjunto de antenas sem massa até NNLO. São obtidas
+contribuições de dois, três e quatro partões, incluindo os conjuntos 𝐴22 , 𝐴31 e 𝐴40 , bem como antenas com
+outras estruturas de cor, tais como 𝐵40 e 𝐶40 . Os resultados não integrados e integrados são comparados com
+resultados estabelecidos na literatura, verificando-se concordância. A concordância com os resultados
+publicados verifica, em simultâneo, as convenções de regularização dimensional e normalização, bem
+3
+
+como o tratamento da estrutura de cor e do espaço de fase adotado na implementação.
+A validação global é realizada através do cálculo do rácio hadrónico sem massa, ou 𝑅-ratio. Este
+observável relaciona a secção eficaz de produção de hadrões em aniquilação eletrão–positrão com a
+secção eficaz de produção de pares de muões. Por ser inclusivo, constitui um teste rigoroso da consistência
+do formalismo: os polos infravermelhos provenientes das contribuições reais e virtuais devem cancelar
+exatamente. A montagem do 𝑅-ratio a partir dos objetos integrados produzidos por AntCalc confirma esse
+cancelamento e reproduz o resultado finito conhecido até NNLO. A reprodução do 𝑅-ratio complementa,
+deste modo, os testes locais das antenas, verificando o cancelamento dos polos quando as diferentes
+contribuições são combinadas num observável fı́sico.
+A dissertação explora ainda a extensão ao caso massivo pela construção e integração da antena
+massiva 𝐴30 . A presença de uma massa altera a cinemática, a estrutura do espaço de fase e os limites
+infravermelhos, eliminando, em particular, algumas singularidades colineares existentes no caso sem
+massa. Este cálculo fornece uma primeira implementação do fluxo massivo em AntCalc e identifica as
+alterações necessárias à construção e integração de futuras antenas massivas.
+A principal limitação da versão atual do pacote é o custo computacional da execução inteiramente em
+Mathematica. Embora este ambiente seja particularmente útil para desenvolvimento simbólico, alguns
+cálculos tornam-se lentos e exigentes em memória. O trabalho futuro deverá, por isso, avançar para
+uma arquitetura modular e multilinguagem. Prevê-se a utilização de Python como orquestrador, FORM
+para manipulação algébrica eficiente e Kira para reduções IBP mais robustas, mantendo as ferramentas
+atuais nas tarefas em que são mais adequadas. Entre as extensões previstas encontram-se outras antenas
+massivas, antenas com radiadores quark–gluão e gluão–gluão, configurações inicial–final e inicial–inicial
+e, a mais longo prazo, cálculos a ordens perturbativas superiores, incluindo N3 LO.
+Em sı́ntese, o trabalho desenvolvido mostra que as etapas de construção, redução e integração das
+funções de antena consideradas podem ser reunidas num único procedimento automatizado. O pacote
+reproduz resultados conhecidos para antenas sem massa até NNLO, valida os limites infravermelhos
+locais e recupera corretamente o 𝑅-ratio hadrónico. A implementação obtida pode servir de base à
+inclusão de novas classes de antenas sem exigir que todo o procedimento de construção e integração seja
+novamente implementado de raı́z.
+
+Palavras chave: QCD; Subtração por Antenas; NNLO; Singularidades Infravermelhas; Mathematica
+
+4
+
+Abstract
+High-precision collider measurements require theoretical predictions that are accurate to their same
+level. In perturbative Quantum Chromodynamics (QCD), these predictions are organised as an expansion of the strong coupling constant, 𝛼𝑠 . At higher orders, the calculation is complicated by infrared
+singularities associated with soft and collinear parton radiation. Although these singularities cancel in
+physical observables, the real-emission and virtual contributions are separately divergent and therefore
+cannot be handled numerically without first isolating and cancelling them.
+Antenna subtraction provides a systematic way to do this. It uses universal antenna functions to
+describe unresolved radiation between colour-connected hard partons. These functions are subtracted
+locally from the real-emission contribution and then integrated analytically in dimensional regularisation,
+making the cancellation of infrared poles against the virtual terms explicit.
+This thesis develops AntCalc, a symbolic framework in Wolfram Mathematica for constructing and
+integrating QCD antenna functions. The package combines FeynArts, FeynCalc, FeynHelpers, and
+LiteRed2, while keeping process-dependent information separate from the general calculation workflow.
+It generates the required amplitudes, constructs unintegrated antennae or colour components, maps the
+corresponding phase-space integrals onto integral families, and reduces them to master integrals through
+integration-by-parts identities.
+The implementation reproduces the massless final-final quark-antiquark antennae through next-tonext-to-leading order. The tree-level three-parton antenna 𝐴30 is used as a detailed example and is
+checked in its soft and collinear limits. The integrated results agree with the literature, and the full
+NNLO massless hadronic 𝑅-ratio is reconstructed as an additional validation. A preliminary massive 𝐴30
+implementation shows how the same workflow can be extended beyond the massless case. Future work
+will extend AntCalc to further massive antennae, additional partonic configurations, and a more modular
+multi-language architecture.
+
+Keywords: QCD; Antenna Subtraction; NNLO; Infrared Singularities; Mathematica
+
+5
+
+Contents
+Agradecimentos
+
+1
+
+Resumo e Abstract
+
+5
+
+List of Abbreviations and Symbols
+
+12
+
+1
+
+Introduction
+
+14
+
+2
+
+Theoretical Foundations
+2.1 QCD: Fields, Interactions and Perturbative Amplitudes . . . . . . . . . . . . . . . . . .
+2.1.1 Quark and Gluon Fields . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.1.2 From the QCD Lagrangian to Feynman Diagrams . . . . . . . . . . . . . . . . .
+2.2 Divergences in Perturbative QCD . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.2.1 Infrared Divergences . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.2.2 Ultraviolet Divergences . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.3 Dimensional Regularisation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.4 The Antenna Subtraction Formalism . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.4.1 Subtraction Terms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.4.2 Antenna Functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.4.3 Colour Algebra and the Antenna Colour Decomposition . . . . . . . . . . . . .
+2.4.4 Antenna Construction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.4.5 Phase-Space Factorisation . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+2.5 Phase-Space Integration and IBP Reduction . . . . . . . . . . . . . . . . . . . . . . . .
+2.5.1 IBP Identities and the Laporta Algorithm . . . . . . . . . . . . . . . . . . . . .
+2.5.2 Master Integrals . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+16
+16
+16
+17
+18
+18
+20
+21
+22
+23
+27
+29
+30
+32
+33
+35
+38
+
+3
+
+Package Framework
+3.1 Design Philosophy and Scope . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.2 Profile-Driven Architecture . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.3 The Build Stage . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.3.1 Tree-Level Routes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.3.2 One-Loop Routes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.3.3 Two-Loop Routes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.4 From the Build Stage to Integration . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.5 The Integration Stage . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.5.1 Integration Profiles and Selection . . . . . . . . . . . . . . . . . . . . . . . . .
+3.5.2 Integration Routes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+40
+40
+41
+43
+44
+45
+46
+46
+47
+49
+50
+
+6
+
+3.6
+3.7
+
+Higher-Level Functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Validation and Development Diagnostics . . . . . . . . . . . . . . . . . . . . . . . . . .
+3.7.1 Amplitude-Level and Release-Acceptance Validation . . . . . . . . . . . . . . .
+3.7.2 Runtime and Memory Characteristics . . . . . . . . . . . . . . . . . . . . . . .
+
+51
+51
+52
+52
+
+4
+
+Antenna Construction and Integration: Selected Case Studies
+4.1 NLO Antenna Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.1.1 The Tree-Level Three-Parton Antenna 𝐴30 . . . . . . . . . . . . . . . . . . . . .
+4.1.2 Local Validation of 𝐴30 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.1.3 The Virtual 𝐴21 Contribution . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.2 Two-Parton Contributions: the 𝐴22 Set . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.2.1 The 𝐴22 Antenna . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.2.2 The 𝐴˜ 22 Antenna . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.2.3 The 𝐴ˆ 22 Antenna . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.2.4 The 𝐴˘ 22 Antenna . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.2.5 Master Integrals . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.3 Three-Parton Contributions: the 𝐴31 Set . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.3.1 The 𝐴31 Antenna . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.3.2 The 𝐴˜ 31 Antenna . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.3.3 The 𝐴ˆ 31 Antenna . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.3.4 Master Integrals . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.4 Four-Parton Contributions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.4.1 The 𝐴40 Antenna . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.4.2 The 𝐴˜ 40 Antenna . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.4.3 The 𝐵40 Antenna . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.4.4 The 𝐶40 Antenna . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.4.5 Master Integrals . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.5 Exploratory Massive Extension: 𝐴30 . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.5.1 Exploratory Massive Master Integrals . . . . . . . . . . . . . . . . . . . . . . .
+4.5.2 Build and Integrate Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.6 Overview of Implemented Routes . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+54
+56
+56
+63
+64
+65
+65
+66
+66
+67
+68
+70
+70
+70
+71
+72
+73
+73
+74
+75
+75
+76
+80
+81
+82
+82
+
+5
+
+Global Validation: The Massless Hadronic R-Ratio
+5.1 R-Ratio Definition . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5.2 Global Validation with AntCalc . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5.2.1 Assembly from Integrated Antennae . . . . . . . . . . . . . . . . . . . . . . . .
+
+85
+85
+85
+86
+
+6
+
+Future Work
+
+88
+
+7
+
+Conclusion
+
+90
+
+A Complete Antenna Expressions
+A.1 LO Antenna . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+A.1.1 𝐴20 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+A.2 NLO Antennae . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+A.2.1 𝐴21 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+7
+
+91
+91
+91
+91
+91
+
+A.2.2 𝐴30 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 92
+A.3 NNLO Antennae . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 92
+A.3.1 𝐴22 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 92
+A.3.2 𝐴˜ 22 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 92
+A.3.3 𝐴ˆ 22 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 93
+A.3.4 𝐴˘ 22 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 93
+A.3.5 𝐴31 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 93
+A.3.6 𝐴˜ 31 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 94
+A.3.7 𝐴ˆ 31 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 95
+A.3.8 𝐴40 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 95
+A.3.9 𝐴˜ 40 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 99
+A.3.10 𝐵40 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 107
+A.3.11 𝐶40 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 108
+A.4 Exploratory Massive 𝐴30 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 110
+B Supporting Derivations
+111
+B.1 Feynman Rules . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 111
+B.1.1 Propagators . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 111
+B.1.2 Vertices . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 112
+B.2 PaVe Reduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 112
+B.2.1 Rank-One Bubble Example . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 113
+B.2.2 PaVe Scalar Functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 114
+B.3 IBP Reduction Example . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 115
+B.4 Three-Particle Phase-Space to Cut Propagators . . . . . . . . . . . . . . . . . . . . . . 115
+B.5 Laporta Algorithm Implementation Example . . . . . . . . . . . . . . . . . . . . . . . 116
+B.6 The Massive Extension . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 116
+B.6.1 Massive Kinematics and Infrared Structure . . . . . . . . . . . . . . . . . . . . 116
+B.6.2 Massive Phase-Space Integration and Reduction Methods . . . . . . . . . . . . 117
+B.7 Master Integral Substitution Arrays . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 118
+B.7.1 The 𝐴22 Set . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 118
+B.7.2 The 𝐴31 Set . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 118
+B.7.3 The Four-Parton (X40) Set . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 118
+
+8
+
+List of Figures
+1.1
+
+2.1
+2.2
+2.3
+
+3.1
+
+3.2
+3.3
+3.4
+
+3.5
+3.6
+3.7
+3.8
+
+4.1
+
+6.1
+
+A diagram representing the Standard Model of Particle Physics. In it, the six quark
+flavours are visible on the top left in purple, among the fermions, and the gluon is
+represented close as the topmost gauge bosons, in red. Image by Matic Lubej [1]. . . . .
+Tree-level diagrams for the process 𝛾 ∗ → 𝑞(𝑘 1 )𝑔(𝑘 3 ) ¯
+𝑞(𝑘 2 ). . . . . . . . . . . . . . . .
+The colour connections in between parent and daughter partons before and after an
+emission, accompanied also by a schematic Feynman diagram using the momenta labels.
+The three characteristic double-unresolved colour-connection configurations at NNLO:
+(a) two colour-connected unresolved partons, (b) two adjacent single-unresolved antennae,
+and (c) two disconnected single-unresolved antennae. . . . . . . . . . . . . . . . . . . .
+Profile-driven architecture of AntCalc. Route profiles configure the build and integration
+workflows, while the build-side route context carries the evolving calculation data. The
+AntennaObject provides the integration-ready handoff between the two stages. . . .
+Profile-driven architecture of AntCalc’s Build stage. The principal build-specific options
+to the BuildAntenna function are displayed on the red card. . . . . . . . . . . . . . .
+Diagram showing the build-side workflow leading to the generation of the 𝐴22 antenna
+set. The two subsets are separated by the interferences used in their generation. . . . . .
+Diagram of the build-only and build-and-integrate routes: the combined route is shown
+above, the build-only route below. The dashed lines mark the options to separate the result
+into single components (build-only route) or merge them into one ordered list (combined
+route). The 𝐴31 antenna set is used as an example. . . . . . . . . . . . . . . . . . . . . .
+Profile-driven architecture of AntCalc’s Integration stage. The principal integration-only
+options are shown inside the red card. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Diagram showing the component extraction steps and integration-basis families used in
+the integration-side workflow of the 𝐴22 antenna set. . . . . . . . . . . . . . . . . . . . .
+PaVe reduction for the 𝐴21 antenna integration. . . . . . . . . . . . . . . . . . . . . . . .
+IBP reduction workflow for the remaining antennae integrations. The MI computation is
+external to AntCalc’s internal operation, and hence is represented by an external incoming
+arrow. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+14
+18
+24
+
+27
+
+41
+44
+46
+
+47
+48
+49
+50
+
+51
+
+Feynman diagrams depicting the two topologies described under the 𝐴30 antenna, corresponding to the process 𝛾 ∗ → 𝑞(𝑘 1 )𝑔(𝑘 3 ) ¯
+𝑞(𝑘 2 ). . . . . . . . . . . . . . . . . . . . . . .
+
+56
+
+Diagram showing the current and planned workflow steps relative to their programming
+languages. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+88
+
+9
+
+List of Tables
+2.1
+
+2.2
+2.3
+
+3.1
+3.2
+3.3
+3.4
+3.5
+3.6
+3.7
+
+4.1
+4.2
+4.3
+
+Infrared limits of the real-radiation matrix elements for 𝛾 ∗ → 𝑞 𝑞¯ through NNLO, listed
+by final-state parton configuration. Each configuration is colour-ordered, with the hard
+quark and antiquark first and last; 𝑝 𝑖 is the momentum of parton 𝑖, ∥ denotes a collinear
+pair, and 𝑠𝑖...𝑘 = ( 𝑝 𝑖 + . . . + 𝑝 𝑘 ) 2 . Limits related by 𝑞 ↔ 𝑞¯ or by gluon relabelling are
+not listed separately. The subtraction counterterm of Eq. 2.13 must reproduce the matrix
+element in each of these limits [5]. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+𝑆
+and
+NNLO unresolved configurations and their matching subterm, part of the 𝑑𝜎NNLO
+𝑇
+𝑑𝜎NNLO subtraction counterterms. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Quark-antiquark antenna families used in this work, including the 𝑞 𝑞¯ form factors [5].
+Final states are ordered with the two hard radiator listed first and last, following that
+paper’s convention. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Overview of the antenna functions currently implemented in AntCalc, by perturbative
+order and validation source. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Overview of the settings for the 𝐴21 route used as a representative example of the route
+system used in AntCalc. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Overview of the tree-level production and extraction modes. . . . . . . . . . . . . . . .
+Overview of the one-loop production and extraction modes. . . . . . . . . . . . . . . . .
+Overview of the two-loop contributions and extraction modes. . . . . . . . . . . . . . .
+Overview of the integration-side route-profiles. . . . . . . . . . . . . . . . . . . . . . .
+Representative resource measurements for the implemented public antenna routes. The
+build time measures BuildAntenna[..., IntegrableForm -> True], followed by IntegrateAntenna[...] for the integration time. Each route was
+evaluated in a fresh Wolfram kernel. Peak memory is the maximum kernel-memory
+increase relative to the initial baseline. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Overview of the master integrals used in the build- and integration-stage by each antenna
+type [5, 12]. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Construction and integration overview of every antenna route implemented in AntCalc. .
+Validation evidence and status of every antenna route implemented in AntCalc. “Not
+applicable” marks routes with no real unresolved parton to take a soft/collinear limit of
+(𝐴20 , 𝐴21 , 𝐴22 ); “Not performed” marks routes where such a limit exists but was not checked
+in this work — see the chapter introduction for why 𝐴30 was chosen to demonstrate the
+method rather than repeating it on every route. The massive 𝐴30 route is deliberately
+marked as less mature than the massless set: it agrees with the literature locally, but has
+not yet been checked against any global observable. . . . . . . . . . . . . . . . . . . . .
+
+10
+
+20
+25
+
+28
+
+42
+43
+45
+45
+46
+49
+
+53
+
+55
+83
+
+84
+
+B.1 Overview of the propagators found throughout the thesis, alongside their mathematical
+and graphical representations. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 111
+B.2 Overview of the vertices encountered throughout this thesis, alongside their mathematical
+and graphical representations. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 112
+
+11
+
+List of Abbreviations and Symbols
+Abbreviations and Acronyms
+Term
+
+Meaning
+
+QCD
+
+Quantum Chromodynamics
+
+LO / NLO / NNLO
+
+Leading / Next-to-Leading / Next-to-Next-to-Leading Order
+
+IR / UV
+
+Infrared / Ultraviolet
+
+MI
+
+Master Integral(s)
+
+RR / RV / VV
+
+double-Real, Real-Virtual and double-Virtual NNLO contributions
+
+AP
+
+Altarelli–Parisi (splitting function)
+
+CDR
+
+Conventional Dimensional Regularisation
+
+KLN
+
+Kinoshita–Lee–Nauenberg (theorem)
+
+SM
+
+Standard Model of Particle Physics
+
+EFT
+
+Effective Field Theory
+
+SUSY
+
+Supersymmetry
+
+MC
+
+Monte Carlo
+
+IBP
+
+Integration by Parts
+
+Antenna and Regularisation Notation
+Symbol
+𝑋𝑛𝑙
+
+Meaning
+Generic antenna symbol: 𝑛 is the final-state multiplicity, 𝑙 the loop
+order
+
+𝐴, 𝐵, 𝐶
+
+Quark-antiquark antenna families (implemented)
+
+𝐷, 𝐸
+
+Quark-gluon antenna families (not implemented in the present work)
+
+𝐹, 𝐺, 𝐻
+
+Gluon-gluon antenna families (not implemented in the present work)
+
+𝑋 (undecorated)
+
+Leading-colour component (from the raw “Lead” interference term)
+
+𝑋˜
+
+Subleading-colour component (raw “Sublead” interference term)
+
+𝑋ˆ
+
+Quark-loop component (raw “QL” interference term)
+
+12
+
+Symbol
+
+Meaning
+
+𝑋˘
+
+Double-fermion-loop self-interference component (NNLO 𝐴22 only)
+
+𝑆𝜖
+
+(4𝜋) − 𝜖 𝑒 𝜖 𝛾𝐸 , the MS normalisation factor
+
+Λ𝑙
+
+(8𝜋 2 ) 𝑙 , loop-order normalisation
+
+𝐺𝑘
+
+(8𝜋 2 ) 𝑘 , perturbative-order scale normalisation
+
+𝐶 (𝜖, 𝑘)
+N𝑋
+
+𝐺 𝑘 𝑆 𝜖 , combined normalisation factor
+Build-stage colour and coupling normalisation
+
+N (𝜖, 𝑘)
+
+Full integration normalisation, 𝐶 (𝜖, 𝑘)/Φ2
+
+T -objects
+
+Process-wide colour- and kinematics-conscious objects assembled
+from antennae, used in the 𝑅-ratio construction
+
+Φ𝑛
+
+𝑑-dimensional 𝑛-body phase-space volume
+
+General Kinematics
+Symbol
+𝛼𝑠
+𝜖, 𝑑 = 4 − 2𝜖
+
+Meaning
+Strong coupling constant
+Dimensional-regularisation parameter; spacetime dimension
+
+𝑠𝑖 𝑗
+
+Mandelstam invariant, 2𝑝 𝑖 · 𝑝 𝑗
+
+𝜇
+
+Renormalisation/regularisation scale
+
+𝑞2
+
+Hard-process invariant mass squared
+
+𝑁
+
+Number of colours (= 3)
+
+𝑁𝑓
+
+Number of active quark flavours
+
+𝐶𝐹 , 𝐶 𝐴
+𝑔𝑠
+
+Quadratic Casimir invariants (fundamental / adjoint representation)
+√
+Strong coupling, 𝑔𝑠 = 4𝜋𝛼𝑠
+
+13
+
+Chapter 1
+
+Introduction
+High-energy collider experiments, such as the proton-proton collisions studied at the Large Hadron
+Collider (LHC) at CERN, have, in recent years, provided ever-increasing precision in measurements of
+processes governed by the strong interaction.
+The strong interaction is one of the four fundamental physical interactions. Its charge is colour charge.
+The interaction is mediated by gauge bosons called gluons, and carried by fermions called quarks, which
+come in six flavours distinguished by mass and by one of two possible electric charges. Fig. 1.1 shows
+the usual representation of the Standard Model’s elementary particles, including quarks and gluons.
+
+Figure 1.1: A diagram representing the Standard Model of Particle Physics. In it, the six quark flavours are
+visible on the top left in purple, among the fermions, and the gluon is represented close as the topmost gauge
+bosons, in red. Image by Matic Lubej [1].
+
+The very-high centre-of-mass (COM) energy 𝑞 at which the protons are collided is quite important,
+as the strong coupling constant 𝛼𝑠 decreases in value as the COM energy increases. This fact allows
+phenomenologists to build their predictions as perturbative expansions in powers of the constant. As
+perturbative order increases from leading (LO), to next-to-leading (NLO), to next-to-next-to-leading order
+14
+
+

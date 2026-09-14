@@ -258,6 +258,76 @@ two types can be defined as,
     B_0\!\left(p^2;m_0^2,m_1^2\right) = \mu^{4-d}\int\frac{d^d\ell}{i\pi^{d/2}}\frac1{D_0D_1}.
 \end{equation}
 
+\subsection{PaVe Scalar Functions}
+
+As mentioned, only three of the MI considered are PaVe scalar functions. Those are 
+$B_0$, $C_0$ and $D_0$ and are the PaVe two-, three- and four-point 
+scalar integrals, respectively. The PaVe method also features the $A_0$ (one-point)
+scalar function, that does not feature in \textit{AntCalc}. It also accounts for 
+scalar integrals with more than four external legs, as those can be further reduced 
+in four dimensions to combinations of $D_0$ functions \cite{tHooft:1972tcz,Passarino:1979pv}.
+
+\subsubsection{The $B_0$ Function}\label{subsubsec:B0}
+
+The $B_0$ function represents a scalar one-loop diagram with two external lines and 
+two internal propagators. It is represented, in $d$ dimensions as,
+\begin{equation}
+    B_0\!\left(k^2, m_0, m_1\right) = \frac{(2\pi\mu)^{4-d}}{i\pi^2}\int d^dp\frac1{\left(p^2-m_0^2+i\varepsilon\right)\Big((p+k)^2-m_1^2+i\varepsilon\Big)}
+\end{equation}
+where $k$ is the external momentum, and $m_0$ and $m_1$ are the internal masses. $\mu$
+is the t'Hooft normalisation scale.
+
+It is also noteworthy that this integral, unlike higher-point ones, is UV divergent and 
+generates the pole term $\Delta_B$, 
+\begin{equation}
+    \Delta_B = \frac2{4-d}-\gamma_E+\log(4\pi)
+\end{equation}
+where $\gamma_E$ is Euler's gamma constant.
+This function may also be written as an integral over the Feynman parameter $x$. That 
+yields the explicit analytical form \cite{Passarino:1979pv},
+\begin{equation}
+    B_0\!\left(k^2,m_0,m_1\right) = \Delta_B - \int_0^1 dx\,\log\!\left[\frac{k^2x^2-x\!\left(k^2-m_0^2+m_1^2\right)+m_1^2-i\varepsilon}{\mu^2}\right] + \mathcal O(d-4).
+\end{equation}
+
+\subsubsection{The $C_0$ Function}
+
+The $C_0$ function represents a scalar loop with three external lines and three
+internal propagators. It is a common feature in the vertex corrections of 
+electroweak physics. It is written in $d$ dimensions as,
+\begin{equation}
+    \begin{split}
+        C_0(k_1,k_2,m_0,m_1,m_2)=&\,\frac{(2\pi\mu)^{4-d}}{i\pi^2}\\ &\int d^dp\,\frac1{\Big(p^2-m_0^2+i\varepsilon\Big)\Big((p+k_1)^2-m_1^2+i\varepsilon\Big)\Big((p+k_1+k_2)^2-m_2^2+i\varepsilon\Big)}.
+    \end{split}
+\end{equation}
+
+This integral is UV finite and may be rewritten as a double integral over the Feynman 
+parameters $x$ and $y$ as,
+\begin{equation}
+    C_0\propto\int_0^1dx\int_0^{1-x}dy\,\left[ax^2+by^2+cxy+dx+ey+f\right]^{-1}
+\end{equation}
+where the coefficients $a, b, c, d, e$ and $f$ are linear combinations of the external 
+momenta and internal mass parameters \cite{tHooft:1972tcz}.
+
+\subsubsection{The $D_0$ Function}\label{subsubsec:D0}
+
+The $D_0$ function describes a scalar loop with four external lines and four internal 
+propagators. It is often called the scalar box integral. It is written as,
+\begin{equation}
+    D_0(k_1,k_2,k_3,m_0,m_1,m_2,m_3)=\frac{(2\pi\mu)^{4-d}}{i\pi^2}\int d^dp\,\frac1{D_0D_1D_2D_3}
+\end{equation}
+with denominator factors,
+\begin{equation}
+    \begin{split}
+        &D_0 = p^2-m_0^2+i\varepsilon\\
+        &D_i = \left(p+\sum_{a=1}^ik_a\right)^2-m_i^2+i\varepsilon.
+    \end{split}
+\end{equation}
+
+Evaluating $D_0$ is highly non-trivial as it 
+features numerous physical cuts and branch points. The resulting analytical 
+expression is expressed in terms of Spence functions (dilogarithms) \cite{tHooft:1972tcz}.
+
+
 \section{IBP Reduction Example}\label{sec:IBPRedEx}
 
 The method behind IBP reduction, as discussed in Subsection~\ref{subsec:ibp} 
@@ -475,3 +545,39 @@ integrals are generally multi-scale, and can involve
 logarithms, polylogarithms and more complicated transcendental functions;
 and lastly, boundary conditions are less direct, although common choices are
 the massless limit at $m\to0$ and the threshold limit at $\beta\to0$ \cite{GehrmannDeRidder:2009fz}.
+
+\section{Master Integral Substitution Arrays}\label{sec:MISubsArrays}
+
+As discussed in Section~\ref{sec:laportaByHand}, \textit{AntCalc}'s IBP reduction,
+handled internally by \textit{LiteRed2}, organises each antenna family's master
+integrals as members of that family's own basis, addressed through \textit{LiteRed2}'s
+$j[\text{basis},...]$ notation rather than the named masters used throughout
+Chapter~\ref{ch:workedexample}. At the master combination stage for each antenna, the
+raw $j[...]$-form result is substituted through a rule list specific to that family's
+basis, translating it into the named masters. The rule lists used are collected below,
+one per antenna family.
+
+\subsection{The $A_2^2$ Set}
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[1]:= A22MISubs = \{\\
+   j[A22TwoLoopTreeBasis1, 0, 0, 0, 1, 1, 0, 1] -> A3,\\
+   j[A22TwoLoopTreeBasis1, 1, 0, 1, 1, 1, 0, 0] -> A4,\\
+   j[A22TwoLoopTreeBasis4, 1, 0, 1, 0, 0, 1, 0] -> A3,\\
+   j[A22TwoLoopTreeBasis4, 1, 0, 0, 1, 0, 1, 1] -> A4,\\
+   j[A22TwoLoopTreeBasis6, 0, 0, 1, 1, 0, 0, 1] -> A3,\\
+   j[A22TwoLoopTreeBasis6, 1, 0, 1, 1, 0, 1, 0] -> A4,\\
+   j[A22TwoLoopTreeBasis8, 0, 1, 0, 0, 0, 1, 1] -> A3,\\
+   j[A22TwoLoopTreeBasis8, 1, 0, 1, 1, 1, 0, 0] -> A4,\\
+   j[A22TwoLoopTreeBasis8, 1, 1, 1, 1, 1, 1, 0] -> A6,\\
+   j[A22OneLoopSelfBasis, 1, 0, 1, 1, 0, 1, 0] -> A22LO\\
+   \};}
+\end{mdframed}
+
+\subsection{The $A_3^1$ Set}
+
+% TODO (Henrique): A31MISubs not yet built --- add here once run in AntCalc.
+
+\subsection{The Four-Parton (X40) Set}
+
+% TODO (Henrique): A40MISubs not yet built --- add here once run in AntCalc.
