@@ -109,7 +109,7 @@ and the NNLO $T$-objects are,
 
 We can now integrate the antennae and get the integrated $T$-objects, notated as $\mathcal T$. These 
 $\mathcal T$-objects are the ones used when assembling the $R$-ratio in the next section. Let us 
-now consider the two NLO $\mathcal T$-objects, $\mathcal T_{q\bar q}^4$ and $\mathcal T_{q\bar qg}^6$, 
+now consider the two NLO $\mathcal T$-objects, $\mathcal T_{q\bar q}^4$ and $\mathcal T_{q\bar qg}^4$,
 each relative to the generating processes of the $A_2^1$ and $A_3^0$ antennae. As discussed previously,
 via the KLN theorem, the virtual correction poles of the first antenna must cancel against the real 
 emission poles of the second. That can be seen as follows,
@@ -248,17 +248,38 @@ and is also exactly the expression we get by running \texttt{BuildRRatio[SMQCD]}
 
 \section{Comparison with Experimental Data}\label{sec:rratioData}
 
+\textit{AntCalc}'s $R$-ratio results may be expanded through the entire domain of PDG data for the
+observable \cite{Tanabashi:2018oca}. A plot with this expansion is present in Figure~\ref{fig:rratioFullDomain},
+below. There we can see how, as expected, the package's results are only relevant towards the middle of the 
+experimental data's domain, where the considered physics takes effect.
+
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/rratio-full-domain.pdf}
-    \caption{}
+    \includegraphics[width=0.8\textwidth]{figures/rratio-full-domain.pdf}
+    \caption{\centering Full domain plot of the \textit{AntCalc}'s $R$-ratio result over the whole $q$ domain of the PDG data.}
     \label{fig:rratioFullDomain}
 \end{figure}
 
+A closer look at that region of interest, $\sim\!\!2$--$30$GeV, as shown in Figure~\ref{fig:rratioContinuumOrders}, 
+both as raw results and below as results normalised by the LO $R$-ratio, shows a very close proximity of the theoretically
+\textit{AntCalc}-made results to the PDG data. It is also particularly interesting to note how at lower energies in the 
+normalised plot, the lines depicting the increasing perturbation orders get closer to the experimental data.
+
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/rratio-continuum-orders.pdf}
-    \caption{}
+    \includegraphics[width=0.8\textwidth]{figures/rratio_talk.pdf}
+    \caption{\centering Detail of the $R$-ratio plot against the PDG data around the relevant domain, showing how increasing perturbation order makes the plot approach experimental data.}
     \label{fig:rratioContinuumOrders}
 \end{figure}
 
+The massless-antenna-function results from \textit{AntCalc} have now been globally validated in three different ways, 
+using the hadronic massless $R$-ratio. In the first place, the fact that the three $R$-ratio perturbation 
+terms, $r_\text{LO}$, $r_\text{NLO}$, and $r_\text{NNLO}$ are finite validates the correct relations in between 
+the antennae at each and every order, since their poles cancel as prescribed. Secondly, the fact that the
+result matches previously established results that were computed using other methods confirms that the antenna
+functions are not simply correct relative to each other in a closed system, but that they are in agreement with
+the wider physics. Lastly, the fact that the \textit{AntCalc} $R$-ratio result plots close to the PDG data in the
+relevant domain, and also that it fails to converge on the same data set where it was not expected to, demonstrates its
+validity for what it intends to be, and that its results are physically meaningful. The fact that each order increase 
+brings the plot closer to the data also demonstrates that including higher-order corrections genuinely improves 
+the prediction's agreement with the physical result.

@@ -369,21 +369,25 @@ text (transcription, not composition) — classified **Mine**, executed directly
   and adding the R-ratio equation to the Resumo didn't close the gap, since the Abstract also grew
   from its own literal-text additions). Doesn't resolve open item 1 below.
 
+**Item 1 RESOLVED — 16 September 2026.** Henrique asked Claude to draft this one directly (single-use
+permission, explicitly given that turn). Rewrote the opening paragraph following the positioning
+plan agreed with Henrique: LHC named in the first sentence (mirroring the English Abstract's own
+opening move), the old dangling "Uma parte substancial destes processos" sentence dropped entirely
+rather than patched (its QCD-attribution content folded into what is now the second sentence), the
+closing Feynman-diagram-complexity sentence kept unchanged as the paragraph's transition into
+paragraph 2. Rebuilt clean, visually confirmed on the rendered page — reads naturally, no orphaned
+references, mirrors the English structure closely as Prof originally modelled.
+
 **[Yours] — open, needs Henrique's own composition/judgement, not drafted:**
-1. **Resumo opening paragraph still needs the LHC-focused rewrite Prof asked for** ("Que
-   experiências são estas? O que são colisores? Uma parte substancial destes processos, que
-   processos? Foca-te no LHC") — same treatment as the Abstract's opening paragraph already got
-   (Prof supplied literal replacement text for the English version but only a critique, no text,
-   for the Portuguese one). Should mirror the Abstract's new opening once drafted: LHC by name,
-   what "colliders" and "these experiments" concretely refers to.
-2. **Page-count imbalance is a live, unresolved question** — Prof asked directly whether 3 pages
-   (Resumo) vs 1 page (Abstract) follows FCUL's thesis-writing rules. No rules document found in
-   this repo; Henrique needs to check FCUL's actual regulations (or ask the secretariat/Prof
-   directly) and decide whether to trim the Resumo, expand the Abstract, or both — this is a
-   length/format compliance call, not something groundable from the current source. Note item 1
-   above will likely make the Resumo longer, not shorter, so it's worth resolving the rules
-   question before drafting item 1's rewrite.
-3. *(Not raised by Prof, flagged for Henrique's own call, not acted on):* the Portuguese Resumo had
+1. **Page-count imbalance is a live, unresolved question** (renumbered from item 2) — Prof asked
+   directly whether 3 pages (Resumo) vs 1 page (Abstract) follows FCUL's thesis-writing rules.
+   Henrique has since confirmed the Resumo/Abstract don't count toward the 80-page main-text limit,
+   which resolves the hard-limit worry, but Prof's underlying stylistic question (is this length
+   asymmetry itself normal/expected, independent of any page budget) is still nominally open — no
+   rules document found in this repo either way. Low priority now, not blocking anything; worth a
+   quick check with the secretariat or Prof whenever convenient. Note the item-1 rewrite above made
+   the Resumo slightly *longer*, not shorter, so this hasn't gotten easier to ignore.
+2. *(Not raised by Prof, flagged for Henrique's own call, not acted on):* the Portuguese Resumo had
    its self-deprecating "principal limitação" paragraph removed on Prof's explicit instruction (it
    undervalues the work); the English Abstract's closing "Future work will extend AntCalc..."
    sentence carries a milder version of the same framing and Prof didn't mention it. Left as-is —
