@@ -4,7 +4,7 @@
 
 QCD is the quantum field theory of the strong interaction, whose elementary 
 particles are the quarks and
-the gluons. Quarks are fermions that carry colour and interact through 
+the gluons. Quarks are fermions that carry colour charge and interact through
 the exchange of gluons. Owing to the non-Abelian gauge structure of QCD, gluons 
 themselves also 
 carry colour charge and, therefore, undergo self-interaction. 
@@ -58,10 +58,10 @@ field-strength tensor $F_{\mu\nu}^a$, as,
 \begin{equation}
     G_{\mu\nu}^a = F_{\mu\nu}^a + g_s f^{abc}A_\mu^b A_\nu^c,\quad F_{\mu\nu}^a\equiv\partial_\mu A_\nu^a - \partial_\nu A_\mu^a.
 \end{equation}
-The second term arises because, as shown in Eq.~\ref{eq:tDontCommute}, the $SU(3)_c$ 
+The second term arises because, as shown in Eq.~\eqref{eq:tDontCommute}, the $SU(3)_c$ 
 generators do not commute. The non-Abelian field-strength tensor is used to write 
 the gluon Lagrangian term. After expanding it becomes,
-\begin{equation}
+\begin{equation}\label{eq:gluonLagrangian}
     \mathcal L_g = -\frac14\!\left(F_{\mu\nu}^a\right)^2-\frac{g_s}2f^{abc}F^{a\,\mu\nu}A_\mu^b A_\nu^c - \frac{g_s^2}4f^{abc}f^{ade}A_\mu^b A_\nu^c A^{d\,\mu}A^{e\,\nu}.
 \end{equation}
 Here, much like in $\mathcal L_q$, the gluon Lagrangian is also divided into three terms. 
@@ -76,17 +76,20 @@ Throughout this text the 't Hooft-Feynman convention is used, which makes $\lamb
 following the default convention from \textit{FeynArts} \cite{Hahn:2000kx}. It is 
 important to note, however, that physical observables are independent of the gauge 
 choice. 
-Unlike the remaining terms, the first 
-contains no non-Abelian self-interaction. The cubic and quartic terms in the gluon 
-fields generate, respectively, the three- and four-gluon vertices, $ggg$ and $gggg$.
+In addition, the last two terms in Eq.~\eqref{eq:gluonLagrangian} contain cubic and
+quartic terms in the gluon fields that generate, respectively, the three- and
+four-gluon self-interaction vertices, $ggg$ and $gggg$.
 
-Using a covariant gauge-fixing term in a non-Abelian theory like QCD requires it to 
-be supplemented by a ghost Lagrangian, described as \cite{Ellis:1996mzs},
-\begin{equation}
+Finally, we note that the Feynman gauge adopted throughout this work, corresponding
+to $\lambda=1$, is a particular choice within the class of covariant gauges. In a
+non-Abelian gauge theory such as QCD, covariant gauge fixing introduces
+Faddeev--Popov ghost fields. Their dynamics and interactions with the gluon field
+are described by the ghost Lagrangian \cite{Ellis:1996mzs},
+\begin{equation}\label{eq:ghostLagrangian}
     \mathcal L_\text{ghost}=\partial_\mu\eta^{a\,\dagger}\!\left(D_{ab}^\mu\eta^b\right).
 \end{equation}
-This is the default ghost sector as used in \textit{FeynArts} \cite{Hahn:2000kx} and, as for the 
-$\lambda$ convention, is the one used for the duration of the present text and 
+This is the default ghost sector as used in \textit{FeynArts} \cite{Hahn:2000kx} and, as for the
+$\lambda=1$ choice above, is the one used for the duration of the present text and
 in \textit{AntCalc}. These ghost fields cancel the unphysical timelike and longitudinal 
 gluon polarisations that would, otherwise, propagate in covariant-gauge loop 
 diagrams. This ensures that only the two physical transverse 
@@ -215,27 +218,36 @@ to zero and the collinear limit, when $\theta_{ij}$ does. In both cases,
 \begin{equation}
     \lim_{E_i\to0}s_{ij}=0,\quad \lim_{\theta_{ij}\to 0}s_{ij}=0.
 \end{equation}
-A soft limit exists only where removing the unresolved parton leaves a physical
-lower-multiplicity process. For the $\gamma^*\to q(k_1)\,g(k_3)\,\bar q(k_2)$
-process, this permits only a soft gluon because, since $\gamma^*\to g\bar q$ does not 
-exist, the soft quark limit is not possible. That means that a quark can only
-become unresolved collinearly. At NNLO, however, a secondary quark-antiquark pair,
-produced by the splitting of an intermediate gluon, can become soft as a unit, giving a
-double pole in the pair's invariant. The same final state also has a collinear limit when
-the secondary pair itself becomes collinear, $q^\prime\parallel\bar q^\prime$, and a
-triple-collinear limit when the pair is additionally collinear with one of the hard partons.
-These and all other limits considered throughout this thesis are shown
-in Table~\ref{tab:limits}.
+At NLO, the process $\gamma^*\to q(k_1)g(k_3)\bar q(k_2)$ illustrates the two types
+of single-unresolved infrared limits. The gluon becomes unresolved either when it is
+soft, $k_3\to0$, or when it becomes collinear with one of the neighbouring quarks,
+$q\parallel g$ or $g\parallel\bar q$. The quarks can also participate in these
+collinear limits, but a single soft quark does not generate an independent
+infrared singularity. This distinction is not determined solely by the vanishing of
+an invariant $s_{ij}$, but by the soft and collinear factorisation properties of the
+matrix element; in particular, soft-gluon emission exhibits an eikonal singularity
+for which there is no analogue in the single-soft-quark limit.
+
+At NNLO, two partons can become unresolved simultaneously, giving rise to
+additional infrared configurations. For a secondary $q^\prime\bar q^\prime$ pair
+produced through gluon splitting, these include the double-soft limit in which
+$q^\prime$ and $\bar q^\prime$ become simultaneously soft, the collinear limit
+$q^\prime\parallel\bar q^\prime$, and triple-collinear configurations such as
+$q\parallel q^\prime\parallel\bar q^\prime$, in which the secondary pair becomes
+collinear with a hard parton. The double-soft $q^\prime\bar q^\prime$ limit is
+singular despite the absence of a single-soft-quark singularity, as it is
+associated with the soft behaviour of the parent gluon. These and the other
+unresolved limits relevant to this thesis are summarised in Table~\ref{tab:limits}.
 
 {
     \renewcommand{\arraystretch}{1.3}
     \begin{longtable}{|c|c|c|}
         \hline
-        \textbf{Unresolved limit} & \textbf{Kinematic condition} & \textbf{Vanishing invariant(s)} \\
+        \textbf{Unresolved limit} & \textbf{Kinematic condition} & \textbf{Universal IR factor} \\
         \hline
         \endfirsthead
         \hline
-        \textbf{Unresolved limit} & \textbf{Kinematic condition} & \textbf{Vanishing invariant(s)} \\
+        \textbf{Unresolved limit} & \textbf{Kinematic condition} & \textbf{Universal IR factor} \\
         \hline
         \endhead
         \hline
@@ -247,43 +259,45 @@ in Table~\ref{tab:limits}.
         last; $p_i$ is the momentum of parton $i$, $\parallel$ denotes a collinear pair, and
         $s_{i\ldots k}=(p_i+\ldots+p_k)^2$. Limits related by $q\leftrightarrow\bar q$ or by
         gluon relabelling are not listed separately. The subtraction counterterm of
-        Eq.~\ref{eq:subScheme} must reproduce the matrix element in each of these limits
-        \cite{Gehrmann-DeRidder:2005btv}.}
+        Eq.~\eqref{eq:subScheme} must reproduce the matrix element in each of these limits
+        \cite{Gehrmann-DeRidder:2005btv}. Complete analytic expressions for the universal
+        soft and collinear factors listed above are given in \cite{Gehrmann-DeRidder:2005btv},
+        Sections 8.1 and 8.2.2.}
         \label{tab:limits}\\
         \endlastfoot
         \multicolumn{3}{|c|}{$(1_q,\,3_g,\,2_{\bar q})$ --- NLO real radiation} \\
         \hline
-        Soft gluon              & $p_3\to 0$                                  & $s_{13},\ s_{23}$ \\
+        Soft gluon              & $p_3\to 0$                                  & $S_{132}$ \\
         \hline
-        Collinear               & $1_q\parallel3_g$                          & $s_{13}$ \\
+        Collinear               & $1_q\parallel3_g$                          & $P_{qg\to Q}(z)$ \\
         \hline
         \multicolumn{3}{|c|}{$(1_q,\,3_g,\,4_g,\,2_{\bar q})$ --- NNLO real radiation} \\
         \hline
-        Soft gluon              & $p_3\to0$                                  & $s_{13},\ s_{34}$ \\
+        Soft gluon              & $p_3\to0$                                  & $S_{134}$ \\
         \hline
-        Collinear ($qg$)        & $1_q\parallel3_g$                          & $s_{13}$ \\
+        Collinear ($qg$)        & $1_q\parallel3_g$                          & $P_{qg\to Q}(z)$ \\
         \hline
-        Collinear ($gg$)        & $3_g\parallel4_g$                          & $s_{34}$ \\
+        Collinear ($gg$)        & $3_g\parallel4_g$                          & $P_{gg\to G}(z)$ \\
         \hline
-        Double soft             & $p_3,\,p_4\to0$                            & $s_{13},\ s_{34},\ s_{24}$ \\
+        Double soft             & $p_3,\,p_4\to0$                            & $S_{1342}$ \\
         \hline
-        Soft--collinear         & $p_3\to0,\ 4_g\parallel2_{\bar q}$         & $s_{13},\ s_{34},\ s_{24}$ \\
+        Soft--collinear         & $p_3\to0,\ 4_g\parallel2_{\bar q}$         & $S_{1;342}(z)\,P_{qg\to Q}(z)$ \\
         \hline
-        Triple collinear        & $1_q\parallel3_g\parallel4_g$              & $s_{134}$ \\
+        Triple collinear        & $1_q\parallel3_g\parallel4_g$              & $P_{134\to Q}(w,z,y)$ \\
         \hline
-        Double single collinear & $1_q\parallel3_g,\ 2_{\bar q}\parallel4_g$ & $s_{13},\ s_{24}$ \\
+        Double single collinear & $1_q\parallel3_g,\ 2_{\bar q}\parallel4_g$ & $P_{qg\to Q}(z)\,P_{\bar qg\to\bar Q}(y)$ \\
         \hline
         \multicolumn{3}{|c|}{$(1_q,\,3_{q'},\,4_{\bar q'},\,2_{\bar q})$ --- NNLO real radiation} \\
         \hline
-        Soft $q'\bar q'$ pair   & $p_3,\,p_4\to0$                            & $s_{34}$ (double pole) \\
+        Soft $q'\bar q'$ pair   & $p_3,\,p_4\to0$                            & $S_{12}(3,4)$ (double pole) \\
         \hline
-        Collinear ($q'\bar q'$) & $3_{q'}\parallel4_{\bar q'}$               & $s_{34}$ \\
+        Collinear ($q'\bar q'$) & $3_{q'}\parallel4_{\bar q'}$               & $P_{q\bar q\to G}(z)$ \\
         \hline
-        Triple collinear        & $1_q\parallel3_{q'}\parallel4_{\bar q'}$   & $s_{134}$ \\
+        Triple collinear        & $1_q\parallel3_{q'}\parallel4_{\bar q'}$   & $P_{143\to Q}^{\text{non-ident.}}(x,y)$ \\
         \hline
         \multicolumn{3}{|c|}{$(1_q,\,3_q,\,4_{\bar q},\,2_{\bar q})$ --- NNLO real radiation, identical flavour} \\
         \hline
-        Triple collinear        & $2_{\bar q}\parallel3_q\parallel4_{\bar q}$ & $s_{234}$ \\
+        Triple collinear        & $2_{\bar q}\parallel3_q\parallel4_{\bar q}$ & $\tfrac12P_{234\to\bar Q}^{\text{ident.}}(w,x,y)$ \\
         \hline
     \end{longtable}
 }
@@ -303,7 +317,8 @@ in the individual real and virtual contributions.
 In practice, however, this cancellation cannot be performed directly at the integrand
 level, since the real and virtual contributions are separately divergent and are
 defined on phase spaces with different particle multiplicities. At NLO, the real
-contribution contains one additional final-state parton and is integrated over the
+contribution contains one additional final-state parton with respect to the LO
+$n$-parton process, and is integrated over the
 $(n+1)$-particle phase space, whereas the virtual contribution is integrated over the
 $n$-particle phase space. A subtraction method resolves this mismatch by introducing
 a local counterterm $d\sigma^S$ that reproduces the singular behaviour of the real
@@ -350,19 +365,19 @@ loop and no extra powers of $l$ in the numerator becomes,
 which is UV divergent whenever $d-1-2n_p\geq-1\Rightarrow d\geq 2n_p$ 
 \cite{Schwartz:2014sze, Peskin:1995ev}.
 
-The presence of UV divergences means that loop corrections expressed in terms of the
-bare coupling $\alpha_0$, implicit in the covariant derivative of the QCD Lagrangian
-in Eq.~\ref{eq:qcdLagrangian}, are not finite beyond tree level, since their higher-order coefficients diverge
-\cite{Ellis:1996mzs}. This property makes $\alpha_0$ unsuitable as the order-by-order
-perturbative series variable we require. These divergences are removed through
-renormalisation, in which the bare coupling is traded for a finite renormalised
-coupling, $\alpha_s$, defined at a renormalisation scale $\mu$
-\cite{Peskin:1995ev}. This renormalisation is made explicit for the one-loop antenna
-sets in Subsection~\ref{subsec:oneLoopRoutes}.
+Ultraviolet divergences arising in loop corrections require the parameters and
+fields appearing in the bare QCD Lagrangian to be renormalised. In particular, the
+bare strong coupling is related to the renormalised coupling $\alpha_s(\mu)$
+through a coupling renormalisation constant, which absorbs the corresponding
+ultraviolet divergences. The introduction of the renormalisation scale $\mu$ leads
+to a scale-dependent renormalised coupling, whose evolution is governed by the QCD
+beta function. The coupling renormalisation relevant to the one-loop antenna
+functions considered in this work is discussed explicitly in
+Subsection~\ref{subsec:oneLoopRoutes}.
 
 \section{Dimensional Regularisation}\label{sec:dimreg}
 
-The subtraction scheme from Eq.~\ref{eq:subScheme} separates the NLO cross-section
+The subtraction scheme from Eq.~\eqref{eq:subScheme} separates the NLO cross-section
 into contributions that can ultimately be evaluated numerically. The difference
 $d\sigma^R-d\sigma^S$ is finite in the unresolved regions and can therefore be
 integrated numerically in four dimensions. The subtraction term must, however, still
@@ -382,7 +397,7 @@ dimensions away from four, via,
 \begin{equation}
     d=4-2\epsilon
 \end{equation}
-so that infrared divergences appear as explicit analytic poles in $\epsilon$. After
+so that infrared divergences appear as explicit analytic poles in $1/\epsilon$. After
 analytic integration over the unresolved phase space, this leaves us with two
 $\epsilon$-dependent expressions, for the virtual corrections and for the now
 unresolved-parton-integrated subtraction cross-section,
@@ -408,14 +423,17 @@ While using CDR, the integrated and unintegrated antennae considered in this
 work are normalised using the following convention. First, the antennae are 
 expressed in the $\overline{\text{MS}}$ (modified minimal subtraction)-convention 
 using $S_\epsilon=(4\pi)^{\epsilon}e^{-\epsilon\gamma_E}$ \cite{Gehrmann-DeRidder:2005btv}. 
-Second, they are also normalised in relation to the strong coupling constant 
-expansion using,
-\begin{equation}\label{eq:loopNorm}
-    G_k=\left(8\pi^2\right)^{n-2}\Lambda_l=\left(8\pi^2\right)^{n-2}\left(8\pi^2\right)^{l}
+Second, they are also normalised in relation to the strong coupling constant
+expansion. For an antenna with $n$ final-state partons and $l$ loops, we define,
+\begin{equation}
+    k=(n-2)+l,
 \end{equation}
-defining also $k=n-2+l$ as the perturbative-order index, which is zero for LO, 
-one for NLO and two for NNLO, for $n$ final-state particles and $l$ loops. 
-These two normalisations are then bundled into a general convention used 
+the perturbative-order index, which is zero for LO, one for NLO and two for NNLO,
+and introduce the normalisation factor
+\begin{equation}\label{eq:loopNorm}
+    G_k=\left(8\pi^2\right)^{n-2}\Lambda_l=\left(8\pi^2\right)^{n-2}\left(8\pi^2\right)^{l}.
+\end{equation}
+These two normalisations are then bundled into a general convention used
 throughout, which is written as,
 \begin{equation}\label{eq:normN}
     \mathcal N(\epsilon,k)=\frac{C(\epsilon,k)}{\Phi_2},\quad C(\epsilon,k)=\frac{G_k}{S_\epsilon^k}
@@ -423,133 +441,159 @@ throughout, which is written as,
 using the $d$-dimensional two-particle phase-space measure $\Phi_2$. This is the
 general representation of the work's normalisation convention.
 
-Furthermore, the square matrix element amplitudes used to compute the antenna functions
-are normalised according to their number of final-state particles $n$, using,
-\begin{equation}\label{eq:gehrN}
-    N(n) = 4\pi\alpha\sum_q e_q^2\left(g^2\right)^{n-2}\left(N^2-1\right)|\mathcal M_2^0|^2.
-\end{equation}
-
-As described in Subsection~\ref{subsec:uvDivergences}, we need to trade the bare 
-coupling constant $\alpha_0$ for a suitable order by order perturbative series 
-variable. That is achieved as follows \cite{Gehrmann-DeRidder:2005btv},
+As discussed in Subsection~\ref{subsec:uvDivergences}, ultraviolet divergences are
+removed by expressing the bare strong coupling $\alpha_0$ in terms of the
+renormalised coupling $\alpha_s(\mu)$. In the $\overline{\text{MS}}$ scheme, the
+relation between the bare and renormalised couplings is given by
+\cite{Gehrmann-DeRidder:2005btv},
 \begin{equation}\label{eq:alphaRescaling}
     \begin{gathered}
         \alpha_0\mu_0^{2\epsilon}S_\epsilon = \alpha_s\mu^{2\epsilon}\left[1-\frac{\beta_0}{\epsilon}\frac{\alpha_s}{2\pi}+\left(\frac{\beta_0^2}{\epsilon^2}-\frac{\beta_1}{2\epsilon}\right)\left(\frac{\alpha_s}{2\pi}\right)^2+\mathcal O(\alpha_s^3)\right],\\
         \beta_0=\frac{11N-2N_f}{6},\,\beta_1=\frac{34N^3-13N^2N_f+3N_f}{12N}
     \end{gathered}
 \end{equation}
-where for the massless case, the renormalisation scale is set to $\mu^2=q^2$.
-Here, $\mu_0$ is the bare mass parameter keeping $\alpha_0$ dimensionless and $\beta_0$
-is the one-loop coefficient of the QCD beta function, with $N=3$ the number 
-of colours and $N_f$ the number of light quark flavours \cite{Ellis:1996mzs,Gehrmann-DeRidder:2005btv}.
+where $S_\epsilon$ denotes the conventional dimensional-regularisation factor,
+while $\mu_0$ and $\mu$ are the dimensional-regularisation and renormalisation
+scales associated with the bare and renormalised couplings, respectively. The
+coefficients $\beta_0$ and $\beta_1$ are the first two coefficients of the QCD
+beta function, with $N=3$ the number of colours and $N_f$ the number of active
+massless quark flavours \cite{Ellis:1996mzs,Gehrmann-DeRidder:2005btv}. For the
+massless antenna functions considered here, the renormalisation scale is chosen
+as $\mu^2=q^2$, with $q^2$ the invariant mass squared of the antenna system.
 
 \section{The Antenna Subtraction Formalism}\label{sec:antSubForm}
 
-In perturbative QCD, computing the perturbative corrections to a certain jet 
-observable $J_m^{(n)}$, requires summing over all partonic multiplicity channels 
-up to the desired order. As the orders increase in complexity, so does the 
-number of channels: there is one at LO, two at NLO, five at NNLO, and so on. 
-Each channel contains ultraviolet and infrared singularities. The former are 
-removed via renormalisation, as shown in Eq.~\ref{eq:alphaRescaling}, and the 
-latter cancel among each other when all channels are summed over, 
-as per the KLN theorem \cite{Gehrmann-DeRidder:2005btv}.
+In perturbative QCD, computing the perturbative corrections to a certain jet
+observable $J_m^{(n)}$, requires summing over all partonic multiplicity channels
+up to the desired order.
 
-At LO, the approximation to the $m$-jet cross section is computed as the integral 
+At LO, the approximation to the $m$-jet cross section is computed as the integral
 over the appropriate phase space,
 \begin{equation}\label{eq:bornLevel}
-    d\sigma_\text{LO} = \int_m d\sigma^B,\quad d\sigma^B=\sum_nd\Phi_n(p_1,...,p_n;q)\frac1{S_n}|\mathcal M_n(p_1,...,p_n)|^2J_m^{(n)}(p_1,...,p_n)
+    d\sigma_\text{LO} = \int_m d\sigma^B,\quad d\sigma^B=d\Phi_m(p_1,...,p_m;q)\frac1{S_m}|\mathcal M_m^0(p_1,...,p_m)|^2J_m^{m}(p_1,...,p_m)
 \end{equation}
-where $d\sigma^B$ is the tree-level $n$-parton contribution to the $m$-jet cross 
-section. $S_n$ is a symmetry factor for identical partons in the final state, and 
-$\Phi_n$ is the $n$-parton final-state phase space in $d$ dimensions \cite{Gehrmann-DeRidder:2005btv},
+where $d\sigma^B$ is the tree-level $m$-parton contribution to the $m$-jet cross
+section, built from the squared tree-level $m$-parton amplitude $|\mathcal M_m^0(p_1,...,p_m)|^2$.
+At LO every final-state particle forms its own jet, so the jet function carries
+$m$ jets for $m$ final-state particles, $J_m^m$. $S_m$ is a symmetry factor for
+identical partons in the final state, and
+$\Phi_m$ is the $m$-parton final-state phase space in $d$ dimensions \cite{Gehrmann-DeRidder:2005btv},
 \begin{equation}
-    d\Phi_n(p_1,...,p_n;q)=\frac{d^{d-1}p_1}{2E_1(2\pi)^{d-1}}...\frac{d^{d-1}p_n}{2E_n(2\pi)^{d-1}}(2\pi)^d\delta^{(d)}(q-p_1-...-p_n).
+    d\Phi_m(p_1,...,p_m;q)=\frac{d^{d-1}p_1}{2E_1(2\pi)^{d-1}}...\frac{d^{d-1}p_m}{2E_m(2\pi)^{d-1}}(2\pi)^d\delta^{(d)}(q-p_1-...-p_m).
 \end{equation}
 
-At NLO, however, the $m$-jet cross section is now written using the two contributions, 
-a real emission channel characterised by the $\gamma^*\to q\bar q g$ process, and 
-a virtual channel, where a gluon is exchanged by the hard quarks, $\gamma^*\to q\bar q$.
-These contributions are summed to reach,
+At NLO, the $m$-jet cross section receives a real-emission and a virtual
+contribution, built from an $(m+1)$-parton tree-level amplitude and from the
+interference between the $m$-parton tree-level and one-loop amplitudes,
+respectively, for a generic process,
 \begin{equation}
+    \begin{gathered}
+        d\sigma^R_\text{NLO} = d\Phi_{m+1}(p_1,...,p_{m+1};q)\frac1{S_{m+1}}|\mathcal M_{m+1}^0(p_1,...,p_{m+1})|^2J_m^{(m+1)}(p_1,...,p_{m+1}),\\
+        d\sigma^V_\text{NLO} = d\Phi_m(p_1,...,p_m;q)\frac1{S_m}\,2\operatorname{Re}\!\left(\mathcal M_m^1(p_1,...,p_m)\mathcal M_m^{0\,*}(p_1,...,p_m)\right)J_m^{(m)}(p_1,...,p_m).
+    \end{gathered}
+\end{equation}
+These contributions are summed to reach,
+\begin{equation}\label{eq:nloCrossGeneric}
     d\sigma_\text{NLO} = \int_{m+1}d\sigma^R_\text{NLO}+\int_m d\sigma^V_\text{NLO}.
 \end{equation}
 
-At NNLO, the $m$-jet cross section is written using the three contributions that 
-come from five different channels: RR has three, $\gamma^*\to q\bar qgg,\,q\bar q q\bar q,\,q\bar qq^\prime\bar q^\prime$,
-and RV and VV only have one each, $\gamma^*\to q\bar qg$, with a gluon loop, and 
-$\gamma^*\to q\bar q$ with two gluon loops,
+At NNLO, the $m$-jet cross section receives three contributions: a double-real
+contribution, built from the $(m+2)$-parton tree-level amplitude; a real-virtual
+contribution, built from the interference between the $(m+1)$-parton tree-level
+and one-loop amplitudes; and a double-virtual contribution, built from the
+interference between the $m$-parton tree-level and two-loop amplitudes and from
+the squared $m$-parton one-loop amplitude, for a generic process,
 \begin{equation}
+    \begin{gathered}
+        d\sigma^{RR}_\text{NNLO} = d\Phi_{m+2}(p_1,...,p_{m+2};q)\frac1{S_{m+2}}|\mathcal M_{m+2}^0(p_1,...,p_{m+2})|^2J_m^{(m+2)}(p_1,...,p_{m+2}),\\
+        d\sigma^{RV}_\text{NNLO} = d\Phi_{m+1}(p_1,...,p_{m+1};q)\frac1{S_{m+1}}\,2\operatorname{Re}\!\left(\mathcal M_{m+1}^1(p_1,...,p_{m+1})\mathcal M_{m+1}^{0\,*}(p_1,...,p_{m+1})\right)J_m^{(m+1)}(p_1,...,p_{m+1}),\\
+        \begin{aligned}
+            d\sigma^{VV}_\text{NNLO} = d\Phi_m(p_1,...,p_m;q)\frac1{S_m}\Big[&2\operatorname{Re}\!\left(\mathcal M_m^2(p_1,...,p_m)\mathcal M_m^{0\,*}(p_1,...,p_m)\right)\\
+                                                                              &+|\mathcal M_m^1(p_1,...,p_m)|^2\Big]J_m^{(m)}(p_1,...,p_m).
+        \end{aligned}
+    \end{gathered}
+\end{equation}
+These contributions are summed to reach,
+\begin{equation}\label{eq:nnloCrossGeneric}
     d\sigma_\text{NNLO}=\int_{m+2}d\sigma^{RR}_\text{NNLO}+\int_{m+1}d\sigma^{RV}_\text{NNLO}+\int_m d\sigma^{VV}_\text{NNLO}.
 \end{equation}
 
-\subsection{Subtraction Terms}
+\subsection{Subtraction Terms}\label{subsec:subTerms}
 
-The contributions introduced for the NLO and NNLO $m$-jet cross sections are finite 
-when summed, but not individually. As such, when the naive integrals are
-numerically computed, they do not converge. Our solution to this problem is the 
-introduction of subtraction terms for each contribution, that follow their respective 
-contributions' infrared-singularity structure for the whole phase space. After 
-subtracting the singularities, the subtraction terms are added to the last term, 
-integrated over $d\Phi_m$.
+The contributions that form part of the NLO and NNLO $m$-jet cross sections, given
+in Eq.~\eqref{eq:nloCrossGeneric} and Eq.~\eqref{eq:nnloCrossGeneric} respectively,
+are separately IR-divergent. Consequently, a direct numerical evaluation of the
+individual contributions is not possible, as the corresponding integrals are
+divergent. Our solution to this problem is to introduce subtraction terms that
+locally reproduce the infrared singular behaviour of the corresponding
+contributions throughout the relevant phase space.
 
 \subsubsection{NLO}
 
-At NLO, there is need of one subtraction term, $d\sigma^S_\text{NLO}$, which 
-cancels $d\sigma_\text{NLO}^R$'s singularities. Using it, the $m$-jet cross section 
-becomes,
-\begin{equation}
-    d\sigma_\text{NLO} = \int_{m+1}\left(d\sigma^R_\text{NLO}-d\sigma^S_\text{NLO}\right)+\int_m\left(d\sigma^V_\text{NLO}+\int_1 d\sigma^S_\text{NLO}\right)=\int_m\left(d\sigma^V_\text{NLO}+\int_1 d\sigma^S_\text{NLO}\right).
+At NLO, a subtraction term, $d\sigma_\text{NLO}^S$, is introduced to locally
+reproduce the infrared singular behaviour of the real-emission contribution
+$d\sigma_\text{NLO}^R$. The $m$-jet cross section can then be written as,
+\begin{equation}\label{eq:nloSubScheme}
+    d\sigma_\text{NLO} = \int_{m+1}\left(d\sigma^R_\text{NLO}-d\sigma^S_\text{NLO}\right)+\int_m\left(d\sigma^V_\text{NLO}+\int_1 d\sigma^S_\text{NLO}\right).
 \end{equation}
-The real-emission contribution is essentially equal to the Born-level 
-cross-section, as written in Eq.~\ref{eq:bornLevel}, but for $m+1$ particles. Its 
-subtraction counterterm has its same unintegrated behaviour for every singular 
-limit and must be analytically integrable over the required phase space. 
-It must also be local and not introduce spurious singularities elsewhere.
-From the KLN theorem, the 
-sum of the virtual contribution and the subtraction counterterm is infrared-finite,
-that is, after analytic integration, the integrated real-emission subtraction
-cross-section carries explicit $\epsilon$-poles which cancel virtual-correction's 
-singularity structure pole-by-pole.
-It is obtained as a sum of antenna functions, as follows,
+The subtraction term must reproduce the real-emission contribution in all
+single-unresolved limits, while remaining local in phase space and introducing no
+additional singularities. Consequently, the difference
+$d\sigma_\text{NLO}^R-d\sigma_\text{NLO}^S$ is finite in these limits and can be
+integrated numerically in four dimensions. At the same time, $d\sigma_\text{NLO}^S$
+must be analytically integrable over the unresolved one-parton phase space. Its
+integrated form contains explicit poles in $\epsilon$ that cancel those of the
+virtual contribution $d\sigma_\text{NLO}^V$.
+
+Within the antenna subtraction formalism, $d\sigma_\text{NLO}^S$ is constructed
+from three-parton tree-level antenna functions $X_{ijk}^0$, which capture the
+unresolved radiation emitted between a pair of colour-connected hard radiators. It
+takes the schematic form,
 \begin{equation}
     \begin{aligned}
         d\sigma^S_\text{NLO} = \sum_{m+1}&d\Phi_{m+1}(p_1,...,p_{m+1};q)\frac1{S_{m+1}}\\&\sum_j X_{ijk}^0|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}).
     \end{aligned}
 \end{equation}
-The subtraction term is defined in terms of the redefined on-shell momenta
-$p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}$, where $\tilde p_I$ and $\tilde p_K$
-are linear combinations of $p_i, p_j, p_k$ and denote the momenta of the parent 
-partons, in our case the $q\bar q$ hard pair, with $i,j,k$ denoting the daughter
-partons after the gluon emission, that is $qg\bar q$. Parent partons $I$ and $K$ 
-are colour connected. Daughter partons $i$ and $j$, and $j$ and $k$ are also 
-connected, but $i$ and $k$ are not. A diagram of these relationships is shown in 
+Here, $i$ and $k$ denote the hard radiators and $j$ the unresolved parton. The
+momenta $p_i,p_j,p_k$ are mapped onto the reduced on-shell momenta $\tilde p_I$
+and $\tilde p_K$, such that the reduced matrix element has the appropriate
+$m$-parton kinematics. For a $q\bar qg$ antenna, $i$ and $k$ correspond to the
+quark and antiquark radiators, while $j$ corresponds to the unresolved gluon.
+Parent partons $I$ and $K$
+are colour connected. Daughter partons $i$ and $j$, and $j$ and $k$ are also
+connected, but $i$ and $k$ are not. A diagram of these relationships is shown in
 Fig.~\ref{fig:colourConnectionNLO}.
 
 \input{figures/colour-connection-nlo.tex}
 
-The jet observable considered throughout this work is the massless hadronic $R$-ratio.
-This quantity is fully inclusive in the phase space, which means that $J_m^{(n)}=1$
-everywhere, independent of the order. For the two-hard-radiator process considered here,
-$d\sigma^S_\text{NLO}$ is built from the full real-radiation matrix element and therefore
-coincides with $d\sigma^R_\text{NLO}$ pointwise, not only in the unresolved limits
-\cite{Gehrmann-DeRidder:2005btv} --- a special property of two-jet production that does not
-hold for generic multi-jet observables. With $J_m^{(n)}=1$, the $d\sigma^R_\text{NLO}-d\sigma^S_\text{NLO}$
-term therefore vanishes identically rather than integrating to a finite remainder, leaving only
-the analytically integrated contribution. Without the jet function in the expression,
-the phase space can also be factorised as,
-\begin{equation}
-    d\Phi_{m+1}(p_1,...,p_{m+1};q) = d\Phi_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})d\Phi_{X_{ijk}}(p_i,p_j,p_k;q=\tilde p_I+\tilde p_K)
+The jet function $J_m^m$ in the antenna subtraction term above does not depend on
+the individual momenta $p_i$, $p_j$ and $p_k$, but only on $\tilde p_I$ and
+$\tilde p_K$. One can therefore carry out the integration over the unresolved
+antenna phase space appropriate to $p_i$, $p_j$ and $p_k$ analytically, exploiting
+the factorisation of the phase space,
+\begin{equation}\label{eq:nloPhaseSpaceFactor}
+    d\Phi_{m+1}(p_1,...,p_{m+1};q) = d\Phi_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})d\Phi_{X_{ijk}}(p_i,p_j,p_k;q=\tilde p_I+\tilde p_K).
 \end{equation}
-which here equals,
+The integrated counterterm $\int_1 d\sigma^S_\text{NLO}$ then takes the form,
+\begin{equation}
+    \int_1 d\sigma^S_\text{NLO} = \sum_m d\Phi_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})\frac1{S_{m+1}}\sum_j\left(\int d\Phi_{X_{ijk}}\,X_{ijk}^0\right)|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}).
+\end{equation}
+The integral $\int d\Phi_{X_{ijk}}\,X_{ijk}^0$ defines the integrated antenna,
+which is then combined with the virtual contribution, rendering its contribution
+IR-finite. Setting $m=2$ in Eq.~\eqref{eq:nloPhaseSpaceFactor}, we can see that the
+NLO antenna phase space $d\Phi_{X_{ijk}}$ is proportional to the three-particle
+phase space,
 \begin{equation}
     d\Phi_3=\Phi_2\,d\Phi_{X_{ijk}},\quad \Phi_2=\int d\Phi_2.
 \end{equation}
 
 \subsubsection{NNLO}
 
-Analogously, at NNLO, there is need of two subtraction counterterms, $d\sigma_\text{NNLO}^S$
-and $d\sigma_\text{NNLO}^T$, subtracting respectively $d\sigma_\text{NNLO}^{RR}$
-and $d\sigma_\text{NNLO}^{RV}$. Using them, the $m$-jet cross section becomes,
+Analogously, at NNLO, two subtraction counterterms, $d\sigma_\text{NNLO}^S$
+and $d\sigma_\text{NNLO}^T$, are introduced to reproduce the infrared singular
+behaviour of the double-real and real--virtual contributions,
+$d\sigma_\text{NNLO}^{RR}$ and $d\sigma_\text{NNLO}^{RV}$, respectively. The
+$m$-jet cross section can then be written as,
 \begin{equation}
     \begin{gathered}
         \begin{aligned}
@@ -560,25 +604,28 @@ and $d\sigma_\text{NNLO}^{RV}$. Using them, the $m$-jet cross section becomes,
     \end{gathered}
 \end{equation}
 
-At this order, the complexity rises. The subtraction counterterms must take into
-account the multiple possible configurations. The subtraction counterterms are 
-written as,
+At NNLO, the subtraction structure becomes more involved due to the presence of
+several single- and double-unresolved infrared configurations. The double-real and
+real--virtual subtraction counterterms are therefore decomposed into several
+contributions,
 \begin{equation}
     \begin{gathered}
         d\sigma_\text{NNLO}^S = d\sigma^{S,a}+d\sigma^{S,b}+d\sigma^{S,c}+d\sigma^{S,d}\\
         d\sigma_\text{NNLO}^T = d\sigma^{T,a}+d\sigma^{T,b}+d\sigma^{T,c}.
     \end{gathered}
 \end{equation}
-The subterms of each of the counterterms match the real-real and real-virtual 
-configurations present at this order. This matching is shown in 
-Table~\ref{tab:counterterms}.
+Each contribution accounts for a specific infrared singular configuration of the
+double-real or real--virtual matrix elements, as summarised in
+Table~\ref{tab:counterterms}. For the double-real contribution, the different
+colour connections associated with the unresolved partons are illustrated
+schematically in Fig.~\ref{fig:colourConnectionNNLOall}.
 
 \begin{table}[htbp]
     \centering
     % Left Table
     \begin{tabular}{|c|c|}
         \hline
-        \textbf{Configuration} & \textbf{SubTerm} \\ \hline
+        \textbf{Configuration} & \textbf{Subtraction Term} \\ \hline
         \multicolumn{2}{|Sc|}{RR subtraction counterterm -- $d\sigma_\text{NNLO}^S$} \\ \hline
         Single unresolved parton & $d\sigma^{S,a}$ \\ \hline
         Two colour-connected unresolved partons & $d\sigma^{S,b}$ \\ \hline
@@ -593,10 +640,11 @@ Table~\ref{tab:counterterms}.
     \label{tab:counterterms}
 \end{table}
 
-The subterms for both counterterms are given in terms of the antenna 
-functions as follows, noting that at this order, four-parton and three-parton 
-one-loop antenna functions are necessary, written as $X_{ijkl}^0$ and $X_{ijk}^1$. 
-First for the real-real subtraction counterterm,
+The individual contributions to the subtraction terms are constructed from
+antenna functions. At NNLO, in addition to the tree-level three-parton antennae
+$X_{ijk}^0$ already required at NLO, tree-level four-parton antennae $X_{ijkl}^0$
+and one-loop three-parton antennae $X_{ijk}^1$ are also required. The
+contributions to the double-real subtraction counterterm are given by,
 \begin{equation}
     \begin{gathered}
         \begin{aligned}
@@ -652,18 +700,18 @@ Fig.~\ref{fig:colourConnectionNNLOall}.
 \label{fig:colourConnectionNNLOall}
 \end{figure}
 
-Once again, as for NLO, the massless hadronic $R$-ratio is the jet observable
-considered, and hence $J_m^{(n)}=1$. As at NLO, $d\sigma^S_\text{NNLO}$ and $d\sigma^T_\text{NNLO}$
-are built from the full real-radiation matrix elements, so the $d\sigma^{RR}_\text{NNLO}-d\sigma^S_\text{NNLO}$
-and $d\sigma^{RV}_\text{NNLO}-d\sigma^T_\text{NNLO}$ terms likewise vanish identically for this
-observable \cite{Gehrmann-DeRidder:2005btv}. The phase space factorises as,
-\begin{equation}
-    d\Phi_{m+2}(p_1,...,p_{m+2};q) = d\Phi_m(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+2};q)d\Phi_{X_{ijkl}}(p_i,p_j,p_k,p_l;q=\tilde p_I+\tilde p_L)
+For the double-real subtraction terms, the corresponding phase-space
+factorisation generalises the NLO $3\to2$ mapping to the four-parton antenna
+configuration,
+\begin{equation}\label{eq:nnloPhaseSpaceFactor}
+    d\Phi_{m+2}(p_1,...,p_{m+2};q) = d\Phi_m(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+2};q)d\Phi_{X_{ijkl}}(p_i,p_j,p_k,p_l;q=\tilde p_I+\tilde p_L).
 \end{equation}
-and hence,
+For a two-parton reduced configuration, this becomes
 \begin{equation}
-    d\Phi_4 = \Phi_2\,d\Phi_{X_{ijkl}}.
+    d\Phi_4 = \Phi_2\,d\Phi_{X_{ijkl}},
 \end{equation}
+so that the four-parton antenna phase space $d\Phi_{X_{ijkl}}$ provides the
+integration measure for the tree-level four-parton antennae $X_{ijkl}^0$.
 
 \iffalse
 In perturbative QCD, when a particle like a gluon, $j$, becomes unresolved as 
@@ -704,7 +752,7 @@ is fully-inclusive and makes no distinction between resolved and unresolved
 final states at any multiplicity. Its measurement distribution $F_n$ is, therefore,
 equal to one for every $n$. The cross-section is, therefore, no longer a differential 
 prediction in $F_n$, but rather reduces to the plain, fully-summed total. At NLO, the 
-formula remains close in shape to Eq.~\ref{eq:genSub}, but at NNLO, due to the 
+formula remains close in shape to Eq.~\eqref{eq:genSub}, but at NNLO, due to the 
 larger number of possible corrections, it must account for contributions where 
 the two additional orders of $\alpha_s$ are realised as two extra real partons 
 ($RR$), one extra real parton and one loop ($RV$), or two loops with no extra 
@@ -741,7 +789,7 @@ mismatch remains. Consequently, the real-subtracted contributions vanish rather
 than only approaching zero in unresolved limits. 
 These subtraction cross-sections are expressed generally using the usual antenna
 notation, as defined in Subsection~\ref{subsec:antennaFuncs}. Here, $X_{ij,(a,s)}^l$
-labels the antenna sitting on the unresolved pair $\{ij\}$ from Eq.~\ref{eq:sigmaSDef}.
+labels the antenna sitting on the unresolved pair $\{ij\}$ from Eq.~\eqref{eq:sigmaSDef}.
 For the two-hard-radiator process considered throughout this work there is only
 ever one such pair, $\{q\bar q\}$, making this the same object as the multiplicity-based $X_n^l$
 used from Subsection~\ref{subsec:antennaFuncs} onward, with $n$ simply counting
@@ -763,7 +811,7 @@ example, for the quark-antiquark final-final antenna functions considered throug
 this text, the $s$-sum in $d\sigma^S_\text{NNLO}$ would produce $gg$, $q\bar q$,
 and $q^\prime\bar q^\prime$, relative to the $A$, $B$, $C$ antenna types.
 
-Each real-emission antenna function in Eq.~\ref{eq:subTerms} ($d\sigma^S$ and
+Each real-emission antenna function in Eq.~\eqref{eq:subTerms} ($d\sigma^S$ and
 $d\sigma^T$, at either order) is evaluated on reconstructed, on-shell momenta
 $\tilde p_I$, $\tilde p_K$, built from the hard radiators and the unresolved
 momenta in between them, through a momentum mapping which conserves total
@@ -775,7 +823,7 @@ Without this reconstruction, the reduced matrix element inside $d\sigma^B$ would
 be well-defined at the unresolved limit. The mapping allows the
 antenna subtraction term to act as a local counterterm over the whole unresolved-parton
 phase space, not merely asymptotically close to it.
-Using these expressions, $\sigma^\text{NLO}$ and $\sigma^\text{NNLO}$, from Eq.~\ref{eq:nnloCross}, simplify to,
+Using these expressions, $\sigma^\text{NLO}$ and $\sigma^\text{NNLO}$, from Eq.~\eqref{eq:nnloCross}, simplify to,
 \begin{equation}
     \begin{gathered}
         \sigma^\text{NLO}=\int_m\left(d\sigma^{V}_\text{NLO}+\int_1 d\sigma^S_\text{NLO}\right)=2C_F\left[\sum_{a}f_a\int_{m}X_{ij,(a)}^1d\sigma^B+\sum_{a,s}f_a\int_{m+1}X_{ij,(a,s)}^0d\sigma^B\right]\\
@@ -818,14 +866,15 @@ in this text.
 
 \subsection{Antenna Functions}\label{subsec:antennaFuncs}
 
-In this thesis all quark-antiquark final-final antenna functions are considered
-and will be computed.
-All considered antennae have the same underlying hard parton pair, and 
-might have as many as one unresolved parton at NLO and two at NNLO.
-We also consider 
-three antenna-like structures, one per order, which are quark-antiquark form
-factors. Since their structure is very similar to other antenna functions, 
-as a shorthand, they will also be called that throughout this text.
+In this thesis, the complete set of massless quark--antiquark final--final
+antenna functions required up to NNLO is considered. All antennae share the
+same underlying hard $q\bar q$ radiator pair, with configurations containing
+up to one unresolved parton at NLO and up to two unresolved partons at NNLO. In
+addition, the corresponding two-parton virtual contributions, derived from the
+quark--antiquark form factor, are included. Although these two-parton objects
+do not describe unresolved real radiation, they enter the antenna framework
+alongside the real-radiation antenna functions and will, for convenience, be
+referred to as antenna functions throughout this thesis.
 
 Each antenna is generally determined by its external state and the hard 
 parton pair it collapses to. In this thesis, the hard parton pair is 
@@ -840,18 +889,26 @@ $q\bar qq^\prime\bar q^\prime$. Following QCD vertex rules, described in
 Section~\ref{sec:FeynmanRules}, $A$-type antennae may exist at any order, 
 while $B$- and $C$-type antennae can only exist at NNLO.
 
-Throughout the rest of the present text, a general $X$-type antenna will be 
-written as $X_n^l$, for $n$ final-state particles and $l$ loops. An antenna 
-may have up to three non-zero terms (or components): leading, written plainly 
-as $X_n^l$; subleading, 
-written as $\tilde X_n^l$; and quark-loop, as $\hat X_n^l$. An antenna topology 
-that has more than one term is called an antenna set and is likewise called 
-the $X_n^l$ set. All antenna functions are part of larger sets, but only some have 
-non-zero subleading or quark-loop terms. The $A_2^2$ antenna set will
-appear with four terms, with the extra one written as $\breve A_2^2$. This
-is not an exception to the rule, however, but rather a shorthand notation, 
-bundling two distinct perturbative contributions with the same final-state particles in a single set.
-The antenna functions (and $q\bar q$ form factors) considered are organised by order, 
+Throughout the remainder of this thesis, a generic $X$-type antenna is denoted
+by $X_n^l$, where $n$ is the number of final-state partons and $l$ the number
+of loops. Where applicable, antennae are decomposed into leading- and
+subleading-colour components, denoted by $X_n^l$ and $\tilde X_n^l$,
+respectively. For loop antennae, an additional closed-quark-loop contribution,
+denoted by $\hat X_n^l$, may be present. Here, ``leading'' and ``subleading''
+refer to the corresponding colour structures in the expansion in the number of
+colours $N$.
+
+For a given antenna type $X_n^l$, the collection of its different colour
+components is referred to as the $X_n^l$ antenna set. Depending on the
+antenna, some of these components may vanish; in particular, not all antenna
+sets contain non-zero subleading-colour or, at loop level, closed-quark-loop
+contributions. The $A_2^2$ set requires an additional contribution, denoted by
+$\breve A_2^2$. This additional term does not represent a new colour
+component. Rather, it distinguishes the one-loop-squared contribution from the
+interference between the two-loop and tree-level amplitudes. Both
+contributions have the same two-parton final state and enter at NNLO, and are
+therefore grouped within the $A_2^2$ set for convenience.
+The antenna functions (and $q\bar q$ form factors) considered are organised by order,
 loop number, and final state in Table~\ref{tab:antFamilies}.
 
 \begin{table}[h]
@@ -861,15 +918,15 @@ loop number, and final state in Table~\ref{tab:antFamilies}.
         \hline
         \textbf{Final state} & \textbf{Tree level} & \textbf{One loop} & \textbf{Two loop} \\
         \hline
-        $q\bar q$ & $A_2^0$ & $A_2^1$ & $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$ \\
+        $\gamma^*\to q\bar q$ & $A_2^0$ & $A_2^1$ & $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$ \\
         \hline
-        $qg\bar q$ & $A_3^0$ & $A_3^1$, $\tilde A_3^1$, $\hat A_3^1$ & --- \\
+        $\gamma^*\to qg\bar q$ & $A_3^0$ & $A_3^1$, $\tilde A_3^1$, $\hat A_3^1$ & --- \\
      \hline
-        $qgg\bar q$ & $A_4^0$, $\tilde A_4^0$ & --- & --- \\
+        $\gamma^*\to qgg\bar q$ & $A_4^0$, $\tilde A_4^0$ & --- & --- \\
         \hline
-        $qq^\prime\bar q^\prime\bar q$ & $B_4^0$ & --- & --- \\
+        $\gamma^*\to qq^\prime\bar q^\prime\bar q$ & $B_4^0$ & --- & --- \\
         \hline
-        $qq\bar q\bar q$ & $C_4^0$ & --- & --- \\
+        $\gamma^*\to qq\bar q\bar q$ & $C_4^0$ & --- & --- \\
         \hline
     \end{tabular}
     \caption{\centering Quark-antiquark antenna families used in this work, including 
@@ -878,94 +935,134 @@ loop number, and final state in Table~\ref{tab:antFamilies}.
     \label{tab:antFamilies}
 \end{table}
 
-Antenna functions are derived from physical matrix elements following the structure of the 
-subtraction terms they are used in. These matrix elements are written following the 
-antenna functions' own notation.
-Tree-level ($l=0$) antennae are derived as \cite{Gehrmann-DeRidder:2005btv},
-\begin{equation}
-    \begin{gathered}
-        X_{ijk}^0 = S_{ijk, IK}\frac{|\mathcal M_{ijk}^0|^2}{|\mathcal M_{IK}^0|^2}\\
-        X_{ijkl}^0 = S_{ijkl, IL}\frac{|\mathcal M_{ijkl}^0|^2}{|\mathcal M_{IL}^0|^2}
-    \end{gathered}
-\end{equation}
-where for $n=3$ the three final-state partons take the notation $ijk$, and for 
-$n=4$ take $ijkl$, for both 
-antenna function and matrix elements. One-loop 
-antennae are derived using the colour-ordered renormalised one-loop three-parton 
-matrix element as \cite{Gehrmann-DeRidder:2005btv},
-\begin{equation}
-    \begin{gathered}
-        X_{ij}^1 = S_{ij,IJ}\frac{|\mathcal M_{ij}^1|^2}{|\mathcal M_{IJ}^0|^2}\\
-        X_{ijk}^1 = S_{ijk,IK}\frac{|\mathcal M_{ijk}^1|^2}{|\mathcal M_{IK}^0|^2} - X_{ijk}^0\frac{|\mathcal M_{IK}^1|^2}{|\mathcal M_{IK}^0|^2}.
-    \end{gathered}
-\end{equation}
-The two-loop two-parton antenna, which here is only used for the $A_2^2$ antenna set, 
-is defined as,
-\begin{equation}
-    X_{ij}^2 = S_{ij,IJ}\frac{|\mathcal M_{ij}^2|^2}{|\mathcal M_{IJ}^0|^2}.
-\end{equation}
-Loop antennae are additionally coupling-renormalised using Eq.~\ref{eq:alphaRescaling} wherever 
-the reduced process carries a strong coupling. This
-procedure is described in further detail in Subsection~\ref{subsec:antFamilies}.
-
-To compute the considered antenna functions, we require the squared matrix element at each
-loop order, implicitly normalised with $N(n)$ as described in Eq.~\ref{eq:gehrN}. For the
-tree-level, one-loop, and two-loop cases these are given as,
-\begin{equation}
+Antenna functions are constructed from physical, colour-ordered matrix elements
+(shown in Table~\ref{tab:antFamilies}) and are normalised to the corresponding
+two-parton matrix element of the underlying hard radiator pair. To define the
+notation used below, the matrix-element contributions at successive
+perturbative orders are written as,
+\begin{equation}\label{eq:ampOrders}
     \begin{gathered}
         |\mathcal M_n^0|^2 = \mathcal M_n^{0\,\dagger}\mathcal M_n^0\\
         |\mathcal M_n^1|^2 = 2\operatorname{Re}\left(\mathcal M_n^{0\,\dagger}\mathcal M_n^1\right)\\
         |\mathcal M_n^2|^2 = 2\operatorname{Re}\left(\mathcal M_n^{0\,\dagger}\mathcal M_n^2\right)+\mathcal M_n^{1\,\dagger}\mathcal M_n^{1}.
     \end{gathered}
 \end{equation}
-Lastly, the whole system is normalised by the $|\mathcal M_2^0|^2$ squared matrix element, 
-setting the Born-level antenna to one. It is also useful to define the notation for a 
-full-process normalised squared matrix element amplitude for more complex 
-cases, particularly at NNLO. It is defined as,
-\begin{equation}
-    M_{p_1p_2...p_n}^l = \frac{1}{|\mathcal M_2^0|^2}\sum_{r=0}^l\mathcal M_n^{r\,\dagger}(p_1,...,p_n)\mathcal M_n^{l-r}(p_1,...,p_n).
-\end{equation}
-where, for final states admitting more than one colour ordering, flavour assignment, or coupling
-configuration, the product of the amplitudes is understood to be a complete process-level contraction,
-including the corresponding squared contributions and interference terms.
-The symmetry factors are also all equal 
-to one, for all $q\bar q$ topologies. 
+Here, $\mathcal M_n^l$ denotes the $l$-loop amplitude for an $n$-parton final
+state. Thus, $|\mathcal M_n^1|^2$ denotes the tree--one-loop interference,
+while $|\mathcal M_n^2|^2$ contains both the tree--two-loop interference and
+the one-loop-squared contribution.
 
-The colour-ordered matrix elements carry colour structure and the results they produce have 
-to be decomposed into the three components for each set. The methods and tools used to
-complete that decomposition are discussed in the next subsection \cite{Gehrmann-DeRidder:2005btv}.
+At tree level ($l=0$), the three- and four-parton antenna functions are
+defined as \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}\label{eq:treeAntennaDef}
+    \begin{gathered}
+        X_{ijk}^0 = S_{ijk, IK}\frac{|\mathcal M_{ijk}^0|^2}{|\mathcal M_{IK}^0|^2}\\
+        X_{ijkl}^0 = S_{ijkl, IL}\frac{|\mathcal M_{ijkl}^0|^2}{|\mathcal M_{IL}^0|^2}
+    \end{gathered}
+\end{equation}
+Here, $i,j,k$ and $i,j,k,l$ label the partons in the three- and four-parton
+configurations, respectively, while $I,K$ and $I,L$ denote the corresponding
+hard radiators in the reduced two-parton configuration and $S$ denotes the
+symmetry factor associated to the antenna, which accounts both for potential
+identical particle symmetries and for the presence of more than one antenna in
+the basic two-parton process. For all $q\bar q$ antenna topologies considered
+in this work, the corresponding symmetry factors are equal to unity.
+
+At one loop ($l=1$), the two- and three-parton antenna functions are defined
+as \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}\label{eq:oneLoopAntennaDef}
+    \begin{gathered}
+        X_{ij}^1 = S_{ij,IJ}\frac{|\mathcal M_{ij}^1|^2}{|\mathcal M_{IJ}^0|^2}\\
+        X_{ijk}^1 = S_{ijk,IK}\frac{|\mathcal M_{ijk}^1|^2}{|\mathcal M_{IK}^0|^2} - X_{ijk}^0\frac{|\mathcal M_{IK}^1|^2}{|\mathcal M_{IK}^0|^2}.
+    \end{gathered}
+\end{equation}
+where the second term removes the one-loop correction associated with the
+reduced two-parton process.
+
+At two loops ($l=2$), the two-parton antenna considered in this work
+contributes to the $A_2^2$ antenna set and is defined by
+\begin{equation}\label{eq:twoLoopAntennaDef}
+    X_{ij}^2 = S_{ij,IJ}\frac{|\mathcal M_{ij}^2|^2}{|\mathcal M_{IJ}^0|^2}.
+\end{equation}
+Loop antennae are additionally coupling-renormalised according to
+Eq.~\eqref{eq:alphaRescaling} whenever the corresponding reduced process carries
+powers of the strong coupling. This procedure is discussed further in
+Subsection~\ref{subsec:antFamilies}. Finally, all antenna functions are
+normalised to the two-parton Born squared matrix element, $|\mathcal M_2^0|^2$,
+such that the Born-level two-parton antenna satisfies $A_2^0=1$.
+
+In addition to the colour-ordered amplitudes used to define individual antenna
+functions, it is useful to introduce notation for the complete Born-normalised
+matrix-element contribution associated with a given physical final state. Such
+a contribution may contain several colour orderings, flavour assignments, or
+coupling configurations, together with the corresponding interference terms.
+This notation will be particularly useful below when decomposing the complete
+matrix elements into their individual antenna contributions. It is defined as,
+\begin{equation}\label{eq:fullProcessM}
+    |M_{p_1p_2...p_n}^l|^2 = \frac{1}{|\mathcal M_2^0|^2}\sum_{r=0}^l\mathcal M_n^{r\,\dagger}(p_1,...,p_n)\mathcal M_n^{l-r}(p_1,...,p_n),
+\end{equation}
+where more than one colour ordering, flavour assignment, or coupling
+configuration contributes to the specified final state, the right-hand side is
+understood to include the complete sum over the corresponding amplitude
+products, including any interference terms.
+Thus, $|M_{p_1\ldots p_n}^l|^2$ denotes the complete process-level
+contribution, whereas $\mathcal M_n^l(p_1,\ldots,p_n)$ denotes an amplitude
+with a specified ordering or assignment from which the individual antenna
+contributions are subsequently identified.
+
+The complete matrix-element contributions in Eq.~\eqref{eq:fullProcessM} also
+contain the colour factors associated with the underlying QCD process. After
+the relevant amplitude products are formed, the colour indices must therefore
+be contracted and summed. The resulting colour algebra separates the matrix
+element into distinct colour structures, whose coefficients are used to
+identify the corresponding antenna colour components. The colour identities
+and decomposition required for this procedure are introduced in the following
+subsection.
 
 \subsection{Colour Algebra and the Antenna Colour Decomposition}\label{subsec:colourAlg}
 
-Quarks carry a fundamental colour index $i\in\{1,2,3\}$ while gluons carry an 
-adjoint colour index $a\in\{1,...,8\}$. The interactions between them are governed 
-by the $SU(3)_c$ generators $T^a$. Those generators are normalised by the trace
-relation $\operatorname{Tr}\left(T^aT^b\right)=T_R\delta^{ab}$, where by standard 
-convention $T_R=1/2$ \cite{Ellis:1996mzs,Schwartz:2014sze}. 
-This is particularly useful since when the amplitude is 
-squared, the two colour generators must be contracted with one another, that is
-$T^a$ and $\left(T^a\right)^\dagger$, and since the generators are Hermitian, 
-$\left(T^a\right)^\dagger=T^a$. Hence, summing over all colour we get,
+The interactions of quarks and gluons are determined by the local $SU(3)_c$
+gauge symmetry of QCD. For the colour algebra relevant here, quarks transform
+in the fundamental representation and carry a colour index $i=1,\ldots,N$,
+while gluons transform in the adjoint representation and carry an index
+$a=1,\ldots,N^2-1$, with $N=3$ in QCD. The generators of the $SU(N)$ Lie
+algebra in the fundamental representation are denoted by $T^a$ and satisfy the
+normalisation
+\begin{equation}
+    \operatorname{Tr}\left(T^aT^b\right)=T_R\delta^{ab},\quad T_R=\frac12.
+\end{equation}
+When an amplitude is squared, the colour factors of the amplitude and its
+complex conjugate must be contracted and summed over the corresponding colour
+indices. As a simple example, consider a colour structure containing a single
+generator $T^a$. Since the generators in the fundamental representation are
+Hermitian, $\left(T^a\right)^\dagger=T^a$, the corresponding colour sum can be
+written as
 \begin{equation}\label{eq:colourSum}
     \sum_{i_1,i_2,a}\left(T^a\right)_{i_1i_2}\left(T^a\right)_{i_2i_1}=\sum_a\operatorname{Tr}\left(T^aT^a\right)=\sum_aT_R\delta^{aa}.
 \end{equation}
-For a fixed $a$, the trace equals $T_R$. Summing this result over all $N^2-1$ 
-adjoint indices we get,
+Since the adjoint representation of $SU(N)$ has dimension $N^2-1$, summing over
+the adjoint index gives
 \begin{equation}
     \sum_a T_R\delta^{aa}=\frac12\left(N^2-1\right).
 \end{equation}
-Eq.~\ref{eq:colourSum} may also be generalised to four quark colour indices 
-instead of only two. The generalised expression is the \textit{colour Fierz identity},
-or $SU(N)$ completeness relation and is particularly useful for the decomposition 
-of the $B_4^0$ and $C_4^0$ antenna functions \cite{Ellis:1996mzs, Schwartz:2014sze}. 
-It is written as,
+
+For processes containing two quark-antiquark colour lines, such as the
+four-quark final states relevant to the $B_4^0$ and $C_4^0$ antennae, the
+colour algebra involves four fundamental colour indices. A useful relation in
+this case is the $SU(N)$ completeness relation, also known as the
+\textit{colour Fierz identity} \cite{Ellis:1996mzs, Schwartz:2014sze},
 \begin{equation}\label{eq:genTSum}
     \sum_a\left(T^a\right)_{i_1i_2}\left(T^a\right)_{i_3i_4}=\frac12\left(\delta_{i_1i_4}\delta_{i_2i_3}-\frac1N\delta_{i_1i_2}\delta_{i_3i_4}\right).
 \end{equation}
 
-We now also introduce the Casimir invariants: the fundamental and adjoint Casimir
-invariants, $C_F$ and $C_A$. These represent, respectively, the total colour 
-charge squared of the quark and of the gluon. They are defined as,
+We also introduce the quadratic Casimir invariants of the fundamental and
+adjoint representations, denoted by $C_F$ and $C_A$, respectively. They are
+defined through
+\begin{equation}
+    \sum_aT^aT^a=C_F\mathbf{1},\qquad f^{acd}f^{bcd}=C_A\delta^{ab}.
+\end{equation}
+For $SU(N)$, with the normalisation $T_R=1/2$ adopted above, these relations
+give
 \begin{equation*}
     C_F=\frac{N^2-1}{2N}
 \end{equation*}
@@ -973,39 +1070,23 @@ charge squared of the quark and of the gluon. They are defined as,
     C_A=N.
 \end{equation}
 
-The invariants are particularly useful to normalise the two hard quarks' colour
-from the antenna functions, by taking out a factor of $2C_F$. This factor equals,
+The combination $2C_F$ follows directly from the fundamental Casimir
+invariant above,
 \begin{equation}\label{eq:colourNorm}
-    2C_F=N-\frac1N
+    2C_F=N-\frac1N,
 \end{equation}
-which will be a normalisation used throughout the present work. 
+and will be used as a normalisation throughout the present work.
 
-In some processes, colour can flow in different ways depending on the 
-ways emitted particles couple with the hard partons. These different topologies 
-may be understood as planar, non-planar, and quark-loop topologies, 
-each yielding a different antenna-set component.
-These components, after decomposition become:
-
-\begin{itemize}
-    \item\label{list:A31Comps} The leading colour component ($N$): these come from planar topologies
-    (where virtual gluons are exchanged without crossing over each other).
-    This component is represented by the base antenna in standard notation, e.g. 
-    $A_3^1$. An NNLO leading antenna-set component is
-    proportional to the diagonal pieces, $X_4^0\sim|\mathcal M_4^0(1,3,4,2)|^2$ or
-    $X_4^0\sim|\mathcal M_4^0(1,4,3,2)|^2$.
-    \item The subleading colour component ($1/N$): these come from non-planar
-    topologies (where gluon lines do cross each other). This component is represented
-    by the tilde antenna, e.g. $\tilde A_3^1$. An NNLO subleading antenna-set 
-    component is proportional to the interference pieces, 
-    $\tilde X_4^0\sim2\operatorname{Re}\left(\mathcal M_4^{0\,\dagger}(1,3,4,2)\mathcal M_4^0(1,4,3,2)\right)$.
-    \item The fermion loop ($N_f$): Instead of a virtual gluon, the loop can have
-    a virtual quark-antiquark pair. This contribution depends strictly on the number
-    of active flavours, $N_f$. This component is represented by the hat antenna,
-    e.g. $\hat A_3^1$. An NNLO quark-loop one-loop-antenna-set component is 
-    proportional to the pieces with quark-loop terms,
-    $\hat X_n^1\sim2\operatorname{Re}\left(\mathcal M_n^{0\,\dagger}\mathcal M_{n,q\text{-loop}}^1\right)$
-    \cite{Gehrmann-DeRidder:2005btv}.
-\end{itemize}
+After performing the colour contractions and sums, the complete
+matrix-element contributions can be organised according to their distinct
+colour structures. For the $q\bar q$ antennae considered in this work, these
+give rise to leading- and subleading-colour contributions and, at loop level,
+contributions associated with closed quark loops. The corresponding
+colour-stripped antenna components are conventionally distinguished by their
+notation: the leading-colour component carries no additional accent, the
+subleading-colour component is denoted by a tilde, and the closed-quark-loop
+component by a hat. The explicit identification of these components from the
+relevant matrix elements is presented in the following subsection.
 
 \subsection{Antenna Construction}\label{subsec:antFamilies}
 
@@ -1020,53 +1101,82 @@ The LO antenna then becomes,
     A_2^0(1_q,2_{\bar q}) = \frac{|\mathcal M_2^0(1_q,2_{\bar q})|^2}{|\mathcal M_2^0(1_q,2_{\bar q})|^2}=1.
 \end{equation}
 
-Advancing to the NLO tree-level antenna, there are only two possible similar processes, both 
-considered within the same squared amplitude. The antenna becomes,
+Advancing to the NLO tree-level antenna, the relevant amplitude
+$\mathcal M_3^0(1_q,3_g,2_{\bar q})$ is the sum of the two tree-level diagrams
+of Fig.~\ref{fig:feynDiagsEx}, with the gluon emitted from either the quark or
+the antiquark line, as given in Eq.~\eqref{eq:amplitude}; both diagrams are
+therefore already contained within the same squared amplitude. The antenna
+becomes,
 \begin{equation}
     A_3^0(1_q,3_g,2_{\bar q}) =\frac{|\mathcal M_3^0(1_q,3_g,2_{\bar q})|^2}{|\mathcal M_2^0(1_q,2_{\bar q})|^2}.
 \end{equation}
-The NLO one-loop antenna introduces the squared one-loop two-particle amplitude as,
+The NLO one-loop antenna is obtained from the interference between the
+tree-level and one-loop two-parton amplitudes, normalised to the corresponding
+Born-level squared amplitude,
 \begin{equation}\label{eq:A21Amp}
     A_2^1(1_q,2_{\bar q}) = \frac{2\operatorname{Re}\!\left(\mathcal M_2^{0\,\dagger}(1_q,2_{\bar q})\mathcal M_2^1(1_q,2_{\bar q})\right)}{|\mathcal M_2^0(1_q,2_{\bar q})|^2}.
 \end{equation}
 
-The NNLO $A$-type tree-level antenna set is the first one of this list with multiple components,
-due to the way in which its two unresolved partons may couple with different hard partons and 
-may also interfere.
-The complete set linear combination is given,
+The NNLO tree-level $A$-type antenna set is the first case considered here to
+contain more than one colour component. For the $qgg\bar q$ final state, the
+two gluons can appear in two different colour orderings along the $q\bar q$
+colour line. The complete squared matrix element therefore contains
+contributions from both colour orderings, together with their interference.
+After performing the colour algebra and extracting the common colour
+normalisation introduced above, these contributions can be organised into
+leading- and subleading-colour structures. The resulting decomposition is
 \begin{equation}
     \begin{gathered}
         \begin{aligned}
             M_{qgg\bar q}^0 = \frac1{|\mathcal M_2^0|^2}\Bigg(N&\left(|\mathcal M_4^0(1_q,3_g,4_g,2_{\bar q})|^2+|\mathcal M_4^0(1_q,4_g,3_g,2_{\bar q})|^2\right)\\
                                                                                &-\frac1N\left|\mathcal M_4^0(1_q,3_g,4_g,2_{\bar q})+\mathcal M_4^0(1_q,4_g,3_g,2_{\bar q})\right|^2\Bigg)
         \end{aligned}\\
-        = NA_4^0(1_q,3_g,4_g,2_{\bar q})-\frac1N\tilde A_4^0(1_q,3_g,4_g,2_{\bar q})
+        = N\!\left(A_4^0(1_q,3_g,4_g,2_{\bar q})+A_4^0(1_q,4_g,3_g,2_{\bar q})\right)-\frac1N\tilde A_4^0(1_q,3_g,4_g,2_{\bar q})
     \end{gathered}
 \end{equation}
-reaching the two components that make up the set $\left\{A_4^0,\tilde A_4^0\right\}$.
+This decomposition identifies the two components of the $A_4^0$ antenna set:
+the leading-colour antenna $A_4^0$ and the subleading-colour antenna
+$\tilde A_4^0$. For all antenna functions considered in this work, details of
+their explicit calculation using \textit{AntCalc} are presented in
+Chapter~\ref{ch:workedexample}, while the complete analytic results are
+collected in Appendix~\ref{ap:antExpressions}.
 
-The NNLO one-loop antenna set is given following the methods shown for the one-loop NLO and the 
-tree-level NNLO antennae, appearing with three bare components,
+The NNLO one-loop antenna set combines the features encountered separately in
+the NLO one-loop and NNLO tree-level antennae. It is obtained from the
+tree--one-loop interference of the three-parton matrix element and, before
+ultraviolet renormalisation, decomposes into three colour components,
 \begin{equation}
     \begin{gathered}
         M_{qg\bar q}^1 = \frac{2\operatorname{Re}\!\left(\mathcal M_3^{0\,\dagger}(1_q,3_g,2_{\bar q})\mathcal M_3^1(1_q,3_g,2_{\bar q})\right)}{|\mathcal M_2^0|^2}\\
         = NA_{3,\text{bare}}^1(1_q,3_g,2_{\bar q}) - \frac1N \tilde A_{3,\text{bare}}^1(1_q,3_g,2_{\bar q}) + N_f\hat A_{3,\text{bare}}^1(1_q,3_g,2_{\bar q}).
     \end{gathered}
 \end{equation}
-As mentioned, this set needs to be renormalised according to Eq.~\ref{eq:alphaRescaling} as,
+The only diagram contributing to $\hat A_{3,\text{bare}}^1$ is a massless-quark
+self-energy insertion on the external, on-shell gluon leg. Since this bubble
+carries the on-shell gluon's momentum $p_3$, and $p_3^2=0$, it is a scaleless
+integral and therefore vanishes identically in dimensional regularisation, such that
+$\hat A_{3,\text{bare}}^1\equiv0$. The quark-loop ($N_f$) term that appears below 
+originates entirely from the coupling-renormalisation couterterm.
+
+Ultraviolet renormalisation of the one-loop contribution is performed
+according to Eq.~\eqref{eq:alphaRescaling}, yielding
 \begin{equation}
     M_{qg\bar q}^1 = N\!\left(A_{3,\text{ren}}^1+\frac{11}{6\epsilon}A_3^0\right)-\frac1N\tilde A_{3,\text{ren}}^1+N_f\!\left(\hat A_{3,\text{ren}}^1-\frac{1}{3\epsilon}A_3^0\right).
 \end{equation}
-Finally, the renormalised source still contains the one-loop correction to the underlying $q\bar q$
-pair. This correction term has to also be subtracted and is as follows,
+After ultraviolet renormalisation, the three-parton contribution still
+contains the one-loop correction associated with the underlying $q\bar q$
+two-parton configuration. This contribution must therefore be subtracted in
+the definition of the one-loop three-parton antenna, yielding
 \begin{equation}
     M_{qg\bar q}^1 = N\!\left(A_{3}^1+A_3^0\left(\frac{11}{6\epsilon}+A_2^1\right)\right)-\frac1N\left(\tilde A_{3}^1+A_2^1A_3^0\right)+N_f\!\left(\hat A_{3}^1-\frac{1}{3\epsilon}A_3^0\right)
 \end{equation}
-leaving the final antenna set $\left\{A_3^1,\tilde A_3^1,\hat A_3^1\right\}$.
+This procedure defines the final NNLO one-loop antenna set, consisting of
+$A_3^1$, $\tilde A_3^1$, and $\hat A_3^1$.
 
-The NNLO two-loop antenna-set is made up of two different configurations which generate four 
-components. These need to be UV renormalised but do not require subtracting further 
-correction terms. The set linear combination is given as,
+The NNLO two-loop antenna-set contains two distinct terms: the interference
+between the tree-level and two-loop amplitudes, and the squared one-loop
+amplitude. These need to be UV renormalised but no subtraction associated
+with a lower-multiplicity antenna is required in this case. We obtain,
 \begin{equation}\label{eq:a22Amp}
     \begin{gathered}
         M_{q\bar q}^2 = \frac{2\operatorname{Re}\!\left(\mathcal M_2^{0\,\dagger}(1_q,2_{\bar q})\mathcal M_2^2(1_q,2_{\bar q})\right)+\mathcal M_2^{1\,\dagger}(1_q,2_{\bar q})\mathcal M_2^1(1_q,2_{\bar q})}{|\mathcal M_2^0(1_q,2_{\bar q})|^2} = \frac{|\mathcal M_2^{2,[2\times 0]}|^2+|\mathcal M_2^{2,[1\times 1]}|^2}{|\mathcal M_2^0|^2}\\
@@ -1074,18 +1184,27 @@ correction terms. The set linear combination is given as,
         = N\!\left(A_{2}^2+\frac{11}{6\epsilon}A_2^1\right) + \frac1N \tilde A_{2}^2 + N_f\!\left(\hat A_{2}^2-\frac1{3\epsilon}A_2^1\right) + \left(N-\frac1N\right)\breve A_{2}^2
     \end{gathered}
 \end{equation}
-reaching the four components that make up the set
-$\left\{A_2^2,\tilde A_2^2,\hat A_2^2,\breve A_2^2\right\}$.
+defining the four components that make up the set
+$\left\{A_2^2,\tilde A_2^2,\hat A_2^2,\breve A_2^2\right\}$. The $\breve A_2^2$
+component arises from the self-interference of the one-loop amplitude and
+carries the single, undivided colour weight $\left(N-\tfrac1N\right)$: unlike
+the tree--two-loop interference, it is not further decomposed into separate
+leading- and subleading-colour pieces.
 
-The remaining two NNLO tree-level antenna functions considered throughout this thesis come from the
-same process, $\gamma^*\to q\bar q q\bar q$. This process produces the two relevant antennae, 
-$B_4^0$ and $C_4^0$, and a third antenna $\hat B_4^0$, which exchanges which quark pair couples 
-to the electroweak current. This is out of the current scope of this work and will not 
-be derived past this mention. The three antennae appear as a set-like linear combination, as,
+The remaining NNLO tree-level antenna functions considered in this work arise
+from four-quark final states in the decay of a colour-singlet current. For
+non-identical quark flavours, the corresponding matrix element gives rise to
+the $B_4^0$ antenna, whereas for identical flavours additional interference
+contributions are present, defining the $C_4^0$ antenna. A further
+contribution, conventionally denoted by $\hat B_4^0$, arises from
+configurations in which the electroweak current couples to the secondary
+quark line. This contribution is not required for the antenna functions
+considered in this thesis and will therefore not be discussed further. The
+complete four-quark matrix-element contribution can be decomposed as
 \begin{equation}\label{eq:M4q}
     \begin{gathered}
         \begin{aligned}
-            M_{4q}^0 = \frac1{|\mathcal M_2^0|^2}\left(|\mathcal M_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q})|^2+|\mathcal M_4^0(1_q,3_{q},4_{\bar q},2_{\bar q})|^2\right)
+            M_{4q}^0 = \frac1{|\mathcal M_2^0|^2}\left(\sum_{q^\prime}|\mathcal M_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q})|^2+|\mathcal M_4^0(1_q,3_{q},4_{\bar q},2_{\bar q})|^2\right)
         \end{aligned}\\
         \begin{aligned}
             =\Bigg[N_fB_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q})+N_{f,\gamma}&\hat B_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q})\\
@@ -1097,15 +1216,21 @@ where $N_{f,\gamma}$ is the charge weighted sum of the quark flavours, given as,
 \begin{equation}
     N_{f,\gamma} = \frac{\left(\sum_q e_q\right)^2}{\sum_q e_q^2}.
 \end{equation}
-We can decouple the two relevant antennae from the general expression and write proper antenna-specific 
-expressions. For that, we begin by defining $q\bar q\text{-}\gamma$ coupling amplitude using the Fierz identity,
+To isolate the $B_4^0$ and $C_4^0$ antennae from the complete four-quark
+matrix element, it is useful to first decompose the corresponding amplitude
+into its colour structures. Using the $SU(N)$ Fierz identity, the tree-level
+amplitude for $\gamma^*\to q\bar qq^\prime\bar q^\prime$ can be written as,
 \begin{equation}
     \begin{gathered}
         \mathcal M_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q}) = ie_qg^2\,\delta_{q_1q_2}\delta_{q_3q_4}\left(\delta_{i_1i_4}\delta_{i_3i_2}-\frac1N\delta_{i_1i_2}\delta_{i_3i_4}\right)\mathcal M_{q\bar q\text{-}\gamma}(1_q,3_q,4_{\bar q},2_{\bar q})\\
         + (1\leftrightarrow3,\,2\leftrightarrow4).
     \end{gathered}
 \end{equation}
-Using this amplitude, and comparing its structure with Eq.~\ref{eq:M4q}'s, we are able to write,
+Here, $\mathcal M_{q\bar q\text{-}\gamma}$ denotes the colour-stripped
+contribution in which the $q_1\bar q_2$ pair couples to the electroweak
+current. The $B_4^0$ antenna is obtained from the squared colour-stripped
+amplitude, whereas the $C_4^0$ antenna is defined by the interference between
+the two identical-quark assignments:
 \begin{equation}
     \begin{gathered}
         B_4^0(1_q,3_{q^\prime}, 4_{\bar q^\prime},2_{\bar q}) = \frac{|\mathcal M_{q\bar q\text{-}\gamma}(1_q,3_q,4_{\bar q},2_{\bar q})|^2}{|\mathcal M_2^0|^2}\\
@@ -1219,11 +1344,11 @@ processes. QCD allows for the exchange of gluons in between quarks and the
 self-absorption (by the same quark) of a previously emitted gluon. These are the 
 so-called virtual corrections. As described in Subsection~\ref{subsec:uvDivergences},
 these corrections lead to UV divergences, which is why loop antenna functions
-require renormalisation, and why Eq.~\ref{eq:antennaTree} is
+require renormalisation, and why Eq.~\eqref{eq:antennaTree} is
 labelled as \textit{bare}: it is the general definition before UV renormalisation.
 This renormalisation is achieved through the
 rescaling of the bare coupling constant $\alpha_0$ to the renormalised coupling
-constant $\alpha_s$ through Eq.~\ref{eq:alphaRescaling}. This single rescaling is
+constant $\alpha_s$ through Eq.~\eqref{eq:alphaRescaling}. This single rescaling is
 guaranteed to hold universally, across every diagram topology of the same process,
 by the Ward-Takahashi~\cite{Ward:1950xp, Takahashi:1957xn} and Slavnov-Taylor Identities
 \cite{Taylor:1971ff, Slavnov:1972fg}, which enforce the conservation of the
@@ -1236,7 +1361,7 @@ These antenna functions may now be ordered by perturbative order based on their 
 Let us define an antenna completely as $X_{n,(k)}^{l}$ where $k$ is the 
 perturbative order index, $n$ is the number of final-state particles and $l$ is 
 the number of loops. Let us also define the perturbative expansion in
-Eq.~\ref{eq:alphaRescaling} as,
+Eq.~\eqref{eq:alphaRescaling} as,
 \begin{equation}
     \begin{split}
         \Delta\left(\frac{\alpha_s}{2\pi}\right)&=1-\frac{\beta_0}{\epsilon}\frac{\alpha_s}{2\pi}+\mathcal O\left(\frac{\alpha_s}{2\pi}\right)\\
@@ -1244,7 +1369,7 @@ Eq.~\ref{eq:alphaRescaling} as,
     \end{split}    
 \end{equation}
 
-We are now able to generalise Eq.~\ref{eq:antennaTree} to all antenna functions as
+We are now able to generalise Eq.~\eqref{eq:antennaTree} to all antenna functions as
 follows,
 
 \begin{equation}\label{eq:bornNorm}
@@ -1325,7 +1450,7 @@ their distinct colour components. These are,
     e.g. $\hat A_3^1$\cite{Gehrmann-DeRidder:2005btv}.
 \end{itemize}
 
-The direct expansion to Eq.~\ref{eq:colourSum} is to generalise to the four quark
+The direct expansion to Eq.~\eqref{eq:colourSum} is to generalise to the four quark
 colour indices, instead of only two. That expansion is 
 \begin{equation}\label{eq:genTSum}
     \sum_a\left(T^a\right)_{i_1i_2}\left(T^a\right)_{i_3i_4}=\frac12\left(\delta_{i_1i_4}\delta_{i_2i_3}-\frac1N\delta_{i_1i_2}\delta_{i_3i_4}\right).
@@ -1357,7 +1482,7 @@ In the case of the examples used in List~\ref{list:A31Comps}, the $T$-object is,
     T^6_{q\bar qg} = 2C_FT_{q\bar q}^2\left[N\left(A_3^1+A_2^1A_3^0\right) - \frac1N\left(\tilde A_3^1+A_2^1A_3^0\right) + N_f\hat A_3^1\right].
 \end{equation}
 The extra $A_2^1A_3^0$ terms, and the sign of the subleading contribution, follow
-directly from how the $A_3^1$ set's own components are built (Eq.~\ref{eq:a31Norm}
+directly from how the $A_3^1$ set's own components are built (Eq.~\eqref{eq:a31Norm}
 of Chapter~\ref{ch:packageframework}): the leading and subleading components each
 have the iterated $A_2^1A_3^0$ term subtracted out individually during construction,
 to avoid double-counting a diagram topology that is not unique to $A_3^1$, so it
@@ -1461,89 +1586,83 @@ in Chapter~\ref{ch:futurework}.
 
 \subsection{Phase-Space Factorisation}\label{subsec:phaseSpaceFactor}
 
-The previous Subsections focused on the antenna functions as objects: how they
-are built, combined, and normalised. As ingredients of the subtraction term
-$d\sigma^S$, the antenna functions must then be integrated over the unresolved-parton
-phase space. Schematically, as described in Eq.~\ref{eq:subScheme}, this is the
-integral,
-\begin{equation}
+The previous subsections focused on the construction, colour decomposition,
+and normalisation of the unintegrated antenna functions. In the subtraction
+formalism, these functions enter local counterterms that must subsequently be
+integrated analytically over the corresponding antenna phase space. At NLO, as
+introduced in Eq.~\eqref{eq:subScheme}, this gives the integrated subtraction
+term
+\begin{equation}\label{eq:integratedSubNLO}
     \int_1 d\sigma^S
 \end{equation}
-where $\int_1$ denotes the integral over the unresolved parton phase-space. 
-This integral does not only denote the integral over the single unresolved parton,
-alone, on two counts: first the fact that the integral must cover all unresolved 
-partons which, for three-final-particle antennae is only one, 
-but for four-final-particle antennae it becomes two. 
-Second, the hard 
-partons and their interactions with the unresolved partons must also be 
-integrated over. The integral becomes over the $n$-final-state-particle antenna 
-phase space. This makes,
+where $\int_1$ denotes the integration associated with one unresolved parton
+in the antenna phase space. This notation should not be interpreted as an
+integration over the momentum of the unresolved parton alone. For a
+three-parton antenna $X_{ijk}^l$, the antenna phase space contains the momenta
+of the unresolved parton $j$ and of the two hard radiators $i$ and $k$. The
+integration is made possible by the exact factorisation of the full
+$(m+1)$-particle phase space into the phase space of the reduced $m$-particle
+configuration and the antenna phase space, as already given in
+Eq.~\eqref{eq:nloPhaseSpaceFactor}. The antenna contribution can therefore be
+integrated independently of the reduced $m$-parton hard process. Schematically,
+the antenna phase-space integration acts on the antenna function, while the
+reduced Born contribution remains factorised,
 \begin{equation}
-    \int_1 d\sigma^S=\sum_\text{unresolved pairs}\!\left(\int d\Phi_{ijkl...}\,X_n^l\right)d\sigma^B.
+    \int_1 d\sigma^S\sim\sum_\text{antennae}\left[\int d\Phi_{X_{ijk}}\,X_{ijk}^0\right]d\sigma^B.
 \end{equation}
+At NNLO, the same construction applies to four-parton antennae $X_{ijkl}^0$,
+whose antenna phase space contains two unresolved partons.
 
-The $n$-final-state-particle antenna phase space $\Phi_{ijkl...}$\footnote{This 
-phase space is notated by $\Phi_{ijk}$ for three-final-state-particle antennae like
-$A_3^1$ and $\Phi_{ijkl}$ for four-parton-final-particle antennae like $A_4^0.$} 
-is not the
-standard $n$-particle phase space, as in $\Phi_3$ or $\Phi_4$. It is, rather,
-the antenna's own phase space: the unresolved-parton phase space associated with
-the unresolved-parton emission between the two hard radiators. It has no independent
-parametrisation and is only accessed by factorising
-the known $n$-particle phase space
-\cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276}.
-Since, through the recursive factorisation of the Lorentz-invariant
-phase space property \cite{Catani:1996vz},
-the phase space factorises,
-we are able to denote that the $n$-particle phase-space equals the $(n-n_u)$-particle,
-where $n_u$ is the number of unresolved partons, 
-phase-space times the antenna phase-space
-for $n$ final-state particles. 
-For our case, two useful identities are produced for this formula \cite{Gehrmann-DeRidder:2005btv},
+For the final-final antennae considered here, the antenna phase-space
+integrals can be related directly to the standard three- and four-particle
+phase spaces, by setting $m=2,3$ in Eq.~\eqref{eq:nloPhaseSpaceFactor}.
+Specialising the phase-space factorisation to a two-particle reduced
+configuration gives
 \begin{equation}\label{eq:phi2Factor}
     \begin{split}
-        &d\Phi_3 = d\Phi_2d\Phi_{ijk}\\
-        &d\Phi_4 = d\Phi_2d\Phi_{ijkl}.
+        &d\Phi_3 = d\Phi_2\,d\Phi_{X_{ijk}}\\
+        &d\Phi_4 = d\Phi_2\,d\Phi_{X_{ijkl}}.
     \end{split}
 \end{equation}
-
-Since $d\Phi_n$ is perfectly factorised \cite{Catani:1996vz}, and the $X_n^l$ antenna functions are
-explicitly built to be functions of the antenna's internal invariants alone and
-to have no dependence on how the reduced system is oriented \cite{Gehrmann-DeRidder:2005btv}, 
-the two phase spaces are integrated 
-separately, with the two-particle phase-space integral producing $\Phi_2$ directly.
-The antenna's own phase-space integral is then rewritten as \cite{Gehrmann-DeRidder:2005btv},
+Since the antenna functions $X_n^l$ depend only on invariants constructed from
+the antenna momenta $p_i,p_j,p_k,\ldots$, they are independent of the reduced
+two-particle phase space $d\Phi_2$. The latter can therefore be integrated
+separately, giving the constant
+\begin{equation}
+    \Phi_2=\int d\Phi_2.
+\end{equation}
+The antenna phase-space integral can therefore be expressed as
+\cite{Gehrmann-DeRidder:2005btv},
 \begin{equation}\label{eq:antPhaseSpaceFact}
-    \int d\Phi_{ijkl...}\,X_n^l = \frac1{\Phi_2}\int d\Phi_n\,X_n^l
+    \int d\Phi_{X_{ijkl...}}\,X_n^l = \frac1{\Phi_2}\int d\Phi_n\,X_n^l.
 \end{equation}
-which is how the phase-space prefactor appears in $\mathcal N(\epsilon, k)$,
-as described in Section~\ref{sec:dimreg}.
-
-Hence, finally, the integrated antenna $\mathcal X_n^l$ is given generally\footnote{
-\label{footnote:integratedAntenna}
-This definition is general for antenna functions that are already cleanly and 
-completely given in terms of Mandelstam invariants and $\epsilon$. This is only 
-automatically true for antenna where $l=0$. When $l\geq1$, which happens for all
-loop antennae by definition, a prior loop-momentum integration step is necessary.
-This step is explored further in Section~\ref{sec:integration}.}
-as, taking 
-the aforementioned overall $\mathcal N$ normalisation factor \cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276},
+Including the overall normalisation factor $C(\epsilon,k)$ introduced in
+Section~\ref{sec:dimreg}, the integrated antenna $\mathcal X_n^l$ is then
+defined, generally\footnote{\label{footnote:integratedAntenna} This definition
+is general for antenna functions that are already cleanly and completely given
+in terms of Mandelstam invariants and $\epsilon$. This is only automatically
+true for antenna where $l=0$. When $l\geq1$, which happens for all loop
+antennae by definition, a prior loop-momentum integration step is necessary.
+This step is explored further in Section~\ref{sec:integration}.}, as
 \begin{equation}\label{eq:antennaIntegral}
-    \mathcal X_n^l = \mathcal N(\epsilon, k) \int d\Phi_n\,X_n^l.
+    \mathcal X_n^l = C(\epsilon, k) \int d\Phi_{X_{ijkl...}}\,X_n^l.
 \end{equation}
 
-Two antenna types are exempt from this rule: $A_2^1$ and $A_2^2$,
-as they do not present with unresolved partons, but rather only with loops, and thus
-are completely virtual. These antennae are only integrated over the
-loop momenta rather than over the phase space, thus not requiring normalisation
-using the two-particle phase-space \cite{GehrmannDeRidder0507061}. $A_2^0$ also has no
+For the two-parton antennae $A_2^1$ and $A_2^2$, no unresolved real radiation
+is present and therefore no additional antenna phase space needs to be
+isolated. Their integrated counterparts are obtained directly from the
+corresponding two-particle phase-space integration, together with the loop
+integrations entering the virtual contributions \cite{GehrmannDeRidder0507061}.
+Thus, while these antennae are also integrated over phase space, the
+phase-space factorisation of Eq.~\eqref{eq:antPhaseSpaceFact}, relevant for
+antennae containing unresolved radiation, is not required. $A_2^0$ also has no
 unresolved parton, but is excluded here for a different reason: it is the
 Born-level antenna itself, not an integrated subtraction ingredient.
 
 \section{Phase-Space Integration and IBP Reduction}\label{sec:integration}
 
 In the previous sections, antenna functions were introduced together with their role
-in the local subtraction of infrared singularities. Eq.~\ref{eq:antennaIntegral} defined
+in the local subtraction of infrared singularities. Eq.~\eqref{eq:antennaIntegral} defined
 their integration over the unresolved phase space, leading from an unintegrated antenna
 $X_n^l$ to its integrated counterpart $\mathcal X_n^l$. For loop-level antennae ($l\geq1$),
 the loop momenta must additionally be integrated.
@@ -1551,7 +1670,7 @@ the loop momenta must additionally be integrated.
 Both the unintegrated and integrated forms are required in a subtraction calculation,
 but they play different roles. The unintegrated antenna functions provide local
 counterterms for real-radiation matrix elements and are therefore required in numerical
-Monte Carlo phase-space integration. They must retain the dependence on the local
+Monte Carlo (MC) phase-space integration. They must retain the dependence on the local
 kinematics of each phase-space point, which can be expressed in terms of Mandelstam
 invariants $s_{ij}$. This allows the subtraction term to reproduce the singular
 behaviour of the real-emission matrix element point by point in the unresolved limits.
@@ -1562,7 +1681,7 @@ locally within the phase-space integration. The subsequent analytic integration 
 unresolved phase space then produces the corresponding integrated antenna function,
 whose explicit infrared poles enter the cancellation against virtual contributions.
 
-From Eq.~\ref{eq:antPhaseSpaceFact}, we have seen that through phase-space
+From Eq.~\eqref{eq:antPhaseSpaceFact}, we have seen that through phase-space
 factorisation, the antennae are integrated over the antenna phase space $\Phi_{X}$.
 If required, they are also integrated over their loop momenta $\ell_r$, $r=1,...,l$.
 The propagator or Mandelstam-invariant denominators entering these integrals may
@@ -1591,7 +1710,8 @@ with,
 \end{equation}
 
 The integrals within each family are not independent. Through integral reduction, they
-can be expressed in terms of a finite and substantially smaller set of master integrals,
+can be expressed in terms of a finite and substantially smaller set of master
+integrals (MI),
 \begin{equation}
     I(\vec a) = \sum_{k=1}^{N_\text{MI}}c_k(\vec a, \epsilon, \{s_{ij}\})M_k
 \end{equation}
@@ -1619,42 +1739,19 @@ the phase-space variables and integration untouched, as \cite{Passarino:1979pv},
     \int d^d\ell\, \frac{\ell^{\mu_1}...\ell^{\mu_R}}{\prod_j D_j^{a_j}} \xrightarrow{\text{PaVe}} \sum_k c_k\!\left(\{s_{ij}\}\right)\{A_0,B_0,C_0,D_0,...\}_k.
 \end{equation} 
 
-To finally reach the integrated antenna functions $\mathcal X_n^l$ we do require 
-integrating over the phase-space. For this integral we also use a reduction method:
-Integration By Parts (IBP) reduction, described in detail in Subsection~\ref{subsec:ibp}. 
-This method generates relations among scalar integrals in a common family through 
-vanishing total derivatives, as \cite{Chetyrkin:1981qh},
-\begin{equation}\label{eq:derivativeToZero}
-    0 = \int d^d\ell\,\frac{\partial}{\partial \ell^\mu}\!\left(v^\mu\frac1{\prod_j D_j^{a_j}}\right).
-\end{equation}
-As mentioned in previous sections, emitted final-state particles are real and on shell. 
-That condition is enforced in the phase-space through the use of Dirac-delta functions 
-like $\delta^+\!\left(p_i^2\right)$. Note that these are not ordinary Feynman 
-propagators. To bring the phase-space integration into the same algebraic 
-framework as the loop integrals, we introduce the method of
-reverse unitarity to represent these Dirac-delta functions as cut propagators, through 
-the discontinuity relation as \cite{GehrmannDeRidder0311276},
-\begin{equation}
-    2\pi i\,\delta^+\!\left(p_i^2\right) = \left[\frac1{p^2_i-i0}-\frac1{p^2_i+i0}\right]_+.
-\end{equation}
-where both $+$ signs, in $\delta^+$ and $]_+$, represent the positive-energy 
-prescription.
-
-The family now contains ordinary propagators from virtual loops and cut propagators 
-representing the unresolved phase-space. The IBP identities can then reduce the 
-resulting combined 
-cut-integral family to a finite set of MI.
-
-After UV renormalisation and evaluation of the MI, the result is expanded as a Laurent 
-series in $\epsilon$, making the remaining explicit IR poles visible order by order
-\cite{Gehrmann-DeRidder:2005btv,tHooft:1972tcz}.
+To finally reach the integrated antenna functions $\mathcal X_n^l$, the
+remaining phase-space integration is performed through Integration By Parts
+(IBP) reduction, combined with the method of reverse unitarity to bring the
+on-shell phase-space constraints into the same algebraic framework as the loop
+integrals. Both methods, together with the resulting Laurent expansion of the
+master integrals, are described in full in Subsection~\ref{subsec:ibp}.
 
 
 \subsection{IBP Identities and the Laporta Algorithm}\label{subsec:ibp}
 
 \subsubsection{IBP Identities}\label{subsubsec:ibpibp}
 
-The integral family has already been defined in Eq.~\ref{eq:intFamily}. This 
+The integral family has already been defined in Eq.~\eqref{eq:intFamily}. This 
 definition allows for the factorisation of the integral into a loop and a phase-space 
 integral term. That factorisation results in,
 \begin{equation}\label{eq:ibpSepIntegrals}
@@ -1662,15 +1759,15 @@ integral term. That factorisation results in,
 \end{equation}
 The overall normalisation factors are irrelevant to the identities and will, therefore,
 be suppressed throughout the following explanation. The denominators $D_j$ were
-already defined generally in Eq.~\ref{eq:denomDef}.
+already defined generally in Eq.~\eqref{eq:denomDef}.
 Take one loop momentum $\ell_s$,
 for $s=1,...,l$, and one vector $v^\mu$ from the available loop and external 
 momenta. Dimensional regularisation allows us to set a total derivative to zero
 inside $\mathcal I$, as \cite{GehrmannDeRidder0311276,Chetyrkin:1981qh},
-\begin{equation}
+\begin{equation}\label{eq:derivativeToZero}
     0 = \int\prod_{r=1}^l d^d\ell_r\,\frac\partial{\partial\ell_s^\mu}\left[v^\mu\frac1{D_1^{a_1}...D_N^{a_N}}\right]
 \end{equation}
-as previously introduced in Eq.~\ref{eq:derivativeToZero}. In dimensional regularisation,
+In dimensional regularisation,
 analytic continuation justifies the vanishing of the surface term at infinity,
 leaving an exact relation among regulated integrals\footnote{This method 
 is explored further and completely in Subsubsection~\ref{subsubsec:a30IBPExample}.}.
@@ -1700,7 +1797,7 @@ An example of the application of this method is written in Section~\ref{sec:IBPR
 \subsubsection{Reverse Unitarity and Cut Integrals}\label{subsubsec:revUnit}
 
 In the previous subsubsection, we have derived the IBP identities relative to
-$\mathcal I$. As described in Eq.~\ref{eq:ibpSepIntegrals}, the entire integrated 
+$\mathcal I$. As described in Eq.~\eqref{eq:ibpSepIntegrals}, the entire integrated 
 antenna is not merely $\mathcal I$, but rather,
 \begin{equation}
     I(\vec a) = \int d\Phi_X\,\mathcal I(\vec a).
@@ -1857,7 +1954,7 @@ For integrated antennae, the cut denominators in these master integrals encode t
 real unresolved phase space. Hence, a master may be a pure phase-space volume, 
 a phase-space integral with invariant denominators, or a loop-plus-phase-space
 cut integral. The MI are also not necessarily finite; in fact, in dimensional
-regularisation they commonly contain $\epsilon$ poles \cite{GehrmannDeRidder0311276}.
+regularisation they commonly contain $1/\epsilon$ poles \cite{GehrmannDeRidder0311276}.
 
 For a massless fully inclusive antenna system, $q^2$ is often the only independent 
 kinematic scale once the dimensional-regularisation normalisation factors have been 
@@ -1866,8 +1963,15 @@ the form,
 \begin{equation}\label{eq:MIscaling}
     M_k(q^2,\epsilon) = \left(q^2\right)^{\lambda_k+\kappa_k\epsilon}f_k(\epsilon),\quad f_k(\epsilon)\sim\frac{\Gamma^m(1-a\epsilon)}{\Gamma^n(1-b\epsilon)}
 \end{equation}
-where $\lambda_k$ is fixed by mass dimension and $f_k$ is dimensionless, depending 
-only on $\epsilon$ \cite{GehrmannDeRidder0311276}.
+where $\lambda_k$ is fixed by mass dimension and $f_k$ is dimensionless, depending
+only on $\epsilon$ \cite{GehrmannDeRidder0311276}. Here, $\Gamma$ denotes the Euler
+Gamma function, the analytic continuation of the factorial to complex
+arguments, defined for $\operatorname{Re}(z)>0$ by
+\begin{equation}
+    \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}\,dt,
+\end{equation}
+and extended to the rest of the complex plane, away from its poles at
+$z=0,-1,-2,\ldots$, by analytic continuation.
 
 When evaluating master integrals, different types often call for different approaches.
 Simple one-scale phase-space masters often integrate directly after the phase-space 

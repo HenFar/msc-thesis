@@ -1,5 +1,14 @@
 \chapter{Global Validation: The Massless Hadronic R-Ratio}\label{ch:validation}
 
+As mentioned in Chapter~\ref{ch:introduction}, the antenna functions that were computed
+using \textit{AntCalc} in the previous Chapter~\ref{ch:workedexample} now need to be globally
+validated. This validation is undertaken by the computation of the massless hadronic $R$-ratio
+up to NNLO. This observable is particularly useful for validating these antenna functions
+due to the fact that it is fully inclusive: it requires the entire antenna suite, whose poles
+cancel only in the inclusive sum, as discussed in Chapter~\ref{ch:physicsbackground}. Its
+result at NLO and NNLO is also known and has been computed and validated through methods
+other than Antenna Subtraction \cite{Dine:1979qh}.
+
 \section{R-Ratio Definition}
 
 The hadronic R-ratio is usually defined as the ratio of the total cross-section for $e^+e^-$
@@ -13,18 +22,18 @@ mathematically described as follows,
 \end{equation}
 
 Looking closely, the $\sigma(e^+e^-\to\text{hadrons})$ term is what QCD predicts for
-$\gamma^*\to\text{hadrons}$, computed via the optical theorem \cite{GehrmannDeRidder0311276}.
+$\gamma^*\to\text{hadrons}$, computed via the optical theorem \cite{GehrmannDeRidder0311276,Adler1974}.
 What makes the R-ratio a clean QCD observable, and a good benchmark for \textit{AntCalc}
-is that the ratio features terms for higher perturbative orders as a perturbative series in $\alpha_s$,
+is that the ratio features terms for higher perturbative orders as a perturbative series in $\alpha_s$ \cite{Dine:1979qh},
 \begin{equation}
     R_\text{hadr} = \left(c_\text{LO}+\frac{\alpha_s}{\pi}c_\text{NLO}+\left(\frac{\alpha_s}{\pi}\right)^2c_\text{NNLO}+\mathcal O\left(\alpha_s^3\right)\right)
 \end{equation}
 here the perturbative coefficients, $c_\text{LO}$, $c_\text{NLO}$ and $c_\text{NNLO}$, respectively receive
 contributions from the multiparticle final states at the relative orders via their respective
 antennae, as described in Chapter~\ref{ch:physicsbackground}. For example,
-$A_3^0$ as described in Chapter~\ref{ch:workedexample} contributes to $c_\text{NLO}$.
+$A_3^0$ as described in Chapter~\ref{ch:workedexample} contributes to $c_\text{NLO}$ \cite{Gehrmann-DeRidder:2005btv}.
 Moreover, the leading-order term $R^{(0)}$ simply counts the number of quark colours and flavours
-weighted by their electric charges,
+weighted by their electric charges \cite{Ellis:1996mzs},
 \begin{equation}
     R^{(0)} = N_c\sum_q e_q^2
 \end{equation}
@@ -48,7 +57,70 @@ in the whole package. Its result gives,
 
 As expected, the results for each perturbative order are finite. This validates the mutual 
 normalisation and assembly of the integrated antennae: at each perturbative order, their 
-infrared poles cancel in the inclusive sum, leaving a finite coefficient. 
+infrared poles cancel in the inclusive sum, leaving a finite coefficient. Moreover, 
+the result matches the literature's \cite{Gehrmann-DeRidder:2004ttg,Dine:1979qh}.
+
+\subsection{$T$-objects}\label{subsec:Tobjects}
+
+The antenna functions computed in Chapter~\ref{ch:workedexample} are colour-stripped 
+purely kinematic objects. For subtraction, as discussed in Subsection~\ref{subsec:subTerms},
+we need to assemble differential cross-section subtraction terms, like $d\sigma^S_\text{NNLO}$,
+from contributions across several distinct final-state topologies. For each topology, every 
+relative antenna-set component must be included, correctly colour-ordered and normalised 
+using the common $2C_FT_{q\bar q}^2$ factor, where $T_{q\bar q}^2$ is the $T$-object relative 
+to the LO $\gamma^*\to q\bar q$ process. We define these $T$-objects as this per-topology,
+colour-restored assembly.
+
+Each antenna-set is organised in its own $T$-object, which is notated accordingly, with 
+a subscript relaying the final-state particles, e.g. $q\bar qg$, and a superscript that 
+relays the perturbation order as $2$ for LO, $4$ for NLO, and $6$ for NNLO. As stated, all 
+$T$-objects at NLO and NNLO are normalised by the LO $T$-object relative to the $A_2^0$ antenna.
+This $T$-object equals,
+\begin{equation}
+    T_{q\bar q}^2 = N\left|\mathcal M_2^0\right|^2 = 4N(1-\epsilon)q^2.
+\end{equation}
+
+The remaining relevant $T$-objects, for the coming $R$-ratio assembly, follow directly from
+the integrated antennae computed in Chapter~\ref{ch:workedexample}. Writing
+\begin{equation}
+    P = 2C_FT_{q\bar q}^2,
+\end{equation}
+the NLO $T$-objects are,
+\begin{equation}
+    T_{q\bar q}^4 = P\,A_2^1,\qquad
+    T_{q\bar qg}^4 = P\,A_3^0,
+\end{equation}
+and the NNLO $T$-objects are,
+\begin{equation}
+    T_{q\bar q}^6 = P\left(NA_2^2+\frac1N\tilde A_2^2+N_f\hat A_2^2+\left(N-\frac1N\right)\breve A_2^2\right),
+\end{equation}
+\begin{equation}
+    T_{q\bar qg}^6 = P\left[N\!\left(A_3^1+A_2^1A_3^0\right)-\frac1N\!\left(\tilde A_3^1+A_2^1A_3^0\right)+N_f\hat A_3^1\right],
+\end{equation}
+\begin{equation}
+    T_{q\bar qq^\prime\bar q^\prime}^6 = P\,(N_f-1)B_4^0,
+\end{equation}
+\begin{equation}
+    T_{q\bar qq\bar q}^6 = P\left(B_4^0-\frac1N C_4^0\right),
+\end{equation}
+\begin{equation}
+    T_{q\bar qgg}^6 = P\left(NA_4^0-\frac1N\tilde A_4^0\right).
+\end{equation}
+
+We can now integrate the antennae and get the integrated $T$-objects, notated as $\mathcal T$. These 
+$\mathcal T$-objects are the ones used when assembling the $R$-ratio in the next section. Let us 
+now consider the two NLO $\mathcal T$-objects, $\mathcal T_{q\bar q}^4$ and $\mathcal T_{q\bar qg}^6$, 
+each relative to the generating processes of the $A_2^1$ and $A_3^0$ antennae. As discussed previously,
+via the KLN theorem, the virtual correction poles of the first antenna must cancel against the real 
+emission poles of the second. That can be seen as follows,
+\begin{equation}
+    \begin{gathered}
+        r_\text{NLO} = \frac{\mathcal T_{q\bar q}^4+\mathcal T_{q\bar qg}^4}{T_{q\bar q}^2} = 2C_F\left(\mathcal A_2^1 + \mathcal A_3^0\right)\\
+        = 2C_F\left[\left(-\frac{1}{\epsilon^2}-\frac{3}{2\epsilon}-4+\frac{7\pi^2}{12}+\ldots\right)+\left(\frac{1}{\epsilon^2}+\frac3{2\epsilon}+\frac{19}4-\frac{7\pi^2}{12}+\ldots\right)\right]=\frac32 C_F.
+    \end{gathered}
+\end{equation}
+
+\iffalse
 
 \subsection{Assembly from Integrated Antennae}\label{subsec:Tobjects}
 
@@ -106,7 +178,7 @@ fit into an algorithmic formula:
     normalisation of $(2C_F)^2$ \cite{Gehrmann-DeRidder:2005btv}.
 \end{itemize}
 
-As mentioned before, Eq.~\ref{eq:ATypeTObj} is only valid for
+As mentioned before, Eq.~\eqref{eq:ATypeTObj} is only valid for
 $T$-objects constructed from $A$-type antenna functions. In this work we consider
 all quark-antiquark antennae up to NNLO. This includes the $B_4^0$ and $C_4^0$ antennae
 introduced in Subsection~\ref{subsec:antFamilies} of Chapter~\ref{ch:physicsbackground}. These
@@ -122,7 +194,7 @@ term, constructing,
 \end{equation}
 The identical-flavour quark-antiquark-quark-antiquark final state is described by
 the sum of antennae for non-identical-flavour and for identical-flavour-only
-\cite{Gehrmann-DeRidder:2005btv}. Using Eq.~\ref{eq:genTSum} in the interference
+\cite{Gehrmann-DeRidder:2005btv}. Using Eq.~\eqref{eq:genTSum} in the interference
 term, with the identity piece vanishing by tracelessness,
 we can describe the
 identical-flavour $T$-object as,
@@ -131,18 +203,22 @@ identical-flavour $T$-object as,
 \end{equation}
 importantly without the inclusion of the quark-flavour sum term $(N_f-1)$.
 
-With this definition of the integrated antenna $\mathcal X_n^l$ (Eq.~\ref{eq:antennaIntegral}
+With this definition of the integrated antenna $\mathcal X_n^l$ (Eq.~\eqref{eq:antennaIntegral}
 of Chapter~\ref{ch:physicsbackground}), we are now also able to introduce the often used
 integrated $T$-object as,
 \begin{equation}\label{eq:integratedT}
     \mathcal T_\text{topology}^{2(k+1)} = 2C_FT_{q\bar q}^2\sum_a f_a \mathcal X_{n,(k),a}^l
 \end{equation}
-written schematically from Eq.~\ref{eq:ATypeTObj}, though the structure may change
+written schematically from Eq.~\eqref{eq:ATypeTObj}, though the structure may change
 with the antenna type used to define the relevant $T$-object. This equation describes
 that the integrated $T$-object, $\mathcal T_\text{topology}^{2(k+1)}$ is defined
 using the integrated antennae $\mathcal X_n^l$, integrated over their respective
 phase-spaces rather than integrating the composite unintegrated $T$-object directly
 \cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg}.
+
+\fi
+
+\subsection{$R$-Ratio Assembly}
 
 The R-ratio is assembled using these $\mathcal T$-objects. We simply sum the normalised objects
 order-by-order as,
@@ -150,7 +226,7 @@ order-by-order as,
     \begin{split}
         R = \frac{R_\text{hadr}}{R^{(0)}} &= R_\text{LO} + R_\text{NLO} + R_\text{NNLO}\\
                                           &= r_\text{LO} + \frac{\alpha_s}{2\pi}r_\text{NLO} + \left(\frac{\alpha_s}{2\pi}\right)^2r_\text{NNLO}\\
-                                          &= 1 + \frac{\alpha_s}{2\pi}\frac{\mathcal T_{q\bar q}^4+\mathcal T_{q\bar qg}^4}{\mathcal T_{q\bar q}^2} + \left(\frac{\alpha_s}{2\pi}\right)^2\frac{\mathcal T_{q\bar q}^6+\mathcal T_{q\bar qg}^6+\mathcal T_{q\bar q q\bar q}^6+\mathcal T_{q\bar q q^\prime\bar q^\prime}^6+\mathcal T_{q\bar q gg}^6}{\mathcal T_{q\bar q}^2} + \mathcal O\!\left(\alpha_s^3\right).
+                                          &= 1 + \frac{\alpha_s}{2\pi}\frac{\mathcal T_{q\bar q}^4+\mathcal T_{q\bar qg}^4}{T_{q\bar q}^2} + \left(\frac{\alpha_s}{2\pi}\right)^2\frac{\mathcal T_{q\bar q}^6+\mathcal T_{q\bar qg}^6+\mathcal T_{q\bar q q\bar q}^6+\mathcal T_{q\bar q q^\prime\bar q^\prime}^6+\mathcal T_{q\bar q gg}^6}{T_{q\bar q}^2} + \mathcal O\!\left(\alpha_s^3\right).
     \end{split}
 \end{equation}
 Expanding the $\mathcal T$-objects, we are able to describe the R-ratio formula 
@@ -168,4 +244,21 @@ Assembling these pieces together, using the integrated antenna results from
     R=1+\left(\frac{\alpha_s}{2\pi}\right)\frac32C_F+\left(\frac{\alpha_s}{2\pi}\right)^2C_F\!\left[N\left(\frac{243}{16}-11\zeta_3\right)+\frac3{16N}+N_f\left(-\frac{11}4+2\zeta_3\right)\right]
 \end{equation}
 which is the exact massless hadronic R-ratio coefficient through NNLO \cite{Gehrmann-DeRidder:2004ttg}
-and is also exactly the expression we get by running \texttt{BuildRRatio[SMQCD]}. 
+and is also exactly the expression we get by running \texttt{BuildRRatio[SMQCD]}.
+
+\section{Comparison with Experimental Data}\label{sec:rratioData}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/rratio-full-domain.pdf}
+    \caption{}
+    \label{fig:rratioFullDomain}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/rratio-continuum-orders.pdf}
+    \caption{}
+    \label{fig:rratioContinuumOrders}
+\end{figure}
+

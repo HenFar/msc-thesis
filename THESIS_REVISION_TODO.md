@@ -70,6 +70,226 @@ Advisor feedback takes priority over everything below where they overlap. This i
 
 ---
 
+### Prof. Pires review of §2.1.2–2.5 — 15 September 2026 (email, received AFTER v1 sent to Prof. Sampaio) — DONE (Mine items) + 5 open [Yours]
+
+**Important for Henrique:** this whole review arrived after the first-half draft had already gone to
+Prof. Sampaio, so everything in this block needs to be listed for Sampaio separately (not assumed
+already seen). Same applies to the Resumo/Abstract block right below, and to whatever Henrique adds
+to this chat afterward — keep a running list.
+
+Almost entirely literal supplied replacement text (transcription, not composition) — classified
+**Mine**, executed directly in `chapters/02-physics-background.tex` (plus one thesis-wide mechanical
+sweep), rebuilt clean (125 pp, `latexmk -pdf`+`biber`, no errors, no undefined/multiply-defined refs,
+no `??` in the compiled text). Visually spot-checked the rendered PDF pages for every major
+restructuring (§2.1, §2.2.1, §2.3, §2.4.1–2.4.5, §2.5.1).
+
+**[Mine] — applied:**
+- §2.1.1: "colour" → "colour charge"; rewrote the confusing "unlike the remaining terms..." vertex
+  sentence; rewrote the gauge-fixing/ghost-Lagrangian paragraph with Prof's literal text (added a
+  missing label on the gluon Lagrangian equation so the new cross-reference actually resolves);
+  "λ convention" → "λ=1 choice above".
+- §2.2.1: replaced the soft/collinear-limits paragraph with Prof's two new paragraphs (matches the
+  9 Sep meeting's soft-quark correction — no independent single-soft-quark singularity); extended the
+  NLO real-contribution sentence; rewrote the UV-divergences paragraph.
+- §2.3: **Verified via `ask-codex` (1st call this session) whether Prof's biggest correctness worry
+  was real** — he said he wasn't sure the integrated $X_4^0$ normalisation actually carries
+  $S_\epsilon^2$ as it should. Confirmed against AntCalc's real X40 build/normalisation code
+  (`src/core/profiles.wl`, `dev/check_x40_explicit_normalization.wl`) that it does carry $S_\epsilon^{-2}$,
+  matching the thesis's own $S_\epsilon^k$ exponent with $k=n-2+l=2$ for four-parton tree antennae —
+  so the general defining equation was already correct; Prof's complaint was about clarity/ordering,
+  not a hidden bug. "ε poles" → "1/ε poles"; reordered the *k*=(n−2)+l definition to appear before
+  Eq. (2.19) per Prof's exact wording; rewrote the coupling-renormalisation intro paragraph; **removed
+  the orphaned N(n) equation (former eq:gehrN) entirely** — confirmed via grep it had become fully
+  unreferenced once §2.4.2's opening paragraph was rewritten (see below), so this was safe, not a guess.
+- §2.4 intro: deleted the vague, factually-wrong "five channels at NNLO" sentence (Prof: real NLO
+  contribution doesn't have UV+IR both, this claim doesn't hold); rewrote Eq. (2.23)/(2.24) to use
+  only `m` (not a mixed `n`/`m`), with explicit `|M_m^0|^2` and `J_m^m`; **wrote fully generic
+  dσ^R_NLO/dσ^V_NLO/dσ^{RR,RV,VV}_NNLO equations for a generic process** (dropping the
+  γ*→qq̄g-specific "channels" prose), using the exact matrix-element combinations Prof specified.
+- §2.4.1 (Subtraction Terms): reworded the NLO/NNLO intro paragraphs with Prof's text; added the
+  missing integrated-counterterm equation and the `∫dΦ_Xijk X_ijk^0` definition of the integrated
+  antenna; renamed table column "SubTerm"→"Subtraction Term"; **removed the R-ratio-specific framing
+  from both the NLO and NNLO closing paragraphs** (Prof: R-ratio belongs in Ch5, not here), replaced
+  with the generic phase-space-factorisation closing Prof asked for.
+- §2.4.2 (Antenna Functions): rewrote the opening/notation/antenna-set paragraphs; added `γ*→` to
+  every row of Table 2.3; **moved the |M_n^l|² definitions equation to appear before the tree-level
+  antenna definition** (matches Prof's requested Eq. order), added the missing explanatory sentences
+  at one-loop and two-loop; rewrote the full-process `|M_{p1...pn}^l|²` paragraph with Prof's text,
+  **fixed the LHS to `|M|²`** (was bare `M`, per Prof's flagged recurring typo — checked no other live
+  instance of this typo remained after the M_4q^0 pass below).
+- §2.4.3 (Colour Algebra): rewrote the whole subsection with Prof's SU(3)_c/Casimir-invariant text;
+  **deleted the confusing planar/non-planar/quark-loop itemize block** (Prof: doesn't apply well to
+  tree-level A_4^0, defers the concrete origin to §2.4.4 where it's actually shown), replaced with his
+  short colour-decomposition paragraph. Left the "taking out a factor of 2C_F" sentence **untouched**
+  — Prof asked a genuine question about it ("porque motivo aparece um factor de CF..."), didn't supply
+  a fix, and it may be a stale leftover connected to the now-dead T-objects material. [Yours, item 5]
+- §2.4.4 (Antenna Construction): reworded the NLO one-loop/NNLO tree-level/NNLO one-loop/NNLO
+  two-loop/four-quark intro sentences with Prof's text; added the Ch4/Appendix A forward-pointer;
+  **fixed a genuine equation error Prof caught**: the NNLO tree-level leading-colour term was written
+  as a single antenna `N·A_4^0(1,3,4,2)`, corrected to the sum `N·(A_4^0(1,3,4,2)+A_4^0(1,4,3,2))`
+  matching the squared-amplitude line directly above it; **fixed a missing sum over quark flavours**
+  in Eq. (2.62)/M_4q^0 (needed to actually produce the N_f factor in the decomposed form); reworded
+  the four-quark decoupling paragraph, using the antenna's own existing `M_{qq̄-γ}` symbol rather than
+  Prof's ad-hoc shorthand `M_{B,4}^0` from the email (keeps consistency with the equations right below
+  it, which already use `M_{qq̄-γ}`). **Verified via `ask-codex` (2nd call this session, 2 questions
+  bundled together) against the real
+  AntCalc source** — see [[ask-codex-antcalc-oracle]] — two things Prof flagged as uncertain:
+  (1) `breve A_2^2` genuinely has **no** leading/subleading split in AntCalc (single `(N-1/N)` weight,
+  confirmed in `src/core/profiles.wl` + `src/engines/extraction_loop.wl`) — **added a grounded sentence
+  answering Prof's exam-style "why not?" concern directly**, no equation change needed; (2) the bare
+  `Â_{3,bare}^1` quark-loop component is **identically zero** in AntCalc's stored result
+  (`QuarkLoop -> 0`) — the nonzero *renormalised* `Â_3^1` comes entirely from the UV counterterm, not
+  a genuine bare interference term. This confirms Prof's suspicion the bare equation is misleading as
+  written — **left the equation untouched, flagged for Henrique** since correctly restating it needs
+  his own composition. [Yours, item 2]
+- §2.4.5 (Phase-Space Factorisation): full rewrite with Prof's text; **fixed the flagged `∫_1`/`Φ_jkl`
+  numbering inconsistency** (an antenna phase space with two unresolved partons was being introduced
+  under the single-unresolved `∫_1` label) by restructuring around the already-existing
+  `eq:nloPhaseSpaceFactor` label instead of re-deriving it; replaced the confusing "two antenna types
+  are exempt" paragraph with Prof's A_2^1/A_2^2 explanation. **Checked but did NOT apply** Prof's
+  suggested `𝒩(ε,k)→C(ε,k)` simplification in the final integrated-antenna equation — traced actual
+  live uses of `𝒩(ε,k)` (Ch4 uses it multiplying the *full* n-particle phase-space integral, not the
+  antenna-only one) and confirmed swapping symbols here without also changing which phase-space
+  integral is multiplied would silently introduce a `Φ_2` double-counting bug. The equation is
+  correct as currently written. [Yours, item 4 — flagged so Henrique has this nuance before deciding]
+- §2.5 / §2.5.1: "Monte Carlo" → "Monte Carlo (MC)"; "MI" → "Master Integrals (MI)" (both first uses);
+  "ε poles" → "1/ε poles"; added an Euler Gamma function definition after Eq. (2.74)/MI-scaling
+  equation; **removed the duplicated IBP/reverse-unitarity paragraphs at the end of §2.5's intro**
+  (Prof: repeats §2.5.1's fuller treatment almost verbatim, including re-deriving the same
+  `eq:derivativeToZero` equation) — moved that equation's label onto the fuller version inside
+  §2.5.1.1 instead of duplicating it, checked all 3 cross-file references to the label
+  (incl. `appendices/appendixB.tex:345`) still resolve correctly. The "add a forward-pointer to a
+  worked example" request for the removed block turned out to be **already satisfied** — the fuller
+  §2.5.1.2 version already has "An example... is available in Section~\ref{sec:PhiToCuts}." Laporta
+  citation was **already present** (`\cite{Laporta:2000dsw}`), no action needed.
+- **Root-cause fix, not a line-by-line item**: Prof's "why previous? you're still in 2.5.1" confusion
+  traced to `secnumdepth` being too shallow — subsubsections (§2.5.1.1, §2.5.1.2, §2.5.1.3 etc.)
+  were rendering with **no number at all**, so any `\ref` to one silently resolved to its parent
+  subsection's number instead. Fixed with `\setcounter{secnumdepth}{3}` in `preamble.tex` — confirmed
+  in the rebuilt PDF that subsubsections now show real numbers (2.5.1.1 etc.) and every affected
+  cross-reference in the thesis benefits, not just the one sentence Prof happened to quote.
+- **Thesis-wide mechanical sweep** (Prof: "aplica esta correção a todas as referências a equações"):
+  converted all 58 `\ref{eq:...}` instances across every chapter and appendix to `\eqref{eq:...}`
+  (renders "Eq. (2.65)" with parens instead of bare "Eq. 2.65"), confirmed `amsmath` already loaded.
+
+**All 5 [Yours] items RESOLVED same day (15 Sep) — Henrique gave direction on all 5, all applied:**
+1. **[Mine, applied]** §2.4.4 diagram sentence: Henrique's own diagnosis was correct (confirmed
+   against Fig. 2.1/`eq:amplitude`) — "two processes" meant the two tree-level Feynman diagrams
+   (gluon off the quark line vs. the antiquark line), both summed into the single amplitude
+   $\mathcal M_3^0$ per Eq. (2.10). Rewrote the sentence to say exactly that, with explicit
+   `Fig.~\ref{fig:feynDiagsEx}`/`Eq.~\eqref{eq:amplitude}` cross-references.
+2. **RESOLVED same day, 15 Sep 2026 — [Henrique's own physics, Claude drafted the sentence on
+   explicit request].** The bare equation
+   `M_{qgq̄}^1 = ... = N A_{3,bare}^1 - (1/N)Ã_{3,bare}^1 + N_f Â_{3,bare}^1(1_q,3_g,2_q̄)` presented
+   `N_f Â_{3,bare}^1` as a genuine nonzero bare term, which ask-codex had shown is actually zero
+   (`QuarkLoop -> 0` in AntCalc's stored result). Henrique supplied the correct physics himself: the
+   only diagram contributing to `Â_{3,bare}^1` is a massless-quark self-energy insertion on the
+   external, on-shell gluon leg; since that leg has $p^2=0$, the bubble is a scaleless integral and
+   vanishes identically in dimensional regularisation. The nonzero $N_f$-dependence in the
+   *renormalised* `Â_3^1` two equations later comes entirely from the coupling-renormalisation
+   counterterm — a genuinely separate origin, not a continuation of the (zero) bare diagram. Added a
+   two-sentence note right after the bare equation stating exactly this (both the vanishing and the
+   distinct origin of the renormalised piece), on Henrique's explicit request to draft it — standard
+   single-use drafting permission, not a change to the general no-unsolicited-drafts rule.
+3. **[Mine, applied]** Table 2.1: renamed column to "Universal IR factor", filled in all 13 rows with
+   the actual antenna-specific symbols from hep-ph/0505111 (using its own eqs. 8.1–8.30, matching the
+   thesis's own 1,3,4,2-style parton labelling exactly, not generic textbook formulas): $S_{132}$,
+   $P_{qg\to Q}(z)$, $S_{134}$, $P_{gg\to G}(z)$, $S_{1342}$ (double soft, matches paper's own label),
+   $S_{1;342}(z)P_{qg\to Q}(z)$ (soft-collinear), $P_{134\to Q}(w,z,y)$ (triple collinear),
+   $P_{qg\to Q}(z)P_{\bar qg\to\bar Q}(y)$ (double single collinear), $S_{12}(3,4)$ (soft $q'\bar q'$
+   pair), $P_{q\bar q\to G}(z)$ (collinear $q'\bar q'$), $P_{143\to Q}^{\text{non-ident.}}(x,y)$,
+   $\tfrac12P_{234\to\bar Q}^{\text{ident.}}(w,x,y)$. Added the caption pointer to §8.1/§8.2.2. Source:
+   `review/astra-verification/0505111.txt` (plain-text extraction of the same PDF).
+4. **[Mine, applied]** Henrique's call: fix it in Ch2 now, track Ch4 separately. Changed
+   `eq:antennaIntegral` from `𝒳_n^l = 𝒩(ε,k)∫dΦ_n X_n^l` to
+   `𝒳_n^l = C(ε,k)∫dΦ_{X_ijkl...} X_n^l` (against the antenna-only phase-space integral defined one
+   equation earlier, `eq:antPhaseSpaceFact`, rather than the full $n$-particle one) — mathematically
+   equivalent, just cleaner. **Checked Ch4 before flagging a follow-up task**: `chapters/04-worked-example.tex`
+   §sec:antIntMaths's *first* line, `𝒜_3^0 = C(ε,1)∫dΦ_ijk A_3^0`, already matches this corrected form
+   exactly. Its *second* line (`= 𝒩(ε,1)(4π)^{3-2d}(q²)^{1-d/2}∫ds12 ds13 ds23 dΩ...`) is a separate,
+   self-contained step converting to explicit Mandelstam-invariant integration variables — not broken
+   by this fix, just a different algebraic identity for its own purpose. **No Ch4 follow-up task
+   needed after all** — the initial worry doesn't apply here, though worth a final visual check once
+   Ch4 gets its own revision pass.
+5. **[Mine, applied]** Henrique's call: keep `eq:colourNorm` (`2C_F=N-1/N`, still referenced live
+   from `chapters/03-package-framework.tex` twice) but drop the confusing "particularly useful to
+   normalise the two hard quarks' colour... by taking out a factor of $2C_F$" claim, since it's really
+   there to ground the (now-dead) T-objects material and $C_F$'s own definition is already given right
+   above. Replaced with a neutral "follows directly from the fundamental Casimir invariant above"
+   lead-in.
+
+Rebuilt clean after all five (125 pp still, `latexmk -pdf`+`biber`, no errors, no undefined/multiply-
+defined refs), visually spot-checked the table and every changed equation.
+
+**Full re-verification pass, 15 Sep 2026 (Henrique asked "were all of Prof's Ch2 points
+addressed?").** Did not trust the running summary — went back to Prof's original email and checked
+every one of the ~60 distinct points individually against the live source: grepped for all 22
+characteristic old phrasings he quoted (confirmed all gone) and ~28 characteristic new phrasings the
+fixes should have introduced (confirmed all present, whitespace-normalised after a first pass gave
+false negatives from line-wrapping). **Caught one genuine gap this way**: the "MI" → "Master
+Integrals (MI)" abbreviation fix had been applied to a sentence that was *later* deleted during the
+same session's §2.5 duplication cleanup, silently undoing the fix — "MI" was back to being used bare
+at its actual first occurrence (`eq:intFamily`, before the `subsec:MIs` heading). Fixed by adding
+"(MI)" at the true first prose use of "master integrals" instead (`chapters/02-physics-background.tex`,
+the sentence introducing the master-integral reduction equation early in §2.5). Also re-confirmed the
+4 thesis-wide/root-cause fixes are still intact: 0 remaining bare `\ref{eq:...}` anywhere in the
+thesis, `\setcounter{secnumdepth}{3}` present, `eq:gehrN` fully gone, Laporta citation present.
+Rebuilt clean once more (126 pp, one page longer from this fix + the hat-A31-bare sentence added
+earlier same session).
+
+---
+
+### Prof. Pires review of Resumo/Abstract — 15 September 2026 (email) — DONE (Mine items) + 2 open [Yours]
+
+Line-by-line review of `frontmatter/abstract.tex`, almost entirely literal supplied replacement
+text (transcription, not composition) — classified **Mine**, executed directly, rebuilt clean
+(121 pp, `latexmk -pdf`+`biber`, no errors). Two genuine open items left for Henrique.
+
+**[Mine] — all applied, one commit-worthy diff:**
+- Resumo: "experimental" inserted into opening sentence; "limite mole" → "limite \textit{soft}"
+  (3 occurrences) + new sentence on unresolved radiation; loop-amplitude sentence reworded;
+  antenna-formalism paragraph opener replaced with Prof's supplied text (antenna = two
+  colour-connected radiators); "final-final" now explained inline; massive-extension sentence
+  replaced, now names the antenna as $A_3^0(Q,g,\bar Q)$; UV/IR divergences sentence reworded;
+  "polos em $\epsilon$" → "polos em $1/\epsilon$"; the $\mathcal T$-objects sentence removed
+  entirely (Prof: doesn't belong in the abstract); antenna-integration paragraph opener replaced
+  with Prof's more detailed supplied text; "tree-level" and "splitting-function" glosses added to
+  the worked-example paragraph; R-ratio paragraph replaced with Prof's text + the $R(s)$ definition
+  equation added; "A montagem" → "O cálculo"; massive-antenna sentence reworded ("presença de
+  quarks massivos nesta antena"); **the entire "A principal limitação..." paragraph (computational
+  cost / Python+FORM+Kira future-work) removed from the Resumo** — checked first that this content
+  already lives in `chapters/06-future-work.tex` (it does: FORM/Kira/LiteRed2 replacement plan is
+  there), so nothing was lost by deleting it here; closing sentence now names AntCalc explicitly.
+- Abstract (English): opening paragraph replaced with Prof's LHC-focused supplied text; "virtual
+  terms" → "virtual contributions"; results paragraph replaced with Prof's supplied text
+  (integrated antenna functions / R-ratio validation / massive $A_3^0$ sentences).
+- Verified in the rebuilt PDF: Resumo = **3 pages** (pp. 2–4), Abstract = **1 page** (p. 5) — the
+  imbalance Prof flagged is still there even after these edits (deleting the limitation paragraph
+  and adding the R-ratio equation to the Resumo didn't close the gap, since the Abstract also grew
+  from its own literal-text additions). Doesn't resolve open item 1 below.
+
+**[Yours] — open, needs Henrique's own composition/judgement, not drafted:**
+1. **Resumo opening paragraph still needs the LHC-focused rewrite Prof asked for** ("Que
+   experiências são estas? O que são colisores? Uma parte substancial destes processos, que
+   processos? Foca-te no LHC") — same treatment as the Abstract's opening paragraph already got
+   (Prof supplied literal replacement text for the English version but only a critique, no text,
+   for the Portuguese one). Should mirror the Abstract's new opening once drafted: LHC by name,
+   what "colliders" and "these experiments" concretely refers to.
+2. **Page-count imbalance is a live, unresolved question** — Prof asked directly whether 3 pages
+   (Resumo) vs 1 page (Abstract) follows FCUL's thesis-writing rules. No rules document found in
+   this repo; Henrique needs to check FCUL's actual regulations (or ask the secretariat/Prof
+   directly) and decide whether to trim the Resumo, expand the Abstract, or both — this is a
+   length/format compliance call, not something groundable from the current source. Note item 1
+   above will likely make the Resumo longer, not shorter, so it's worth resolving the rules
+   question before drafting item 1's rewrite.
+3. *(Not raised by Prof, flagged for Henrique's own call, not acted on):* the Portuguese Resumo had
+   its self-deprecating "principal limitação" paragraph removed on Prof's explicit instruction (it
+   undervalues the work); the English Abstract's closing "Future work will extend AntCalc..."
+   sentence carries a milder version of the same framing and Prof didn't mention it. Left as-is —
+   Henrique's call whether the same logic should trim it too.
+
+---
+
 ### Meeting with Prof. Pires — 9 September 2026 (in person)
 
 **Nature of this pass:** a live meeting, *not* an email — same as 28 Aug. No verbatim advisor text; Henrique's notes + recollection are the record, and his correction of this map carries extra weight. Every point below grounded against the *current* `.tex` and against hep-ph/0505111 on 9 Sep 2026. **Page numbers he gave (fig 2.2, pg 24, pg 25) match the current `main.pdf` (117 pp):** Fig. 2.2 is on printed p.24, the NNLO subterm block + Table 2.2 on printed p.25.

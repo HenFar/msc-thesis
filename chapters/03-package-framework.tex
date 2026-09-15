@@ -243,7 +243,7 @@ the profile and computing the relevant
 process amplitude. It uses the profile's \texttt{Production} field to select the physical construction path,
 and the \texttt{Extraction} and \texttt{ColourNorm} fields to select the extraction mode and 
 the colour normalisation used for each antenna. The colour normalisation used by default 
-has been described previously in Eq.~\ref{eq:colourNorm}, and the 
+has been described previously in Eq.~\eqref{eq:colourNorm}, and the 
 \texttt{Extraction} mode 
 also introduces the Born normalisation.
 The routes selected in the 
@@ -292,7 +292,7 @@ Passarino-Veltman reduction, as described in Section~\ref{subsec:PaVe}.
 
 The production method consists of generating the tree-level and one-loop amplitudes, using \\
 \texttt{TreeAmplitude} and \texttt{MAmpOneLoop}, respectively, and then forming the tree-loop 
-interference. The interference is colour- and one-loop-normalised, as described in Eqs.~\ref{eq:loopNorm} and \ref{eq:colourNorm}.
+interference. The interference is colour- and one-loop-normalised, as described in Eqs.~\eqref{eq:loopNorm} and \eqref{eq:colourNorm}.
 This normalised interference is then reduced and its components extracted.
 The production and extraction modes implemented for the supported one-loop routes
 are summarised in Table~\ref{tab:oneLoopProdModes}, below.
@@ -385,7 +385,7 @@ section.
 
 The integration stage performs the analytic integration of the antenna functions constructed
 in the build stage over the corresponding unresolved phase space in $d=4-2\epsilon$ dimensions,
-as in Eq.~\ref{eq:antennaIntegral}. The integrated antennae are denoted with calligraphic letters.
+as in Eq.~\eqref{eq:antennaIntegral}. The integrated antennae are denoted with calligraphic letters.
 
 Within \textit{AntCalc}, this stage is initiated by passing the \texttt{AntennaObject} produced
 by \\ \texttt{BuildAntenna[..., IntegrableForm -> True]} to \texttt{IntegrateAntenna[...]}. A 
@@ -532,7 +532,7 @@ schematically in Fig.~\ref{fig:ibp-reduction}.
 \subsection{Normalisations and Convention Bridge}
 
 As discussed in Section~\ref{sec:dimreg}, before integration, the antenna functions must be 
-normalised using the $\mathcal N(\epsilon, k)$ factor, introduced in Eq.~\ref{eq:normN}. 
+normalised using the $\mathcal N(\epsilon, k)$ factor, introduced in Eq.~\eqref{eq:normN}. 
 Since in Section~\ref{sec:buildStage}, where we discussed the build stage, the unintegrated
 antenna functions were normalised using the loop-order factor, $\Lambda_l$, in this stage, 
 the rest of the normalisations and conventions must be applied. That begins with the 
@@ -587,7 +587,7 @@ adjusted when the required higher-order coefficients are available, using the
     \end{gathered}
 \end{equation}
 where \texttt{A30=BuildAntenna[A,3,0,IntegrableForm -> True]}, is the $A_3^0$ set's \\
-\texttt{AntennaObject}. Equation~\ref{eq:expansionOrderDiag} illustrates the use of
+\texttt{AntennaObject}. Equation~\eqref{eq:expansionOrderDiag} illustrates the use of
 \texttt{ExpansionOrder} to override the default truncation order. The option can request
 either lower or higher orders; however, the maximum accessible order is route-dependent and is
 limited by the available $\epsilon$-expansions of the corresponding master integrals. For the
@@ -611,7 +611,7 @@ Fig.~\ref{fig:component-extraction} illustrates this procedure for the $A_3^1$ a
 \input{figures/component-extraction.tex}
 
 It is also important to note here that the result of the $A_3^1$ set's 
-integration is given, much like it was for the build stage in \ref{eq:a31Norm}, as,
+integration is given, much like it was for the build stage in \eqref{eq:a31Norm}, as,
 \begin{equation}\label{eq:a31WithTs}
     \begin{split}
         &\mathcal A_3^1 = \mathcal T_\text{Lead} - \mathcal A_2^1\mathcal A_3^0\\
@@ -624,7 +624,7 @@ UV renormalised by this stage.
 
 Those $\mathcal T$-object may still be useful, however. They can be extracted instead of the 
 antenna functions, essentially by breaking the process before that last operation, in 
-Eq.~\ref{eq:a31WithTs} and returning an analogous ordered list made up of the $\mathcal T$-objects,
+Eq.~\eqref{eq:a31WithTs} and returning an analogous ordered list made up of the $\mathcal T$-objects,
 as,
 \begin{equation}
     \begin{gathered}
@@ -721,7 +721,7 @@ structure.
    \caption{Overview of the TObject routes.}
 \label{tab:TObject}
 \end{table}
-As an example, let us consider $\mathcal T_{q\bar qg}^6$. As shown in Eq.~\ref{eq:a31Norm}
+As an example, let us consider $\mathcal T_{q\bar qg}^6$. As shown in Eq.~\eqref{eq:a31Norm}
 and Table~\ref{tab:TObject}, this $\mathcal T$-object requires the $\mathcal A_3^1$ set, 
 $\mathcal A_2^1$, and $\mathcal A_3^0$. Upon calling \texttt{BuildAndIntegrateAntenna}
 for those antennae, \texttt{TObject} assembles them as follows,

@@ -320,7 +320,7 @@ The antenna is now finally ready to be built. That is accomplished using the fol
     A_3^0 = \frac1{2g_s^2C_F}\frac{|\mathcal M_3^0|^2}{|\mathcal M_2^0|^2}.
 \end{equation}
 
-By taking $C_F = (N^2-1)/(2N)$, the formula yields, using Eqs.~\ref{eq:M30interference} and \ref{eq:M20interference},
+By taking $C_F = (N^2-1)/(2N)$, the formula yields, using Eqs.~\eqref{eq:M30interference} and \eqref{eq:M20interference},
 
 \begin{equation}\label{eq:A30}
     \begin{split}
@@ -328,6 +328,14 @@ By taking $C_F = (N^2-1)/(2N)$, the formula yields, using Eqs.~\ref{eq:M30interf
               &= \frac1{q^2}\Bigg[\left(\frac{s_{13}}{s_{23}}+\frac{s_{23}}{s_{13}}+2\frac{s_{12}q^2}{s_{13}s_{23}}\right)-\epsilon\left(2+\frac{s_{13}}{s_{23}}+\frac{s_{23}}{s_{13}}\right)\Bigg]
     \end{split}
 \end{equation}
+Note that this result is already fully normalised: the $2g_s^2C_F$ prefactor, together
+with the cancellation of the electric charge $e_q^2$ between $|\mathcal M_3^0|^2$ and
+$|\mathcal M_2^0|^2$, strips away every coupling-, charge-, and colour-dependent factor
+carried by the raw amplitudes above, leaving the purely kinematic result in Eq.~\eqref{eq:A30}.
+This is the same normalisation already folded directly into the $|\mathcal M_n^0|^2$
+notation used throughout Chapter~\ref{ch:physicsbackground}'s general antenna-construction
+formalism (Subsection~\ref{subsec:antFamilies}); the derivation here is kept fully explicit,
+coupling and charge included, to show each step by hand.
 
 
 \subsubsection{Phase-Space Integration through $R_3$}\label{sec:antIntMaths}
@@ -389,7 +397,7 @@ final integrated antenna expression after IBP reduction becomes \cite{GehrmannDe
 \subsubsection{IBP Reduction of an Example Term}\label{subsubsec:a30IBPExample}
 
 As an example of the IBP reduction method, we will consider the eikonal term of the 
-unintegrated antenna in Eq.~\ref{eq:A30},
+unintegrated antenna in Eq.~\eqref{eq:A30},
 \begin{equation}
     \mathcal S_{12}^{(3)} = \frac{2s_{12}}{s_{13}s_{23}}.
 \end{equation}
@@ -444,7 +452,7 @@ which finally makes,
 
 \subsubsection{Master Integral Substitution and Laurent Expansion}
 
-Substituting Eq.~\ref{eq:R3} into Eq.~\ref{eq:A30intermsofR3} gives
+Substituting Eq.~\eqref{eq:R3} into Eq.~\eqref{eq:A30intermsofR3} gives
 \begin{equation}\label{eq:A30withR30Sub}
     \begin{split}
         \mathcal A_3^0 &= \frac{C(\epsilon,1)}{\Phi_2}\left(q^2\right)^{-2\epsilon}(4\pi)^{-3+2\epsilon}(2-6\epsilon+5\epsilon^2-2\epsilon^3)\frac{\Gamma^3(1-\epsilon)}{\epsilon^2\Gamma(3-3\epsilon)\Gamma(2-2\epsilon)}\\
@@ -473,7 +481,7 @@ Using \textit{AntCalc}, building the antenna is very simple, since the
 function \texttt{BuildAntenna[type, numFinalParticles, numLoops]} already encodes the entire 
 logical chain and is able to return all intermediate steps using the appropriate options. 
 
-First, by running the function naively we get the final result in Eq.~\ref{eq:A30},
+First, by running the function naively we get the final result in Eq.~\eqref{eq:A30},
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[2]:= BuildAntenna[A,3,0]//Collect[\#,Epsilon]\&}\\
@@ -512,7 +520,7 @@ Subsection~\ref{sec:matDerivation}. We can see that with,
     \end{equation*}
 \end{mdframed}
 where \texttt{Amplitude}, \texttt{Interference} and \texttt{Result} respectively refer to the
-expressions in Eqs.~\ref{eq:M30amplitude}, \ref{eq:M30interference} and \ref{eq:A30}.
+expressions in Eqs.~\eqref{eq:M30amplitude}, \eqref{eq:M30interference} and \eqref{eq:A30}.
 
 
 Integrating antennae using \textit{AntCalc} is also simple. Every step in Subsubsection~\ref{sec:antIntMaths}
@@ -543,7 +551,7 @@ We may now proceed to the integration. The whole process goes as follows,
 Much like with \texttt{BuildAntenna}, \texttt{IntegrateAntenna} also allows us to inspect
 its intermediate steps. Here, however, the available options show the master integral linear
 combination expression both with $R_3$ and with it substituted by the appropriate expression, 
-that is, the equivalent to Eqs.~\ref{eq:A30intermsofR3} and \ref{eq:A30withR30Sub} before
+that is, the equivalent to Eqs.~\eqref{eq:A30intermsofR3} and \eqref{eq:A30withR30Sub} before
 normalisation. The code and results are,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
@@ -711,11 +719,13 @@ the build- and integration-side reductions. No phase-space IBP reduction is requ
 
 \section{Two-Parton Contributions: the $A_2^2$ Set}\label{subsec:A22}
 
+The $A_2^2$ route is computed similarly to $A_2^1$. This route, however, yields four
+different antenna components and is the longest-running calculation supported by
+\textit{AntCalc} in its current version. Each component is presented in turn below.
+
 \subsection{The $A_2^2$ Antenna}
 
-The $A_2^2$ route is computed similarly to $A_2^1$. This route, however, yields four 
-different antenna components and is the longest-running calculation supported by 
-\textit{AntCalc} in its current version. The leading unintegrated antenna is computed using,
+The leading unintegrated antenna is computed using,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[2]:= BuildAntenna[A,2,2,Component->Leading]}\\
@@ -756,14 +766,9 @@ Finally, the epsilon-series result is computed as,
     \end{equation*}
 \end{mdframed}
 
-The integrated Laurent series agrees with the established $\mathcal A_2^2$ result
-\cite{Gehrmann-DeRidder:2004ttg}.
-
 \subsection{The $\tilde A_2^2$ Antenna}
 
-The $A_2^2$ route is computed similarly to $A_2^1$. This route, however, yields four
-different antenna components and is the longest-running calculation supported by
-\textit{AntCalc} in its current version. The subleading unintegrated antenna is computed using,
+The subleading unintegrated antenna is computed using,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[2]:= BuildAntenna[A,2,2,Component->Subleading]}\\
@@ -798,21 +803,16 @@ Finally, the epsilon-series result is computed as,
 \hfill
 \texttt{Out[5]:=}
     \begin{equation*}
-        \begin{split}
-            &-\frac1{4\epsilon^4}-\frac3{4\epsilon^3}+\frac{-1476+312\pi^2}{576\epsilon^2}+\frac{-3978+864\pi^2+1536\zeta_3}{576\epsilon}\\
-            &+\frac{-10359+2850\pi^2-118\pi^4+4176\zeta_3}{576}
-        \end{split}
+        \begin{gathered}
+            -\frac1{4\epsilon^4}-\frac3{4\epsilon^3}+\frac{-1476+312\pi^2}{576\epsilon^2}+\frac{-3978+864\pi^2+1536\zeta_3}{576\epsilon}\\
+            +\frac{-10359+2850\pi^2-118\pi^4+4176\zeta_3}{576}
+        \end{gathered}
     \end{equation*}
 \end{mdframed}
 
-The integrated Laurent series agrees with the established $\tilde{\mathcal A}_2^2$ result
-\cite{Gehrmann-DeRidder:2004ttg}.
-
 \subsection{The $\hat A_2^2$ Antenna}
 
-The $A_2^2$ route is computed similarly to $A_2^1$. This route, however, yields four
-different antenna components and is the longest-running calculation supported by
-\textit{AntCalc} in its current version. The quark-loop unintegrated antenna is computed using,
+The quark-loop unintegrated antenna is computed using,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[2]:= BuildAntenna[A,2,2,Component->Nf]}\\
@@ -846,14 +846,9 @@ Finally, the epsilon-series result is computed as,
     \end{equation*}
 \end{mdframed}
 
-The integrated Laurent series agrees with the established $\hat{\mathcal A}_2^2$ result
-\cite{Gehrmann-DeRidder:2004ttg}.
-
 \subsection{The $\breve A_2^2$ Antenna}
 
-The $A_2^2$ route is computed similarly to $A_2^1$. This route, however, yields four 
-different antenna components and is the longest-running calculation supported by 
-\textit{AntCalc} in its current version. The unintegrated antennae are computed using,
+The unintegrated antennae are computed using,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[2]:= BuildAntenna[A,2,2,Component->Breve]}\\
@@ -976,12 +971,13 @@ finally expand as a Laurent series around $\epsilon$. This process gives,
 
 \section{Three-Parton Contributions: the $A_3^1$ Set}
 
-\subsection{The $A_3^1$ Antenna}
-
-
 Computing the $A_3^1$ antenna set is very similar to the work done for the $A_2^2$ set,
 with the big differentiator being that this set does not include a self-interference
-term. The leading unintegrated antenna is computed using,
+term. Each component is presented in turn below.
+
+\subsection{The $A_3^1$ Antenna}
+
+The leading unintegrated antenna is computed using,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[2]:= BuildAntenna[A,3,1,Component->Leading]}\\
@@ -1021,15 +1017,9 @@ Finally, the epsilon-series result is computed as,
     \end{equation*}
 \end{mdframed}
 
-The integrated Laurent series agrees with the established $\mathcal A_3^1$ result
-\cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg}.
-
 \subsection{The $\tilde A_3^1$ Antenna}
 
-
-Computing the $A_3^1$ antenna set is very similar to the work done for the $A_2^2$ set,
-with the big differentiator being that this set does not include a self-interference
-term. The subleading unintegrated antenna is computed using,
+The subleading unintegrated antenna is computed using,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[2]:= BuildAntenna[A,3,1,Component->Subleading]}\\
@@ -1067,15 +1057,9 @@ Finally, the epsilon-series result is computed as,
     \end{equation*}
 \end{mdframed}
 
-The integrated Laurent series agrees with the established $\tilde{\mathcal A}_3^1$ result
-\cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg}.
-
 \subsection{The $\hat A_3^1$ Antenna}
 
-
-Computing the $A_3^1$ antenna set is very similar to the work done for the $A_2^2$ set,
-with the big differentiator being that this set does not include a self-interference
-term. The quark-loop unintegrated antenna is computed using,
+The quark-loop unintegrated antenna is computed using,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[2]:= BuildAntenna[A,3,1,Component->Nf]}\\
@@ -1117,9 +1101,6 @@ result below exactly. Finally, the epsilon-series result is computed as,
         \frac1{3\epsilon^3}+\frac1{2\epsilon^2}+\frac{114-14\pi^2}{72\epsilon}+\frac{327-21\pi^2-200\zeta_3}{72}+\mathcal O(\epsilon)
     \end{equation*}
 \end{mdframed}
-
-The integrated Laurent series agrees with the established $\hat{\mathcal A}_3^1$ result
-\cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg}.
 
 \subsection{Master Integrals}
 
@@ -1178,11 +1159,12 @@ which, after normalisation and evaluation gives,
 
 \section{Four-Parton Contributions}
 
+The double real-radiation antenna set is $A_4^0$, and it has two components, $A_4^0$
+and $\tilde A_4^0$. It represents the $\gamma^*\to qgg\bar q$ process. As with $B_4^0$
+and $C_4^0$ below, the complete unintegrated expressions for all four routes are
+lengthy and are collected in Appendix~\ref{ap:antExpressions}.
+
 \subsection{The $A_4^0$ Antenna}
-
-
-The double real-radiation antenna set is $A_4^0$, and it has two components, $A_4^0$ 
-and $\tilde A_4^0$. It represents the $\gamma^*\to qgg\bar q$ process.
 
 The leading unintegrated antenna is computed using,
 
@@ -1195,13 +1177,12 @@ The leading unintegrated antenna is computed using,
     \end{equation*}
 \end{mdframed}
 
-The complete unintegrated expression is collected in
-Appendix~\ref{ap:antExpressions}. The result in terms of the antenna's master
+The result in terms of the antenna's master
 integrals yields,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[3]:= A40Lead = BuildAndIntegrateAntenna[A,4,0,Component->Leading,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A40Lead/.A40MISubs)//Collect[\#,{R4,R6,R8a,R8b},Simplify]\&}\\
+\texttt{In[4]:= (A40Lead/.X40MISubs)//Collect[\#,{R4,R6,R8a,R8b},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
@@ -1227,14 +1208,7 @@ Finally, the epsilon-series result is computed as,
     \end{equation*}
 \end{mdframed}
 
-The integrated result agrees with
-the established $\mathcal A_4^0$ result \cite{Gehrmann-DeRidder:2005btv}.
-
 \subsection{The $\tilde A_4^0$ Antenna}
-
-
-The double real-radiation antenna set is $A_4^0$, and it has two components, $A_4^0$ 
-and $\tilde A_4^0$. It represents the $\gamma^*\to qgg\bar q$ process.
 
 The subleading unintegrated antenna is computed using,
 
@@ -1247,13 +1221,12 @@ The subleading unintegrated antenna is computed using,
     \end{equation*}
 \end{mdframed}
 
-The complete unintegrated expression is collected in
-Appendix~\ref{ap:antExpressions}. The result in terms of the antenna's master
+The result in terms of the antenna's master
 integrals yields,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[3]:= A40Sub = BuildAndIntegrateAntenna[A,4,0,Component->Subleading,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A40Sub/.A40MISubs)//Collect[\#,{R4,R6,R8a,R8b},Simplify]\&}\\
+\texttt{In[4]:= (A40Sub/.X40MISubs)//Collect[\#,{R4,R6,R8a,R8b},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
@@ -1281,15 +1254,11 @@ Finally, the epsilon-series result is computed as,
     \end{equation*}
 \end{mdframed}
 
-The integrated result agrees with
-the established $\tilde{\mathcal A}_4^0$ result \cite{Gehrmann-DeRidder:2005btv}.
+Finally, the $\gamma^*\to q\bar q q\bar q$ process is represented by the $B_4^0$ and $C_4^0$
+antennae. The $B_4^0$ antenna describes non-identical quark flavours, while $C_4^0$
+gives the identical-flavour contribution.
 
 \subsection{The $B_4^0$ Antenna}
-
-
-Finally, the $\gamma^*\to q\bar q q\bar q$ process is represented by the $B_4^0$ and $C_4^0$
-antennae. The $B_4^0$ antenna describes non-identical quark flavours, while $C_4^0$ 
-gives the identical-flavour contribution. 
 
 The $B_4^0$ antenna building process is completed as usual using \textit{AntCalc},
 
@@ -1302,13 +1271,12 @@ The $B_4^0$ antenna building process is completed as usual using \textit{AntCalc
     \end{equation*}
 \end{mdframed}
 
-The complete unintegrated expression is collected in
-Appendix~\ref{ap:antExpressions}. The result in terms of the antenna's master
+The result in terms of the antenna's master
 integrals yields,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[3]:= B40 = BuildAndIntegrateAntenna[B,4,0,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (B40/.A40MISubs)//Collect[\#,{R4,R6,R8a,R8b},Simplify]\&}\\
+\texttt{In[4]:= (B40/.X40MISubs)//Collect[\#,{R4,R6,R8a,R8b},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
@@ -1330,15 +1298,7 @@ Finally, the epsilon-series result is computed as,
     \end{equation*}
 \end{mdframed}
 
-The integrated result agrees with
-the established $\mathcal B_4^0$ result \cite{Gehrmann-DeRidder:2005btv}.
-
 \subsection{The $C_4^0$ Antenna}
-
-
-Finally, the $\gamma^*\to q\bar q q\bar q$ process is represented by the $B_4^0$ and $C_4^0$
-antennae. The $B_4^0$ antenna describes non-identical quark flavours, while $C_4^0$ 
-gives the identical-flavour contribution. 
 
 The $C_4^0$ antenna building process is completed as usual using \textit{AntCalc},
 
@@ -1351,13 +1311,12 @@ The $C_4^0$ antenna building process is completed as usual using \textit{AntCalc
     \end{equation*}
 \end{mdframed}
 
-The complete unintegrated expression is collected in
-Appendix~\ref{ap:antExpressions}. The result in terms of the antenna's master
+The result in terms of the antenna's master
 integrals yields,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[3]:= C40 = BuildAndIntegrateAntenna[C,4,0,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (C40/.A40MISubs)//Collect[\#,{R4,R6,R8a,R8b},Simplify]\&}\\
+\texttt{In[4]:= (C40/.X40MISubs)//Collect[\#,{R4,R6,R8a,R8b},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
@@ -1380,9 +1339,6 @@ Finally, the epsilon-series result is computed as,
         \frac1\epsilon\!\left(-\frac{13}{32}+\frac{\pi^2}{16}-\frac{\zeta_3}{4}\right)-\frac{339}{64}+\frac{17\pi^2}{48}-\frac{\pi^4}{45}+\frac{21\zeta_3}{8}+\mathcal O(\epsilon)
     \end{equation*}
 \end{mdframed}
-
-The integrated result agrees with
-the established $\mathcal C_4^0$ result \cite{Gehrmann-DeRidder:2005btv}.
 
 \subsection{Master Integrals}
 
@@ -1684,10 +1640,10 @@ with,
 
 \subsection{Exploratory Massive Master Integrals}\label{subsec:massiveMI}
 
-\textit{AntCalc} features an exploratory, but complete, massive Implementation of the 
-$A_3^0$ 
-route. To integrate it, two new MI are required. These two 
-massive MI are,
+\textit{AntCalc} implements the complete massive $A_3^0$ build-and-integrate pipeline;
+the route remains exploratory in the sense that, unlike the massless set, it has not
+yet been checked against a global observable (see Table~\ref{tab:masterValidationStatus}).
+To integrate it, two new MI are required. These two massive MI are,
 \begin{equation}
     \begin{split}
         &I_1^{(m_q,0,m_q)} = \int d\Phi_X^{(m_q,0,m_q)}\\
@@ -1699,7 +1655,7 @@ where $\Phi_X^{(m_q,0,m_q)}$ is the massive tripole phase space and is defined a
     d\Phi_X^{(m_q,0,m_q)} = \frac{d\Phi_3^{(m_q,0,m_q)}(q;k_1,k_3,k_2)}{d\Phi_2^{(m_q,m_q)}(q;\tilde k_I, \tilde k_K)},\quad p\to q(k_1,m_q) + g(k_3,0) + \bar q(k_2,m_q)
 \end{equation}
 and $m_q$ is the quark mass. Note that the two- and three-particle massive phase spaces 
-are described as in Eq.~\ref{eq:phaseSpaces} with $k_1^2=k_2^2=m_q^2$, $k_3^2=0$, and 
+are described as in Eq.~\eqref{eq:phaseSpaces} with $k_1^2=k_2^2=m_q^2$, $k_3^2=0$, and 
 $q^2>4m_q^2$.
 
 These two integrals evaluate to \cite{GehrmannDeRidder:2009fz},
