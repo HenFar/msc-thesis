@@ -70,6 +70,71 @@ Advisor feedback takes priority over everything below where they overlap. This i
 
 ---
 
+### Prof. Pires review of Chapter 3 — 15 September 2026 (email, same batch as the §2.1.2–2.5 review,
+also received AFTER v1 sent to Prof. Sampaio) — ALL POINTS RESOLVED same day
+
+**[Mine] — applied:**
+- §3.3.3: "There is only, formally, one set of this kind up to NNLO, $A_2^2$." → Prof's literal
+  replacement, "Within the massless $q\bar q$ final-final antennae considered up to NNLO, the only
+  two-loop antenna set is $A_2^2$." (qualifies the claim to the scope actually covered).
+- "The integrated antennae are denoted with calligraphic letters." → added the explicit symbol,
+  "...calligraphic letters $\mathcal X_n^l$."
+
+**[Already satisfied, no action needed]:**
+- "Eq. 2.47" / "Eq. 2.65" (missing parens) — both already fixed by the thesis-wide `\ref{eq:...}` →
+  `\eqref{eq:...}` sweep done during the §2.1.2–2.5 pass (58 instances, applied to every
+  chapter/appendix, not just Ch2). Checked the compiled PDF directly: zero remaining bare "Eq. 2.NN"
+  anywhere in the thesis.
+
+**All 3 remaining [Yours] items RESOLVED same day (15 Sep) — Henrique supplied the content/direction
+for all 3, applied directly:**
+1. **[Mine, applied]** FeynCalc/LiteRed2 auto-install — Henrique confirmed the grounded finding was
+   right and direct to apply. Added to the end of the sentence at
+   `chapters/03-package-framework.tex:12-14`: "Both are external dependencies that must be installed
+   by the user prior to loading *AntCalc*; the package's own installation procedure only installs the
+   *AntCalc* paclet itself."
+2. **[Mine, applied]** Two-loop ($A_2^2$) reduction method — Henrique supplied the actual mechanism
+   (matches Table 3.6's `A22TwoLoopTree`/`A22OneLoopSelf` → `IBP`/`LiteRed2` entries exactly, verified
+   after the fact): PaVe is used on the *build* side to remove the two loop momenta $\ell_1,\ell_2$,
+   then IBP reduction is used to obtain the full $\epsilon$-pole result. Added to §3.3.3 as: "Much
+   like for all other loop routes, Passarino-Veltman reduction is used on the build side to remove the
+   two loop momenta $\ell_1$ and $\ell_2$, while IBP reduction is subsequently used to obtain the full
+   result in terms of its $\epsilon$-poles."
+3. **[Mine, applied]** Renormalisation missing from Figs. 3.2/3.5 — discussed the mention-vs-draw
+   question with Henrique; agreed on both, kept minimal (append a label to the existing "public
+   boundary" node group in each figure rather than adding a new box or figure). Henrique explained the
+   actual architecture: renormalisation isn't a pipeline stage shared between Build and Integrate — it
+   is applied independently at each call's own backend→public crossing (once for `BuildAntenna`'s
+   unintegrated output, once for `IntegrateAntenna`'s integrated output). Applied:
+   - Prose: one paragraph after each of Fig. 3.2 and Fig. 3.5, stating this explicitly and pointing at
+     the existing boundary crossing shown in each diagram (`chapters/03-package-framework.tex`, right
+     after each `\input{figures/antcalc-architecture-...}`).
+   - Figures: appended "(incl. UV renorm.)" to the existing "Route \& Public Boundary" label in
+     `figures/antcalc-architecture-buildstage.tex` and the existing "Public Integration Views" label in
+     `figures/antcalc-architecture-intstage.tex`.
+
+   **Follow-up fix, same day**: the initial 2→3-line label growth clipped into the divider line and
+   option items below it in both figures (missed this the first time — claimed "no overlap" without
+   catching it; Henrique caught it from the rendered PDF). Fixed by shifting everything from the
+   enlarged label's divider line onward down by one line-height (0.4, matching the diagram's own
+   item-to-item spacing unit) in both figures: the divider, its 2–3 option items, the *next* options
+   group's label/divider/items, and the figures' own bottom-boundary elements (main vertical
+   connector lines, Input/Output triangle markers) extended by the same amount so nothing runs past
+   the existing background/red-card boundaries. Rebuilt and visually re-inspected both figures at
+   150dpi this time (not just checked "does it compile") — spacing between groups now reads
+   consistently with the rest of each diagram, no clipping.
+
+**Bonus catch, same pass**: while re-checking the hat-$A_{3,\text{bare}}^1$ sentence from the earlier
+§2.1.2–2.5 round (Henrique had independently refined its wording since — now reads "...carries the
+on-shell gluon's momentum $p_3$, and $p_3^2=0$..."), found and fixed a typo introduced in that
+refinement: "coupling-renormalisation couterterm" → "counterterm"
+(`chapters/02-physics-background.tex:1159`).
+
+Rebuilt clean after every step in this Chapter 3 pass (multiple intermediate rebuilds, all
+`latexmk -pdf`+`biber`, no errors, no undefined/multiply-defined refs).
+
+---
+
 ### Prof. Pires review of §2.1.2–2.5 — 15 September 2026 (email, received AFTER v1 sent to Prof. Sampaio) — DONE (Mine items) + 5 open [Yours]
 
 **Important for Henrique:** this whole review arrived after the first-half draft had already gone to

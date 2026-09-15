@@ -11,7 +11,9 @@ described in the previous chapter. The results presented in this thesis were pro
 
 \textit{AntCalc} makes use of \textit{FeynCalc} \cite{Feyncalc1,Feyncalc2,Feyncalc3,Feyncalc4}
 for symbolic amplitude manipulation and interfaces with \textit{LiteRed2} \cite{Litered} for
-IBP reduction.
+IBP reduction. Both are external dependencies that must be installed by the user prior to
+loading \textit{AntCalc}; the package's own installation procedure only installs the
+\textit{AntCalc} paclet itself.
 Its internal architecture is organised as a
 profile-driven route system: route-specific information is centralised in
 profiles, which guide the selection and configuration of the appropriate build,
@@ -235,6 +237,14 @@ the build stage is shown below, in Fig.~\ref{fig:antcalc-architecture-buildstage
 
 \input{figures/antcalc-architecture-buildstage}
 
+For loop routes, this public-output boundary is also where ultraviolet renormalisation is
+applied. Renormalisation is not a discrete internal stage of the build workflow; instead, it is
+applied to the unintegrated one- and two-loop antennae precisely at the point where they cross
+from the internal (backend) representation into the public antenna expression returned to the
+user, using the coupling rescaling of Eq.~\eqref{eq:alphaRescaling}. This is why no separate
+renormalisation step appears explicitly in Fig.~\ref{fig:antcalc-architecture-buildstage}: it
+coincides with the ``Route \& Public Boundary'' crossing already shown there.
+
 \subsection{Tree-Level Routes}\label{subsec:treeLevelRoutes}
 
 As mentioned, the workflow handles distinct loop-order routes differently, though the differences only appear 
@@ -320,8 +330,12 @@ used for $A_2^0$ and $A_3^0$, as discussed in Subsection~\ref{subsec:treeLevelRo
 
 \subsection{Two-Loop Routes}
 
-Loop-order-two routes are dispatched to \texttt{BuildTwoLoopAntennaData}. There is only, formally, 
-one set of this kind up to NNLO, $A_2^2$. It is remarkably different from the rest, however. The four-component set is not generated like 
+Loop-order-two routes are dispatched to \texttt{BuildTwoLoopAntennaData}. Within the massless
+$q\bar q$ final-final antennae considered up to NNLO, the only two-loop antenna set is $A_2^2$.
+Much like for all other loop routes, Passarino-Veltman reduction is used on the build side to
+remove the two loop momenta $\ell_1$ and $\ell_2$, while IBP reduction is subsequently used to
+obtain the full result in terms of its $\epsilon$-poles.
+It is remarkably different from the rest, however. The four-component set is not generated like
 the $A_4^0$ and $A_3^1$ sets were, rather its four components come from two distinct source contributions, as discussed in 
 Subsection~\ref{subsec:antFamilies}.
 Their production and extraction modes are similar and handled as a bundle inside \textit{AntCalc},
@@ -385,7 +399,8 @@ section.
 
 The integration stage performs the analytic integration of the antenna functions constructed
 in the build stage over the corresponding unresolved phase space in $d=4-2\epsilon$ dimensions,
-as in Eq.~\eqref{eq:antennaIntegral}. The integrated antennae are denoted with calligraphic letters.
+as in Eq.~\eqref{eq:antennaIntegral}. The integrated antennae are denoted with calligraphic
+letters $\mathcal X_n^l$.
 
 Within \textit{AntCalc}, this stage is initiated by passing the \texttt{AntennaObject} produced
 by \\ \texttt{BuildAntenna[..., IntegrableForm -> True]} to \texttt{IntegrateAntenna[...]}. A 
@@ -427,6 +442,14 @@ Fig.~\ref{fig:antcalc-architecture} can also be drawn in further detail.
 That diagram is shown in Fig.~\ref{fig:antcalc-architecture-intstage}.
 
 \input{figures/antcalc-architecture-intstage.tex}
+
+As for the build stage, ultraviolet renormalisation at the integration stage is applied
+independently, at the analogous public-output boundary: once the integrated one- and two-loop
+antennae are extracted, immediately before they are returned by \texttt{IntegrateAntenna[...]}.
+This mirrors, rather than reuses, the renormalisation applied during the build stage, since the
+two calls can be made independently of one another. No separate renormalisation step therefore
+appears in Fig.~\ref{fig:antcalc-architecture-intstage} either: it coincides with the ``Public
+Integration Views'' crossing shown there.
 
 \subsection{Integration Profiles and Selection}
 

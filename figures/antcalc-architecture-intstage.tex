@@ -29,7 +29,7 @@
 
 % main lines
 \draw[black, thick] (0,0) -- (11,0);
-\draw[black, thick] (11,0) -- (11,-10);
+\draw[black, thick] (11,0) -- (11,-10.4);
 
 % back and frontend backgrounds
 \begin{pgfonlayer}{background}
@@ -55,7 +55,7 @@
 % input node
 
 % output nodes
-\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90, label={[align=center, anchor=west, label distance=3pt]below:Default \\ Integrate \\ Output}] at (11,-10) {};
+\node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90, label={[align=center, anchor=west, label distance=3pt]below:Default \\ Integrate \\ Output}] at (11,-10.4) {};
 
 % midway points
 \node[draw, fill=black, isosceles triangle, isosceles triangle apex angle=60, inner sep=2pt, shape border rotate=-90, label={[label distance = -5pt, rotate=90, anchor=south]below:\textit{Expanding...}}] at (11,-5) {};
@@ -80,14 +80,14 @@
 \node[anchor=west] at (3.9,-5.75) {\texttt{BasisRoot}};
 \node[anchor=west] at (3.9,-6.15) {\texttt{GenerateMissingBases}};
 
-\node[align=center, anchor=west] at (3.05,-7.05) {Public \\ Integration Views:};
-\draw[black!80, thick] (3.8, -7.55) -- (3.8, -8.45);
-\node[anchor=west] at (3.9,-7.8) {\texttt{ReturnTTerms}};
-\node[anchor=west] at (3.9,-8.2) {\texttt{ReturnMasterCombination}};
+\node[align=center, anchor=west] at (3.05,-7.05) {Public \\ Integration Views \\ \footnotesize(incl.\ UV renorm.):};
+\draw[black!80, thick] (3.8, -7.95) -- (3.8, -8.85);
+\node[anchor=west] at (3.9,-8.2) {\texttt{ReturnTTerms}};
+\node[anchor=west] at (3.9,-8.6) {\texttt{ReturnMasterCombination}};
 
-\node[align=center, anchor=west] at (3.05,-9.05) {Diagnostics};
-\draw[black!80, thick] (3.8, -9.55) -- (3.8, -10);
-\node[anchor=west] at (3.9,-9.8) {\texttt{DetailedTimingDiagnostics}};
+\node[align=center, anchor=west] at (3.05,-9.45) {Diagnostics};
+\draw[black!80, thick] (3.8, -9.95) -- (3.8, -10.4);
+\node[anchor=west] at (3.9,-10.2) {\texttt{DetailedTimingDiagnostics}};
 
 \end{tikzpicture}
 \caption{\centering Profile-driven architecture of \textit{AntCalc}'s Integration stage. The principal integration-only options are shown inside the red card.}
