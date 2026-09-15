@@ -1,13 +1,17 @@
 \chapter{Introduction}\label{ch:introduction}
 
-High-energy collider experiments, such as the proton-proton collisions studied at the
-Large Hadron Collider (LHC) at CERN, have, in recent years, provided ever-increasing
-precision in measurements of processes governed by the strong interaction. 
+High-energy collider experiments, in particular proton-proton collisions at the Large
+Hadron Collider (LHC) at CERN, provide increasingly precise tests of the strong
+interaction and of the Standard Model of particle physics. Matching this experimental
+precision requires theoretical predictions with correspondingly high accuracy, making
+higher-order perturbative calculations in Quantum Chromodynamics (QCD) essential.
 
-The strong interaction is one of the four fundamental physical interactions. Its charge is colour charge.
-The interaction is mediated by gauge bosons called gluons, and carried by fermions called quarks, which come in 
-six flavours distinguished by mass and by one of two possible electric charges. Fig.~\ref{fig:SM} shows 
-the usual representation of the Standard Model's elementary particles, including quarks and gluons.
+QCD is the quantum field theory describing the strong interaction. It is a non-Abelian
+gauge theory based on the $SU(3)_c$ colour symmetry, with quarks as fermionic matter
+fields and gluons as the corresponding gauge bosons. Quarks occur in six flavours and
+transform in the fundamental representation of $SU(3)_c$, while gluons transform in
+the adjoint representation and themselves carry colour charge. The quarks and gluons
+within the Standard Model particle content are shown in Fig.~\ref{fig:SM}.
 
 \begin{figure}[h!]
     \centering
@@ -18,25 +22,23 @@ the usual representation of the Standard Model's elementary particles, including
     \label{fig:SM}
 \end{figure}
 
-The very-high centre-of-mass (COM) energy $q$ at which the protons are collided is quite
-important, as the strong coupling constant $\alpha_s$ decreases in value as the COM energy increases.
-This fact allows phenomenologists to build their predictions as perturbative expansions in powers 
-of the constant. As perturbative order increases from leading (LO), to next-to-leading (NLO), to 
-next-to-next-to-leading order (NNLO), and beyond, theoretical uncertainty decreases. This increase 
-in theoretical precision, however, comes at the cost of a rapidly compounding increase in the algebraic 
-complexity of the computation of the required mathematical operations. As an illustrative example, as shown in 
-Table~\ref{tab:antFamilies}, for the quark-antiquark final-final antenna functions and $q\bar q$ form factors considered in this work,
-their number increases as one at LO, two at NLO (one tree-level and one one-loop), and eleven at NNLO 
-(four tree-level, three one-loop, and four two-loop).
-Obtaining higher-order 
+At sufficiently large momentum-transfer scales, the strong coupling $\alpha_s$ becomes
+small as a consequence of asymptotic freedom. This allows QCD observables involving a
+hard scale $Q$ to be calculated perturbatively as an expansion in powers of
+$\alpha_s(Q)$. Successive perturbative orders---leading order (LO), next-to-leading
+order (NLO), next-to-next-to-leading order (NNLO), and beyond---generally improve the
+accuracy of theoretical predictions and reduce their residual dependence on unphysical
+renormalisation and factorisation scales. This improvement, however, comes with a
+rapid increase in the complexity of the required calculations.
+Obtaining higher-order
 perturbative predictions is not simply a matter of calculating
 additional Feynman diagrams. Real-emission and virtual-loop contributions develop
 infrared singularities in kinematic configurations involving soft (low energy)
 or collinear partons. These individual contributions are divergent, and their
 infrared singularities must be extracted and cancelled before numerical integration
-can be performed. For infrared-safe observables, such as the hadronic \textit{R}-ratio,
-the singularities cancel between the real and virtual contributions, leaving a finite
-physical result.
+can be performed. For infrared-safe observables, such as the hadronic \textit{R}-ratio defined in
+Chapter~\ref{ch:validation}, the singularities cancel between the real and virtual
+contributions, leaving a finite physical result.
 
 The antenna subtraction formalism provides a framework for extracting and cancelling
 these infrared singularities, rendering the individual contributions suitable for
@@ -70,7 +72,8 @@ Chapter~\ref{ch:packageframework} describes \textit{AntCalc}'s framework, includ
 architecture, antenna construction and integration workflows, reduction procedures, and
 the conventions and validation tools used to obtain the results.
 Chapter~\ref{ch:workedexample} presents the antenna functions obtained using
-\textit{AntCalc}, beginning with the master integrals required for their integration.
+\textit{AntCalc}, organised by final-state multiplicity, with the master integrals
+required for each antenna set presented after the corresponding antennae.
 The $A_3^0$ antenna is discussed in detail, from its unintegrated construction to its
 integrated form and the validation of its soft and collinear limits. Selected NLO and
 NNLO antenna results are then presented more concisely. The chapter concludes with an

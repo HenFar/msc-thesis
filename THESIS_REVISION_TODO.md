@@ -70,6 +70,42 @@ Advisor feedback takes priority over everything below where they overlap. This i
 
 ---
 
+### Prof. Pires review of Chapter 1 (Introduction) — 15 September 2026 (email, same batch as the
+§2.1.2–2.5/Ch3 reviews) — ALL POINTS RESOLVED same day, including the one initially deferred by Prof
+
+**[Mine] — applied, `chapters/01-introduction.tex`:**
+- Opening paragraph + strong-interaction paragraph replaced with Prof's two new paragraphs: LHC/SM
+  precision framing, then a proper QCD definition ($SU(3)_c$ non-Abelian gauge theory, quarks in the
+  fundamental rep, gluons in the adjoint, Fig.~\ref{fig:SM} pointer).
+- Fixed a real physics inaccuracy Prof flagged: the old text said $\alpha_s$ "decreases as COM energy
+  increases," which isn't quite right — $\alpha_s$ depends on the renormalisation scale, typically set
+  to a hard scale $Q$ of the process. Replaced with Prof's text: asymptotic freedom framing, LO→NNLO
+  improving accuracy and reducing renormalisation/factorisation-scale dependence.
+- Removed the Table 2.3 antenna-counting sentence entirely, per Prof's reasoning: a raw antenna count
+  isn't itself a complexity measure (1000 simple integrals isn't a hard problem) — the real difficulty
+  is amplitude/integral complexity at higher orders, and Ch1 shouldn't reference a Ch2 table this
+  early anyway. Checked the transition into the next sentence ("Obtaining higher-order perturbative
+  predictions is not simply a matter of...") still flows naturally without it — confirmed in the
+  rebuilt PDF.
+- "such as the hadronic $R$-ratio" → "...defined in Chapter~\ref{ch:validation}" (resolves to Chapter
+  5; used the label, not a hardcoded number, consistent with house style).
+
+**RESOLVED same day — not actually deferred.** Henrique had already replied to Prof directly (by
+email) that the sentence was stale: Ch4 no longer opens with the master integrals, since he
+restructured it so "each set of masters appears after the antennae." Verified this directly against
+`chapters/04-worked-example.tex`'s actual section structure before touching anything (§4.2/§4.3/§4.4
+each present all antennae in that multiplicity/loop set first, referencing their master integrals by
+symbol throughout, then collect the actual master-integral derivations in a dedicated "Master
+Integrals" subsection at the end of that section — confirmed by reading the $A_2^2$ set's content
+flow directly, not just section headers). Fixed the sentence: "beginning with the master integrals
+required for their integration" → "organised by final-state multiplicity, with the master integrals
+required for each antenna set presented after the corresponding antennae."
+
+Rebuilt clean (`latexmk -pdf`+`biber`, no errors/undefined refs), visually spot-checked both rendered
+pages.
+
+---
+
 ### Prof. Pires review of Chapter 3 — 15 September 2026 (email, same batch as the §2.1.2–2.5 review,
 also received AFTER v1 sent to Prof. Sampaio) — ALL POINTS RESOLVED same day
 
