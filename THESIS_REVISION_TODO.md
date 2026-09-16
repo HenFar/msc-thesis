@@ -125,6 +125,8 @@ Round 7 (Henrique asked directly "are you sure it's centred?" — good catch, it
 
 Full rebuild: 126 pp, clean, 0 undefined refs, 0 multiply-defined labels.
 
+**Round 8 — post-mortem catch (Henrique, after all 7 redraw rounds): the caption still called the right panel "a schematic Feynman diagram," a leftover from the original (pre-redraw) figure.** The panel is now an amplitude-level factorisation diagram (blob + legs), not a Feynman diagram at all — genuinely stale wording, not a stylistic quibble. Fixed in `figures/colour-connection-nlo.tex`'s caption: "...accompanied also by the corresponding amplitude-level factorisation, using the momenta labels." Checked the body prose near `Fig.~\ref{fig:colourConnectionNLO}` (chapters/02-physics-background.tex:565) too — it only says "a diagram of these relationships," no stale "Feynman diagram" wording there, so the caption was the only place needing the fix. Full rebuild: 126 pp, clean.
+
 ---
 
 ### Prof. Pires review of Chapter 1 (Introduction) — 15 September 2026 (email, same batch as the
