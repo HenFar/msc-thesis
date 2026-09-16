@@ -576,7 +576,9 @@ the factorisation of the phase space,
 \end{equation}
 The integrated counterterm $\int_1 d\sigma^S_\text{NLO}$ then takes the form,
 \begin{equation}
-    \int_1 d\sigma^S_\text{NLO} = \sum_m d\Phi_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})\frac1{S_{m+1}}\sum_j\left(\int d\Phi_{X_{ijk}}\,X_{ijk}^0\right)|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}).
+    \begin{aligned}
+        \int_1 d\sigma^S_\text{NLO} = \sum_m &d\Phi_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})\frac1{S_{m+1}}\\&\sum_j\left(\int d\Phi_{X_{ijk}}\,X_{ijk}^0\right)|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}).
+    \end{aligned}
 \end{equation}
 The integral $\int d\Phi_{X_{ijk}}\,X_{ijk}^0$ defines the integrated antenna,
 which is then combined with the virtual contribution, rendering its contribution
@@ -595,13 +597,10 @@ behaviour of the double-real and real--virtual contributions,
 $d\sigma_\text{NNLO}^{RR}$ and $d\sigma_\text{NNLO}^{RV}$, respectively. The
 $m$-jet cross section can then be written as,
 \begin{equation}
-    \begin{gathered}
-        \begin{aligned}
-            d\sigma_\text{NNLO} = \int_{m+2}\left(d\sigma_\text{NNLO}^{RR}-d\sigma_\text{NNLO}^{S}\right)+\int_{m+1}\Big(&d\sigma_\text{NNLO}^{RV}-d\sigma_\text{NNLO}^T\Big)\\
-                                                                                                                         &+\int_m \left(d\sigma_\text{NNLO}^{VV}+\int_2 d\sigma_\text{NNLO}^{S}+\int_1 d\sigma_\text{NNLO}^T\right)
-        \end{aligned}\\
-                                = \int_m\left(d\sigma_\text{NNLO}^{VV}+\int_2 d\sigma_\text{NNLO}^S+\int_1 d\sigma_\text{NNLO}^T\right).
-    \end{gathered}
+    \begin{aligned}
+        d\sigma_\text{NNLO} = \int_{m+2}\left(d\sigma_\text{NNLO}^{RR}-d\sigma_\text{NNLO}^{S}\right)+\int_{m+1}\Big(&d\sigma_\text{NNLO}^{RV}-d\sigma_\text{NNLO}^T\Big)\\
+                                                                                                                     &+\int_m \left(d\sigma_\text{NNLO}^{VV}+\int_2 d\sigma_\text{NNLO}^{S}+\int_1 d\sigma_\text{NNLO}^T\right).
+    \end{aligned}
 \end{equation}
 
 At NNLO, the subtraction structure becomes more involved due to the presence of
@@ -636,7 +635,7 @@ schematically in Fig.~\ref{fig:colourConnectionNNLOall}.
         One of the partons becomes soft or collinear & $d\sigma^{T,b}$ \\ \hline
         Spurious poles introduced by the other two subterms & $d\sigma^{T,c}$ \\ \hline
     \end{tabular}
-    \caption{\centering NNLO unresolved configurations and their matching subterm, part of the $d\sigma^S_\text{NNLO}$ and $d\sigma^T_\text{NNLO}$ subtraction counterterms.}
+    \caption{\centering NNLO unresolved configurations and their matching subtraction term, part of the $d\sigma^S_\text{NNLO}$ and $d\sigma^T_\text{NNLO}$ subtraction counterterms.}
     \label{tab:counterterms}
 \end{table}
 
@@ -658,7 +657,7 @@ contributions to the double-real subtraction counterterm are given by,
         \end{aligned}
     \end{gathered}
 \end{equation}
-And then the real-virtual counterterm,
+and for the real-virtual counterterm,
 \begin{equation}
     \begin{gathered}
         \begin{aligned}
@@ -674,20 +673,10 @@ And then the real-virtual counterterm,
         \end{aligned}
     \end{gathered}
 \end{equation}
-$d\sigma^{S,c}$, $d\sigma^{S,d}$, and $d\sigma^{T,c}$ are only required for
-processes with three or more hard partons, beyond those considered in the current text. Their
-complete form is written in \cite{Gehrmann-DeRidder:2005btv}.
-
-The iterated mapping for the four-parton system $(i,j,k,l)$ proceeds in two stages,
-\begin{equation}
-    \begin{gathered}
-        (i,j,k)\to(\tilde I,\tilde K)\\
-        (\tilde I,\tilde K,l) \to (\tilde{\tilde{I}}, \tilde{\tilde{L}})
-    \end{gathered}
-\end{equation}
-
-and the three characteristic colour-connection configurations are shown in
-Fig.~\ref{fig:colourConnectionNNLOall}.
+The terms $d\sigma^{S,c}$, $d\sigma^{S,d}$, and $d\sigma^{T,c}$ arise only when the
+underlying reduced hard process contains at least three resolved partons. Since the
+configurations considered in this work contain only the two hard $q\bar q$ radiators,
+these terms are not required.
 
 \begin{figure}[h!]
 \centering
@@ -696,7 +685,7 @@ Fig.~\ref{fig:colourConnectionNNLOall}.
 \input{figures/colour-connection-nnlo_2.tex}
 \par\medskip
 \input{figures/colour-connection-nnlo_3.tex}
-\caption{\centering The three characteristic double-unresolved colour-connection configurations at NNLO: (a) two colour-connected unresolved partons, (b) two adjacent single-unresolved antennae, and (c) two disconnected single-unresolved antennae.}
+\caption{\centering The three characteristic double-unresolved colour-connection configurations at NNLO: (a) two colour-connected unresolved partons, corresponding to $d\sigma^{S,b}$; (b) two adjacent single-unresolved antennae, corresponding to $d\sigma^{S,c}$; and (c) two disconnected single-unresolved antennae, corresponding to $d\sigma^{S,d}$.}
 \label{fig:colourConnectionNNLOall}
 \end{figure}
 
@@ -885,7 +874,7 @@ gluon emissions, leading to final states like $qgg\bar q$ at NNLO or $qg\bar q$
 at NLO; $C$-type antennae are characterised by a final-state quark-antiquark pair 
 with the original hard pair's flavour, as $q\bar qq\bar q$; and $B$-type 
 by a quark-antiquark pair of a different flavour, notated as 
-$q\bar qq^\prime\bar q^\prime$. Following QCD vertex rules, described in 
+$q\bar qq^\prime\bar q^\prime$. Following QCD Feynman rules, described in
 Section~\ref{sec:FeynmanRules}, $A$-type antennae may exist at any order, 
 while $B$- and $C$-type antennae can only exist at NNLO.
 
@@ -1655,9 +1644,7 @@ corresponding two-particle phase-space integration, together with the loop
 integrations entering the virtual contributions \cite{GehrmannDeRidder0507061}.
 Thus, while these antennae are also integrated over phase space, the
 phase-space factorisation of Eq.~\eqref{eq:antPhaseSpaceFact}, relevant for
-antennae containing unresolved radiation, is not required. $A_2^0$ also has no
-unresolved parton, but is excluded here for a different reason: it is the
-Born-level antenna itself, not an integrated subtraction ingredient.
+antennae containing unresolved radiation, is not required.
 
 \section{Phase-Space Integration and IBP Reduction}\label{sec:integration}
 

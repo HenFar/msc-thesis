@@ -88,37 +88,85 @@
     \node[above] at (1.75,-2) {$I$};
     \node[above] at (3.75,-2) {$K$};
 
-% feynman diag
-\node[right] at (7,-1.25) {
-\begin{tikzpicture}
-    \begin{feynman}
-        % Vertices
-        \vertex (v1) at (-0.5,  0);
-        \vertex (v2) at ( 0.5,  0);
-        \vertex[dot] (f1) at ( 2.0,  0.875) {};
-        \vertex[dot] (f2) at ( 2.0, -0.875) {};
-        \vertex (g)  at ( 3.5,  0);
-        \vertex (q1) at ( 3.5,  1.75); 
-        \vertex (q2) at ( 3.5, -1.75); 
+% Amplitude-factorisation diagram, reproducing Fig. 3 of Gehrmann-De
+% Ridder, Gehrmann and Glover (hep-ph/0505111) -- the (m+1)-parton
+% amplitude blob (with generic spectator legs 1,...,m+1 either side of
+% i,j,k) factorising into the reduced m-parton amplitude blob times, in
+% square brackets, the tree antenna function X^0_{ijk} itself drawn as
+% a cut amplitude-squared diagram. The paper draws this left-to-right;
+% here it is rotated to a vertical top-to-bottom flow (top diagram,
+% arrow down, bottom diagram) so it sits compactly next to the
+% colour-connection panel on the left, which uses the same top/arrow/
+% bottom layout.
+\node[right] at (6.9,-1.25) {
+\begin{tikzpicture}[scale=0.72,every node/.style={scale=0.72}]
 
-        % Diagram paths
-        \diagram* {
-            % Intermediate photon
-            (v1) -- [photon, edge label=$\gamma^*$] (v2),
+    % ----- top: full (m+1)-parton amplitude blob -----
+    % shifted right so this block's own centre lines up with the centre
+    % of the (much wider) bottom row -- blob + bracket -- below it
+    \begin{scope}[shift={(2.3,0)}]
+        \draw (-1.0,0) -- (0,0);
+        \fill (0,0) circle[radius=2.0mm];
+        \draw (0,0) -- (55:1.4); \node[above] at (55:1.5) {$1$};
+        \fill (45:0.85) circle[radius=1.6pt];
+        \fill (34:0.85) circle[radius=1.6pt];
+        \draw (0,0) -- (25:1.4); \node[right] at (25:1.5) {$i$};
+        \draw (0,0) -- (0:1.4);  \node[right] at (0:1.5)  {$j$};
+        \draw (0,0) -- (-25:1.4); \node[right] at (-25:1.5) {$k$};
+        \fill (-34:0.85) circle[radius=1.6pt];
+        \fill (-45:0.85) circle[radius=1.6pt];
+        \draw (0,0) -- (-55:1.4); \node[below] at (-55:1.55) {$m+1$};
+    \end{scope}
 
-            % Collinear fermion lines
-            (v2) -- [fermion, edge label=$\tilde p_I$] (f1),
-            (f1) -- [fermion, edge label=$p_i$] (q1),
+    % ----- vertical arrow, centred under the top block above -----
+    % kept at its original short length -- the extra room between the
+    % top and bottom blocks is left as plain empty space around it,
+    % not absorbed into a longer arrow
+    \draw[->] (2.3,-2.0) -- (2.3,-2.7);
 
-            (q2) -- [fermion, edge label=$p_k$] (f2),
-            (f2) -- [fermion, edge label=$\tilde p_K$] (v2),
+    % ----- bottom: reduced m-parton amplitude blob, and, aligned with -----
+    % ----- it, the bracket giving the tree antenna function X^0_{ijk} -----
+    % ----- as a cut amplitude-squared diagram                        -----
+    \begin{scope}[shift={(0,-5.6)}]
+        \draw (-1.0,0) -- (0,0);
+        \fill (0,0) circle[radius=2.0mm];
+        \draw (0,0) -- (55:1.4); \node[above] at (55:1.5) {$1$};
+        \fill (45:0.85) circle[radius=1.6pt];
+        \fill (34:0.85) circle[radius=1.6pt];
+        \draw (0,0) -- (20:1.4); \node[right] at (20:1.5) {$I$};
+        \draw (0,0) -- (-20:1.4); \node[right] at (-20:1.5) {$K$};
+        \fill (-34:0.85) circle[radius=1.6pt];
+        \fill (-45:0.85) circle[radius=1.6pt];
+        \draw (0,0) -- (-55:1.4); \node[below] at (-55:1.55) {$m+1$};
 
-            % Gluon emission
-            (f1) -- [gluon, bend right=45, edge label=$p_j$] (g),
-        };
-    \end{feynman}
+        % the bracket is deliberately bigger than the reduced-blob diagram
+        % to its left -- more headroom around the two antenna sub-diagrams
+        % it contains, so the "k"/"I" legs don't crowd the divider line.
+        % Extra clearance added: between the reduced blob and the bracket's
+        % left edge, between the bracket edges and the mini-diagrams they
+        % contain, and between the divider line's ends and the bracket
+        % sides.
+        \draw (2.95,2.0) -- (2.7,2.0) -- (2.7,-2.0) -- (2.95,-2.0);
+        \draw (5.97,2.0) -- (6.22,2.0) -- (6.22,-2.0) -- (5.97,-2.0);
+        \draw (3.25,0) -- (5.67,0);
+
+        \begin{scope}[shift={(4.15,1.0)}]
+            \draw[dash pattern=on 1.2pt off 1pt] (-0.9,0) -- (0,0);
+            \fill (0,0) circle[radius=2.0mm];
+            \draw (0,0) -- (25:1.35); \node[right] at (25:1.45) {$i$};
+            \draw (0,0) -- (0:1.35);  \node[right] at (0:1.45)  {$j$};
+            \draw (0,0) -- (-25:1.35); \node[right] at (-25:1.45) {$k$};
+        \end{scope}
+
+        \begin{scope}[shift={(4.15,-1.0)}]
+            \draw[dash pattern=on 1.2pt off 1pt] (-0.9,0) -- (0,0);
+            \fill (0,0) circle[radius=2.0mm];
+            \draw (0,0) -- (25:1.35); \node[right] at (25:1.45) {$I$};
+            \draw (0,0) -- (-25:1.35); \node[right] at (-25:1.45) {$K$};
+        \end{scope}
+    \end{scope}
+
 \end{tikzpicture}
-
     };
 
 \end{tikzpicture}
