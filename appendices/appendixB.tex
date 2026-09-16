@@ -627,3 +627,194 @@ one per antenna family.
    j[hybridBasis2431, 1, 1, 1, 1, 1, 0, 1, 1, 1] -> R8b\\
    \};}
 \end{mdframed}
+
+\section{Local Validation of Additional Routes}\label{sec:localValidationExtra}
+
+Much like the $A_3^0$ massless unintegrated antenna was locally validated by computing its local soft and 
+(single) collinear limits, so have other antenna functions been validated in that way. In this section 
+we present those validation methods and results.
+
+\subsection{$A_4^0$}\label{subsec:localValidationA40}
+
+The leading $A_4^0(1_q,3_g,4_g,2_{\bar q})$ massless antenna component has five relevant limits: two soft limits,
+and three collinear limits, for $1_q||3_g$, $3_g||4_g$, and $2_{\bar q}||4_g$. The two $qg$ collinear limits, $1_q||3_g$ and $2_{\bar q}||4_g$,
+and the two soft-$g$ limits are symmetric under the reversal symmetry of the colour 
+ordering, as $1\leftrightarrow 2$ and $3\leftrightarrow4$.
+
+
+\subsubsection{Soft Limit and the Eikonal Factor}
+
+In this limit we set $p_g\to 0$. As mentioned, the limit is symmetric for both gluons. We will be focusing on the 
+soft-$3_g$ here.
+
+The limit is thus computed as,
+\begin{equation}
+    \lim_{\lambda\to 0}\lambda^2 A_4^0\Big|_{s_{13},s_{23},s_{34}\to \lambda s_{13},\lambda s_{23},\lambda s_{34}} = \mathcal S_{14}^{(3)}A_3^0(1_q,4_g,2_{\bar q}),\quad \mathcal S_{14}^{(3)}=\frac{2s_{14}}{s_{13}s_{34}}.
+\end{equation}
+
+This limit is computed using \textit{AntCalc} as follows. Since the result here is larger than a simple factor like it was for $A_3^0$, 
+the result is presented as the difference of the limit and the product of the eikonal factor and the $A_3^0$ antenna. Hence, the 
+resulting value we are looking for is zero \cite{Gehrmann-DeRidder:2005btv}.
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[1]:= A40 = BuildAntenna[A,4,0,Component->Leading];\\
+                \\
+                soft3Rules = \{s13 -> lambda s13, s23 -> lambda s23, s34 -> lambda s34, \\
+                s134 -> s14, s234 -> s24, q2 -> s124\};\\
+                soft3Leading = SeriesCoefficient[A40 /. soft3Rules, \{lambda, 0, -2\}] // Simplify;\\
+                \\
+                A30142 = BuildAntenna[A,3,0] /. \{s13 -> s14, s23 -> s24, q2 -> s124\};\\
+                soft3Expected = (2 s14/(s13 s34)) A30142 // Simplify;\\
+                \\
+                soft3Residual = FullSimplify[(soft3Leading - soft3Expected) /. \\
+                s124 -> s12 + s14 + s24]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
+\end{mdframed}
+
+\subsubsection{Collinear $1_q||3_g$ Limit}
+
+For the $1_q||3_g$ limit, the quark and gluon pair recombine into a parent quark as,
+\begin{equation}
+    p_1=zp_{13},\quad p_3=(1-z)p_{13}
+\end{equation}
+where $z$ is the momentum fraction carried by the original quark. This step makes $s_{13}$ vanish as, $s_{13}\to 0$.
+
+We now introduce the Mandelstam notation $s_{(13)j}$ to represent the invariant computed from the momenta of the 
+parent quark and some other $j$ particle. The remaining invariants become,
+\begin{equation}
+    \begin{gathered}
+        s_{12}\to zs_{(13)2},\quad s_{23}\to(1-z)s_{(13)2},\\
+        s_{14}\to zs_{(13)4},\quad s_{34}\to(1-z)s_{(13)4},\\
+        s_{24}\to s_{24}.
+    \end{gathered}
+\end{equation} 
+We also define the reduced configuration of the three-parton tree-level antenna as,
+\begin{equation}
+    A_3^0\Big((13)_q,4_g,2_{\bar q}\Big).
+\end{equation}
+
+At leading power, the four-parton antenna factorises as,
+\begin{equation}
+    \lim_{s_{13}\to 0} s_{13}A_4^0(1_q,3_g,4_g,2_{\bar q})=\frac{1}{s_{13}}P_{qg\to q}(z,\epsilon)A_3^0\Big((13)_q,4_g,2_{\bar q}\Big),\quad P_{qg\to q}(z,\epsilon)=\frac{1+z^2}{1-z}-\epsilon(1-z).
+\end{equation}
+Here $P_{qg\to q}(z,\epsilon)$ is the $\mathcal O(\epsilon)$-extended version of the splitting
+function used for $A_3^0$'s collinear limit in Section~\ref{subsubsec:a30CollinearLimit}, needed
+since $A_4^0$ is an NNLO antenna and the $\epsilon$-dependent term no longer drops out of the check \cite{Gehrmann-DeRidder:2005btv}.
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[1]:= A40 = BuildAntenna[A,4,0,Component->Leading];\\
+                \\
+                col13Rules = \{s13 -> lambda, s12 -> z sP2, s23 -> (1-z) sP2, s14 -> z sP4, \\
+                s34 -> (1-z) sP4, s134 -> sP4, s234 -> (1-z) sP2 + s24 + (1-z) sP4, \\
+                q2 -> sP2 + sP4 + s24, Epsilon -> 0\};\\
+                col13Leading = SeriesCoefficient[Together[A40 /. col13Rules], \{lambda, 0, -1\}] // FullSimplify;\\
+                \\
+                A30P42 = BuildAntenna[A,3,0] /. \{s12 -> sP2, s13 -> sP4, s23 -> s24, \\
+                q2 -> sP2 + sP4 + s24, Epsilon -> 0\};\\
+                \\
+                Pqg = (1 + z\textasciicircum2)/(1 - z);\\
+                \\
+                FullSimplify[col13Leading - Pqg A30P42]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
+\end{mdframed}
+
+\subsubsection{Collinear $3_g||4_g$ Limit}
+
+For the $3_g||4_g$ limit, the gluon-gluon pair recombine into a parent gluon as,
+\begin{equation}
+    p_3=zp_{34},\quad p_4=(1-z)p_{34}.
+\end{equation}
+This step makes $s_{34}$ vanish.
+
+The remaining invariants become,
+\begin{equation}
+    \begin{gathered}
+        s_{13}\to zs_{1(34)},\quad s_{14}\to(1-z)s_{1(34)},\\
+        s_{23}\to zs_{(34)2},\quad s_{24}\to(1-z)s_{(34)2},\\
+        s_{12}\to s_{12}.
+    \end{gathered}
+\end{equation} 
+The reduced configuration of the three-parton tree-level antenna also becomes,
+\begin{equation}
+    A_3^0\Big(1_q,(34)_g,2_{\bar q}\Big).
+\end{equation}
+
+The parent parton here is now a gluon, not a quark. Hence, the local factorisation
+formula involves the spin-correlated $g\to gg$ splitting tensor:
+\begin{equation}
+    A_4^0(1_q,3_g,4_g,2_{\bar q})\xrightarrow{3_g||4_g}\frac1{s_{34}}\hat P_{gg\to G}^{\mu\nu}(z,k_\perp)\big(A_3^0\big)_{\mu\nu}\Big(1_q,(34)_g,2_{\bar q}\Big).
+\end{equation}
+Here, $\big(A_3^0\big)_{\mu\nu}$ is the reduced three-parton antenna with the parent-gluon polarisation
+indices left uncontracted. Equivalently, in terms of scalar antenna functions, the
+unaveraged collinear limit contains an angular contribution,
+\begin{equation}
+    A_4^0(1_q,3_g,4_g,2_{\bar q})\xrightarrow{3_g||4_g}\frac1{s_{34}}P_{gg\to G}(z)A_3^0\Big(1_q,(34)_g,2_{\bar q}\Big)+\mathrm{ang.},
+\end{equation}
+where $\mathrm{ang.}$ denotes a spin-correlation contribution. This term
+vanishes after integration over the unresolved azimuthal angle. Consequently,
+\begin{equation}
+    \lim_{s_{34}\to0}s_{34}\left\langle A_4^0(1_q,3_g,4_g,2_{\bar q})\right\rangle_\phi = P_{gg\to G}(z)A_3^0\Big(1_q,(34)_g,2_{\bar q}\Big),
+\end{equation}
+where
+\begin{equation}
+    P_{gg\to G}(z)=2\left[\frac{z}{1-z}+\frac{1-z}{z}+z(1-z)\right].
+\end{equation}
+The direct invariant-space limit produces a non-vanishing residual after
+subtracting the spin-averaged contribution, consistently with the angular term
+in the local gluon--gluon collinear factorisation \cite{Gehrmann-DeRidder:2005btv}.
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[1]:= A40 = BuildAntenna[A,4,0,Component->Leading];\\
+                \\
+                col34Rules = \{s34 -> lambda, s13 -> z s1P, s14 -> (1-z) s1P, s23 -> z sP2, \\
+                s24 -> (1-z) sP2, s134 -> s1P + lambda, s234 -> sP2 + lambda, \\
+                q2 -> s12 + s1P + sP2 + lambda, Epsilon -> 0\};\\
+                col34Leading = SeriesCoefficient[Together[A40 /. col34Rules], \{lambda, 0, -1\}] // FullSimplify;\\
+                \\
+                A301P2 = BuildAntenna[A,3,0] /. \{s13 -> s1P, s23 -> sP2, \\
+                q2 -> s12 + s1P + sP2, Epsilon -> 0\};\\
+                \\
+                Pgg = 2 (z/(1-z) + (1-z)/z + z (1-z));\\
+                spinCorrelation34 = 4 s12 (z-1) z/(s1P sP2);\\
+                \\
+                FullSimplify[col34Leading - (Pgg A301P2 + spinCorrelation34)]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
+\end{mdframed}
+Note that here we have defined the $\mathrm{arg.}$ quantity here was found to be,
+\begin{equation}
+    \mathrm{arg.} = \frac{4s_{12}z(z-1)}{s_{1(34)}s_{(34)2}}
+\end{equation}
+but this value is not to be understood as a general result.
+
+\subsection{Massive $A_3^0$}\label{subsec:localValidationMassiveA30}
+
+% TODO: intro sentence(s) — mass-corrected analogue of the massless A_3^0 check,
+% cf. \cite{GehrmannDeRidder:2009fz}.
+
+\subsubsection{Soft Limit and the Eikonal Factor}
+
+% TODO: limit setup + \textit{AntCalc} Mathematica computation, mdframed block below.
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+% TODO: In[...]:= ... Out[...]:= ...
+\end{mdframed}
+
+\subsubsection{Collinear Limit and the Altarelli--Parisi Splitting Function}
+
+% TODO: limit setup + \textit{AntCalc} Mathematica computation, mdframed block below.
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+% TODO: In[...]:= ... Out[...]:= ...
+\end{mdframed}
