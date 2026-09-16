@@ -5,6 +5,7 @@
 
 \begin{document}
 
+\pagenumbering{roman}
 % ----- Front matter -----
 \input{frontmatter/titlepage}
 \input{frontmatter/acknowledgements}
@@ -14,6 +15,9 @@
 \listoftables
 \input{frontmatter/listofsymbols}
 
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
 % ----- Main chapters -----
 \include{chapters/01-introduction}
 \include{chapters/02-physics-background}
