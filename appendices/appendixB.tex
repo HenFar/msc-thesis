@@ -702,8 +702,10 @@ At leading power, the four-parton antenna factorises as,
     \lim_{s_{13}\to 0} s_{13}A_4^0(1_q,3_g,4_g,2_{\bar q})=\frac{1}{s_{13}}P_{qg\to q}(z,\epsilon)A_3^0\Big((13)_q,4_g,2_{\bar q}\Big),\quad P_{qg\to q}(z,\epsilon)=\frac{1+z^2}{1-z}-\epsilon(1-z).
 \end{equation}
 Here $P_{qg\to q}(z,\epsilon)$ is the $\mathcal O(\epsilon)$-extended version of the splitting
-function used for $A_3^0$'s collinear limit in Section~\ref{subsubsec:a30CollinearLimit}, needed
-since $A_4^0$ is an NNLO antenna and the $\epsilon$-dependent term no longer drops out of the check \cite{Gehrmann-DeRidder:2005btv}.
+function used for $A_3^0$'s collinear limit in Section~\ref{subsubsec:a30CollinearLimit}; the
+$-\epsilon(1-z)$ term is the known $d$-dimensional extension from the literature, quoted here
+since $A_4^0$ is an NNLO antenna where it no longer drops out \cite{Gehrmann-DeRidder:2005btv}.
+The check below is performed at $\epsilon=0$, and therefore verifies the $(1+z^2)/(1-z)$ piece only.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[1]:= A40 = BuildAntenna[A,4,0,Component->Leading];\\
@@ -798,23 +800,381 @@ Note that here we have defined the $\mathrm{arg.}$ quantity here was found to be
 \end{equation}
 but this value is not to be understood as a general result.
 
-\subsection{Massive $A_3^0$}\label{subsec:localValidationMassiveA30}
+\subsection{$\tilde A_4^0$}\label{subsec:localValidationA40Tilde}
 
-% TODO: intro sentence(s) — mass-corrected analogue of the massless A_3^0 check,
-% cf. \cite{GehrmannDeRidder:2009fz}.
+The subleading $\tilde A_4^0(1_q,3_g,4_g,2_{\bar q})$ massless antenna component has the same five
+kinematic regions as the leading term, but their singular structure differs: this term's gluons are,
+importantly, not colour ordered, which makes the $3_g||4_g$ collinear region regular rather than
+singular. We can check that property of the antenna term as follows.
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];\\
+                \\
+                physicalRelations = \{s134 -> s13 + s14 + s34, s234 -> s23 + s24 + s34\};\\
+                \\
+                tA40Physical = Together[tA40 /. physicalRelations];\\
+                \\
+                gluonExchangeRules = \{s13 -> s14, s14 -> s13, s23 -> s24, s24 -> s23\};\\
+                \\
+                FullSimplify[tA40Physical - (tA40Physical /. gluonExchangeRules)]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
+\end{mdframed}
+
+All other limits carry the same method as the ones for $A_4^0$.
 
 \subsubsection{Soft Limit and the Eikonal Factor}
 
-% TODO: limit setup + \textit{AntCalc} Mathematica computation, mdframed block below.
+This limit is also symmetric for the $4_g$ gluon. It also generates the eikonal factor \cite{Gehrmann-DeRidder:2005btv}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-% TODO: In[...]:= ... Out[...]:= ...
+\texttt{In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];\\
+                \\
+                soft3Rules = \{s13 -> lambda s13, s23 -> lambda s23, s34 -> lambda s34, \\
+                s134 -> s14, s234 -> s24, q2 -> s124\};\\
+                soft3Leading = SeriesCoefficient[tA40 /. soft3Rules, \{lambda, 0, -2\}] // Simplify;\\
+                \\
+                A30142 = BuildAntenna[A,3,0] /. \{s13 -> s14, s23 -> s24, q2 -> s124, Epsilon->0\};\\
+                soft3Expected = (2 s12/(s13 s23)) A30142 // Simplify;\\
+                \\
+                soft3Residual = FullSimplify[(soft3Leading - soft3Expected) /. \\
+                s124 -> s12 + s14 + s24]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
+\end{mdframed}
+
+\subsubsection{Collinear $1_q||3_g$ Limit}
+
+The $1_q||3_g$ limit also behaves in the same way as for the leading term, again checked here at
+$\epsilon=0$ against the $(1+z^2)/(1-z)$ kernel \cite{Gehrmann-DeRidder:2005btv}.
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];\\
+                \\
+                col13Rules = \{s13 -> lambda, s12 -> z sP2, s23 -> (1-z) sP2, s14 -> z sP4, \\
+                s34 -> (1-z) sP4, s134 -> sP4, s234 -> (1-z) sP2 + s24 + (1-z) sP4, \\
+                q2 -> sP2 + sP4 + s24, Epsilon -> 0\};\\
+                col13Leading = SeriesCoefficient[Together[tA40 /. col13Rules], \{lambda, 0, -1\}] // FullSimplify;\\
+                \\
+                A30P42 = BuildAntenna[A,3,0] /. \{s12 -> sP2, s13 -> sP4, s23 -> s24, \\
+                q2 -> sP2 + sP4 + s24, Epsilon -> 0\};\\
+                \\
+                Pqg = (1 + z\textasciicircum2)/(1 - z);\\
+                \\
+                FullSimplify[col13Leading - Pqg A30P42]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
+\end{mdframed}
+
+\subsubsection{Collinear $3_g||4_g$ Limit}
+
+The $3_g||4_g$ limit, is the one that differs significantly from its analogous limit for $A_4^0$. Here, since
+the gluons are not colour ordered, there is no need to account for that same ordering. The limit is computed in a similar 
+way as the other collinear limits were \cite{Gehrmann-DeRidder:2005btv}.
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];\\
+                \\
+                col34Rules = \{s34 -> lambda, s13 -> z s1P, s14 -> (1-z) s1P, s23 -> z sP2, \\
+                s24 -> (1-z) sP2, s134 -> s1P + lambda, s234 -> sP2 + lambda, \\
+                q2 -> s12 + s1P + sP2 + lambda, Epsilon -> 0\};\\
+                \\
+                FullSimplify[SeriesCoefficient[Together[tA40 /. col34Rules], \{lambda, 0, -1\}]]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
+\end{mdframed}
+
+\subsection{$B_4^0$}\label{subsec:localValidationB40}
+
+The $B_4^0$ antenna is the ordinary, non-identical-flavour four-quark antenna of the process $\gamma^*\to qq^\prime\bar q^\prime\bar q$.
+This antenna has three non-vanishing limits, the single collinear limit $3_{q^\prime}||4_{\bar q^\prime}$, the double soft limit
+$3_{q^\prime},4_{\bar q^\prime}\to 0$, and the triple-collinear limit $1_q||3_{q^\prime}||4_{\bar q^\prime}$.
+
+\subsubsection{Single Collinear Limit}
+
+This limit is computed similarly to $A_4^0$'s $3_g||4_g$ collinear limit. We find that,
+\begin{equation}
+    B_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q})\xrightarrow{3_{q^\prime}||4_{\bar q^\prime}}\frac1{s_{34}}P_{q\bar q\to g}^{\mu\nu}(z,k_\perp)\left(A_3^0\right)_{\mu\nu}\Big(1,(34),2\Big)
+\end{equation}
+which after azimuthal averaging becomes,
+\begin{equation}
+    \left\langle B_4^0\right\rangle_\phi \xrightarrow{3_{q^\prime}||4_{\bar q^\prime}}\frac1{s_{34}} P_{q\bar q\to g}(z)A_3^0\Big(1,(34),2\Big),\quad P_{q\bar q\to g}(z) = \frac{z^2+(1-z)^2-\epsilon}{1-\epsilon}.
+\end{equation}
+The check below keeps $\epsilon$ symbolic throughout, directly validating the full $\epsilon$-dependent
+kernel $P_{q\bar q\to g}(z)$ above, rather than only its $\epsilon=0$ piece \cite{Gehrmann-DeRidder:2005btv}.
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[1]:= B40 = BuildAntenna[B,4,0];\\
+                \\
+                col34Rules = \{s34 -> lambda, s13 -> z s1P, s14 -> (1-z) s1P, s23 -> z sP2, \\
+                s24 -> (1-z) sP2, s134 -> s1P, s234 -> sP2, q2 -> s12 + s1P + sP2\};\\
+                B40Col34Leading = SeriesCoefficient[Together[B40 /. col34Rules], \{lambda, 0, -1\}] // FullSimplify;\\
+                \\
+                A301P2 = BuildAntenna[A,3,0] /. \{s13 -> s1P, s23 -> sP2, q2 -> s12 + s1P + sP2\};\\
+                \\
+                Pqqbar = (z\textasciicircum2 + (1-z)\textasciicircum2 - Epsilon)/(1 - Epsilon);\\
+                spinCorrelationB40 = 4 s12 (z-1) z/(s1P sP2 (Epsilon-1));\\
+                \\
+                FullSimplify[B40Col34Leading - Pqqbar A301P2 - spinCorrelationB40]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
+\end{mdframed}
+
+\subsubsection{Double-Soft Limit}
+
+A soft quark-antiquark pair is singular when both particles become soft simultaneously. To 
+compute this limit we start scalling,
+\begin{equation}
+    \begin{gathered}
+        p_3\to \lambda p_3,\quad p_4\to \lambda p_4,\\
+        s_{i3},s_{i4}\sim\lambda,\quad s_{34}\sim\lambda^2.
+    \end{gathered}
+\end{equation}
+
+The antenna has a leading $\lambda^{-4}$ behaviour such that \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \lim_{\lambda\to0}\lambda^4 B_4^0(1,\lambda3,\lambda4,2)=S_{12}(3,4),\quad S_{12}(3,4) = \frac{2\left(s_{12}s_{34}-s_{13}s_{24}-s_{14}s_{23}\right)}{s_{34}^2(s_{13}+s_{14})(s_{23}+s_{24})}+\frac{2}{s_{34}^2}\left[\frac{s_{13}s_{14}}{(s_{13}+s_{14})^2}+\frac{s_{23}s_{24}}{(s_{23}+s_{24})^2}\right]
+\end{equation}
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[1]:= B40 = BuildAntenna[B,4,0];\\
+                \\
+                doubleSoftRules = \{s13 -> lambda s13, s14 -> lambda s14, s23 -> lambda s23, \\
+                s24 -> lambda s24, s34 -> lambda\textasciicircum2 s34, \\
+                s134 -> lambda (s13+s14) + lambda\textasciicircum2 s34, \\
+                s234 -> lambda (s23+s24) + lambda\textasciicircum2 s34, \\
+                q2 -> s12 + lambda (s13+s14+s23+s24) + lambda\textasciicircum2 s34, Epsilon -> 0\};\\
+                B40DoubleSoftLeading = SeriesCoefficient[Together[B40 /. doubleSoftRules], \{lambda, 0, -4\}] // FullSimplify;\\
+                \\
+                S12qqbar = 2/s34\textasciicircum2 (s12 s34/((s13+s14)(s23+s24)) \\
+                - (s13 s24 - s14 s23)\textasciicircum2/((s13+s14)\textasciicircum2 (s23+s24)\textasciicircum2));\\
+                \\
+                FullSimplify[B40DoubleSoftLeading - S12qqbar]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
+\end{mdframed}
+
+\subsubsection{Triple-Collinear Limit}
+
+For the $1_q||3_{q^\prime}||4_{\bar q^\prime}$ limit, all three partons become collinear together. We
+introduce the rescaled invariants $r_{13}$, $r_{14}$, $r_{34}$, of order unity as $\lambda\to0$, via
+\begin{equation}
+    s_{13}\to\lambda r_{13},\quad s_{14}\to\lambda r_{14},\quad s_{34}\to\lambda r_{34},
+\end{equation}
+and the momentum fractions $w$, $x$, and $1-w-x$ carried by partons $1$, $3$, and $4$ respectively
+within the recombined cluster, via
+\begin{equation}
+    s_{12}\to w\,s_{P2},\quad s_{23}\to x\,s_{P2},\quad s_{24}\to(1-w-x)\,s_{P2}.
+\end{equation}
+
+At leading power, the four-parton antenna factorises onto the trivial LO antenna, $A_2^0\equiv1$, as,
+\begin{equation}
+    \lim_{\lambda\to0}\lambda^2 B_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q}) = P_\mathrm{NonIdent}^{(134)}(w,x;r_{13},r_{14},r_{34})\,A_2^0(1,2),
+\end{equation}
+where the non-identical-flavour triple-collinear splitting function is \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        P_\mathrm{NonIdent}^{(134)}(w,x;r_{13},r_{14},r_{34}) =\;&
+            -\frac{(1-\epsilon)+\dfrac{2r_{13}}{r_{34}}}{(r_{13}+r_{14}+r_{34})^2}
+            -\frac{2\big[x(r_{13}+r_{14}+r_{34})-(1-w)r_{13}\big]^2}{r_{34}^2(r_{13}+r_{14}+r_{34})^2(1-w)^2}\\
+            &+\frac{1}{r_{34}(r_{13}+r_{14}+r_{34})}\left(\frac{1+x^2+(x+w)^2}{1-w}-\epsilon(1-w)\right).
+    \end{split}
+\end{equation}
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[1]:= B40 = BuildAntenna[B,4,0];\\
+                A20 = BuildAntenna[A,2,0];\\
+                \\
+                tripleCollinearRules134 = \{s13 -> lambda r13, s14 -> lambda r14, s34 -> lambda r34, \\
+                s12 -> w sP2, s23 -> x sP2, s24 -> (1-w-x) sP2, \\
+                s134 -> lambda (r13+r14+r34), s234 -> (1-w) sP2 + lambda r34, \\
+                q2 -> sP2 + lambda (r13+r14+r34)\};\\
+                B40Triple134Leading = SeriesCoefficient[Together[B40 /. tripleCollinearRules134], \{lambda, 0, -2\}] // FullSimplify;\\
+                \\
+                A20P2 = A20 /. q2 -> sP2 // FullSimplify;\\
+                \\
+                PNonIdent134 = -((1-Epsilon) + 2 r13/r34)/(r13+r14+r34)\textasciicircum2 \\
+                - 2 (x (r13+r14+r34) - (1-w) r13)\textasciicircum2/(r34\textasciicircum2 (r13+r14+r34)\textasciicircum2 (1-w)\textasciicircum2) \\
+                + 1/(r34 (r13+r14+r34)) ((1+x\textasciicircum2+(x+w)\textasciicircum2)/(1-w) - Epsilon (1-w));\\
+                \\
+                FullSimplify[B40Triple134Leading - PNonIdent134 A20P2]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
+\end{mdframed}
+
+\subsection{$C_4^0$}\label{subsec:localValidationC40}
+
+The $C_4^0$ antenna is the identical-flavour four-quark antenna of the process $\gamma^*\to q\bar qq\bar q$,
+built as the symmetrised direct--exchange interference. Unlike $B_4^0$, it has a single non-vanishing
+limit, the triple-collinear limit $2_{\bar q}||3_q||4_{\bar q}$; the direct $3||4$ single-collinear region is
+regular, as the check below confirms.
+
+\subsubsection{Collinear $3||4$ Limit}
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[1]:= C40 = BuildAntenna[C,4,0];\\
+                \\
+                col34Rules = \{s34 -> lambda, s13 -> z s1P, s14 -> (1-z) s1P, s23 -> z sP2, \\
+                s24 -> (1-z) sP2, s134 -> s1P, s234 -> sP2, q2 -> s12 + s1P + sP2, Epsilon -> 0\};\\
+                \\
+                FullSimplify[SeriesCoefficient[Together[C40 /. col34Rules], \{lambda, 0, -1\}]]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
+\end{mdframed}
+
+\subsubsection{Triple-Collinear Limit}
+
+For the $2_{\bar q}||3_q||4_{\bar q}$ limit, partons $2$, $3$, and $4$ become collinear together, leaving
+parton $1$ as the sole hard remaining leg. As for $B_4^0$, we introduce the rescaled invariants
+$r_{23}$, $r_{24}$, $r_{34}$, of order unity as $\lambda\to0$, via
+\begin{equation}
+    s_{23}\to\lambda r_{23},\quad s_{24}\to\lambda r_{24},\quad s_{34}\to\lambda r_{34},
+\end{equation}
+and the momentum fractions $w$, $x$, and $y\equiv1-w-x$ carried by partons $2$, $3$, and $4$
+respectively within the recombined cluster, via
+\begin{equation}
+    s_{12}\to w\,s_{1P},\quad s_{13}\to x\,s_{1P},\quad s_{14}\to y\,s_{1P}.
+\end{equation}
+We also define $S_{234}\equiv r_{23}+r_{24}+r_{34}$.
+
+At leading power, the four-parton antenna factorises onto the trivial LO antenna, $A_2^0\equiv1$, with an
+explicit identical-particle factor of $\frac12$, as,
+\begin{equation}
+    \lim_{\lambda\to0}\lambda^2 C_4^0(1_q,3_q,4_{\bar q},2_{\bar q}) = \frac12 P_\mathrm{Ident}^{(234)}(w,x;r_{23},r_{24},r_{34})\,A_2^0(1,2),
+\end{equation}
+where the identical-flavour triple-collinear splitting function is a sum of two mirror-symmetric pieces \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        P_\mathrm{Ident}^{(234)}(w,x;r_{23},r_{24},r_{34}) =\;&
+            -\frac{2r_{23}/r_{34}+2}{S_{234}^2}-\frac{x(1+x^2)}{2r_{23}r_{34}(1-y)(1-w)}+\frac1{r_{34}S_{234}}\left(\frac{1+x^2}{1-y}+\frac{2x}{1-w}\right)\\
+            &-\frac{2r_{34}/r_{23}+2}{S_{234}^2}-\frac{x(1+x^2)}{2r_{34}r_{23}(1-w)(1-y)}+\frac1{r_{23}S_{234}}\left(\frac{1+x^2}{1-w}+\frac{2x}{1-y}\right).
+    \end{split}
+\end{equation}
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[1]:= C40 = BuildAntenna[C,4,0];\\
+                A20 = BuildAntenna[A,2,0];\\
+                \\
+                tripleCollinearRules234 = \{s23 -> lambda r23, s24 -> lambda r24, s34 -> lambda r34, \\
+                s12 -> w s1P, s13 -> x s1P, s14 -> (1-w-x) s1P, \\
+                s234 -> lambda (r23+r24+r34), s134 -> (1-w) s1P + lambda r34, \\
+                q2 -> s1P + lambda (r23+r24+r34), Epsilon -> 0, \\
+                s123 -> (w+x) s1P + lambda r23, s124 -> (1-x) s1P + lambda r24\};\\
+                C40Triple234Leading = SeriesCoefficient[Together[C40 /. tripleCollinearRules234], \{lambda, 0, -2\}] // FullSimplify;\\
+                \\
+                A20P = A20 /. q2 -> s1P // FullSimplify;\\
+                \\
+                y = 1 - w - x;\\
+                S234 = r23 + r24 + r34;\\
+                \\
+                PIdent234 = -(2 r23/r34 + 2)/S234\textasciicircum2 - x (1+x\textasciicircum2)/(2 r23 r34 (1-y) (1-w)) \\
+                + 1/(r34 S234) ((1+x\textasciicircum2)/(1-y) + 2 x/(1-w)) \\
+                + (-(2 r34/r23 + 2)/S234\textasciicircum2 - x (1+x\textasciicircum2)/(2 r34 r23 (1-w) (1-y)) \\
+                + 1/(r23 S234) ((1+x\textasciicircum2)/(1-w) + 2 x/(1-y)));\\
+                \\
+                FullSimplify[C40Triple234Leading - 1/2 PIdent234 A20P]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
+\end{mdframed}
+
+\subsection{Massive $A_3^0$}\label{subsec:localValidationMassiveA30}
+
+For this massive antenna, described as,
+\begin{equation}
+    A_3^0\Big(1_Q,3_g,2_{\bar Q}\Big)
+\end{equation}
+where $Q$ denotes a quark of mass $m_q$, there is one infrared singular limit, for the soft gluon, 
+and two mass-regulated quasi-collinear limits, for $Q||g$ and $\bar Q||g$. These two collinear limits 
+are symmetric as $1\leftrightarrow2$ and thus, as before, the validation of one validates the other.
+Relative to the massless case, it is relevant to note that there is no ordinary collinear pole
+at fixed $m_q$.
+
+\subsubsection{Soft-Gluon Limit}
+
+This limit is computed by taking the gluon's momentum to zero, as $p_3\to0$. The antenna reduces to a product of 
+an $A_2^0$ antenna and the massive eikonal factor as \cite{GehrmannDeRidder:2009fz},
+\begin{equation}
+    A_3^0(1_Q,3_g,2_{\bar Q})\xrightarrow{3_g\to0}\frac14S_{132}(m_q,m_q),\quad S_{132}(m_q,m_q) = \frac{2s_{12}}{s_{13}s_{23}}-\frac{2m_q^2}{s_{13}^2}-\frac{2m_q^2}{s_{23}^2}.
+\end{equation}
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[1]:= mA30 = BuildAntenna[A,3,0,quarkMass->mQ];\\
+                \\
+                softRules = \{s13 -> lambda s13, s23 -> lambda s23, s123 -> s12 + lambda (s13+s23), \\
+                q2 -> s12 + 2 mQ\textasciicircum2 + lambda (s13+s23), Epsilon -> 0\};\\
+                mA30SoftLeading = SeriesCoefficient[Together[mA30 /. softRules], \{lambda, 0, -2\}] // FullSimplify;\\
+                \\
+                massiveEikonal = 2 s12/(s13 s23) - 2 mQ\textasciicircum2/s13\textasciicircum2 - 2 mQ\textasciicircum2/s23\textasciicircum2;\\
+                \\
+                FullSimplify[mA30SoftLeading - (1/4) massiveEikonal]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
 \end{mdframed}
 
 \subsubsection{Collinear Limit and the Altarelli--Parisi Splitting Function}
 
-% TODO: limit setup + \textit{AntCalc} Mathematica computation, mdframed block below.
+To compute this limit, we start by replacing,
+\begin{equation}
+    \begin{gathered}
+        p_1||p_3,\quad s_{13}\to 0,\quad m_q^2\to 0,\quad \frac{m_q^2}{s_{13}}\to \mu_{Qg}^2.
+    \end{gathered}
+\end{equation}
+Here $\mu_{Qg}$ is some fixed quantity.
+As usual, with $z$ representing the quark momentum fraction,
+\begin{equation}
+    p_1\to zp_{13},\quad p_3\to(1-z)p_{13}.
+\end{equation}
+$\epsilon$ is also set to zero.
+
+The antenna factorised as \cite{GehrmannDeRidder:2009fz},
+\begin{equation}
+    A_3^0(1_Q,3_g,2_{\bar Q})\xrightarrow{1_Q||3_g}\frac1{4s_{13}}P_{Qg\to Q}(z),\quad P_{Qg\to Q}(z) = \frac{1+z^2}{1-z}.
+\end{equation}
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-% TODO: In[...]:= ... Out[...]:= ...
+\texttt{In[1]:= mA30 = BuildAntenna[A,3,0,quarkMass->mQ];\\
+                \\
+                quasi13Rules = \{s13 -> lambda r13, s12 -> z sP2, s23 -> (1-z) sP2, \\
+                s123 -> sP2 + lambda r13, q2 -> sP2 + lambda r13 (1+2 muQg2), \\
+                mQ\textasciicircum2 -> lambda muQg2 r13, mQ\textasciicircum4 -> lambda\textasciicircum2 muQg2\textasciicircum2 r13\textasciicircum2, Epsilon -> 0\};\\
+                mA30Quasi13Leading = SeriesCoefficient[Together[mA30 /. quasi13Rules], \{lambda, 0, -1\}] // FullSimplify;\\
+                \\
+                PQg = (1 + z\textasciicircum2)/(1 - z) - 2 muQg2;\\
+                \\
+                FullSimplify[r13 mA30Quasi13Leading - (1/4) PQg]}\\
+\hfill
+\texttt{Out[1]:=}
+    \begin{equation*}
+        0
+    \end{equation*}
 \end{mdframed}
