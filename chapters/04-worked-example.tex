@@ -6,7 +6,7 @@ As discussed in Chapter~\ref{ch:packageframework}, \textit{AntCalc} makes use of
 two reduction methods, Passarino-Veltman reduction and integration-by-parts
 reduction. Both of those methods reduce a larger loop-momentum or phase-space
 integral into a linear combination of smaller and often less complex master integrals,
-as discussed in Subsection~\ref{subsec:MIs}\footnote{The PaVe MI are most commonly
+as discussed in Subsection~\ref{subsec:MIs}\footnote{The Passarino-Veltman MI are most commonly
 referred to as \textit{scalar functions}, instead of \textit{master integrals}.
 They are, in effect, still master integrals, however, and the moniker will be kept
 throughout the rest of the present text \cite{TM_JoanaReis}.}.
@@ -66,8 +66,8 @@ $A_3^0$ antenna. This example is treated separately from the massless antenna se
 illustrate the modifications introduced by a non-zero quark mass.
 
 \iffalse
-Both PaVe and IBP MI are shown in the table, but they are quite different in structure
-and integration processes and will be discussed separately. The PaVe are $B_0$, $C_0$,
+Both Passarino-Veltman and IBP MI are shown in the table, but they are quite different in structure
+and integration processes and will be discussed separately. The Passarino-Veltman MI are $B_0$, $C_0$,
 and $D_0$. All others are IBP MI.
 
 
@@ -1740,8 +1740,8 @@ the exploratory massive extension.
 \endlastfoot
 $A_2^0$: $\gamma^*\to q\bar q$, LO; \texttt{[A,2,0]} & Self-interference, Born-normalised reference. Trivial (reference, $A_2^0\equiv1$). & --- (reference normalisation) & Local: not applicable. Global: LO normalisation of the $R$-ratio. & By construction \\ \hline
 $A_3^0$: $\gamma^*\to qg\bar q$, NLO real; \texttt{[A,3,0]} & Self-interference; colour-coefficient extraction; matched to by-hand derivation. IBP / \textit{LiteRed2}, \texttt{X30} basis; MI: $R_3$. & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Local: eikonal factor and AP splitting function reproduced. Global: feeds $r_\text{NLO}$. & Pass \\ \hline
-$A_2^1$: $\gamma^*\to q\bar q$, NLO virtual; \texttt{[A,2,1]} & Tree--loop interference; PaVe-reduced scalar extraction. PaVe / \textit{FeynHelpers}; MI: $B_0$, $C_0$. & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Local: not applicable. Global: feeds $r_\text{NLO}$. & Pass \\ \hline
-$A_3^1$ set ($A_3^1$, $\tilde A_3^1$, $\hat A_3^1$): $\gamma^*\to qg\bar q$, NNLO, one loop; \texttt{[A,3,1]} & Tree--loop interference; colour-coefficient extraction (leading/subleading/quark-loop). IBP / \textit{LiteRed2}, \texttt{A31} basis; build-side MI are PaVe scalars ($B_0,C_0,D_0$, Table~\ref{tab:MI}); integration MI: $V_{5,a}$, $V_{5,b}$, $V_8$. & \cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg} (NNLO) & Local: not performed. Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
+$A_2^1$: $\gamma^*\to q\bar q$, NLO virtual; \texttt{[A,2,1]} & Tree--loop interference; Passarino-Veltman-reduced scalar extraction. Passarino-Veltman / \textit{FeynHelpers}; MI: $B_0$, $C_0$. & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Local: not applicable. Global: feeds $r_\text{NLO}$. & Pass \\ \hline
+$A_3^1$ set ($A_3^1$, $\tilde A_3^1$, $\hat A_3^1$): $\gamma^*\to qg\bar q$, NNLO, one loop; \texttt{[A,3,1]} & Tree--loop interference; colour-coefficient extraction (leading/subleading/quark-loop). IBP / \textit{LiteRed2}, \texttt{A31} basis; build-side MI are Passarino-Veltman scalar functions ($B_0,C_0,D_0$, Table~\ref{tab:MI}); integration MI: $V_{5,a}$, $V_{5,b}$, $V_8$. & \cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg} (NNLO) & Local: not performed. Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
 $A_2^2$ set ($A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$): $\gamma^*\to q\bar q$, NNLO, two loops; \texttt{[A,2,2]} & Two-loop tree interference and one-loop self-interference (two source contributions). IBP / \textit{LiteRed2}, \texttt{A22TwoLoopTree}/\allowbreak\texttt{A22OneLoopSelf} bases; MI: $A_{22,\text{LO}}$, $A_3$, $A_4$ (also $A_6$ for $\tilde A_2^2$). & \cite{Gehrmann-DeRidder:2004ttg} (NNLO; $A_2^2,\tilde A_2^2,\hat A_2^2$), \cite{Jakubcik:2022zdi} (NNLO; $\breve A_2^2$) & Local: not applicable. Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
 $A_4^0$, $\tilde A_4^0$: $\gamma^*\to qgg\bar q$, NNLO, double-real; \texttt{[A,4,0]} & Colour-ordered amplitude; colour-coefficient extraction. IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$ ($A_4^0$); $R_4$, $R_6$, $R_{8,a}$, $R_{8,b}$ ($\tilde A_4^0$). & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Local: both colour components validated: eikonal and AP/spin-correlated splitting functions for the leading term; dipole eikonal and absent $gg$ collinear singularity for the subleading term (Appendix~\ref{sec:localValidationExtra}). Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
 $B_4^0$: $\gamma^*\to q\bar q q^\prime\bar q^\prime$, NNLO; \texttt{[B,4,0]} & Sector self-interference (direct amplitude only). IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$. & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Local: single-collinear ($q^\prime\bar q^\prime\to g$), double-soft, and triple-collinear limits reproduced (Appendix~\ref{subsec:localValidationB40}). Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
