@@ -1,0 +1,110 @@
+\chapter{Conclusions and Future Work}\label{ch:conclusion}
+
+This thesis has developed \textit{AntCalc}, a computational framework for the construction and
+analytic integration of QCD antenna functions. The principal objective was to automate a technically
+demanding component of antenna subtraction: the derivation of the antenna functions from the
+corresponding matrix elements, their reduction to suitable integral representations, and their
+analytic integration over the unresolved phase space. \textit{AntCalc} was developed from the ground
+up in this work and provides a common framework in which these different stages can be carried out
+consistently.
+
+The main result is the implementation of the complete set of massless final--final quark--antiquark
+antenna functions considered in this work through NNLO. This includes the tree-level, one-loop and
+two-loop two-parton contributions, the three-parton tree-level and real--virtual contributions, and
+the four-parton double-real antennae with both gluonic and fermionic final states. The antenna
+functions are available both in their unintegrated form, required for the construction of local
+subtraction terms, and in analytically integrated form, required for the cancellation of the explicit
+infrared poles of virtual contributions. Their integration required the reduction of the
+corresponding phase-space and loop integrals to master integrals, using IBP reduction where
+appropriate, followed by the substitution of their analytic expressions and expansion in the
+dimensional-regularisation parameter $\epsilon$.
+
+The results were subjected to several complementary validation procedures. The unintegrated antenna
+functions were compared with established results in the literature, and their infrared behaviour was
+tested in the appropriate unresolved limits. In particular, the massless $A_3^0$ antenna was used to
+demonstrate explicitly the recovery of the soft eikonal factor and the relevant Altarelli--Parisi
+splitting functions. At the integrated level, the complete massless antenna set was subjected to the
+global validation presented in Chapter~\ref{ch:validation}. When assembled into the massless hadronic
+$R$-ratio, the infrared poles of the separate real and virtual contributions cancel at NLO and NNLO,
+and the remaining finite coefficients reproduce the independently known result. This provides a
+particularly stringent test of the relative normalisation, colour decomposition, and integrated
+infrared structure of the antenna set.
+
+This validation is important in view of the intended application of these functions. Antenna
+functions are not isolated observables, but universal building blocks used to construct subtraction
+terms for higher-order QCD calculations. A consistent NNLO subtraction calculation requires the
+appropriate unintegrated antennae to reproduce the local unresolved behaviour of real-radiation
+matrix elements, while their integrated counterparts must provide the infrared poles required to
+cancel those of the corresponding virtual contributions. The local and global checks performed in
+this thesis therefore test precisely the properties required for the antenna functions to be used
+within the antenna-subtraction framework.
+
+Beyond the complete massless quark--antiquark set, this work has also explored the extension of
+\textit{AntCalc} to massive antenna functions through the implementation of the massive $A_3^0$
+antenna. This required a separate massive integral family and a transformation between the
+master-integral basis produced by the IBP reduction and that used for the known analytic results.
+Although this route has not yet undergone the same level of global validation as the massless antenna
+set, it demonstrates that the architecture of \textit{AntCalc} is not intrinsically restricted to
+massless kinematics and provides a starting point for a systematic extension to massive antenna
+functions.
+
+\section*{Future Work}
+
+The results presented in this thesis provide several natural directions for the further development of
+\textit{AntCalc}. From the physics perspective, the most immediate extension is the completion of the
+massive quark--antiquark final--final antenna set. The massive $A_3^0$ antenna implemented in this
+work provides a first demonstration that the framework developed for the massless case can be extended
+to massive kinematics. Completing this sector would require the corresponding massive four-parton
+antennae, $A_4^0$, $B_4^0$, and $C_4^0$, followed by the massive real--virtual and double-virtual
+antennae $A_3^1$ and $A_2^2$. Importantly, this extension would go beyond reproducing antenna
+functions that are already analytically known: some of the required massive antenna functions remain
+to be calculated. The framework developed and validated in this thesis therefore provides a possible
+starting point for obtaining genuinely new ingredients for massive NNLO antenna subtraction.
+
+A broader extension would be to include antenna functions associated with other pairs of hard
+radiators. The present implementation focuses on quark--antiquark antennae, while a general
+antenna-subtraction calculation also requires quark--gluon and gluon--gluon antenna functions,
+conventionally organised into the $D$- and $E$-type and $F$-, $G$-, and $H$-type families,
+respectively. Extending \textit{AntCalc} to these antenna families would broaden the range of partonic
+processes for which the required subtraction ingredients could be constructed within a common
+framework. Similarly, extending the present final--final implementation to initial--final and
+initial--initial kinematics would be necessary for applications involving coloured partons in the
+initial state. In the longer term, the same framework could provide a basis for investigating the
+antenna functions required at perturbative orders beyond NNLO, in particular at N$^3$LO.
+
+These extensions would substantially increase the algebraic complexity and computational cost of both
+the construction and integration stages. They therefore also motivate the further development of the
+computational architecture of \textit{AntCalc}. In its current form, the package is implemented
+entirely within \textit{Wolfram Mathematica}. This environment has provided a flexible setting in which
+to develop, test, and validate the symbolic workflow presented in this thesis, but the more involved
+calculations already reveal limitations in execution time and memory usage. For example, the complete
+\texttt{BuildRRatio} calculation currently requires approximately one and a half to two hours, with
+its execution becoming sensitive to the available memory. While this does not affect the results
+obtained in the present work, it indicates that a more scalable implementation would be desirable
+before substantially larger antenna families and integral reductions are attempted.
+
+One possible architecture for this development is illustrated in Fig.~\ref{fig:next}. Rather than
+replacing the high-level workflow established in this thesis, the objective would be to make its
+implementation more modular and to delegate computationally intensive stages to specialised tools. A
+\textit{Python}-based layer could coordinate the workflow, with the process-dependent profiles stored
+in a portable, machine-readable format such as \texttt{JSON}. \textit{FeynArts} and \textit{FeynCalc}
+could continue to provide diagram generation and amplitude manipulation, respectively, while large
+symbolic manipulations could be delegated to \textit{FORM}. Similarly, the IBP-reduction stage could
+be transferred from \textit{LiteRed2} to \textit{Kira}, while \textit{Mathematica} could be retained
+for symbolic operations for which it remains advantageous. The purpose of this restructuring would
+therefore not simply be to improve the performance of calculations that \textit{AntCalc} can already
+perform, but to make the framework sufficiently scalable for the more demanding physics applications
+outlined above.
+
+\input{figures/next_architecture.tex}
+
+The present work thus provides both a validated set of massless quark--antiquark antenna functions
+through NNLO and a framework from which the calculation of further antenna functions can be pursued.
+The extension to the massive $A_3^0$ antenna demonstrates the first step beyond the massless sector,
+while the remaining massive antennae provide a particularly well-defined direction in which the
+methods developed here can be applied to calculations that are not yet complete in the literature.
+Extending the framework to additional radiator configurations and kinematics would further broaden its
+applicability to antenna subtraction. In this sense, the developments proposed above are not separate
+from the work presented in this thesis, but represent a continuation of its central objective: to make
+the construction and analytic integration of the antenna functions required for higher-order QCD
+calculations more systematic, reproducible, and computationally accessible.

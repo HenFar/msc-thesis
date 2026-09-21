@@ -1,0 +1,40 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=0.92]
+% (a) both gluons from the quark line
+\begin{scope}
+\begin{feynman}
+\vertex (ga) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (va) at (0.85,0);
+\vertex (e1) at (1.55,0.6); \vertex (e2) at (2.25,1.0);
+\vertex (qa) at (3.1,1.5) {\scriptsize$q$}; \vertex (xa) at (3.1,0.55) {\scriptsize$g$}; \vertex (ya) at (3.1,-0.3) {\scriptsize$g$}; \vertex (ba) at (3.1,-1.5) {\scriptsize$\bar q$};
+\diagram*{(ga)--[boson](va), (ba)--[fermion](va)--[fermion](e1)--[fermion](e2)--[fermion](qa), (e1)--[gluon](ya), (e2)--[gluon](xa)};
+\end{feynman}
+\node at (1.55,-1.95) {\scriptsize(a)};
+\end{scope}
+% (b) one gluon from each line
+\begin{scope}[xshift=4.3cm]
+\begin{feynman}
+\vertex (gb) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (vb) at (0.85,0);
+\vertex (f1) at (1.8,0.85); \vertex (f2) at (1.8,-0.85);
+\vertex (qb) at (3.1,1.5) {\scriptsize$q$}; \vertex (xb) at (3.1,0.5) {\scriptsize$g$}; \vertex (yb) at (3.1,-0.5) {\scriptsize$g$}; \vertex (bb) at (3.1,-1.5) {\scriptsize$\bar q$};
+\diagram*{(gb)--[boson](vb), (bb)--[fermion](f2)--[fermion](vb)--[fermion](f1)--[fermion](qb), (f1)--[gluon](xb), (f2)--[gluon](yb)};
+\end{feynman}
+\node at (1.55,-1.95) {\scriptsize(b)};
+\end{scope}
+% (c) three-gluon vertex
+\begin{scope}[xshift=8.6cm]
+\begin{feynman}
+\vertex (gc) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (vc) at (0.85,0);
+\vertex (h) at (1.7,0.7); \vertex (k) at (2.4,0.1);
+\vertex (qc) at (3.1,1.5) {\scriptsize$q$}; \vertex (xc) at (3.1,0.7) {\scriptsize$g$}; \vertex (yc) at (3.1,-0.5) {\scriptsize$g$}; \vertex (bc) at (3.1,-1.5) {\scriptsize$\bar q$};
+\diagram*{(gc)--[boson](vc), (bc)--[fermion](vc)--[fermion](h)--[fermion](qc), (h)--[gluon](k), (k)--[gluon](xc), (k)--[gluon](yc)};
+\end{feynman}
+\node at (1.55,-1.95) {\scriptsize(c)};
+\end{scope}
+\end{tikzpicture}
+\caption{Representative tree-level Feynman diagrams for $\gamma^*\to qgg\bar q$: (a) both gluons emitted from the quark line, (b) one gluon emitted from each of the quark and antiquark lines, and (c) a diagram with the three-gluon vertex.}
+\label{fig:diagA40}
+\end{figure}

@@ -1,0 +1,52 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=0.92]
+% (a) vertex correction, gluon emitted afterwards
+\begin{scope}
+\begin{feynman}
+\vertex (ga) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (va) at (0.8,0);
+\vertex (a1) at (1.45,0.62); \vertex (b1) at (1.45,-0.62);
+\vertex (ea) at (2.2,1.02);
+\vertex (qa) at (3.0,1.5) {\scriptsize$q$}; \vertex (xa) at (3.0,0.55) {\scriptsize$g$}; \vertex (ba) at (3.0,-1.5) {\scriptsize$\bar q$};
+\diagram*{(ga)--[boson](va), (ba)--[fermion](b1)--[fermion](va)--[fermion](a1)--[fermion](ea)--[fermion](qa), (a1)--[gluon](b1), (ea)--[gluon](xa)};
+\end{feynman}
+\node at (1.5,-1.95) {\scriptsize(a)};
+\end{scope}
+% (b) box: loop gluon spans the emission
+\begin{scope}[xshift=3.9cm]
+\begin{feynman}
+\vertex (gb) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (vb) at (0.8,0);
+\vertex (eb) at (1.4,0.62); \vertex (xb) at (2.3,0.62); \vertex (yb) at (2.3,-0.62);
+\vertex (gg) at (3.0,1.6) {\scriptsize$g$}; \vertex (qb) at (3.0,0.7) {\scriptsize$q$}; \vertex (bb) at (3.0,-1.5) {\scriptsize$\bar q$};
+\diagram*{(gb)--[boson](vb), (bb)--[fermion](yb)--[fermion](vb)--[fermion](eb)--[fermion](xb)--[fermion](qb), (eb)--[gluon](gg), (xb)--[gluon](yb)};
+\end{feynman}
+\node at (1.5,-1.95) {\scriptsize(b)};
+\end{scope}
+% (c) three-gluon vertex
+\begin{scope}[xshift=7.8cm]
+\begin{feynman}
+\vertex (gc) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (vc) at (0.8,0);
+\vertex (a3) at (1.45,0.72); \vertex (b3) at (1.45,-0.72); \vertex (c3) at (2.25,0);
+\vertex (qc) at (3.0,1.5) {\scriptsize$q$}; \vertex (xc) at (3.0,0) {\scriptsize$g$}; \vertex (bc) at (3.0,-1.5) {\scriptsize$\bar q$};
+\diagram*{(gc)--[boson](vc), (bc)--[fermion](b3)--[fermion](vc)--[fermion](a3)--[fermion](qc), (a3)--[gluon](c3), (b3)--[gluon](c3), (c3)--[gluon](xc)};
+\end{feynman}
+\node at (1.5,-1.95) {\scriptsize(c)};
+\end{scope}
+% (d) self-energy insertion on the internal quark propagator
+\begin{scope}[xshift=11.7cm]
+\begin{feynman}
+\vertex (gd) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (vd) at (0.8,0);
+\vertex (s1) at (1.15,0.42); \vertex (s2) at (1.75,0.85); \vertex (ed) at (2.3,1.1);
+\vertex (qd) at (3.0,1.6) {\scriptsize$q$}; \vertex (xd) at (3.0,0.6) {\scriptsize$g$}; \vertex (bd) at (3.0,-1.5) {\scriptsize$\bar q$};
+\diagram*{(gd)--[boson](vd), (bd)--[fermion](vd)--[fermion](s1)--[fermion](s2)--[fermion](ed)--[fermion](qd), (s1)--[gluon, bend left=80](s2), (ed)--[gluon](xd)};
+\end{feynman}
+\node at (1.5,-1.95) {\scriptsize(d)};
+\end{scope}
+\end{tikzpicture}
+\caption{Representative one-loop Feynman diagrams for $\gamma^*\to qg\bar q$: (a) a vertex correction, (b) a box, in which the loop gluon spans the emission of the real gluon, (c) a diagram with the three-gluon vertex, and (d) a self-energy insertion on the internal quark propagator, which contributes. Self-energy corrections on the external legs and tadpoles are not generated: they are scaleless for massless on-shell partons and vanish in dimensional regularisation.}
+\label{fig:diagA31}
+\end{figure}

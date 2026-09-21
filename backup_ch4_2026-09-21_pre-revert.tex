@@ -50,16 +50,31 @@ functions considered in this work and their validation.
 
 The master integrals entering these calculations depend on the antenna and on the corresponding
 integral family. Different colour components belonging to the same antenna set generally reduce to a
-common set of master integrals. Table~\ref{tab:MI} of Appendix~\ref{ap:masterIntegrals} summarises the
-master integrals required for the antenna functions considered in this chapter. These master integrals
-are defined and evaluated there, organised by antenna family; in this chapter, only $R_3$,
-which is needed for the worked example of Subsection~\ref{sec:matDerivation}, and the massive master
-integrals of Section~\ref{sec:massiveA30} are treated in the main text.
-Evaluating the massless master integrals analytically was a crucial part of this work: they were all
-derived explicitly, and not merely taken from a source, and their results reproduce the analytic
-expressions known from the literature \cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276}.
-Appendix~\ref{ap:masterIntegrals} presents their definitions and results, and the derivation of
-$R_{8,a}$, the most involved of them, is given step by step as an example of the method.
+common set of master integrals. Table~\ref{tab:MI} summarises the master integrals required for the
+antenna functions considered in this chapter. Selected master integrals are evaluated explicitly in
+the sections that follow, while the remaining analytic expressions are introduced where they enter
+the antenna integrations.
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|c|c|c|} 
+   \hline
+   \textbf{Antenna type(s)} & \textbf{Build-Side MI} & \textbf{Integration-Side MI} \\ 
+   \hline
+   $A_2^0$ & -- & -- \\ \hline
+   $A_3^0$ & -- & $R_3$ \\ \hline
+   $A_4^0$, $\tilde A_4^0$, $B_4^0$, $C_4^0$ & -- & $R_4$, $R_6$, $R_{8,a}$, $R_{8,b}$ \\ \hline
+   $A_2^1$ & -- & $B_0$, $C_0$ \\ \hline
+   $A_3^1$, $\tilde A_3^1$, $\hat A_3^1$ & $B_0$, $C_0$, $D_0$ & $V_{5,a}$, $V_{5,b}$, $V_8$ \\ \hline
+   $A_2^2$ & $A_{22,\text{LO}}$, $A_3$, $A_4$, $B_0^\dagger$, $C_0^\dagger$ & $A_{22,\text{LO}}$, $A_3$, $A_4$ \\ \hline
+   $\tilde A_2^2$ & $A_{22,\text{LO}}$, $A_3$, $A_4$, $A_6$ & $A_{22,\text{LO}}$, $A_3$, $A_4, A_6$ \\ \hline
+   $\hat A_2^2$ & $A_4$, $B_0^\dagger$, $C_0^\dagger$ & $A_4$ \\ \hline
+   $\breve A_2^2$ & $A_{22,\text{LO}}$ & $A_{22,\text{LO}}$ \\ \hline
+  \end{tabular}
+   \caption{Overview of the master integrals used in the build- and integration-stage by each antenna type \cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276}. The entries marked $^\dagger$ arise only from the $A_2^1$ ultraviolet counterterm attached at the public build boundary; the two-loop source itself is reduced by IBP to the $A$-type masters.}
+\label{tab:MI}
+\end{table}
 
 Finally, Section~\ref{sec:massiveA30} explores an extension of the calculation to the massive
 $A_3^0$ antenna. This example is treated separately from the massless antenna set and is used to
@@ -92,12 +107,62 @@ families to a basis of master integrals.
 Since Passarino-Veltman reduction is required only for the one-loop tensor reduction and does not
 constitute the main focus of the integrations presented here, its implementation and the
 corresponding scalar one-loop integrals are discussed separately in
-Appendix~\ref{subsec:PaVe}. The remainder of this chapter therefore focuses on the antenna functions and
-on the master integrals arising from the IBP reduction. For each antenna set, the integral family and the master integrals
-required for its integration are collected, by antenna family, in Appendix~\ref{ap:masterIntegrals},
-where their definitions and analytic evaluation are given, including a detailed derivation of the
-representative master integral $R_{8,a}$. Different colour components of the same antenna set
-generally reduce to a common set of master integrals and are therefore discussed together.
+Appendix~\ref{subsec:PaVe}. The remainder of this chapter therefore focuses on the master integrals
+arising from the IBP reduction. For each antenna set, the integral family and the master integrals
+required for its integration are presented after the corresponding antenna results. Different colour
+components of the same antenna set generally reduce to a common set of master integrals and are
+therefore discussed together. Most master integrals are introduced only to the extent required for
+the antenna calculation; a detailed derivation is given for the representative master integral
+$R_{8,a}$ in Subsection~\ref{subsec:fourPartonMI}.
+
+The master integrals obtained through IBP reduction are associated with different phase spaces,
+depending on the final-state multiplicity of the corresponding antenna. These phase spaces can be
+parametrised in terms of the appropriate independent Mandelstam invariants. To simplify the notation
+for the corresponding integration measures, we introduce the following shorthand definitions:
+\begin{equation}
+    \begin{split}
+        &s_{12}=s_{12},\quad d\mathcal S_2 = ds_{12}\\
+        &s_{123} = s_{12}+s_{13}+s_{23},\quad d\mathcal S_3 = ds_{12}ds_{13}ds_{23}\\
+        &s_{1234} = s_{12}+s_{13}+s_{14}+s_{23}+s_{24}+s_{34},\quad d\mathcal S_4 = ds_{12}ds_{13}ds_{14}ds_{23}ds_{24}ds_{34}.
+    \end{split}
+\end{equation}
+Using this notation, the $d$-dimensional differential phase-space measures can be written as
+\cite{GehrmannDeRidder0311276,Anastasiou:2002yz},
+% TODO[Yours] (Prof 21 Sep, Q7): the d\Phi_4 prefactor (q^2)^{3-d/2} below is verbatim hep-ph/0311276 (A.5) but is
+% dimensionally inconsistent; by dimensional analysis it should be (q^2)^{(2-d)/2}. Decide / check a second source.
+\begin{equation}\label{eq:phaseSpaces}
+    \begin{split}
+        &d\Phi_2 = (2\pi)^{2-d}s_{12}^{\frac{d-4}{2}}2^{1-d}d\Omega_{d-1}d\mathcal S_2\delta\!\left(q^2-s_{12}\right)\\
+        &d\Phi_3 = (2\pi)^{3-2d}2^{-1-d}\!\left(q^2\right)^{\frac{2-d}{2}}(s_{12}s_{13}s_{23})^{\frac{d-4}{2}}d\Omega_{d-1}d\Omega_{d-2}d\mathcal S_3\delta\!\left(q^2-s_{123}\right)\\
+        &\begin{split}
+            d\Phi_4 = (2\pi)^{4-3d}\!\left(q^2\right)^{3-\frac d2}2^{1-2d}&(-\Delta_4)^{\frac{d-5}{2}}\Theta(-\Delta_4)\\ &d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}d\mathcal S_4\delta\!\left(q^2-s_{1234}\right).
+         \end{split}
+    \end{split}
+\end{equation}
+For the four-particle phase space, $\Delta_4$ denotes the Gram determinant, which can be expressed in terms of the Källén function as
+\cite{GehrmannDeRidder0311276,Anastasiou:2002yz},
+\begin{equation}
+    \Delta_4=\lambda(s_{12}s_{34}, s_{13}s_{24}, s_{14}s_{23}),\quad \lambda(x, y, z) = x^2+y^2+z^2-2(xy+xz+yz).
+\end{equation}
+The factor $\Theta(-\Delta_4)$, where $\Theta$ is the Heaviside step function, restricts the integration
+to the physical region of the four-particle phase space. The angular factors in
+Eq.~\eqref{eq:phaseSpaces} are written in terms of $d\Omega_n$, the solid-angle element on the unit
+$(n-1)$-sphere, with
+\begin{equation}
+    \Omega_n=\int d\Omega_n=\frac{2\pi^{\frac n2}}{\Gamma(n/2)}.
+\end{equation}
+
+The master integrals are expressed using normalisation factors that collect common
+dimensional-regularisation and phase-space factors. We define
+\cite{Gehrmann-DeRidder:2004ttg,GehrmannDeRidder0311276},
+\begin{equation}
+    S_\Gamma = \left(\frac{(4\pi)^\epsilon}{16\pi^2\Gamma(1-\epsilon)}\right)^2.\label{eq:SGamma}
+\end{equation}
+For phase-space master integrals, it is also convenient to include the integrated two-particle
+phase-space volume $P_2$ in the normalisation, defining
+\begin{equation}
+    S_{\Gamma,2} = P_2 S_\Gamma,\quad P_2 = \int d\Phi_2 = \frac{2^{-3+2\epsilon}\pi^{-1+\epsilon}\Gamma(1-\epsilon)}{\Gamma(2-2\epsilon)}\!\left(q^2\right)^{-\epsilon}.
+\end{equation}
 
 Following the IBP reduction, \textit{LiteRed2} represents the master integrals using its internal
 $j[\ldots]$ notation, in which the arguments specify the corresponding integral within a given
@@ -115,7 +180,7 @@ carried out analytically, from the underlying matrix element to the unintegrated
 subsequent integration over the antenna phase space. This calculation is therefore used as a benchmark
 for the corresponding automated procedure implemented in \textit{AntCalc}. In the following, the
 analytic calculation is presented first and is then reproduced with \textit{AntCalc}, allowing the
-intermediate and final results to be compared directly.
+intermediate and final results to be compared directly. 
 
 \subsection{Tree-Level Three-Parton Antenna $A_3^0$}\label{sec:matDerivation}
 
@@ -123,12 +188,12 @@ intermediate and final results to be compared directly.
 
 The $A_3^0$ antenna is the tree-level final-final quark--antiquark antenna describing the emission of a
 gluon between the hard $q\bar q$ radiators. It is derived from the tree-level process
-$\gamma^*(p)\to q(k_1)g(k_3)\bar q(k_2)$. At this order, the amplitude receives contributions from the
-two Feynman diagrams shown in Fig.~\ref{fig:feynDiagsA30}, corresponding to gluon emission from the
-quark and antiquark lines. The complete tree-level amplitude is obtained by summing these two
-contributions, and $A_3^0$ is constructed from the resulting squared matrix element after
-normalisation to the corresponding two-parton Born contribution, as defined in
-Chapter~\ref{ch:physicsbackground}.
+$\gamma^*(p)\to q(k_1)g(k_3)\bar q(k_2)$.
+At this order, the amplitude receives contributions from the two Feynman diagrams shown in
+Fig.~\ref{fig:feynDiagsA30}, corresponding to gluon emission from the quark and antiquark lines. The
+complete tree-level amplitude is obtained by summing these two contributions, and $A_3^0$ is
+constructed from the resulting squared matrix element after normalisation to the corresponding
+two-parton Born contribution, as defined in Chapter~\ref{ch:physicsbackground}.
 
 \begin{figure}[h]
     \centering
@@ -173,7 +238,7 @@ Chapter~\ref{ch:physicsbackground}.
         \end{tikzpicture}
         \caption{Gluon emitted from the antiquark line.}
     \end{subfigure}
-    \caption{\centering Tree-level Feynman diagrams contributing to $\gamma^*\to q(k_1)g(k_3)\bar q(k_2)$.}
+    \caption{\centering Tree-level Feynman diagrams contributing to \(\gamma^*\to q(k_1)g(k_3)\bar q(k_2)\).}
     \label{fig:feynDiagsA30}
 \end{figure}
 
@@ -294,10 +359,10 @@ By taking $C_F = (N^2-1)/(2N)$, the formula yields, using Eqs.~\eqref{eq:M30inte
     \end{split}
 \end{equation}
 The electric charge cancels between the three- and two-parton squared matrix elements, while the
-remaining coupling and colour factors are removed by the antenna normalisation. Equation~\eqref{eq:A30}
-is therefore purely kinematic. In Chapter~\ref{ch:physicsbackground}, these factors were already
-absorbed into the Born-normalised matrix-element notation; here they have been retained explicitly to
-illustrate the normalisation.
+remaining coupling and colour factors are removed by the antenna normalisation.
+Equation~\eqref{eq:A30} is therefore purely kinematic. In Chapter~\ref{ch:physicsbackground}, these
+factors were already absorbed into the Born-normalised matrix-element notation; here they have been
+retained explicitly to illustrate the normalisation.
 
 
 \subsubsection*{Phase-Space Integration through $R_3$}
@@ -336,17 +401,8 @@ of the massless three-particle phase space,
 \begin{equation}
     R_3 = \int d\Phi_3.
 \end{equation}
-Here, in $d$ dimensions, the massless two- and three-particle phase-space measures are
-\cite{GehrmannDeRidder0311276,Anastasiou:2002yz},
-\begin{equation}
-    \begin{split}
-        &d\Phi_2 = (2\pi)^{2-d}s_{12}^{\frac{d-4}{2}}2^{1-d}d\Omega_{d-1}d\mathcal S_2\delta\!\left(q^2-s_{12}\right)\\
-        &d\Phi_3 = (2\pi)^{3-2d}2^{-1-d}\!\left(q^2\right)^{\frac{2-d}{2}}(s_{12}s_{13}s_{23})^{\frac{d-4}{2}}d\Omega_{d-1}d\Omega_{d-2}d\mathcal S_3\delta\!\left(q^2-s_{123}\right),
-    \end{split}
-\end{equation}
-where the shorthands $d\mathcal S_n$ and $s_{123}$ and the solid-angle factors $\Omega_n$ are defined, together
-with the four-particle measure, in Appendix~\ref{sec:MInotation}. With this parametrisation, the integral
-can be written as \cite{TM_JoanaReis},
+Using the phase-space parametrisation introduced above, this integral can be written as
+\cite{TM_JoanaReis},
 \begin{equation}
     \begin{split}
         R_3 &= \int d\Phi_3\\
@@ -447,10 +503,19 @@ arrive at the infrared pole structure,
     \end{split}
 \end{equation*}
 \begin{equation}
-    = \left(q^2\right)^{-\epsilon}\Bigg[\frac1{\epsilon^2}+\frac3{2\epsilon}+\frac{19}4-\frac{7\pi^2}{12}+\epsilon\left(\frac{109}{8}-\frac{7\pi^2}8-\frac{25\zeta_3}{3}\right)+\epsilon^2\left(\frac{639}{16}-\frac{133\pi^2}{48}-\frac{71\pi^4}{1440}-\frac{25\zeta_3}{2}\right)\Bigg]
+    = \left(q^2\right)^{-\epsilon}\Bigg[\frac1{\epsilon^2}+\frac3{2\epsilon}+\frac{19}4-\frac{7\pi^2}{12}+\epsilon\left(\frac{109}{8}-\frac{7\pi^2}8-\frac{25\zeta_3}{3}\right)+\epsilon^2\left(\frac{639}{16}-\frac{133\pi^2}{48}-\frac{71\pi^4}{1440}-\frac{25\zeta_3}{2}\right)\Bigg]\label{eq:A30Laurent}
 \end{equation}
 where the polygamma identities, $\psi^{(2)}(1) = -2\zeta_3$ and $\psi^{(2)}(3) = -2\zeta_3 + \frac94$,
-were employed.
+have been used.
+
+The pole structure of Eq.~\eqref{eq:A30Laurent} reflects the infrared singular behaviour of the
+unintegrated $A_3^0$ antenna. In dimensional regularisation, with $d=4-2\epsilon$, the infrared
+divergences are regulated and appear as poles in $\epsilon$, which diverge in the four-dimensional
+limit $\epsilon\to0$. In particular, the $1/\epsilon^2$ and $1/\epsilon$ poles arise from the
+integration over the soft and collinear unresolved regions and cancel the corresponding infrared
+poles of the virtual contribution at NLO. The higher-order terms in $\epsilon$ are retained because
+they can contribute when combined with other Laurent-expanded quantities at higher perturbative
+orders.
 
 \subsubsection*{Implementation in \textit{AntCalc}}
 
@@ -500,8 +565,7 @@ where \texttt{Amplitude}, \texttt{Interference} and \texttt{Result} respectively
 expressions in Eqs.~\eqref{eq:M30amplitude}, \eqref{eq:M30interference} and \eqref{eq:A30}.
 
 
-Integrating antennae using \textit{AntCalc} is also simple. Every step of the analytic integration above
-is handled by a single function: \texttt{IntegrateAntenna[antenna]}.
+Integrating antennae using \textit{AntCalc} is also simple. Every step of the analytic integration above is handled by a single function: \texttt{IntegrateAntenna[antenna]}.
 
 By default, \texttt{BuildAntenna} returns the unintegrated antenna as an expression in Mandelstam
 invariants, providing a compact representation suitable for direct inspection and applications
@@ -669,15 +733,14 @@ This result agrees with the expected colour-stripped $qg\to q$ AP kernel.
 \subsection{Virtual Two-Parton Antenna $A_2^1$}\label{subsec:A21}
 
 The $A_2^1$ antenna is obtained from the one-loop virtual correction to the two-parton process
-$\gamma^*\to q\bar q$, whose contributing Feynman diagram is shown in Fig.~\ref{fig:diagA21}.
+$\gamma^*\to q\bar q$.
+% TODO[Yours] (Prof 21 Sep): append ", whose contributing Feynman diagram is shown in Fig.~X" once the A_2^1 diagram exists.
 Unlike the tree-level $A_3^0$ antenna considered above, its construction involves one-loop tensor
 integrals. As described in Chapter~\ref{ch:packageframework}, \textit{AntCalc} applies
 Passarino-Veltman reduction to express these tensor integrals in terms of scalar one-loop functions.
 For $A_2^1$, the resulting expression involves the massless two-point (bubble) function $B_0$ and
 three-point (triangle) function $C_0$, whose definitions and analytic expressions are given in
 Appendix~\ref{subsec:PaVe}. The unintegrated $A_2^1$ returned by \textit{AntCalc} is,
-
-\input{figures/diagrams-a21}
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[2]:= BuildAntenna[A,2,1]}\\
@@ -734,18 +797,16 @@ in the following subsections. As for $A_2^1$, these are purely virtual two-parto
 are integrated over the two-particle phase space. However, their two-loop structure requires a more
 involved integral reduction, as discussed below.
 
-\input{figures/diagrams-a22}
-
 \subsection{$A_2^2$}
 
 We begin with the leading-colour component $A_2^2$. This contribution is obtained from the
 leading-colour part of the interference between the two-loop and tree-level amplitudes for
 $\gamma^*\to q\bar q$.
-Representative two-loop Feynman diagrams contributing to this amplitude are shown in Fig.~\ref{fig:diagA22}.
+% TODO[Yours] (Prof 21 Sep): add "Representative two-loop Feynman diagrams contributing to this amplitude are shown in Fig.~X." once the figure exists.
 In contrast to $A_2^1$, the resulting two-loop integrals cannot in general be reduced using the
 one-loop Passarino-Veltman procedure. Instead, the relevant integrals are organised into integral
 families and reduced through IBP identities to the master-integral basis described in
-Appendix~\ref{sec:MIA22}.
+Subsection~\ref{subsec:A22mi}.
 
 Using \textit{AntCalc}, the unintegrated leading-colour contribution is constructed with
 
@@ -773,7 +834,7 @@ displayed for $\hat A_2^2$ below, which equals $+\tfrac{1}{3\epsilon}A_2^1$.
 
 The subsequent IBP reduction expresses the integrated contribution as a linear combination of the
 master integrals $A_{22,\mathrm{LO}}$, $A_3$, and $A_4$, whose definitions and analytic expressions
-are discussed in Appendix~\ref{sec:MIA22}:
+are discussed in Subsection~\ref{subsec:A22mi}:
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[3]:= A22Lead = BuildAndIntegrateAntenna[A,2,2,Component->Leading,\\ReturnMasterCombination->True];}\\
@@ -790,8 +851,8 @@ are discussed in Appendix~\ref{sec:MIA22}:
 \end{mdframed}
 
 The combination in Out[4] is not yet the integrated antenna. Three further steps accompany the
-substitution of the master integrals of Appendix~\ref{sec:MIA22}. First, these master integrals
-are given in the $S_\Gamma$ normalisation of Eq.~\eqref{eq:SGamma} of Appendix~\ref{sec:MInotation}, whereas the integrated antennae are
+substitution of the master integrals of Subsection~\ref{subsec:A22mi}. First, these master integrals
+are given in the $S_\Gamma$ normalisation of Eq.~\eqref{eq:SGamma}, whereas the integrated antennae are
 quoted in the $S_\epsilon$ convention of Chapter~\ref{ch:physicsbackground}; the conversion is a
 factor $e^{2\gamma_E\epsilon}/\Gamma^2(1-\epsilon)$, together with the constant loop-measure factors
 that cancel the $1/\pi^4$ visible in the coefficients above. Second, the master integrals are written
@@ -845,7 +906,7 @@ obtained with
 
 As for the leading-colour component, the subsequent IBP reduction expresses the integrated
 contribution in terms of the master integrals $A_{22,\mathrm{LO}}$, $A_3$, $A_4$, and $A_6$. Their
-definitions and analytic expressions are presented in Appendix~\ref{sec:MIA22}.
+definitions and analytic expressions are presented in Subsection~\ref{subsec:A22mi}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[3]:= A22Sub = BuildAndIntegrateAntenna[A,2,2,Component->Subleading,\\ReturnMasterCombination->True];}\\
@@ -889,7 +950,7 @@ corresponding colour structure of the full two-parton contribution.
 
 The $\hat A_2^2$ antenna denotes the contribution proportional to the number of light-quark flavours
 $N_f$. It originates from two-loop diagrams containing a closed quark loop.
-Representative examples of these diagrams are shown in Fig.~\ref{fig:diagA22}(d).
+% TODO[Yours] (Prof 21 Sep): add "representative examples of which are shown in Fig.~X" once the figure exists.
 This contribution therefore isolates a distinct flavour and colour structure of the two-loop $q\bar q$
 form factor. Using \textit{AntCalc}, its unintegrated form is obtained with,
 
@@ -904,7 +965,7 @@ form factor. Using \textit{AntCalc}, its unintegrated form is obtained with,
 
 After IBP reduction, the $N_f$ contribution reduces to the single master integral $A_4$, in contrast
 to the leading- and subleading-colour components considered above. The definition and analytic
-evaluation of $A_4$ are presented in Appendix~\ref{sec:MIA22}.
+evaluation of $A_4$ are presented in Subsection~\ref{subsec:A22mi}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[3]:= A22Nf = BuildAndIntegrateAntenna[A,2,2,Component->Nf,\\ReturnMasterCombination->True];}\\
@@ -960,7 +1021,7 @@ is retained by \textit{AntCalc} and used in the subsequent integration; its expl
 in Appendix~\ref{ap:antExpressions}.
 After IBP reduction, the integrated $\breve A_2^2$ contribution can be expressed in terms of the single
 master integral $A_{22,\mathrm{LO}}$, whose definition and analytic evaluation are presented in
-Appendix~\ref{sec:MIA22}.
+Subsection~\ref{subsec:A22mi}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[3]:= A22Breve = BuildAndIntegrateAntenna[A,2,2,Component->Breve,\\ReturnMasterCombination->True];}\\
@@ -1015,8 +1076,107 @@ Ref.~\cite{Gehrmann-DeRidder:2004ttg}, specifically in the sign of the $7\zeta_3
 The corrected sign is also documented independently by Jakubčík, Marcoli, and Stagnitto in
 Eq.~(B.7) of Ref.~\cite{Jakubcik:2022zdi}.
 
-The master integrals $A_{22,\text{LO}}$, $A_3$, $A_4$ and $A_6$ appearing in the results above are defined and evaluated in
-Appendix~\ref{sec:MIA22}.
+
+\subsection{Master Integrals for the $A_2^2$ Set}\label{subsec:A22mi}
+
+\subsubsection*{The $A_{22,\text{LO}}$ Integral}
+
+The first master integral required for the $A_2^2$ antenna set is $A_{22,\mathrm{LO}}$, which corresponds
+to the product of two massless one-loop bubble integrals. In contrast to the phase-space master
+integrals encountered in the integration of real-radiation antennae, $A_{22,\mathrm{LO}}$ is a purely
+virtual two-loop integral involving two independent loop momenta. Defining
+\begin{equation*}
+    q=k_1+k_2,\qquad q^2=s_{12},
+\end{equation*}
+where $k_1$ and $k_2$ are the momenta of the final-state quark and antiquark, respectively, the
+integral is given by \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        A_{22,\text{LO}} &= \int\frac{d^dp}{(2\pi)^d}\int\frac{d^d\ell}{(2\pi)^d}\frac1{p^2(p-k_1-k_2)^2\ell^2(\ell-k_1-k_2)^2}\\
+                         &= -\frac{\mu^{-4\epsilon}}{\left(16\pi^2\right)^2}\Big[B_0\!\left(q^2;0,0\right)\Big]^2\\
+                         &= S_\Gamma\!\left(-q^2\right)^{-2\epsilon}\frac{\Gamma^2(1+\epsilon)\Gamma^6(1-\epsilon)}{\Gamma^2(2-2\epsilon)}\!\left(-\frac1{\epsilon^2}\right)\\
+                         &= S_\Gamma\!\left(-q^2\right)^{-2\epsilon}\!\left[-\frac1{\epsilon^2}-\frac4\epsilon-12+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
+
+Since the propagators depending on $p$ and $\ell$ are independent, the integral factorises into the
+product of two identical massless one-loop bubble integrals. It can therefore be written in terms of
+the scalar two-point function $B_0(q^2;0,0)$.
+
+\subsubsection*{The $A_3$ Integral}
+
+The $A_3$ master integral is a massless two-loop integral containing three propagators. It is defined
+as \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    A_3 = \int \frac{d^dp}{(2\pi)^d}\int\frac{d^d\ell}{(2\pi)^d}\frac1{p^2\ell^2(p-\ell-k_1-k_2)^2}.
+\end{equation}
+Unlike $A_{22,\mathrm{LO}}$, the two loop integrations do not factorise, since the third propagator
+depends on both loop momenta. Performing the $\ell$-integration first gives a massless one-loop
+bubble, so that,
+\begin{equation}
+    A_3 = \int \frac{d^dp}{(2\pi)^d}\frac1{p^2}B_0\!\left((p-k_1-k_2)^2;0,0\right).
+\end{equation}
+Substituting the analytic expression for the massless $B_0$ function and carrying out the remaining
+$p$-integration gives
+\begin{equation}
+    A_3 = S_\Gamma\!\left(-q^2\right)^{1-2\epsilon}\frac{\Gamma(1+2\epsilon)\Gamma^5(1-\epsilon)}{\Gamma(3-3\epsilon)}\!\left(-\frac{1}{2(1-2\epsilon)\epsilon}\right),
+\end{equation}
+which can be expanded around $\epsilon=0$ as
+\begin{equation}
+    A_3 = S_\Gamma\!\left(-q^2\right)^{1-2\epsilon}\!\left[-\frac1{4\epsilon}-\frac{13}8+\mathcal O(\epsilon)\right].
+\end{equation}
+
+\subsubsection*{The $A_4$ Integral}
+
+The $A_4$ master integral is a massless two-loop integral containing four propagators,
+\begin{equation}
+    A_4 = \int \frac{d^dp}{(2\pi)^d}\int\frac{d^d\ell}{(2\pi)^d}\frac1{p^2\ell^2(p-k_1-k_2)^2(p-\ell-k_1)^2}.
+\end{equation}
+As in the $A_3$ integral, the two loop momenta are coupled and the integral does not factorise into a
+product of independent one-loop integrals. The $\ell$-integration can, however, be performed first.
+The two propagators depending on $\ell$,
+\begin{equation}
+    \frac1{\ell^2(p-\ell-k_1)^2},
+\end{equation}
+form a massless one-loop bubble with external momentum $p-k_1$. Hence,
+\begin{equation}
+    A_4 = \int\frac{d^dp}{(2\pi)^d}\frac1{p^2(p-k_1-k_2)^2}B_0\!\left((p-k_1)^2;0,0\right).
+\end{equation}
+Substituting the analytic expression for the massless $B_0$ function and evaluating the remaining
+$p$-integration gives the following result \cite{Gehrmann-DeRidder:2005btv}, expressed as a Laurent
+series in $\epsilon$:
+\begin{equation}
+    \begin{split}
+        A_4 &= S_\Gamma\!\left(-q^2\right)^{-2\epsilon}\frac{\Gamma(1-2\epsilon)\Gamma(1+\epsilon)\Gamma^4(1-\epsilon)\Gamma(1+2\epsilon)}{\Gamma(2-3\epsilon)}\!\left(-\frac1{2(1-2\epsilon)\epsilon^2}\right)\\
+            &= S_\Gamma\!\left(-q^2\right)^{-2\epsilon}\!\left[-\frac1{2\epsilon^2}-\frac5{2\epsilon}-\left(\frac{19}2+\frac{\pi^2}6\right)+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
+
+\subsubsection*{The $A_6$ Integral}
+
+The final master integral required for the $A_2^2$ antenna set is $A_6$, a massless two-loop integral
+containing six propagators. It is defined as \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    A_6 = \int\frac{d^dp}{(2\pi)^d}\int\frac{d^d\ell}{(2\pi)^d}\frac1{p^2\ell^2(p-k_1-k_2)^2(p-\ell)^2(p-\ell-k_2)^2(\ell-k_1)^2}.
+\end{equation}
+In contrast to the preceding master integrals, neither loop integration reduces directly to a scalar
+one-loop function of the $B_0$, $C_0$, or $D_0$ type. The integral is the two-loop crossed triangle of
+the massless quark form factor, and its exact expression in $\epsilon$ involves generalised
+hypergeometric functions of unit argument \cite{GehrmannDeRidder0507061},
+\begin{equation}\label{eq:A6exact}
+    \begin{split}
+        A_6 = S_\Gamma\!\left(-q^2\right)^{-2-2\epsilon}\Bigg[
+        &-\frac{\Gamma^3(1-\epsilon)\Gamma(1+\epsilon)\Gamma^4(1-2\epsilon)\Gamma^3(1+2\epsilon)}{\epsilon^4\,\Gamma^2(1-4\epsilon)\Gamma(1+4\epsilon)}\\
+        &+\frac{\Gamma^4(1-\epsilon)\Gamma(1+\epsilon)\Gamma(1-2\epsilon)\Gamma(1+2\epsilon)}{2\epsilon^4\,\Gamma(1-3\epsilon)}\,{}_3F_2\!\left(1,-4\epsilon,-2\epsilon;1-3\epsilon,1-2\epsilon;1\right)\\
+        &-\frac{4\,\Gamma^4(1-\epsilon)\Gamma(1-2\epsilon)\Gamma(1+2\epsilon)}{\epsilon^2(1+\epsilon)(1+2\epsilon)\,\Gamma(1-4\epsilon)}\,{}_3F_2\!\left(1,1,1+2\epsilon;2+\epsilon,2+2\epsilon;1\right)\\
+        &-\frac{\Gamma^5(1-\epsilon)\Gamma(1+2\epsilon)}{2\epsilon^4\,\Gamma(1-3\epsilon)}\,{}_4F_3\!\left(1,1-\epsilon,-4\epsilon,-2\epsilon;1-3\epsilon,1-2\epsilon,1-2\epsilon;1\right)\Bigg].
+    \end{split}
+\end{equation}
+Expanding the hypergeometric functions around $\epsilon=0$ gives the Laurent series
+\cite{GehrmannDeRidder0507061},
+\begin{equation}
+    A_6 = S_\Gamma\!\left(-q^2\right)^{-2-2\epsilon}\!\left[-\frac1{\epsilon^4}+\frac{5\pi^2}{6\epsilon^2}+\frac{27}{\epsilon}\zeta_3+\frac{23\pi^4}{36}+\mathcal O(\epsilon)\right].
+\end{equation}
 
 \section{NNLO Three-Parton Antennae: The $A_3^1$ Set}\label{sec:A31set}
 
@@ -1027,7 +1187,7 @@ interference between the one-loop and tree-level amplitudes for
     \gamma^*(q)\rightarrow q(k_1)\,g(k_3)\,\bar q(k_2),
 \end{equation*}
 and therefore constitute the real--virtual counterpart of the tree-level $A_3^0$
-antenna discussed in Subsection~\ref{sec:matDerivation}.
+antenna discussed in Section~\ref{sec:matDerivation}.
 
 The colour decomposition of the complete tree--one-loop interference gives rise to
 three antenna components: $A_3^1$ is the leading-colour component, $\tilde A_3^1$
@@ -1045,12 +1205,10 @@ separately and subsequently reduced to the master integrals required for their
 analytic integration. The three components are considered in turn below, followed by
 the master integrals entering their integrated forms.
 
-\input{figures/diagrams-a31}
-
 \subsection{$A_3^1$}\label{subsec:A31lead}
 
 We begin with the leading-colour component $A_3^1$.
-Representative one-loop Feynman diagrams entering its construction are shown in Fig.~\ref{fig:diagA31}.
+% TODO[Yours] (Prof 21 Sep): add "Representative one-loop Feynman diagrams entering its construction are shown in Fig.~X." once the figure exists.
 Before defining the antenna function, the one-loop contribution must be ultraviolet
 renormalised. In dimensional regularisation, the unrenormalised one-loop matrix
 element contains both ultraviolet and infrared poles in $\epsilon$. Following the
@@ -1099,9 +1257,9 @@ using
 which expresses the integrated antenna in terms of the relevant master integrals
 $V_{5,a}$ and $V_{5,b}$; the master integral $V_8$ does not appear in the leading-colour
 component. Their definitions and analytic expressions are presented in
-Appendix~\ref{sec:MIA31}. The ultraviolet counterterm $-\frac{11}{6\epsilon}\mathcal A_3^0$
+Section~\ref{subsec:A31mi}. The ultraviolet counterterm $-\frac{11}{6\epsilon}\mathcal A_3^0$
 is added to this combination only after the reduction, and is built from the integrated
-tree-level antenna of Subsection~\ref{sec:matDerivation}; it therefore involves the master
+tree-level antenna of Section~\ref{sec:matDerivation}; it therefore involves the master
 integral $R_3$, which does not appear in $\texttt{Out[4]}$.
 
 Substituting the analytic expressions for the master integrals, applying the
@@ -1214,7 +1372,7 @@ one-loop contribution to reduce to the $V_{5,a}$, $V_{5,b}$, and $V_8$ master
 integrals appearing in the leading- and subleading-colour components. Instead,
 because the renormalisation contribution is proportional to $A_3^0$, the integration
 of $\widehat A_3^1$ follows directly from the tree-level calculation presented in
-Subsection~\ref{sec:matDerivation}. In particular, its phase-space integration inherits
+Section~\ref{sec:matDerivation}. In particular, its phase-space integration inherits
 the master integral $R_3$ appearing in the integrated tree-level antenna
 $\mathcal A_3^0$.
 
@@ -1235,8 +1393,104 @@ tree-level antenna $A_3^0$. After integration over the $1\to3$ antenna phase spa
 the infrared poles of $\mathcal A_3^0$ therefore generate poles of higher order in
 $\widehat{\mathcal A}_3^1$, with the result above beginning at $1/\epsilon^3$.
 
-The master integrals $V_{5,a}$, $V_{5,b}$ and $V_8$ appearing in the results above are defined and evaluated in
-Appendix~\ref{sec:MIA31}.
+\subsection{Master Integrals for the $A_3^1$ Set}\label{subsec:A31mi}
+
+The integration of the $A_3^1$ antenna set involves both the one-loop integration and
+the integration over the $1\to3$ antenna phase space. After applying the IBP reduction
+described in Chapter~\ref{ch:packageframework}, the leading- and subleading-colour
+contributions are expressed in terms of the master integrals $V_{5,a}$, $V_{5,b}$, and
+$V_8$. These integrals therefore combine loop propagators with the three-particle
+phase-space integration and constitute the master-integral basis required for the
+real--virtual antenna contributions considered in Sections~\ref{subsec:A31lead}
+and~\ref{subsec:A31sub}. Only the real part of each of them is needed: the one-loop
+antennae are built from the real part of the tree--one-loop interference,
+$2\operatorname{Re}\!\left(\mathcal M^{0\,\dagger}\mathcal M^1\right)$
+(Chapter~\ref{ch:physicsbackground}), so the imaginary parts that the loop integrals
+develop in the time-like region $q^2>0$ do not contribute.
+
+\subsubsection*{The $V_{5,a}$ Integral}
+
+The master integral $V_{5,a}$ consists of a massless one-loop bubble integrated over the
+three-particle phase space. Denoting the momenta of the final-state quark, antiquark, and
+gluon by $k_1$, $k_2$, and $k_3$, respectively, their total momentum is
+\begin{equation*}
+    q=k_1+k_2+k_3,\qquad q^2=s_{12}+s_{13}+s_{23}.
+\end{equation*}
+The three final-state momenta are massless, $k_i^2=0$, while $q^2>0$ is the invariant mass
+squared of the antenna system. The master integral is defined as
+\begin{equation}
+    \begin{split}
+        V_{5,a} &= \operatorname{Re}\!\left[-i\int d\Phi_3\int\frac{d^dp}{(2\pi)^d}\frac1{p^2(p-k_1-k_2-k_3)^2}\right]\\
+                &= \operatorname{Re}\!\left[\int d\Phi_3\,B_0\!\left(q^2;0,0\right)\right].
+    \end{split}
+\end{equation}
+Since the scalar function $B_0\!\left(q^2;0,0\right)$, discussed in
+Subsubsection~\ref{subsubsec:B0}, depends only on the fixed total invariant $q^2$, and not
+on the individual phase-space invariants, it can be taken outside the three-particle
+phase-space integration, which leaves the phase-space volume $R_3=\int d\Phi_3$ of
+Eq.~\eqref{eq:R3}. Hence this integral yields \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        V_{5,a} &= S_{\Gamma,2}\!\left(q^2\right)^{1-2\epsilon}\cos(\pi\epsilon)\!\left(-\frac1\epsilon\right)\frac{\Gamma^6(1-\epsilon)\Gamma(1+\epsilon)}{\Gamma(2-2\epsilon)\Gamma(3-3\epsilon)}\\
+                &= S_{\Gamma,2}\!\left(q^2\right)^{1-2\epsilon}\!\left[-\frac1{2\epsilon}-\frac{13}4+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
+
+\subsubsection*{The $V_{5,b}$ Integral}
+
+The master integral $V_{5,b}$ has a structure similar to $V_{5,a}$, consisting of a massless
+one-loop bubble integrated over the three-particle phase space. The essential difference is
+that the external momentum of the bubble is now $k_1+k_3$, rather than the total antenna
+momentum $q$. It is therefore defined by,
+\begin{equation}
+    \begin{split}
+        V_{5,b} &= \operatorname{Re}\!\left[-i\int d\Phi_3\int\frac{d^dp}{(2\pi)^d}\frac1{p^2(p-k_1-k_3)^2}\right]\\
+                &= \operatorname{Re}\!\left[\int d\Phi_3\,B_0\!\left(s_{13};0,0\right)\right].
+    \end{split}
+\end{equation}
+Unlike $q^2$, which is fixed during the phase-space integration, $s_{13}$ varies over the
+three-particle phase space. Consequently, the scalar function $B_0\!\left(s_{13};0,0\right)$
+cannot be taken outside the phase-space integral, and $V_{5,b}$ does not factorise into the
+product of a scalar one-loop function and the phase-space volume $R_3$.
+
+Using the analytic expression for the massless scalar function $B_0\!\left(s_{13};0,0\right)$
+and performing the remaining three-particle phase-space integration gives
+\cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        V_{5,b} &= \operatorname{Re}\!\left[\int d\Phi_3\,B_0\!\left(s_{13};0,0\right)\right]\\
+                &= S_{\Gamma,2}\!\left(q^2\right)^{1-2\epsilon}\cos(\pi\epsilon)\!\left(-\frac1\epsilon\right)\frac{\Gamma^5(1-\epsilon)\Gamma(1-2\epsilon)\Gamma(1+\epsilon)}{\Gamma(2-2\epsilon)\Gamma(3-4\epsilon)}\\
+                &= S_{\Gamma,2}\!\left(q^2\right)^{1-2\epsilon}\!\left[-\frac1{2\epsilon}-4+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
+
+\subsubsection*{The $V_8$ Integral}
+
+The third master integral required for the $A_3^1$ antenna set is $V_8$. In contrast to
+$V_{5,a}$ and $V_{5,b}$, whose loop integrations correspond to scalar two-point functions,
+$V_8$ contains a massless one-loop scalar four-point integral integrated over the
+three-particle phase space. It is defined as \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        V_8 &= \operatorname{Re}\!\left[-i\int d\Phi_3\int\frac{d^dp}{(2\pi)^d}\frac1{p^2(p-k_1)^2(p-k_1-k_3)^2(p-k_1-k_2-k_3)^2}\right]\\
+            &= \operatorname{Re}\!\left[-i\int d\Phi_3\,\frac1{s_{12}}\operatorname{Box}(s_{13}, s_{23}, s_{12})\right].
+    \end{split}
+\end{equation}
+The loop integral in this definition is a massless scalar box integral. Using the scalar
+one-loop conventions introduced in Subsubsection~\ref{subsubsec:D0}, it may be written in
+terms of the $D_0$ function as
+\begin{equation}
+    V_8 = \left(\frac{(4\pi)^\epsilon\mu^{-2\epsilon}}{16\pi^2}\right)\frac{\Gamma^2(1-\epsilon)\Gamma(1+\epsilon)}{\Gamma(1-2\epsilon)}\int d\Phi_3\,\frac1{s_{12}}\operatorname{Re}\Big[D_0\!\left(0,0,0,q^2;s_{13},s_{23};0,0,0,0\right)\Big].
+\end{equation}
+Unlike $V_{5,a}$, the scalar box depends explicitly on the phase-space invariants $s_{12}$,
+$s_{13}$, and $s_{23}$. The loop integral therefore cannot be factorised from the
+three-particle phase-space integration. Performing the remaining phase-space integration and
+applying the normalisation introduced above gives \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        V_8 &= S_{\Gamma,2}\!\left(q^2\right)^{-2-2\epsilon}\Big[-\frac5{2\epsilon^4}+\frac{9\pi^2}{2\epsilon^2}+\frac{89\zeta_3}{\epsilon}+\frac{13\pi^4}{180}+\mathcal O(\epsilon)\Big].
+    \end{split}
+\end{equation}
 
 \section{NNLO Four-Parton Antennae}
 
@@ -1275,10 +1529,6 @@ in this section. Since the complete unintegrated expressions are lengthy, only t
 features relevant to their construction and integration are presented here; the full
 expressions are collected in Appendix~\ref{ap:antExpressions}.
 
-\input{figures/diagrams-a40}
-
-\input{figures/diagrams-bc40}
-
 \subsection{$A_4^0$}\label{subsec:A40}
 
 We begin with the leading-colour four-parton antenna $A_4^0$, obtained from the tree-level
@@ -1286,7 +1536,7 @@ process
 \begin{equation*}
     \gamma^*(q)\rightarrow q(k_1)\,g(k_3)\,g(k_4)\,\bar q(k_2).
 \end{equation*}
-Representative tree-level Feynman diagrams contributing to this process are shown in Fig.~\ref{fig:diagA40}.
+% TODO[Yours] (Prof 21 Sep): add "Representative tree-level Feynman diagrams contributing to this process are shown in Fig.~X." once the figure exists.
 As discussed in Chapter~\ref{ch:physicsbackground}, the complete squared matrix element
 contains different colour structures. The leading-colour contribution, after normalisation to
 the corresponding two-parton Born matrix element, defines the $A_4^0$ antenna. The
@@ -1325,7 +1575,7 @@ master-integral representation is obtained with
 \end{mdframed}
 
 The integrated antenna is thereby reduced to the master integrals $R_4$ and $R_6$, whose
-definitions and analytic evaluation are discussed in Appendix~\ref{sec:MIfourParton}.
+definitions and analytic evaluation are discussed in Section~\ref{subsec:fourPartonMI}.
 Substituting the analytic expressions for these master integrals, applying the normalisation of
 Eq.~\eqref{eq:normN}, and expanding around $\epsilon=0$, the integrated antenna through
 $\mathcal O(\epsilon^0)$ is obtained using
@@ -1353,7 +1603,7 @@ required in the NNLO double-real subtraction term.
 
 The subleading-colour contribution to the $q\bar qgg$ antenna set is described by
 $\widetilde A_4^0$. It is obtained from the same tree-level process considered in
-Subsection~\ref{subsec:A40}, but corresponds to the subleading term in the colour decomposition of
+Section~\ref{subsec:A40}, but corresponds to the subleading term in the colour decomposition of
 the squared matrix element. The unintegrated antenna is obtained in \textit{AntCalc} by
 selecting the subleading-colour component,
 
@@ -1390,7 +1640,7 @@ obtained with,
 
 In contrast to the leading-colour antenna, whose reduction involves $R_4$ and $R_6$, the
 subleading-colour contribution additionally requires the master integrals $R_{8,a}$ and
-$R_{8,b}$, discussed in Appendix~\ref{sec:MIfourParton}. Substituting their analytic
+$R_{8,b}$, discussed in Section~\ref{subsec:fourPartonMI}. Substituting their analytic
 expressions, applying the appropriate normalisation, and expanding through
 $\mathcal O(\epsilon^0)$ gives
 
@@ -1414,7 +1664,7 @@ antenna is obtained from the tree-level process
     \gamma^*\rightarrow q\bar q q'\bar q',
 \end{equation*}
 where $q'$ denotes a quark flavour different from that of the primary $q\bar q$ pair.
-Representative tree-level Feynman diagrams contributing to this process are shown in Fig.~\ref{fig:diagBC40}.
+% TODO[Yours] (Prof 21 Sep): add "Representative tree-level Feynman diagrams contributing to this process are shown in Fig.~X." once the figure exists.
 In these contributions, the secondary $q'\bar q'$ pair is produced through gluon splitting,
 $g^*\to q'\bar q'$. After the colour and flavour decomposition described in
 Chapter~\ref{ch:physicsbackground} and normalisation to the corresponding two-parton Born
@@ -1513,8 +1763,285 @@ $C_4^0$. As an interference antenna, its only non-vanishing unresolved limit is 
 triple-collinear limit, while all other single- and double-unresolved limits vanish.
 Accordingly, no higher-order infrared poles are generated upon integration.
 
-The master integrals $R_4$, $R_6$, $R_{8,a}$ and $R_{8,b}$ appearing in the results above are defined and evaluated in
-Appendix~\ref{sec:MIfourParton}.
+\subsection{Master Integrals for the Four-Parton Antennae}\label{subsec:fourPartonMI}
+
+The integration of the tree-level four-parton antennae considered in
+Sections~\ref{subsec:A40}--\ref{subsec:C40} requires integration over the massless $1\to4$
+antenna phase space. After mapping the antenna functions onto the corresponding integral family
+and applying the IBP reduction described in Chapter~\ref{ch:packageframework}, the integrated
+antennae can be expressed in terms of a small set of master integrals, $R_4$, $R_6$,
+$R_{8,a}$, and $R_{8,b}$. Unlike the $V$-type master integrals encountered for the
+real--virtual $A_3^1$ antennae, these integrals contain no loop integration. They are integrals
+over the four-particle phase space, with additional propagator-like factors for $R_6$,
+$R_{8,a}$, and $R_{8,b}$. The simplest member, $R_4$, is the four-particle phase-space volume
+itself. The following subsections present their definitions and analytic evaluation.
+
+\subsubsection*{The $R_4$ Integral}
+
+The simplest master integral in the four-parton basis is $R_4$, corresponding to the total
+massless four-particle phase-space volume,
+\begin{equation*}
+    R_4=\int d\Phi_4.
+\end{equation*}
+In $d=4-2\epsilon$ dimensions, the phase-space measure may be expressed in terms of the six
+two-particle invariants $s_{ij}=2k_i\cdot k_j$, subject to momentum conservation and the
+constraint imposed by the four-particle Gram determinant $\Delta_4$. This gives
+\begin{equation}
+    R_4 = (2\pi)^{4-3d}\!\left(q^2\right)^{3-\frac d2}2^{1-2d}\int d\mathcal S_4d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}\,(-\Delta_4)^{\frac{d-5}{2}}\Theta(-\Delta_4)\delta\!\left(q^2-\mathcal S_4\right).
+\end{equation}
+To evaluate $R_4$, the four-particle phase space is factorised into a two-particle phase space
+and a tripole phase-space factor,
+\begin{equation*}
+    d\Phi_4=d\Phi_2\,d\Phi_T,
+\end{equation*}
+where $d\Phi_2$ describes the reduced two-particle configuration obtained by clustering the
+momenta $p_1,p_3,p_4$ into the mapped radiator momentum $\tilde p_{134}$, with $\tilde p_2$
+denoting the corresponding mapped spectator momentum. The factor $d\Phi_T$ is the associated
+tripole phase-space measure and contains the remaining degrees of freedom required to resolve
+the original four-particle configuration. Following Ref.~\cite{GehrmannDeRidder0311276}, these
+degrees of freedom are parametrised by five dimensionless variables with support on the unit
+hypercube. We start by defining $y_{ij} = s_{ij}/q^2$ and $y_{ijk} = s_{ijk}/q^2$. Our five
+dimensionless variables become \cite{GehrmannDeRidder0311276}:
+\begin{itemize}
+    \item The rescaled invariant mass of the three-parton cluster, $y_{134} = \frac{s_{134}}{q^2}$;
+    \item The longitudinal momentum fraction $z_1 = \frac{p_3\cdot\tilde p_2}{\tilde p_{134}\cdot\tilde p_2}$, which parametrises the fraction associated with parton $3$, measured with respect to the mapped momenta $\tilde p_{134}$ and $\tilde p_2$;
+    \item The variable $t$, introduced through the second longitudinal momentum fraction $z_2 = (1-z_1)t = \frac{p_4\cdot\tilde p_2}{\tilde p_{134}\cdot\tilde p_2}$, which parametrises the momentum fraction associated with parton $4$ after the fraction $z_1$ carried by parton $3$ has been specified;
+    \item The variable $v$, introduced through the rescaled two-particle invariant $y_{14}=\frac{s_{14}}{q^2} = y_{134}(1-z_1)v$;
+    \item The variable $\chi$, which parametrises the allowed range of $y_{13}$, where $y_{13,a}$ and $y_{13,b}$ are the lower and upper boundaries determined by the Gram-determinant constraint as $y_{13} = (y_{13,b}-y_{13,a})\chi+y_{13,a}= \Delta y_{13}\chi+y_{13,a}$.
+\end{itemize}
+Performing the change of variables from the phase-space invariants to the five dimensionless
+variables $y_{134},z_1,t,v,\chi$, including the corresponding Jacobian, maps the physical
+integration region onto the unit hypercube $[0,1]^5$ and the master integral becomes
+\begin{equation}
+    \begin{split}
+        R_4 = P_2\frac{16^{-2}\pi^{-5+2\epsilon}}{\Gamma(1-2\epsilon)}\!\left(q^2\right)^{2-2\epsilon}\int_{[0,1]^5}dy_{134}dz_1dtdv&d\chi\,\Big[y_{134}(1-y_{134})(1-z_1)\Big]^{1-2\epsilon}\\
+                                                                                                                                                  &\Big[z_1t(1-t)v(1-v)\Big]^{-\epsilon}\Big[\chi(1-\chi)\Big]^{-\frac12-\epsilon}.
+    \end{split}
+\end{equation}
+A useful feature of this parametrisation is that the dependence on the five integration
+variables factorises into powers of $x$ and $1-x$. Each integration can therefore be evaluated
+using the Euler Beta function,
+\begin{equation*}
+    \int_0^1 dx\,x^{a-1}(1-x)^{b-1}=B(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}.
+\end{equation*}
+Performing these integrations and simplifying the resulting Gamma functions gives
+\cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276},
+\begin{equation}
+    \begin{split}
+        R_4 &= P_2\!\left(q^2\right)^{2-2\epsilon}\frac{2^{-11+8\epsilon}\pi^{-\frac72+2\epsilon}\Gamma^3(1-\epsilon)}{\Gamma(3-3\epsilon)\Gamma\!\left(\frac52-2\epsilon\right)}\\
+            &= S_{\Gamma,2}\!\left(q^2\right)^{2-2\epsilon}\frac{\Gamma^5(1-\epsilon)\Gamma(2-2\epsilon)}{\Gamma(3-3\epsilon)\Gamma(4-4\epsilon)}\\
+            &= S_{\Gamma,2}\!\left(q^2\right)^{2-2\epsilon}\Bigg[\frac1{12}+\frac{59}{72}\epsilon+\mathcal O\!\left(\epsilon^2\right)\Bigg].
+    \end{split}
+\end{equation}
+
+\subsubsection*{The $R_6$ Integral}
+
+The second master integral required for the four-parton antennae is $R_6$, defined by
+\cite{GehrmannDeRidder0311276},
+\begin{equation}
+    \begin{split}
+        R_6 &= \int d\Phi_4\,\frac1{s_{134}s_{234}}\\
+            &= (2\pi)^{4-3d}\!\left(q^2\right)^{3-\frac d2}2^{1-2d}\int d\mathcal S_4d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}\,\frac{(-\Delta_4)^{\frac{d-5}{2}}}{s_{134}s_{234}}\Theta(-\Delta_4)\delta\!\left(q^2-\mathcal S_4\right).
+    \end{split}
+\end{equation}
+Unlike $R_4$, however, $R_6$ does not reduce to a product of elementary Beta-function integrals
+under the tripole change of variables introduced above. In particular, $s_{234}$ has a
+non-linear dependence on the tripole variables, preventing the factorisation of the integrand
+that made the direct evaluation of $R_4$ straightforward. Following
+Ref.~\cite{GehrmannDeRidder0311276}, $R_6$ is therefore evaluated indirectly using the optical
+theorem.
+
+The optical theorem relates the imaginary part of a forward-scattering integral to the sum over
+its possible unitarity cuts. In the present case, the relevant three-loop vacuum-polarisation
+integral $I_6$ admits cuts that can be expressed in terms of the four-particle phase-space
+integral $R_6$ and the lower-multiplicity contribution involving the two-loop integral $A_4$.
+With the conventions of Ref.~\cite{GehrmannDeRidder0311276}, this relation reads
+\begin{equation}
+    2\operatorname{Im}I_6 = -2P_2\operatorname{Re}A_4 + 2R_6.
+\end{equation}
+The required expressions for $I_6$ and $A_4$ are known analytically
+\cite{GehrmannDeRidder0311276}. In the conventions adopted here, they are
+\begin{equation}
+    \begin{split}
+        I_6 = \frac{(4\pi)^{3\epsilon}}{\left(16\pi^2\right)^3}&\frac{\Gamma^6(1-\epsilon)\Gamma^3(1+\epsilon)}{3\epsilon^3\Gamma^3(2-2\epsilon)}\!\left(-q^2\right)^{-3\epsilon}\\
+                                                                      &\Bigg[1+\epsilon+\epsilon^2+\epsilon^3(14\zeta_3-7)+\epsilon^4\left(-67+14\zeta_3+\frac{21\pi^4}{90}\right)+\mathcal O\!\left(\epsilon^5\right)\Bigg]
+    \end{split}
+\end{equation}
+\begin{equation}
+    \begin{split}
+        A_4 = \left(\frac{(4\pi)^\epsilon}{16\pi^2}\frac{\Gamma(1+\epsilon)\Gamma^2(1-\epsilon)}{\Gamma(1-2\epsilon)}\right)^2&\!\left(-q^2\right)^{-2\epsilon}\Bigg[-\frac1{2\epsilon^2}-\frac5{2\epsilon}-\left(\frac{19}2+\frac{\pi^2}6\right)\\
+                                                                                                                              &-\epsilon\left(\frac{65}2+\frac{5\pi^2}6-2\zeta_3\right)-\epsilon^2\left(\frac{211}2+\frac{19\pi^2}6-10\zeta_3\right)+\mathcal O\!\left(\epsilon^3\right)\Bigg].
+    \end{split}
+\end{equation}
+The two-loop master integral $A_4$ was introduced previously in Subsection~\ref{subsec:A22mi}
+in the calculation of the two-parton NNLO antennae. Its appearance here illustrates that the
+same virtual integral enters the lower-multiplicity cut of the three-loop forward-scattering
+integral.
+
+Since the forward-scattering integral is evaluated in the time-like region $q^2>0$, the factors
+involving $(-q^2)$ must be analytically continued according to the Feynman $+i0$ prescription.
+In the convention of Ref.~\cite{GehrmannDeRidder0311276}, this gives
+\begin{equation*}
+    \left(-q^2-i0\right)^{-\epsilon}=\left(q^2\right)^{-\epsilon}e^{i\pi\epsilon}.
+\end{equation*}
+The real and imaginary parts required in the relation above can then be extracted from these
+phases. Substituting the real part of $A_4$ and the imaginary part of $I_6$, and denoting by
+$\mathcal A_4$ and $\mathcal I_6$ the $\epsilon$-series in square brackets in the expressions
+for $A_4$ and $I_6$ above, we solve for $R_6$ and obtain
+\begin{equation}
+    \begin{split}
+        R_6 &= S_{\Gamma,2}\!\left(q^2\right)^{-2\epsilon}\frac{\Gamma^6(1-\epsilon)\Gamma^2(1+\epsilon)}{6}\left(\frac{6\cos(2\pi\epsilon)}{\Gamma^2(1-2\epsilon)}\mathcal A_4+\frac{\Gamma(1-\epsilon)\Gamma(1+\epsilon)\sin(3\pi\epsilon)}{\epsilon^3\pi\Gamma^2(2-2\epsilon)}\mathcal I_6\right)\\
+            &= S_{\Gamma,2}\!\left(q^2\right)^{-2\epsilon}\Bigg[-1+\frac{\pi^2}6+\epsilon\!\left(-12+\frac{5\pi^2}6+9\zeta_3\right)+\mathcal O\!\left(\epsilon^2\right)\Bigg].
+    \end{split}
+\end{equation}
+
+\subsubsection*{The $R_{8,a}$ Integral}
+
+The master integral $R_{8,a}$ is the first of the two four-particle phase-space master integrals
+containing four invariant denominators. It is defined as \cite{GehrmannDeRidder0311276},
+\begin{equation}
+    \begin{split}
+        R_{8,a} &= \int d\Phi_4\,\frac1{s_{13}s_{23}s_{14}s_{24}}\\
+                &= (2\pi)^{4-3d}\!\left(q^2\right)^{3-\frac d2}2^{1-2d}\int d\mathcal S_4d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}\frac{(-\Delta_4)^{\frac{d-5}{2}}}{s_{13}s_{23}s_{14}s_{24}}\Theta(-\Delta_4)\,\delta\!\left(q^2-\mathcal S_4\right)\\
+                &   \begin{split}
+                        = P_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{16^{-2+\epsilon}\pi^{-5+2\epsilon}}{\Gamma(1-2\epsilon)}\int_{[0,1]^5} dy_{134}dz_1dtdvd\chi\\
+                                                              &\Big[(1-y_{134})(1-z_1)\Big]^{-1-2\epsilon}\Big[tvz_1^{-\epsilon}(\Delta y_{13}\chi+y_{13,a})\Big]^{-1}\Big[\chi(1-\chi)\Big]^{-\frac12-\epsilon}.
+                    \end{split}
+    \end{split}
+\end{equation}
+
+In contrast to $R_4$, the resulting integrand does not factorise into independent Beta-function
+integrals. Its analytic evaluation instead proceeds through a sequence of integrations involving
+hypergeometric functions. Following Ref.~\cite{GehrmannDeRidder0311276}, we perform the
+integrations in the order,
+\begin{equation*}
+    \chi\to v\to y_{134}\to t\to z_1,
+\end{equation*}
+with an auxiliary integration variable $u\in[0,1]$ introduced at a later stage through an Euler
+integral representation of the hypergeometric function.
+
+We begin with the $\chi$ integration. The dependence on $\chi$ occurs through the
+Gram-determinant factor and the invariant $y_{13}=y_{13,a}+\Delta y_{13}\chi$, leading to,
+\begin{equation}
+    I_\chi=\int_0^1 d\chi\,\Big[\chi(1-\chi)\Big]^{-\frac12-\epsilon}(\Delta y_{13}\chi+y_{13,a})^{-1}=\frac{\Delta y_{13}^{-2\epsilon}}{y_{13,a}}\frac{\Gamma^2\!\left(\frac12-\epsilon\right)}{\Gamma(1-2\epsilon)}{}_2F_1\!\left(1, \frac12-\epsilon; 1-2\epsilon; -\frac{\Delta y_{13}}{y_{13,a}}\right)
+\end{equation}
+where ${}_2F_1$ is the Gauss hypergeometric function. To simplify the argument of the
+hypergeometric function, we use the phase-space boundaries,
+$y_{13,(a,b)}=y_{134}(A\mp B)$, with
+\begin{equation*}
+    A=\sqrt{(1-t)(1-v)},\qquad B=\sqrt{z_1tv},\qquad Z=-\frac BA.
+\end{equation*}
+These definitions imply,
+\begin{equation}
+    -\frac{\Delta y_{13}}{y_{13,a}} = \frac{4Z}{(1+Z)^2},\quad (1+Z)^2 = \frac{y_{13,a}}{y_{134}A^2}.
+\end{equation}
+% TODO[Yours] (Prof 21 Sep): cite the source of this quadratic transformation (Pires suggested Bateman); it is the standard F(a,b;2b;4Z/(1+Z)^2)=(1+Z)^{2a}F(a,a-b+1/2;b+1/2;Z^2) with a=1.
+The quadratic transformation of the Gauss hypergeometric function,
+\begin{equation}
+    {}_2F_1\!\left(1,b;2b;\frac{4Z}{(1+Z)^2}\right) = (1+Z)^2{}_2F_1\!\left(1,\frac32-b;b+\frac12;Z^2\right)
+\end{equation}
+together with
+\begin{equation}
+    16^\epsilon\Delta y_{13}^{-2\epsilon}=\Big[t(1-t)v(1-v)y_{134}^2z_1\Big]^{-\epsilon},
+\end{equation}
+allows the $\chi$-integrated expression to be written as,
+\begin{equation}
+    I_\chi = \frac{\pi\Gamma(1-2\epsilon)}{y_{134}\Gamma^2(1-\epsilon)}\!\left(tvy_{134}^2z_1\right)^{-\epsilon}\Big[(1-t)(1-v)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,1+\epsilon;1-\epsilon;\frac{z_1tv}{(1-t)(1-v)}\right).
+\end{equation}
+
+Substituting this expression into the phase-space integral eliminates $\chi$ and reduces
+$R_{8,a}$ to a four-dimensional integral,
+\begin{equation}
+    \begin{split}
+        R_{8,a} = P_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{16^{-2+\epsilon}\pi^{-4+2\epsilon}}{\Gamma^2(1-\epsilon)}\int_{[0,1]^4}dy_{134}dz_1dtdv\,\Big[y_{134}(1-y_{134})z_1(1-z_1)\Big]^{-1-2\epsilon}\\
+                                                      &\Big[t(1-t)v(1-v)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,1+\epsilon;1-\epsilon;\frac{z_1tv}{(1-t)(1-v)}\right).
+    \end{split}
+\end{equation}
+
+The $v$ integration is performed by expanding the Gauss hypergeometric function in its defining
+series and integrating term by term. This yields,
+\begin{equation}
+    \begin{split}
+        I_v &= \int_0^1 dv \Big[v(1-v)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,1+\epsilon;1-\epsilon;\frac{z_1tv}{(1-t)(1-v)}\right)\\
+            &= \sum_{n\geq0}\frac{(1+\epsilon)_n}{(1-\epsilon)_n}\!\left(\frac{z_1t}{1-t}\right)^n\frac{\Gamma(-\epsilon-n)\Gamma(-\epsilon+n)}{\Gamma(-2\epsilon)}\\
+            &= -\frac{2\Gamma^2(1-\epsilon)}{\epsilon\Gamma(1-2\epsilon)}{}_2F_1\!\left(1,-\epsilon;1-\epsilon;-\frac{z_1t}{1-t}\right).
+    \end{split}
+\end{equation}
+
+After substituting $I_v$, the $y_{134}$ dependence factorises and can be integrated directly,
+leaving a two-dimensional integral over $z_1$ and $t$,
+\begin{equation}
+    \begin{split}
+        R_{8,a} = -P_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{2^{-7+8\epsilon}\pi^{-\frac72+2\epsilon}}{\epsilon^2\Gamma\!\left(\frac12-2\epsilon\right)}\int_{[0,1]^2}dz_1dt\,(1-z_1)^{-1-2\epsilon}\\
+                                                       &\Big[z_1t(1-t)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,-\epsilon;1-\epsilon;-\frac{z_1t}{1-t}\right).
+    \end{split}
+\end{equation}
+
+To perform the remaining integrations, the hypergeometric function is represented through its
+Euler integral,
+\begin{equation}
+    {}_2F_1\!\left(1,-\epsilon;1-\epsilon;-\frac{z_1t}{1-t}\right) = -\epsilon\int_0^1 du\,u^{-1-\epsilon}\!\left[1+\frac{uz_1t}{1-t}\right]^{-1}
+\end{equation}
+The auxiliary variable $u$ therefore converts the remaining hypergeometric dependence into an
+additional ordinary integral over the unit interval. The remaining $t$, $u$, and $z_1$
+integrations can then be performed sequentially. After simplifying the resulting Gamma and
+generalised hypergeometric functions, one obtains,
+\begin{equation}
+    \begin{split}
+        R_{8,a} = P_2\!\left(q^2\right)^{-2-2\epsilon}&2^{-7+4\epsilon}\pi^{-3+2\epsilon}\csc(\pi\epsilon)\Gamma(-2\epsilon)\Bigg[\frac{2^{8\epsilon}\pi}{\epsilon^2\Gamma^2\!\left(\frac12-2\epsilon\right)}{}_3F_2\!\left(\begin{array}{c} -2\epsilon, -2\epsilon, -2\epsilon \\ 1-2\epsilon, -4\epsilon \end{array};1\right)-\\
+                                                      &-\frac{2\Gamma^3(-\epsilon)}{\Gamma(1-4\epsilon)\Gamma(1-\epsilon)\Gamma(1+\epsilon)\Gamma(-3\epsilon)}{}_4F_3\!\left(\begin{array}{c} 1, -\epsilon, -\epsilon, -\epsilon \\ 1-\epsilon, 1+\epsilon, -3\epsilon \end{array};1\right)\Bigg]
+    \end{split}
+\end{equation}
+Rewriting the result in the normalisation used throughout this chapter and expanding about
+$\epsilon=0$ gives \cite{GehrmannDeRidder0311276,TM_JoanaReis}, 
+\begin{equation}
+    \begin{split}
+        R_{8,a} = &S_{\Gamma,2}\!\left(q^2\right)^{-2-2\epsilon}\Bigg[\frac6{\epsilon^4}\frac{\Gamma^5(1-\epsilon)\Gamma(1-2\epsilon)}{\Gamma(1-3\epsilon)\Gamma(1-4\epsilon)}{}_4F_3\!\left(\begin{array}{c} 1, -\epsilon, -\epsilon, -\epsilon \\ 1-\epsilon, 1+\epsilon, -3\epsilon \end{array};1\right)-\\
+                  &-\frac1{\epsilon^4}\frac{\Gamma^3(1-\epsilon)\Gamma(1+\epsilon)\Gamma^3(1-2\epsilon)}{\Gamma^2(1-4\epsilon)}{}_3F_2\!\left(\begin{array}{c} -2\epsilon, -2\epsilon, -2\epsilon \\ -4\epsilon, 1-2\epsilon \end{array};1\right)\Bigg]\\
+                  &=S_{\Gamma,2}\!\left(q^2\right)^{-2-2\epsilon}\Bigg[\frac5{\epsilon^4}-\frac{20\pi^2}{3\epsilon^2}-\frac{126\zeta_3}{\epsilon}+\frac{7\pi^4}{18}+\mathcal O(\epsilon)\Bigg].
+    \end{split}
+\end{equation}
+
+\subsubsection*{The $R_{8,b}$ Integral}
+
+The second four-denominator master integral is $R_{8,b}$, defined as
+\cite{GehrmannDeRidder0311276},
+\begin{equation}
+    R_{8,b} = \int d\Phi_4\,\frac1{s_{13}s_{134}s_{23}s_{234}}.
+\end{equation}
+As in the case of $R_6$, the presence of $s_{234}$ prevents the tripole change of variables from
+reducing the integral to a convenient factorised form. Following
+Ref.~\cite{GehrmannDeRidder0311276}, $R_{8,b}$ is therefore determined indirectly by applying
+the optical theorem to the corresponding three-loop vacuum-polarisation integral $I_8$. The
+different unitarity cuts of $I_8$ generate contributions involving the two-loop virtual master
+integral $A_6$, the real--virtual master integral $V_8$, and the two four-particle phase-space
+master integrals $R_{8,a}$ and $R_{8,b}$. With the conventions of
+Ref.~\cite{GehrmannDeRidder0311276}, their relation is
+\begin{equation}
+    2\operatorname{Im}I_8 = -2P_2\operatorname{Re}A_6+4\operatorname{Re}V_8+R_{8,a}+4R_{8,b}.
+\end{equation}
+The required three-loop integral $I_8$ is known analytically
+\cite{GehrmannDeRidder0311276}, while $A_6$ and $V_8$ were introduced previously in
+Subsections~\ref{subsec:A22mi} and~\ref{subsec:A31mi}, respectively. Their relevant expressions
+are
+\begin{equation}
+    I_8 = S + \mathcal O(\epsilon^0),\quad \operatorname{Im}S = -\frac{13\pi^4}{90};
+\end{equation}
+\begin{equation}
+    V_8 = -i\int d\Phi_3\,\frac1{s_{12}}\operatorname{Box}(s_{13}, s_{23}, s_{12});
+\end{equation}
+\begin{equation}
+    A_6 = \left(\frac{(4\pi)^\epsilon}{16\pi^2}\frac{\Gamma(1+\epsilon)\Gamma^2(1-\epsilon)}{\Gamma(1-2\epsilon)}\right)^2\!\left(-q^2\right)^{-2-2\epsilon}\Bigg[-\frac1{\epsilon^4}+\frac{5\pi^2}{6\epsilon^2}+\frac{23\zeta_3}\epsilon+\frac{103\pi^4}{180}+\mathcal O(\epsilon)\Bigg].
+\end{equation}
+Solving the optical-theorem relation for $R_{8,b}$ gives,
+\begin{equation}
+    R_{8,b}=\frac14\left[2\operatorname{Im}I_8+2P_2\operatorname{Re}A_6-4\operatorname{Re}V_8-R_{8,a}\right].
+\end{equation}
+Substituting the corresponding $\epsilon$-expansions and rewriting the result in the
+$S_{\Gamma,2}$ normalisation used throughout this section yields \cite{GehrmannDeRidder0311276},
+\begin{equation}
+    R_{8,b} = S_{\Gamma,2}\!\left(q^2\right)^{-2-2\epsilon}\Bigg[\frac3{4\epsilon^4}-\frac{17\pi^2}{12\epsilon^2}-\frac{44\zeta_3}{\epsilon}-\frac{61\pi^4}{60}+\mathcal O(\epsilon)\Bigg].
+\end{equation}
 
 \iffalse
 \section{Summary of the Massless Antenna Set}\label{sec:antennaresultsummary}
@@ -1597,12 +2124,10 @@ convention used for the family in \textit{LiteRed2}. The \textit{LiteRed2} maste
 $J_2$ must subsequently be converted to the master-integral basis $I_1$ and $I_2$ used for the
 available analytic expressions. In addition to the change of basis, the two conventions differ
 by an overall constant factor of $-1/4$ between the cut-integral normalisation of
-\textit{LiteRed2} and the phase-space normalisation of the literature masters. This factor multiplies both
-of the relations below and reflects the different normalisation conventions of the two sets of masters
-rather than any physical effect; it was found by comparing $J_1^{(m_q,0,m_q)}$ with
-$I_1^{(m_q,0,m_q)}$.
+\textit{LiteRed2} and the phase-space normalisation of the literature masters.
+% TODO[Yours] (Prof 21 Sep, question): Pires asks where the factor 1/4 comes from. In AntCalc it is `MassiveA30IntegratedCutMeasureFactor[] := -1/4` (src/routes/massive_a30_integrated.wl:387), documented as "I_paper = C_cut j_MX30" and fixed by two independent coefficient determinations in MassiveA30IntegratedCutMeasureConsistencyReport[]; it is a calibrated cut-measure constant, not derived analytically. Decide what to state.
 The resulting transformation is,
-\begin{equation}\label{eq:massiveMasterMap}
+\begin{equation}
     \begin{split}
         &I_1^{(m_q,0,m_q)} = -\frac14J_1^{(m_q,0,m_q)},\\
         &I_2^{(m_q,0,m_q)} = -\frac14\!\left(aJ_1^{(m_q,0,m_q)}+bJ_2^{(m_q,0,m_q)}\right).
@@ -1655,7 +2180,7 @@ Eq.~\eqref{eq:thresholdr} they take the form,
 \subsection{Construction and Integration of the Massive $A_3^0$}
 
 The massive $A_3^0$ antenna can be constructed in \textit{AntCalc} using the same interface as
-in the massless case discussed in Subsection~\ref{sec:matDerivation}, with the quark mass specified
+in the massless case discussed in Section~\ref{sec:matDerivation}, with the quark mass specified
 through the option \texttt{quarkMass -> mQ}, where \texttt{mQ} corresponds to $m_q$. The
 unintegrated antenna is obtained as,
 
@@ -1684,10 +2209,7 @@ obtained with,
     \end{equation*}
 \end{mdframed}
 
-The massive IBP reduction described above was carried out with \textit{LiteRed2}, and its result, converted
-to the literature masters through Eq.~\eqref{eq:massiveMasterMap}, reproduces the analytic expression of
-Ref.~\cite{GehrmannDeRidder:2009fz}. In the default configuration, \textit{AntCalc} returns this result
-directly as a stored closed form, evaluated and expanded in $\epsilon$.
+% TODO[Yours] (Prof 21 Sep): Pires proposes here "Internally, this calculation performs the massive IBP reduction described above, maps the resulting J_1,J_2 basis onto the analytic master integrals I_1,I_2, and substitutes their expressions before expanding in epsilon." Not written: in AntCalc the default (non-forced) massive integrated route returns the encoded literature closed form after an invariant renaming (MassiveA30IntegratedRuntimeSeries, src/routes/massive_a30_integrated.wl:269; router notice integration_router.wl:788 "follows the derived MX30 master closure"); the LiteRed2 J-route runs only when forced (ReturnMasterCombination or $MassiveA30ForceIBPMasterRoute) and is used to fix the -1/4 conversion. Decide the wording, and whether "agrees with Ref. [25]" is an independent check.
 As for the other integrated antennae presented in this chapter, \textit{AntCalc} displays the
 result by default in units of the total invariant mass, $q^2=1$. Consequently, the threshold
 variable of Eq.~\eqref{eq:thresholdr} appears in the output as $r\to1-4m_q^2$. At the level of
@@ -1705,48 +2227,78 @@ massive antenna exhibits only a single infrared pole.
 
 \section{Summary and Validation of the Calculated Antennae}\label{sec:masterValidationOverview}
 
-This chapter has presented the construction and analytic integration of the massless quark--antiquark
-antenna functions implemented in \textit{AntCalc} through NNLO, together with an exploratory extension
-to the massive $A_3^0$ antenna. The purpose of this final section is to summarise the resulting antenna
-set, the integration methods required for each contribution, and the checks used to validate the
-results.
+This chapter has presented the construction and analytic integration of the massless
+quark--antiquark antenna functions implemented in \textit{AntCalc} through NNLO, together with
+an exploratory extension to the massive $A_3^0$ antenna. The purpose of this final section is to
+summarise the resulting antenna set, the integration methods required for each contribution, and
+the checks used to validate the results.
 
 The implemented routes span the different perturbative contributions discussed throughout this
-chapter: the NLO tree-level and virtual antennae $A_3^0$ and $A_2^1$; the NNLO double-virtual $A_2^2$
-set; the real--virtual $A_3^1$ set; and the double-real four-parton antennae $A_4^0$, $\tilde A_4^0$,
-$B_4^0$, and $C_4^0$. The exploratory massive $A_3^0$ route discussed in
+chapter: the NLO tree-level and virtual antennae $A_3^0$ and $A_2^1$; the NNLO double-virtual
+$A_2^2$ set; the real--virtual $A_3^1$ set; and the double-real four-parton antennae $A_4^0$,
+$\widetilde A_4^0$, $B_4^0$, and $C_4^0$. The exploratory massive $A_3^0$ route discussed in
 Section~\ref{sec:massiveA30} is included separately.
 
-Table~\ref{tab:masterValidation} summarises, for each antenna, the construction and integration method
-together with the corresponding validation evidence. It provides a compact overview of the
-calculations presented in this chapter and distinguishes the fully validated massless antenna set from
-the exploratory massive extension.
+Table~\ref{tab:masterValidationConstruction} summarises the construction and integration method
+associated with each antenna, while Table~\ref{tab:masterValidationStatus} collects the
+corresponding validation evidence. Together, these tables provide a compact overview of the
+calculations presented in this chapter and distinguish the fully validated massless antenna set
+from the exploratory massive extension.
 
-{\footnotesize
-\renewcommand{\arraystretch}{1.0}
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
 \begin{center}
-\begin{longtable}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4.0cm}|>{\raggedright\arraybackslash}p{1.9cm}|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{1.9cm}|}
-\caption{Construction, integration and validation overview of every antenna route implemented in \textit{AntCalc}. The API call of each route is \texttt{BuildAndIntegrateAntenna[type, multiplicity, loop order]}; only the arguments are shown. ``Not applicable'' marks routes with no real unresolved parton to take a soft/collinear limit of ($A_2^0$, $A_2^1$, $A_2^2$); ``Not performed'' marks the one remaining route, the virtual $A_3^1$ set, whose real-radiation limits would require one-loop soft-current and splitting-amplitude factorisation rather than the tree-level method used throughout this table --- its infrared structure is instead validated via the pole cancellation shown in Chapter~\ref{ch:validation}. The massive $A_3^0$ route is deliberately marked as less mature than the massless set: it agrees with the literature locally, but has not yet been checked against any global observable.}\label{tab:masterValidation}\label{tab:masterValidationConstruction}\label{tab:masterValidationStatus}\\
+\begin{longtable}{|p{1.9cm}|>{\raggedright\arraybackslash}p{2.3cm}|p{2.1cm}|p{3.0cm}|p{3.4cm}|}
 \hline
-\textbf{Route} & \textbf{Construction and integration} & \textbf{Literature (order)} & \textbf{Validation} & \textbf{Status} \\
+\textbf{Route} & \textbf{Process / Scope} & \textbf{API Call\footnote{All calls use \texttt{BuildAndIntegrateAntenna[type, multiplicity, loop order]}; only the arguments are shown here.}} & \textbf{Construction Check} & \textbf{Integration Route} \\
 \hline
 \endfirsthead
-\multicolumn{5}{l}{\textit{Table~\ref{tab:masterValidation} continued.}}\\
+\multicolumn{5}{l}{\textit{Table~\ref{tab:masterValidationConstruction} continued.}}\\
 \hline
-\textbf{Route} & \textbf{Construction and integration} & \textbf{Literature (order)} & \textbf{Validation} & \textbf{Status} \\
+\textbf{Route} & \textbf{Process / Scope} & \textbf{API Call} & \textbf{Construction Check} & \textbf{Integration Route} \\
 \hline
 \endhead
 \hline
+\caption{Construction and integration overview of every antenna route implemented in \textit{AntCalc}.}
+\label{tab:masterValidationConstruction}\\
 \endlastfoot
-$A_2^0$: $\gamma^*\to q\bar q$, LO; \texttt{[A,2,0]} & Self-interference, Born-normalised reference. Trivial (reference, $A_2^0\equiv1$). & --- (reference normalisation) & Local: not applicable. Global: LO normalisation of the $R$-ratio. & By construction \\ \hline
-$A_3^0$: $\gamma^*\to qg\bar q$, NLO real; \texttt{[A,3,0]} & Self-interference; colour-coefficient extraction; matched to by-hand derivation. IBP / \textit{LiteRed2}, \texttt{X30} basis; MI: $R_3$. & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Local: eikonal factor and AP splitting function reproduced. Global: feeds $r_\text{NLO}$. & Pass \\ \hline
-$A_2^1$: $\gamma^*\to q\bar q$, NLO virtual; \texttt{[A,2,1]} & Tree--loop interference; PaVe-reduced scalar extraction. PaVe / \textit{FeynHelpers}; MI: $B_0$, $C_0$. & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Local: not applicable. Global: feeds $r_\text{NLO}$. & Pass \\ \hline
-$A_3^1$ set ($A_3^1$, $\tilde A_3^1$, $\hat A_3^1$): $\gamma^*\to qg\bar q$, NNLO, one loop; \texttt{[A,3,1]} & Tree--loop interference; colour-coefficient extraction (leading/subleading/quark-loop). IBP / \textit{LiteRed2}, \texttt{A31} basis; build-side MI are PaVe scalars ($B_0,C_0,D_0$, Table~\ref{tab:MI}); integration MI: $V_{5,a}$, $V_{5,b}$, $V_8$. & \cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg} (NNLO) & Local: not performed. Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
-$A_2^2$ set ($A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$): $\gamma^*\to q\bar q$, NNLO, two loops; \texttt{[A,2,2]} & Two-loop tree interference and one-loop self-interference (two source contributions). IBP / \textit{LiteRed2}, \texttt{A22TwoLoopTree}/\allowbreak\texttt{A22OneLoopSelf} bases; MI: $A_{22,\text{LO}}$, $A_3$, $A_4$ (also $A_6$ for $\tilde A_2^2$). & \cite{Gehrmann-DeRidder:2004ttg} (NNLO; $A_2^2,\tilde A_2^2,\hat A_2^2$), \cite{Jakubcik:2022zdi} (NNLO; $\breve A_2^2$) & Local: not applicable. Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
-$A_4^0$, $\tilde A_4^0$: $\gamma^*\to qgg\bar q$, NNLO, double-real; \texttt{[A,4,0]} & Colour-ordered amplitude; colour-coefficient extraction. IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$ ($A_4^0$); $R_4$, $R_6$, $R_{8,a}$, $R_{8,b}$ ($\tilde A_4^0$). & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Local: both colour components validated: eikonal and AP/spin-correlated splitting functions for the leading term; dipole eikonal and absent $gg$ collinear singularity for the subleading term (Appendix~\ref{sec:localValidationExtra}). Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
-$B_4^0$: $\gamma^*\to q\bar q q^\prime\bar q^\prime$, NNLO; \texttt{[B,4,0]} & Sector self-interference (direct amplitude only). IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$. & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Local: single-collinear ($q^\prime\bar q^\prime\to g$), double-soft, and triple-collinear limits reproduced (Appendix~\ref{subsec:localValidationB40}). Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
-$C_4^0$: $\gamma^*\to q\bar q q\bar q$, NNLO; \texttt{[C,4,0]} & Sector symmetrised interference (direct and exchange). IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$, $R_{8,b}$. & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Local: single-collinear region confirmed regular; identical-flavour triple-collinear splitting function reproduced (Appendix~\ref{subsec:localValidationC40}). Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
-Massive $A_3^0$: $\gamma^*\to q(m_q)g\bar q(m_q)$, exploratory; \texttt{[A,3,0,\allowbreak quarkMass->\allowbreak mQ]} & Same route as massless $A_3^0$, with the \texttt{quarkMass} option. IBP / \textit{LiteRed2}, massive family (default call returns the resulting stored closed form); MI mapped from \textit{LiteRed2}'s $J_1$, $J_2$ to the literature $I_1^{(m_q,0,m_q)}$, $I_2^{(m_q,0,m_q)}$. & \cite{GehrmannDeRidder:2009fz} & Local: soft-gluon eikonal and quasi-collinear splitting function reproduced (Appendix~\ref{subsec:localValidationMassiveA30}). Global: not applicable (does not feed the massless $R$-ratio). & Literature agreement, incl. local soft/quasi-collinear limits; no global observable validation yet \\ \hline
+$A_2^0$ & $\gamma^*\to q\bar q$, LO & \texttt{[A,2,0]} & Self-interference, Born-normalised reference & Trivial (reference, $A_2^0\equiv1$) \\ \hline
+$A_3^0$ & $\gamma^*\to qg\bar q$, NLO real & \texttt{[A,3,0]} & Self-interference; colour-coefficient extraction; matched to by-hand derivation & IBP / \textit{LiteRed2}, \texttt{X30} basis; MI: $R_3$ \\ \hline
+$A_2^1$ & $\gamma^*\to q\bar q$, NLO virtual & \texttt{[A,2,1]} & Tree--loop interference; PaVe-reduced scalar extraction & PaVe / \textit{FeynHelpers}; MI: $B_0$, $C_0$ \\ \hline
+$A_3^1$ set ($A_3^1$, $\tilde A_3^1$, $\hat A_3^1$) & $\gamma^*\to qg\bar q$, NNLO, one loop & \texttt{[A,3,1]} & Tree--loop interference; colour-coefficient extraction (leading/subleading/quark-loop) & IBP / \textit{LiteRed2}, \texttt{A31} basis; build-side MI are PaVe scalars ($B_0,C_0,D_0$, Table~\ref{tab:MI}); integration MI: $V_{5,a}$, $V_{5,b}$, $V_8$ \\ \hline
+$A_2^2$ set ($A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$) & $\gamma^*\to q\bar q$, NNLO, two loops & \texttt{[A,2,2]} & Two-loop tree interference and one-loop self-interference (two source contributions) & IBP / \textit{LiteRed2}, \texttt{A22TwoLoopTree}/\allowbreak\texttt{A22OneLoopSelf} bases; MI: $A_{22,\text{LO}}$, $A_3$, $A_4$ (also $A_6$ for $\tilde A_2^2$) \\ \hline
+$A_4^0$, $\tilde A_4^0$ & $\gamma^*\to qgg\bar q$, NNLO, double-real & \texttt{[A,4,0]} & Colour-ordered amplitude; colour-coefficient extraction & IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$ ($A_4^0$); $R_4$, $R_6$, $R_{8,a}$, $R_{8,b}$ ($\tilde A_4^0$) \\ \hline
+$B_4^0$ & $\gamma^*\to q\bar q q^\prime\bar q^\prime$, NNLO & \texttt{[B,4,0]} & Sector self-interference (direct amplitude only) & IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$ \\ \hline
+$C_4^0$ & $\gamma^*\to q\bar q q\bar q$, NNLO & \texttt{[C,4,0]} & Sector symmetrised interference (direct and exchange) & IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$, $R_{8,b}$ \\ \hline
+Massive $A_3^0$ & $\gamma^*\to q(m_q)g\bar q(m_q)$, exploratory & \texttt{[A,3,0,\newline quarkMass->\newline mQ]} & Same route as massless $A_3^0$, with the \texttt{quarkMass} option & IBP / \textit{LiteRed2}, massive family; MI mapped from \textit{LiteRed2}'s $J_1$, $J_2$ to the literature $I_1^{(m_q,0,m_q)}$, $I_2^{(m_q,0,m_q)}$ \\ \hline
 \end{longtable}
 \end{center}
-}
+
+\begin{center}
+\begin{longtable}{|p{1.9cm}|p{2.8cm}|p{3.2cm}|p{2.4cm}|p{3.3cm}|}
+\hline
+\textbf{Route} & \textbf{Literature Reference (Order Checked)} & \textbf{Local Validation} & \textbf{Global Validation} & \textbf{Status} \\
+\hline
+\endfirsthead
+\multicolumn{5}{l}{\textit{Table~\ref{tab:masterValidationStatus} continued.}}\\
+\hline
+\textbf{Route} & \textbf{Literature Reference (Order Checked)} & \textbf{Local Validation} & \textbf{Global Validation} & \textbf{Status} \\
+\hline
+\endhead
+\hline
+\caption{Validation evidence and status of every antenna route implemented in \textit{AntCalc}. ``Not applicable'' marks routes with no real unresolved parton to take a soft/collinear limit of ($A_2^0$, $A_2^1$, $A_2^2$); ``Not performed'' marks the one remaining route, the virtual $A_3^1$ set, whose real-radiation limits would require one-loop soft-current and splitting-amplitude factorisation rather than the tree-level method used throughout this table --- its infrared structure is instead validated via the pole cancellation shown in Chapter~\ref{ch:validation}. The massive $A_3^0$ route is deliberately marked as less mature than the massless set: it agrees with the literature locally, but has not yet been checked against any global observable.}
+\label{tab:masterValidationStatus}\\
+\endlastfoot
+$A_2^0$ & --- (reference normalisation) & Not applicable & LO normalisation of the $R$-ratio & By construction \\ \hline
+$A_3^0$ & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Eikonal factor and AP splitting function reproduced & Feeds $r_\text{NLO}$ & Pass \\ \hline
+$A_2^1$ & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Not applicable & Feeds $r_\text{NLO}$ & Pass \\ \hline
+$A_3^1$ set & \cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg} (NNLO) & Not performed & Feeds $r_\text{NNLO}$ & Pass \\ \hline
+$A_2^2, \tilde A_2^2, \hat A_2^2$ & \cite{Gehrmann-DeRidder:2004ttg} (NNLO) & Not applicable & Feeds $r_\text{NNLO}$ & Pass \\ \hline
+$\breve A_2^2$ & \cite{Jakubcik:2022zdi} (NNLO) & Not applicable & Feeds $r_\text{NNLO}$ & Pass \\ \hline
+$A_4^0$, $\tilde A_4^0$ & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Both colour components validated: eikonal and AP/spin-correlated splitting functions for the leading term; dipole eikonal and absent $gg$ collinear singularity for the subleading term (Appendix~\ref{sec:localValidationExtra}) & Feeds $r_\text{NNLO}$ & Pass \\ \hline
+$B_4^0$ & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Single-collinear ($q^\prime\bar q^\prime\to g$), double-soft, and triple-collinear limits reproduced (Appendix~\ref{subsec:localValidationB40}) & Feeds $r_\text{NNLO}$ & Pass \\ \hline
+$C_4^0$ & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Single-collinear region confirmed regular; identical-flavour triple-collinear splitting function reproduced (Appendix~\ref{subsec:localValidationC40}) & Feeds $r_\text{NNLO}$ & Pass \\ \hline
+Massive $A_3^0$ & \cite{GehrmannDeRidder:2009fz} & Soft-gluon eikonal and quasi-collinear splitting function reproduced (Appendix~\ref{subsec:localValidationMassiveA30}) & Not applicable (does not feed the massless $R$-ratio) & Literature agreement, incl. local soft/quasi-collinear limits; no global observable validation yet \\ \hline
+\end{longtable}
+
+\end{center}

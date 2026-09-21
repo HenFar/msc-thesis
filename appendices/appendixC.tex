@@ -1,0 +1,573 @@
+\chapter{Master Integrals}\label{ap:masterIntegrals}
+
+This appendix collects the definitions and the analytic evaluation of the master integrals that appear
+in the integrated antenna functions of Chapter~\ref{ch:workedexample}, organised by antenna family:
+the two-loop $A$-type integrals of the $A_2^2$ set, the one-loop phase-space $V$-type integrals of the
+$A_3^1$ set, and the four-particle phase-space $R$-type integrals of the four-parton antennae. The
+only massless master integral treated in the main text is $R_3$, which is needed for the worked
+example of Subsection~\ref{sec:matDerivation}, and the massive master integrals are presented together
+with the massive $A_3^0$ antenna in Section~\ref{sec:massiveA30}. The notation for the phase-space
+measures and for the normalisation factors $S_\Gamma$ and $S_{\Gamma,2}$ is collected in
+Section~\ref{sec:MInotation}, and the scalar one-loop functions $B_0$, $C_0$ and $D_0$
+are discussed in Appendix~\ref{subsec:PaVe}. The derivation of $R_{8,a}$, the most involved of the
+massless master integrals, is given in full detail in Section~\ref{sec:MIfourParton} as an example of
+the method used for the others.
+
+\begin{table}[h!]
+\footnotesize
+\centering
+\caption{Overview of the master integrals used in the build- and integration-stage by each antenna type \cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276}. The entries marked $^\dagger$ arise only from the $A_2^1$ ultraviolet counterterm attached at the public build boundary; the two-loop source itself is reduced by IBP to the $A$-type masters.}
+\renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|c|c|c|} 
+   \hline
+   \textbf{Antenna type(s)} & \textbf{Build-Side MI} & \textbf{Integration-Side MI} \\ 
+   \hline
+   $A_2^0$ & -- & -- \\ \hline
+   $A_3^0$ & -- & $R_3$ \\ \hline
+   $A_4^0$, $\tilde A_4^0$, $B_4^0$, $C_4^0$ & -- & $R_4$, $R_6$, $R_{8,a}$, $R_{8,b}$ \\ \hline
+   $A_2^1$ & -- & $B_0$, $C_0$ \\ \hline
+   $A_3^1$, $\tilde A_3^1$, $\hat A_3^1$ & $B_0$, $C_0$, $D_0$ & $V_{5,a}$, $V_{5,b}$, $V_8$ \\ \hline
+   $A_2^2$ & $A_{22,\text{LO}}$, $A_3$, $A_4$, $B_0^\dagger$, $C_0^\dagger$ & $A_{22,\text{LO}}$, $A_3$, $A_4$ \\ \hline
+   $\tilde A_2^2$ & $A_{22,\text{LO}}$, $A_3$, $A_4$, $A_6$ & $A_{22,\text{LO}}$, $A_3$, $A_4, A_6$ \\ \hline
+   $\hat A_2^2$ & $A_4$, $B_0^\dagger$, $C_0^\dagger$ & $A_4$ \\ \hline
+   $\breve A_2^2$ & $A_{22,\text{LO}}$ & $A_{22,\text{LO}}$ \\ \hline
+  \end{tabular}
+   
+\label{tab:MI}
+\end{table}
+
+\section{Phase-Space Notation and Normalisation}\label{sec:MInotation}
+
+The master integrals obtained through IBP reduction are associated with different phase spaces,
+depending on the final-state multiplicity of the corresponding antenna. These phase spaces can be
+parametrised in terms of the appropriate independent Mandelstam invariants. To simplify the notation
+for the corresponding integration measures, we introduce the following shorthand definitions:
+\begin{equation}
+    \begin{split}
+        &s_{12}=s_{12},\quad d\mathcal S_2 = ds_{12}\\
+        &s_{123} = s_{12}+s_{13}+s_{23},\quad d\mathcal S_3 = ds_{12}ds_{13}ds_{23}\\
+        &s_{1234} = s_{12}+s_{13}+s_{14}+s_{23}+s_{24}+s_{34},\quad d\mathcal S_4 = ds_{12}ds_{13}ds_{14}ds_{23}ds_{24}ds_{34}.
+    \end{split}
+\end{equation}
+Using this notation, the $d$-dimensional differential phase-space measures can be written as
+\cite{GehrmannDeRidder0311276,Anastasiou:2002yz},
+\begin{equation}\label{eq:phaseSpaces}
+    \begin{split}
+        &d\Phi_2 = (2\pi)^{2-d}s_{12}^{\frac{d-4}{2}}2^{1-d}d\Omega_{d-1}d\mathcal S_2\delta\!\left(q^2-s_{12}\right)\\
+        &d\Phi_3 = (2\pi)^{3-2d}2^{-1-d}\!\left(q^2\right)^{\frac{2-d}{2}}(s_{12}s_{13}s_{23})^{\frac{d-4}{2}}d\Omega_{d-1}d\Omega_{d-2}d\mathcal S_3\delta\!\left(q^2-s_{123}\right)\\
+        &\begin{split}
+            d\Phi_4 = (2\pi)^{4-3d}\!\left(q^2\right)^{\frac{2-d}{2}}2^{1-2d}&(-\Delta_4)^{\frac{d-5}{2}}\Theta(-\Delta_4)\\ &d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}d\mathcal S_4\delta\!\left(q^2-s_{1234}\right).
+         \end{split}
+    \end{split}
+\end{equation}
+For the four-particle phase space, $\Delta_4$ denotes the Gram determinant, which can be expressed in terms of the Källén function as
+\cite{GehrmannDeRidder0311276,Anastasiou:2002yz},
+\begin{equation}
+    \Delta_4=\lambda(s_{12}s_{34}, s_{13}s_{24}, s_{14}s_{23}),\quad \lambda(x, y, z) = x^2+y^2+z^2-2(xy+xz+yz).
+\end{equation}
+The exponent of $q^2$ in $d\Phi_4$ is fixed by dimensional analysis: a four-particle phase space has mass
+dimension $3d-8$, so, with $\Delta_4$ as defined above, the prefactor must be $\left(q^2\right)^{\frac{2-d}{2}}$,
+as for $d\Phi_3$. Equation~(A.5) of Ref.~\cite{GehrmannDeRidder0311276} prints the exponent $3-\frac d2$,
+which is not consistent with the dimension of $\Delta_4$ as defined here.
+The factor $\Theta(-\Delta_4)$, where $\Theta$ is the Heaviside step function, restricts the integration
+to the physical region of the four-particle phase space. The angular factors in
+Eq.~\eqref{eq:phaseSpaces} are written in terms of $d\Omega_n$, the solid-angle element on the unit
+$(n-1)$-sphere, with
+\begin{equation}
+    \Omega_n=\int d\Omega_n=\frac{2\pi^{\frac n2}}{\Gamma(n/2)}.
+\end{equation}
+
+The master integrals are expressed using normalisation factors that collect common
+dimensional-regularisation and phase-space factors. We define
+\cite{Gehrmann-DeRidder:2004ttg,GehrmannDeRidder0311276},
+\begin{equation}
+    S_\Gamma = \left(\frac{(4\pi)^\epsilon}{16\pi^2\Gamma(1-\epsilon)}\right)^2.\label{eq:SGamma}
+\end{equation}
+For phase-space master integrals, it is also convenient to include the integrated two-particle
+phase-space volume $P_2$ in the normalisation, defining
+\begin{equation}
+    S_{\Gamma,2} = P_2 S_\Gamma,\quad P_2 = \int d\Phi_2 = \frac{2^{-3+2\epsilon}\pi^{-1+\epsilon}\Gamma(1-\epsilon)}{\Gamma(2-2\epsilon)}\!\left(q^2\right)^{-\epsilon}.
+\end{equation}
+
+\section{$A$-Type Integrals of the $A_2^2$ Set}\label{sec:MIA22}
+
+\subsection{The $A_{22,\text{LO}}$ Integral}
+
+The first master integral required for the $A_2^2$ antenna set is $A_{22,\mathrm{LO}}$, which corresponds
+to the product of two massless one-loop bubble integrals. In contrast to the phase-space master
+integrals encountered in the integration of real-radiation antennae, $A_{22,\mathrm{LO}}$ is a purely
+virtual two-loop integral involving two independent loop momenta. Defining
+\begin{equation*}
+    q=k_1+k_2,\qquad q^2=s_{12},
+\end{equation*}
+where $k_1$ and $k_2$ are the momenta of the final-state quark and antiquark, respectively, the
+integral is given by \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        A_{22,\text{LO}} &= \int\frac{d^dp}{(2\pi)^d}\int\frac{d^d\ell}{(2\pi)^d}\frac1{p^2(p-k_1-k_2)^2\ell^2(\ell-k_1-k_2)^2}\\
+                         &= -\frac{\mu^{-4\epsilon}}{\left(16\pi^2\right)^2}\Big[B_0\!\left(q^2;0,0\right)\Big]^2\\
+                         &= S_\Gamma\!\left(-q^2\right)^{-2\epsilon}\frac{\Gamma^2(1+\epsilon)\Gamma^6(1-\epsilon)}{\Gamma^2(2-2\epsilon)}\!\left(-\frac1{\epsilon^2}\right)\\
+                         &= S_\Gamma\!\left(-q^2\right)^{-2\epsilon}\!\left[-\frac1{\epsilon^2}-\frac4\epsilon-12+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
+
+Since the propagators depending on $p$ and $\ell$ are independent, the integral factorises into the
+product of two identical massless one-loop bubble integrals. It can therefore be written in terms of
+the scalar two-point function $B_0(q^2;0,0)$.
+
+\subsection{The $A_3$ Integral}
+
+The $A_3$ master integral is a massless two-loop integral containing three propagators. It is defined
+as \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    A_3 = \int \frac{d^dp}{(2\pi)^d}\int\frac{d^d\ell}{(2\pi)^d}\frac1{p^2\ell^2(p-\ell-k_1-k_2)^2}.
+\end{equation}
+Unlike $A_{22,\mathrm{LO}}$, the two loop integrations do not factorise, since the third propagator
+depends on both loop momenta. Performing the $\ell$-integration first gives a massless one-loop
+bubble, so that,
+\begin{equation}
+    A_3 = \int \frac{d^dp}{(2\pi)^d}\frac1{p^2}B_0\!\left((p-k_1-k_2)^2;0,0\right).
+\end{equation}
+Substituting the analytic expression for the massless $B_0$ function and carrying out the remaining
+$p$-integration gives
+\begin{equation}
+    A_3 = S_\Gamma\!\left(-q^2\right)^{1-2\epsilon}\frac{\Gamma(1+2\epsilon)\Gamma^5(1-\epsilon)}{\Gamma(3-3\epsilon)}\!\left(-\frac{1}{2(1-2\epsilon)\epsilon}\right),
+\end{equation}
+which can be expanded around $\epsilon=0$ as
+\begin{equation}
+    A_3 = S_\Gamma\!\left(-q^2\right)^{1-2\epsilon}\!\left[-\frac1{4\epsilon}-\frac{13}8+\mathcal O(\epsilon)\right].
+\end{equation}
+
+\subsection{The $A_4$ Integral}\label{subsubsec:A4}
+
+The $A_4$ master integral is a massless two-loop integral containing four propagators,
+\begin{equation}
+    A_4 = \int \frac{d^dp}{(2\pi)^d}\int\frac{d^d\ell}{(2\pi)^d}\frac1{p^2\ell^2(p-k_1-k_2)^2(p-\ell-k_1)^2}.
+\end{equation}
+As in the $A_3$ integral, the two loop momenta are coupled and the integral does not factorise into a
+product of independent one-loop integrals. The $\ell$-integration can, however, be performed first.
+The two propagators depending on $\ell$,
+\begin{equation}
+    \frac1{\ell^2(p-\ell-k_1)^2},
+\end{equation}
+form a massless one-loop bubble with external momentum $p-k_1$. Hence,
+\begin{equation}
+    A_4 = \int\frac{d^dp}{(2\pi)^d}\frac1{p^2(p-k_1-k_2)^2}B_0\!\left((p-k_1)^2;0,0\right).
+\end{equation}
+Substituting the analytic expression for the massless $B_0$ function and evaluating the remaining
+$p$-integration gives the following result \cite{Gehrmann-DeRidder:2005btv}, expressed as a Laurent
+series in $\epsilon$:
+\begin{equation}
+    \begin{split}
+        A_4 &= S_\Gamma\!\left(-q^2\right)^{-2\epsilon}\frac{\Gamma(1-2\epsilon)\Gamma(1+\epsilon)\Gamma^4(1-\epsilon)\Gamma(1+2\epsilon)}{\Gamma(2-3\epsilon)}\!\left(-\frac1{2(1-2\epsilon)\epsilon^2}\right)\\
+            &= S_\Gamma\!\left(-q^2\right)^{-2\epsilon}\!\left[-\frac1{2\epsilon^2}-\frac5{2\epsilon}-\left(\frac{19}2+\frac{\pi^2}6\right)+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
+
+\subsection{The $A_6$ Integral}\label{subsubsec:A6}
+
+The final master integral required for the $A_2^2$ antenna set is $A_6$, a massless two-loop integral
+containing six propagators. It is defined as \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    A_6 = \int\frac{d^dp}{(2\pi)^d}\int\frac{d^d\ell}{(2\pi)^d}\frac1{p^2\ell^2(p-k_1-k_2)^2(p-\ell)^2(p-\ell-k_2)^2(\ell-k_1)^2}.
+\end{equation}
+In contrast to the preceding master integrals, neither loop integration reduces directly to a scalar
+one-loop function of the $B_0$, $C_0$, or $D_0$ type. The integral is the two-loop crossed triangle of
+the massless quark form factor. It is evaluated by expressing it as a Mellin--Barnes contour integral,
+evaluating the residues, and expanding as a Laurent series around $\epsilon=0$, which gives,
+\begin{equation}
+    \begin{split}
+        A_6 &= \frac{S_\Gamma\left(-q^2\right)^{-2-2\epsilon}}{(2\pi i)^2}\int_{-i\infty}^{i\infty}\int_{-i\infty}^{i\infty}dz_1dz_2\,\frac{\Gamma(-z_1)\Gamma(-z_2)\Gamma(2+2\epsilon+z_1+z_2)\Gamma^2(-\epsilon-z_1)\Gamma^2(-\epsilon-z_2)}{\Gamma(-2\epsilon-z_1-z_2)\Gamma(2+\epsilon+z_1+z_2)}\\
+            &= S_\Gamma\!\left(-q^2\right)^{-2-2\epsilon}\!\left[-\frac1{\epsilon^4}+\frac{5\pi^2}{6\epsilon^2}+\frac{27}{\epsilon}\zeta_3+\frac{23\pi^4}{36}+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
+This expansion agrees with that of the exact expression in $\epsilon$ given in
+Ref.~\cite{GehrmannDeRidder0507061}, which involves generalised hypergeometric functions of unit
+argument,
+\begin{equation}\label{eq:A6exact}
+    \begin{split}
+        A_6 = S_\Gamma\!\left(-q^2\right)^{-2-2\epsilon}\Bigg[
+        &-\frac{\Gamma^3(1-\epsilon)\Gamma(1+\epsilon)\Gamma^4(1-2\epsilon)\Gamma^3(1+2\epsilon)}{\epsilon^4\,\Gamma^2(1-4\epsilon)\Gamma(1+4\epsilon)}\\
+        &+\frac{\Gamma^4(1-\epsilon)\Gamma(1+\epsilon)\Gamma(1-2\epsilon)\Gamma(1+2\epsilon)}{2\epsilon^4\,\Gamma(1-3\epsilon)}\,{}_3F_2\!\left(1,-4\epsilon,-2\epsilon;1-3\epsilon,1-2\epsilon;1\right)\\
+        &-\frac{4\,\Gamma^4(1-\epsilon)\Gamma(1-2\epsilon)\Gamma(1+2\epsilon)}{\epsilon^2(1+\epsilon)(1+2\epsilon)\,\Gamma(1-4\epsilon)}\,{}_3F_2\!\left(1,1,1+2\epsilon;2+\epsilon,2+2\epsilon;1\right)\\
+        &-\frac{\Gamma^5(1-\epsilon)\Gamma(1+2\epsilon)}{2\epsilon^4\,\Gamma(1-3\epsilon)}\,{}_4F_3\!\left(1,1-\epsilon,-4\epsilon,-2\epsilon;1-3\epsilon,1-2\epsilon,1-2\epsilon;1\right)\Bigg].
+    \end{split}
+\end{equation}
+
+\section{$V$-Type Integrals of the $A_3^1$ Set}\label{sec:MIA31}
+
+The integration of the $A_3^1$ antenna set involves both the one-loop integration and
+the integration over the $1\to3$ antenna phase space. After applying the IBP reduction
+described in Chapter~\ref{ch:packageframework}, the leading- and subleading-colour
+contributions are expressed in terms of the master integrals $V_{5,a}$, $V_{5,b}$, and
+$V_8$. These integrals therefore combine loop propagators with the three-particle
+phase-space integration and constitute the master-integral basis required for the
+real--virtual antenna contributions considered in Subsections~\ref{subsec:A31lead}
+and~\ref{subsec:A31sub}. Only the real part of each of them is needed: the one-loop
+antennae are built from the real part of the tree--one-loop interference,
+$2\operatorname{Re}\!\left(\mathcal M^{0\,\dagger}\mathcal M^1\right)$
+(Chapter~\ref{ch:physicsbackground}), so the imaginary parts that the loop integrals
+develop in the time-like region $q^2>0$ do not contribute.
+
+\subsection{The $V_{5,a}$ Integral}
+
+The master integral $V_{5,a}$ consists of a massless one-loop bubble integrated over the
+three-particle phase space. Denoting the momenta of the final-state quark, antiquark, and
+gluon by $k_1$, $k_2$, and $k_3$, respectively, their total momentum is
+\begin{equation*}
+    q=k_1+k_2+k_3,\qquad q^2=s_{12}+s_{13}+s_{23}.
+\end{equation*}
+The three final-state momenta are massless, $k_i^2=0$, while $q^2>0$ is the invariant mass
+squared of the antenna system. The master integral is defined as
+\begin{equation}
+    \begin{split}
+        V_{5,a} &= \operatorname{Re}\!\left[-i\int d\Phi_3\int\frac{d^dp}{(2\pi)^d}\frac1{p^2(p-k_1-k_2-k_3)^2}\right]\\
+                &= \operatorname{Re}\!\left[\int d\Phi_3\,B_0\!\left(q^2;0,0\right)\right].
+    \end{split}
+\end{equation}
+Since the scalar function $B_0\!\left(q^2;0,0\right)$, discussed in
+Subsubsection~\ref{subsubsec:B0}, depends only on the fixed total invariant $q^2$, and not
+on the individual phase-space invariants, it can be taken outside the three-particle
+phase-space integration, which leaves the phase-space volume $R_3=\int d\Phi_3$ of
+Eq.~\eqref{eq:R3}. Hence this integral yields \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        V_{5,a} &= S_{\Gamma,2}\!\left(q^2\right)^{1-2\epsilon}\cos(\pi\epsilon)\!\left(-\frac1\epsilon\right)\frac{\Gamma^6(1-\epsilon)\Gamma(1+\epsilon)}{\Gamma(2-2\epsilon)\Gamma(3-3\epsilon)}\\
+                &= S_{\Gamma,2}\!\left(q^2\right)^{1-2\epsilon}\!\left[-\frac1{2\epsilon}-\frac{13}4+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
+
+\subsection{The $V_{5,b}$ Integral}
+
+The master integral $V_{5,b}$ has a structure similar to $V_{5,a}$, consisting of a massless
+one-loop bubble integrated over the three-particle phase space. The essential difference is
+that the external momentum of the bubble is now $k_1+k_3$, rather than the total antenna
+momentum $q$. It is therefore defined by,
+\begin{equation}
+    \begin{split}
+        V_{5,b} &= \operatorname{Re}\!\left[-i\int d\Phi_3\int\frac{d^dp}{(2\pi)^d}\frac1{p^2(p-k_1-k_3)^2}\right]\\
+                &= \operatorname{Re}\!\left[\int d\Phi_3\,B_0\!\left(s_{13};0,0\right)\right].
+    \end{split}
+\end{equation}
+Unlike $q^2$, which is fixed during the phase-space integration, $s_{13}$ varies over the
+three-particle phase space. Consequently, the scalar function $B_0\!\left(s_{13};0,0\right)$
+cannot be taken outside the phase-space integral, and $V_{5,b}$ does not factorise into the
+product of a scalar one-loop function and the phase-space volume $R_3$.
+
+Using the analytic expression for the massless scalar function $B_0\!\left(s_{13};0,0\right)$
+and performing the remaining three-particle phase-space integration gives
+\cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        V_{5,b} &= \operatorname{Re}\!\left[\int d\Phi_3\,B_0\!\left(s_{13};0,0\right)\right]\\
+                &= S_{\Gamma,2}\!\left(q^2\right)^{1-2\epsilon}\cos(\pi\epsilon)\!\left(-\frac1\epsilon\right)\frac{\Gamma^5(1-\epsilon)\Gamma(1-2\epsilon)\Gamma(1+\epsilon)}{\Gamma(2-2\epsilon)\Gamma(3-4\epsilon)}\\
+                &= S_{\Gamma,2}\!\left(q^2\right)^{1-2\epsilon}\!\left[-\frac1{2\epsilon}-4+\mathcal O(\epsilon)\right].
+    \end{split}
+\end{equation}
+
+\subsection{The $V_8$ Integral}\label{subsubsec:V8}
+
+The third master integral required for the $A_3^1$ antenna set is $V_8$. In contrast to
+$V_{5,a}$ and $V_{5,b}$, whose loop integrations correspond to scalar two-point functions,
+$V_8$ contains a massless one-loop scalar four-point integral integrated over the
+three-particle phase space. It is defined as \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        V_8 &= \operatorname{Re}\!\left[-i\int d\Phi_3\int\frac{d^dp}{(2\pi)^d}\frac1{p^2(p-k_1)^2(p-k_1-k_3)^2(p-k_1-k_2-k_3)^2}\right]\\
+            &= \operatorname{Re}\!\left[-i\int d\Phi_3\,\frac1{s_{12}}\operatorname{Box}(s_{13}, s_{23}, s_{12})\right].
+    \end{split}
+\end{equation}
+The loop integral in this definition is a massless scalar box integral. Using the scalar
+one-loop conventions introduced in Subsubsection~\ref{subsubsec:D0}, it may be written in
+terms of the $D_0$ function as
+\begin{equation}
+    V_8 = \left(\frac{(4\pi)^\epsilon\mu^{-2\epsilon}}{16\pi^2}\right)\frac{\Gamma^2(1-\epsilon)\Gamma(1+\epsilon)}{\Gamma(1-2\epsilon)}\int d\Phi_3\,\frac1{s_{12}}\operatorname{Re}\Big[D_0\!\left(0,0,0,q^2;s_{13},s_{23};0,0,0,0\right)\Big].
+\end{equation}
+Unlike $V_{5,a}$, the scalar box depends explicitly on the phase-space invariants $s_{12}$,
+$s_{13}$, and $s_{23}$. The loop integral therefore cannot be factorised from the
+three-particle phase-space integration. Performing the remaining phase-space integration and
+applying the normalisation introduced above gives \cite{Gehrmann-DeRidder:2005btv},
+\begin{equation}
+    \begin{split}
+        V_8 &= S_{\Gamma,2}\!\left(q^2\right)^{-2-2\epsilon}\Big[-\frac5{2\epsilon^4}+\frac{9\pi^2}{2\epsilon^2}+\frac{89\zeta_3}{\epsilon}+\frac{13\pi^4}{180}+\mathcal O(\epsilon)\Big].
+    \end{split}
+\end{equation}
+
+\section{$R$-Type Integrals of the Four-Parton Antennae}\label{sec:MIfourParton}
+
+The integration of the tree-level four-parton antennae considered in
+Subsections~\ref{subsec:A40}--\ref{subsec:C40} requires integration over the massless $1\to4$
+antenna phase space. After mapping the antenna functions onto the corresponding integral family
+and applying the IBP reduction described in Chapter~\ref{ch:packageframework}, the integrated
+antennae can be expressed in terms of a small set of master integrals, $R_4$, $R_6$,
+$R_{8,a}$, and $R_{8,b}$. Unlike the $V$-type master integrals encountered for the
+real--virtual $A_3^1$ antennae, these integrals contain no loop integration. They are integrals
+over the four-particle phase space, with additional propagator-like factors for $R_6$,
+$R_{8,a}$, and $R_{8,b}$. The simplest member, $R_4$, is the four-particle phase-space volume
+itself. The following subsections present their definitions and analytic evaluation.
+
+\subsection{The $R_4$ Integral}
+
+The simplest master integral in the four-parton basis is $R_4$, corresponding to the total
+massless four-particle phase-space volume,
+\begin{equation*}
+    R_4=\int d\Phi_4.
+\end{equation*}
+In $d=4-2\epsilon$ dimensions, the phase-space measure may be expressed in terms of the six
+two-particle invariants $s_{ij}=2k_i\cdot k_j$, subject to momentum conservation and the
+constraint imposed by the four-particle Gram determinant $\Delta_4$. This gives
+\begin{equation}
+    R_4 = (2\pi)^{4-3d}\!\left(q^2\right)^{\frac{2-d}{2}}2^{1-2d}\int d\mathcal S_4d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}\,(-\Delta_4)^{\frac{d-5}{2}}\Theta(-\Delta_4)\delta\!\left(q^2-\mathcal S_4\right).
+\end{equation}
+To evaluate $R_4$, the four-particle phase space is factorised into a two-particle phase space
+and a tripole phase-space factor,
+\begin{equation*}
+    d\Phi_4=d\Phi_2\,d\Phi_T,
+\end{equation*}
+where $d\Phi_2$ describes the reduced two-particle configuration obtained by clustering the
+momenta $p_1,p_3,p_4$ into the mapped radiator momentum $\tilde p_{134}$, with $\tilde p_2$
+denoting the corresponding mapped spectator momentum. The factor $d\Phi_T$ is the associated
+tripole phase-space measure and contains the remaining degrees of freedom required to resolve
+the original four-particle configuration. Following Ref.~\cite{GehrmannDeRidder0311276}, these
+degrees of freedom are parametrised by five dimensionless variables with support on the unit
+hypercube. We start by defining $y_{ij} = s_{ij}/q^2$ and $y_{ijk} = s_{ijk}/q^2$. Our five
+dimensionless variables become \cite{GehrmannDeRidder0311276}:
+\begin{itemize}
+    \item The rescaled invariant mass of the three-parton cluster, $y_{134} = \frac{s_{134}}{q^2}$;
+    \item The longitudinal momentum fraction $z_1 = \frac{p_3\cdot\tilde p_2}{\tilde p_{134}\cdot\tilde p_2}$, which parametrises the fraction associated with parton $3$, measured with respect to the mapped momenta $\tilde p_{134}$ and $\tilde p_2$;
+    \item The variable $t$, introduced through the second longitudinal momentum fraction $z_2 = (1-z_1)t = \frac{p_4\cdot\tilde p_2}{\tilde p_{134}\cdot\tilde p_2}$, which parametrises the momentum fraction associated with parton $4$ after the fraction $z_1$ carried by parton $3$ has been specified;
+    \item The variable $v$, introduced through the rescaled two-particle invariant $y_{14}=\frac{s_{14}}{q^2} = y_{134}(1-z_1)v$;
+    \item The variable $\chi$, which parametrises the allowed range of $y_{13}$, where $y_{13,a}$ and $y_{13,b}$ are the lower and upper boundaries determined by the Gram-determinant constraint as $y_{13} = (y_{13,b}-y_{13,a})\chi+y_{13,a}= \Delta y_{13}\chi+y_{13,a}$.
+\end{itemize}
+Performing the change of variables from the phase-space invariants to the five dimensionless
+variables $y_{134},z_1,t,v,\chi$, including the corresponding Jacobian, maps the physical
+integration region onto the unit hypercube $[0,1]^5$ and the master integral becomes
+\begin{equation}
+    \begin{split}
+        R_4 = P_2\frac{16^{-2}\pi^{-5+2\epsilon}}{\Gamma(1-2\epsilon)}\!\left(q^2\right)^{2-2\epsilon}\int_{[0,1]^5}dy_{134}dz_1dtdv&d\chi\,\Big[y_{134}(1-y_{134})(1-z_1)\Big]^{1-2\epsilon}\\
+                                                                                                                                                  &\Big[z_1t(1-t)v(1-v)\Big]^{-\epsilon}\Big[\chi(1-\chi)\Big]^{-\frac12-\epsilon}.
+    \end{split}
+\end{equation}
+A useful feature of this parametrisation is that the dependence on the five integration
+variables factorises into powers of $x$ and $1-x$. Each integration can therefore be evaluated
+using the Euler Beta function,
+\begin{equation*}
+    \int_0^1 dx\,x^{a-1}(1-x)^{b-1}=B(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}.
+\end{equation*}
+Performing these integrations and simplifying the resulting Gamma functions gives
+\cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276},
+\begin{equation}
+    \begin{split}
+        R_4 &= P_2\!\left(q^2\right)^{2-2\epsilon}\frac{2^{-11+8\epsilon}\pi^{-\frac72+2\epsilon}\Gamma^3(1-\epsilon)}{\Gamma(3-3\epsilon)\Gamma\!\left(\frac52-2\epsilon\right)}\\
+            &= S_{\Gamma,2}\!\left(q^2\right)^{2-2\epsilon}\frac{\Gamma^5(1-\epsilon)\Gamma(2-2\epsilon)}{\Gamma(3-3\epsilon)\Gamma(4-4\epsilon)}\\
+            &= S_{\Gamma,2}\!\left(q^2\right)^{2-2\epsilon}\Bigg[\frac1{12}+\frac{59}{72}\epsilon+\mathcal O\!\left(\epsilon^2\right)\Bigg].
+    \end{split}
+\end{equation}
+
+\subsection{The $R_6$ Integral}
+
+The second master integral required for the four-parton antennae is $R_6$, defined by
+\cite{GehrmannDeRidder0311276},
+\begin{equation}
+    \begin{split}
+        R_6 &= \int d\Phi_4\,\frac1{s_{134}s_{234}}\\
+            &= (2\pi)^{4-3d}\!\left(q^2\right)^{\frac{2-d}{2}}2^{1-2d}\int d\mathcal S_4d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}\,\frac{(-\Delta_4)^{\frac{d-5}{2}}}{s_{134}s_{234}}\Theta(-\Delta_4)\delta\!\left(q^2-\mathcal S_4\right).
+    \end{split}
+\end{equation}
+Unlike $R_4$, however, $R_6$ does not reduce to a product of elementary Beta-function integrals
+under the tripole change of variables introduced above. In particular, $s_{234}$ has a
+non-linear dependence on the tripole variables, preventing the factorisation of the integrand
+that made the direct evaluation of $R_4$ straightforward. Following
+Ref.~\cite{GehrmannDeRidder0311276}, $R_6$ is therefore evaluated indirectly using the optical
+theorem.
+
+The optical theorem relates the imaginary part of a forward-scattering integral to the sum over
+its possible unitarity cuts. In the present case, the relevant three-loop vacuum-polarisation
+integral $I_6$ admits cuts that can be expressed in terms of the four-particle phase-space
+integral $R_6$ and the lower-multiplicity contribution involving the two-loop integral $A_4$.
+With the conventions of Ref.~\cite{GehrmannDeRidder0311276}, this relation reads
+\begin{equation}
+    2\operatorname{Im}I_6 = -2P_2\operatorname{Re}A_4 + 2R_6.
+\end{equation}
+The required expressions for $I_6$ and $A_4$ are known analytically
+\cite{GehrmannDeRidder0311276}. In the conventions adopted here, they are
+\begin{equation}
+    \begin{split}
+        I_6 = \frac{(4\pi)^{3\epsilon}}{\left(16\pi^2\right)^3}&\frac{\Gamma^6(1-\epsilon)\Gamma^3(1+\epsilon)}{3\epsilon^3\Gamma^3(2-2\epsilon)}\!\left(-q^2\right)^{-3\epsilon}\\
+                                                                      &\Bigg[1+\epsilon+\epsilon^2+\epsilon^3(14\zeta_3-7)+\epsilon^4\left(-67+14\zeta_3+\frac{21\pi^4}{90}\right)+\mathcal O\!\left(\epsilon^5\right)\Bigg]
+    \end{split}
+\end{equation}
+\begin{equation}
+    \begin{split}
+        A_4 = \left(\frac{(4\pi)^\epsilon}{16\pi^2}\frac{\Gamma(1+\epsilon)\Gamma^2(1-\epsilon)}{\Gamma(1-2\epsilon)}\right)^2&\!\left(-q^2\right)^{-2\epsilon}\Bigg[-\frac1{2\epsilon^2}-\frac5{2\epsilon}-\left(\frac{19}2+\frac{\pi^2}6\right)\\
+                                                                                                                              &-\epsilon\left(\frac{65}2+\frac{5\pi^2}6-2\zeta_3\right)-\epsilon^2\left(\frac{211}2+\frac{19\pi^2}6-10\zeta_3\right)+\mathcal O\!\left(\epsilon^3\right)\Bigg].
+    \end{split}
+\end{equation}
+The two-loop master integral $A_4$ was introduced previously in Section~\ref{sec:MIA22}
+in the calculation of the two-parton NNLO antennae. Its appearance here illustrates that the
+same virtual integral enters the lower-multiplicity cut of the three-loop forward-scattering
+integral.
+
+Since the forward-scattering integral is evaluated in the time-like region $q^2>0$, the factors
+involving $(-q^2)$ must be analytically continued according to the Feynman $+i0$ prescription.
+In the convention of Ref.~\cite{GehrmannDeRidder0311276}, this gives
+\begin{equation*}
+    \left(-q^2-i0\right)^{-\epsilon}=\left(q^2\right)^{-\epsilon}e^{i\pi\epsilon}.
+\end{equation*}
+The real and imaginary parts required in the relation above can then be extracted from these
+phases. Substituting the real part of $A_4$ and the imaginary part of $I_6$, and denoting by
+$\mathcal A_4$ and $\mathcal I_6$ the $\epsilon$-series in square brackets in the expressions
+for $A_4$ and $I_6$ above, we solve for $R_6$ and obtain
+\begin{equation}
+    \begin{split}
+        R_6 &= S_{\Gamma,2}\!\left(q^2\right)^{-2\epsilon}\frac{\Gamma^6(1-\epsilon)\Gamma^2(1+\epsilon)}{6}\left(\frac{6\cos(2\pi\epsilon)}{\Gamma^2(1-2\epsilon)}\mathcal A_4+\frac{\Gamma(1-\epsilon)\Gamma(1+\epsilon)\sin(3\pi\epsilon)}{\epsilon^3\pi\Gamma^2(2-2\epsilon)}\mathcal I_6\right)\\
+            &= S_{\Gamma,2}\!\left(q^2\right)^{-2\epsilon}\Bigg[-1+\frac{\pi^2}6+\epsilon\!\left(-12+\frac{5\pi^2}6+9\zeta_3\right)+\mathcal O\!\left(\epsilon^2\right)\Bigg].
+    \end{split}
+\end{equation}
+
+\subsection{The $R_{8,a}$ Integral}\label{subsec:R8aMI}
+
+The master integral $R_{8,a}$ is the first of the two four-particle phase-space master integrals
+containing four invariant denominators. It is defined as \cite{GehrmannDeRidder0311276},
+\begin{equation}
+    \begin{split}
+        R_{8,a} &= \int d\Phi_4\,\frac1{s_{13}s_{23}s_{14}s_{24}}\\
+                &= (2\pi)^{4-3d}\!\left(q^2\right)^{\frac{2-d}{2}}2^{1-2d}\int d\mathcal S_4d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}\frac{(-\Delta_4)^{\frac{d-5}{2}}}{s_{13}s_{23}s_{14}s_{24}}\Theta(-\Delta_4)\,\delta\!\left(q^2-\mathcal S_4\right)\\
+                &   \begin{split}
+                        = P_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{16^{-2+\epsilon}\pi^{-5+2\epsilon}}{\Gamma(1-2\epsilon)}\int_{[0,1]^5} dy_{134}dz_1dtdvd\chi\\
+                                                              &\Big[(1-y_{134})(1-z_1)\Big]^{-1-2\epsilon}\Big[tvz_1^{-\epsilon}(\Delta y_{13}\chi+y_{13,a})\Big]^{-1}\Big[\chi(1-\chi)\Big]^{-\frac12-\epsilon}.
+                    \end{split}
+    \end{split}
+\end{equation}
+
+In contrast to $R_4$, the resulting integrand does not factorise into independent Beta-function
+integrals. Its analytic evaluation instead proceeds through a sequence of integrations involving
+hypergeometric functions. Following Ref.~\cite{GehrmannDeRidder0311276}, we perform the
+integrations in the order,
+\begin{equation*}
+    \chi\to v\to y_{134}\to t\to z_1,
+\end{equation*}
+with an auxiliary integration variable $u\in[0,1]$ introduced at a later stage through an Euler
+integral representation of the hypergeometric function.
+
+We begin with the $\chi$ integration. The dependence on $\chi$ occurs through the
+Gram-determinant factor and the invariant $y_{13}=y_{13,a}+\Delta y_{13}\chi$, leading to,
+\begin{equation}
+    I_\chi=\int_0^1 d\chi\,\Big[\chi(1-\chi)\Big]^{-\frac12-\epsilon}(\Delta y_{13}\chi+y_{13,a})^{-1}=\frac{\Delta y_{13}^{-2\epsilon}}{y_{13,a}}\frac{\Gamma^2\!\left(\frac12-\epsilon\right)}{\Gamma(1-2\epsilon)}{}_2F_1\!\left(1, \frac12-\epsilon; 1-2\epsilon; -\frac{\Delta y_{13}}{y_{13,a}}\right)
+\end{equation}
+where ${}_2F_1$ is the Gauss hypergeometric function. To simplify the argument of the
+hypergeometric function, we use the phase-space boundaries,
+$y_{13,(a,b)}=y_{134}(A\mp B)$, with
+\begin{equation*}
+    A=\sqrt{(1-t)(1-v)},\qquad B=\sqrt{z_1tv},\qquad Z=-\frac BA.
+\end{equation*}
+These definitions imply,
+\begin{equation}
+    -\frac{\Delta y_{13}}{y_{13,a}} = \frac{4Z}{(1+Z)^2},\quad (1+Z)^2 = \frac{y_{13,a}}{y_{134}A^2}.
+\end{equation}
+The quadratic transformation of the Gauss hypergeometric function \cite{Erdelyi:1953HTF},
+\begin{equation}
+    {}_2F_1\!\left(1,b;2b;\frac{4Z}{(1+Z)^2}\right) = (1+Z)^2{}_2F_1\!\left(1,\frac32-b;b+\frac12;Z^2\right)
+\end{equation}
+together with
+\begin{equation}
+    16^\epsilon\Delta y_{13}^{-2\epsilon}=\Big[t(1-t)v(1-v)y_{134}^2z_1\Big]^{-\epsilon},
+\end{equation}
+allows the $\chi$-integrated expression to be written as,
+\begin{equation}
+    I_\chi = \frac{\pi\Gamma(1-2\epsilon)}{y_{134}\Gamma^2(1-\epsilon)}\!\left(tvy_{134}^2z_1\right)^{-\epsilon}\Big[(1-t)(1-v)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,1+\epsilon;1-\epsilon;\frac{z_1tv}{(1-t)(1-v)}\right).
+\end{equation}
+
+Substituting this expression into the phase-space integral eliminates $\chi$ and reduces
+$R_{8,a}$ to a four-dimensional integral,
+\begin{equation}
+    \begin{split}
+        R_{8,a} = P_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{16^{-2+\epsilon}\pi^{-4+2\epsilon}}{\Gamma^2(1-\epsilon)}\int_{[0,1]^4}dy_{134}dz_1dtdv\,\Big[y_{134}(1-y_{134})z_1(1-z_1)\Big]^{-1-2\epsilon}\\
+                                                      &\Big[t(1-t)v(1-v)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,1+\epsilon;1-\epsilon;\frac{z_1tv}{(1-t)(1-v)}\right).
+    \end{split}
+\end{equation}
+
+The $v$ integration is performed by expanding the Gauss hypergeometric function in its defining
+series and integrating term by term. This yields,
+\begin{equation}
+    \begin{split}
+        I_v &= \int_0^1 dv \Big[v(1-v)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,1+\epsilon;1-\epsilon;\frac{z_1tv}{(1-t)(1-v)}\right)\\
+            &= \sum_{n\geq0}\frac{(1+\epsilon)_n}{(1-\epsilon)_n}\!\left(\frac{z_1t}{1-t}\right)^n\frac{\Gamma(-\epsilon-n)\Gamma(-\epsilon+n)}{\Gamma(-2\epsilon)}\\
+            &= -\frac{2\Gamma^2(1-\epsilon)}{\epsilon\Gamma(1-2\epsilon)}{}_2F_1\!\left(1,-\epsilon;1-\epsilon;-\frac{z_1t}{1-t}\right).
+    \end{split}
+\end{equation}
+
+After substituting $I_v$, the $y_{134}$ dependence factorises and can be integrated directly,
+leaving a two-dimensional integral over $z_1$ and $t$,
+\begin{equation}
+    \begin{split}
+        R_{8,a} = -P_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{2^{-7+8\epsilon}\pi^{-\frac72+2\epsilon}}{\epsilon^2\Gamma\!\left(\frac12-2\epsilon\right)}\int_{[0,1]^2}dz_1dt\,(1-z_1)^{-1-2\epsilon}\\
+                                                       &\Big[z_1t(1-t)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,-\epsilon;1-\epsilon;-\frac{z_1t}{1-t}\right).
+    \end{split}
+\end{equation}
+
+To perform the remaining integrations, the hypergeometric function is represented through its
+Euler integral,
+\begin{equation}
+    {}_2F_1\!\left(1,-\epsilon;1-\epsilon;-\frac{z_1t}{1-t}\right) = -\epsilon\int_0^1 du\,u^{-1-\epsilon}\!\left[1+\frac{uz_1t}{1-t}\right]^{-1}
+\end{equation}
+The auxiliary variable $u$ therefore converts the remaining hypergeometric dependence into an
+additional ordinary integral over the unit interval. The remaining $t$, $u$, and $z_1$
+integrations can then be performed sequentially. After simplifying the resulting Gamma and
+generalised hypergeometric functions, one obtains,
+\begin{equation}
+    \begin{split}
+        R_{8,a} = P_2\!\left(q^2\right)^{-2-2\epsilon}&2^{-7+4\epsilon}\pi^{-3+2\epsilon}\csc(\pi\epsilon)\Gamma(-2\epsilon)\Bigg[\frac{2^{8\epsilon}\pi}{\epsilon^2\Gamma^2\!\left(\frac12-2\epsilon\right)}{}_3F_2\!\left(\begin{array}{c} -2\epsilon, -2\epsilon, -2\epsilon \\ 1-2\epsilon, -4\epsilon \end{array};1\right)-\\
+                                                      &-\frac{2\Gamma^3(-\epsilon)}{\Gamma(1-4\epsilon)\Gamma(1-\epsilon)\Gamma(1+\epsilon)\Gamma(-3\epsilon)}{}_4F_3\!\left(\begin{array}{c} 1, -\epsilon, -\epsilon, -\epsilon \\ 1-\epsilon, 1+\epsilon, -3\epsilon \end{array};1\right)\Bigg]
+    \end{split}
+\end{equation}
+Rewriting the result in the normalisation used throughout this chapter and expanding about
+$\epsilon=0$ gives \cite{GehrmannDeRidder0311276,TM_JoanaReis}, 
+\begin{equation}
+    \begin{split}
+        R_{8,a} = &S_{\Gamma,2}\!\left(q^2\right)^{-2-2\epsilon}\Bigg[\frac6{\epsilon^4}\frac{\Gamma^5(1-\epsilon)\Gamma(1-2\epsilon)}{\Gamma(1-3\epsilon)\Gamma(1-4\epsilon)}{}_4F_3\!\left(\begin{array}{c} 1, -\epsilon, -\epsilon, -\epsilon \\ 1-\epsilon, 1+\epsilon, -3\epsilon \end{array};1\right)-\\
+                  &-\frac1{\epsilon^4}\frac{\Gamma^3(1-\epsilon)\Gamma(1+\epsilon)\Gamma^3(1-2\epsilon)}{\Gamma^2(1-4\epsilon)}{}_3F_2\!\left(\begin{array}{c} -2\epsilon, -2\epsilon, -2\epsilon \\ -4\epsilon, 1-2\epsilon \end{array};1\right)\Bigg]\\
+                  &=S_{\Gamma,2}\!\left(q^2\right)^{-2-2\epsilon}\Bigg[\frac5{\epsilon^4}-\frac{20\pi^2}{3\epsilon^2}-\frac{126\zeta_3}{\epsilon}+\frac{7\pi^4}{18}+\mathcal O(\epsilon)\Bigg].
+    \end{split}
+\end{equation}
+
+\subsection{The $R_{8,b}$ Integral}
+
+The second four-denominator master integral is $R_{8,b}$, defined as
+\cite{GehrmannDeRidder0311276},
+\begin{equation}
+    R_{8,b} = \int d\Phi_4\,\frac1{s_{13}s_{134}s_{23}s_{234}}.
+\end{equation}
+As in the case of $R_6$, the presence of $s_{234}$ prevents the tripole change of variables from
+reducing the integral to a convenient factorised form. Following
+Ref.~\cite{GehrmannDeRidder0311276}, $R_{8,b}$ is therefore determined indirectly by applying
+the optical theorem to the corresponding three-loop vacuum-polarisation integral $I_8$. The
+different unitarity cuts of $I_8$ generate contributions involving the two-loop virtual master
+integral $A_6$, the real--virtual master integral $V_8$, and the two four-particle phase-space
+master integrals $R_{8,a}$ and $R_{8,b}$. With the conventions of
+Ref.~\cite{GehrmannDeRidder0311276}, their relation is
+\begin{equation}
+    2\operatorname{Im}I_8 = -2P_2\operatorname{Re}A_6+4\operatorname{Re}V_8+R_{8,a}+4R_{8,b}.
+\end{equation}
+The required three-loop integral $I_8$ is known analytically
+\cite{GehrmannDeRidder0311276}, while $A_6$ and $V_8$ were introduced previously in
+Sections~\ref{sec:MIA22} and~\ref{sec:MIA31}, respectively. Their relevant expressions
+are
+\begin{equation}
+    I_8 = S + \mathcal O(\epsilon^0),\quad \operatorname{Im}S = -\frac{13\pi^4}{90};
+\end{equation}
+\begin{equation}
+    V_8 = -i\int d\Phi_3\,\frac1{s_{12}}\operatorname{Box}(s_{13}, s_{23}, s_{12});
+\end{equation}
+\begin{equation}
+    A_6 = \left(\frac{(4\pi)^\epsilon}{16\pi^2}\frac{\Gamma(1+\epsilon)\Gamma^2(1-\epsilon)}{\Gamma(1-2\epsilon)}\right)^2\!\left(-q^2\right)^{-2-2\epsilon}\Bigg[-\frac1{\epsilon^4}+\frac{5\pi^2}{6\epsilon^2}+\frac{23\zeta_3}\epsilon+\frac{103\pi^4}{180}+\mathcal O(\epsilon)\Bigg].
+\end{equation}
+Solving the optical-theorem relation for $R_{8,b}$ gives,
+\begin{equation}
+    R_{8,b}=\frac14\left[2\operatorname{Im}I_8+2P_2\operatorname{Re}A_6-4\operatorname{Re}V_8-R_{8,a}\right].
+\end{equation}
+Substituting the corresponding $\epsilon$-expansions and rewriting the result in the
+$S_{\Gamma,2}$ normalisation used throughout this section yields \cite{GehrmannDeRidder0311276},
+\begin{equation}
+    R_{8,b} = S_{\Gamma,2}\!\left(q^2\right)^{-2-2\epsilon}\Bigg[\frac3{4\epsilon^4}-\frac{17\pi^2}{12\epsilon^2}-\frac{44\zeta_3}{\epsilon}-\frac{61\pi^4}{60}+\mathcal O(\epsilon)\Bigg].
+\end{equation}

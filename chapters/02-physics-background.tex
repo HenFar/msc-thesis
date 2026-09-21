@@ -240,8 +240,19 @@ associated with the soft behaviour of the parent gluon. These and the other
 unresolved limits relevant to this thesis are summarised in Table~\ref{tab:limits}.
 
 {
+    \footnotesize
     \renewcommand{\arraystretch}{1.3}
     \begin{longtable}{|c|c|c|}
+        \caption{\centering Infrared limits of the real-radiation matrix elements for
+        $\gamma^*\to q\bar q$ through NNLO, listed by final-state parton configuration.
+        Each configuration is colour-ordered, with the hard quark and antiquark first and
+        last; $p_i$ is the momentum of parton $i$, $\parallel$ denotes a collinear pair, and
+        $s_{i\ldots k}=(p_i+\ldots+p_k)^2$. Limits related by $q\leftrightarrow\bar q$ or by
+        gluon relabelling are not listed separately. The subtraction counterterm of
+        Eq.~\eqref{eq:subScheme} must reproduce the matrix element in each of these limits
+        \cite{Gehrmann-DeRidder:2005btv}. Complete analytic expressions for the universal
+        soft and collinear factors listed above are given in \cite{Gehrmann-DeRidder:2005btv},
+        Sections 8.1 and 8.2.2.}\label{tab:limits}\\
         \hline
         \textbf{Unresolved limit} & \textbf{Kinematic condition} & \textbf{Universal IR factor} \\
         \hline
@@ -253,17 +264,6 @@ unresolved limits relevant to this thesis are summarised in Table~\ref{tab:limit
         \hline
         \endfoot
         \hline
-        \caption{\centering Infrared limits of the real-radiation matrix elements for
-        $\gamma^*\to q\bar q$ through NNLO, listed by final-state parton configuration.
-        Each configuration is colour-ordered, with the hard quark and antiquark first and
-        last; $p_i$ is the momentum of parton $i$, $\parallel$ denotes a collinear pair, and
-        $s_{i\ldots k}=(p_i+\ldots+p_k)^2$. Limits related by $q\leftrightarrow\bar q$ or by
-        gluon relabelling are not listed separately. The subtraction counterterm of
-        Eq.~\eqref{eq:subScheme} must reproduce the matrix element in each of these limits
-        \cite{Gehrmann-DeRidder:2005btv}. Complete analytic expressions for the universal
-        soft and collinear factors listed above are given in \cite{Gehrmann-DeRidder:2005btv},
-        Sections 8.1 and 8.2.2.}
-        \label{tab:limits}\\
         \endlastfoot
         \multicolumn{3}{|c|}{$(1_q,\,3_g,\,2_{\bar q})$ --- NLO real radiation} \\
         \hline
@@ -620,7 +620,9 @@ colour connections associated with the unresolved partons are illustrated
 schematically in Fig.~\ref{fig:colourConnectionNNLOall}.
 
 \begin{table}[htbp]
+\footnotesize
     \centering
+\caption{\centering NNLO unresolved configurations and their matching subtraction term, part of the $d\sigma^S_\text{NNLO}$ and $d\sigma^T_\text{NNLO}$ subtraction counterterms.}
     % Left Table
     \begin{tabular}{|c|c|}
         \hline
@@ -635,7 +637,7 @@ schematically in Fig.~\ref{fig:colourConnectionNNLOall}.
         One of the partons becomes soft or collinear & $d\sigma^{T,b}$ \\ \hline
         Spurious poles introduced by the other two subterms & $d\sigma^{T,c}$ \\ \hline
     \end{tabular}
-    \caption{\centering NNLO unresolved configurations and their matching subtraction term, part of the $d\sigma^S_\text{NNLO}$ and $d\sigma^T_\text{NNLO}$ subtraction counterterms.}
+    
     \label{tab:counterterms}
 \end{table}
 
@@ -901,7 +903,11 @@ The antenna functions (and $q\bar q$ form factors) considered are organised by o
 loop number, and final state in Table~\ref{tab:antFamilies}.
 
 \begin{table}[h]
+\footnotesize
     \centering
+\caption{\centering Quark-antiquark antenna families used in this work, including 
+    the $q\bar q$ form factors \cite{Gehrmann-DeRidder:2005btv}. Final states are 
+    ordered with the two hard radiator listed first and last, following that paper's convention.}
     \renewcommand{\arraystretch}{1.3}
     \begin{tabular}{|c|c|c|c|}
         \hline
@@ -918,9 +924,7 @@ loop number, and final state in Table~\ref{tab:antFamilies}.
         $\gamma^*\to qq\bar q\bar q$ & $C_4^0$ & --- & --- \\
         \hline
     \end{tabular}
-    \caption{\centering Quark-antiquark antenna families used in this work, including 
-    the $q\bar q$ form factors \cite{Gehrmann-DeRidder:2005btv}. Final states are 
-    ordered with the two hard radiator listed first and last, following that paper's convention.}
+    
     \label{tab:antFamilies}
 \end{table}
 
@@ -1757,7 +1761,7 @@ inside $\mathcal I$, as \cite{GehrmannDeRidder0311276,Chetyrkin:1981qh},
 In dimensional regularisation,
 analytic continuation justifies the vanishing of the surface term at infinity,
 leaving an exact relation among regulated integrals\footnote{This method 
-is explored further and completely in Subsubsection~\ref{subsubsec:a30IBPExample}.}.
+is explored further and completely in Subsection~\ref{sec:matDerivation}.}.
 
 Expanding the derivative gives,
 \begin{equation}
@@ -1973,7 +1977,7 @@ which IBP is then able to reduce to the master basis, as \cite{Remiddi:1997ny},
 where $\vec M = (M_1,...,M_{N_\text{MI}})^\text T$ is the vector of masters and $A$ is a matrix of coefficient functions.
 Boundary conditions can then be used to determine the solution. The MI used 
 through this work and the methods used to compute them
-are discussed in further detail in Section~\ref{sec:masterresults}.
+are discussed in further detail in Appendix~\ref{ap:masterIntegrals}.
 
 Once the MI are evaluated, we expand them around $\epsilon = 0$, as a Laurent series
 \cite{GehrmannDeRidder0311276},

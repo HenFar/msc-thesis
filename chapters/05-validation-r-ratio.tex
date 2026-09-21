@@ -1,102 +1,92 @@
-\chapter{Global Validation: The Massless Hadronic R-Ratio}\label{ch:validation}
+\chapter{Global Validation: The Massless Hadronic \texorpdfstring{$R$}{R}-Ratio}\label{ch:validation}
 
-As mentioned in Chapter~\ref{ch:introduction}, the antenna functions that were computed
-using \textit{AntCalc} in the previous Chapter~\ref{ch:workedexample} now need to be globally
-validated. This validation is undertaken by the computation of the massless hadronic $R$-ratio
-up to NNLO. This observable is particularly useful for validating these antenna functions
-due to the fact that it is fully inclusive: it requires the entire antenna suite, whose poles
-cancel only in the inclusive sum, as discussed in Chapter~\ref{ch:physicsbackground}. Its
-result at NLO and NNLO is also known and has been computed and validated through methods
-other than Antenna Subtraction \cite{Dine:1979qh}.
+The antenna functions constructed and integrated in Chapter~\ref{ch:workedexample} are now
+subjected to a global validation through the calculation of the massless hadronic $R$-ratio up to
+NNLO. This fully inclusive observable provides a particularly stringent test of the antenna set,
+since the different real and virtual contributions enter at each perturbative order and their
+infrared poles must cancel in the inclusive sum, as discussed in
+Chapter~\ref{ch:physicsbackground}. The resulting finite NLO and NNLO coefficients can then be
+compared with the known $R$-ratio results obtained independently using methods other than antenna
+subtraction \cite{Dine:1979qh}.
 
-\section{R-Ratio Definition}
+\section{The Hadronic $R$-Ratio}\label{sec:rratioDef}
 
-The hadronic R-ratio is usually defined as the ratio of the total cross-section for $e^+e^-$
-annihilation into hadrons to the point-like cross-section for $e^+e^-\to\mu^+\mu^-$. It is
-mathematically described as follows,
+The hadronic $R$-ratio is defined as the ratio of the total cross section for electron--positron
+annihilation into hadrons to the point-like cross section for muon-pair production,
 \begin{equation}
     \begin{split}
-        R_\text{hadr} &= \frac{\sigma(e^+e^-\to\text{hadrons})}{\sigma(e^+e^-\to\mu^+\mu^-)}\\
+        R_\text{had} &= \frac{\sigma(e^+e^-\to\text{hadrons})}{\sigma(e^+e^-\to\mu^+\mu^-)}\\
           &= \frac{3q^2}{4\pi\alpha_\text{em}^2}\,\sigma(e^+e^-\to\text{hadrons}).
     \end{split}
 \end{equation}
-
-Looking closely, the $\sigma(e^+e^-\to\text{hadrons})$ term is what QCD predicts for
-$\gamma^*\to\text{hadrons}$, computed via the optical theorem \cite{GehrmannDeRidder0311276,Adler1974}.
-What makes the R-ratio a clean QCD observable, and a good benchmark for \textit{AntCalc}
-is that the ratio features terms for higher perturbative orders as a perturbative series in $\alpha_s$ \cite{Dine:1979qh},
+For massless quarks, the hadronic cross section can be related, through the optical theorem, to the
+imaginary part of the electromagnetic current correlator
+\cite{GehrmannDeRidder0311276,Adler1974}. Equivalently, its perturbative evaluation can be organised
+as an inclusive sum over the partonic final states produced by the virtual photon. This makes the
+$R$-ratio particularly well suited to the global validation performed in this chapter. At leading
+order, the hadronic $R$-ratio is \cite{Ellis:1996mzs},
 \begin{equation}
-    R_\text{hadr} = \left(c_\text{LO}+\frac{\alpha_s}{\pi}c_\text{NLO}+\left(\frac{\alpha_s}{\pi}\right)^2c_\text{NNLO}+\mathcal O\left(\alpha_s^3\right)\right)
+    R^{(0)} = N\sum_q e_q^2,
 \end{equation}
-here the perturbative coefficients, $c_\text{LO}$, $c_\text{NLO}$ and $c_\text{NNLO}$, respectively receive
-contributions from the multiparticle final states at the relative orders via their respective
-antennae, as described in Chapter~\ref{ch:physicsbackground}. For example,
-$A_3^0$ as described in Chapter~\ref{ch:workedexample} contributes to $c_\text{NLO}$ \cite{Gehrmann-DeRidder:2005btv}.
-Moreover, the leading-order term $R^{(0)}$ simply counts the number of quark colours and flavours
-weighted by their electric charges \cite{Ellis:1996mzs},
+where the sum runs over the active quark flavours and $e_q$ denotes the quark electric charge in
+units of the positron charge. It is convenient to factor out this Born-level contribution and define
 \begin{equation}
-    R^{(0)} = N_c\sum_q e_q^2
+    R_\text{had} = R^{(0)}R(\alpha_s),
 \end{equation}
-since $R_\text{hadr}=R^{(0)}\big(1+\mathcal O(\alpha_s)\big)=R^{(0)}R(\alpha_s)$.
+where the normalised ratio admits the perturbative expansion,
+\begin{equation}
+    R(\alpha_s) = 1 + \frac{\alpha_s}{2\pi}\,r_\text{NLO} + \left(\frac{\alpha_s}{2\pi}\right)^2 r_\text{NNLO} + \mathcal O\!\left(\alpha_s^3\right).
+\end{equation}
+At each perturbative order, the coefficients $r_\text{NLO}$ and $r_\text{NNLO}$ receive contributions
+from partonic final states of different multiplicities and loop orders. In the antenna formulation
+used in this work, these contributions are expressed in terms of the corresponding integrated antenna
+functions derived in Chapter~\ref{ch:workedexample}. At NLO, the real and virtual contributions
+involve $\mathcal A_3^0$ and $\mathcal A_2^1$, respectively, while at NNLO the complete set of two-,
+three-, and four-parton contributions is required.
 
-\section{Global Validation with \textit{AntCalc}}
+The normalised quantity $R(\alpha_s)$ will be reconstructed from these integrated antenna functions
+in the following sections and compared with the known result obtained independently using methods
+other than antenna subtraction \cite{Dine:1979qh}.
 
-As discussed, the hadronic R-ratio is a very useful quantity to compute using the
-integrated antenna functions obtained from \textit{AntCalc}. As such, the programme
-provides an R-ratio calculator. It is the longest-running function
-in the whole package. Its result gives,
+\section{Assembly from Integrated Antenna Functions}\label{subsec:Tobjects}
 
-\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[2]:= BuildRRatio[SMQCD]}\\
-\hfill
-\texttt{Out[2]:=}
-    \begin{equation*}
-        1+\left(\frac{\alpha_s}{2\pi}\right)\frac32C_F+\left(\frac{\alpha_s}{2\pi}\right)^2C_F\!\left[N\left(\frac{243}{16}-11\zeta_3\right)+\frac3{16N}+N_f\left(-\frac{11}4+2\zeta_3\right)\right]
-    \end{equation*}
-\end{mdframed}
+The antenna functions constructed in Chapter~\ref{ch:workedexample} are colour-stripped kinematic
+quantities. To reconstruct the contributions to the inclusive hadronic rate, the antennae associated
+with each partonic final state must therefore be combined with the appropriate colour factors and
+normalisation. In this work, these colour-restored, final-state-specific combinations are denoted by
+$T$-objects.
 
-As expected, the results for each perturbative order are finite. This validates the mutual 
-normalisation and assembly of the integrated antennae: at each perturbative order, their 
-infrared poles cancel in the inclusive sum, leaving a finite coefficient. Moreover, 
-the result matches the literature's \cite{Gehrmann-DeRidder:2004ttg,Dine:1979qh}.
-
-\subsection{$T$-objects}\label{subsec:Tobjects}
-
-The antenna functions computed in Chapter~\ref{ch:workedexample} are colour-stripped 
-purely kinematic objects. For subtraction, as discussed in Subsection~\ref{subsec:subTerms},
-we need to assemble differential cross-section subtraction terms, like $d\sigma^S_\text{NNLO}$,
-from contributions across several distinct final-state topologies. For each topology, every 
-relative antenna-set component must be included, correctly colour-ordered and normalised 
-using the common $2C_FT_{q\bar q}^2$ factor, where $T_{q\bar q}^2$ is the $T$-object relative 
-to the LO $\gamma^*\to q\bar q$ process. We define these $T$-objects as this per-topology,
-colour-restored assembly.
-
-Each antenna-set is organised in its own $T$-object, which is notated accordingly, with 
-a subscript relaying the final-state particles, e.g. $q\bar qg$, and a superscript that 
-relays the perturbation order as $2$ for LO, $4$ for NLO, and $6$ for NNLO. As stated, all 
-$T$-objects at NLO and NNLO are normalised by the LO $T$-object relative to the $A_2^0$ antenna.
-This $T$-object equals,
+The notation for a $T$-object identifies both the corresponding partonic final state and its
+perturbative order. The subscript specifies the final-state particles, while the superscript denotes
+the perturbative order, with $2$, $4$, and $6$ corresponding to LO, NLO, and NNLO, respectively. The
+LO two-parton contribution, associated with the process $\gamma^*\to q\bar q$, provides the common
+normalisation and is given by
 \begin{equation}
     T_{q\bar q}^2 = N\left|\mathcal M_2^0\right|^2 = 4N(1-\epsilon)q^2.
 \end{equation}
-
-The remaining relevant $T$-objects, for the coming $R$-ratio assembly, follow directly from
-the integrated antennae computed in Chapter~\ref{ch:workedexample}. Writing
+For convenience, we define
 \begin{equation}
-    P = 2C_FT_{q\bar q}^2,
+    P = 2C_FT_{q\bar q}^2.
 \end{equation}
-the NLO $T$-objects are,
+At NLO, the inclusive rate receives contributions from the virtual two-parton process
+$\gamma^*\to q\bar q$ and the real-emission three-parton process $\gamma^*\to q\bar q g$. In terms of
+the corresponding antenna functions, their $T$-objects are
 \begin{equation}
     T_{q\bar q}^4 = P\,A_2^1,\qquad
-    T_{q\bar qg}^4 = P\,A_3^0,
+    T_{q\bar qg}^4 = P\,A_3^0.
 \end{equation}
-and the NNLO $T$-objects are,
+At NNLO, contributions arise from two-, three-, and four-parton final states. The two-parton
+contribution contains the different colour components of the two-loop antenna set, together with the
+one-loop-squared contribution,
 \begin{equation}
-    T_{q\bar q}^6 = P\left(NA_2^2+\frac1N\tilde A_2^2+N_f\hat A_2^2+\left(N-\frac1N\right)\breve A_2^2\right),
+    T_{q\bar q}^6 = P\left(NA_2^2+\frac1N\tilde A_2^2+N_f\hat A_2^2+\left(N-\frac1N\right)\breve A_2^2\right).
 \end{equation}
+The three-parton real--virtual contribution is
 \begin{equation}
-    T_{q\bar qg}^6 = P\left[N\!\left(A_3^1+A_2^1A_3^0\right)-\frac1N\!\left(\tilde A_3^1+A_2^1A_3^0\right)+N_f\hat A_3^1\right],
+    T_{q\bar qg}^6 = P\left[N\!\left(A_3^1+A_2^1A_3^0\right)-\frac1N\!\left(\tilde A_3^1+A_2^1A_3^0\right)+N_f\hat A_3^1\right].
 \end{equation}
+Finally, the four-parton double-real contributions are separated according to their partonic final
+states,
 \begin{equation}
     T_{q\bar qq^\prime\bar q^\prime}^6 = P\,(N_f-1)B_4^0,
 \end{equation}
@@ -106,19 +96,14 @@ and the NNLO $T$-objects are,
 \begin{equation}
     T_{q\bar qgg}^6 = P\left(NA_4^0-\frac1N\tilde A_4^0\right).
 \end{equation}
-
-We can now integrate the antennae and get the integrated $T$-objects, notated as $\mathcal T$. These 
-$\mathcal T$-objects are the ones used when assembling the $R$-ratio in the next section. Let us 
-now consider the two NLO $\mathcal T$-objects, $\mathcal T_{q\bar q}^4$ and $\mathcal T_{q\bar qg}^4$,
-each relative to the generating processes of the $A_2^1$ and $A_3^0$ antennae. As discussed previously,
-via the KLN theorem, the virtual correction poles of the first antenna must cancel against the real 
-emission poles of the second. That can be seen as follows,
-\begin{equation}
-    \begin{gathered}
-        r_\text{NLO} = \frac{\mathcal T_{q\bar q}^4+\mathcal T_{q\bar qg}^4}{T_{q\bar q}^2} = 2C_F\left(\mathcal A_2^1 + \mathcal A_3^0\right)\\
-        = 2C_F\left[\left(-\frac{1}{\epsilon^2}-\frac{3}{2\epsilon}-4+\frac{7\pi^2}{12}+\ldots\right)+\left(\frac{1}{\epsilon^2}+\frac3{2\epsilon}+\frac{19}4-\frac{7\pi^2}{12}+\ldots\right)\right]=\frac32 C_F.
-    \end{gathered}
-\end{equation}
+Upon integration over the corresponding final-state phase spaces, the antenna functions appearing in
+these expressions are replaced by their integrated counterparts, $\mathcal A$, $\mathcal B$, and
+$\mathcal C$, obtained in Chapter~\ref{ch:workedexample}. The only exceptions are $\tilde A_4^0$ and
+$C_4^0$: their integrated counterparts are defined in the literature with an explicit overall factor
+of $2$ and $\tfrac12$, respectively, and the corresponding terms of Eq.~\eqref{eq:rNNLO} therefore
+carry the compensating factors $\tfrac12$ and $2$, as discussed in Section~\ref{sec:rratioNNLO}. We
+denote the resulting integrated combinations by $\mathcal T$-objects. These quantities provide the individual two-, three-, and
+four-parton contributions entering the inclusive $R$-ratio.
 
 \iffalse
 
@@ -218,72 +203,172 @@ phase-spaces rather than integrating the composite unintegrated $T$-object direc
 
 \fi
 
-\subsection{$R$-Ratio Assembly}
+\section{NLO Validation}\label{sec:rratioNLO}
 
-The R-ratio is assembled using these $\mathcal T$-objects. We simply sum the normalised objects
-order-by-order as,
+At NLO, the inclusive hadronic $R$-ratio receives contributions from the virtual correction to the
+two-parton final state, $\gamma^*\to q\bar q$, and from the real-emission process,
+$\gamma^*\to q\bar q g$. In terms of the integrated antenna functions obtained in
+Chapter~\ref{ch:workedexample}, these contributions are described by $\mathcal A_2^1$ and
+$\mathcal A_3^0$, respectively. Using the $T$-object normalisation introduced in the previous
+section, the NLO coefficient can therefore be written as
+\begin{equation}
+    \begin{gathered}
+        r_\text{NLO} = \frac{\mathcal T_{q\bar q}^4+\mathcal T_{q\bar qg}^4}{T_{q\bar q}^2} = 2C_F\left(\mathcal A_2^1 + \mathcal A_3^0\right)\\
+        = 2C_F\left[\left(-\frac{1}{\epsilon^2}-\frac{3}{2\epsilon}-4+\frac{7\pi^2}{12}+\ldots\right)+\left(\frac{1}{\epsilon^2}+\frac3{2\epsilon}+\frac{19}4-\frac{7\pi^2}{12}+\ldots\right)\right]=\frac32 C_F.
+    \end{gathered}
+\end{equation}
+Thus, the $1/\epsilon^2$ and $1/\epsilon$ infrared poles of the virtual contribution cancel exactly
+against those generated by the integrated real-emission contribution, as required for the inclusive
+observable. This cancellation provides a first global check of the relative normalisation and
+combination of the integrated antenna functions. For $N=3$, where $C_F=4/3$, the NLO contribution
+becomes,
+\begin{equation}
+    \frac{\alpha_s}{2\pi}\,\frac{3}{2}C_F=\frac{\alpha_s}{\pi},
+\end{equation}
+reproducing the standard NLO correction to the massless hadronic $R$-ratio.
+
+\section{NNLO Validation and the Hadronic $R$-Ratio}\label{sec:rratioNNLO}
+
+At NNLO, the global validation requires the simultaneous combination of the double-virtual
+two-parton, real--virtual three-parton, and double-real four-parton contributions. In contrast to the
+NLO case discussed above, several colour structures and partonic final states contribute. Using the
+integrated $\mathcal T$-objects defined in Section~\ref{subsec:Tobjects}, the normalised hadronic
+$R$-ratio can be assembled order by order as,
 \begin{equation}
     \begin{split}
-        R = \frac{R_\text{hadr}}{R^{(0)}} &= R_\text{LO} + R_\text{NLO} + R_\text{NNLO}\\
-                                          &= r_\text{LO} + \frac{\alpha_s}{2\pi}r_\text{NLO} + \left(\frac{\alpha_s}{2\pi}\right)^2r_\text{NNLO}\\
-                                          &= 1 + \frac{\alpha_s}{2\pi}\frac{\mathcal T_{q\bar q}^4+\mathcal T_{q\bar qg}^4}{T_{q\bar q}^2} + \left(\frac{\alpha_s}{2\pi}\right)^2\frac{\mathcal T_{q\bar q}^6+\mathcal T_{q\bar qg}^6+\mathcal T_{q\bar q q\bar q}^6+\mathcal T_{q\bar q q^\prime\bar q^\prime}^6+\mathcal T_{q\bar q gg}^6}{T_{q\bar q}^2} + \mathcal O\!\left(\alpha_s^3\right).
+        R(\alpha_s) ={}& 1 + \frac{\alpha_s}{2\pi}\frac{\mathcal T_{q\bar q}^4+\mathcal T_{q\bar qg}^4}{T_{q\bar q}^2}\\
+                       &+ \left(\frac{\alpha_s}{2\pi}\right)^2\frac{\mathcal T_{q\bar q}^6+\mathcal T_{q\bar qg}^6+\mathcal T_{q\bar q q\bar q}^6+\mathcal T_{q\bar q q^\prime\bar q^\prime}^6+\mathcal T_{q\bar q gg}^6}{T_{q\bar q}^2} + \mathcal O\!\left(\alpha_s^3\right)\\
+                       ={}& 1 + \frac{\alpha_s}{2\pi}r_\text{NLO} + \left(\frac{\alpha_s}{2\pi}\right)^2r_\text{NNLO} + \mathcal O\!\left(\alpha_s^3\right).
     \end{split}
 \end{equation}
-Expanding the $\mathcal T$-objects, we are able to describe the R-ratio formula 
-using the integrated antenna functions as,
-\begin{equation}
-    \begin{aligned}
-        &r_\text{LO} = 1\\
-        &r_\text{NLO} = 2C_F\,\left(\mathcal A_2^1 + \mathcal A_3^0\right)\\
-        &\begin{aligned}r_\text{NNLO} = 2C_F\,\Bigg[N\!\left(\mathcal A_2^1\mathcal A_3^0+\mathcal A_3^1+\mathcal A_4^0+\mathcal A_2^2\right)-\frac1N\!\Big(\mathcal A_2^1\mathcal A_3^0+\tilde{\mathcal A}_3^1&+\tilde{\mathcal A}_4^0+\mathcal C_4^0-\tilde{\mathcal A}_2^2\Big)\\ &+N_f\!\left(\mathcal B_4^0+\hat{\mathcal A}_3^1+\hat{\mathcal A}_2^2\right)+2C_F\breve{\mathcal A}_2^2\Bigg].\end{aligned}
-    \end{aligned}
+The NNLO coefficient therefore tests the complete massless antenna set calculated in
+Chapter~\ref{ch:workedexample}. Substituting the definitions of the $T$-objects, it can be expressed
+entirely in terms of the corresponding integrated antenna functions,
+\begin{equation}\label{eq:rNNLO}
+    \begin{split}
+        r_\text{NNLO} = 2C_F\,\Bigg[&N\!\left(\mathcal A_2^1\mathcal A_3^0+\mathcal A_3^1+\mathcal A_4^0+\mathcal A_2^2\right)-\frac1N\!\Big(\mathcal A_2^1\mathcal A_3^0+\tilde{\mathcal A}_3^1+\tfrac12\tilde{\mathcal A}_4^0+2\,\mathcal C_4^0-\tilde{\mathcal A}_2^2\Big)\\
+                                    &+N_f\!\left(\mathcal B_4^0+\hat{\mathcal A}_3^1+\hat{\mathcal A}_2^2\right)+2C_F\breve{\mathcal A}_2^2\Bigg].
+    \end{split}
 \end{equation}
-Assembling these pieces together, using the integrated antenna results from 
-\textit{AntCalc}, we finally get,
-\begin{equation}
-    R=1+\left(\frac{\alpha_s}{2\pi}\right)\frac32C_F+\left(\frac{\alpha_s}{2\pi}\right)^2C_F\!\left[N\left(\frac{243}{16}-11\zeta_3\right)+\frac3{16N}+N_f\left(-\frac{11}4+2\zeta_3\right)\right]
+The factors $\tfrac12$ and $2$ multiplying $\tilde{\mathcal A}_4^0$ and $\mathcal C_4^0$ follow from the
+definitions of these integrated antennae in the literature. In $\tilde A_4^0$ the two gluons are
+photon-like, coupling only to the quark and antiquark, so that, unlike the colour-ordered $A_4^0$, which
+is a sum of two ordered sub-antennae, it is a sum of four sub-antennae that give identical integrals over
+the tripole phase space (Eqs.~(5.27) and (5.28) of Ref.~\cite{Gehrmann-DeRidder:2005btv}). Its integrated
+expression therefore carries an explicit overall factor of $2$ (Eq.~(5.32) of
+Ref.~\cite{Gehrmann-DeRidder:2005btv}), whereas the inclusive $q\bar qgg$ contribution to the $R$-ratio
+contains exactly half of it (Eq.~(4.53) of Ref.~\cite{Gehrmann-DeRidder:2004ttg}), which gives
+$\tfrac12\tilde{\mathcal A}_4^0$. Likewise, $C_4^0$ is the identical-flavour-only interference term and
+its integrated expression carries an explicit factor of $\tfrac12$ (Eq.~(5.44) of
+Ref.~\cite{Gehrmann-DeRidder:2005btv}), whereas the identical-flavour four-quark contribution to the
+$R$-ratio contains twice this value (Eq.~(4.51) of Ref.~\cite{Gehrmann-DeRidder:2004ttg}), which gives
+$2\,\mathcal C_4^0$. The integrated antennae computed with \textit{AntCalc} in
+Chapter~\ref{ch:workedexample} follow these literature definitions, including the explicit factors.
+
+Each contribution in Eq.~\eqref{eq:rNNLO} is individually infrared divergent. After inserting the
+integrated antenna functions obtained in Chapter~\ref{ch:workedexample}, however, the poles cancel in
+the sum. In particular, the coefficients of
+\begin{equation*}
+    \frac1{\epsilon^4},\qquad\frac1{\epsilon^3},\qquad\frac1{\epsilon^2},\qquad\frac1\epsilon
+\end{equation*}
+vanish, leaving a finite NNLO coefficient. This cancellation simultaneously tests the relative
+normalisation, colour decomposition, and assembly of the two-, three-, and four-parton antenna
+contributions.
+
+Combining the finite NLO result of Section~\ref{sec:rratioNLO} with the NNLO contribution gives
+\begin{equation}\label{eq:RfinalResult}
+    R(\alpha_s) = 1+\frac{\alpha_s}{2\pi}\frac32C_F+\left(\frac{\alpha_s}{2\pi}\right)^2C_F\!\left[N\left(\frac{243}{16}-11\zeta_3\right)+\frac3{16N}+N_f\left(-\frac{11}4+2\zeta_3\right)\right]+\mathcal O\!\left(\alpha_s^3\right).
 \end{equation}
-which is the exact massless hadronic R-ratio coefficient through NNLO \cite{Gehrmann-DeRidder:2004ttg}
-and is also exactly the expression we get by running \texttt{BuildRRatio[SMQCD]}.
+The result is finite and agrees with the known massless hadronic $R$-ratio through NNLO
+\cite{Gehrmann-DeRidder:2004ttg,Dine:1979qh}. Importantly, this comparison is with results obtained
+independently of the antenna-subtraction construction used here. The agreement therefore provides a
+global validation of the complete massless antenna set calculated in
+Chapter~\ref{ch:workedexample}: not only do the infrared poles cancel when the different final-state
+contributions are combined, but the remaining finite coefficient reproduces the independently known
+inclusive result.
+
+\section{Implementation in \textit{AntCalc}}\label{sec:rratioImpl}
+
+The assembly of the hadronic $R$-ratio described in the previous sections is automated in
+\textit{AntCalc} through the function \texttt{BuildRRatio}. For the massless QCD antenna set
+considered in this work, the calculation is performed with \texttt{BuildRRatio[SMQCD]}.
+
+The function performs the assembly described explicitly in Sections~\ref{subsec:Tobjects}--\ref{sec:rratioNNLO},
+combining the integrated antenna contributions with their corresponding colour factors and
+normalisations at each perturbative order. The cancellation of the infrared poles occurs within this
+assembly, so that the returned result is finite through NNLO. The output of
+\texttt{BuildRRatio[SMQCD]} therefore reproduces the analytic result obtained in
+Eq.~\eqref{eq:RfinalResult}, which in turn agrees with the independently known massless hadronic
+$R$-ratio through NNLO \cite{Gehrmann-DeRidder:2004ttg,Dine:1979qh}. This provides an automated global
+check of both the integrated massless antenna set and its implementation in \textit{AntCalc}.
 
 \section{Comparison with Experimental Data}\label{sec:rratioData}
 
-\textit{AntCalc}'s $R$-ratio results may be expanded through the entire domain of PDG data for the
-observable \cite{Tanabashi:2018oca}. A plot with this expansion is present in Figure~\ref{fig:rratioFullDomain},
-below. There we can see how, as expected, the package's results are only relevant towards the middle of the 
-experimental data's domain, where the considered physics takes effect.
+As an additional illustration of the perturbative result obtained above, the \textit{AntCalc}
+prediction for the hadronic $R$-ratio can be compared with the experimental data compiled by the
+Particle Data Group (PDG) \cite{Tanabashi:2018oca}. Figure~\ref{fig:rratioFullDomain} shows this
+comparison over a broad range of centre-of-mass energies. The purpose of this comparison is not to
+describe the full experimental spectrum. The result derived in this work is a massless fixed-order
+perturbative QCD prediction and therefore does not include several effects that are important in
+specific energy regions. At low energies, the data exhibit pronounced hadronic resonance and
+non-perturbative structure. Heavy-quark thresholds and quarkonium resonances also produce features
+that are not described by the massless approximation, while at energies around the $Z$ pole
+electroweak contributions dominate the observed behaviour. Consequently, agreement with the data
+should only be expected away from such regions, where a fixed-order perturbative description is
+appropriate.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/rratio-full-domain.pdf}
-    \caption{\centering Full domain plot of the \textit{AntCalc}'s $R$-ratio result over the whole $q$ domain of the PDG data.}
+    \caption{Comparison of the massless NNLO $R$-ratio obtained with \textit{AntCalc} with the PDG data over the full energy range considered. The LO charge-counting result is shown for reference. The indicated regions highlight the low-energy non-perturbative regime, heavy-quark thresholds, and the electroweak $Z^0$-pole region, illustrating the limited domain in which the massless fixed-order QCD prediction can be meaningfully compared with the data.}
     \label{fig:rratioFullDomain}
 \end{figure}
 
-A closer look at that region of interest, $\sim\!\!2$--$30$GeV, as shown in Figure~\ref{fig:rratioContinuumOrders}, 
-both as raw results and below as results normalised by the LO $R$-ratio, shows a very close proximity of the theoretically
-\textit{AntCalc}-made results to the PDG data. It is also particularly interesting to note how at lower energies in the 
-normalised plot, the lines depicting the increasing perturbation orders get closer to the experimental data.
+Figure~\ref{fig:rratioContinuumOrders} focuses on the energy range
+$2\lesssim\sqrt{s}\lesssim30\,\mathrm{GeV}$, where the comparison with the massless perturbative QCD
+prediction is more informative. The charm- and bottom-quark threshold regions, where the massless
+approximation is not expected to provide an adequate description, are indicated by the grey-shaded
+bands. Away from these regions, the inclusion of higher-order QCD corrections improves the overall
+description of the experimental data relative to the LO prediction. This is particularly visible in
+the lower panel, where the results are normalised to the LO prediction and the NLO and NNLO curves
+are generally shifted towards the experimental measurements. Moreover, the relatively small change
+from NLO to NNLO compared with that from LO to NLO is indicative of good convergence of the
+perturbative expansion in this energy range.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/rratio_talk.pdf}
-    \caption{\centering Detail of the $R$-ratio plot against the PDG data around the relevant domain, showing how increasing perturbation order makes the plot approach experimental data.}
+    \caption{Comparison of the LO, NLO, and NNLO massless perturbative predictions for the hadronic $R$-ratio with the PDG data in the range $2\lesssim\sqrt{s}\lesssim30\,\mathrm{GeV}$. The grey-shaded bands indicate the charm- and bottom-quark threshold regions. The lower panel shows the results normalised to the LO prediction, highlighting the improved overall description obtained after including the higher-order QCD corrections.}
     \label{fig:rratioContinuumOrders}
 \end{figure}
 
 \section{Summary}
 
-The massless-antenna-function results from \textit{AntCalc} have now been globally validated in two different ways
-using the hadronic massless $R$-ratio. In the first place, the fact that the three $R$-ratio perturbation 
-terms, $r_\text{LO}$, $r_\text{NLO}$, and $r_\text{NNLO}$ are finite validates the correct relations in between 
-the antennae at each and every order, since their poles cancel as prescribed. Secondly, the fact that the
-result matches previously established results that were computed using other methods confirms that the antenna
-functions are not simply correct relative to each other in a closed system, but that they are in agreement with
-the wider physics. 
+The massless antenna functions calculated in Chapter~\ref{ch:workedexample} have been subjected to a
+global validation through the hadronic $R$-ratio. At both NLO and NNLO, the infrared poles of the
+individual real and virtual contributions cancel in the inclusive sum, providing a stringent check of
+the relative normalisation, colour structure, and assembly of the integrated antenna functions. The
+resulting finite coefficients reproduce the known massless hadronic $R$-ratio through NNLO,
+previously obtained using methods independent of antenna subtraction
+\cite{Gehrmann-DeRidder:2004ttg,Dine:1979qh}. This agreement therefore confirms not only the internal
+consistency of the antenna set, but also its consistency with independently established QCD results.
 
-The fact that the \textit{AntCalc} $R$-ratio result plots close to the PDG data in the
-relevant domain, and also that it fails to converge on the same data set where it was not expected to, demonstrates its
-validity for what it intends to be, and that its results are physically meaningful. The fact that each order increase 
-brings the plot closer to the data also demonstrates that including higher-order corrections genuinely improves 
-the prediction's agreement with the physical result.
+The comparison with the PDG data provides an additional phenomenological illustration of the
+calculation. In the energy region where the massless fixed-order approximation is applicable, and away
+from the heavy-quark threshold regions, the inclusion of successive perturbative orders generally
+improves the agreement between the theoretical prediction and the experimental measurements. Moreover,
+the comparatively small shift from NLO to NNLO relative to that from LO to NLO is indicative of good
+convergence of the perturbative expansion in this region. Conversely, the deviations observed in
+regions dominated by non-perturbative, heavy-quark threshold, resonance, or electroweak effects
+illustrate the expected limitations of the massless fixed-order approximation.
+
+Taken together, the cancellation of the infrared poles, the agreement with the independently known
+perturbative $R$-ratio, and the comparison with experimental data provide complementary checks of the
+results obtained in this work. In particular, the first two constitute the principal global validation
+of the complete massless antenna set implemented in \textit{AntCalc} through NNLO. This validation is
+especially important because these antenna functions are intended to serve as building blocks for the
+construction of subtraction terms in NNLO QCD calculations: their successful combination in a physical
+inclusive observable provides a non-trivial test of their relative normalisation, colour structure,
+and integrated infrared behaviour. The comparison with experimental data further illustrates the
+phenomenological behaviour of the resulting prediction within the expected domain of applicability of
+the massless fixed-order approximation.

@@ -1,0 +1,55 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=0.92]
+% (a) planar ladder
+\begin{scope}
+\begin{feynman}
+\vertex (g1) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (v1) at (0.8,0);
+\vertex (a1) at (1.5,0.6); \vertex (b1) at (1.5,-0.6);
+\vertex (a2) at (2.2,1.0); \vertex (b2) at (2.2,-1.0);
+\vertex (q1) at (2.9,1.35) {\scriptsize$q$}; \vertex (r1) at (2.9,-1.35) {\scriptsize$\bar q$};
+\diagram*{(g1)--[boson](v1), (r1)--[fermion](b2)--[fermion](b1)--[fermion](v1)--[fermion](a1)--[fermion](a2)--[fermion](q1), (a1)--[gluon](b1), (a2)--[gluon](b2)};
+\end{feynman}
+\node at (1.45,-1.85) {\scriptsize(a)};
+\end{scope}
+% (b) crossed ladder
+\begin{scope}[xshift=3.9cm]
+\begin{feynman}
+\vertex (g2) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (v2) at (0.8,0);
+\vertex (a3) at (1.5,0.6); \vertex (b3) at (1.5,-0.6);
+\vertex (a4) at (2.2,1.0); \vertex (b4) at (2.2,-1.0);
+\vertex (q2) at (2.9,1.35) {\scriptsize$q$}; \vertex (r2) at (2.9,-1.35) {\scriptsize$\bar q$};
+\diagram*{(g2)--[boson](v2), (r2)--[fermion](b4)--[fermion](b3)--[fermion](v2)--[fermion](a3)--[fermion](a4)--[fermion](q2), (a3)--[gluon](b4), (a4)--[gluon](b3)};
+\end{feynman}
+\node at (1.45,-1.85) {\scriptsize(b)};
+\end{scope}
+% (c) quark self-energy insertion
+\begin{scope}[xshift=7.8cm]
+\begin{feynman}
+\vertex (g3) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (v3) at (0.8,0);
+\vertex (s3) at (1.2,0.5); \vertex (s4) at (1.75,0.9);
+\vertex (a5) at (2.25,1.0); \vertex (b5) at (2.25,-1.0);
+\vertex (q3) at (2.9,1.35) {\scriptsize$q$}; \vertex (r3) at (2.9,-1.35) {\scriptsize$\bar q$};
+\diagram*{(g3)--[boson](v3), (r3)--[fermion](b5)--[fermion](v3)--[fermion](s3)--[fermion](s4)--[fermion](a5)--[fermion](q3), (s3)--[gluon, bend left=80](s4), (a5)--[gluon](b5)};
+\end{feynman}
+\node at (1.45,-1.85) {\scriptsize(c)};
+\end{scope}
+% (d) quark-loop insertion on the gluon
+\begin{scope}[xshift=11.7cm]
+\begin{feynman}
+\vertex (g4) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (v4) at (0.8,0);
+\vertex (a6) at (2.0,1.0); \vertex (b6) at (2.0,-1.0);
+\vertex (l1) at (2.0,0.32); \vertex (l2) at (2.0,-0.32);
+\vertex (q4) at (2.9,1.35) {\scriptsize$q$}; \vertex (r4) at (2.9,-1.35) {\scriptsize$\bar q$};
+\diagram*{(g4)--[boson](v4), (r4)--[fermion](b6)--[fermion](v4)--[fermion](a6)--[fermion](q4), (a6)--[gluon](l1), (l2)--[gluon](b6), (l1)--[fermion, half left](l2), (l2)--[fermion, half left](l1)};
+\end{feynman}
+\node at (1.45,-1.85) {\scriptsize(d)};
+\end{scope}
+\end{tikzpicture}
+\caption{Representative two-loop Feynman diagrams for $\gamma^*\to q\bar q$: (a) planar and (b) crossed ladder, (c) a quark self-energy insertion, and (d) a closed quark loop on the gluon propagator, which gives rise to the $N_f$-dependent component $\hat A_2^2$. Panel (c) is a self-energy insertion on an internal propagator, which contributes. Self-energy corrections on the external legs and tadpoles are not generated: they are scaleless for massless on-shell partons and vanish in dimensional regularisation.}
+\label{fig:diagA22}
+\end{figure}

@@ -1,0 +1,16 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=0.92]
+\begin{feynman}
+\vertex (ga) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (va) at (0.9,0);
+\vertex (ua) at (1.9,0.85);
+\vertex (wa) at (1.9,-0.85);
+\vertex (qa) at (3.0,1.35) {\scriptsize$q$};
+\vertex (ba) at (3.0,-1.35) {\scriptsize$\bar q$};
+\diagram*{(ga)--[boson](va), (ba)--[fermion](wa)--[fermion](va)--[fermion](ua)--[fermion](qa), (ua)--[gluon](wa)};
+\end{feynman}
+\end{tikzpicture}
+\caption{The one-loop Feynman diagram contributing to $\gamma^*\to q\bar q$ (vertex correction), from which $A_2^1$ arises. The self-energy corrections on the external quark and antiquark legs are scaleless and vanish for massless on-shell partons in dimensional regularisation.}
+\label{fig:diagA21}
+\end{figure}

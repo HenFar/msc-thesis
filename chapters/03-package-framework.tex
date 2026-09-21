@@ -7,7 +7,7 @@ package created from scratch as part of this thesis work to automate the symboli
 construction and integration of QCD antenna functions. The package provides direct access to
 both unintegrated and integrated antenna functions and implements the computational framework
 described in the previous chapter. The results presented in this thesis were produced with
-\textit{AntCalc}, version 0.3.0$\beta$2, corresponding to commit \texttt{4ceb991}.
+\textit{AntCalc}, version 0.3.1$\beta$3, corresponding to commit \texttt{c5df6d3}.
 
 \textit{AntCalc} makes use of \textit{FeynCalc} \cite{Feyncalc1,Feyncalc2,Feyncalc3,Feyncalc4}
 for symbolic amplitude manipulation and interfaces with \textit{LiteRed2} \cite{Litered} for
@@ -83,7 +83,10 @@ final-final antennae.
 The antenna functions currently implemented are summarised in Table~\ref{tab:antennaTiers}.
 
 \begin{table}[h!]
+\footnotesize
 \centering
+\caption{Overview of the antenna functions currently implemented in \textit{AntCalc}, by
+  perturbative order and validation source.}
 \renewcommand{\arraystretch}{1.3}
   \begin{tabular}{|c|c|c|}
    \hline
@@ -96,8 +99,7 @@ The antenna functions currently implemented are summarised in Table~\ref{tab:ant
    NNLO & $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$ & \cite{Gehrmann-DeRidder:2004ttg} \\ \hline
    NLO, massive & $A_3^{0,(m_q)}$ & \cite{GehrmannDeRidder:2009fz} \\ \hline
   \end{tabular}
-  \caption{Overview of the antenna functions currently implemented in \textit{AntCalc}, by
-  perturbative order and validation source.}
+  
 \label{tab:antennaTiers}
 \end{table}
 
@@ -169,7 +171,9 @@ and loop order have been discussed before. The settings used in this route are e
 in Table~\ref{tab:A21Sets}.
 
 \begin{table}[h]
+\footnotesize
     \centering
+\caption{\centering Overview of the settings for the $A_2^1$ route used as a representative example of the route system used in \textit{AntCalc}.}
     \renewcommand{\arraystretch}{1.3}
     \begin{tabular}{|Sc|Sc|}
         \hline
@@ -192,7 +196,7 @@ in Table~\ref{tab:A21Sets}.
         \texttt{ConventionProfile} & Points to the normalisation-convention ruleset profile. \\
         \hline
     \end{tabular}
-    \caption{\centering Overview of the settings for the $A_2^1$ route used as a representative example of the route system used in \textit{AntCalc}.}
+    
     \label{tab:A21Sets}
 \end{table}
 
@@ -264,7 +268,9 @@ and extraction modes, as described in
 Table~\ref{tab:treeLevelProdModes}.
 
 \begin{table}[h!]
+\footnotesize
 \centering
+\caption{Overview of the tree-level production and extraction modes.}
 \renewcommand{\arraystretch}{1.3}
 \resizebox{\textwidth}{!}{
   \begin{tabular}{|c|c|c|} 
@@ -281,7 +287,7 @@ Table~\ref{tab:treeLevelProdModes}.
    \hline
   \end{tabular}
 } 
-  \caption{Overview of the tree-level production and extraction modes.}
+  
 \label{tab:treeLevelProdModes}
 \end{table}
 
@@ -308,7 +314,9 @@ The production and extraction modes implemented for the supported one-loop route
 are summarised in Table~\ref{tab:oneLoopProdModes}, below.
 
 \begin{table}[h!]
+\footnotesize
 \centering
+\caption{Overview of the one-loop production and extraction modes.}
 \renewcommand{\arraystretch}{1.3}
   \begin{tabular}{|c|c|c|} 
    \hline
@@ -317,8 +325,7 @@ are summarised in Table~\ref{tab:oneLoopProdModes}, below.
    \texttt{TreeAmplitude + MAmpOneLoop} & \texttt{LoopScalar} & $A_2^1$ \\ \hline
    \texttt{TreeAmplitude + MAmpOneLoop} & \texttt{LoopColourCoefficients} & $A_3^1$, $\tilde A_3^1$, $\hat A_3^1$ \\ \hline
   \end{tabular}
-  
-  \caption{Overview of the one-loop production and extraction modes.}
+
 \label{tab:oneLoopProdModes}
 \end{table}
 
@@ -332,17 +339,23 @@ used for $A_2^0$ and $A_3^0$, as discussed in Subsection~\ref{subsec:treeLevelRo
 
 Loop-order-two routes are dispatched to \texttt{BuildTwoLoopAntennaData}. Within the massless
 $q\bar q$ final-final antennae considered up to NNLO, the only two-loop antenna set is $A_2^2$.
-Much like for all other loop routes, Passarino-Veltman reduction is used on the build side to
-remove the two loop momenta $\ell_1$ and $\ell_2$, while IBP reduction is subsequently used to
-obtain the full result in terms of its $\epsilon$-poles.
-It is remarkably different from the rest, however. The four-component set is not generated like
-the $A_4^0$ and $A_3^1$ sets were, rather its four components come from two distinct source contributions, as discussed in 
+Unlike the one-loop routes, the two-loop source is not reduced with Passarino-Veltman reduction.
+On the build side, the two loop momenta $\ell_1$ and $\ell_2$ are removed directly by IBP reduction
+with \textit{LiteRed2}, and the known analytic expressions of the resulting master integrals are
+substituted, so that the public build result is expressed in terms of the invariant $s_{12}$ and
+$\epsilon$ alone. Passarino-Veltman reduction enters this route only through the unintegrated
+$A_2^1$ antenna, which is attached to the leading-colour and quark-loop components as their
+ultraviolet counterterm at the public build boundary described in Section~\ref{sec:buildStage}.
+The four-component set is also not generated like the $A_4^0$ and $A_3^1$ sets were; rather, its
+four components come from two distinct source contributions, as discussed in
 Subsection~\ref{subsec:antFamilies}.
 Their production and extraction modes are similar and handled as a bundle inside \textit{AntCalc},
 but, as shown in Table~\ref{tab:twoLoopProdModes}, their sources differ,
 
 \begin{table}[h!]
+\footnotesize
 \centering
+\caption{Overview of the two-loop contributions and extraction modes.}
 \renewcommand{\arraystretch}{1.3}
   \begin{tabular}{|c|c|c|} 
    \hline
@@ -351,8 +364,7 @@ but, as shown in Table~\ref{tab:twoLoopProdModes}, their sources differ,
    \texttt{TwoLoopInterf} & \texttt{TwoLoopTTermComponents} & $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$ \\ \hline
    \texttt{OneLoopSelf} & \texttt{TwoLoopTTermComponents} & $\breve A_2^2$ \\ \hline
   \end{tabular}
-  
-  \caption{Overview of the two-loop contributions and extraction modes.}
+
 \label{tab:twoLoopProdModes}
 \end{table}
 
@@ -472,7 +484,9 @@ reduction, whose known analytic expressions are then substituted and expanded as
 series in $\epsilon$. An overview of these is shown in the following Table~\ref{tab:intModes}.
 
 \begin{table}[h!]
+\footnotesize
 \centering
+\caption{Overview of the integration-side route-profiles.}
 \renewcommand{\arraystretch}{1.3}
   \begin{tabular}{|c|c|c|} 
    \hline
@@ -486,8 +500,7 @@ series in $\epsilon$. An overview of these is shown in the following Table~\ref{
    IBP / \textit{LiteRed2} & \texttt{A22OneLoopSelf} & $\breve{\mathcal A}_2^2$ \\ \hline
    IBP / \textit{LiteRed2} & \texttt{MX30} & $\mathcal A_3^{0,(m_q)}$ \\ \hline
   \end{tabular}
-  
-  \caption{Overview of the integration-side route-profiles.}
+
 \label{tab:intModes}
 \end{table}
 
@@ -695,7 +708,7 @@ evaluation. The five higher-level functions are:
     \item \texttt{BuildAndIntegrateAllAntennae} --- builds and integrates every public antenna
     function in one call. Both bulk wrappers can be limited to a chosen perturbative order.
     \item \texttt{TObject} --- assembles integrated antennae into the topology-grouped
-    combinations used in the $R$-ratio, defined in Subsection~\ref{subsec:Tobjects} of
+    combinations used in the $R$-ratio, defined in Section~\ref{subsec:Tobjects} of
     Chapter~\ref{ch:validation}.
     \item \texttt{BuildRRatio} --- assembles the massless hadronic $R$-ratio from the
     integrated antenna ingredients required at the selected perturbative order.
@@ -864,7 +877,7 @@ Memory usage was measured using \texttt{MaxMemoryUsed[]}, relative to the
 initial kernel baseline. These measurements were taken using a MacBook Pro (Mac16.8), 
 with an Apple M4 Pro 12 core (8 performance and 4 efficiency) CPU, and 24~GB unified 
 RAM, running macOS 26.6.2 (build 25G83), \textit{Wolfram Mathematica} 15.0.0 for Mac 
-OS X ARM (64-bit), and AntCalc 0.3.0$\beta$2.
+OS X ARM (64-bit), and AntCalc 0.3.1$\beta$3.
 
 The lower-order routes, up to NLO, complete both stages in approximately one second,
 with the cost increasing substantially for the NNLO routes, in particular $A_2^2$, 
@@ -874,7 +887,13 @@ Table~\ref{tab:runtimeBenchmarks}.
 
 \begin{table}[h!]
     \centering
-    \small
+\caption{\centering Representative resource measurements for the implemented public
+    antenna routes. The build time measures
+    \texttt{BuildAntenna[..., IntegrableForm -> True]}, followed by
+    \texttt{IntegrateAntenna[...]} for the integration time. Each route was
+    evaluated in a fresh Wolfram kernel. Peak memory is the maximum kernel-memory
+    increase relative to the initial baseline.}
+    \footnotesize
     \renewcommand{\arraystretch}{1.15}
     \begin{tabular}{|c|r|r|r|r|}
         \hline
@@ -900,11 +919,6 @@ Table~\ref{tab:runtimeBenchmarks}.
         $A_3^{0,(m_q)}$ & $2.81\,\mathrm{s}$ & $0.25\,\mathrm{s}$ & $3.09\,\mathrm{s}$ & $12.07\,\mathrm{MiB}$ \\
         \hline
     \end{tabular}
-    \caption{\centering Representative resource measurements for the implemented public
-    antenna routes. The build time measures
-    \texttt{BuildAntenna[..., IntegrableForm -> True]}, followed by
-    \texttt{IntegrateAntenna[...]} for the integration time. Each route was
-    evaluated in a fresh Wolfram kernel. Peak memory is the maximum kernel-memory
-    increase relative to the initial baseline.}
+    
     \label{tab:runtimeBenchmarks}
 \end{table}

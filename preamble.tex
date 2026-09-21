@@ -4,6 +4,14 @@
 \usepackage[a4paper,margin=2.5cm]{geometry}
 \usepackage{setspace}
 \setstretch{1.15}
+% Slightly tighter spacing around displayed equations (LaTeX default: 11pt); not fixed by the FCUL norms.
+\makeatletter
+\g@addto@macro\normalsize{%
+  \setlength\abovedisplayskip{8pt plus 2pt minus 4pt}%
+  \setlength\belowdisplayskip{8pt plus 2pt minus 4pt}%
+  \setlength\abovedisplayshortskip{0pt plus 2pt}%
+  \setlength\belowdisplayshortskip{5pt plus 2pt minus 3pt}}
+\makeatother
 \usepackage{times}
 \usepackage{amsmath,amssymb,physics,bm, slashed}
 \usepackage{graphicx,caption,subcaption}
@@ -58,7 +66,9 @@
 
 \setcounter{secnumdepth}{3}
 
-\captionsetup{font=small,labelfont=bf}
+\captionsetup{font={footnotesize,singlespacing},labelfont=bf}
+\captionsetup[table]{position=top}
+\captionsetup[longtable]{position=top}
 
 %%%%%%%%%%
 % for listings %

@@ -1,0 +1,54 @@
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=0.9]
+\node at (3.4,2.15) {\scriptsize$B_4^0$: $\gamma^*\to q\bar q\,q'\bar q'$};
+\node at (11.4,2.15) {\scriptsize$C_4^0$: identical flavours, exchange diagrams};
+\draw[dashed,gray] (8.55,-2.2) -- (8.55,2.4);
+% (a)
+\begin{scope}
+\begin{feynman}
+\vertex (ga) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (va) at (0.85,0);
+\vertex (ea) at (1.6,0.75); \vertex (ha) at (2.35,0.2);
+\vertex (qa) at (3.2,1.55) {\scriptsize$q$}; \vertex (pa) at (3.2,0.75) {\scriptsize$q'$}; \vertex (ra) at (3.2,-0.35) {\scriptsize$\bar q'$}; \vertex (ba) at (3.2,-1.55) {\scriptsize$\bar q$};
+\diagram*{(ga)--[boson](va), (ba)--[fermion](va)--[fermion](ea)--[fermion](qa), (ea)--[gluon](ha), (ra)--[fermion](ha)--[fermion](pa)};
+\end{feynman}
+\node at (1.6,-2.0) {\scriptsize(a)};
+\end{scope}
+% (b)
+\begin{scope}[xshift=4.3cm]
+\begin{feynman}
+\vertex (gb) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (vb) at (0.85,0);
+\vertex (eb) at (1.6,-0.75); \vertex (hb) at (2.35,-0.2);
+\vertex (qb) at (3.2,1.55) {\scriptsize$q$}; \vertex (pb) at (3.2,0.35) {\scriptsize$q'$}; \vertex (rb) at (3.2,-0.75) {\scriptsize$\bar q'$}; \vertex (bb) at (3.2,-1.55) {\scriptsize$\bar q$};
+\diagram*{(gb)--[boson](vb), (vb)--[fermion](qb), (bb)--[fermion](eb)--[fermion](vb), (eb)--[gluon](hb), (rb)--[fermion](hb)--[fermion](pb)};
+\end{feynman}
+\node at (1.6,-2.0) {\scriptsize(b)};
+\end{scope}
+% (c) exchange of (a)
+\begin{scope}[xshift=8.9cm]
+\begin{feynman}
+\vertex (gc) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (vc) at (0.85,0);
+\vertex (ec) at (1.6,0.75); \vertex (hc) at (2.35,0.2);
+\vertex (qc) at (3.2,1.55) {\scriptsize$q'$}; \vertex (pc) at (3.2,0.75) {\scriptsize$q$}; \vertex (rc) at (3.2,-0.35) {\scriptsize$\bar q'$}; \vertex (bc) at (3.2,-1.55) {\scriptsize$\bar q$};
+\diagram*{(gc)--[boson](vc), (bc)--[fermion](vc)--[fermion](ec)--[fermion](qc), (ec)--[gluon](hc), (rc)--[fermion](hc)--[fermion](pc)};
+\end{feynman}
+\node at (1.6,-2.0) {\scriptsize(c)};
+\end{scope}
+% (d) exchange of (b)
+\begin{scope}[xshift=13.2cm]
+\begin{feynman}
+\vertex (gd) at (0,0) {\scriptsize$\gamma^*$};
+\vertex (vd) at (0.85,0);
+\vertex (ed) at (1.6,-0.75); \vertex (hd) at (2.35,-0.2);
+\vertex (qd) at (3.2,1.55) {\scriptsize$q$}; \vertex (pd) at (3.2,0.35) {\scriptsize$q'$}; \vertex (rd) at (3.2,-0.75) {\scriptsize$\bar q$}; \vertex (bd) at (3.2,-1.55) {\scriptsize$\bar q'$};
+\diagram*{(gd)--[boson](vd), (vd)--[fermion](qd), (bd)--[fermion](ed)--[fermion](vd), (ed)--[gluon](hd), (rd)--[fermion](hd)--[fermion](pd)};
+\end{feynman}
+\node at (1.6,-2.0) {\scriptsize(d)};
+\end{scope}
+\end{tikzpicture}
+\caption{Representative tree-level Feynman diagrams for $\gamma^*\to q\bar q\,q'\bar q'$ ($B_4^0$), in which the secondary pair is produced by gluon splitting from (a) the quark line or (b) the antiquark line. For identical flavours, the exchange diagrams (c) and (d), with the final-state quarks or antiquarks interchanged, also contribute, and $C_4^0$ arises from their interference with the direct diagrams.}
+\label{fig:diagBC40}
+\end{figure}
