@@ -423,7 +423,7 @@ then, by order of complexity, the algorithm orders the integrals as,
     I(1,1,1) \succ I(3,0,0) \succ I(1,-1,0).
 \end{equation}
 
-\section{The Massive Extension}
+\section{The Massive Extension}\label{sec:massiveExtension}
 
 The main body of this thesis focused primarily on the massless regime, since the
 vast majority of the present work's chapters focus on that regime. This appendix
@@ -661,18 +661,21 @@ the result is presented as the difference of the limit and the product of the ei
 resulting value we are looking for is zero \cite{Gehrmann-DeRidder:2005btv}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= A40 = BuildAntenna[A,4,0,Component->Leading];\\
-                \\
-                soft3Rules = \{s13 -> lambda s13, s23 -> lambda s23, s34 -> lambda s34, \\
-                s134 -> s14, s234 -> s24, q2 -> s124\};\\
-                soft3Leading = SeriesCoefficient[A40 /. soft3Rules, \{lambda, 0, -2\}] // Simplify;\\
-                \\
-                A30142 = BuildAntenna[A,3,0] /. \{s13 -> s14, s23 -> s24, q2 -> s124\};\\
-                soft3Expected = (2 s14/(s13 s34)) A30142 // Simplify;\\
-                \\
-                soft3Residual = FullSimplify[(soft3Leading - soft3Expected) /. \\
-                s124 -> s12 + s14 + s24]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= A40 = BuildAntenna[A,4,0,Component->Leading];
+
+        soft3Rules = {s13 -> lambda s13, s23 -> lambda s23,
+            s34 -> lambda s34, s134 -> s14, s234 -> s24, q2 -> s124};
+        soft3Leading = SeriesCoefficient[A40 /. soft3Rules,
+            {lambda, 0, -2}] // Simplify;
+
+        A30142 = BuildAntenna[A,3,0] /. {s13 -> s14, s23 -> s24,
+            q2 -> s124};
+        soft3Expected = (2 s14/(s13 s34)) A30142 // Simplify;
+
+        soft3Residual = FullSimplify[(soft3Leading - soft3Expected) /.
+            s124 -> s12 + s14 + s24]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
@@ -712,20 +715,23 @@ since $A_4^0$ is an NNLO antenna where it no longer drops out \cite{Gehrmann-DeR
 The check below is performed at $\epsilon=0$, and therefore verifies the $(1+z^2)/(1-z)$ piece only.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= A40 = BuildAntenna[A,4,0,Component->Leading];\\
-                \\
-                col13Rules = \{s13 -> lambda, s12 -> z sP2, s23 -> (1-z) sP2, s14 -> z sP4, \\
-                s34 -> (1-z) sP4, s134 -> sP4, s234 -> (1-z) sP2 + s24 + (1-z) sP4, \\
-                q2 -> sP2 + sP4 + s24, Epsilon -> 0\};\\
-                col13Leading = SeriesCoefficient[Together[A40 /. col13Rules], \{lambda, 0, -1\}] // FullSimplify;\\
-                \\
-                A30P42 = BuildAntenna[A,3,0] /. \{s12 -> sP2, s13 -> sP4, s23 -> s24, \\
-                q2 -> sP2 + sP4 + s24, Epsilon -> 0\};\\
-                \\
-                Pqg = (1 + z\textasciicircum2)/(1 - z);\\
-                \\
-                FullSimplify[col13Leading - Pqg A30P42]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= A40 = BuildAntenna[A,4,0,Component->Leading];
+
+        col13Rules = {s13 -> lambda, s12 -> z sP2, s23 -> (1-z) sP2,
+            s14 -> z sP4, s34 -> (1-z) sP4, s134 -> sP4,
+            s234 -> (1-z) sP2 + s24 + (1-z) sP4, q2 -> sP2 + sP4 + s24,
+            Epsilon -> 0};
+        col13Leading = SeriesCoefficient[Together[A40 /. col13Rules],
+            {lambda, 0, -1}] // FullSimplify;
+
+        A30P42 = BuildAntenna[A,3,0] /. {s12 -> sP2, s13 -> sP4,
+            s23 -> s24, q2 -> sP2 + sP4 + s24, Epsilon -> 0};
+
+        Pqg = (1 + z^2)/(1 - z);
+
+        FullSimplify[col13Leading - Pqg A30P42]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
@@ -778,29 +784,32 @@ subtracting the spin-averaged contribution, consistently with the angular term
 in the local gluon--gluon collinear factorisation \cite{Gehrmann-DeRidder:2005btv}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= A40 = BuildAntenna[A,4,0,Component->Leading];\\
-                \\
-                col34Rules = \{s34 -> lambda, s13 -> z s1P, s14 -> (1-z) s1P, s23 -> z sP2, \\
-                s24 -> (1-z) sP2, s134 -> s1P + lambda, s234 -> sP2 + lambda, \\
-                q2 -> s12 + s1P + sP2 + lambda, Epsilon -> 0\};\\
-                col34Leading = SeriesCoefficient[Together[A40 /. col34Rules], \{lambda, 0, -1\}] // FullSimplify;\\
-                \\
-                A301P2 = BuildAntenna[A,3,0] /. \{s13 -> s1P, s23 -> sP2, \\
-                q2 -> s12 + s1P + sP2, Epsilon -> 0\};\\
-                \\
-                Pgg = 2 (z/(1-z) + (1-z)/z + z (1-z));\\
-                spinCorrelation34 = 4 s12 (z-1) z/(s1P sP2);\\
-                \\
-                FullSimplify[col34Leading - (Pgg A301P2 + spinCorrelation34)]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= A40 = BuildAntenna[A,4,0,Component->Leading];
+
+        col34Rules = {s34 -> lambda, s13 -> z s1P, s14 -> (1-z) s1P,
+            s23 -> z sP2, s24 -> (1-z) sP2, s134 -> s1P + lambda,
+            s234 -> sP2 + lambda, q2 -> s12 + s1P + sP2 + lambda,
+            Epsilon -> 0};
+        col34Leading = SeriesCoefficient[Together[A40 /. col34Rules],
+            {lambda, 0, -1}] // FullSimplify;
+
+        A301P2 = BuildAntenna[A,3,0] /. {s13 -> s1P, s23 -> sP2,
+            q2 -> s12 + s1P + sP2, Epsilon -> 0};
+
+        Pgg = 2 (z/(1-z) + (1-z)/z + z (1-z));
+        spinCorrelation34 = 4 s12 (z-1) z/(s1P sP2);
+
+        FullSimplify[col34Leading - (Pgg A301P2 + spinCorrelation34)]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
     \end{equation*}
 \end{mdframed}
-Note that here we have defined the $\mathrm{arg.}$ quantity here was found to be,
+Note that the $\mathrm{ang.}$ quantity was found to be,
 \begin{equation}
-    \mathrm{arg.} = \frac{4s_{12}z(z-1)}{s_{1(34)}s_{(34)2}}
+    \mathrm{ang.} = \frac{4s_{12}z(z-1)}{s_{1(34)}s_{(34)2}}
 \end{equation}
 but this value is not to be understood as a general result.
 
@@ -812,16 +821,19 @@ importantly, not colour ordered, which makes the $3_g||4_g$ collinear region reg
 singular. We can check that property of the antenna term as follows.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];\\
-                \\
-                physicalRelations = \{s134 -> s13 + s14 + s34, s234 -> s23 + s24 + s34\};\\
-                \\
-                tA40Physical = Together[tA40 /. physicalRelations];\\
-                \\
-                gluonExchangeRules = \{s13 -> s14, s14 -> s13, s23 -> s24, s24 -> s23\};\\
-                \\
-                FullSimplify[tA40Physical - (tA40Physical /. gluonExchangeRules)]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];
+
+        physicalRelations = {s134 -> s13 + s14 + s34,
+            s234 -> s23 + s24 + s34};
+
+        tA40Physical = Together[tA40 /. physicalRelations];
+
+        gluonExchangeRules = {s13 -> s14, s14 -> s13, s23 -> s24,
+            s24 -> s23};
+
+        FullSimplify[tA40Physical - (tA40Physical /. gluonExchangeRules)]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
@@ -835,18 +847,21 @@ All other limits carry the same method as the ones for $A_4^0$.
 This limit is also symmetric for the $4_g$ gluon. It also generates the eikonal factor \cite{Gehrmann-DeRidder:2005btv}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];\\
-                \\
-                soft3Rules = \{s13 -> lambda s13, s23 -> lambda s23, s34 -> lambda s34, \\
-                s134 -> s14, s234 -> s24, q2 -> s124\};\\
-                soft3Leading = SeriesCoefficient[tA40 /. soft3Rules, \{lambda, 0, -2\}] // Simplify;\\
-                \\
-                A30142 = BuildAntenna[A,3,0] /. \{s13 -> s14, s23 -> s24, q2 -> s124, Epsilon->0\};\\
-                soft3Expected = (2 s12/(s13 s23)) A30142 // Simplify;\\
-                \\
-                soft3Residual = FullSimplify[(soft3Leading - soft3Expected) /. \\
-                s124 -> s12 + s14 + s24]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];
+
+        soft3Rules = {s13 -> lambda s13, s23 -> lambda s23,
+            s34 -> lambda s34, s134 -> s14, s234 -> s24, q2 -> s124};
+        soft3Leading = SeriesCoefficient[tA40 /. soft3Rules,
+            {lambda, 0, -2}] // Simplify;
+
+        A30142 = BuildAntenna[A,3,0] /. {s13 -> s14, s23 -> s24,
+            q2 -> s124, Epsilon->0};
+        soft3Expected = (2 s12/(s13 s23)) A30142 // Simplify;
+
+        soft3Residual = FullSimplify[(soft3Leading - soft3Expected) /.
+            s124 -> s12 + s14 + s24]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
@@ -859,20 +874,23 @@ The $1_q||3_g$ limit also behaves in the same way as for the leading term, again
 $\epsilon=0$ against the $(1+z^2)/(1-z)$ kernel \cite{Gehrmann-DeRidder:2005btv}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];\\
-                \\
-                col13Rules = \{s13 -> lambda, s12 -> z sP2, s23 -> (1-z) sP2, s14 -> z sP4, \\
-                s34 -> (1-z) sP4, s134 -> sP4, s234 -> (1-z) sP2 + s24 + (1-z) sP4, \\
-                q2 -> sP2 + sP4 + s24, Epsilon -> 0\};\\
-                col13Leading = SeriesCoefficient[Together[tA40 /. col13Rules], \{lambda, 0, -1\}] // FullSimplify;\\
-                \\
-                A30P42 = BuildAntenna[A,3,0] /. \{s12 -> sP2, s13 -> sP4, s23 -> s24, \\
-                q2 -> sP2 + sP4 + s24, Epsilon -> 0\};\\
-                \\
-                Pqg = (1 + z\textasciicircum2)/(1 - z);\\
-                \\
-                FullSimplify[col13Leading - Pqg A30P42]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];
+
+        col13Rules = {s13 -> lambda, s12 -> z sP2, s23 -> (1-z) sP2,
+            s14 -> z sP4, s34 -> (1-z) sP4, s134 -> sP4,
+            s234 -> (1-z) sP2 + s24 + (1-z) sP4, q2 -> sP2 + sP4 + s24,
+            Epsilon -> 0};
+        col13Leading = SeriesCoefficient[Together[tA40 /. col13Rules],
+            {lambda, 0, -1}] // FullSimplify;
+
+        A30P42 = BuildAntenna[A,3,0] /. {s12 -> sP2, s13 -> sP4,
+            s23 -> s24, q2 -> sP2 + sP4 + s24, Epsilon -> 0};
+
+        Pqg = (1 + z^2)/(1 - z);
+
+        FullSimplify[col13Leading - Pqg A30P42]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
@@ -886,14 +904,17 @@ the gluons are not colour ordered, there is no need to account for that same ord
 way as the other collinear limits were \cite{Gehrmann-DeRidder:2005btv}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];\\
-                \\
-                col34Rules = \{s34 -> lambda, s13 -> z s1P, s14 -> (1-z) s1P, s23 -> z sP2, \\
-                s24 -> (1-z) sP2, s134 -> s1P + lambda, s234 -> sP2 + lambda, \\
-                q2 -> s12 + s1P + sP2 + lambda, Epsilon -> 0\};\\
-                \\
-                FullSimplify[SeriesCoefficient[Together[tA40 /. col34Rules], \{lambda, 0, -1\}]]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];
+
+        col34Rules = {s34 -> lambda, s13 -> z s1P, s14 -> (1-z) s1P,
+            s23 -> z sP2, s24 -> (1-z) sP2, s134 -> s1P + lambda,
+            s234 -> sP2 + lambda, q2 -> s12 + s1P + sP2 + lambda,
+            Epsilon -> 0};
+
+        FullSimplify[SeriesCoefficient[Together[tA40 /. col34Rules],
+            {lambda, 0, -1}]]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
@@ -920,19 +941,24 @@ The check below keeps $\epsilon$ symbolic throughout, directly validating the fu
 kernel $P_{q\bar q\to g}(z)$ above, rather than only its $\epsilon=0$ piece \cite{Gehrmann-DeRidder:2005btv}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= B40 = BuildAntenna[B,4,0];\\
-                \\
-                col34Rules = \{s34 -> lambda, s13 -> z s1P, s14 -> (1-z) s1P, s23 -> z sP2, \\
-                s24 -> (1-z) sP2, s134 -> s1P, s234 -> sP2, q2 -> s12 + s1P + sP2\};\\
-                B40Col34Leading = SeriesCoefficient[Together[B40 /. col34Rules], \{lambda, 0, -1\}] // FullSimplify;\\
-                \\
-                A301P2 = BuildAntenna[A,3,0] /. \{s13 -> s1P, s23 -> sP2, q2 -> s12 + s1P + sP2\};\\
-                \\
-                Pqqbar = (z\textasciicircum2 + (1-z)\textasciicircum2 - Epsilon)/(1 - Epsilon);\\
-                spinCorrelationB40 = 4 s12 (z-1) z/(s1P sP2 (Epsilon-1));\\
-                \\
-                FullSimplify[B40Col34Leading - Pqqbar A301P2 - spinCorrelationB40]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= B40 = BuildAntenna[B,4,0];
+
+        col34Rules = {s34 -> lambda, s13 -> z s1P, s14 -> (1-z) s1P,
+            s23 -> z sP2, s24 -> (1-z) sP2, s134 -> s1P, s234 -> sP2,
+            q2 -> s12 + s1P + sP2};
+        B40Col34Leading = SeriesCoefficient[Together[B40 /. col34Rules],
+            {lambda, 0, -1}] // FullSimplify;
+
+        A301P2 = BuildAntenna[A,3,0] /. {s13 -> s1P, s23 -> sP2,
+            q2 -> s12 + s1P + sP2};
+
+        Pqqbar = (z^2 + (1-z)^2 - Epsilon)/(1 - Epsilon);
+        spinCorrelationB40 = 4 s12 (z-1) z/(s1P sP2 (Epsilon-1));
+
+        FullSimplify[B40Col34Leading - Pqqbar A301P2
+            - spinCorrelationB40]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
@@ -952,24 +978,31 @@ compute this limit we start scalling,
 
 The antenna has a leading $\lambda^{-4}$ behaviour such that \cite{Gehrmann-DeRidder:2005btv},
 \begin{equation}
-    \lim_{\lambda\to0}\lambda^4 B_4^0(1,\lambda3,\lambda4,2)=S_{12}(3,4),\quad S_{12}(3,4) = \frac{2\left(s_{12}s_{34}-s_{13}s_{24}-s_{14}s_{23}\right)}{s_{34}^2(s_{13}+s_{14})(s_{23}+s_{24})}+\frac{2}{s_{34}^2}\left[\frac{s_{13}s_{14}}{(s_{13}+s_{14})^2}+\frac{s_{23}s_{24}}{(s_{23}+s_{24})^2}\right]
+    \begin{split}
+    \lim_{\lambda\to0}\lambda^4 B_4^0(1,\lambda3,\lambda4,2)&=S_{12}(3,4),\\
+    S_{12}(3,4) &= \frac{2\left(s_{12}s_{34}-s_{13}s_{24}-s_{14}s_{23}\right)}{s_{34}^2(s_{13}+s_{14})(s_{23}+s_{24})}+\frac{2}{s_{34}^2}\left[\frac{s_{13}s_{14}}{(s_{13}+s_{14})^2}+\frac{s_{23}s_{24}}{(s_{23}+s_{24})^2}\right]
+    \end{split}
 \end{equation}
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= B40 = BuildAntenna[B,4,0];\\
-                \\
-                doubleSoftRules = \{s13 -> lambda s13, s14 -> lambda s14, s23 -> lambda s23, \\
-                s24 -> lambda s24, s34 -> lambda\textasciicircum2 s34, \\
-                s134 -> lambda (s13+s14) + lambda\textasciicircum2 s34, \\
-                s234 -> lambda (s23+s24) + lambda\textasciicircum2 s34, \\
-                q2 -> s12 + lambda (s13+s14+s23+s24) + lambda\textasciicircum2 s34, Epsilon -> 0\};\\
-                B40DoubleSoftLeading = SeriesCoefficient[Together[B40 /. doubleSoftRules], \{lambda, 0, -4\}] // FullSimplify;\\
-                \\
-                S12qqbar = 2/s34\textasciicircum2 (s12 s34/((s13+s14)(s23+s24)) \\
-                - (s13 s24 - s14 s23)\textasciicircum2/((s13+s14)\textasciicircum2 (s23+s24)\textasciicircum2));\\
-                \\
-                FullSimplify[B40DoubleSoftLeading - S12qqbar]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= B40 = BuildAntenna[B,4,0];
+
+        doubleSoftRules = {s13 -> lambda s13, s14 -> lambda s14,
+            s23 -> lambda s23, s24 -> lambda s24, s34 -> lambda^2 s34,
+            s134 -> lambda (s13+s14) + lambda^2 s34,
+            s234 -> lambda (s23+s24) + lambda^2 s34,
+            q2 -> s12 + lambda (s13+s14+s23+s24) + lambda^2 s34,
+            Epsilon -> 0};
+        B40DoubleSoftLeading = SeriesCoefficient[
+            Together[B40 /. doubleSoftRules], {lambda, 0, -4}]
+            // FullSimplify;
+
+        S12qqbar = 2/s34^2 (s12 s34/((s13+s14)(s23+s24))
+            - (s13 s24 - s14 s23)^2/((s13+s14)^2 (s23+s24)^2));
+
+        FullSimplify[B40DoubleSoftLeading - S12qqbar]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
@@ -1004,23 +1037,29 @@ where the non-identical-flavour triple-collinear splitting function is \cite{Geh
 \end{equation}
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= B40 = BuildAntenna[B,4,0];\\
-                A20 = BuildAntenna[A,2,0];\\
-                \\
-                tripleCollinearRules134 = \{s13 -> lambda r13, s14 -> lambda r14, s34 -> lambda r34, \\
-                s12 -> w sP2, s23 -> x sP2, s24 -> (1-w-x) sP2, \\
-                s134 -> lambda (r13+r14+r34), s234 -> (1-w) sP2 + lambda r34, \\
-                q2 -> sP2 + lambda (r13+r14+r34)\};\\
-                B40Triple134Leading = SeriesCoefficient[Together[B40 /. tripleCollinearRules134], \{lambda, 0, -2\}] // FullSimplify;\\
-                \\
-                A20P2 = A20 /. q2 -> sP2 // FullSimplify;\\
-                \\
-                PNonIdent134 = -((1-Epsilon) + 2 r13/r34)/(r13+r14+r34)\textasciicircum2 \\
-                - 2 (x (r13+r14+r34) - (1-w) r13)\textasciicircum2/(r34\textasciicircum2 (r13+r14+r34)\textasciicircum2 (1-w)\textasciicircum2) \\
-                + 1/(r34 (r13+r14+r34)) ((1+x\textasciicircum2+(x+w)\textasciicircum2)/(1-w) - Epsilon (1-w));\\
-                \\
-                FullSimplify[B40Triple134Leading - PNonIdent134 A20P2]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= B40 = BuildAntenna[B,4,0];
+        A20 = BuildAntenna[A,2,0];
+
+        tripleCollinearRules134 = {s13 -> lambda r13, s14 -> lambda r14,
+            s34 -> lambda r34, s12 -> w sP2, s23 -> x sP2,
+            s24 -> (1-w-x) sP2, s134 -> lambda (r13+r14+r34),
+            s234 -> (1-w) sP2 + lambda r34,
+            q2 -> sP2 + lambda (r13+r14+r34)};
+        B40Triple134Leading = SeriesCoefficient[
+            Together[B40 /. tripleCollinearRules134], {lambda, 0, -2}]
+            // FullSimplify;
+
+        A20P2 = A20 /. q2 -> sP2 // FullSimplify;
+
+        PNonIdent134 = -((1-Epsilon) + 2 r13/r34)/(r13+r14+r34)^2
+            - 2 (x (r13+r14+r34) - (1-w) r13)^2
+                /(r34^2 (r13+r14+r34)^2 (1-w)^2)
+            + 1/(r34 (r13+r14+r34))
+                ((1+x^2+(x+w)^2)/(1-w) - Epsilon (1-w));
+
+        FullSimplify[B40Triple134Leading - PNonIdent134 A20P2]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
@@ -1037,13 +1076,16 @@ regular, as the check below confirms.
 \subsubsection{Collinear $3||4$ Limit}
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= C40 = BuildAntenna[C,4,0];\\
-                \\
-                col34Rules = \{s34 -> lambda, s13 -> z s1P, s14 -> (1-z) s1P, s23 -> z sP2, \\
-                s24 -> (1-z) sP2, s134 -> s1P, s234 -> sP2, q2 -> s12 + s1P + sP2, Epsilon -> 0\};\\
-                \\
-                FullSimplify[SeriesCoefficient[Together[C40 /. col34Rules], \{lambda, 0, -1\}]]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= C40 = BuildAntenna[C,4,0];
+
+        col34Rules = {s34 -> lambda, s13 -> z s1P, s14 -> (1-z) s1P,
+            s23 -> z sP2, s24 -> (1-z) sP2, s134 -> s1P, s234 -> sP2,
+            q2 -> s12 + s1P + sP2, Epsilon -> 0};
+
+        FullSimplify[SeriesCoefficient[Together[C40 /. col34Rules],
+            {lambda, 0, -1}]]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
@@ -1080,28 +1122,35 @@ where the identical-flavour triple-collinear splitting function is a sum of two 
 \end{equation}
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= C40 = BuildAntenna[C,4,0];\\
-                A20 = BuildAntenna[A,2,0];\\
-                \\
-                tripleCollinearRules234 = \{s23 -> lambda r23, s24 -> lambda r24, s34 -> lambda r34, \\
-                s12 -> w s1P, s13 -> x s1P, s14 -> (1-w-x) s1P, \\
-                s234 -> lambda (r23+r24+r34), s134 -> (1-w) s1P + lambda r34, \\
-                q2 -> s1P + lambda (r23+r24+r34), Epsilon -> 0, \\
-                s123 -> (w+x) s1P + lambda r23, s124 -> (1-x) s1P + lambda r24\};\\
-                C40Triple234Leading = SeriesCoefficient[Together[C40 /. tripleCollinearRules234], \{lambda, 0, -2\}] // FullSimplify;\\
-                \\
-                A20P = A20 /. q2 -> s1P // FullSimplify;\\
-                \\
-                y = 1 - w - x;\\
-                S234 = r23 + r24 + r34;\\
-                \\
-                PIdent234 = -(2 r23/r34 + 2)/S234\textasciicircum2 - x (1+x\textasciicircum2)/(2 r23 r34 (1-y) (1-w)) \\
-                + 1/(r34 S234) ((1+x\textasciicircum2)/(1-y) + 2 x/(1-w)) \\
-                + (-(2 r34/r23 + 2)/S234\textasciicircum2 - x (1+x\textasciicircum2)/(2 r34 r23 (1-w) (1-y)) \\
-                + 1/(r23 S234) ((1+x\textasciicircum2)/(1-w) + 2 x/(1-y)));\\
-                \\
-                FullSimplify[C40Triple234Leading - 1/2 PIdent234 A20P]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= C40 = BuildAntenna[C,4,0];
+        A20 = BuildAntenna[A,2,0];
+
+        tripleCollinearRules234 = {s23 -> lambda r23, s24 -> lambda r24,
+            s34 -> lambda r34, s12 -> w s1P, s13 -> x s1P,
+            s14 -> (1-w-x) s1P, s234 -> lambda (r23+r24+r34),
+            s134 -> (1-w) s1P + lambda r34,
+            q2 -> s1P + lambda (r23+r24+r34), Epsilon -> 0,
+            s123 -> (w+x) s1P + lambda r23,
+            s124 -> (1-x) s1P + lambda r24};
+        C40Triple234Leading = SeriesCoefficient[
+            Together[C40 /. tripleCollinearRules234], {lambda, 0, -2}]
+            // FullSimplify;
+
+        A20P = A20 /. q2 -> s1P // FullSimplify;
+
+        y = 1 - w - x;
+        S234 = r23 + r24 + r34;
+
+        PIdent234 = -(2 r23/r34 + 2)/S234^2
+            - x (1+x^2)/(2 r23 r34 (1-y) (1-w))
+            + 1/(r34 S234) ((1+x^2)/(1-y) + 2 x/(1-w))
+            + (-(2 r34/r23 + 2)/S234^2
+            - x (1+x^2)/(2 r34 r23 (1-w) (1-y))
+            + 1/(r23 S234) ((1+x^2)/(1-w) + 2 x/(1-y)));
+
+        FullSimplify[C40Triple234Leading - 1/2 PIdent234 A20P]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
@@ -1129,16 +1178,19 @@ an $A_2^0$ antenna and the massive eikonal factor as \cite{GehrmannDeRidder:2009
 \end{equation}
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= mA30 = BuildAntenna[A,3,0,quarkMass->mQ];\\
-                \\
-                softRules = \{s13 -> lambda s13, s23 -> lambda s23, s123 -> s12 + lambda (s13+s23), \\
-                q2 -> s12 + 2 mQ\textasciicircum2 + lambda (s13+s23), Epsilon -> 0\};\\
-                mA30SoftLeading = SeriesCoefficient[Together[mA30 /. softRules], \{lambda, 0, -2\}] // FullSimplify;\\
-                \\
-                massiveEikonal = 2 s12/(s13 s23) - 2 mQ\textasciicircum2/s13\textasciicircum2 - 2 mQ\textasciicircum2/s23\textasciicircum2;\\
-                \\
-                FullSimplify[mA30SoftLeading - (1/4) massiveEikonal]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= mA30 = BuildAntenna[A,3,0,quarkMass->mQ];
+
+        softRules = {s13 -> lambda s13, s23 -> lambda s23,
+            s123 -> s12 + lambda (s13+s23),
+            q2 -> s12 + 2 mQ^2 + lambda (s13+s23), Epsilon -> 0};
+        mA30SoftLeading = SeriesCoefficient[Together[mA30 /. softRules],
+            {lambda, 0, -2}] // FullSimplify;
+
+        massiveEikonal = 2 s12/(s13 s23) - 2 mQ^2/s13^2 - 2 mQ^2/s23^2;
+
+        FullSimplify[mA30SoftLeading - (1/4) massiveEikonal]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
@@ -1162,21 +1214,30 @@ $\epsilon$ is also set to zero.
 
 The antenna factorised as \cite{GehrmannDeRidder:2009fz},
 \begin{equation}
-    A_3^0(1_Q,3_g,2_{\bar Q})\xrightarrow{1_Q||3_g}\frac1{4s_{13}}P_{Qg\to Q}(z),\quad P_{Qg\to Q}(z) = \frac{1+z^2}{1-z}.
+    A_3^0(1_Q,3_g,2_{\bar Q})\xrightarrow{1_Q||3_g}\frac1{4s_{13}}P_{Qg\to Q}(z,\mu_{Qg}^2),\quad
+    \begin{gathered}
+        P_{Qg\to Q}(z,\mu_{Qg}^2) = \frac{1+z^2}{1-z}-2\mu_{Qg}^2\\
+        = \frac{1+z^2}{1-z},\quad\mu_{Qg}^2=0.
+    \end{gathered}
 \end{equation}
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[1]:= mA30 = BuildAntenna[A,3,0,quarkMass->mQ];\\
-                \\
-                quasi13Rules = \{s13 -> lambda r13, s12 -> z sP2, s23 -> (1-z) sP2, \\
-                s123 -> sP2 + lambda r13, q2 -> sP2 + lambda r13 (1+2 muQg2), \\
-                mQ\textasciicircum2 -> lambda muQg2 r13, mQ\textasciicircum4 -> lambda\textasciicircum2 muQg2\textasciicircum2 r13\textasciicircum2, Epsilon -> 0\};\\
-                mA30Quasi13Leading = SeriesCoefficient[Together[mA30 /. quasi13Rules], \{lambda, 0, -1\}] // FullSimplify;\\
-                \\
-                PQg = (1 + z\textasciicircum2)/(1 - z) - 2 muQg2;\\
-                \\
-                FullSimplify[r13 mA30Quasi13Leading - (1/4) PQg]}\\
-\hfill
+\begin{lstlisting}
+In[1]:= mA30 = BuildAntenna[A,3,0,quarkMass->mQ];
+
+        quasi13Rules = {s13 -> lambda r13, s12 -> z sP2,
+            s23 -> (1-z) sP2, s123 -> sP2 + lambda r13,
+            q2 -> sP2 + lambda r13 (1+2 muQg2),
+            mQ^2 -> lambda muQg2 r13, mQ^4 -> lambda^2 muQg2^2 r13^2,
+            Epsilon -> 0};
+        mA30Quasi13Leading = SeriesCoefficient[
+            Together[mA30 /. quasi13Rules], {lambda, 0, -1}]
+            // FullSimplify;
+
+        PQg = (1 + z^2)/(1 - z) - 2 muQg2;
+
+        FullSimplify[r13 mA30Quasi13Leading - (1/4) PQg]
+\end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
         0
