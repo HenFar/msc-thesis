@@ -774,8 +774,8 @@ are discussed in Appendix~\ref{sec:MIA22} and are evaluated at $q^2=1$, together
 $C_0^\dagger$ of the ultraviolet counterterm (see Appendix~\ref{subsec:PaVe}):
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[3]:= A22Lead = BuildAndIntegrateAntenna[A,2,2,Component->Leading,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A22Lead/.A22MISubs)//Collect[\#,{A22LO,A3,A4,B0,C0},Simplify]\&}\\
+\texttt{In[3]:= A22Lead = BuildAndIntegrateAntenna[A,2,2,\\Component->Leading,ReturnMasterCombination->True];}\\
+\texttt{In[4]:= (A22Lead/.A22MISubs)//\\Collect[\#,\{A22LO,A3,A4,B0,C0\},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
@@ -848,8 +848,8 @@ contribution in terms of the master integrals $A_{22,\mathrm{LO}}$, $A_3$, $A_4$
 definitions and analytic expressions are presented in Appendix~\ref{sec:MIA22}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[3]:= A22Sub = BuildAndIntegrateAntenna[A,2,2,Component->Subleading,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A22Sub/.A22MISubs)//Collect[\#,{A22LO,A3,A4,A6},Simplify]\&}\\
+\texttt{In[3]:= A22Sub = BuildAndIntegrateAntenna[A,2,2,\\Component->Subleading,ReturnMasterCombination->True];}\\
+\texttt{In[4]:= (A22Sub/.A22MISubs)//Collect[\#,\{A22LO,A3,A4,A6\},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
@@ -908,8 +908,8 @@ $B_0^\dagger$ and $C_0^\dagger$. The definition and analytic
 evaluation of $A_4$ are presented in Appendix~\ref{sec:MIA22}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[3]:= A22Nf = BuildAndIntegrateAntenna[A,2,2,Component->Nf,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A22Nf/.A22MISubs)//Collect[\#,{A4,B0,C0},Simplify]\&}\\
+\texttt{In[3]:= A22Nf = BuildAndIntegrateAntenna[A,2,2,\\Component->Nf,ReturnMasterCombination->True];}\\
+\texttt{In[4]:= (A22Nf/.A22MISubs)//Collect[\#,\{A4,B0,C0\},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
@@ -968,7 +968,7 @@ master integral $A_{22,\mathrm{LO}}$, whose definition and analytic evaluation a
 Appendix~\ref{sec:MIA22}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[3]:= A22Breve = BuildAndIntegrateAntenna[A,2,2,Component->Breve,\\ReturnMasterCombination->True];}\\
+\texttt{In[3]:= A22Breve = BuildAndIntegrateAntenna[A,2,2,\\Component->Breve,ReturnMasterCombination->True];}\\
 \texttt{In[4]:= (A22Breve/.A22MISubs)//Collect[\#,A22LO,Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
@@ -1092,8 +1092,8 @@ master-integral representation, this calculation is performed in \textit{AntCalc
 using
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[3]:= A31Lead = BuildAndIntegrateAntenna[A,3,1,Component->Leading,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A31Lead/.A31MISubs)//Collect[\#,{R3,V5a,V5b,V8},Simplify]\&}\\
+\texttt{In[3]:= A31Lead = BuildAndIntegrateAntenna[A,3,1,\\Component->Leading,ReturnMasterCombination->True];}\\
+\texttt{In[4]:= (A31Lead/.A31MISubs)//Collect[\#,\{R3,V5a,V5b,V8\},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
@@ -1162,8 +1162,8 @@ contribution in terms of the master integrals $V_{5,a}$, $V_{5,b}$, and $V_8$. T
 corresponding master-integral representation is obtained with
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[3]:= A31Sub = BuildAndIntegrateAntenna[A,3,1,Component->Subleading,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A31Sub/.A31MISubs)//Collect[\#,{V5a,V5b,V8},Simplify]\&}\\
+\texttt{In[3]:= A31Sub = BuildAndIntegrateAntenna[A,3,1,\\Component->Subleading,ReturnMasterCombination->True];}\\
+\texttt{In[4]:= (A31Sub/.A31MISubs)//Collect[\#,\{V5a,V5b,V8\},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
@@ -1323,8 +1323,8 @@ four-particle phase-space integral family and reduced by IBP identities. The res
 master-integral representation is obtained with
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[3]:= A40Lead = BuildAndIntegrateAntenna[A,4,0,Component->Leading,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A40Lead/.X40MISubs)//Collect[\#,{R4,R6,R8a,R8b},Simplify]\&}\\
+\texttt{In[3]:= A40Lead = BuildAndIntegrateAntenna[A,4,0,\\Component->Leading,ReturnMasterCombination->True];}\\
+\texttt{In[4]:= (A40Lead/.X40MISubs)//Collect[\#,\{R4,R6,R8a,R8b\},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
@@ -1385,8 +1385,8 @@ corresponding integral family and applying IBP reduction. The master-integral re
 obtained with,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[3]:= A40Sub = BuildAndIntegrateAntenna[A,4,0,Component->Subleading,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A40Sub/.X40MISubs)//Collect[\#,{R4,R6,R8a,R8b},Simplify]\&}\\
+\texttt{In[3]:= A40Sub = BuildAndIntegrateAntenna[A,4,0,\\Component->Subleading,ReturnMasterCombination->True];}\\
+\texttt{In[4]:= (A40Sub/.X40MISubs)//Collect[\#,\{R4,R6,R8a,R8b\},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
@@ -1448,7 +1448,7 @@ is obtained with
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[3]:= B40 = BuildAndIntegrateAntenna[B,4,0,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (B40/.X40MISubs)//Collect[\#,{R4,R6,R8a,R8b},Simplify]\&}\\
+\texttt{In[4]:= (B40/.X40MISubs)//Collect[\#,\{R4,R6,R8a,R8b\},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
@@ -1495,7 +1495,7 @@ master-integral representation is obtained from,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[3]:= C40 = BuildAndIntegrateAntenna[C,4,0,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (C40/.X40MISubs)//Collect[\#,{R4,R6,R8a,R8b},Simplify]\&}\\
+\texttt{In[4]:= (C40/.X40MISubs)//Collect[\#,\{R4,R6,R8a,R8b\},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
@@ -1609,16 +1609,17 @@ Here, $\mathcal N_\text{LiteRed2}$ represents the normalisation implicit in the 
 convention used for the family in \textit{LiteRed2}. The \textit{LiteRed2} masters $J_1$ and
 $J_2$ must subsequently be converted to the master-integral basis $I_1$ and $I_2$ used for the
 available analytic expressions. In addition to the change of basis, the two conventions differ
-by an overall constant factor of $-1/4$ between the cut-integral normalisation of
+by an overall constant factor of $1/4$ between the cut-integral normalisation of
 \textit{LiteRed2} and the phase-space normalisation of the literature masters. This factor multiplies both
 of the relations below and reflects the different normalisation conventions of the two sets of masters
-rather than any physical effect; it was found by comparing $J_1^{(m_q,0,m_q)}$ with
-$I_1^{(m_q,0,m_q)}$.
+rather than any physical effect. It is fixed before any master-integral values are inserted: comparing the
+coefficients of $J_1^{(m_q,0,m_q)}$ and of $J_2^{(m_q,0,m_q)}$ obtained from the reduction with the
+corresponding coefficients of the literature result yields the same factor independently for each master.
 The resulting transformation is,
 \begin{equation}\label{eq:massiveMasterMap}
     \begin{split}
-        &I_1^{(m_q,0,m_q)} = -\frac14J_1^{(m_q,0,m_q)},\\
-        &I_2^{(m_q,0,m_q)} = -\frac14\!\left(aJ_1^{(m_q,0,m_q)}+bJ_2^{(m_q,0,m_q)}\right).
+        &I_1^{(m_q,0,m_q)} = \frac14J_1^{(m_q,0,m_q)},\\
+        &I_2^{(m_q,0,m_q)} = \frac14\!\left(aJ_1^{(m_q,0,m_q)}+bJ_2^{(m_q,0,m_q)}\right).
     \end{split}
 \end{equation}
 with,
@@ -1697,15 +1698,15 @@ obtained with,
     \end{equation*}
 \end{mdframed}
 
-The massive IBP reduction described above was carried out with \textit{LiteRed2}, and its result, converted
-to the literature masters through Eq.~\eqref{eq:massiveMasterMap}, reproduces the analytic expression of
-Ref.~\cite{GehrmannDeRidder:2009fz}. In the default configuration, \textit{AntCalc} returns this result
-directly as a stored closed form, evaluated and expanded in $\epsilon$.
+This result is computed entirely within \textit{AntCalc}: the unintegrated antenna is reduced with
+\textit{LiteRed2} to the masters $J_1^{(m_q,0,m_q)}$ and $J_2^{(m_q,0,m_q)}$, these are converted to the
+literature masters through Eq.~\eqref{eq:massiveMasterMap}, and the analytic expressions of
+$I_1^{(m_q,0,m_q)}$ and $I_2^{(m_q,0,m_q)}$ given above are then substituted. Before the expansion in
+$\epsilon$, the resulting integrated antenna coincides with the analytic expression of
+Ref.~\cite{GehrmannDeRidder:2009fz} to all orders in $\epsilon$.
 As for the other integrated antennae presented in this chapter, \textit{AntCalc} displays the
 result by default in units of the total invariant mass, $q^2=1$. Consequently, the threshold
-variable of Eq.~\eqref{eq:thresholdr} appears in the output as $r\to1-4m_q^2$. At the level of
-the antenna function, the result agrees with the analytic expression of
-Ref.~\cite{GehrmannDeRidder:2009fz}. Only representative terms of the unintegrated and
+variable of Eq.~\eqref{eq:thresholdr} appears in the output as $r\to1-4m_q^2$. Only representative terms of the unintegrated and
 integrated antennae are displayed here; the complete expressions are collected in
 Appendix~\ref{ap:antExpressions}. The route is nevertheless classified as exploratory because
 it has not yet undergone the global-observable validation applied to the massless antenna set.
@@ -1759,7 +1760,7 @@ $A_2^2$ set ($A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$): $\gamma^*\t
 $A_4^0$, $\tilde A_4^0$: $\gamma^*\to qgg\bar q$, NNLO, double-real; \texttt{[A,4,0]} & Colour-ordered amplitude; colour-coefficient extraction. IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$ ($A_4^0$); $R_4$, $R_6$, $R_{8,a}$, $R_{8,b}$ ($\tilde A_4^0$). & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Local: both colour components validated: eikonal and AP/spin-correlated splitting functions for the leading term; dipole eikonal and absent $gg$ collinear singularity for the subleading term (Appendix~\ref{sec:localValidationExtra}). Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
 $B_4^0$: $\gamma^*\to q\bar q q^\prime\bar q^\prime$, NNLO; \texttt{[B,4,0]} & Sector self-interference (direct amplitude only). IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$. & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Local: single-collinear ($q^\prime\bar q^\prime\to g$), double-soft, and triple-collinear limits reproduced (Appendix~\ref{subsec:localValidationB40}). Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
 $C_4^0$: $\gamma^*\to q\bar q q\bar q$, NNLO; \texttt{[C,4,0]} & Sector symmetrised interference (direct and exchange). IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$, $R_{8,b}$. & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Local: single-collinear region confirmed regular; identical-flavour triple-collinear splitting function reproduced (Appendix~\ref{subsec:localValidationC40}). Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
-Massive $A_3^0$: $\gamma^*\to q(m_q)g\bar q(m_q)$, exploratory; \texttt{[A,3,0,\allowbreak quarkMass->\allowbreak mQ]} & Same route as massless $A_3^0$, with the \texttt{quarkMass} option. IBP / \textit{LiteRed2}, massive family (default call returns the resulting stored closed form); MI mapped from \textit{LiteRed2}'s $J_1$, $J_2$ to the literature $I_1^{(m_q,0,m_q)}$, $I_2^{(m_q,0,m_q)}$. & \cite{GehrmannDeRidder:2009fz} & Local: soft-gluon eikonal and quasi-collinear splitting function reproduced (Appendix~\ref{subsec:localValidationMassiveA30}). Global: not applicable (does not feed the massless $R$-ratio). & Literature agreement, incl. local soft/quasi-collinear limits; no global observable validation yet \\ \hline
+Massive $A_3^0$: $\gamma^*\to q(m_q)g\bar q(m_q)$, exploratory; \texttt{[A,3,0,\allowbreak quarkMass->\allowbreak mQ]} & Same route as massless $A_3^0$, with the \texttt{quarkMass} option. IBP / \textit{LiteRed2}, massive family (default call performs the reduction and substitutes the literature master values); MI mapped from \textit{LiteRed2}'s $J_1$, $J_2$ to the literature $I_1^{(m_q,0,m_q)}$, $I_2^{(m_q,0,m_q)}$. & \cite{GehrmannDeRidder:2009fz} & Local: soft-gluon eikonal and quasi-collinear splitting function reproduced (Appendix~\ref{subsec:localValidationMassiveA30}). Global: not applicable (does not feed the massless $R$-ratio). & Literature agreement, incl. local soft/quasi-collinear limits; no global observable validation yet \\ \hline
 \end{longtable}
 \end{center}
 }
