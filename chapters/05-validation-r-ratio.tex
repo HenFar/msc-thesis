@@ -91,10 +91,10 @@ states,
     T_{q\bar qq^\prime\bar q^\prime}^6 = P\,(N_f-1)B_4^0,
 \end{equation}
 \begin{equation}
-    T_{q\bar qq\bar q}^6 = P\left(B_4^0-\frac1N C_4^0\right),
+    T_{q\bar qq\bar q}^6 = P\left(B_4^0-\frac2N C_4^0\right),
 \end{equation}
 \begin{equation}
-    T_{q\bar qgg}^6 = P\left(NA_4^0-\frac1N\tilde A_4^0\right).
+    T_{q\bar qgg}^6 = P\left(NA_4^0-\frac1{2N}\tilde A_4^0\right).
 \end{equation}
 Upon integration over the corresponding final-state phase spaces, the antenna functions appearing in
 these expressions are replaced by their integrated counterparts, $\mathcal A$, $\mathcal B$, and
@@ -291,7 +291,16 @@ inclusive result.
 
 The assembly of the hadronic $R$-ratio described in the previous sections is automated in
 \textit{AntCalc} through the function \texttt{BuildRRatio}. For the massless QCD antenna set
-considered in this work, the calculation is performed with \texttt{BuildRRatio[SMQCD]}.
+considered in this work, the calculation is performed with,
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[2]:= BuildRRatio[SMQCD]}\\
+\hfill
+\texttt{Out[2]:=}
+    \begin{equation*}
+        1+\left(\frac{\alpha_s}{2\pi}\right)\frac32C_F+\left(\frac{\alpha_s}{2\pi}\right)^2C_F\!\left[N\left(\frac{243}{16}-11\zeta_3\right)+\frac3{16N}+N_f\left(-\frac{11}4+2\zeta_3\right)\right]
+    \end{equation*}
+\end{mdframed}
 
 The function performs the assembly described explicitly in Sections~\ref{subsec:Tobjects}--\ref{sec:rratioNNLO},
 combining the integrated antenna contributions with their corresponding colour factors and

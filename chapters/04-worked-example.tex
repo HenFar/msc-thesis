@@ -754,53 +754,53 @@ Using \textit{AntCalc}, the unintegrated leading-colour contribution is construc
 \hfill
 \texttt{Out[2]:=}
     \begin{equation*}
-        \frac{11\Big[(3+2\epsilon)B_0\!\left(s_{12};0,0\right)+2s_{12}C_0\!\left(0,0,s_{12};0,0,0\right)\Big]}{12\epsilon}+\cdots
+4^{2\epsilon-3}\pi^{2\epsilon-4}e^{-2\gamma_E\epsilon}\left[\frac1{4\epsilon^4}+\frac{17}{8\epsilon^3}+\cdots\right]
     \end{equation*}
 \end{mdframed}
 
-The complete expression returned by \textit{AntCalc} is considerably longer than the terms displayed
-here. For readability, only a representative part of the output is shown, with $\cdots$ denoting
-terms omitted from the presentation. \textit{AntCalc} retains the complete expression, which is used
-in the subsequent integration.
-
-The first term displayed is the coupling-renormalisation (ultraviolet) counterterm attached to the
-leading-colour component. Using $A_2^1=-\tfrac12\big[(3+2\epsilon)B_0+2s_{12}C_0\big]$ from
-Subsection~\ref{subsec:A21}, it equals $-\tfrac{11}{6\epsilon}A_2^1$, and it is the only place where
-the one-loop functions $B_0$ and $C_0$ enter. The omitted terms are the genuine two-loop
-contribution, which is reduced by IBP and is already written in terms of $s_{12}$ and $\epsilon$,
-with the master integrals replaced by their analytic expressions. The same holds for the term
-displayed for $\hat A_2^2$ below, which equals $+\tfrac{1}{3\epsilon}A_2^1$.
+For readability, only the leading terms of the bracket are shown. Since a two-parton antenna has no
+unresolved phase space, the built antenna already contains the complete loop integration and differs
+from the integrated antenna only by the normalisation of Eq.~\eqref{eq:antennaIntegral}. The prefactor
+in \texttt{Out[2]} is exactly $1/C(\epsilon,2)=S_\epsilon^2/G_2$, and the bracket coincides, order by
+order, with the integrated result \texttt{Out[5]} below. The output is real and free of $s_{12}$: the
+timelike continuation has been applied and the renormalisation scale is set to $\mu^2=q^2$. For the
+leading-colour and quark-loop components it already contains the coupling-renormalisation counterterm,
+$-\tfrac{11}{6\epsilon}A_2^1$ and $+\tfrac{1}{3\epsilon}A_2^1$, respectively. The same form holds for
+the other three components below.
 
 The subsequent IBP reduction expresses the integrated contribution as a linear combination of the
 master integrals $A_{22,\mathrm{LO}}$, $A_3$, and $A_4$, whose definitions and analytic expressions
-are discussed in Appendix~\ref{sec:MIA22}:
+are discussed in Appendix~\ref{sec:MIA22} and are evaluated at $q^2=1$, together with the one-loop functions $B_0^\dagger$ and
+$C_0^\dagger$ of the ultraviolet counterterm (see Appendix~\ref{subsec:PaVe}):
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[3]:= A22Lead = BuildAndIntegrateAntenna[A,2,2,Component->Leading,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A22Lead/.A22MISubs)//Collect[\#,{A3,A4,A6},Simplify]\&}\\
+\texttt{In[4]:= (A22Lead/.A22MISubs)//Collect[\#,{A22LO,A3,A4,B0,C0},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
         \begin{gathered}
             -\frac{\left(-2\epsilon^2+\epsilon-2\right)^2}{8\pi^4\epsilon^2}A_{22,\text{LO}}
-            +\frac{24\epsilon^6-40\epsilon^5+76\epsilon^4-88\epsilon^3+68\epsilon^2-33\epsilon+6}{4\pi^4\epsilon^3(2\epsilon-1)q^2}A_3\\
-            +\frac{12\epsilon^6+20\epsilon^5-101\epsilon^4+103\epsilon^3-88\epsilon^2+47\epsilon-6}{4\pi^4\epsilon^2\left(6\epsilon^2-13\epsilon+6\right)}A_4
+            +\frac{24\epsilon^6-40\epsilon^5+76\epsilon^4-88\epsilon^3+68\epsilon^2-33\epsilon+6}{4\pi^4\epsilon^3(2\epsilon-1)}A_3\\
+            +\frac{12\epsilon^6+20\epsilon^5-101\epsilon^4+103\epsilon^3-88\epsilon^2+47\epsilon-6}{4\pi^4\epsilon^2\left(6\epsilon^2-13\epsilon+6\right)}A_4\\
+            +\frac{11\cos(\pi\epsilon)}{6\epsilon}C_0^\dagger
+            +\frac{11(3+2\epsilon)\cos(\pi\epsilon)}{12\epsilon}B_0^\dagger
         \end{gathered}
     \end{equation*}
 \end{mdframed}
 
-The combination in Out[4] is not yet the integrated antenna. Three further steps accompany the
+The combination in Out[4] is not yet the integrated antenna. Two further steps accompany the
 substitution of the master integrals of Appendix~\ref{sec:MIA22}. First, these master integrals
 are given in the $S_\Gamma$ normalisation of Eq.~\eqref{eq:SGamma} of Appendix~\ref{sec:MInotation}, whereas the integrated antennae are
 quoted in the $S_\epsilon$ convention of Chapter~\ref{ch:physicsbackground}; the conversion is a
 factor $e^{2\gamma_E\epsilon}/\Gamma^2(1-\epsilon)$, together with the constant loop-measure factors
 that cancel the $1/\pi^4$ visible in the coefficients above. Second, the master integrals are written
 for spacelike kinematics, through powers of $-q^2$, and since the integrated antennae are real, the
-timelike continuation is taken as $(-q^2)^{-2\epsilon}\to(q^2)^{-2\epsilon}\cos(2\pi\epsilon)$. Third,
-for the leading-colour and quark-loop components, the integrated counterterm
-$-\tfrac{11}{6\epsilon}\mathcal A_2^1$ or $+\tfrac{1}{3\epsilon}\mathcal A_2^1$, respectively, is
-added; its unintegrated counterpart is the term displayed in the unintegrated antenna above. The
-first two steps are common to the whole set, except that $\breve A_2^2$ involves no such timelike
+timelike continuation is taken as $(-q^2)^{-2\epsilon}\to(q^2)^{-2\epsilon}\cos(2\pi\epsilon)$. The
+counterterm terms, $-\tfrac{11}{6\epsilon}\mathcal A_2^1$ for the leading-colour component and
+$+\tfrac{1}{3\epsilon}\mathcal A_2^1$ for the quark-loop component, are already part of Out[4]; their
+timelike continuation, $\cos(\pi\epsilon)$, is explicit there, so the second step does not apply to
+them. The two steps are common to the whole set, except that $\breve A_2^2$ involves no such timelike
 phase factor.
 
 After substituting the analytic expressions for these master integrals, performing the two-particle
@@ -839,7 +839,7 @@ obtained with
 \hfill
 \texttt{Out[2]:=}
     \begin{equation*}
-        24\epsilon^{14}\!\left(391\pi^{12}-1149918\pi^8\zeta_3-62009136\pi^4\zeta_3^2-823011840\zeta_3^3\right)+\cdots
+4^{2\epsilon-3}\pi^{2\epsilon-4}e^{-2\gamma_E\epsilon}\left[-\frac1{4\epsilon^4}-\frac3{4\epsilon^3}+\cdots\right]
     \end{equation*}
 \end{mdframed}
 
@@ -855,9 +855,9 @@ definitions and analytic expressions are presented in Appendix~\ref{sec:MIA22}.
     \begin{equation*}
         \begin{gathered}
             \frac{\left(-2\epsilon^2+\epsilon-2\right)^2}{8\pi^4\epsilon^2}A_{22,\text{LO}}
-            +\frac{108\epsilon^7+780\epsilon^6-2641\epsilon^5+3305\epsilon^4-2476\epsilon^3+1210\epsilon^2-330\epsilon+36}{8\pi^4\epsilon^3\left(8\epsilon^2-6\epsilon+1\right)q^2}A_3\\
+            +\frac{108\epsilon^7+780\epsilon^6-2641\epsilon^5+3305\epsilon^4-2476\epsilon^3+1210\epsilon^2-330\epsilon+36}{8\pi^4\epsilon^3\left(8\epsilon^2-6\epsilon+1\right)}A_3\\
             +\frac{-42\epsilon^6-285\epsilon^5+659\epsilon^4-618\epsilon^3+372\epsilon^2-138\epsilon+20}{8\pi^4\epsilon^2(3\epsilon-2)(4\epsilon-1)}A_4
-            -\frac{\left(\epsilon^3+4\epsilon^2-2\epsilon+2\right)\left(q^2\right)^2}{8\pi^4(4\epsilon-1)}A_6
+            -\frac{\epsilon^3+4\epsilon^2-2\epsilon+2}{8\pi^4(4\epsilon-1)}A_6
         \end{gathered}
     \end{equation*}
 \end{mdframed}
@@ -898,21 +898,26 @@ form factor. Using \textit{AntCalc}, its unintegrated form is obtained with,
 \hfill
 \texttt{Out[2]:=}
     \begin{equation*}
-        -\frac16\frac{(3+2\epsilon)B_0\!\left(s_{12};0,0\right)+2s_{12}C_0\!\left(0,0,s_{12};0,0,0\right)}{\epsilon}+\cdots
+4^{2\epsilon-3}\pi^{2\epsilon-4}e^{-2\gamma_E\epsilon}\left[-\frac1{4\epsilon^3}-\frac1{9\epsilon^2}+\cdots\right]
     \end{equation*}
 \end{mdframed}
 
 After IBP reduction, the $N_f$ contribution reduces to the single master integral $A_4$, in contrast
-to the leading- and subleading-colour components considered above. The definition and analytic
+to the leading- and subleading-colour components considered above, besides the counterterm functions
+$B_0^\dagger$ and $C_0^\dagger$. The definition and analytic
 evaluation of $A_4$ are presented in Appendix~\ref{sec:MIA22}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[3]:= A22Nf = BuildAndIntegrateAntenna[A,2,2,Component->Nf,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A22Nf/.A22MISubs)//Collect[\#,A4,Simplify]\&}\\
+\texttt{In[4]:= (A22Nf/.A22MISubs)//Collect[\#,{A4,B0,C0},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
-        -\frac{(\epsilon-1)\left(6\epsilon^3-5\epsilon^2+3\epsilon-2\right)}{2\pi^4\epsilon(2\epsilon-3)(3\epsilon-2)}A_4
+        \begin{gathered}
+            -\frac{(\epsilon-1)\left(6\epsilon^3-5\epsilon^2+3\epsilon-2\right)}{2\pi^4\epsilon(2\epsilon-3)(3\epsilon-2)}A_4\\
+            -\frac{\cos(\pi\epsilon)}{3\epsilon}C_0^\dagger
+            -\frac{(3+2\epsilon)\cos(\pi\epsilon)}{6\epsilon}B_0^\dagger
+        \end{gathered}
     \end{equation*}
 \end{mdframed}
 
@@ -951,7 +956,7 @@ Using \textit{AntCalc}, the unintegrated antenna is obtained with
 \hfill
 \texttt{Out[2]:=}
     \begin{equation*}
-        \frac{\Gamma^2(1+\epsilon)\Gamma^6(1-\epsilon)}{4\epsilon^4\Gamma^2(2-2\epsilon)}+\cdots
+4^{2\epsilon-3}\pi^{2\epsilon-4}e^{-2\gamma_E\epsilon}\left[\frac1{4\epsilon^4}+\frac3{4\epsilon^3}+\cdots\right]
     \end{equation*}
 \end{mdframed}
 
@@ -971,6 +976,9 @@ Appendix~\ref{sec:MIA22}.
         \frac{\left(-2\epsilon^2+\epsilon-2\right)^2}{16\pi^4\epsilon^2}A_{22,\text{LO}}
     \end{equation*}
 \end{mdframed}
+Out[4] is quoted before AntCalc's conversion factor between the raw and the public master normalisations,
+which is exactly $-1/\cos(2\pi\epsilon)$ and is included when the master
+integral is substituted.
 Substituting its analytic expression, applying the appropriate normalisation, and expanding in
 $\epsilon$, the integrated antenna through $\mathcal O(\epsilon^0)$ is
 
@@ -1062,17 +1070,17 @@ The corresponding UV-renormalised unintegrated antenna is obtained with
 \begin{equation*}
     \texttt{BuildAntenna[A,3,1,Component->Leading]}.
 \end{equation*}
-For readability, only part of the complete unintegrated expression is displayed here;
-the full expression is retained by \textit{AntCalc} for the subsequent integration.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[2]:= BuildAntenna[A,3,1,Component->Leading]}\\
 \hfill
 \texttt{Out[2]:=}
     \begin{equation*}
-        \epsilon(1+3\epsilon)s_{13}s_{23}+...
+        \frac{22s_{12}^6-22\epsilon s_{12}^6+66s_{12}^5s_{13}-66\epsilon s_{12}^5s_{13}+\cdots}{6(\epsilon-1)\epsilon\,q^2s_{13}s_{23}(s_{12}+s_{13})^2(s_{12}+s_{23})^2}
     \end{equation*}
 \end{mdframed}
+For readability, only part of the complete unintegrated expression is displayed here;
+the full expression is retained by \textit{AntCalc} for the subsequent integration.
 
 As a one-loop matrix element, the unintegrated $A_3^1$ antenna contains explicit
 infrared poles in $\epsilon$ originating from the loop integration, with
@@ -1085,24 +1093,27 @@ using
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[3]:= A31Lead = BuildAndIntegrateAntenna[A,3,1,Component->Leading,\\ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A31Lead/.A31MISubs)//Collect[\#,{V5a,V5b,V8},Simplify]\&}\\
+\texttt{In[4]:= (A31Lead/.A31MISubs)//Collect[\#,{R3,V5a,V5b,V8},Simplify]\&}\\
 \hfill
 \texttt{Out[4]:=}
     \begin{equation*}
         \begin{gathered}
-            \frac{i\left(9\epsilon^5+25\epsilon^4-34\epsilon^3+41\epsilon^2-20\epsilon+4\right)}{2\pi^2\epsilon^3q^2}V_{5,b}\\
-            -\frac{i\left(24\epsilon^6-40\epsilon^5+76\epsilon^4-88\epsilon^3+68\epsilon^2-33\epsilon+6\right)}{2\pi^2\epsilon^3(2\epsilon-1)q^2}V_{5,a}
+            \frac{11\cdot4^{\epsilon-2}e^{-\gamma_E\epsilon}\left(2\epsilon^3-5\epsilon^2+6\epsilon-2\right)\pi^{\epsilon-4}}{3\epsilon^3}R_3\\
+            -\frac{i\left(24\epsilon^6-40\epsilon^5+76\epsilon^4-88\epsilon^3+68\epsilon^2-33\epsilon+6\right)}{2\pi^2\epsilon^3(2\epsilon-1)}V_{5,a}\\
+            +\frac{i\left(9\epsilon^5+25\epsilon^4-34\epsilon^3+41\epsilon^2-20\epsilon+4\right)}{2\pi^2\epsilon^3}V_{5,b}
         \end{gathered}
     \end{equation*}
 \end{mdframed}
 
-which expresses the integrated antenna in terms of the relevant master integrals
-$V_{5,a}$ and $V_{5,b}$; the master integral $V_8$ does not appear in the leading-colour
-component. Their definitions and analytic expressions are presented in
-Appendix~\ref{sec:MIA31}. The ultraviolet counterterm $-\frac{11}{6\epsilon}\mathcal A_3^0$
-is added to this combination only after the reduction, and is built from the integrated
-tree-level antenna of Subsection~\ref{sec:matDerivation}; it therefore involves the master
-integral $R_3$, which does not appear in $\texttt{Out[4]}$.
+which expresses the integrated antenna in terms of the relevant master integrals. The first
+term is the ultraviolet counterterm, $-\frac{11}{6\epsilon}$ times the master combination of the
+tree-level antenna of Subsection~\ref{sec:matDerivation}, written through its master integral $R_3$.
+The remaining terms are the one-loop contribution, expressed through $V_{5,a}$ and $V_{5,b}$; the
+master integral $V_8$ does not appear in the leading-colour component. The definitions and analytic
+expressions of these master integrals are presented in Appendix~\ref{sec:MIA31}. The masters are
+evaluated at $q^2=1$, and the combination is returned without the common prefactor
+$2^{10-6\epsilon}e^{2\gamma_E\epsilon}\pi^{7-3\epsilon}\Gamma(2-2\epsilon)/\Gamma(1-\epsilon)$, which
+\textit{AntCalc} reports separately and which is shared by all three components of the set.
 
 Substituting the analytic expressions for the master integrals, applying the
 appropriate normalisation, and expanding in $\epsilon$, the integrated leading-colour
@@ -1142,7 +1153,7 @@ unintegrated form is obtained with \textit{AntCalc} using
 \hfill
 \texttt{Out[2]:=}
     \begin{equation*}
-        \frac{2s_{12}\Big[(-1+\epsilon)s_{13}+\epsilon s_{23}\Big]}{2(-1+\epsilon)q^2s_{13}}D_0\!\left(0,0,0;q^2,s_{12},s_{23};0,0,0,0\right)+...
+        -\frac{4s_{12}^6}{(\epsilon-1)q^2(s_{12}+s_{13})^2(s_{12}+s_{23})^2(s_{13}+s_{23})^2}B_0\!\left(q^2;0,0\right)+\cdots
     \end{equation*}
 \end{mdframed}
 
@@ -1157,9 +1168,9 @@ corresponding master-integral representation is obtained with
 \texttt{Out[4]:=}
     \begin{equation*}
         \begin{gathered}
-            \frac{i\left(\epsilon^3+4\epsilon^2-2\epsilon+2\right)\left(q^2\right)^2}{2\pi^2(4\epsilon-1)}V_8\\
-            -\frac{i\left(108\epsilon^7+780\epsilon^6-2641\epsilon^5+3305\epsilon^4-2476\epsilon^3+1210\epsilon^2-330\epsilon+36\right)}{4\pi^2\epsilon^3\left(8\epsilon^2-6\epsilon+1\right)q^2}V_{5,a}\\
-            +\frac{i\left(49\epsilon^5+125\epsilon^4-242\epsilon^3+185\epsilon^2-94\epsilon+20\right)}{2\pi^2\epsilon^3q^2}V_{5,b}
+            \frac{i\left(\epsilon^3+4\epsilon^2-2\epsilon+2\right)}{2\pi^2(4\epsilon-1)}V_8\\
+            -\frac{i\left(108\epsilon^7+780\epsilon^6-2641\epsilon^5+3305\epsilon^4-2476\epsilon^3+1210\epsilon^2-330\epsilon+36\right)}{4\pi^2\epsilon^3\left(8\epsilon^2-6\epsilon+1\right)}V_{5,a}\\
+            +\frac{i\left(49\epsilon^5+125\epsilon^4-242\epsilon^3+185\epsilon^2-94\epsilon+20\right)}{2\pi^2\epsilon^3}V_{5,b}
         \end{gathered}
     \end{equation*}
 \end{mdframed}
@@ -1191,10 +1202,10 @@ result begins at $1/\epsilon^2$ \cite{Gehrmann-DeRidder:2005btv}.
 
 \subsection{$\hat A_3^1$}\label{subsec:A31nf}
 
-The $N_f$-dependent component $\widehat A_3^1$ has a different origin from the
+The $N_f$-dependent component $\hat A_3^1$ has a different origin from the
 leading- and subleading-colour components considered above. The unrenormalised
 tree--one-loop interference contains no $N_f$ contribution. The non-zero
-$\widehat A_3^1$ antenna therefore arises entirely from the $N_f$-dependent part of
+$\hat A_3^1$ antenna therefore arises entirely from the $N_f$-dependent part of
 the UV coupling-renormalisation term, which is proportional to the tree-level
 antenna $A_3^0$. \textit{AntCalc} incorporates this renormalisation contribution
 directly when the $N_f$ component is selected,
@@ -1208,12 +1219,12 @@ directly when the $N_f$ component is selected,
     \end{equation*}
 \end{mdframed}
 
-yielding the corresponding $\widehat A_3^1$ antenna. Since the unrenormalised
+yielding the corresponding $\hat A_3^1$ antenna. Since the unrenormalised
 one-loop interference contains no $N_f$ component, there is no $N_f$-dependent
 one-loop contribution to reduce to the $V_{5,a}$, $V_{5,b}$, and $V_8$ master
 integrals appearing in the leading- and subleading-colour components. Instead,
 because the renormalisation contribution is proportional to $A_3^0$, the integration
-of $\widehat A_3^1$ follows directly from the tree-level calculation presented in
+of $\hat A_3^1$ follows directly from the tree-level calculation presented in
 Subsection~\ref{sec:matDerivation}. In particular, its phase-space integration inherits
 the master integral $R_3$ appearing in the integrated tree-level antenna
 $\mathcal A_3^0$.
@@ -1233,7 +1244,7 @@ The pole structure is consistent with this renormalisation origin. The UV
 coupling-renormalisation term contains a pole in $\epsilon$ and multiplies the
 tree-level antenna $A_3^0$. After integration over the $1\to3$ antenna phase space,
 the infrared poles of $\mathcal A_3^0$ therefore generate poles of higher order in
-$\widehat{\mathcal A}_3^1$, with the result above beginning at $1/\epsilon^3$.
+$\hat{\mathcal A}_3^1$, with the result above beginning at $1/\epsilon^3$.
 
 The master integrals $V_{5,a}$, $V_{5,b}$ and $V_8$ appearing in the results above are defined and evaluated in
 Appendix~\ref{sec:MIA31}.
@@ -1273,7 +1284,8 @@ integral families required for IBP reduction. The resulting integrated antennae 
 expressed in terms of the four-particle phase-space master integrals introduced later
 in this section. Since the complete unintegrated expressions are lengthy, only the
 features relevant to their construction and integration are presented here; the full
-expressions are collected in Appendix~\ref{ap:antExpressions}.
+expressions are collected in Appendix~\ref{ap:antExpressions}, and their local
+infrared validation is given in Appendix~\ref{sec:localValidationExtra}.
 
 \input{figures/diagrams-a40}
 

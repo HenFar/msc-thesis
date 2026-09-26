@@ -7,7 +7,7 @@ package created from scratch as part of this thesis work to automate the symboli
 construction and integration of QCD antenna functions. The package provides direct access to
 both unintegrated and integrated antenna functions and implements the computational framework
 described in the previous chapter. The results presented in this thesis were produced with
-\textit{AntCalc}, version 0.3.1$\beta$3, corresponding to commit \texttt{c5df6d3}.
+\textit{AntCalc}, version 0.3.2$\beta$4, corresponding to commit \texttt{6deae58}.
 
 \textit{AntCalc} makes use of \textit{FeynCalc} \cite{Feyncalc1,Feyncalc2,Feyncalc3,Feyncalc4}
 for symbolic amplitude manipulation and interfaces with \textit{LiteRed2} \cite{Litered} for
@@ -116,7 +116,7 @@ whose execution may be refined by options. The route key takes the form,
 \end{equation}
 As an example, the route key for
 the one-loop three-parton
-antenna set associated with the full-process amplitude $M_{qg\bar q}^1$ is $\{\text A,3,1\}$. This key
+antenna set associated with the process-level contribution $|M_{qg\bar q}^1|^2$ is $\{\text A,3,1\}$. This key
 represents the complete set of colour contributions, comprising the leading-colour
 antenna $A_3^1$, the subleading-colour antenna $\tilde A_3^1$, and the quark-loop
 contribution $\hat A_3^1$. The default public output is therefore the ordered list
@@ -297,7 +297,7 @@ they do it changes with the antenna's multiplicity. Each production and extracti
 corresponding \textit{Current Route} entry in Subsection~\ref{subsec:antFamilies}. On the extraction side,
 $A_2^0$ is set to $1$; both $A_3^0$ and the $A_4^0$-set antennae are extracted from the usual
 $NX_n^l + \frac1N\tilde X_n^l$ structure; and the $B_4^0$ and $C_4^0$ antennae are extracted from the more
-involved inner structure of the $M_{4q}^0$ full-process amplitude, requiring a correspondingly more complex
+involved inner structure of the $|M_{4q}^0|^2$ process-level contribution, requiring a correspondingly more complex
 extraction process.
 
 \subsection{One-Loop Routes}\label{subsec:oneLoopRoutes}

@@ -1,0 +1,43 @@
+AntCalc 0.3.2 \:f2ce\:f2b2 3 - Thesis Version
+FeynCalc 10.2.1  \:f2c2\:f2b7  FeynArts 3.12 (27\:f2c2\:f2a0Mar\:f2c2\:f2a02025)  \:f2c2\:f2b7  FeynHelpers 2.0.0  \:f2c2\:f2b7  FeynCalcLegacy 1.0.0
+LiteRed2 2.025\:f2ce\:f2b2
+[2026-09-25 23:49:38] BuildAntenna [1/5]: resolving route setup {A, 4, 0} with Component -> Leading
+[2026-09-25 23:49:38] BuildAntenna [2/5]: building route data {A, 4, 0} with Component -> Leading
+[2026-09-25 23:52:42] BuildAntenna [3/5]: extracting public result {A, 4, 0} with Component -> Leading
+[2026-09-25 23:52:42] BuildAntenna [4/5]: building diagnostics {A, 4, 0} with Component -> Leading
+[2026-09-25 23:52:47] BuildAntenna [5/5]: formatting public return {A, 4, 0} with Component -> Leading
+A40_soft :: (4*s12^2 - 2*(-1 + Epsilon)*s14^2 - 4*Epsilon*s14*s24 - 2*(-1 + Epsilon)*s24^2 + 4*s12*(s14 + s24))/(s124*s13*s24*s34)
+A40_col13 :: -(((s24^2 + 2*s24*sP2 + 2*sP2^2 + 2*sP2*sP4 + sP4^2)*(1 + z^2))/(s24*sP4*(s24 + sP2 + sP4)*(-1 + z)))
+A40_col34 :: (s12^2*(-4 - 8*(-1 + z)*z) - 2*(s1P^2 + sP2^2)*(1 + (-1 + z)*z)^2 - 4*s12*(s1P + sP2)*(1 + 2*(-1 + z)*z))/(s1P*sP2*(s12 + s1P + sP2)*(-1 + z)*z)
+[2026-09-25 23:52:49] BuildAntenna [1/5]: resolving route setup {A, 4, 0} with Component -> Subleading
+[2026-09-25 23:52:49] BuildAntenna [2/5]: building route data {A, 4, 0} with Component -> Subleading
+[2026-09-25 23:53:24] BuildAntenna [3/5]: extracting public result {A, 4, 0} with Component -> Subleading
+[2026-09-25 23:53:24] BuildAntenna [4/5]: building diagnostics {A, 4, 0} with Component -> Subleading
+[2026-09-25 23:53:27] BuildAntenna [5/5]: formatting public return {A, 4, 0} with Component -> Subleading
+tA40_soft_eps_general :: (2*s12*(2*s12^2 - (-1 + Epsilon)*s14^2 - 2*Epsilon*s14*s24 - (-1 + Epsilon)*s24^2 + 2*s12*(s14 + s24)))/(s124*s13*s14*s23*s24)
+tA40_soft_eps0 :: (2*s12*(2*s12^2 + s14^2 + s24^2 + 2*s12*(s14 + s24)))/(s124*s13*s14*s23*s24)
+tA40_col13 :: -(((s24^2 + 2*s24*sP2 + 2*sP2^2 + 2*sP2*sP4 + sP4^2)*(1 + z^2))/(s24*sP4*(s24 + sP2 + sP4)*(-1 + z)))
+tA40_col34_general :: 0
+[2026-09-25 23:53:33] BuildAntenna [1/5]: resolving route setup {B, 4, 0} with Component -> All
+[2026-09-25 23:53:33] BuildAntenna [2/5]: building route data {B, 4, 0} with Component -> All
+[2026-09-25 23:53:42] BuildAntenna [3/5]: extracting public result {B, 4, 0} with Component -> All
+[2026-09-25 23:53:42] BuildAntenna [4/5]: building diagnostics {B, 4, 0} with Component -> All
+[2026-09-25 23:53:42] BuildAntenna [5/5]: formatting public return {B, 4, 0} with Component -> All
+B40_col34 :: (2*(-1 + Epsilon)*s12^2 + 2*(-1 + Epsilon)*s12*(s1P + sP2) - ((-1 + Epsilon)*s1P^2 + 2*Epsilon*s1P*sP2 + (-1 + Epsilon)*sP2^2)*(-1 + Epsilon - 2*(-1 + z)*z))/((-1 + Epsilon)*s1P*sP2*(s12 + s1P + sP2))
+B40_doublesoft :: (-2*(s14*s23 - s13*s24)^2 + 2*s12*(s13 + s14)*(s23 + s24)*s34)/((s13 + s14)^2*(s23 + s24)^2*s34^2)
+B40_triple :: (-2*r13^2*(-1 + w)^2 + r13*r34*(-1 + w)*(1 + Epsilon*(-1 + w)^2 - w*(2 + w)) + r34*(r14*(-1 + w)*(-1 + Epsilon*(-1 + w)^2 - w^2) + r34*w*(1 + Epsilon*(-1 + w)^2 - w^2)) - 2*(r13 + r14 + r34)*(-1 + w)*(2*r13 + r34*w)*x - 2*(r13 + r14 + r34)*(r13 + r14 + r34*w)*x^2)/(r34^2*(r13 + r14 + r34)^2*(-1 + w)^2)
+[2026-09-25 23:53:45] BuildAntenna [1/5]: resolving route setup {C, 4, 0} with Component -> All
+[2026-09-25 23:53:45] BuildAntenna [2/5]: building route data {C, 4, 0} with Component -> All
+[2026-09-25 23:53:50] BuildAntenna [3/5]: extracting public result {C, 4, 0} with Component -> All
+[2026-09-25 23:53:50] BuildAntenna [4/5]: building diagnostics {C, 4, 0} with Component -> All
+[2026-09-25 23:53:51] BuildAntenna [5/5]: formatting public return {C, 4, 0} with Component -> All
+C40_col34 :: 0
+C40_triple :: (-(r23^2*(2*w - (-1 + x)^2)*(-1 + w + x)) + (-(r34*w) + r24*x)*(r24 - r34 + 2*r34*w + (r24 + r34)*x^2) + r23*(r34*(-4*w^2 - 4*w*(-1 + x) + (-1 + x)^3) + r24*(-1 + x)*(1 + w*(-1 + x) + x*(-1 + 2*x))))/(2*r23*r34*(r23 + r24 + r34)^2*(-1 + w)*(w + x))
+[2026-09-25 23:53:52] BuildAntenna [1/5]: resolving route setup {A, 3, 0} with Component -> All
+[2026-09-25 23:53:52] BuildAntenna [2/5]: building route data {A, 3, 0} with Component -> All
+[2026-09-25 23:53:55] BuildAntenna [3/5]: extracting public result {A, 3, 0} with Component -> All
+[2026-09-25 23:53:55] BuildAntenna [4/5]: building diagnostics {A, 3, 0} with Component -> All
+[2026-09-25 23:53:55] BuildAntenna [5/5]: formatting public return {A, 3, 0} with Component -> All
+mA30_soft :: (s12*s13*s23 - mQ^2*(s13^2 + s23^2))/(2*s13^2*s23^2)
+mA30_quasi13 :: (1 + 2*muQg2*(-1 + z) + z^2)/(4 - 4*z)
+DONE
