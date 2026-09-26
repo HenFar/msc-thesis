@@ -342,8 +342,8 @@ $q\bar q$ final-final antennae considered up to NNLO, the only two-loop antenna 
 Unlike the one-loop routes, the two-loop source is not reduced with Passarino-Veltman reduction.
 On the build side, the two loop momenta $\ell_1$ and $\ell_2$ are removed directly by IBP reduction
 with \textit{LiteRed2}, and the known analytic expressions of the resulting master integrals are
-substituted, so that the public build result is expressed in terms of the invariant $s_{12}$ and
-$\epsilon$ alone. Passarino-Veltman reduction enters this route only through the unintegrated
+substituted, so that the public build result is real and expressed in terms of $\epsilon$ alone,
+with the scale set to $\mu^2=q^2$. Passarino-Veltman reduction enters this route only through the unintegrated
 $A_2^1$ antenna, which is attached to the leading-colour and quark-loop components as their
 ultraviolet counterterm at the public build boundary described in Section~\ref{sec:buildStage}.
 The four-component set is also not generated like the $A_4^0$ and $A_3^1$ sets were; rather, its
@@ -444,8 +444,9 @@ It is relevant to note that \texttt{IntegrateAntenna} requires the profile to co
 function like \texttt{BuildAntenna}, since it also encodes the relevant routing information 
 for the reduction and integration process. 
 
-Much like for \texttt{BuildAntenna}, the route state is not held in a single context object
-but spread across several objects, accessed as required: the key and profile, the input
+Unlike the build stage, whose intermediate data are collected in a single route context, the
+integration stage does not hold its route state in one context object; it is spread across
+several objects, accessed as required: the key and profile, the input
 (unintegrated) antenna and selected component, the IBP bases and master integrals, the series
 result, and the diagnostics.
 
@@ -515,10 +516,9 @@ is then mapped onto this integral family and reduced by IBP, using \textit{LiteR
 corresponding set of master integrals. Their known analytic expressions are subsequently
 substituted to obtain the integrated antenna.
 
-The master-integral basis used in these reductions is discussed in
-Chapter~\ref{ch:workedexample}, where selected master integrals are evaluated explicitly and
-their role in the analytic integration of antenna functions is illustrated through
-representative examples.
+The master integrals used in these reductions are defined and evaluated in
+Appendix~\ref{ap:masterIntegrals}, while their role in the analytic integration of antenna
+functions is illustrated through representative examples in Chapter~\ref{ch:workedexample}.
 
 
 
@@ -555,10 +555,10 @@ For the public routes, the master integrals (MIs) identified by the IBP reductio
 to their corresponding analytic expressions known from the literature and evaluated explicitly
 in this work. Their expressions are then substituted by \textit{AntCalc}. Finally, the required
 normalisation and dimensional-regularisation conventions are applied, and the result is
-expanded as a Laurent series in $\epsilon$, yielding the integrated antenna function. Selected
-master integrals and explicit examples of their analytic evaluation are presented in
-Chapter~\ref{ch:workedexample}, together with representative applications of this procedure to
-the integration of antenna functions. The complete IBP-based integration workflow is summarised
+expanded as a Laurent series in $\epsilon$, yielding the integrated antenna function. The master
+integrals and their analytic evaluation are presented in Appendix~\ref{ap:masterIntegrals}, and
+representative applications of this procedure to the integration of antenna functions in
+Chapter~\ref{ch:workedexample}. The complete IBP-based integration workflow is summarised
 schematically in Fig.~\ref{fig:ibp-reduction}.
 
 \input{figures/ibp-reduction.tex}

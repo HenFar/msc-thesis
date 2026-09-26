@@ -503,7 +503,10 @@ the squared $m$-parton one-loop amplitude, for a generic process,
 \begin{equation}
     \begin{gathered}
         d\sigma^{RR}_\text{NNLO} = d\Phi_{m+2}(q:p_1,...,p_{m+2})\frac1{S_{m+2}}|\mathcal M_{m+2}^0(p_1,...,p_{m+2})|^2J_m^{(m+2)}(p_1,...,p_{m+2}),\\
-        d\sigma^{RV}_\text{NNLO} = d\Phi_{m+1}(q:p_1,...,p_{m+1})\frac1{S_{m+1}}\,2\operatorname{Re}\!\left(\mathcal M_{m+1}^1(p_1,...,p_{m+1})\mathcal M_{m+1}^{0\,*}(p_1,...,p_{m+1})\right)J_m^{(m+1)}(p_1,...,p_{m+1}),\\
+        \begin{aligned}
+            d\sigma^{RV}_\text{NNLO} = d\Phi_{m+1}(q:p_1,...,p_{m+1})\frac1{S_{m+1}}\,&2\operatorname{Re}\!\left(\mathcal M_{m+1}^1(p_1,...,p_{m+1})\mathcal M_{m+1}^{0\,*}(p_1,...,p_{m+1})\right)\\
+                                                                                  &\times J_m^{(m+1)}(p_1,...,p_{m+1}),
+        \end{aligned}\\
         \begin{aligned}
             d\sigma^{VV}_\text{NNLO} = d\Phi_m(q:p_1,...,p_m)\frac1{S_m}\Big[&2\operatorname{Re}\!\left(\mathcal M_m^2(p_1,...,p_m)\mathcal M_m^{0\,*}(p_1,...,p_m)\right)\\
                                                                               &+|\mathcal M_m^1(p_1,...,p_m)|^2\Big]J_m^{(m)}(p_1,...,p_m).
@@ -876,7 +879,7 @@ with the original hard pair's flavour, as $q\bar qq\bar q$; and $B$-type
 by a quark-antiquark pair of a different flavour, notated as 
 $q\bar qq^\prime\bar q^\prime$. Following QCD Feynman rules, described in
 Section~\ref{sec:FeynmanRules}, $A$-type antennae may exist at any order, 
-while $B$- and $C$-type antennae can only exist at NNLO.
+while $B$- and $C$-type antennae first appear at NNLO.
 
 Throughout the remainder of this thesis, a generic $X$-type antenna is denoted
 by $X_n^l$, where $n$ is the number of final-state partons and $l$ the number
@@ -905,7 +908,7 @@ loop number, and final state in Table~\ref{tab:antFamilies}.
     \centering
 \caption{\centering Quark-antiquark antenna families used in this work, including 
     the $q\bar q$ form factors \cite{Gehrmann-DeRidder:2005btv}. Final states are 
-    ordered with the two hard radiator listed first and last, following that paper's convention.}
+    ordered with the two hard radiators listed first and last, following that paper's convention.}
     \renewcommand{\arraystretch}{1.3}
     \begin{tabular}{|c|c|c|c|}
         \hline
@@ -1901,8 +1904,8 @@ IBP identities must be sufficiently numerous to reduce every target integral
 and every non-zero subtopology reached along the way.
 
 After generating IBP identities for the selected seed integrals, any relation 
-containing these representatives is first solved for $I(1,1,1)$, the highest-ranked 
-member, and the resulting expression is substituted recursively into the remaining 
+containing these representatives is first solved for its highest-ranked member, $I(1,1,1)$ 
+in the example of Section~\ref{sec:laportaByHand}, and the resulting expression is substituted recursively into the remaining 
 system \cite{Laporta:2000dsw}.
 
 IBP reduction may produce lower sectors, but
