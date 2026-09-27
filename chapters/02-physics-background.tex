@@ -551,7 +551,7 @@ unresolved radiation emitted between a pair of colour-connected hard radiators. 
 takes the schematic form,
 \begin{equation}
     \begin{aligned}
-        d\sigma^S_\text{NLO} = \sum_{m+1}&d\Phi_{m+1}(q:p_1,...,p_{m+1})\frac1{S_{m+1}}\\&\sum_j X_{ijk}^0|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}).
+        d\sigma^S_\text{NLO} = \sum_{m+1}&d\Phi_{m+1}(q:p_1,...,p_{m+1})\frac1{S_{m+1}}\\&\sum_j X_{ijk}^0|\mathcal M_m^0(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}).
     \end{aligned}
 \end{equation}
 Here, $i$ and $k$ denote the hard radiators and $j$ the unresolved parton. The
@@ -577,7 +577,7 @@ the factorisation of the phase space,
 The integrated counterterm $\int_1 d\sigma^S_\text{NLO}$ then takes the form,
 \begin{equation}
     \begin{aligned}
-        \int_1 d\sigma^S_\text{NLO} = \sum_m &d\Phi_m(q:p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})\frac1{S_{m+1}}\\&\sum_j\left(\int d\Phi_{X_{ijk}}\,X_{ijk}^0\right)|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}).
+        \int_1 d\sigma^S_\text{NLO} = \sum_m &d\Phi_m(q:p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})\frac1{S_{m+1}}\\&\sum_j\left(\int d\Phi_{X_{ijk}}\,X_{ijk}^0\right)|\mathcal M_m^0(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}).
     \end{aligned}
 \end{equation}
 The integral $\int d\Phi_{X_{ijk}}\,X_{ijk}^0$ defines the integrated antenna,
@@ -651,11 +651,11 @@ contributions to the double-real subtraction counterterm are given by,
     \begin{gathered}
         \begin{aligned}
             d\sigma^{S,a} = \sum_{m+2}&d\Phi_{m+2}(q:p_1,...,p_{m+2})\frac1{S_{m+2}}\\
-                                      &\sum_j X_{ijk}^0|\mathcal M_{m+1}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+2})|^2J_m^{(m+1)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+2}),
+                                      &\sum_j X_{ijk}^0|\mathcal M_{m+1}^0(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+2})|^2J_m^{(m+1)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+2}),
         \end{aligned}\\
         \begin{aligned}
             d\sigma^{S,b} = \sum_{m+2}&d\Phi_{m+2}(q:p_1,...,p_{m+2})\frac1{S_{m+2}}\\
-                                      &\sum_{j,k}\left(X_{ijkl}^0-X_{ijk}^0X_{IKl}^0-X_{jkl}^0X_{iJL}^0\right)|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+2})|^2\\
+                                      &\sum_{j,k}\left(X_{ijkl}^0-X_{ijk}^0X_{IKl}^0-X_{jkl}^0X_{iJL}^0\right)|\mathcal M_m^0(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+2})|^2\\
                                       & J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_L,...,p_{m+2}),
         \end{aligned}
     \end{gathered}
@@ -665,13 +665,13 @@ and for the real-virtual counterterm,
     \begin{gathered}
         \begin{aligned}
             d\sigma^{T,a} = \sum_{m+1}&d\Phi_{m+1}(q:p_1,...,p_{m+1})\frac1{S_{m+1}}\\
-                                      &\sum_{i,k}-\mathcal X_{ijk}^0(s_{ik})|\mathcal M_{m+1}(p_1,...,p_i,p_k,...,p_{m+1})|^2J_m^{(m+1)}(p_1,...,p_i,p_k,...,p_{m+1}),\\
+                                      &\sum_{i,k}-\mathcal X_{ijk}^0(s_{ik})|\mathcal M_{m+1}^0(p_1,...,p_i,p_k,...,p_{m+1})|^2J_m^{(m+1)}(p_1,...,p_i,p_k,...,p_{m+1}),\\
                                       &\text{with }\mathcal X_{ijk}^0=C(\epsilon,1)\int d\Phi_{X_{ijk}} X_{ijk}^0,
         \end{aligned}\\
         \begin{aligned}
             d\sigma^{T,b} = \sum_{m+1}&d\Phi_{m+1}(q:p_1,...,p_{m+1})\frac1{S_{m+1}}\\
-                                      &\sum_jX_{ijk}^0|\mathcal M_m^1(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})\\
-                                      &+X_{ijk}^1|\mathcal M_m(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1}),\\
+                                      &\sum_j\Big[X_{ijk}^0|\mathcal M_m^1(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})\\
+                                      &+X_{ijk}^1|\mathcal M_m^0(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})|^2J_m^{(m)}(p_1,...,\tilde p_I,\tilde p_K,...,p_{m+1})\Big],\\
                                       &\text{with }X_{ijk}^1\rightarrow X_{ijk}^1+\frac{\beta_0}\epsilon\frac{(4\pi)^\epsilon e^{-\epsilon\gamma_E}}{8\pi^2}X_{ijk}^0\left(s_{ijk}^{-\epsilon}-(\mu^2)^{-\epsilon}\right),
         \end{aligned}
     \end{gathered}
