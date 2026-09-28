@@ -1128,7 +1128,7 @@ contributions from both colour orderings, together with their interference.
 After performing the colour algebra and extracting the common colour
 normalisation introduced above, these contributions can be organised into
 leading- and subleading-colour structures. The resulting decomposition is
-\begin{equation}
+\begin{equation}\label{eq:Mqggq}
     \begin{gathered}
         \begin{aligned}
             |M_{qgg\bar q}^0|^2 = \frac1{|\mathcal M_2^0|^2}\Bigg(N&\left(|\mathcal M_4^0(1_q,3_g,4_g,2_{\bar q})|^2+|\mathcal M_4^0(1_q,4_g,3_g,2_{\bar q})|^2\right)\\
@@ -1654,9 +1654,10 @@ integrations entering the virtual contributions \cite{GehrmannDeRidder0507061}.
 Thus, while these antennae are also integrated over phase space, the
 phase-space factorisation of Eq.~\eqref{eq:antPhaseSpaceFact}, relevant for
 antennae containing unresolved radiation, is not required. For $A_2^2$ in
-particular, Eq.~\eqref{eq:antennaIntegral} therefore reduces to
-$\mathcal X_2^2 = C(\epsilon,2)\,X_2^2$: the unintegrated and integrated antennae
-differ only by this normalisation.
+particular, the antenna depends only on $q^2$, so the normalised two-particle
+phase-space integration is trivial and Eq.~\eqref{eq:antennaIntegral} gives
+$\mathcal X_2^2 = C(\epsilon,2)\,X_2^2$. This integration is nevertheless the same
+operation that relates the unintegrated and integrated antennae in every other case.
 
 \section{Phase-Space Integration and IBP Reduction}\label{sec:integration}
 
@@ -1736,7 +1737,10 @@ usually denoted by $A_0$, $B_0$, ..., while keeping
 the phase-space variables and integration untouched, as \cite{Passarino:1979pv},
 \begin{equation}\label{eq:PaVeSchematic}
     \int d^d\ell\, \frac{\ell^{\mu_1}...\ell^{\mu_R}}{\prod_j D_j^{a_j}} \xrightarrow{\text{Passarino-Veltman}} \sum_k c_k\!\left(\{s_{ij}\}\right)\{A_0,B_0,C_0,D_0,...\}_k.
-\end{equation} 
+\end{equation}
+Since the Passarino-Veltman procedure is a one-loop method, the two-loop integrals of the
+$A_2^2$ set are instead reduced by IBP identities (Subsection~\ref{subsec:ibp}) to two-loop
+master integrals when the antenna is built.
 
 To finally reach the integrated antenna functions $\mathcal X_n^l$, the
 remaining phase-space integration is performed through Integration By Parts

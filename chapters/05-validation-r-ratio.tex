@@ -250,20 +250,13 @@ entirely in terms of the corresponding integrated antenna functions,
                                     &+N_f\!\left(\mathcal B_4^0+\hat{\mathcal A}_3^1+\hat{\mathcal A}_2^2\right)+2C_F\breve{\mathcal A}_2^2\Bigg].
     \end{split}
 \end{equation}
-The factors $\tfrac12$ and $2$ multiplying $\tilde{\mathcal A}_4^0$ and $\mathcal C_4^0$ follow from the
-definitions of these integrated antennae in the literature. In $\tilde A_4^0$ the two gluons are
-photon-like, coupling only to the quark and antiquark, so that, unlike the colour-ordered $A_4^0$, which
-is a sum of two ordered sub-antennae, it is a sum of four sub-antennae that give identical integrals over
-the tripole phase space (Eqs.~(5.27) and (5.28) of Ref.~\cite{Gehrmann-DeRidder:2005btv}). Its integrated
-expression therefore carries an explicit overall factor of $2$ (Eq.~(5.32) of
-Ref.~\cite{Gehrmann-DeRidder:2005btv}), whereas the inclusive $q\bar qgg$ contribution to the $R$-ratio
-contains exactly half of it (Eq.~(4.53) of Ref.~\cite{Gehrmann-DeRidder:2004ttg}), which gives
-$\tfrac12\tilde{\mathcal A}_4^0$. Likewise, $C_4^0$ is the identical-flavour-only interference term and
-its integrated expression carries an explicit factor of $\tfrac12$ (Eq.~(5.44) of
-Ref.~\cite{Gehrmann-DeRidder:2005btv}), whereas the identical-flavour four-quark contribution to the
-$R$-ratio contains twice this value (Eq.~(4.51) of Ref.~\cite{Gehrmann-DeRidder:2004ttg}), which gives
-$2\,\mathcal C_4^0$. The integrated antennae computed with \textit{AntCalc} in
-Chapter~\ref{ch:workedexample} follow these literature definitions, including the explicit factors.
+The relative factors multiplying the four-parton antennae follow directly from the matrix-element
+decompositions given in Eqs.~\eqref{eq:Mqggq} and \eqref{eq:M4q}. In the $q\bar qgg$ channel, an
+identical-gluon symmetry factor $1/2!$ cancels the two equivalent leading-colour orderings after
+integration, whereas the subleading-colour $\tilde A_4^0$ contribution occurs only once, leaving the
+factor $1/2$ multiplying $\tilde{\mathcal A}_4^0$. For the identical-flavour four-quark contribution,
+Eq.~\eqref{eq:M4q} contains two $C_4^0$ interference terms which give equal contributions after
+integration over the full four-particle phase space, resulting in the factor $2\,\mathcal C_4^0$.
 
 Each contribution in Eq.~\eqref{eq:rNNLO} is individually infrared divergent. After inserting the
 integrated antenna functions obtained in Chapter~\ref{ch:workedexample}, however, the poles cancel in
@@ -378,6 +371,4 @@ of the complete massless antenna set implemented in \textit{AntCalc} through NNL
 especially important because these antenna functions are intended to serve as building blocks for the
 construction of subtraction terms in NNLO QCD calculations: their successful combination in a physical
 inclusive observable provides a non-trivial test of their relative normalisation, colour structure,
-and integrated infrared behaviour. The comparison with experimental data further illustrates the
-phenomenological behaviour of the resulting prediction within the expected domain of applicability of
-the massless fixed-order approximation.
+and integrated infrared behaviour.

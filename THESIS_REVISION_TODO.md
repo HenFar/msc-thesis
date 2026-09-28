@@ -70,6 +70,123 @@ Advisor feedback takes priority over everything below where they overlap. This i
 
 ---
 
+### Prof. Pires email — 28 September 2026 (second email, "final drill": Ch4 p.41 → Ch5 §5.4) — INTAKE ONLY, no .tex edited yet
+
+Grounded against the current source (Ch4, Ch2 §2.4/§2.5, Ch5, App A) and AntCalc docs (`docs/reference/BuildAntenna.md`,
+`records-and-diagnostics.md`, repo now at 0.3.2 β5). No PDF rebuild this pass (shell unavailable), so page cost is estimated.
+
+**A. Prof's questions (context → finding → status)**
+- Q1 p.41 (Ch4 intro, l.58–60, "all derived explicitly, not merely taken from a source"): "did you reproduce ALL master integrals
+  analytically, or only the X40 ones?" → Henrique's own answer on 21 Sep (item 12a): all massless ones, A₆ via Mellin–Barnes;
+  massive I₁, I₂ taken from Ref. [25]. Caveat (G12 iv): the runtime uses imported series for A₆, V₈, R₆/R₈ₐ/R₈b, so the sentence
+  must be about Henrique's derivations, not what the code computes. **Henrique answers; wording change only if he wants to narrow it.**
+- Q2 §4.2.1 (l.750–804): "BuildAntenna depends on the integrated antenna? Out[4] is not yet the integrated antenna?" → Prof is right
+  about the logic. AntCalc's docs: a direct `BuildAntenna[A,2,2]` DOES perform the loop reduction ("loop-only projection") to produce
+  its public expression; the `IntegrableForm` path defers the IBP to `IntegrateAntenna`. So the IBP is loop reduction (build-stage
+  physics), and the A₂² phase-space integration is trivial. The thesis currently shows the MI combination only through
+  `BuildAndIntegrateAntenna[…,ReturnMasterCombination->True]`, and Ch4 l.761–763 + Ch2 l.1656–1659 + App A (A.8/A.10/A.12/A.14) say
+  "built = integrated / C(ε,2), differ only by normalisation" — conceptually wrong per Prof (it's still a phase-space integration).
+  **Blocked on Code-3 (does BuildAntenna expose the MC?).**
+- Q3 §4.3.1 (l.1113–1116): "what is this prefactor 2^{10−6ε}e^{2γε}π^{7−3ε}Γ(2−2ε)/Γ(1−ε), where is it 'reported separately', why is
+  it in the text?" → It is the `FamilyPrefactor` returned next to the A₃¹ MC (G7/G8: agent factored it out of the combination). It
+  collects the loop-measure (S_Γ→S_ε) and three-particle phase-space normalisations — the A₃¹ analogue of the A₂² "two further steps".
+  Not derived anywhere in the thesis. **Recommendation: drop the explicit factor; say the MC is shown up to an overall
+  component-independent normalisation factor that converts the master conventions of App C to those of Ch2.** Needs Henrique's OK
+  (and, if he wants the origin stated, a code check of how P is assembled).
+- Q4 App A (A.20) = Â₃¹ build: "missing 1/ε in the second term" → **Prof is wrong; push back.** (A.20) is exactly A₃⁰/(3ε): the ε-terms
+  of A₃⁰ (−2ε/q² − ε(s13²+s23²)/(q²s13s23)) times 1/(3ε) give the ε⁰ term −(s13+s23)²/(3q²s13s23). Checked by hand against App A (A.6)
+  and the c5df6d3 output (F, M-10). Fix the presentation instead: write (A.20) and Ch4 Out[2] as "= A₃⁰/(3ε)" explicitly.
+
+**B. Mine (Prof's literal text / mechanical) — to apply after Henrique's go**
+- M1 §4.1.2 A₂¹ (l.705–717): replace with Prof's text (no "in the conventions adopted here"; "Their sum is therefore free of IR poles").
+- M2 §4.3.1 (l.1108–1112): replace the R₃-term sentence with Prof's β₀ paragraph (β₀=(11N−2N_f)/6, −11/(6ε)A₃⁰, R₃, V₅ₐ/V₅b, V₈
+  coefficient vanishes). Checked: sign/normalisation consistent with Ch2 Eq. (A₃¹ renormalisation) and G8/G9 (Lead/Nf = −11/2).
+- M3 §4.3.2 (l.1190–1201): replace with Prof's paragraph (consistent with 0505111 Eq. (5.14) mechanism, item 12d).
+- M4 §4.3.3: print the complete Â₃¹ build (two terms, = A₃⁰/(3ε)) instead of "2/3 s12²/(εq²s13s23)+…"; same "= A₃⁰/(3ε)" note in (A.20).
+- M5 §4.4 intro (l.1274–1276) + §4.4.1 (l.1317–1319): "no explicit loop poles" → "no explicit 1/ε poles" (Prof's wording; second
+  occurrence for consistency).
+- M6 Ch5 §5.4 (l.253–266): replace the ½Ã₄⁰ / 2C₄⁰ paragraph by Prof's text (1/2! identical-gluon factor; two C₄⁰ terms in Eq. (2.61)).
+  Ch2 Eq. (2.56) itself is left unchanged (symmetry factor belongs to the phase space; Ch2 l.960–963 says antenna S = 1).
+- M7 App A (A.8)/(A.10)/(A.12)/(A.14): state the build directly as 4^{2ε−3}π^{2ε−4}e^{−2γ_Eε}·[series] and the integrated antenna as
+  𝒜 = C(ε,2)·(trivial two-particle antenna-phase-space integral)·A = [series], so the build no longer "depends on" the integrated result.
+
+**C. Yours (Henrique; Claude grounds/reviews)**
+- Y1 Q1 answer (+ optional narrowing of l.58–60).
+- Y2 Q3 decision (drop prefactor vs explain origin).
+- Y3 §4.2.4 Breve: Prof wants the reason Ă₂² has no timelike phase factor. Grounded reason: Ă₂² = M¹†M¹ is a modulus squared; each
+  one-loop amplitude carries (−q²−i0)^{−ε} = (q²)^{−ε}e^{iπε}, the conjugate carries e^{−iπε}, so the phases cancel (no cos(2πε)).
+  This is also why AntCalc's Breve MC needs the −1/cos(2πε) conversion (Ch4 l.979–981). One sentence; needs Henrique's wording or OK.
+- Y4 Timelike continuation: Prof writes (−q²−i0)^{−2ε} = (q²)^{−2ε}e^{2iπε}; the thesis keeps the real part, cos(2πε), because the
+  antenna is 2Re(M⁰†M²) (Eq. ampOrders). Keep one clause saying so when transcribing Prof's paragraph.
+- Y5 Prof's 𝒜₂² = C(ε)∫dΦ₂A₂²: in thesis notation this must be C(ε,2)∫dΦ_{X₂}A₂² with the Φ₂-normalised measure of Eq.
+  (antPhaseSpaceFact), otherwise it gives C·Φ₂·A instead of C·A. Transcribe with the thesis's measure.
+- Y6 Ripples of Q2: Ch2 l.1656–1659 ("differ only by this normalisation" → the integration is trivial but still the phase-space
+  integration); Ch2 l.1726–1746 and Ch4 l.84–90 (PV = build, IBP = integration) need a clause that for the two-loop A₂² set the
+  loop integrals are IBP-reduced at the build stage.
+- Y7 §4.4.1 "show more terms" of the A₄⁰ Lead/Sub, B₄⁰, C₄⁰ and massive A₃⁰ builds: needs fresh code output (App A A₄⁰/B₄⁰ builds
+  were flagged in M-10 as not matching the code) — Henrique runs the snippet, Claude formats. Page cost.
+
+**D. Code**
+- Code-3 Make the A₂² build expose its IBP-reduced master combination (e.g. `BuildAntenna[A,2,2,Component->…,
+  ReturnMasterCombination->True]`, or check first whether `IntermediateSteps` already returns it), identical to the current Out[4].
+  Then §4.2.1–4.2.4 follow Prof's order: Build → MC; two steps (S_Γ→S_ε, timelike continuation); Build (default) → series;
+  BuildAndIntegrate → 𝒜 via the trivial Φ₂ integral. Prof's paragraphs are transcribed; "The last paragraph is fine" (l.822–829 kept).
+
+**F. Round 2 (28 Sep, Henrique):** `BuildAntenna[A,2,2,…,IntermediateSteps->All]` exposes only {Amplitude, Interference, Antenna}
+→ no build-side MC, Code-3 needed. Henrique: "write 2 and 3 yourself" (single-use). DONE: Y3 Breve sentence (Ch4 end of the "two further
+steps" paragraph, cites eq:a22Amp); Y6 all three ripples (Ch2 two-parton paragraph after eq:antennaIntegral, now "trivial … nevertheless the same
+operation"; Ch2 one sentence after eq:PaVeSchematic; Ch4 intro PV/IBP paragraph + "A₂² is the exception"). Not built yet (shell down).
+Y7: snippet for the more-terms outputs given in chat. Mine batch M1–M7 still awaiting "go".
+- Y7 DONE (28 Sep, "lets fix this before the a22 code change"): Henrique exported the five builds (`build_outputs_28sep.m`; term counts
+  A40Lead 551, A40Sub 1097, B40 91, C40 195, massive A30 = one fraction). Ch4 Out[2] now shows the first 8 raw output terms (A₄⁰ Lead/Sub,
+  B₄⁰, C₄⁰) and the COMPLETE massive A₃⁰ build (prose: "complete unintegrated antenna, exact in ε"). **Found:** the old A₄⁰ Lead display
+  −3s₁₂/(2(−1+ε)(q²)³) was wrong (code: …q²s₁₃₄²). App A massive A₃⁰ build had 1/ε², 1/ε poles (impossible for a tree antenna) →
+  replaced by the code output. **Flag:** at m_q→0 the massive build equals A₃⁰/4 (massless), i.e. a ¼ normalisation difference — not
+  investigated (cf. the I=J/4 cut factor). Build: 157 pp, no new overfulls; **main text now ends printed p.81 (28 lines) — one page
+  over; needs an offset (§5.4 replacement −5 lines, …).**
+- Round 3 (28 Sep, Henrique: "go ahead"; massive note requested, "short"): massive A₃⁰ note added under the build (m_q→0 gives A₃⁰/4;
+  primary objective = reproduce Ref. [25]; the ¼ is the normalisation required for consistency). Told Henrique the build's ¼ is NOT
+  caused by the I=J/4 master map (no masters enter the build). **Mine batch DONE:** M1 (A₂¹ Prof text), M2 (§4.3.1 β₀ paragraph),
+  M3 (§4.3.2 Prof text), M4 (§4.3.3 full Â₃¹ build + "exactly A₃⁰/(3ε)"; App A (A.20) now ends "= A₃⁰/(3ε)"), M5 (§4.4 + §4.4.1
+  "no explicit 1/ε poles"), M6 (Ch5 §5.4 Prof text; new label `eq:Mqggq` on Ch2 Eq. (2.56)), M7 (App A A₂² builds = 1/C(ε,2)·[series],
+  integrated = C(ε,2)·A via the trivial two-particle integration; sloppypar on the four long sentences). Build 157 pp, no new
+  overfulls, no undefined refs; **main text still ends printed p.81 (30 lines).** Still open: Y1 (Q1 answer), Y2 (A₃¹ prefactor
+  sentence, l.~1113), Code-3 + §4.2 restructure, page offset.
+- Round 4 (28 Sep): Henrique answered Q1–Q4 himself (no action). BuildRRatio box KEPT (5 lines, Prof's M-5 request). Seven Ch4 cuts
+  applied ("go ahead"): (1) duplicate `BuildAntenna[A,3,1,…]` display before the A₃¹ box; (2) the three "master integrals … appearing
+  in the results above" end-pointers (§4.2/§4.3/§4.4); (3) Q3 prefactor sentence → "shown up to an overall normalisation common to the
+  three components"; (4) repeated App C / colour-components sentences in the 2nd intro paragraph; (5) §4.2 intro "four components are
+  constructed and integrated separately…"; (6) last two generic sentences of §4.2.2; (7) §4.2.1 post-Out[2] paragraph ("differs … only by
+  the normalisation", Prof's objection) cut to its first sentence — Code-3 restructure rewrites it. Pre-cut copy:
+  /private/tmp/claude-501/ch4_precuts.tex. **Main text ends printed p.80 again (~14 lines spare).** Next: Code-3 prompt.
+- Round 5 (28 Sep): Henrique chose option (a) — NO code change (Code-3 dropped). §4.2.1 rewritten in Prof's order with his paragraphs:
+  MC via BuildAndIntegrate+ReturnMasterCombination (In[2]/[3], + one sentence why: modular path does the loop IBP inside
+  IntegrateAntenna, no phase-space integration yet) → Prof's "result above is the unintegrated A₂²…" → Prof's two steps (+ Y4: e^{2iπε}
+  enters as cos(2πε), Re of interference; counterterm cos(πε) explicit; Breve no-phase sentence) → BuildAntenna Out[4] (prefactor
+  1/C(ε,2) because Out[3] is quoted with C(ε,2) included) → 𝒜 = C(ε,2)(1/Φ₂)∫dΦ₂A = C(ε,2)A (Y5) → In[5]. New label subsec:A22lead.
+  §4.2.2–4.2.4 reordered the same way (MC box first, build box second, In[] renumbered). Pre-restructure copy:
+  /private/tmp/claude-501/ch4_pre_a22.tex. Build clean. **Main text now ends p.81 with 29 lines over → cuts needed.**
+- Round 6 (28 Sep, "go ahead"): eight Ch4 cuts applied (§4.2 intro compressed; §4.2.1 PV/IBP sentence; (−q²−i0) display inline;
+  §4.2.2 closing para; §4.2.3 and §4.2.4 pole paragraphs to one sentence each; §4.3 intro compressed; §4.4 intro paragraphs merged).
+  They did NOT move the end page: Ch4 ends on the half-full Table 4.1 page (p.71) and chapters start on a new page. The real bottleneck
+  was Ch5 spilling 3 lines onto p.78 → cut the last sentence of §5.7 Summary (repeated the PDG-comparison paragraph). **Now: Ch6 starts
+  p.78, main text ends printed p.80 (~14 lines spare).** Build clean. Pre-cut copy: /private/tmp/claude-501/ch4_pre_cuts2.tex.
+  Page rule for later: Ch4 has ~12 lines free on p.71 before a page is added; Ch5 has ~0; Ch6 ~14.
+
+**E. Page budget:** main text ends p.80 at the limit. Estimated: A₂² restructure +10–15 lines, more build terms +8–12, Â₃¹ +2,
+§4.3.1 ≈0 (β₀ para + prefactor removal), §5.4 −5. Net ≈ +15–25 lines → one page over unless offset.
+
+### Prof. Pires email — 28 September 2026: "leading-colour R-ratio check leaves a 1/ε pole"
+
+- **Question (in context):** he checked Eq. (5.16) at leading colour in a notebook (N·(A21·A30 + A31 + A40 + A22) + N·Ă22,
+  with the values printed in Appendix A), and got the residual pole N(173/8 − 7π²/4 − 32ζ₃/3)/ε. He asked where the error is.
+- **Found:** there's no error in the thesis. His notebook truncates A21 and A30 at ε⁰, but their product needs the O(ε) and O(ε²)
+  terms (1/ε² × ε feeds the 1/ε pole, and 1/ε² × ε² feeds the finite part). Appendix A already prints both through ε².
+  Using those terms (wolframscript, 28 Sep), the leading-colour bracket is exactly 243/32 − 11ζ₃/2, so 2C_F·N·(…) =
+  C_F N(243/16 − 11ζ₃), which matches Eq. (5.17). All his other inputs match the thesis values, and his N·Ă22 is correct at leading colour.
+- **Changed:** nothing in the .tex. Optional [Yours]: a one-line remark in §5.3 that the A21·A30 product needs A21 and A30 through O(ε²).
+- **Status:** answered, reply to Prof pending.
+
 ### Meeting with Prof. Pires — 23 September 2026 (in person, ~30 notes) — Mine batch applied 23 Sep (night), see F.
 
 Grounded against `main.pdf` (156 pp, built 23 Sep) and source. Page budget: main text ends printed p.80 — every addition needs an offset (A22 build removal frees space). Page refs are the compiled draft's numbering. Henrique's addenda after the first explain-back are folded in below.

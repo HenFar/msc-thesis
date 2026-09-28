@@ -87,17 +87,15 @@ integration-by-parts (IBP) reduction. Passarino-Veltman reduction is used for th
 amplitudes to reduce tensor loop integrals to scalar one-loop integrals, allowing the unintegrated
 antenna functions to be expressed in terms of the external kinematic invariants. IBP identities are
 instead used in the analytic integration of the antenna functions to reduce the resulting integral
-families to a basis of master integrals.
+families to a basis of master integrals. The two-loop $A_2^2$ set is the exception: its loop integrals
+are reduced by IBP identities when the antenna is built, and the subsequent two-particle phase-space
+integration is trivial (Section~\ref{subsec:A22}).
 
 Since Passarino-Veltman reduction is required only for the one-loop tensor reduction and does not
 constitute the main focus of the integrations presented here, its implementation and the
 corresponding scalar one-loop integrals are discussed separately in
 Appendix~\ref{subsec:PaVe}. The remainder of this chapter therefore focuses on the antenna functions and
-on the master integrals arising from the IBP reduction. For each antenna set, the integral family and the master integrals
-required for its integration are collected, by antenna family, in Appendix~\ref{ap:masterIntegrals},
-where their definitions and analytic evaluation are given, including a detailed derivation of the
-representative master integral $R_{8,a}$. Different colour components of the same antenna set
-generally reduce to a common set of master integrals and are therefore discussed together.
+on the master integrals arising from the IBP reduction.
 
 Following the IBP reduction, \textit{LiteRed2} represents the master integrals using its internal
 $j[\ldots]$ notation, in which the arguments specify the corresponding integral within a given
@@ -256,7 +254,7 @@ and the tree-level squared matrix element is obtained in $d$ dimensions (with $d
     \begin{split}
         |\mathcal M_3^0|^2 &= e_q^2g_s^2(N^2-1)\Bigg(2(d-2)^2\left(\frac{s_{13}}{s_{23}}+\frac{s_{23}}{s_{13}}\right)-4(d-2)\frac{(d-4)s_{13}s_{23}-2s_{12}^2-2s_{12}(s_{13}+s_{23})}{s_{13}s_{23}}\Bigg)\\
                            &= 2(d-2)e_q^2g_s^2(N^2-1)\Bigg((d-2)\left(\frac{s_{13}}{s_{23}}+\frac{s_{23}}{s_{13}}\right)-2\frac{(d-4)s_{13}s_{23}-2s_{12}^2-2s_{12}(s_{13}+s_{23})}{s_{13}s_{23}}\Bigg)\\
-                           &= \frac8{s_{13}s_{23}}\Bigg(2q^2s_{12}+s_{13}^2+s_{23}^2-2\epsilon\left(q^2s_{12}+s_{13}^2+s_{23}^2+s_{13}s_{23}\right)+\epsilon^2\left(s_{13}+s_{23}\right)^2\Bigg)
+                           &= \frac{8e_q^2g_s^2\left(N^2-1\right)}{s_{13}s_{23}}\Bigg(2q^2s_{12}+s_{13}^2+s_{23}^2-2\epsilon\left(q^2s_{12}+s_{13}^2+s_{23}^2+s_{13}s_{23}\right)+\epsilon^2\left(s_{13}+s_{23}\right)^2\Bigg)
     \end{split}
 \end{equation}
 
@@ -703,81 +701,43 @@ $A_3^0$ antenna, no phase-space IBP reduction is required for this two-parton co
 \end{mdframed}
 
 The Laurent expansion displays the infrared singularity structure of the one-loop virtual correction,
-with leading $1/\epsilon^2$ and $1/\epsilon$ poles. In the conventions adopted here, these poles are
-equal in magnitude and opposite in sign to those obtained for the integrated tree-level
-real-radiation antenna $\mathcal A_3^0$,
+with leading $1/\epsilon^2$ and $1/\epsilon$ poles. These poles are equal in magnitude and opposite in
+sign to those of the integrated tree-level real-radiation antenna $\mathcal A_3^0$,
 \begin{equation*}
     \left.\mathcal A_2^1\right|_{\mathrm{poles}} = -\frac{1}{\epsilon^2}-\frac{3}{2\epsilon}, \qquad
     \left.\mathcal A_3^0\right|_{\mathrm{poles}} = \frac{1}{\epsilon^2}+\frac{3}{2\epsilon}.
 \end{equation*}
-Their cancellation provides an explicit illustration of the cancellation between virtual and
-integrated real-radiation infrared singularities at NLO discussed in
+Their sum is therefore free of infrared poles, providing an explicit illustration of the cancellation
+between virtual and integrated real-radiation singularities at NLO discussed in
 Chapter~\ref{ch:physicsbackground}. Terms through $\mathcal O(\epsilon^2)$ are retained because
-higher-order coefficients of lower-order antennae can contribute when these quantities enter products
-with singular Laurent series at higher perturbative order.
+higher-order coefficients of lower-order antennae can contribute when these quantities multiply
+singular Laurent series at higher perturbative orders.
 
 
 \section{NNLO Two-Parton Antennae: The $A_2^2$ Set}\label{subsec:A22}
 
-At NNLO, the two-parton virtual contribution to $\gamma^*\to q\bar q$ receives contributions from the
-interference of the two-loop amplitude with the tree-level amplitude and from the square of the
-one-loop amplitude. After the corresponding colour decomposition and normalisation to the two-parton
-Born contribution, these terms give rise to the $A_2^2$ antenna set considered in this section. In
-the conventions adopted in this work, the set comprises four components, $A_2^2$, $\tilde A_2^2$,
-$\hat A_2^2$, and $\breve A_2^2$. The first three distinguish the colour structures of the
-tree--two-loop contribution, while $\breve A_2^2$ originates from the one-loop-squared contribution.
-Their precise definitions and colour decomposition were introduced in
-Chapter~\ref{ch:physicsbackground}.
-
-The four components are constructed and integrated separately in \textit{AntCalc} and are presented
-in the following subsections. As for $A_2^1$, these are purely virtual two-parton contributions and
-are integrated over the two-particle phase space. However, their two-loop structure requires a more
-involved integral reduction, as discussed below.
+At NNLO, the two-parton virtual contribution to $\gamma^*\to q\bar q$ gives rise to the four
+components $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$ and $\breve A_2^2$ defined in
+Chapter~\ref{ch:physicsbackground}: the first three are the colour structures of the tree--two-loop
+interference, while $\breve A_2^2$ originates from the square of the one-loop amplitude.
 
 \input{figures/diagrams-a22}
 
-\subsection{$A_2^2$}
+\subsection{$A_2^2$}\label{subsec:A22lead}
 
 We begin with the leading-colour component $A_2^2$. This contribution is obtained from the
 leading-colour part of the interference between the two-loop and tree-level amplitudes for
 $\gamma^*\to q\bar q$.
 Representative two-loop Feynman diagrams contributing to this amplitude are shown in Fig.~\ref{fig:diagA22}.
-In contrast to $A_2^1$, the resulting two-loop integrals cannot in general be reduced using the
-one-loop Passarino-Veltman procedure. Instead, the relevant integrals are organised into integral
-families and reduced through IBP identities to the master-integral basis described in
-Appendix~\ref{sec:MIA22}.
 
-Using \textit{AntCalc}, the unintegrated leading-colour contribution is constructed with
+Using \textit{AntCalc}, the unintegrated leading-colour contribution is obtained in the
+master-integral basis with
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[2]:= BuildAntenna[A,2,2,Component->Leading]}\\
+\texttt{In[2]:= A22Lead = BuildAndIntegrateAntenna[A,2,2,\\Component->Leading,ReturnMasterCombination->True];}\\
+\texttt{In[3]:= (A22Lead/.A22MISubs)//\\Collect[\#,\{A22LO,A3,A4,B0,C0\},Simplify]\&}\\
 \hfill
-\texttt{Out[2]:=}
-    \begin{equation*}
-4^{2\epsilon-3}\pi^{2\epsilon-4}e^{-2\gamma_E\epsilon}\left[\frac1{4\epsilon^4}+\frac{17}{8\epsilon^3}+\cdots\right]
-    \end{equation*}
-\end{mdframed}
-
-For readability, only the leading terms of the bracket are shown. Since a two-parton antenna has no
-unresolved phase space, the built antenna already contains the complete loop integration and differs
-from the integrated antenna only by the normalisation of Eq.~\eqref{eq:antennaIntegral}. The prefactor
-in \texttt{Out[2]} is exactly $1/C(\epsilon,2)=S_\epsilon^2/G_2$, and the bracket coincides, order by
-order, with the integrated result \texttt{Out[5]} below. The output is real and free of $s_{12}$: the
-timelike continuation has been applied and the renormalisation scale is set to $\mu^2=q^2$. For the
-leading-colour and quark-loop components it already contains the coupling-renormalisation counterterm,
-$-\tfrac{11}{6\epsilon}A_2^1$ and $+\tfrac{1}{3\epsilon}A_2^1$, respectively. The same form holds for
-the other three components below.
-
-The subsequent IBP reduction expresses the integrated contribution as a linear combination of the
-master integrals $A_{22,\mathrm{LO}}$, $A_3$, and $A_4$, whose definitions and analytic expressions
-are discussed in Appendix~\ref{sec:MIA22} and are evaluated at $q^2=1$, together with the one-loop functions $B_0^\dagger$ and
-$C_0^\dagger$ of the ultraviolet counterterm (see Appendix~\ref{subsec:PaVe}):
-
-\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[3]:= A22Lead = BuildAndIntegrateAntenna[A,2,2,\\Component->Leading,ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A22Lead/.A22MISubs)//\\Collect[\#,\{A22LO,A3,A4,B0,C0\},Simplify]\&}\\
-\hfill
-\texttt{Out[4]:=}
+\texttt{Out[3]:=}
     \begin{equation*}
         \begin{gathered}
             -\frac{\left(-2\epsilon^2+\epsilon-2\right)^2}{8\pi^4\epsilon^2}A_{22,\text{LO}}
@@ -789,23 +749,61 @@ $C_0^\dagger$ of the ultraviolet counterterm (see Appendix~\ref{subsec:PaVe}):
     \end{equation*}
 \end{mdframed}
 
-The combination in Out[4] is not yet the integrated antenna. Two further steps accompany the
-substitution of the master integrals of Appendix~\ref{sec:MIA22}. First, these master integrals
-are given in the $S_\Gamma$ normalisation of Eq.~\eqref{eq:SGamma} of Appendix~\ref{sec:MInotation}, whereas the integrated antennae are
-quoted in the $S_\epsilon$ convention of Chapter~\ref{ch:physicsbackground}; the conversion is a
-factor $e^{2\gamma_E\epsilon}/\Gamma^2(1-\epsilon)$, together with the constant loop-measure factors
-that cancel the $1/\pi^4$ visible in the coefficients above. Second, the master integrals are written
-for spacelike kinematics, through powers of $-q^2$, and since the integrated antennae are real, the
-timelike continuation is taken as $(-q^2)^{-2\epsilon}\to(q^2)^{-2\epsilon}\cos(2\pi\epsilon)$. The
-counterterm terms, $-\tfrac{11}{6\epsilon}\mathcal A_2^1$ for the leading-colour component and
-$+\tfrac{1}{3\epsilon}\mathcal A_2^1$ for the quark-loop component, are already part of Out[4]; their
-timelike continuation, $\cos(\pi\epsilon)$, is explicit there, so the second step does not apply to
-them. The two steps are common to the whole set, except that $\breve A_2^2$ involves no such timelike
-phase factor.
+The result above is the unintegrated leading-colour antenna $A_2^2$, expressed in the integral basis
+obtained after IBP reduction. \textit{AntCalc} exposes this combination through the
+\texttt{ReturnMasterCombination} option of the integration call because, in its modular
+build-and-integrate path, the IBP reduction of the loop integrals is carried out inside
+\texttt{IntegrateAntenna}; no phase-space integration has been performed at this stage. The genuine
+two-loop contribution is written in terms of the master integrals $A_{22,\mathrm{LO}}$, $A_3$, and
+$A_4$, whose definitions and analytic expressions are given in Appendix~\ref{sec:MIA22}. The
+additional one-loop functions $B_0^\dagger$ and $C_0^\dagger$ arise from the coupling-renormalisation
+contribution proportional to the one-loop antenna $A_2^1$. Thus, although $A_2^2$ is a two-loop
+antenna, its renormalised expression contains both genuine two-loop master integrals and lower-order
+integrals inherited from ultraviolet renormalisation.
 
-After substituting the analytic expressions for these master integrals, performing the two-particle
-phase-space integration and expanding in $\epsilon$, the integrated leading-colour antenna through
-$\mathcal O(\epsilon^0)$ is
+Two further steps are required when substituting the analytic expressions for these integrals. First,
+the master integrals are expressed using the $S_\Gamma$ normalisation of Eq.~\eqref{eq:SGamma}, while
+the antenna functions are defined in terms of the $S_\epsilon$ normalisation introduced in
+Chapter~\ref{ch:physicsbackground}. The appropriate conversion, $e^{2\gamma_E\epsilon}/\Gamma^2(1-\epsilon)$
+together with the constant loop-measure factors that cancel the $1/\pi^4$ above, is therefore applied.
+Second, the loop-integral expressions contain powers of $-q^2$, which are real in the spacelike region
+$q^2<0$, whereas the antenna describes the physical timelike decay $\gamma^\ast\to q\bar q$, for which
+$q^2>0$. The corresponding analytic continuation is performed using the Feynman prescription,
+$-q^2\rightarrow -q^2-i0$. In particular, the two-loop dependence gives
+$(-q^2-i0)^{-2\epsilon}=(q^2)^{-2\epsilon}e^{2i\pi\epsilon}$, which enters as $\cos(2\pi\epsilon)$, since the antenna is defined through the real part of the
+interference, Eq.~\eqref{eq:ampOrders}. The counterterm functions already carry their one-loop
+continuation, $\cos(\pi\epsilon)$, explicitly in \texttt{Out[3]}. The two steps are common to the whole
+set, except that $\breve A_2^2$ involves no such timelike phase factor: it is the modulus squared of
+the one-loop amplitude, Eq.~\eqref{eq:a22Amp}, so the phase $e^{i\pi\epsilon}$ carried by
+$(-q^2-i0)^{-\epsilon}$ in $\mathcal M_2^1$ cancels against the phase $e^{-i\pi\epsilon}$ of its
+complex conjugate. With these steps applied, \texttt{BuildAntenna} returns the unintegrated antenna
+with the master integrals substituted,
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[4]:= BuildAntenna[A,2,2,Component->Leading]}\\
+\hfill
+\texttt{Out[4]:=}
+    \begin{equation*}
+4^{2\epsilon-3}\pi^{2\epsilon-4}e^{-2\gamma_E\epsilon}\left[\frac1{4\epsilon^4}+\frac{17}{8\epsilon^3}+\cdots\right]
+    \end{equation*}
+\end{mdframed}
+
+where only the leading terms of the bracket are shown. The output is real, with the renormalisation
+scale set to $\mu^2=q^2$. Its prefactor is $1/C(\epsilon,2)$: \texttt{Out[3]} is quoted with the
+normalisation $C(\epsilon,2)$ of Eq.~\eqref{eq:antennaIntegral} already included, which
+\texttt{BuildAntenna} removes.
+
+The integrated antenna $\mathcal A_2^2$ is subsequently obtained from the definition introduced in
+Chapter~\ref{ch:physicsbackground}, Eqs.~\eqref{eq:antPhaseSpaceFact} and \eqref{eq:antennaIntegral},
+\begin{equation*}
+    \mathcal A_2^2 = C(\epsilon,2)\,\frac{1}{\Phi_2}\int d\Phi_2\,A_2^2 = C(\epsilon,2)\,A_2^2.
+\end{equation*}
+In the present case, the antenna contains only the two hard radiators, so that the remaining
+integration is over the $1\to2$ two-particle phase space. This phase-space integration is trivial, but
+it is conceptually the same operation that relates the unintegrated and integrated antenna functions
+throughout this work. In \textit{AntCalc}, the complete construction and phase-space integration can be
+performed with \texttt{BuildAndIntegrateAntenna}, yielding the integrated antenna through
+$\mathcal O(\epsilon^0)$,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[5]:= BuildAndIntegrateAntenna[A,2,2,Component->Leading,\\ExpansionOrder->0]}\\
@@ -832,26 +830,13 @@ $\epsilon$-expansion of the corresponding loop and phase-space integrals.
 
 The subleading-colour component $\tilde A_2^2$ is obtained by selecting the corresponding colour
 structure of the two-parton NNLO contribution. Using \textit{AntCalc}, its unintegrated form is
-obtained with
+obtained in the master-integral basis with
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[2]:= BuildAntenna[A,2,2,Component->Subleading]}\\
+\texttt{In[2]:= A22Sub = BuildAndIntegrateAntenna[A,2,2,\\Component->Subleading,ReturnMasterCombination->True];}\\
+\texttt{In[3]:= (A22Sub/.A22MISubs)//Collect[\#,\{A22LO,A3,A4,A6\},Simplify]\&}\\
 \hfill
-\texttt{Out[2]:=}
-    \begin{equation*}
-4^{2\epsilon-3}\pi^{2\epsilon-4}e^{-2\gamma_E\epsilon}\left[-\frac1{4\epsilon^4}-\frac3{4\epsilon^3}+\cdots\right]
-    \end{equation*}
-\end{mdframed}
-
-As for the leading-colour component, the subsequent IBP reduction expresses the integrated
-contribution in terms of the master integrals $A_{22,\mathrm{LO}}$, $A_3$, $A_4$, and $A_6$. Their
-definitions and analytic expressions are presented in Appendix~\ref{sec:MIA22}.
-
-\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[3]:= A22Sub = BuildAndIntegrateAntenna[A,2,2,\\Component->Subleading,ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A22Sub/.A22MISubs)//Collect[\#,\{A22LO,A3,A4,A6\},Simplify]\&}\\
-\hfill
-\texttt{Out[4]:=}
+\texttt{Out[3]:=}
     \begin{equation*}
         \begin{gathered}
             \frac{\left(-2\epsilon^2+\epsilon-2\right)^2}{8\pi^4\epsilon^2}A_{22,\text{LO}}
@@ -862,8 +847,22 @@ definitions and analytic expressions are presented in Appendix~\ref{sec:MIA22}.
     \end{equation*}
 \end{mdframed}
 
-After substitution of the master integrals, application of the appropriate normalisation, and
-expansion in $\epsilon$, the integrated subleading-colour antenna through $\mathcal O(\epsilon^0)$ is
+As for the leading-colour component, the IBP reduction expresses the loop integrals in terms of the
+master integrals $A_{22,\mathrm{LO}}$, $A_3$, $A_4$, and $A_6$, whose definitions and analytic
+expressions are presented in Appendix~\ref{sec:MIA22}. After the two steps described in
+Subsection~\ref{subsec:A22lead}, \texttt{BuildAntenna} returns
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[4]:= BuildAntenna[A,2,2,Component->Subleading]}\\
+\hfill
+\texttt{Out[4]:=}
+    \begin{equation*}
+4^{2\epsilon-3}\pi^{2\epsilon-4}e^{-2\gamma_E\epsilon}\left[-\frac1{4\epsilon^4}-\frac3{4\epsilon^3}+\cdots\right]
+    \end{equation*}
+\end{mdframed}
+
+and the trivial two-particle phase-space integration gives the integrated subleading-colour antenna
+through $\mathcal O(\epsilon^0)$,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[5]:= BuildAndIntegrateAntenna[A,2,2,Component->Subleading,\\ExpansionOrder->0]}\\
@@ -877,13 +876,6 @@ expansion in $\epsilon$, the integrated subleading-colour antenna through $\math
     \end{equation*}
 \end{mdframed}
 
-As in the leading-colour contribution, the Laurent expansion contains infrared poles up to
-$1/\epsilon^4$, characteristic of the two-loop virtual singularity structure. The coefficients differ
-from those of $A_2^2$ because $\tilde A_2^2$ isolates a different colour structure of the two-loop
-contribution. The leading- and subleading-colour components therefore exhibit the same maximal degree
-of infrared divergence while contributing with different coefficients to the complete colour-decomposed
-NNLO virtual correction. Their combination with the remaining $A_2^2$ components reproduces the
-corresponding colour structure of the full two-parton contribution.
 
 \subsection{$\hat A_2^2$}
 
@@ -891,27 +883,14 @@ The $\hat A_2^2$ antenna denotes the contribution proportional to the number of 
 $N_f$. It originates from two-loop diagrams containing a closed quark loop.
 Representative examples of these diagrams are shown in Fig.~\ref{fig:diagA22}(d).
 This contribution therefore isolates a distinct flavour and colour structure of the two-loop $q\bar q$
-form factor. Using \textit{AntCalc}, its unintegrated form is obtained with,
+form factor. Using \textit{AntCalc}, its unintegrated form is obtained in the master-integral basis
+with
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[2]:= BuildAntenna[A,2,2,Component->Nf]}\\
+\texttt{In[2]:= A22Nf = BuildAndIntegrateAntenna[A,2,2,\\Component->Nf,ReturnMasterCombination->True];}\\
+\texttt{In[3]:= (A22Nf/.A22MISubs)//Collect[\#,\{A4,B0,C0\},Simplify]\&}\\
 \hfill
-\texttt{Out[2]:=}
-    \begin{equation*}
-4^{2\epsilon-3}\pi^{2\epsilon-4}e^{-2\gamma_E\epsilon}\left[-\frac1{4\epsilon^3}-\frac1{9\epsilon^2}+\cdots\right]
-    \end{equation*}
-\end{mdframed}
-
-After IBP reduction, the $N_f$ contribution reduces to the single master integral $A_4$, in contrast
-to the leading- and subleading-colour components considered above, besides the counterterm functions
-$B_0^\dagger$ and $C_0^\dagger$. The definition and analytic
-evaluation of $A_4$ are presented in Appendix~\ref{sec:MIA22}.
-
-\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[3]:= A22Nf = BuildAndIntegrateAntenna[A,2,2,\\Component->Nf,ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A22Nf/.A22MISubs)//Collect[\#,\{A4,B0,C0\},Simplify]\&}\\
-\hfill
-\texttt{Out[4]:=}
+\texttt{Out[3]:=}
     \begin{equation*}
         \begin{gathered}
             -\frac{(\epsilon-1)\left(6\epsilon^3-5\epsilon^2+3\epsilon-2\right)}{2\pi^4\epsilon(2\epsilon-3)(3\epsilon-2)}A_4\\
@@ -921,8 +900,23 @@ evaluation of $A_4$ are presented in Appendix~\ref{sec:MIA22}.
     \end{equation*}
 \end{mdframed}
 
-Substituting the analytic expression for $A_4$, applying the appropriate normalisation, and expanding
-in $\epsilon$, the integrated quark-loop antenna through $\mathcal O(\epsilon^0)$ is
+After IBP reduction, the $N_f$ contribution reduces to the single master integral $A_4$, in contrast
+to the leading- and subleading-colour components considered above, besides the counterterm functions
+$B_0^\dagger$ and $C_0^\dagger$. The definition and analytic evaluation of $A_4$ are presented in
+Appendix~\ref{sec:MIA22}. After the two steps described in Subsection~\ref{subsec:A22lead}, \texttt{BuildAntenna}
+returns
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[4]:= BuildAntenna[A,2,2,Component->Nf]}\\
+\hfill
+\texttt{Out[4]:=}
+    \begin{equation*}
+4^{2\epsilon-3}\pi^{2\epsilon-4}e^{-2\gamma_E\epsilon}\left[-\frac1{4\epsilon^3}-\frac1{9\epsilon^2}+\cdots\right]
+    \end{equation*}
+\end{mdframed}
+
+and the trivial two-particle phase-space integration gives the integrated quark-loop antenna through
+$\mathcal O(\epsilon^0)$,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[5]:= BuildAndIntegrateAntenna[A,2,2,Component->Nf,\\ExpansionOrder->0]}\\
@@ -933,12 +927,8 @@ in $\epsilon$, the integrated quark-loop antenna through $\mathcal O(\epsilon^0)
     \end{equation*}
 \end{mdframed}
 
-The infrared pole structure of $\hat A_2^2$ differs from that of the leading- and subleading-colour
-components. In particular, its Laurent expansion begins at $1/\epsilon^3$, rather than $1/\epsilon^4$.
-Thus, although the complete two-loop virtual contribution can contain poles up to $1/\epsilon^4$, the
-$N_f$-dependent component does not contribute to the leading quartic pole. The remaining poles
-constitute the closed-quark-loop contribution to the infrared singularity structure of the NNLO
-two-parton antenna.
+Unlike the leading- and subleading-colour components, the Laurent expansion of $\hat A_2^2$ begins at
+$1/\epsilon^3$, so the $N_f$-dependent component does not contribute to the leading quartic pole.
 
 \subsection{$\breve A_2^2$}
 
@@ -949,38 +939,35 @@ matrix element,
 \end{equation*}
 in contrast to the $A_2^2$, $\tilde A_2^2$, and $\hat A_2^2$ components discussed above, which arise
 from the interference of the two-loop amplitude with the tree-level amplitude.
-Using \textit{AntCalc}, the unintegrated antenna is obtained with
+Using \textit{AntCalc}, the unintegrated antenna is obtained in the master-integral basis with
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[2]:= BuildAntenna[A,2,2,Component->Breve]}\\
+\texttt{In[2]:= A22Breve = BuildAndIntegrateAntenna[A,2,2,\\Component->Breve,ReturnMasterCombination->True];}\\
+\texttt{In[3]:= (A22Breve/.A22MISubs)//Collect[\#,A22LO,Simplify]\&}\\
 \hfill
-\texttt{Out[2]:=}
+\texttt{Out[3]:=}
+    \begin{equation*}
+        \frac{\left(-2\epsilon^2+\epsilon-2\right)^2}{16\pi^4\epsilon^2}A_{22,\text{LO}}
+    \end{equation*}
+\end{mdframed}
+which is expressed through the single master integral $A_{22,\mathrm{LO}}$, whose definition and
+analytic evaluation are presented in Appendix~\ref{sec:MIA22}. \texttt{Out[3]} is quoted before
+\textit{AntCalc}'s conversion factor between the raw and the public master normalisations, which is
+exactly $-1/\cos(2\pi\epsilon)$ and is included when the master integral is substituted. After the
+two steps described in Subsection~\ref{subsec:A22lead}, \texttt{BuildAntenna} returns
+
+\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
+\texttt{In[4]:= BuildAntenna[A,2,2,Component->Breve]}\\
+\hfill
+\texttt{Out[4]:=}
     \begin{equation*}
 4^{2\epsilon-3}\pi^{2\epsilon-4}e^{-2\gamma_E\epsilon}\left[\frac1{4\epsilon^4}+\frac3{4\epsilon^3}+\cdots\right]
     \end{equation*}
 \end{mdframed}
 
-For readability, only part of the complete \textit{AntCalc} output is displayed. The full expression
-is retained by \textit{AntCalc} and used in the subsequent integration; its explicit form is collected
-in Appendix~\ref{ap:antExpressions}.
-After IBP reduction, the integrated $\breve A_2^2$ contribution can be expressed in terms of the single
-master integral $A_{22,\mathrm{LO}}$, whose definition and analytic evaluation are presented in
-Appendix~\ref{sec:MIA22}.
-
-\begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-\texttt{In[3]:= A22Breve = BuildAndIntegrateAntenna[A,2,2,\\Component->Breve,ReturnMasterCombination->True];}\\
-\texttt{In[4]:= (A22Breve/.A22MISubs)//Collect[\#,A22LO,Simplify]\&}\\
-\hfill
-\texttt{Out[4]:=}
-    \begin{equation*}
-        \frac{\left(-2\epsilon^2+\epsilon-2\right)^2}{16\pi^4\epsilon^2}A_{22,\text{LO}}
-    \end{equation*}
-\end{mdframed}
-Out[4] is quoted before AntCalc's conversion factor between the raw and the public master normalisations,
-which is exactly $-1/\cos(2\pi\epsilon)$ and is included when the master
-integral is substituted.
-Substituting its analytic expression, applying the appropriate normalisation, and expanding in
-$\epsilon$, the integrated antenna through $\mathcal O(\epsilon^0)$ is
+where only part of the output is displayed; the full expression is collected in
+Appendix~\ref{ap:antExpressions}. The trivial two-particle phase-space integration then gives the
+integrated antenna through $\mathcal O(\epsilon^0)$,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[5]:= BuildAndIntegrateAntenna[A,2,2,Component->Breve,\\ExpansionOrder->0]}\\
@@ -994,13 +981,8 @@ $\epsilon$, the integrated antenna through $\mathcal O(\epsilon^0)$ is
     \end{equation*}
 \end{mdframed}
 
-The leading $1/\epsilon^4$ pole is consistent with the one-loop-squared origin of $\breve A_2^2$: the
-one-loop $q\bar q$ amplitude contains infrared singularities beginning at $1/\epsilon^2$, and their
-product therefore generates poles up to $1/\epsilon^4$ in the squared contribution. The lower-order
-poles and finite term result from the corresponding products of pole and finite terms in the one-loop
-amplitude. Thus, although $\breve A_2^2$ contributes at NNLO together with the genuine two-loop
-components discussed above, its perturbative origin is specifically the square of the one-loop
-amplitude.
+The leading $1/\epsilon^4$ pole reflects the one-loop-squared origin of $\breve A_2^2$: the one-loop
+$q\bar q$ amplitude has infrared poles beginning at $1/\epsilon^2$, so its square begins at $1/\epsilon^4$.
 
 The integrated Laurent series agree with the established $\mathcal A_2^2$ set results
 \cite{Gehrmann-DeRidder:2004ttg} apart from the exception discussed below.
@@ -1023,9 +1005,6 @@ Ref.~\cite{Gehrmann-DeRidder:2004ttg}, specifically in the sign of the $7\zeta_3
 The corrected sign is also documented independently by Jakubčík, Marcoli, and Stagnitto in
 Eq.~(B.7) of Ref.~\cite{Jakubcik:2022zdi}.
 
-The master integrals $A_{22,\text{LO}}$, $A_3$, $A_4$ and $A_6$ appearing in the results above are defined and evaluated in
-Appendix~\ref{sec:MIA22}.
-
 \section{NNLO Three-Parton Antennae: The $A_3^1$ Set}\label{sec:A31set}
 
 At NNLO, the three-parton contribution to the quark--antiquark antenna family is
@@ -1044,14 +1023,9 @@ UV-renormalisation contribution. Unlike the $A_2^2$ antenna set, there is no
 separate one-loop-squared contribution at this perturbative order: the $A_3^1$ set
 is entirely obtained from the tree--one-loop interference.
 
-The presence of both a loop correction and an additional final-state gluon
-distinguishes these antennae from the purely virtual two-parton contributions
-considered in the previous section. Their integrated forms require the one-loop
-three-parton contribution to be integrated over the corresponding antenna phase
-space. In \textit{AntCalc}, the individual colour components are constructed
-separately and subsequently reduced to the master integrals required for their
-analytic integration. The three components are considered in turn below, followed by
-the master integrals entering their integrated forms.
+Unlike the purely virtual two-parton antennae of the previous section, their integrated forms
+require the one-loop three-parton contribution to be integrated over the $1\to3$ antenna phase space.
+The three components are considered in turn below.
 
 \input{figures/diagrams-a31}
 
@@ -1067,9 +1041,6 @@ poles are removed through renormalisation of the strong coupling in the
 $\overline{\mathrm{MS}}$ scheme. The resulting one-loop antenna is therefore UV
 finite, although it retains the infrared poles associated with the one-loop amplitude.
 The corresponding UV-renormalised unintegrated antenna is obtained with
-\begin{equation*}
-    \texttt{BuildAntenna[A,3,1,Component->Leading]}.
-\end{equation*}
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \texttt{In[2]:= BuildAntenna[A,3,1,Component->Leading]}\\
@@ -1105,15 +1076,23 @@ using
     \end{equation*}
 \end{mdframed}
 
-which expresses the integrated antenna in terms of the relevant master integrals. The first
-term is the ultraviolet counterterm, $-\frac{11}{6\epsilon}$ times the master combination of the
-tree-level antenna of Subsection~\ref{sec:matDerivation}, written through its master integral $R_3$.
-The remaining terms are the one-loop contribution, expressed through $V_{5,a}$ and $V_{5,b}$; the
-master integral $V_8$ does not appear in the leading-colour component. The definitions and analytic
+which expresses the integrated antenna in terms of the relevant master integrals. The first term
+originates from ultraviolet renormalisation of the one-loop antenna. More specifically, it is the
+leading-colour contribution from the renormalisation of the strong coupling, proportional to the
+$N$-dependent part of the first QCD beta-function coefficient,
+\begin{equation*}
+    \beta_0=\frac{11N-2N_f}{6}.
+\end{equation*}
+After separating the leading-colour factor $N$, the corresponding counterterm contributes
+$-11/(6\epsilon)$ times the tree-level antenna $A_3^0$. Since the latter has already been integrated
+over the three-particle phase space, this contribution appears in the master-integral representation
+through $R_3$, the phase-space master integral introduced in Subsection~\ref{sec:matDerivation}. The
+remaining terms originate from the genuine one-loop contribution to the real--virtual antenna and are
+reduced to the master integrals $V_{5,a}$ and $V_{5,b}$. For the leading-colour component, the
+coefficient of $V_8$ vanishes, so that $V_8$ does not contribute to the result. The definitions and analytic
 expressions of these master integrals are presented in Appendix~\ref{sec:MIA31}. The masters are
-evaluated at $q^2=1$, and the combination is returned without the common prefactor
-$2^{10-6\epsilon}e^{2\gamma_E\epsilon}\pi^{7-3\epsilon}\Gamma(2-2\epsilon)/\Gamma(1-\epsilon)$, which
-\textit{AntCalc} reports separately and which is shared by all three components of the set.
+evaluated at $q^2=1$, and the combination is shown up to an overall normalisation common to the three
+components.
 
 Substituting the analytic expressions for the master integrals, applying the
 appropriate normalisation, and expanding in $\epsilon$, the integrated leading-colour
@@ -1187,18 +1166,15 @@ expanding through $\mathcal O(\epsilon^0)$ gives
     \end{equation*}
 \end{mdframed}
 
-This result is noteworthy, as from the leading- to the subleading-colour component of this $A_3^1$ antenna, 
-the $1/\epsilon^4$ and $1/\epsilon^3$ poles vanish. This happens due to the fact that at leading 
-colour, the final-state gluon $3_g$ is colour-adjacent to both hard radiators. Hence the 
-$qg$ and $g\bar q$ dipoles retain their $1/\epsilon^2$ loop poles for the respective 
-unresolved invariants $s_{13}$ and $s_{23}$. At subleading colour, the colour projection removes 
-these adjacent-dipole contributions. Moreover, the one-loop antenna is defined by subtracting 
-$A_2^1A_3^0$ in both colour structures (Chapter~\ref{ch:physicsbackground}, and Eq.~(3.3) of
-Ref.~\cite{Gehrmann-DeRidder:2005btv}), and the universal double and single poles of the 
-one-loop amplitude are proportional to $C_F=\frac12\left(N-\frac1N\right)$, so their $1/N$ 
-parts cancel against this subtraction. What remains at subleading colour are terms of the 
-form $\ln(s_{ij}/q^2)/\epsilon$, which vanish in the soft limit, so that the integrated 
-result begins at $1/\epsilon^2$ \cite{Gehrmann-DeRidder:2005btv}.
+In contrast to the leading-colour result, the integrated subleading-colour antenna contains no
+$1/\epsilon^4$ or $1/\epsilon^3$ poles. This reduced pole degree originates from cancellations in the
+infrared structure of $\tilde A_3^1$, including those associated with the $A_2^1A_3^0$ subtraction
+required in the definition of the one-loop antenna. After this subtraction, the $1/\epsilon^2$ loop
+poles cancel in the subleading-colour component, leaving $1/\epsilon$ terms proportional to logarithms
+of ratios of invariants. In the soft-gluon limit, these logarithmic factors suppress the leading soft
+behaviour, while the quark--gluon collinear singularities remain. Their phase-space integration
+therefore generates one additional $1/\epsilon$ pole, such that the integrated $\tilde{\mathcal A}_3^1$
+begins at $1/\epsilon^2$ \cite{Gehrmann-DeRidder:2005btv}.
 
 \subsection{$\hat A_3^1$}\label{subsec:A31nf}
 
@@ -1215,11 +1191,11 @@ directly when the $N_f$ component is selected,
 \hfill
 \texttt{Out[2]:=}
     \begin{equation*}
-        \frac23\frac{s_{12}^2}{\epsilon q^2 s_{13}s_{23}}+...
+        \frac{1}{3\epsilon q^2}\!\left(\frac{2s_{12}^2}{s_{13}s_{23}}+\frac{2s_{12}}{s_{13}}+\frac{2s_{12}}{s_{23}}+\frac{s_{13}}{s_{23}}+\frac{s_{23}}{s_{13}}\right)-\frac{\left(s_{13}+s_{23}\right)^2}{3q^2s_{13}s_{23}}
     \end{equation*}
 \end{mdframed}
 
-yielding the corresponding $\hat A_3^1$ antenna. Since the unrenormalised
+yielding the corresponding $\hat A_3^1$ antenna, which is exactly $A_3^0/(3\epsilon)$. Since the unrenormalised
 one-loop interference contains no $N_f$ component, there is no $N_f$-dependent
 one-loop contribution to reduce to the $V_{5,a}$, $V_{5,b}$, and $V_8$ master
 integrals appearing in the leading- and subleading-colour components. Instead,
@@ -1246,9 +1222,6 @@ tree-level antenna $A_3^0$. After integration over the $1\to3$ antenna phase spa
 the infrared poles of $\mathcal A_3^0$ therefore generate poles of higher order in
 $\hat{\mathcal A}_3^1$, with the result above beginning at $1/\epsilon^3$.
 
-The master integrals $V_{5,a}$, $V_{5,b}$ and $V_8$ appearing in the results above are defined and evaluated in
-Appendix~\ref{sec:MIA31}.
-
 \section{NNLO Four-Parton Antennae}
 
 At NNLO, double-real radiation contributions involve tree-level final states
@@ -1272,20 +1245,13 @@ as discussed in Chapter~\ref{ch:physicsbackground}. Together, these constitute t
 four-parton antennae calculated and integrated in this section.
 
 In contrast to the real--virtual $A_3^1$ antennae of Section~\ref{sec:A31set}, the
-four-parton antennae are tree-level quantities and therefore contain no explicit loop
-poles before phase-space integration. Their infrared singularities arise when one or
-two final-state partons become unresolved. Upon integration over the $1\to4$ antenna
-phase space in $d=4-2\epsilon$ dimensions, these singular regions generate the
-explicit poles in $\epsilon$ required by the NNLO subtraction procedure.
-
-For each antenna, \textit{AntCalc} constructs the unintegrated expression from the
-corresponding tree-level matrix element and subsequently maps its terms onto the
-integral families required for IBP reduction. The resulting integrated antennae are
-expressed in terms of the four-particle phase-space master integrals of
-Appendix~\ref{sec:MIfourParton}. Since the complete unintegrated expressions are lengthy, only the
-features relevant to their construction and integration are presented here; the full
-expressions are collected in Appendix~\ref{ap:antExpressions}, and their local
-infrared validation is given in Appendix~\ref{sec:localValidationExtra}.
+four-parton antennae are tree-level quantities and therefore contain no explicit $1/\epsilon$
+poles before phase-space integration; these are generated when the integration over the $1\to4$
+antenna phase space reaches the regions where one or two partons become unresolved. For each antenna,
+\textit{AntCalc} maps the terms of the unintegrated expression onto the integral families of
+Appendix~\ref{sec:MIfourParton} for IBP reduction. The full expressions are collected in
+Appendix~\ref{ap:antExpressions}, and their local infrared validation is given in
+Appendix~\ref{sec:localValidationExtra}.
 
 \input{figures/diagrams-a40}
 
@@ -1309,13 +1275,16 @@ corresponding unintegrated leading-colour antenna is constructed in \textit{AntC
 \hfill
 \texttt{Out[2]:=}
     \begin{equation*}
-        -\frac{3s_{12}}{2(-1+\epsilon)\!\left(q^2\right)^3}+...
+        \begin{gathered}
+            -\frac{3s_{12}}{2(-1+\epsilon)q^2s_{134}^2}+\frac{5\epsilon s_{12}}{2(-1+\epsilon)q^2s_{134}^2}-\frac{2\epsilon^2s_{12}}{(-1+\epsilon)q^2s_{134}^2}+\frac{\epsilon^3s_{12}}{(-1+\epsilon)q^2s_{134}^2}\\
+            +\frac{1}{(-1+\epsilon)q^2s_{134}}+\frac{2\epsilon}{(-1+\epsilon)q^2s_{134}}-\frac{11\epsilon^2}{2(-1+\epsilon)q^2s_{134}}+\frac{\epsilon^3}{(-1+\epsilon)q^2s_{134}}+\cdots
+        \end{gathered}
     \end{equation*}
 \end{mdframed}
 
 The unintegrated $A_4^0$ antenna contains the single- and double-unresolved limits of the
 $qgg\bar q$ final state. Unlike the one-loop antennae of Section~\ref{sec:A31set}, it contains
-no explicit loop poles in $\epsilon$, since it is constructed entirely from a tree-level matrix
+no explicit $1/\epsilon$ poles, since it is constructed entirely from a tree-level matrix
 element. Its infrared poles arise only after integration over the $1\to4$ antenna phase space,
 where the integration probes the soft and collinear regions of the four-parton final state. To
 perform this integration analytically, the terms in $A_4^0$ are mapped onto the corresponding
@@ -1374,7 +1343,10 @@ selecting the subleading-colour component,
 \hfill
 \texttt{Out[2]:=}
     \begin{equation*}
-        -\frac{\epsilon}{(-1+\epsilon)q^2s_{13}}+...
+        \begin{gathered}
+            -\frac{\epsilon}{(-1+\epsilon)q^2s_{13}}+\frac{\epsilon^2}{(-1+\epsilon)q^2s_{13}}-\frac{8s_{12}}{(-1+\epsilon)q^2s_{134}^2}+\frac{10\epsilon s_{12}}{(-1+\epsilon)q^2s_{134}^2}\\
+            -\frac{2\epsilon^2s_{12}}{(-1+\epsilon)q^2s_{134}^2}+\frac{2}{(-1+\epsilon)q^2s_{134}}-\frac{2\epsilon^2}{(-1+\epsilon)q^2s_{134}}+\frac{s_{12}}{(-1+\epsilon)q^2s_{13}s_{134}}+\cdots
+        \end{gathered}
     \end{equation*}
 \end{mdframed}
 
@@ -1438,7 +1410,10 @@ constructed in \textit{AntCalc} using,
 \hfill
 \texttt{Out[2]:=}
     \begin{equation*}
-        -\frac{\epsilon s_{12}}{(-1+\epsilon)q^2s_{134}^2}+...
+        \begin{gathered}
+            -\frac{\epsilon s_{12}}{(-1+\epsilon)q^2s_{134}^2}+\frac{\epsilon^2s_{12}}{(-1+\epsilon)q^2s_{134}^2}-\frac{\epsilon s_{12}}{(-1+\epsilon)q^2s_{234}^2}+\frac{\epsilon^2s_{12}}{(-1+\epsilon)q^2s_{234}^2}\\
+            -\frac{2s_{12}}{(-1+\epsilon)q^2s_{134}s_{234}}+\frac{2\epsilon s_{12}}{(-1+\epsilon)q^2s_{134}s_{234}}+\frac{2\epsilon^2s_{12}}{(-1+\epsilon)q^2s_{134}s_{234}}-\frac{2s_{12}s_{13}s_{14}}{(-1+\epsilon)q^2s_{134}^2s_{34}^2}+\cdots
+        \end{gathered}
     \end{equation*}
 \end{mdframed}
 
@@ -1485,7 +1460,10 @@ contribution. The unintegrated antenna is constructed in \textit{AntCalc} using,
 \hfill
 \texttt{Out[2]:=}
     \begin{equation*}
-        -\frac12\frac{\epsilon s_{12}}{(-1+\epsilon)q^2s_{123}s_{134}}+...
+        \begin{gathered}
+            -\frac{\epsilon s_{12}}{2(-1+\epsilon)q^2s_{123}s_{134}}+\frac{\epsilon^2s_{12}}{(-1+\epsilon)q^2s_{123}s_{134}}+\frac{\epsilon^3s_{12}}{2(-1+\epsilon)q^2s_{123}s_{134}}+\frac{s_{13}}{(-1+\epsilon)q^2s_{123}s_{134}}\\
+            -\frac{2\epsilon s_{13}}{(-1+\epsilon)q^2s_{123}s_{134}}+\frac{\epsilon^3s_{13}}{(-1+\epsilon)q^2s_{123}s_{134}}-\frac{\epsilon s_{14}}{2(-1+\epsilon)q^2s_{123}s_{134}}+\frac{\epsilon^2s_{14}}{(-1+\epsilon)q^2s_{123}s_{134}}+\cdots
+        \end{gathered}
     \end{equation*}
 \end{mdframed}
 
@@ -1524,9 +1502,6 @@ The single $1/\epsilon$ pole has a direct interpretation in terms of the infrare
 $C_4^0$. As an interference antenna, its only non-vanishing unresolved limit is the
 triple-collinear limit, while all other single- and double-unresolved limits vanish.
 Accordingly, no higher-order infrared poles are generated upon integration.
-
-The master integrals $R_4$, $R_6$, $R_{8,a}$ and $R_{8,b}$ appearing in the results above are defined and evaluated in
-Appendix~\ref{sec:MIfourParton}.
 
 \iffalse
 \section{Summary of the Massless Antenna Set}\label{sec:antennaresultsummary}
@@ -1678,12 +1653,19 @@ unintegrated antenna is obtained as,
 \hfill
 \texttt{Out[2]:=}
     \begin{equation*}
-        \left[-4(-2+\epsilon)m_q^4\!\left(s_{13}^2+s_{23}^2\right)\right]+...
+        \begin{gathered}
+            \frac{1}{4s_{13}^2s_{23}^2\left[2(-2+\epsilon)m_q^2+(-1+\epsilon)(s_{12}+s_{13}+s_{23})\right]}\Big\{-4(-2+\epsilon)m_q^4\left(s_{13}^2+s_{23}^2\right)\\
+            +(-1+\epsilon)s_{13}s_{23}\left[2s_{12}^2-(-1+\epsilon)s_{13}^2-2\epsilon s_{13}s_{23}-(-1+\epsilon)s_{23}^2+2s_{12}(s_{13}+s_{23})\right]\\
+            -2m_q^2\Big[s_{12}\left((-1+\epsilon)s_{13}^2-2(-2+\epsilon)s_{13}s_{23}+(-1+\epsilon)s_{23}^2\right)\\
+            +(-1+\epsilon)\left(s_{13}^3+s_{13}^2s_{23}+s_{13}s_{23}^2+s_{23}^3\right)\Big]\Big\}
+        \end{gathered}
     \end{equation*}
 \end{mdframed}
 
-where only the first terms are displayed here for compactness. The complete unintegrated
-expression is given in Appendix~\ref{ap:antExpressions}. The corresponding integrated antenna is
+which is the complete unintegrated antenna, exact in $\epsilon$. In the massless limit $m_q\to0$ it reduces
+to $A_3^0/4$. The primary objective of this route was to reproduce the literature result of
+Ref.~\cite{GehrmannDeRidder:2009fz}, and this overall factor of $1/4$ is the normalisation required for
+consistency with it. The corresponding integrated antenna is
 obtained with,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
@@ -1706,8 +1688,8 @@ $\epsilon$, the resulting integrated antenna coincides with the analytic express
 Ref.~\cite{GehrmannDeRidder:2009fz} to all orders in $\epsilon$.
 As for the other integrated antennae presented in this chapter, \textit{AntCalc} displays the
 result by default in units of the total invariant mass, $q^2=1$. Consequently, the threshold
-variable of Eq.~\eqref{eq:thresholdr} appears in the output as $r\to1-4m_q^2$. Only representative terms of the unintegrated and
-integrated antennae are displayed here; the complete expressions are collected in
+variable of Eq.~\eqref{eq:thresholdr} appears in the output as $r\to1-4m_q^2$. Only representative terms of the
+integrated antenna are displayed here; the complete expressions are collected in
 Appendix~\ref{ap:antExpressions}. The route is nevertheless classified as exploratory because
 it has not yet undergone the global-observable validation applied to the massless antenna set.
 
