@@ -52,8 +52,8 @@ They may be used to define the non-Abelian field-strength tensor $G_{\mu\nu}^a$ 
 \begin{equation}
     G_{\mu\nu}^a = \partial_\mu A_\nu^a - \partial_\nu A_\mu^a + g_s f^{abc}A_\mu^b A_\nu^c.
 \end{equation}
-The first two terms of the field-strength tensor are Abelian-like and, in fact, they 
-can be rewritten using the Abelian-like linear part of the non-Abelian 
+The first two terms of the field-strength tensor are Abelian-like and 
+can be rewritten using the linear part of the non-Abelian 
 field-strength tensor $F_{\mu\nu}^a$, as, 
 \begin{equation}
     G_{\mu\nu}^a = F_{\mu\nu}^a + g_s f^{abc}A_\mu^b A_\nu^c,\quad F_{\mu\nu}^a\equiv\partial_\mu A_\nu^a - \partial_\nu A_\mu^a.
@@ -64,7 +64,7 @@ the gluon Lagrangian term. After expanding it becomes,
 \begin{equation}\label{eq:gluonLagrangian}
     \mathcal L_g = -\frac14\!\left(F_{\mu\nu}^a\right)^2-\frac{g_s}2f^{abc}F^{a\,\mu\nu}A_\mu^b A_\nu^c - \frac{g_s^2}4f^{abc}f^{ade}A_\mu^b A_\nu^c A^{d\,\mu}A^{e\,\nu}.
 \end{equation}
-Here, much like in $\mathcal L_q$, the gluon Lagrangian is also divided into three terms. 
+Here, the gluon Lagrangian is divided into three terms. 
 The first term is quadratic in the gluon field and, after gauge-fixing, 
 describes free gluon propagation as \cite{Ellis:1996mzs},
 \begin{equation}
@@ -80,7 +80,7 @@ In addition, the last two terms in Eq.~\eqref{eq:gluonLagrangian} contain cubic 
 quartic terms in the gluon fields that generate, respectively, the three- and
 four-gluon self-interaction vertices, $ggg$ and $gggg$.
 
-Finally, we note that the Feynman gauge adopted throughout this work, corresponding
+The Feynman gauge adopted throughout this work, corresponding
 to $\lambda=1$, is a particular choice within the class of covariant gauges. In a
 non-Abelian gauge theory such as QCD, covariant gauge fixing introduces
 Faddeev--Popov ghost fields. Their dynamics and interactions with the gluon field
@@ -161,7 +161,7 @@ quark or antiquark line.
 \end{figure}
 The final amplitude in this case would then follow,
 \begin{equation}\label{eq:amplitude}
-    \mathcal M_{\gamma^*\to qg\bar q}^{(0)}=\mathcal M_{q-\text{emission}}^{(0)}+\mathcal M_{\bar q-\text{emission}}^{(0)}.
+    \mathcal M_{\gamma^*\to qg\bar q}^{(0)}=\mathcal M_{q\text{-emission}}^{(0)}+\mathcal M_{\bar q\text{-emission}}^{(0)}.
 \end{equation}
 
 In the diagrams in Fig.~\ref{fig:feynDiagsEx}, straight, curly, and wavy
@@ -203,7 +203,7 @@ The two QCD infrared limits, soft and collinear, can be derived explicitly as fo
 start by defining the physical system under study: consider two massless final-state 
 partons $i$ and $j$ with four-momenta $p_i$ and $p_j$. By momentum conservation, 
 the four-momentum of the internal virtual propagator is $P=p_i+p_j$. The matrix 
-element contains this propagator and in the square amplitude it appears as a $1/P^2$ 
+element contains this propagator and in the squared amplitude it appears as a $1/(P^2)^2$ 
 factor. Expanding it and applying the massless condition $(p^2=0)$, we get 
 $P^2=2p_i\cdot p_j=2E_iE_j(1-\cos\theta_{ij})$ \cite{Ellis:1996mzs}. 
 Importantly, this quantity defines 
@@ -248,7 +248,7 @@ unresolved limits relevant to this thesis are summarised in Table~\ref{tab:limit
         gluon relabelling are not listed separately. The subtraction counterterm of
         Eq.~\eqref{eq:subScheme} must reproduce the matrix element in each of these limits
         \cite{Gehrmann-DeRidder:2005btv}. Complete analytic expressions for the universal
-        soft and collinear factors listed above are given in \cite{Gehrmann-DeRidder:2005btv},
+        soft and collinear factors listed in this table are given in \cite{Gehrmann-DeRidder:2005btv},
         Sections 8.1 and 8.2.2.}\label{tab:limits}\\
         \hline
         \textbf{Unresolved limit} & \textbf{Kinematic condition} & \textbf{Universal IR factor} \\
@@ -333,7 +333,7 @@ where $d\sigma^R$ represents the differential real radiation cross-section,
 $d\sigma^V$ the differential virtual corrections cross-section and $d\sigma^S$
 the differential subtraction counterterm \cite{Catani:1996vz}.
 Importantly, $d\sigma^S$ must reproduce $d\sigma^R$'s exact singular behaviour
-at every point in the phase space, such that the divergences cancel locally.
+in every unresolved limit, such that the divergences cancel locally.
 
 \subsection{Ultraviolet Divergences}\label{subsec:uvDivergences}
 
@@ -385,7 +385,7 @@ be integrated analytically over the unresolved one-parton phase space,
 \end{equation}
 
 Since $d\sigma^S$ is designed explicitly to carry over all of $d\sigma^R$'s divergent
-structures, this integral blows up once integrated over four dimensions, as does
+structures, this integral diverges when integrated in four dimensions, as does
 the virtual contribution $d\sigma^V$, whose infrared divergences originate from the
 loop integration, as explored in Subsection~\ref{subsec:uvDivergences}.
 To regulate these divergent contributions we continue the number of space-time
@@ -461,7 +461,7 @@ as $\mu^2=q^2$, with $q^2$ the invariant mass squared of the antenna system.
 \section{The Antenna Subtraction Formalism}\label{sec:antSubForm}
 
 In perturbative QCD, computing the perturbative corrections to a certain jet
-observable $J_m^{(n)}$, requires summing over all partonic multiplicity channels
+observable $J_m^{(n)}$ requires summing over all partonic multiplicity channels
 up to the desired order.
 
 At LO, the approximation to the $m$-jet cross section is computed as the integral
@@ -524,7 +524,7 @@ The contributions that form part of the NLO and NNLO $m$-jet cross sections, giv
 in Eq.~\eqref{eq:nloCrossGeneric} and Eq.~\eqref{eq:nnloCrossGeneric} respectively,
 are separately IR-divergent. Consequently, a direct numerical evaluation of the
 individual contributions is not possible, as the corresponding integrals are
-divergent. Our solution to this problem is to introduce subtraction terms that
+divergent. The standard solution to this problem is to introduce subtraction terms that
 locally reproduce the infrared singular behaviour of the corresponding
 contributions throughout the relevant phase space.
 
@@ -871,8 +871,7 @@ referred to as antenna functions throughout this thesis.
 Each antenna is generally determined by its external state and the hard 
 parton pair it collapses to. In this thesis, the hard parton pair is 
 always $q\bar q$. Up to NNLO, quark-antiquark final-final antennae are 
-organised into three families, which differ in the type of particle 
-the hard parton pair particles emit. $A$-type antennae are characterised by 
+organised into three families, which differ in the types of particles emitted by the hard parton pair. $A$-type antennae are characterised by 
 gluon emissions, leading to final states like $qgg\bar q$ at NNLO or $qg\bar q$
 at NLO; $C$-type antennae are characterised by a final-state quark-antiquark pair 
 with the original hard pair's flavour, as $q\bar qq\bar q$; and $B$-type 
@@ -1069,9 +1068,9 @@ give
 \begin{equation*}
     C_F=\frac{N^2-1}{2N}
 \end{equation*}
-\begin{equation}
+\begin{equation*}
     C_A=N.
-\end{equation}
+\end{equation*}
 
 The combination $2C_F$ follows directly from the fundamental Casimir
 invariant above,
@@ -1423,9 +1422,9 @@ charge squared of the quark and of the gluon. They are defined as,
 \begin{equation*}
     C_F=\frac{N^2-1}{2N}
 \end{equation*}
-\begin{equation}
+\begin{equation*}
     C_A=N.
-\end{equation}
+\end{equation*}
 
 The invariants are particularly useful to normalise the two hard quarks' colour
 from the antenna functions, by taking out a factor of $2C_F$. This factor equals,
@@ -1618,7 +1617,7 @@ whose antenna phase space contains two unresolved partons.
 
 For the final-final antennae considered here, the antenna phase-space
 integrals can be related directly to the standard three- and four-particle
-phase spaces, by setting $m=2,3$ in Eq.~\eqref{eq:nloPhaseSpaceFactor}.
+phase spaces, by setting $m=2$ in Eqs.~\eqref{eq:nloPhaseSpaceFactor} and \eqref{eq:nnloPhaseSpaceFactor}.
 Specialising the phase-space factorisation to a two-particle reduced
 configuration gives
 \begin{equation}\label{eq:phi2Factor}
@@ -1773,7 +1772,7 @@ inside $\mathcal I$, as \cite{GehrmannDeRidder0311276,Chetyrkin:1981qh},
 In dimensional regularisation,
 analytic continuation justifies the vanishing of the surface term at infinity,
 leaving an exact relation among regulated integrals\footnote{This method 
-is explored further and completely in Subsection~\ref{sec:matDerivation}.}.
+is discussed in more detail in Subsection~\ref{sec:matDerivation}.}.
 
 Expanding the derivative gives,
 \begin{equation}
@@ -1939,7 +1938,7 @@ integrals as,
     I(\vec a) = \sum_{k=1}^{N_\text{MI}}c_k(\vec a,\epsilon,\{s_{ij}\})M_k
 \end{equation}
 where $c_k$ are the reduction coefficients and represent what 
-comes from the reduction algebra and $M_k$ are the MI. Our remaining task is evaluating 
+comes from the reduction algebra and $M_k$ are the MI. Our remaining task is to evaluate 
 the finite set $M_k$ \cite{Laporta:2000dsw}.
 
 Master integrals are not uniquely defined: an integral is a master only relative 
@@ -1984,11 +1983,11 @@ $x=m^2/q^2$, the most common approach is to differentiate the master with
 respect to that variable. The derivative produces integrals in the same family,
 which IBP is then able to reduce to the master basis, as \cite{Remiddi:1997ny},
 \begin{equation}
-    \frac{d}{dx}\vec M(x,\epsilon) = A(x,\epsilon)\vec M(x,\epsilon).
+    \frac{d}{dx}\vec M(x,\epsilon) = A(x,\epsilon)\vec M(x,\epsilon)
 \end{equation}
 where $\vec M = (M_1,...,M_{N_\text{MI}})^\text T$ is the vector of masters and $A$ is a matrix of coefficient functions.
 Boundary conditions can then be used to determine the solution. The MI used 
-through this work and the methods used to compute them
+throughout this work and the methods used to compute them
 are discussed in further detail in Appendix~\ref{ap:masterIntegrals}.
 
 Once the MI are evaluated, we expand them around $\epsilon = 0$, as a Laurent series

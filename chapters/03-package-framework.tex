@@ -23,12 +23,10 @@ that must be duplicated when existing functionality is extended or new routes
 are introduced.
 
 The package supports massless and massive antenna routes. All routes were validated against
-the established literature, with all massless routes being validated against
+the established literature (the trivial Born-normalisation route $A_2^0$ excepted), with all massless routes being validated against
 \cite{Gehrmann-DeRidder:2005btv} except for the two-loop antenna set, which was validated
 against \cite{Gehrmann-DeRidder:2004ttg}. The single massive route results were validated
-against \cite{GehrmannDeRidder:2009fz}. All routes are public: none is held back as a 
-partial or experimental implementation, and each produces stable and reproducible 
-results notwithstanding the current beta version. The release-acceptance procedure 
+against \cite{GehrmannDeRidder:2009fz}. All routes are public, and each produces stable and reproducible results notwithstanding the current beta version. The release-acceptance procedure 
 that ensures this is described in Section~\ref{sec:validationDiagnostics}.
 
 \textit{AntCalc}'s inner working structure can be described using the diagram in Fig.~\ref{fig:antcalc-architecture}.
@@ -69,7 +67,7 @@ stages.
 Using route profiles and route contexts, as described in Section~\ref{sec:profile},
 facilitates the addition of further modules while reducing duplicated logic and
 direct dependencies. These new modules need not be
-compatible with previous implemented functions through function-specific 
+compatible with previously implemented functions through function-specific 
 couplings. They need only conform with the profile system, being selected and 
 configured by route profiles, and accepting inputs from and delivering outputs 
 to the route contexts. 
@@ -133,7 +131,7 @@ multiplicity and loop order, colour normalisation, extraction rules, components,
 \texttt{AntennaReductionProfile[key]} is separate, but still build-side. It specifies 
 the Passarino-Veltman-reduction preferences for the appropriate routes. In this case, up to
 NNLO, these are the $\{\text A,2,1\}$ and 
-$\{\text A,3,1\}$ loop routes. \\ \texttt{AntennaIntegrationProfile[key]} is the 
+$\{\text A,3,1\}$ loop routes. \texttt{AntennaIntegrationProfile[key]} is the 
 integration-side profile, which specifies its side's backend, IBP basis 
 families, expansion depth, etc. The specifics of each stage's profiles and options 
 will be discussed in their respective Sections~\ref{sec:buildStage} and 
@@ -229,8 +227,7 @@ BuildAntenna[type, multiplicity, loop order]
 
 The loop-order dispatcher is a central element of this workflow. Using the route key, it
 directs each antenna to the appropriate computational path, since different loop orders
-require different computational treatments, most notably the tensor reduction required for
-the loop-momentum dependence of one- and two-loop antennae.
+require different computational treatments, most notably the Passarino--Veltman tensor reduction required for the one-loop antennae and the IBP reduction required for the two-loop antennae.
 
 Functionally, the route context for this stage holds the profile, the generated amplitude, the
 computed and normalised interference, the extracted components, and the diagnostics; some routes
@@ -252,7 +249,7 @@ coincides with the ``Route \& Public Boundary'' crossing already shown there.
 \subsection{Tree-Level Routes}\label{subsec:treeLevelRoutes}
 
 As mentioned, the workflow handles distinct loop-order routes differently, though the differences only appear 
-after the dispatcher is called. Tree-level routes like those relative to the $A_3^0$ antenna, start by retrieving 
+after the dispatcher is called. Tree-level routes, such as those for the $A_3^0$ antenna, start by retrieving 
 the profile and computing the relevant 
 process amplitude. It uses the profile's \texttt{Production} field to select the physical construction path,
 and the \texttt{Extraction} and \texttt{ColourNorm} fields to select the extraction mode and 
@@ -295,8 +292,8 @@ These production paths all lead to the extraction of the required antenna functi
 they do it changes with the antenna's multiplicity. Each production and extraction mode is
 \textit{AntCalc}'s operational implementation of the construction derived, in mathematical terms, for the
 corresponding \textit{Current Route} entry in Subsection~\ref{subsec:antFamilies}. On the extraction side,
-$A_2^0$ is set to $1$; both $A_3^0$ and the $A_4^0$-set antennae are extracted from the usual
-$NX_n^l + \frac1N\tilde X_n^l$ structure; and the $B_4^0$ and $C_4^0$ antennae are extracted from the more
+$A_2^0$ is set to $1$; the $A_4^0$-set antennae are extracted from the usual
+$NX_n^l - \frac1N\tilde X_n^l$ colour structure, while $A_3^0$ has a single colour structure; and the $B_4^0$ and $C_4^0$ antennae are extracted from the more
 involved inner structure of the $|M_{4q}^0|^2$ process-level contribution, requiring a correspondingly more complex
 extraction process.
 
@@ -306,7 +303,7 @@ One-loop routes are dispatched to \texttt{BuildLoopAntennaData} where the primar
 reduction method is selected through the nested \texttt{ReductionProfile}, which by default is
 Passarino-Veltman reduction, as described in Section~\ref{subsec:PaVe}.
 
-The production method consists of generating the tree-level and one-loop amplitudes, using \\
+The production method consists of generating the tree-level and one-loop amplitudes, using
 \texttt{TreeAmplitude} and \texttt{MAmpOneLoop}, respectively, and then forming the tree-loop 
 interference. The interference is colour- and one-loop-normalised, as described in Eqs.~\eqref{eq:loopNorm} and \eqref{eq:colourNorm}.
 This normalised interference is then reduced and its components extracted.
@@ -369,7 +366,7 @@ but, as shown in Table~\ref{tab:twoLoopProdModes}, their sources differ,
 \end{table}
 
 One of the ways in which this route is particular inside \textit{AntCalc}'s architecture 
-is illustrated by their different production, but equal extraction modes. 
+is illustrated by their different production modes but the same extraction mode. 
 This route may be schematically represented as shown in Fig.~\ref{fig:a22-build}, below.
 
 \input{figures/a22-build.tex}
@@ -415,7 +412,7 @@ as in Eq.~\eqref{eq:antennaIntegral}. The integrated antennae are denoted with c
 letters $\mathcal X_n^l$.
 
 Within \textit{AntCalc}, this stage is initiated by passing the \texttt{AntennaObject} produced
-by \\ \texttt{BuildAntenna[..., IntegrableForm -> True]} to \texttt{IntegrateAntenna[...]}. A 
+by \texttt{BuildAntenna[..., IntegrableForm -> True]} to \texttt{IntegrateAntenna[...]}. A 
 diagram representing this architecture and how it splits from an unchanged \texttt{BuildAntenna[...]} 
 call is shown in Figure~\ref{fig:component-extraction}.
 
@@ -482,7 +479,7 @@ single-family routes used for $A_3^1$ and most others.
 The $A_2^1$ antenna is also an exception to the use of integral families: its
 loop integrals are reduced directly to scalar one-loop integrals using Passarino-Veltman
 reduction, whose known analytic expressions are then substituted and expanded as Laurent
-series in $\epsilon$. An overview of these is shown in the following Table~\ref{tab:intModes}.
+series in $\epsilon$. The integration profiles are summarised in Table~\ref{tab:intModes}.
 
 \begin{table}[h!]
 \footnotesize
@@ -768,11 +765,7 @@ for those antennae, \texttt{TObject} assembles them as follows,
 
 \section{Validation and Development Diagnostics}\label{sec:validationDiagnostics}
 
-As outlined in the introduction, the implementation is validated at two levels. Locally, each
-integrated antenna function is compared against its published Laurent expansion
-\cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg} and, where applicable, against the
-expected eikonal factors and Altarelli--Parisi splitting functions in the relevant unresolved
-limits (Chapter~\ref{ch:workedexample}). Globally, the integrated antennae are assembled into
+As outlined in the introduction, the implementation is validated at two levels. Each integrated antenna function is compared against its published Laurent expansion \cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg}. The unintegrated antennae are, where applicable, also tested locally against the expected eikonal factors and Altarelli--Parisi splitting functions in the relevant unresolved limits (Chapter~\ref{ch:workedexample}; the one-loop $A_3^1$ set is the exception, see Table~\ref{tab:masterValidation}). Globally, the integrated antennae are assembled into
 the inclusive $R$-ratio and compared with the known finite result
 (Chapter~\ref{ch:validation}).
 
@@ -854,9 +847,9 @@ generated amplitude rather than inferred from a property of the extracted or int
 It is currently applied to every massless public route with an external gluon leg, that is, to $A_3^0$,
 $A_4^0$ and the $A_3^1$ set, and returns a structured pass, fail, or time-out report for each
 checked leg. Because it depends only on the internal gauge structure of the generated amplitude,
-and not on comparison with any external result, it certifies a property the literature-comparison
-checks above cannot: that the amplitude's diagrams were assembled with the correct relative signs
-and couplings before extraction even begins. In principle, this makes it applicable to a route for
+and not on comparison with any external result, it tests a property the literature-comparison
+checks above cannot: the gauge invariance of the generated amplitude, which would expose errors in the relative signs
+and couplings of its diagrams before extraction even begins. In principle, this makes it applicable to a route for
 which no literature result exists at all.
 
 Separately from this route-level testing, \textit{AntCalc}'s development also relies on a
@@ -882,7 +875,7 @@ OS X ARM (64-bit), and AntCalc 0.3.1$\beta$3.
 The lower-order routes, up to NLO, complete both stages in approximately one second,
 with the cost increasing substantially for the NNLO routes, in particular $A_2^2$, 
 which surpasses 31 minutes. The $A_4^0$ route has the largest memory requirement, 
-reaching 567 MB above the kernel benchmark. The complete results are shown in 
+reaching 567 MiB above the kernel benchmark. The complete results are shown in 
 Table~\ref{tab:runtimeBenchmarks}.
 
 \begin{table}[h!]
@@ -892,7 +885,7 @@ Table~\ref{tab:runtimeBenchmarks}.
     \texttt{BuildAntenna[..., IntegrableForm -> True]}, followed by
     \texttt{IntegrateAntenna[...]} for the integration time. Each route was
     evaluated in a fresh Wolfram kernel. Peak memory is the maximum kernel-memory
-    increase relative to the initial baseline.}
+    increase relative to the initial baseline. Each route is timed on its own, so the entries are not additive to the total \texttt{BuildRRatio} runtime.}
     \footnotesize
     \renewcommand{\arraystretch}{1.15}
     \begin{tabular}{|c|r|r|r|r|}

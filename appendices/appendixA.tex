@@ -12,12 +12,7 @@ quantity of this kind scales with $q^2$ as a single power fixed by its mass dime
 $\epsilon$-scaling, so the complete $q^2$-dependent result is recovered by multiplying the
 expression given here by $(q^2)^{\lambda+\kappa\epsilon}$ for the appropriate $\lambda$ and
 $\kappa$. The explicit case of $\mathcal A_3^0$, which scales as $(q^2)^{-\epsilon}$, is worked
-out in full in Eq.~\eqref{eq:A30withR30Sub}. We must also here introduce the shorthand,
-\begin{equation}
-    C_\epsilon \equiv \frac{(4\pi)^\epsilon e^{-\gamma_E\epsilon}}{8\pi^2}
-    = \frac{1}{C(\epsilon,1)}
-\end{equation}
-as the one-loop normalisation factor.
+out in full in Eq.~\eqref{eq:A30withR30Sub}. 
 
 \section{LO Antenna}
 
@@ -28,7 +23,7 @@ Running \texttt{BuildAntenna[A,2,0]}, we get the built result,
 \end{equation}
 By running \texttt{BuildAndIntegrateAntenna[A,2,0]} we get the integrated result, 
 \begin{equation}
-    \mathcal A_2^0 = \frac14 + \epsilon\frac98 - \epsilon^2\!\left(\frac{9}{16}-\frac{\pi^2}{48}\right).
+    \mathcal A_2^0 = \frac14 + \epsilon\frac98 + \epsilon^2\!\left(\frac{63}{16}-\frac{7\pi^2}{48}\right).
 \end{equation}
 
 \section{NLO Antennae}
@@ -398,7 +393,7 @@ where,
 By running \texttt{BuildAndIntegrateAntenna[A,4,0,Component->Leading]} we get the integrated result, 
 \begin{equation}
     \begin{gathered}
-        \mathcal A_4^0 = \frac3{4\epsilon^4}+\frac{65}{24\epsilon^3}+\frac{434-39\pi^2}{36\epsilon^2}-\frac1\epsilon\!\left(-\frac{43223}{864}+\frac{589\pi^2}{144}+\frac{71\zeta_3}{4}\right)\\ 
+        \mathcal A_4^0 = \frac3{4\epsilon^4}+\frac{65}{24\epsilon^3}+\frac{434-39\pi^2}{36\epsilon^2}+\frac1\epsilon\!\left(\frac{43223}{864}-\frac{589\pi^2}{144}-\frac{71\zeta_3}{4}\right)\\ 
         +\frac{1076717}{5184}-\frac{7955\pi^2}{432}+\frac{373\pi^4}{1440}-\frac{1327\zeta_3}{18} + \mathcal O\!\left(\epsilon\right).
     \end{gathered}
 \end{equation}

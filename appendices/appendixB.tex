@@ -14,7 +14,7 @@ Each internal line in a Feynman diagram represents a propagator: the way a quant
 field carries an excitation from one spacetime point to another. These propagators 
 differ particle-by-particle both in mathematical structure and in the way they are 
 graphically represented in the diagrams. A description of propagators encountered 
-throughout this work is present in Table~\ref{tab:props} \cite{Ellis:1996mzs,Peskin:1995ev}.
+throughout this work is given in Table~\ref{tab:props} \cite{Ellis:1996mzs,Peskin:1995ev}.
 
 \begin{table}[h!]
 \footnotesize
@@ -74,7 +74,7 @@ reference vector to be the other gluon's momentum.
 \subsection{Vertices}
 
 These lines meet in vertices, which represent the way in which quantum fields 
-interact. The four vertices encountered throughout this work are shown in 
+interact. The vertices encountered throughout this work are shown in 
 Table~\ref{tab:vertices} \cite{Ellis:1996mzs,Peskin:1995ev}.
 
 \begin{table}[h!]
@@ -139,7 +139,7 @@ Table~\ref{tab:vertices} \cite{Ellis:1996mzs,Peskin:1995ev}.
                                                         };
                                                     \end{feynman}
                                                 \end{tikzpicture} \\ \hline
-   $\gamma^*q\bar q$ & $ieQ_q\gamma^\mu\delta_{ij}$            & \begin{tikzpicture}[baseline=(current bounding box.center)]
+   $\gamma^*q\bar q$ & $ie_q\gamma^\mu\delta_{ij}$            & \begin{tikzpicture}[baseline=(current bounding box.center)]
                                                     \begin{feynman}
                                                         \vertex (a) at (0,0);
                                                         \vertex (b) at (0.8,0);
@@ -159,7 +159,7 @@ Table~\ref{tab:vertices} \cite{Ellis:1996mzs,Peskin:1995ev}.
 
 \section{Passarino-Veltman Reduction}\label{subsec:PaVe}
 
-At one-loop, amplitudes produce tensor integrals similar
+At one loop, amplitudes produce tensor integrals similar
 to those in Eq.~\eqref{eq:PaVeSchematic} \cite{Passarino:1979pv}. With the massless\footnote{
 Throughout this work the internal masses vanish and the physical external
 partons satisfy $p_a^2=0$. The shifted momenta $r_i$, introduced in Eq.~\eqref{eq:paveDens},
@@ -269,14 +269,14 @@ For massless propagators $A_0$ is scaleless and therefore vanishes in dimensiona
 As mentioned, only three of the MI considered are Passarino-Veltman scalar functions. Those are 
 $B_0$, $C_0$ and $D_0$ and are the Passarino-Veltman two-, three- and four-point 
 scalar integrals, respectively. The Passarino-Veltman method also features the $A_0$ (one-point)
-scalar function, that does not feature in \textit{AntCalc}. It also accounts for 
+scalar function, which does not feature in \textit{AntCalc}. It also accounts for 
 scalar integrals with more than four external legs, as those can be further reduced 
 in four dimensions to combinations of $D_0$ functions \cite{Melrose:1965kb,vanNeerven:1983vr}.
 
 \subsubsection{The $B_0$ Function}\label{subsubsec:B0}
 
 The $B_0$ function represents a scalar one-loop diagram with two external lines and 
-two internal propagators. It is represented, in $d$ dimensions as,
+two internal propagators. It is represented in $d$ dimensions as,
 \begin{equation}
     B_0\!\left(k^2;0,0\right) = \frac{(2\pi\mu)^{4-d}}{i\pi^2}\int d^dp\frac1{\left(p^2+i\varepsilon\right)\Big((p+k)^2+i\varepsilon\Big)}
 \end{equation}
@@ -430,14 +430,12 @@ then, by order of complexity, the algorithm orders the integrals as,
 
 \section{The Massive Extension}\label{sec:massiveExtension}
 
-The main body of this thesis focused primarily on the massless regime, since the
-vast majority of the present work's chapters focus on that regime. This appendix
+The main body of this thesis focuses on the massless regime. This appendix
 collects the supporting extension of the discussed methods into the massive regime.
 
 The fundamental change is the massive on-shell condition; the remainder of this
 section traces its consequences for the antenna construction and integration.
-Since final-state particles now have mass, their squared momenta are not
-set to zero, they are set to their squared mass.
+Since final-state particles now have mass, their squared momenta are not set to zero; they are set to the square of their mass.
 \begin{equation}
     p_q^2 = p_{\bar q}^2 = 0\,\xrightarrow{\text{Massive Regime}}\, p_q^2=p_{\bar q}^2=m_q^2.
 \end{equation}
@@ -445,8 +443,7 @@ where $p_i$ represents the momentum and $m_i$ represents the mass
 of particle $i$.
 
 The antenna subtraction formalism and the reduction architecture that was developed
-and described throughout Chapter~\ref{ch:physicsbackground} are retained, however. What changes is the
-intermediate steps and kinematics: the massive on-shell condition changes the
+and described throughout Chapter~\ref{ch:physicsbackground} are retained, however. The intermediate steps and kinematics change: the massive on-shell condition changes the
 kinematics themselves and the unresolved limits, with soft radiation remaining
 singular but heavy-quark collinear behaviour becoming quasi-collinear. Massive
 integration is also different, as the characteristic phase-space scale in the massive
@@ -473,9 +470,7 @@ collinear limits involving a massive parton, whereas collinear
 limits between two massless partons remain singular.
 If the two final-state collinear partons are massless, then the limit
 follows the massless collinear limit from the massless regime. If the two partons
-are massive, no strict collinear singularity exists. But if one of the collinear
-partons is massive, consider that particle $i$ of mass $m_i$ and energy $E_i$, and the other
-is massless, consider that particle $j$, such that $m_j=0$, then,
+are massive, no strict collinear singularity exists. But if one of the collinear partons is massive (particle $i$, of mass $m_i$ and energy $E_i$) and the other is massless (particle $j$, with $m_j=0$), then,
 \begin{equation}
     p_i\cdot p_j = E_iE_j(1-\beta_i\cos\theta),\quad \beta_i=\sqrt{1-\frac{m_i^2}{E_i^2}}<1.
 \end{equation}
@@ -487,11 +482,11 @@ invariant from reaching the collinear singular surface,
 
 This regulated collinear region still carries physically important information,
 particularly in the joint high-energy and small-angle region,
-$E_i>>m_i$ and $\theta<<1$,
+$E_i\gg m_i$ and $\theta\ll1$,
 \begin{equation}
     p_i\cdot p_j\sim\frac{E_iE_j}{2}\left(\theta^2+\frac{m_i^2}{E_i^2}\right)
 \end{equation}
-and consequently since,
+and, consequently, since
 \begin{equation}
     \int_0^{\theta_\text{max}^2} d\theta^2\,\frac{1}{p_i\cdot p_j}\sim\int_0^{\theta_\text{max}^2} d\theta^2\,\left(\theta^2+\frac{m_i^2}{E_i^2}\right)^{-1}\sim\ln\!\left(\frac{E_i^2}{m_i^2}\right)
 \end{equation}
@@ -501,7 +496,7 @@ quasi-collinear limit, then, is the limit in which both the mass $m_i$ and the o
 $\theta$ become small together. It is through this limit that the massive antennae
 recover the massless splitting behaviour, as $m_i\to 0$ \cite{GehrmannDeRidder:2009fz}.
 
-Mass does not regulate UV divergences, as $\ell^2>>m_i^2,p_i^2$. It is noteworthy,
+Mass does not regulate UV divergences, as $\ell^2\gg m_i^2,p_i^2$. It is noteworthy,
 however, that in a theory with massive quarks, the coupling renormalisation of
 Eq.~\eqref{eq:alphaRescaling} must be supplemented by the renormalisation of the quark mass
 and quark field,
@@ -539,7 +534,7 @@ the massless limit at $m\to0$ and the threshold limit at $\beta\to0$ \cite{Gehrm
 
 \section{Master Integral Substitution Arrays}\label{sec:MISubsArrays}
 
-As discussed in Section~\ref{sec:laportaByHand}, \textit{AntCalc}'s IBP reduction,
+As described in Chapter~\ref{ch:workedexample}, \textit{AntCalc}'s IBP reduction,
 handled internally by \textit{LiteRed2}, organises each antenna family's master
 integrals as members of that family's own basis, addressed through \textit{LiteRed2}'s
 $j[\text{basis},...]$ notation rather than the named masters used throughout
@@ -632,7 +627,7 @@ we present those validation methods and results.
 \subsection{$A_4^0$}\label{subsec:localValidationA40}
 
 The leading $A_4^0(1_q,3_g,4_g,2_{\bar q})$ massless antenna component has five relevant limits: two soft limits,
-and three collinear limits, for $1_q||3_g$, $3_g||4_g$, and $2_{\bar q}||4_g$. The two $qg$ collinear limits, $1_q||3_g$ and $2_{\bar q}||4_g$,
+and three collinear limits, for $1_q\parallel 3_g$, $3_g\parallel 4_g$, and $2_{\bar q}\parallel 4_g$. The two $qg$ collinear limits, $1_q\parallel 3_g$ and $2_{\bar q}\parallel 4_g$,
 and the two soft-$g$ limits are symmetric under the reversal symmetry of the colour 
 ordering, as $1\leftrightarrow 2$ and $3\leftrightarrow4$.
 
@@ -672,9 +667,9 @@ $s_{23}\to s_{24}$ and $q^2\to s_{124}$, that right-hand side is
 which coincides with the result above once $s_{124}=s_{12}+s_{14}+s_{24}$ is used.
 
 
-\subsubsection{Collinear $1_q||3_g$ Limit}
+\subsubsection{Collinear $1_q\parallel 3_g$ Limit}
 
-For the $1_q||3_g$ limit, the quark and gluon pair recombine into a parent quark as,
+For the $1_q\parallel 3_g$ limit, the quark and gluon pair recombine into a parent quark as,
 \begin{equation}
     p_1=zp_{13},\quad p_3=(1-z)p_{13}
 \end{equation}
@@ -696,7 +691,7 @@ We also define the reduced configuration of the three-parton tree-level antenna 
 
 At leading power, the four-parton antenna factorises as,
 \begin{equation}
-    \lim_{s_{13}\to 0} s_{13}A_4^0(1_q,3_g,4_g,2_{\bar q})=\frac{1}{s_{13}}P_{qg\to q}(z,\epsilon)A_3^0\Big((13)_q,4_g,2_{\bar q}\Big),\quad P_{qg\to q}(z,\epsilon)=\frac{1+z^2}{1-z}-\epsilon(1-z).
+    A_4^0(1_q,3_g,4_g,2_{\bar q})\xrightarrow{s_{13}\to 0}\frac{1}{s_{13}}P_{qg\to q}(z,\epsilon)A_3^0\Big((13)_q,4_g,2_{\bar q}\Big),\quad P_{qg\to q}(z,\epsilon)=\frac{1+z^2}{1-z}-\epsilon(1-z).
 \end{equation}
 Here $P_{qg\to q}(z,\epsilon)$ is the $\mathcal O(\epsilon)$-extended version of the splitting
 function used for $A_3^0$'s collinear limit in Subsection~\ref{subsec:a30LocalValidation}; the
@@ -727,9 +722,9 @@ $s_{13}\to s_{P4}$, $s_{23}\to s_{24}$ and $q^2\to s_{P2}+s_{P4}+s_{24}$, Eq.~\e
 \end{equation*}
 
 
-\subsubsection{Collinear $3_g||4_g$ Limit}
+\subsubsection{Collinear $3_g\parallel 4_g$ Limit}
 
-For the $3_g||4_g$ limit, the gluon-gluon pair recombine into a parent gluon as,
+For the $3_g\parallel 4_g$ limit, the gluon-gluon pair recombine into a parent gluon as,
 \begin{equation}
     p_3=zp_{34},\quad p_4=(1-z)p_{34}.
 \end{equation}
@@ -751,13 +746,13 @@ The reduced configuration of the three-parton tree-level antenna also becomes,
 The parent parton here is now a gluon, not a quark. Hence, the local factorisation
 formula involves the spin-correlated $g\to gg$ splitting tensor:
 \begin{equation}
-    A_4^0(1_q,3_g,4_g,2_{\bar q})\xrightarrow{3_g||4_g}\frac1{s_{34}}\hat P_{gg\to G}^{\mu\nu}(z,k_\perp)\big(A_3^0\big)_{\mu\nu}\Big(1_q,(34)_g,2_{\bar q}\Big).
+    A_4^0(1_q,3_g,4_g,2_{\bar q})\xrightarrow{3_g\parallel 4_g}\frac1{s_{34}}\hat P_{gg\to G}^{\mu\nu}(z,k_\perp)\big(A_3^0\big)_{\mu\nu}\Big(1_q,(34)_g,2_{\bar q}\Big).
 \end{equation}
 Here, $\big(A_3^0\big)_{\mu\nu}$ is the reduced three-parton antenna with the parent-gluon polarisation
 indices left uncontracted. Equivalently, in terms of scalar antenna functions, the
 unaveraged collinear limit contains an angular contribution,
 \begin{equation}
-    A_4^0(1_q,3_g,4_g,2_{\bar q})\xrightarrow{3_g||4_g}\frac1{s_{34}}P_{gg\to G}(z)A_3^0\Big(1_q,(34)_g,2_{\bar q}\Big)+\mathrm{ang.},
+    A_4^0(1_q,3_g,4_g,2_{\bar q})\xrightarrow{3_g\parallel 4_g}\frac1{s_{34}}P_{gg\to G}(z)A_3^0\Big(1_q,(34)_g,2_{\bar q}\Big)+\mathrm{ang.},
 \end{equation}
 where $\mathrm{ang.}$ denotes a spin-correlation contribution. This term
 vanishes after integration over the unresolved azimuthal angle. Consequently,
@@ -856,9 +851,9 @@ result equals, for general $\epsilon$,
 that is, the eikonal factor $\mathcal S_{12}^{(3)}$ between the quark and the antiquark times the reduced antenna.
 
 
-\subsubsection{Collinear $1_q||3_g$ Limit}
+\subsubsection{Collinear $1_q\parallel 3_g$ Limit}
 
-The $1_q||3_g$ limit also behaves in the same way as for the leading term, again checked here at
+The $1_q\parallel 3_g$ limit also behaves in the same way as for the leading term, again checked here at
 $\epsilon=0$ against the $(1+z^2)/(1-z)$ kernel \cite{Gehrmann-DeRidder:2005btv}.
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
@@ -880,12 +875,12 @@ In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];
 The result is identical to that of the leading-colour component above.
 
 
-\subsubsection{Collinear $3_g||4_g$ Limit}
+\subsubsection{Collinear $3_g\parallel 4_g$ Limit}
 
-The $3_g||4_g$ limit is the one that differs significantly from its analogue for $A_4^0$. Using the
+The $3_g\parallel 4_g$ limit is the one that differs significantly from its analogue for $A_4^0$. Using the
 same parametrisation as for $A_4^0$, the expansion of $\tilde A_4^0$ in $s_{34}$ starts at order
 $s_{34}^0$: the coefficient of $1/s_{34}$, computed below for general $\epsilon$, vanishes identically,
-so $\tilde A_4^0$ has no $3_g||4_g$ collinear singularity. The gluon-exchange symmetry shown above is
+so $\tilde A_4^0$ has no $3_g\parallel 4_g$ collinear singularity. The gluon-exchange symmetry shown above is
 not, on its own, the reason for this, since the sum of the two colour-ordered $A_4^0$ terms is equally
 symmetric and is singular. The reason is that the only diagram carrying the $1/s_{34}$ propagator is
 the one with the three-gluon vertex, and, as the colour-ordered three-gluon vertex is antisymmetric
@@ -913,18 +908,18 @@ In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];
 \subsection{$B_4^0$}\label{subsec:localValidationB40}
 
 The $B_4^0$ antenna is the ordinary, non-identical-flavour four-quark antenna of the process $\gamma^*\to qq^\prime\bar q^\prime\bar q$.
-This antenna has three non-vanishing limits, the single collinear limit $3_{q^\prime}||4_{\bar q^\prime}$, the double soft limit
-$3_{q^\prime},4_{\bar q^\prime}\to 0$, and the triple-collinear limit $1_q||3_{q^\prime}||4_{\bar q^\prime}$.
+This antenna has three non-vanishing limits, the single collinear limit $3_{q^\prime}\parallel 4_{\bar q^\prime}$, the double soft limit
+$3_{q^\prime},4_{\bar q^\prime}\to 0$, and the triple-collinear limit $1_q\parallel 3_{q^\prime}\parallel 4_{\bar q^\prime}$.
 
 \subsubsection{Single Collinear Limit}
 
-This limit is computed similarly to $A_4^0$'s $3_g||4_g$ collinear limit. We find that,
+This limit is computed similarly to $A_4^0$'s $3_g\parallel 4_g$ collinear limit. We find that,
 \begin{equation}
-    B_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q})\xrightarrow{3_{q^\prime}||4_{\bar q^\prime}}\frac1{s_{34}}P_{q\bar q\to g}^{\mu\nu}(z,k_\perp)\left(A_3^0\right)_{\mu\nu}\Big(1,(34),2\Big)
+    B_4^0(1_q,3_{q^\prime},4_{\bar q^\prime},2_{\bar q})\xrightarrow{3_{q^\prime}\parallel 4_{\bar q^\prime}}\frac1{s_{34}}P_{q\bar q\to g}^{\mu\nu}(z,k_\perp)\left(A_3^0\right)_{\mu\nu}\Big(1,(34),2\Big)
 \end{equation}
 which after azimuthal averaging becomes,
 \begin{equation}
-    \left\langle B_4^0\right\rangle_\phi \xrightarrow{3_{q^\prime}||4_{\bar q^\prime}}\frac1{s_{34}} P_{q\bar q\to g}(z)A_3^0\Big(1,(34),2\Big),\quad P_{q\bar q\to g}(z) = \frac{z^2+(1-z)^2-\epsilon}{1-\epsilon}.
+    \left\langle B_4^0\right\rangle_\phi \xrightarrow{3_{q^\prime}\parallel 4_{\bar q^\prime}}\frac1{s_{34}} P_{q\bar q\to g}(z)A_3^0\Big(1,(34),2\Big),\quad P_{q\bar q\to g}(z) = \frac{z^2+(1-z)^2-\epsilon}{1-\epsilon}.
 \end{equation}
 The check below keeps $\epsilon$ symbolic throughout, directly validating the full $\epsilon$-dependent
 kernel $P_{q\bar q\to g}(z)$ above, rather than only its $\epsilon=0$ piece \cite{Gehrmann-DeRidder:2005btv}.
@@ -951,7 +946,7 @@ spin-correlation term $4s_{12}z(z-1)/\big[(\epsilon-1)s_{1P}s_{P2}\big]$, which 
 \subsubsection{Double-Soft Limit}
 
 A soft quark-antiquark pair is singular when both particles become soft simultaneously. To 
-compute this limit we start scalling,
+compute this limit we start scaling,
 \begin{equation}
     \begin{gathered}
         p_3\to \lambda p_3,\quad p_4\to \lambda p_4,\\
@@ -990,7 +985,7 @@ This is the double-soft factor $\mathcal S_{12}(3,4)$ of the equation above, wri
 
 \subsubsection{Triple-Collinear Limit}
 
-For the $1_q||3_{q^\prime}||4_{\bar q^\prime}$ limit, all three partons become collinear together. We
+For the $1_q\parallel 3_{q^\prime}\parallel 4_{\bar q^\prime}$ limit, all three partons become collinear together. We
 introduce the rescaled invariants $r_{13}$, $r_{14}$, $r_{34}$, of order unity as $\lambda\to0$, via
 \begin{equation}
     s_{13}\to\lambda r_{13},\quad s_{14}\to\lambda r_{14},\quad s_{34}\to\lambda r_{34},
@@ -1044,10 +1039,10 @@ $r_{34}^2(r_{13}+r_{14}+r_{34})^2(1-w)^2$.
 
 The $C_4^0$ antenna is the identical-flavour four-quark antenna of the process $\gamma^*\to q\bar qq\bar q$,
 built as the symmetrised direct--exchange interference. Unlike $B_4^0$, it has a single non-vanishing
-limit, the triple-collinear limit $2_{\bar q}||3_q||4_{\bar q}$; the direct $3||4$ single-collinear region is
+limit, the triple-collinear limit $2_{\bar q}\parallel 3_q\parallel 4_{\bar q}$; the direct $3\parallel 4$ single-collinear region is
 regular, as the check below confirms.
 
-\subsubsection{Collinear $3||4$ Limit}
+\subsubsection{Collinear $3\parallel 4$ Limit}
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
 \begin{lstlisting}
@@ -1068,7 +1063,7 @@ In[1]:= C40 = BuildAntenna[C,4,0];
 
 \subsubsection{Triple-Collinear Limit}
 
-For the $2_{\bar q}||3_q||4_{\bar q}$ limit, partons $2$, $3$, and $4$ become collinear together, leaving
+For the $2_{\bar q}\parallel 3_q\parallel 4_{\bar q}$ limit, partons $2$, $3$, and $4$ become collinear together, leaving
 parton $1$ as the sole hard remaining leg. As for $B_4^0$, we introduce the rescaled invariants
 $r_{23}$, $r_{24}$, $r_{34}$, of order unity as $\lambda\to0$, via
 \begin{equation}
@@ -1128,7 +1123,7 @@ For this massive antenna, described as,
     A_3^0\Big(1_Q,3_g,2_{\bar Q}\Big)
 \end{equation}
 where $Q$ denotes a quark of mass $m_q$, there is one infrared singular limit, for the soft gluon, 
-and two mass-regulated quasi-collinear limits, for $Q||g$ and $\bar Q||g$. These two collinear limits 
+and two mass-regulated quasi-collinear limits, for $Q\parallel g$ and $\bar Q\parallel g$. These two collinear limits 
 are symmetric as $1\leftrightarrow2$ and thus, as before, the validation of one validates the other.
 Relative to the massless case, it is relevant to note that there is no ordinary collinear pole
 at fixed $m_q$.
@@ -1138,7 +1133,7 @@ at fixed $m_q$.
 This limit is computed by taking the gluon's momentum to zero, as $p_3\to0$. The antenna reduces to a product of 
 an $A_2^0$ antenna and the massive eikonal factor as \cite{GehrmannDeRidder:2009fz},
 \begin{equation}
-    A_3^0(1_Q,3_g,2_{\bar Q})\xrightarrow{3_g\to0}\frac14S_{132}(m_q,m_q),\quad S_{132}(m_q,m_q) = \frac{2s_{12}}{s_{13}s_{23}}-\frac{2m_q^2}{s_{13}^2}-\frac{2m_q^2}{s_{23}^2}.
+    A_3^0(1_Q,3_g,2_{\bar Q})\xrightarrow{3_g\to0}S_{132}(m_q,m_q),\quad S_{132}(m_q,m_q) = \frac{2s_{12}}{s_{13}s_{23}}-\frac{2m_q^2}{s_{13}^2}-\frac{2m_q^2}{s_{23}^2}.
 \end{equation}
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
@@ -1153,10 +1148,10 @@ In[1]:= mA30 = BuildAntenna[A,3,0,quarkMass->mQ];
 \end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
-        \frac{s_{12}s_{13}s_{23}-m_q^2\left(s_{13}^2+s_{23}^2\right)}{2s_{13}^2s_{23}^2}
+        \frac{2s_{12}s_{13}s_{23}-2m_q^2\left(s_{13}^2+s_{23}^2\right)}{s_{13}^2s_{23}^2}
     \end{equation*}
 \end{mdframed}
-This is $\tfrac14\mathcal S_{132}(m_q,m_q)$ of the equation above, written over a common denominator.
+This is $\mathcal S_{132}(m_q,m_q)$ of the equation above, written over a common denominator.
 
 
 \subsubsection{Collinear Limit and the Altarelli--Parisi Splitting Function}
@@ -1164,7 +1159,7 @@ This is $\tfrac14\mathcal S_{132}(m_q,m_q)$ of the equation above, written over 
 To compute this limit, we start by replacing,
 \begin{equation}
     \begin{gathered}
-        p_1||p_3,\quad s_{13}\to 0,\quad m_q^2\to 0,\quad \frac{m_q^2}{s_{13}}\to \mu_{Qg}^2.
+        p_1\parallel p_3,\quad s_{13}\to 0,\quad m_q^2\to 0,\quad \frac{m_q^2}{s_{13}}\to \mu_{Qg}^2.
     \end{gathered}
 \end{equation}
 Here $\mu_{Qg}$ is some fixed quantity.
@@ -1172,14 +1167,14 @@ As usual, with $z$ representing the quark momentum fraction,
 \begin{equation}
     p_1\to zp_{13},\quad p_3\to(1-z)p_{13}.
 \end{equation}
-$\epsilon$ is also set to zero.
 
-The antenna factorised as \cite{GehrmannDeRidder:2009fz},
+
+The antenna factorises as follows \cite{GehrmannDeRidder:2009fz},
 \begin{equation}
-    A_3^0(1_Q,3_g,2_{\bar Q})\xrightarrow{1_Q||3_g}\frac1{4s_{13}}P_{Qg\to Q}(z,\mu_{Qg}^2),\quad
+    A_3^0(1_Q,3_g,2_{\bar Q})\xrightarrow{1_Q\parallel 3_g}\frac1{s_{13}}P_{Qg\to Q}(z,\epsilon,\mu_{Qg}^2),\quad
     \begin{gathered}
-        P_{Qg\to Q}(z,\mu_{Qg}^2) = \frac{1+z^2}{1-z}-2\mu_{Qg}^2\\
-        = \frac{1+z^2}{1-z},\quad\mu_{Qg}^2=0.
+        P_{Qg\to Q}(z,\epsilon,\mu_{Qg}^2) = \frac{1+z^2}{1-z}-\epsilon(1-z)-2\mu_{Qg}^2\\
+        = \frac{1+z^2}{1-z}-\epsilon(1-z),\quad\mu_{Qg}^2=0.
     \end{gathered}
 \end{equation}
 
@@ -1188,17 +1183,15 @@ The antenna factorised as \cite{GehrmannDeRidder:2009fz},
 In[1]:= mA30 = BuildAntenna[A,3,0,quarkMass->mQ];
 
         quasi13Rules = {s13 -> lambda r13, s12 -> z sP2,
-            s23 -> (1-z) sP2, s123 -> sP2 + lambda r13,
-            q2 -> sP2 + lambda r13 (1+2 muQg2),
-            mQ^2 -> lambda muQg2 r13, mQ^4 -> lambda^2 muQg2^2 r13^2,
-            Epsilon -> 0};
+            s23 -> (1-z) sP2,
+            mQ^2 -> lambda muQg2 r13, mQ^4 -> lambda^2 muQg2^2 r13^2};
         r13 SeriesCoefficient[Together[mA30 /. quasi13Rules],
             {lambda, 0, -1}] // FullSimplify
 \end{lstlisting}
 \texttt{Out[1]:=}
     \begin{equation*}
-        \frac{1+z^2-2\mu_{Qg}^2(1-z)}{4(1-z)}
+        \frac{1+z^2}{1-z}-\epsilon(1-z)-2\mu_{Qg}^2
     \end{equation*}
 \end{mdframed}
-This is $\tfrac14P_{Qg\to Q}(z,\mu_{Qg}^2)$ of the equation above.
+This is $P_{Qg\to Q}(z,\epsilon,\mu_{Qg}^2)$ of the equation above, with $\epsilon$ kept symbolic.
 

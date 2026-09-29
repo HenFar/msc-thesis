@@ -186,7 +186,7 @@ contributions gives the tree-level amplitude,
 \end{equation}
 where $i_1$, $i_2$, and $a_3$ denote the colour indices of the quark, antiquark, and gluon,
 respectively, and $T^{a_3}$ is the fundamental $SU(N)$ generator introduced in
-Section~\ref{subsec:colourAlg}.
+Subsection~\ref{subsec:colourAlg}.
 
 
 The amplitude is now squared as follows,
@@ -200,12 +200,12 @@ The amplitude is now squared as follows,
 \end{equation}
 Here $\bar\Gamma\equiv\gamma^0\Gamma^\dagger\gamma^0$ denotes the Dirac conjugate of $\Gamma$, which reverses the order of the
 gamma matrices and complex-conjugates the polarisation vectors, such that $M_{A,B}^\dagger=\bar\varv(k_2)\bar\Gamma_{A,B}u(k_1)$.
-In total, the squared amplitude then becomes
+In total, the squared amplitude then becomes (the spin sums are understood as traces over Dirac matrices, $\sum_s u\bar u=\slashed k$ for massless quarks)
 
 \begin{equation}
     \begin{split}
         = \sum_{a_3,i_1,i_2} &(T^{a_3})_{i_1i_2}(T^{a_3})_{i_2i_1}\\
-                             &\sum_{s_1, s_2, \lambda_g, \lambda_\gamma}\bar u(k_1,s_1) u(k_1,s_1)\Bigg[\Gamma_A \bar\Gamma_A + \Gamma_B\bar\Gamma_B - \Gamma_A\bar\Gamma_B - \Gamma_B\bar\Gamma_A\Bigg]v(k_2,s_2)\bar v(k_2,s_2)
+                             &\sum_{s_1, s_2, \lambda_g, \lambda_\gamma}u(k_1,s_1)\bar u(k_1,s_1)\Bigg[\Gamma_A \bar\Gamma_A + \Gamma_B\bar\Gamma_B - \Gamma_A\bar\Gamma_B - \Gamma_B\bar\Gamma_A\Bigg]v(k_2,s_2)\bar v(k_2,s_2)
     \end{split}
 \end{equation}
 
@@ -213,7 +213,7 @@ Each of the $\Gamma$ terms becomes, using Dirac Algebra,
 
 \begin{equation}
     \begin{split}
-        \sum_{s_1,s_2,\lambda_g,\lambda_\gamma} \bar u(k_1,s_1) u(k_1,s_1)&\left(\Gamma_A \bar\Gamma_A\right)v(k_2,s_2)\bar v(k_2,s_2) = \\
+        \sum_{s_1,s_2,\lambda_g,\lambda_\gamma} u(k_1,s_1)\bar u(k_1,s_1)&\left(\Gamma_A \bar\Gamma_A\right)v(k_2,s_2)\bar v(k_2,s_2) = \\
                                                                         &=\frac1{s_{13}^2}\sum_{\lambda_g,\lambda_\gamma}\varepsilon_\mu^*\varepsilon_\nu\varepsilon_\rho\varepsilon_\sigma^*\operatorname{Tr}\Big(\slashed{k_1}\gamma^\mu(\slashed{k_1}+\slashed{k_3})\gamma^\rho\slashed{k_2}\gamma^\sigma(\slashed{k_1}+\slashed{k_3})\gamma^\nu\Big)\\
                                                                         &=\frac1{s_{13}^2}g_{\mu\nu}g_{\rho\sigma}\operatorname{Tr}\Big(\slashed{k_1}\gamma^\mu(\slashed{k_1}+\slashed{k_3})\gamma^\rho\slashed{k_2}\gamma^\sigma(\slashed{k_1}+\slashed{k_3})\gamma^\nu\Big)\\
                                                                         &=\frac1{s_{13}^2}\operatorname{Tr}\Big(\slashed{k_1}\gamma^\mu(\slashed{k_1}+\slashed{k_3})\gamma^\rho\slashed{k_2}\gamma_\rho(\slashed{k_1}+\slashed{k_3})\gamma_\mu\Big)\\
@@ -225,21 +225,21 @@ Each of the $\Gamma$ terms becomes, using Dirac Algebra,
 
 \begin{equation}
     \begin{split}
-        \sum_{s_1,s_2,\lambda_g,\lambda_\gamma} \bar u(k_1,s_1) u(k_1,s_1)&\left(\Gamma_B \bar\Gamma_B\right)v(k_2,s_2)\bar v(k_2,s_2) = \\
+        \sum_{s_1,s_2,\lambda_g,\lambda_\gamma} u(k_1,s_1)\bar u(k_1,s_1)&\left(\Gamma_B \bar\Gamma_B\right)v(k_2,s_2)\bar v(k_2,s_2) = \\
                                                                         &=2(d-2)^2\frac{s_{13}}{s_{23}}
     \end{split}
 \end{equation}
 
 \begin{equation}
     \begin{split}
-        \sum_{s_1,s_2,\lambda_g,\lambda_\gamma} \bar u(k_1,s_1) u(k_1,s_1)&\left(\Gamma_A \bar\Gamma_B\right)v(k_2,s_2)\bar v(k_2,s_2) = \\
+        \sum_{s_1,s_2,\lambda_g,\lambda_\gamma} u(k_1,s_1)\bar u(k_1,s_1)&\left(\Gamma_A \bar\Gamma_B\right)v(k_2,s_2)\bar v(k_2,s_2) = \\
                                                                         &=2(d-2)\frac{(d-4)s_{13}s_{23}-2s_{12}^2-2s_{12}(s_{13}+s_{23})}{s_{13}s_{23}}
     \end{split}
 \end{equation}
 
 \begin{equation}
     \begin{split}
-        \sum_{s_1,s_2,\lambda_g,\lambda_\gamma} \bar u(k_1,s_1) u(k_1,s_1)&\left(\Gamma_B \bar\Gamma_A\right)v(k_2,s_2)\bar v(k_2,s_2) = \\
+        \sum_{s_1,s_2,\lambda_g,\lambda_\gamma} u(k_1,s_1)\bar u(k_1,s_1)&\left(\Gamma_B \bar\Gamma_A\right)v(k_2,s_2)\bar v(k_2,s_2) = \\
                                                                         &=2(d-2)\frac{(d-4)s_{13}s_{23}-2s_{12}^2-2s_{12}(s_{13}+s_{23})}{s_{13}s_{23}}
     \end{split}
 \end{equation}
@@ -252,9 +252,9 @@ and the tree-level squared matrix element is obtained in $d$ dimensions (with $d
 
 \begin{equation}\label{eq:M30interference}
     \begin{split}
-        |\mathcal M_3^0|^2 &= e_q^2g_s^2(N^2-1)\Bigg(2(d-2)^2\left(\frac{s_{13}}{s_{23}}+\frac{s_{23}}{s_{13}}\right)-4(d-2)\frac{(d-4)s_{13}s_{23}-2s_{12}^2-2s_{12}(s_{13}+s_{23})}{s_{13}s_{23}}\Bigg)\\
-                           &= 2(d-2)e_q^2g_s^2(N^2-1)\Bigg((d-2)\left(\frac{s_{13}}{s_{23}}+\frac{s_{23}}{s_{13}}\right)-2\frac{(d-4)s_{13}s_{23}-2s_{12}^2-2s_{12}(s_{13}+s_{23})}{s_{13}s_{23}}\Bigg)\\
-                           &= \frac{8e_q^2g_s^2\left(N^2-1\right)}{s_{13}s_{23}}\Bigg(2q^2s_{12}+s_{13}^2+s_{23}^2-2\epsilon\left(q^2s_{12}+s_{13}^2+s_{23}^2+s_{13}s_{23}\right)+\epsilon^2\left(s_{13}+s_{23}\right)^2\Bigg)
+        |\mathcal M_3^0|^2 &= e_q^2g_s^2(N^2-1)\Bigg((d-2)^2\left(\frac{s_{13}}{s_{23}}+\frac{s_{23}}{s_{13}}\right)-2(d-2)\frac{(d-4)s_{13}s_{23}-2s_{12}^2-2s_{12}(s_{13}+s_{23})}{s_{13}s_{23}}\Bigg)\\
+                           &= (d-2)e_q^2g_s^2(N^2-1)\Bigg((d-2)\left(\frac{s_{13}}{s_{23}}+\frac{s_{23}}{s_{13}}\right)-2\frac{(d-4)s_{13}s_{23}-2s_{12}^2-2s_{12}(s_{13}+s_{23})}{s_{13}s_{23}}\Bigg)\\
+                           &= \frac{4e_q^2g_s^2\left(N^2-1\right)}{s_{13}s_{23}}\Bigg(2q^2s_{12}+s_{13}^2+s_{23}^2-2\epsilon\left(q^2s_{12}+s_{13}^2+s_{23}^2+s_{13}s_{23}\right)+\epsilon^2\left(s_{13}+s_{23}\right)^2\Bigg)
     \end{split}
 \end{equation}
 
@@ -267,18 +267,18 @@ with tree-level amplitude
     \mathcal M_2^0 = e_q\delta_{i_1i_2}\bar u(k_1)\slashed{\varepsilon}(p)\varv(k_2).
 \end{equation}
 
-Applying the same spin, polarisation and colour sums as above, and considering that, for a two
-final-state particles system $s_{12}=q^2$, we get
+Applying the same spin, polarisation and colour sums as above, and considering that, for a two-particle
+final state $s_{12}=q^2$, we get
 
 \begin{equation}\label{eq:M20interference}
     \begin{split}
-        |\mathcal M_2^0|^2 = 4e_q^2(d-2)Ns_{12} &= 4e_q^2(d-2)Nq^2\\
-                                                       &= 8e_q^2(1-\epsilon)Nq^2
+        |\mathcal M_2^0|^2 = 2e_q^2(d-2)Ns_{12} &= 2e_q^2(d-2)Nq^2\\
+                                                       &= 4e_q^2(1-\epsilon)Nq^2
     \end{split}
 \end{equation}
 
 
-The antenna is now finally ready to be built. That is accomplished using the following formula,
+The antenna is now ready to be built. That is accomplished using the following formula,
 \begin{equation}
     A_3^0 = \frac1{2g_s^2C_F}\frac{|\mathcal M_3^0|^2}{|\mathcal M_2^0|^2}.
 \end{equation}
@@ -435,8 +435,7 @@ Substituting Eq.~\eqref{eq:R3} into Eq.~\eqref{eq:A30intermsofR3} gives
     \end{split}
 \end{equation}
 
-and, after expanding the integrated expression as a Laurent series in $\epsilon$, we finally 
-arrive at the infrared pole structure,
+and, after expanding the integrated expression as a Laurent series in $\epsilon$, we arrive at the Laurent expansion,
 
 \begin{equation*}
     \begin{split}
@@ -469,7 +468,7 @@ First, by running the function naively we get the final result in Eq.~\eqref{eq:
 
 We can also use the \texttt{ReturnRecord} option to access all intermediate steps, and check that 
 \textit{AntCalc} goes through the same steps as the by-hand derivation in
-Subsection~\ref{sec:matDerivation}. We can see that with,
+Subsection~\ref{sec:matDerivation}. This is done with,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
     \texttt{In[3]:= \\BuildAntenna[A,3,0,ReturnRecord->True]["IntermediateSteps"]}\\
@@ -506,7 +505,7 @@ invariants, providing a compact representation suitable for direct inspection an
 requiring the local antenna. For analytic integration, however, additional information must be
 retained in order to map the antenna onto the integral families used for IBP reduction with
 \textit{LiteRed2}. As described in Chapter~\ref{ch:packageframework}, this is achieved by setting
-\texttt{IntegrableForm -> True}, \texttt{BuildAntenna[A,3,0,IntegrableForm -> True]}. In this mode,
+\texttt{IntegrableForm -> True}, as in \texttt{BuildAntenna[A,3,0,IntegrableForm -> True]}. In this mode,
 \texttt{BuildAntenna} returns an \texttt{AntennaObject} containing the information required to
 construct the corresponding \textit{LiteRed2} integral representation and perform the subsequent IBP
 reduction through \texttt{IntegrateAntenna}.
@@ -514,7 +513,7 @@ reduction through \texttt{IntegrateAntenna}.
 We may now proceed to the integration. The whole process goes as follows,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
-    \texttt{In[4]:= intA30 = BuildAntenna[A,3,0,IntegrableForm -> True]};\\
+    \texttt{In[4]:= intA30 = BuildAntenna[A,3,0,IntegrableForm -> True];}\\
     \hfill
     \texttt{In[5]:= IntegrateAntenna[intA30,ExpansionOrder->2]}\\
     \hfill
@@ -567,7 +566,7 @@ series in $\epsilon$. For $A_3^0$, retaining terms through $\mathcal O(\epsilon^
         \end{equation*}
 \end{mdframed}
 
-The agreement between this result and the explicit analytic derivation above provides a direct
+The agreement between this result and the explicit analytic derivation above (the latter with $\mu^2=q^2$ understood) provides a direct
 validation of the automated construction and integration of $A_3^0$ in \textit{AntCalc}. The local
 infrared behaviour of the unintegrated antenna is tested independently in the following subsection
 through its soft and collinear limits.
@@ -584,8 +583,8 @@ and using \textit{AntCalc}.
 
 \subsubsection*{Soft Limit and the Eikonal Factor}
 
-When a gluon becomes soft, gauge theory amplitudes factorise universally to the
-amplitude without the soft gluon times a universal soft current as \cite{Catani:1996vz},
+When a gluon becomes soft, gauge theory squared matrix elements factorise universally into the
+squared matrix element without the soft gluon times a universal eikonal factor as \cite{Catani:1996vz},
 \begin{equation}
     |\mathcal M_{n+1}^0(...,i,j,k,...)|^2\xrightarrow{j\to0}-g_s^2\sum_{i,k}T_i\cdot T_k \mathcal S_{ik}^{(j)}|\mathcal M_{n}^0(...,i,k,...)|^2
 \end{equation}
@@ -625,10 +624,10 @@ This result agrees with the expected eikonal factor.
 
 \subsubsection*{Collinear Limit and the Altarelli--Parisi Splitting Function}
 
-In the same manner, when two partons $i$ and $j$ become collinear, the amplitude 
+In the same manner, when two partons $i$ and $j$ become collinear, the squared matrix element
 factorises to \cite{Catani:1996vz,Altarelli:1977zs},
 \begin{equation}
-    |\mathcal M_{n+1}^0(...,i,j,...)|^2\xrightarrow{i||j}\frac{8\pi\alpha_s}{s_{ij}}P_{IJ\to K}(z)|\mathcal M_n^0(...,K,...)|^2
+    |\mathcal M_{n+1}^0(...,i,j,...)|^2\xrightarrow{i\parallel j}\frac{8\pi\alpha_s}{s_{ij}}P_{IJ\to K}(z)|\mathcal M_n^0(...,K,...)|^2
 \end{equation}
 where $K$ is the parent parton in which $i$ and $j$ recombine, $z$ is the momentum fraction 
 carried by one of the daughter partons, and $P_{IJ\to K}$ is the splitting function. This function
@@ -900,9 +899,7 @@ with
     \end{equation*}
 \end{mdframed}
 
-After IBP reduction, the $N_f$ contribution reduces to the single master integral $A_4$, in contrast
-to the leading- and subleading-colour components considered above, besides the counterterm functions
-$B_0^\dagger$ and $C_0^\dagger$. The definition and analytic evaluation of $A_4$ are presented in
+After IBP reduction, the genuine two-loop part of the $N_f$ contribution reduces to the single master integral $A_4$, in contrast to the leading- and subleading-colour components considered above. In addition, the counterterm functions $B_0^\dagger$ and $C_0^\dagger$ appear. The definition and analytic evaluation of $A_4$ are presented in
 Appendix~\ref{sec:MIA22}. After the two steps described in Subsection~\ref{subsec:A22lead}, \texttt{BuildAntenna}
 returns
 
@@ -1000,7 +997,7 @@ Decomposing the remaining pole according to its colour structure traces the mism
 $\breve A_2^2$ contribution, whereas the result obtained with \textit{AntCalc} yields the required
 cancellation.
 
-The origin of the discrepancy is a typographical error in the published expression of
+The origin of the discrepancy appears to be a typographical error in the published expression of
 Ref.~\cite{Gehrmann-DeRidder:2004ttg}, specifically in the sign of the $7\zeta_3/(6\epsilon)$ term.
 The corrected sign is also documented independently by Jakubčík, Marcoli, and Stagnitto in
 Eq.~(B.7) of Ref.~\cite{Jakubcik:2022zdi}.
@@ -1689,8 +1686,7 @@ As for the other integrated antennae presented in this chapter, \textit{AntCalc}
 result by default in units of the total invariant mass, $q^2=1$. Consequently, the threshold
 variable of Eq.~\eqref{eq:thresholdr} appears in the output as $r\to1-4m_q^2$. Only representative terms of the
 integrated antenna are displayed here; the complete expressions are collected in
-Appendix~\ref{ap:antExpressions}. The route is nevertheless classified as exploratory because
-it has not yet undergone the global-observable validation applied to the massless antenna set.
+Appendix~\ref{ap:antExpressions}. This is the first massive route implemented in \textit{AntCalc}: it agrees with the literature, including in its local soft and quasi-collinear limits (Appendix~\ref{subsec:localValidationMassiveA30}), but no massive global observable has been computed yet.
 
 An important feature of the massive result is that its Laurent expansion contains only a single
 $1/\epsilon$ infrared pole, in contrast to the $1/\epsilon^2$ leading behaviour of the
@@ -1721,7 +1717,7 @@ the exploratory massive extension.
 \renewcommand{\arraystretch}{1.0}
 \begin{center}
 \begin{longtable}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{4.0cm}|>{\raggedright\arraybackslash}p{1.9cm}|>{\raggedright\arraybackslash}p{3.2cm}|>{\raggedright\arraybackslash}p{1.9cm}|}
-\caption{Construction, integration and validation overview of every antenna route implemented in \textit{AntCalc}. The API call of each route is \texttt{BuildAndIntegrateAntenna[type, multiplicity, loop order]}; only the arguments are shown. ``Not applicable'' marks routes with no real unresolved parton to take a soft/collinear limit of ($A_2^0$, $A_2^1$, $A_2^2$); ``Not performed'' marks the one remaining route, the virtual $A_3^1$ set, whose real-radiation limits would require one-loop soft-current and splitting-amplitude factorisation rather than the tree-level method used throughout this table --- its infrared structure is instead validated via the pole cancellation shown in Chapter~\ref{ch:validation}. The massive $A_3^0$ route is deliberately marked as less mature than the massless set: it agrees with the literature locally, but has not yet been checked against any global observable.}\label{tab:masterValidation}\label{tab:masterValidationConstruction}\label{tab:masterValidationStatus}\\
+\caption{Construction, integration and validation overview of every antenna route implemented in \textit{AntCalc}. The API call of each route is \texttt{BuildAndIntegrateAntenna[type, multiplicity, loop order]}; only the arguments are shown. ``Not applicable'' marks routes with no real unresolved parton to take a soft/collinear limit of ($A_2^0$, $A_2^1$, $A_2^2$); ``Not performed'' marks the one remaining route, the real--virtual $A_3^1$ set, whose real-radiation limits would require one-loop soft-current and splitting-amplitude factorisation rather than the tree-level method used throughout this table --- its infrared structure is instead validated via the pole cancellation shown in Chapter~\ref{ch:validation}. The massive $A_3^0$ route is the first massive route in \textit{AntCalc}: it agrees with the literature, including its local soft and quasi-collinear limits, but no massive global observable has been computed yet.}\label{tab:masterValidation}\label{tab:masterValidationConstruction}\label{tab:masterValidationStatus}\\
 \hline
 \textbf{Route} & \textbf{Construction and integration} & \textbf{Literature (order)} & \textbf{Validation} & \textbf{Status} \\
 \hline

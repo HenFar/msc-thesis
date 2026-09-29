@@ -98,10 +98,7 @@ states,
 \end{equation}
 Upon integration over the corresponding final-state phase spaces, the antenna functions appearing in
 these expressions are replaced by their integrated counterparts, $\mathcal A$, $\mathcal B$, and
-$\mathcal C$, obtained in Chapter~\ref{ch:workedexample}. The only exceptions are $\tilde A_4^0$ and
-$C_4^0$: their integrated counterparts are defined in the literature with an explicit overall factor
-of $2$ and $\tfrac12$, respectively, and the corresponding terms of Eq.~\eqref{eq:rNNLO} therefore
-carry the compensating factors $\tfrac12$ and $2$, as discussed in Section~\ref{sec:rratioNNLO}. We
+$\mathcal C$, obtained in Chapter~\ref{ch:workedexample}. The factors $\tfrac12$ and $2$ multiplying $\tilde{\mathcal A}_4^0$ and $\mathcal C_4^0$ are included explicitly in Eq.~\eqref{eq:rNNLO}, following Ref.~\cite{Gehrmann-DeRidder:2004ttg}; their origin is explained in Section~\ref{sec:rratioNNLO}. We
 denote the resulting integrated combinations by $\mathcal T$-objects. These quantities provide the individual two-, three-, and
 four-parton contributions entering the inclusive $R$-ratio.
 
@@ -273,7 +270,7 @@ Combining the finite NLO result of Section~\ref{sec:rratioNLO} with the NNLO con
     R(\alpha_s) = 1+\frac{\alpha_s}{2\pi}\frac32C_F+\left(\frac{\alpha_s}{2\pi}\right)^2C_F\!\left[N\left(\frac{243}{16}-11\zeta_3\right)+\frac3{16N}+N_f\left(-\frac{11}4+2\zeta_3\right)\right]+\mathcal O\!\left(\alpha_s^3\right).
 \end{equation}
 The result is finite and agrees with the known massless hadronic $R$-ratio through NNLO
-\cite{Gehrmann-DeRidder:2004ttg,Dine:1979qh}. Importantly, this comparison is with results obtained
+\cite{Dine:1979qh}, and with its earlier antenna-based assembly in Ref.~\cite{Gehrmann-DeRidder:2004ttg}. Importantly, the first comparison is with a result obtained
 independently of the antenna-subtraction construction used here. The agreement therefore provides a
 global validation of the complete massless antenna set calculated in
 Chapter~\ref{ch:workedexample}: not only do the infrared poles cancel when the different final-state
@@ -301,7 +298,7 @@ normalisations at each perturbative order. The cancellation of the infrared pole
 assembly, so that the returned result is finite through NNLO. The output of
 \texttt{BuildRRatio[SMQCD]} therefore reproduces the analytic result obtained in
 Eq.~\eqref{eq:RfinalResult}, which in turn agrees with the independently known massless hadronic
-$R$-ratio through NNLO \cite{Gehrmann-DeRidder:2004ttg,Dine:1979qh}. This provides an automated global
+$R$-ratio through NNLO \cite{Dine:1979qh}. This provides an automated global
 check of both the integrated massless antenna set and its implementation in \textit{AntCalc}.
 
 \section{Comparison with Experimental Data}\label{sec:rratioData}
@@ -352,7 +349,7 @@ individual real and virtual contributions cancel in the inclusive sum, providing
 the relative normalisation, colour structure, and assembly of the integrated antenna functions. The
 resulting finite coefficients reproduce the known massless hadronic $R$-ratio through NNLO,
 previously obtained using methods independent of antenna subtraction
-\cite{Gehrmann-DeRidder:2004ttg,Dine:1979qh}. This agreement therefore confirms not only the internal
+\cite{Dine:1979qh}. This agreement therefore confirms not only the internal
 consistency of the antenna set, but also its consistency with independently established QCD results.
 
 The comparison with the PDG data provides an additional phenomenological illustration of the
