@@ -84,9 +84,9 @@ dimensional-regularisation and phase-space factors. We define
     S_\Gamma = \left(\frac{(4\pi)^\epsilon}{16\pi^2\Gamma(1-\epsilon)}\right)^2.\label{eq:SGamma}
 \end{equation}
 For phase-space master integrals, it is also convenient to include the integrated two-particle
-phase-space volume $P_2$ in the normalisation, defining
+phase-space volume $\Phi_2$ in the normalisation, defining
 \begin{equation}
-    S_{\Gamma,2} = P_2 S_\Gamma,\quad P_2 = \int d\Phi_2 = \frac{2^{-3+2\epsilon}\pi^{-1+\epsilon}\Gamma(1-\epsilon)}{\Gamma(2-2\epsilon)}\!\left(q^2\right)^{-\epsilon}.
+    S_{\Gamma,2} = \Phi_2 S_\Gamma,\quad \Phi_2 = \int d\Phi_2 = \frac{2^{-3+2\epsilon}\pi^{-1+\epsilon}\Gamma(1-\epsilon)}{\Gamma(2-2\epsilon)}\!\left(q^2\right)^{-\epsilon}.
 \end{equation}
 
 \section{$A$-Type Integrals of the $A_2^2$ Set}\label{sec:MIA22}
@@ -196,8 +196,7 @@ argument,
 
 \section{$V$-Type Integrals of the $A_3^1$ Set}\label{sec:MIA31}
 
-The integration of the $A_3^1$ antenna set involves both the one-loop integration and
-the integration over the $1\to3$ antenna phase space. After applying the IBP reduction
+The integration of the $A_3^1$ antenna set combines a one-loop integral with the integration over the $1\to3$ antenna phase space. After applying the IBP reduction
 described in Chapter~\ref{ch:packageframework}, the leading- and subleading-colour
 contributions are expressed in terms of the master integrals $V_{5,a}$, $V_{5,b}$, and
 $V_8$. These integrals therefore combine loop propagators with the three-particle
@@ -277,11 +276,11 @@ three-particle phase space. It is defined as \cite{Gehrmann-DeRidder:2005btv},
             &= \operatorname{Re}\!\left[-i\int d\Phi_3\,\frac1{s_{12}}\operatorname{Box}(s_{13}, s_{23}, s_{12})\right].
     \end{split}
 \end{equation}
-The loop integral in this definition is a massless scalar box integral. Using the scalar
+The loop integral in this definition, denoted $\operatorname{Box}$, is a massless scalar box integral. Using the scalar
 one-loop conventions introduced in Subsubsection~\ref{subsubsec:D0}, it may be written in
 terms of the $D_0$ function as
 \begin{equation}
-    V_8 = \left(\frac{(4\pi)^\epsilon\mu^{-2\epsilon}}{16\pi^2}\right)\frac{\Gamma^2(1-\epsilon)\Gamma(1+\epsilon)}{\Gamma(1-2\epsilon)}\int d\Phi_3\,\frac1{s_{12}}\operatorname{Re}\Big[D_0\!\left(0,0,0,q^2;s_{13},s_{23};0,0,0,0\right)\Big].
+    V_8 = \left(\frac{(4\pi)^\epsilon\mu^{-2\epsilon}}{16\pi^2}\right)\frac{\Gamma^2(1-\epsilon)\Gamma(1+\epsilon)}{\Gamma(1-2\epsilon)}\int d\Phi_3\,\frac1{s_{12}}\operatorname{Re}\Big[D_0\!\left(0,0,0;q^2,s_{13},s_{23};0,0,0,0\right)\Big].
 \end{equation}
 Unlike $V_{5,a}$, the scalar box depends explicitly on the phase-space invariants $s_{12}$,
 $s_{13}$, and $s_{23}$. The loop integral therefore cannot be factorised from the
@@ -320,7 +319,7 @@ constraint imposed by the four-particle Gram determinant $\Delta_4$. This gives
     R_4 = (2\pi)^{4-3d}\!\left(q^2\right)^{\frac{2-d}{2}}2^{1-2d}\int d\mathcal S_4d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}\,(-\Delta_4)^{\frac{d-5}{2}}\Theta(-\Delta_4)\delta\!\left(q^2-\mathcal S_4\right).
 \end{equation}
 To evaluate $R_4$, the four-particle phase space is factorised into a two-particle phase space
-and a tripole phase-space factor,
+and a tripole phase-space factor (the phase space of the unresolved partons clustered onto the radiator, relative to the spectator),
 \begin{equation*}
     d\Phi_4=d\Phi_2\,d\Phi_T,
 \end{equation*}
@@ -344,12 +343,12 @@ variables $y_{134},z_1,t,v,\chi$, including the corresponding Jacobian, maps the
 integration region onto the unit hypercube $[0,1]^5$ and the master integral becomes
 \begin{equation}
     \begin{split}
-        R_4 = P_2\frac{16^{-2}\pi^{-5+2\epsilon}}{\Gamma(1-2\epsilon)}\!\left(q^2\right)^{2-2\epsilon}\int_{[0,1]^5}dy_{134}dz_1dtdv&d\chi\,\Big[y_{134}(1-y_{134})(1-z_1)\Big]^{1-2\epsilon}\\
+        R_4 = \Phi_2\frac{16^{-2}\pi^{-5+2\epsilon}}{\Gamma(1-2\epsilon)}\!\left(q^2\right)^{2-2\epsilon}\int_{[0,1]^5}dy_{134}dz_1dtdv&d\chi\,\Big[y_{134}(1-y_{134})(1-z_1)\Big]^{1-2\epsilon}\\
                                                                                                                                                   &\Big[z_1t(1-t)v(1-v)\Big]^{-\epsilon}\Big[\chi(1-\chi)\Big]^{-\frac12-\epsilon}.
     \end{split}
 \end{equation}
 A useful feature of this parametrisation is that the dependence on the five integration
-variables factorises into powers of $x$ and $1-x$. Each integration can therefore be evaluated
+variables factorises into powers of each variable and its complement. Each integration can therefore be evaluated
 using the Euler Beta function,
 \begin{equation*}
     \int_0^1 dx\,x^{a-1}(1-x)^{b-1}=B(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}.
@@ -358,7 +357,7 @@ Performing these integrations and simplifying the resulting Gamma functions give
 \cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276},
 \begin{equation}
     \begin{split}
-        R_4 &= P_2\!\left(q^2\right)^{2-2\epsilon}\frac{2^{-11+8\epsilon}\pi^{-\frac72+2\epsilon}\Gamma^3(1-\epsilon)}{\Gamma(3-3\epsilon)\Gamma\!\left(\frac52-2\epsilon\right)}\\
+        R_4 &= \Phi_2\!\left(q^2\right)^{2-2\epsilon}\frac{2^{-11+8\epsilon}\pi^{-\frac72+2\epsilon}\Gamma^3(1-\epsilon)}{\Gamma(3-3\epsilon)\Gamma\!\left(\frac52-2\epsilon\right)}\\
             &= S_{\Gamma,2}\!\left(q^2\right)^{2-2\epsilon}\frac{\Gamma^5(1-\epsilon)\Gamma(2-2\epsilon)}{\Gamma(3-3\epsilon)\Gamma(4-4\epsilon)}\\
             &= S_{\Gamma,2}\!\left(q^2\right)^{2-2\epsilon}\Bigg[\frac1{12}+\frac{59}{72}\epsilon+\mathcal O\!\left(\epsilon^2\right)\Bigg].
     \end{split}
@@ -387,7 +386,7 @@ integral $I_6$ admits cuts that can be expressed in terms of the four-particle p
 integral $R_6$ and the lower-multiplicity contribution involving the two-loop integral $A_4$.
 With the conventions of Ref.~\cite{GehrmannDeRidder0311276}, this relation reads
 \begin{equation}
-    2\operatorname{Im}I_6 = -2P_2\operatorname{Re}A_4 + 2R_6.
+    2\operatorname{Im}I_6 = -2\Phi_2\operatorname{Re}A_4 + 2R_6.
 \end{equation}
 The required expressions for $I_6$ and $A_4$ are known analytically
 \cite{GehrmannDeRidder0311276}. In the conventions adopted here, they are
@@ -434,7 +433,7 @@ containing four invariant denominators. It is defined as \cite{GehrmannDeRidder0
         R_{8,a} &= \int d\Phi_4\,\frac1{s_{13}s_{23}s_{14}s_{24}}\\
                 &= (2\pi)^{4-3d}\!\left(q^2\right)^{\frac{2-d}{2}}2^{1-2d}\int d\mathcal S_4d\Omega_{d-1}d\Omega_{d-2}d\Omega_{d-3}\frac{(-\Delta_4)^{\frac{d-5}{2}}}{s_{13}s_{23}s_{14}s_{24}}\Theta(-\Delta_4)\,\delta\!\left(q^2-\mathcal S_4\right)\\
                 &   \begin{split}
-                        = P_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{16^{-2+\epsilon}\pi^{-5+2\epsilon}}{\Gamma(1-2\epsilon)}\int_{[0,1]^5} dy_{134}dz_1dtdvd\chi\\
+                        = \Phi_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{16^{-2+\epsilon}\pi^{-5+2\epsilon}}{\Gamma(1-2\epsilon)}\int_{[0,1]^5} dy_{134}dz_1dtdvd\chi\\
                                                               &\Big[(1-y_{134})(1-z_1)\Big]^{-1-2\epsilon}\Big[tvz_1^{-\epsilon}(\Delta y_{13}\chi+y_{13,a})\Big]^{-1}\Big[\chi(1-\chi)\Big]^{-\frac12-\epsilon}.
                     \end{split}
     \end{split}
@@ -482,7 +481,7 @@ Substituting this expression into the phase-space integral eliminates $\chi$ and
 $R_{8,a}$ to a four-dimensional integral,
 \begin{equation}
     \begin{split}
-        R_{8,a} = P_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{16^{-2+\epsilon}\pi^{-4+2\epsilon}}{\Gamma^2(1-\epsilon)}\int_{[0,1]^4}dy_{134}dz_1dtdv\,\Big[y_{134}(1-y_{134})z_1(1-z_1)\Big]^{-1-2\epsilon}\\
+        R_{8,a} = \Phi_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{16^{-2+\epsilon}\pi^{-4+2\epsilon}}{\Gamma^2(1-\epsilon)}\int_{[0,1]^4}dy_{134}dz_1dtdv\,\Big[y_{134}(1-y_{134})z_1(1-z_1)\Big]^{-1-2\epsilon}\\
                                                       &\Big[t(1-t)v(1-v)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,1+\epsilon;1-\epsilon;\frac{z_1tv}{(1-t)(1-v)}\right).
     \end{split}
 \end{equation}
@@ -501,7 +500,7 @@ After substituting $I_v$, the $y_{134}$ dependence factorises and can be integra
 leaving a two-dimensional integral over $z_1$ and $t$,
 \begin{equation}
     \begin{split}
-        R_{8,a} = -P_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{2^{-7+8\epsilon}\pi^{-\frac72+2\epsilon}}{\epsilon^2\Gamma\!\left(\frac12-2\epsilon\right)}\int_{[0,1]^2}dz_1dt\,(1-z_1)^{-1-2\epsilon}\\
+        R_{8,a} = -\Phi_2\!\left(q^2\right)^{-2-2\epsilon}&\frac{2^{-7+8\epsilon}\pi^{-\frac72+2\epsilon}}{\epsilon^2\Gamma\!\left(\frac12-2\epsilon\right)}\int_{[0,1]^2}dz_1dt\,(1-z_1)^{-1-2\epsilon}\\
                                                        &\Big[z_1t(1-t)\Big]^{-1-\epsilon}{}_2F_1\!\left(1,-\epsilon;1-\epsilon;-\frac{z_1t}{1-t}\right).
     \end{split}
 \end{equation}
@@ -517,7 +516,7 @@ integrations can then be performed sequentially. After simplifying the resulting
 generalised hypergeometric functions, one obtains,
 \begin{equation}
     \begin{split}
-        R_{8,a} = P_2\!\left(q^2\right)^{-2-2\epsilon}&2^{-7+4\epsilon}\pi^{-3+2\epsilon}\csc(\pi\epsilon)\Gamma(-2\epsilon)\Bigg[\frac{2^{8\epsilon}\pi}{\epsilon^2\Gamma^2\!\left(\frac12-2\epsilon\right)}{}_3F_2\!\left(\begin{array}{c} -2\epsilon, -2\epsilon, -2\epsilon \\ 1-2\epsilon, -4\epsilon \end{array};1\right)\\
+        R_{8,a} = \Phi_2\!\left(q^2\right)^{-2-2\epsilon}&2^{-7+4\epsilon}\pi^{-3+2\epsilon}\csc(\pi\epsilon)\Gamma(-2\epsilon)\Bigg[\frac{2^{8\epsilon}\pi}{\epsilon^2\Gamma^2\!\left(\frac12-2\epsilon\right)}{}_3F_2\!\left(\begin{array}{c} -2\epsilon, -2\epsilon, -2\epsilon \\ 1-2\epsilon, -4\epsilon \end{array};1\right)\\
                                                       &-\frac{2\Gamma^3(-\epsilon)}{\Gamma(1-4\epsilon)\Gamma(1-\epsilon)\Gamma(1+\epsilon)\Gamma(-3\epsilon)}{}_4F_3\!\left(\begin{array}{c} 1, -\epsilon, -\epsilon, -\epsilon \\ 1-\epsilon, 1+\epsilon, -3\epsilon \end{array};1\right)\Bigg]
     \end{split}
 \end{equation}
@@ -547,15 +546,16 @@ integral $A_6$, the real--virtual master integral $V_8$, and the two four-partic
 master integrals $R_{8,a}$ and $R_{8,b}$. With the conventions of
 Ref.~\cite{GehrmannDeRidder0311276}, their relation is
 \begin{equation}
-    2\operatorname{Im}I_8 = -2P_2\operatorname{Re}A_6+4\operatorname{Re}V_8+R_{8,a}+4R_{8,b}.
+    2\operatorname{Im}I_8 = -2\Phi_2\operatorname{Re}A_6+4\operatorname{Re}V_8+R_{8,a}+4R_{8,b}.
 \end{equation}
 The required three-loop integral $I_8$ is known analytically
 \cite{GehrmannDeRidder0311276}, while $A_6$ and $V_8$ were introduced previously in
 Sections~\ref{sec:MIA22} and~\ref{sec:MIA31}, respectively. Their relevant expressions
 are
 \begin{equation}
-    I_8 = S + \mathcal O(\epsilon^0),\quad \operatorname{Im}S = -\frac{13\pi^4}{90};
+    I_8 = S + \mathcal O(\epsilon),\quad \operatorname{Im}S = -\frac{13\pi^4}{90},
 \end{equation}
+where $S$ is the $\epsilon^0$ coefficient of $I_8$;
 \begin{equation}
     V_8 = -i\int d\Phi_3\,\frac1{s_{12}}\operatorname{Box}(s_{13}, s_{23}, s_{12});
 \end{equation}
@@ -564,7 +564,7 @@ are
 \end{equation}
 Solving the optical-theorem relation for $R_{8,b}$ gives,
 \begin{equation}
-    R_{8,b}=\frac14\left[2\operatorname{Im}I_8+2P_2\operatorname{Re}A_6-4\operatorname{Re}V_8-R_{8,a}\right].
+    R_{8,b}=\frac14\left[2\operatorname{Im}I_8+2\Phi_2\operatorname{Re}A_6-4\operatorname{Re}V_8-R_{8,a}\right].
 \end{equation}
 Substituting the corresponding $\epsilon$-expansions and rewriting the result in the
 $S_{\Gamma,2}$ normalisation used throughout this section yields \cite{GehrmannDeRidder0311276},

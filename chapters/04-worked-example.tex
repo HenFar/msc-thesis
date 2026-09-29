@@ -3,10 +3,10 @@
 
 \iffalse
 As discussed in Chapter~\ref{ch:packageframework}, \textit{AntCalc} makes use of
-two reduction methods, Passarino-Veltman reduction and integration-by-parts
+two reduction methods, Passarino--Veltman reduction and integration-by-parts
 reduction. Both of those methods reduce a larger loop-momentum or phase-space
 integral into a linear combination of smaller and often less complex master integrals,
-as discussed in Subsection~\ref{subsec:MIs}\footnote{The Passarino-Veltman MI are most commonly
+as discussed in Subsection~\ref{subsec:MIs}\footnote{The Passarino--Veltman MI are most commonly
 referred to as \textit{scalar functions}, instead of \textit{master integrals}.
 They are, in effect, still master integrals, however, and the moniker will be kept
 throughout the rest of the present text \cite{TM_JoanaReis}.}.
@@ -35,7 +35,7 @@ The tree-level three-parton antenna $A_3^0$ is used first as a detailed example 
 calculation. It is derived analytically and subsequently reproduced with \textit{AntCalc}, allowing
 the intermediate and final results to be compared directly. Its infrared behaviour is then validated
 locally by taking the relevant soft and collinear limits and recovering the corresponding eikonal
-factor and Altarelli-Parisi splitting functions. This example therefore provides both a transparent
+factor and Altarelli--Parisi splitting functions. This example therefore provides both a transparent
 derivation of an antenna function and a detailed illustration of the calculation implemented in
 \textit{AntCalc}.
 
@@ -66,8 +66,8 @@ $A_3^0$ antenna. This example is treated separately from the massless antenna se
 illustrate the modifications introduced by a non-zero quark mass.
 
 \iffalse
-Both Passarino-Veltman and IBP MI are shown in the table, but they are quite different in structure
-and integration processes and will be discussed separately. The Passarino-Veltman MI are $B_0$, $C_0$,
+Both Passarino--Veltman and IBP MI are shown in the table, but they are quite different in structure
+and integration processes and will be discussed separately. The Passarino--Veltman MI are $B_0$, $C_0$,
 and $D_0$. All others are IBP MI.
 
 
@@ -82,8 +82,8 @@ antenna functions they are used with. This division goes as,
 \fi
 
 As described in Chapter~\ref{ch:packageframework}, \textit{AntCalc} employs two distinct
-reduction techniques at different stages of the calculation: Passarino-Veltman reduction and
-integration-by-parts (IBP) reduction. Passarino-Veltman reduction is used for the relevant one-loop
+reduction techniques at different stages of the calculation: Passarino--Veltman reduction and
+integration-by-parts (IBP) reduction. Passarino--Veltman reduction is used for the relevant one-loop
 amplitudes to reduce tensor loop integrals to scalar one-loop integrals, allowing the unintegrated
 antenna functions to be expressed in terms of the external kinematic invariants. IBP identities are
 instead used in the analytic integration of the antenna functions to reduce the resulting integral
@@ -91,7 +91,7 @@ families to a basis of master integrals. The two-loop $A_2^2$ set is the excepti
 are reduced by IBP identities when the antenna is built, and the subsequent two-particle phase-space
 integration is trivial (Section~\ref{subsec:A22}).
 
-Since Passarino-Veltman reduction is required only for the one-loop tensor reduction and does not
+Since Passarino--Veltman reduction is required only for the one-loop tensor reduction and does not
 constitute the main focus of the integrations presented here, its implementation and the
 corresponding scalar one-loop integrals are discussed separately in
 Appendix~\ref{subsec:PaVe}. The remainder of this chapter therefore focuses on the antenna functions and
@@ -101,7 +101,7 @@ Following the IBP reduction, \textit{LiteRed2} represents the master integrals u
 $j[\ldots]$ notation, in which the arguments specify the corresponding integral within a given
 integral family. \textit{AntCalc} retains this notation in its direct reduction output. For the
 presentation of the results in this chapter, these internal labels are replaced by the conventional
-symbols used for the corresponding master integrals, such as $A_3$, $A_4$, and $R_3$, etc. The
+symbols used for the corresponding master integrals, such as $A_3$, $A_4$, and $R_3$. The
 mapping between the \textit{LiteRed2} representation and the master-integral notation adopted here
 is given in Appendix~\ref{sec:MISubsArrays}.
 
@@ -577,7 +577,7 @@ through its soft and collinear limits.
 To be usable as a subtraction term, an antenna function's unintegrated form must also
 reproduce the singular behaviour of the corresponding matrix element locally in phase 
 space. In particular, $A_3^0$ must reproduce the universal eikonal factor when the gluon 
-becomes soft and the Altarelli-Parisi (AP) splitting function in the relevant collinear limits. 
+becomes soft and the Altarelli--Parisi (AP) splitting function in the relevant collinear limits. 
 These two quantities provide local validation of the results obtained analytically
 and using \textit{AntCalc}. 
 
@@ -669,7 +669,7 @@ The $A_2^1$ antenna is obtained from the one-loop virtual correction to the two-
 $\gamma^*\to q\bar q$, whose contributing Feynman diagram is shown in Fig.~\ref{fig:diagA21}.
 Unlike the tree-level $A_3^0$ antenna considered above, its construction involves one-loop tensor
 integrals. As described in Chapter~\ref{ch:packageframework}, \textit{AntCalc} applies
-Passarino-Veltman reduction to express these tensor integrals in terms of scalar one-loop functions.
+Passarino--Veltman reduction to express these tensor integrals in terms of scalar one-loop functions.
 For $A_2^1$, the resulting expression involves the massless two-point (bubble) function $B_0$ and
 three-point (triangle) function $C_0$, whose definitions and analytic expressions are given in
 Appendix~\ref{subsec:PaVe}. The unintegrated $A_2^1$ returned by \textit{AntCalc} is,
@@ -788,9 +788,7 @@ with the master integrals substituted,
 \end{mdframed}
 
 where only the leading terms of the bracket are shown. The output is real, with the renormalisation
-scale set to $\mu^2=q^2$. Its prefactor is $1/C(\epsilon,2)$: \texttt{Out[3]} is quoted with the
-normalisation $C(\epsilon,2)$ of Eq.~\eqref{eq:antennaIntegral} already included, which
-\texttt{BuildAntenna} removes.
+scale set to $\mu^2=q^2$. The master combination in \texttt{Out[3]} already carries the normalisation $C(\epsilon,2)$ of Eq.~\eqref{eq:antennaIntegral}, which \texttt{BuildAntenna} removes; this is the origin of the prefactor $1/C(\epsilon,2)$.
 
 The integrated antenna $\mathcal A_2^2$ is subsequently obtained from the definition introduced in
 Chapter~\ref{ch:physicsbackground}, Eqs.~\eqref{eq:antPhaseSpaceFact} and \eqref{eq:antennaIntegral},
@@ -1280,9 +1278,7 @@ corresponding unintegrated leading-colour antenna is constructed in \textit{AntC
 \end{mdframed}
 
 The unintegrated $A_4^0$ antenna contains the single- and double-unresolved limits of the
-$qgg\bar q$ final state. Unlike the one-loop antennae of Section~\ref{sec:A31set}, it contains
-no explicit $1/\epsilon$ poles, since it is constructed entirely from a tree-level matrix
-element. Its infrared poles arise only after integration over the $1\to4$ antenna phase space,
+$qgg\bar q$ final state. Its infrared poles arise only after integration over the $1\to4$ antenna phase space,
 where the integration probes the soft and collinear regions of the four-parton final state. To
 perform this integration analytically, the terms in $A_4^0$ are mapped onto the corresponding
 four-particle phase-space integral family and reduced by IBP identities. The resulting
@@ -1506,7 +1502,7 @@ Accordingly, no higher-order infrared poles are generated upon integration.
 The massless results presented in this chapter demonstrate that, using \textit{AntCalc},
 we are able to build and integrate all quark-antiquark final-final standard-model (SMQCD)
 antenna functions through NNLO. The selected case studies cover tree-level NLO and NNLO,
-one-, and two-loop contributions, showcasing the programme's ability to handle these
+one-, and two-loop contributions, showcasing the package's ability to handle these
 different cases. Due to the size of the unintegrated antennae, some have been
 truncated. The complete results are shown in Appendix~\ref{ap:antExpressions}.
 The resulting integrated antennae agree with the established results.
@@ -1568,9 +1564,7 @@ analytic results in the literature. A change of master-integral basis is therefo
 before the known analytic expressions can be substituted.
 
 Denoting the two masters selected by the IBP reduction by $J_1^{(m_q,0,m_q)}$ and
-$J_2^{(m_q,0,m_q)}$, the corresponding \textit{LiteRed2} representation is, where the complete
-basis, named \texttt{MX30Basis123}, uses the denominators
-$\left\{m_q^2-k_1^2, m_q^2-k_2^2, k_3^2,-s_{13},-s_{23}\right\}$ in that order,
+$J_2^{(m_q,0,m_q)}$, the corresponding \textit{LiteRed2} representation is given below. The complete basis, named \texttt{MX30Basis123}, uses the denominators $\left\{m_q^2-k_1^2, m_q^2-k_2^2, k_3^2,-s_{13},-s_{23}\right\}$ in that order:
 \begin{equation}
     \begin{split}
         &J_1^{(m_q,0,m_q)} = j[\text{MX30Basis123},1,1,1,0,0] = \mathcal N_\text{LiteRed2}\int\text{Cut}\!\left[\frac1{D_1D_2D_3}\right],\\
@@ -1581,13 +1575,13 @@ Here, $\mathcal N_\text{LiteRed2}$ represents the normalisation implicit in the 
 convention used for the family in \textit{LiteRed2}. The \textit{LiteRed2} masters $J_1$ and
 $J_2$ must subsequently be converted to the master-integral basis $I_1$ and $I_2$ used for the
 available analytic expressions. The change of basis follows from the explicit reduction of the
-numerator master $I_2^{(m_q,0,m_q)}$ in the \textit{LiteRed2} family. With the antenna normalised as in
-the massless case, comparing the coefficients of $J_1^{(m_q,0,m_q)}$ and of $J_2^{(m_q,0,m_q)}$ obtained
-from the reduction with the corresponding coefficients of the literature result gives the same overall
-factor, equal to one, independently for each master, before any master-integral values are inserted. The
-overall normalisation of the \textit{LiteRed2} cut integrals was not compared separately with the
-literature phase-space measure, so this factor is established through the coefficient comparison. The
-resulting transformation is,
+numerator master $I_2^{(m_q,0,m_q)}$ in the \textit{LiteRed2} family. The unintegrated massive
+antenna includes the explicit numerator factor of $4$ of Eq.~(3.1) of Ref.~\cite{GehrmannDeRidder:2009fz}.
+Comparing the coefficients of $J_1^{(m_q,0,m_q)}$ and $J_2^{(m_q,0,m_q)}$ obtained from the reduction with
+those of the literature result then fixes an effective map between the two master bases. This match
+checks the combined convention of the antenna and the masters; the normalisation of the
+\textit{LiteRed2} cut-integral measure was not compared independently with the phase-space measure of
+the literature. The resulting transformation is,
 \begin{equation}\label{eq:massiveMasterMap}
     \begin{split}
         &I_1^{(m_q,0,m_q)} = J_1^{(m_q,0,m_q)},\\
@@ -1710,7 +1704,7 @@ Section~\ref{sec:massiveA30} is included separately.
 
 Table~\ref{tab:masterValidation} summarises, for each antenna, the construction and integration method
 together with the corresponding validation evidence. It provides a compact overview of the
-calculations presented in this chapter and distinguishes the fully validated massless antenna set from
+calculations presented in this chapter and distinguishes the massless antenna set from
 the exploratory massive extension.
 
 {\footnotesize
@@ -1731,8 +1725,8 @@ the exploratory massive extension.
 \endlastfoot
 $A_2^0$: $\gamma^*\to q\bar q$, LO; \texttt{[A,2,0]} & Self-interference, Born-normalised reference. Trivial (reference, $A_2^0\equiv1$). & --- (reference normalisation) & Local: not applicable. Global: LO normalisation of the $R$-ratio. & By construction \\ \hline
 $A_3^0$: $\gamma^*\to qg\bar q$, NLO real; \texttt{[A,3,0]} & Self-interference; colour-coefficient extraction; matched to by-hand derivation. IBP / \textit{LiteRed2}, \texttt{X30} basis; MI: $R_3$. & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Local: eikonal factor and AP splitting function reproduced. Global: feeds $r_\text{NLO}$. & Pass \\ \hline
-$A_2^1$: $\gamma^*\to q\bar q$, NLO virtual; \texttt{[A,2,1]} & Tree--loop interference; Passarino-Veltman-reduced scalar extraction. Passarino-Veltman / \textit{FeynHelpers}; MI: $B_0$, $C_0$. & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Local: not applicable. Global: feeds $r_\text{NLO}$. & Pass \\ \hline
-$A_3^1$ set ($A_3^1$, $\tilde A_3^1$, $\hat A_3^1$): $\gamma^*\to qg\bar q$, NNLO, one loop; \texttt{[A,3,1]} & Tree--loop interference; colour-coefficient extraction (leading/subleading/quark-loop). IBP / \textit{LiteRed2}, \texttt{A31} basis; build-side MI are Passarino-Veltman scalar functions ($B_0,C_0,D_0$, Table~\ref{tab:MI}); integration MI: $V_{5,a}$, $V_{5,b}$, $V_8$. & \cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg} (NNLO) & Local: not performed. Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
+$A_2^1$: $\gamma^*\to q\bar q$, NLO virtual; \texttt{[A,2,1]} & Tree--loop interference; Passarino--Veltman-reduced scalar extraction. Passarino--Veltman / \textit{FeynHelpers}; MI: $B_0$, $C_0$. & \cite{Gehrmann-DeRidder:2005btv} (NLO) & Local: not applicable. Global: feeds $r_\text{NLO}$. & Pass \\ \hline
+$A_3^1$ set ($A_3^1$, $\tilde A_3^1$, $\hat A_3^1$): $\gamma^*\to qg\bar q$, NNLO, one loop; \texttt{[A,3,1]} & Tree--loop interference; colour-coefficient extraction (leading/subleading/quark-loop). IBP / \textit{LiteRed2}, \texttt{A31} basis; build-side MI are Passarino--Veltman scalar functions ($B_0,C_0,D_0$, Table~\ref{tab:MI}); integration MI: $V_{5,a}$, $V_{5,b}$, $V_8$. & \cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg} (NNLO) & Local: not performed. Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
 $A_2^2$ set ($A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$): $\gamma^*\to q\bar q$, NNLO, two loops; \texttt{[A,2,2]} & Two-loop tree interference and one-loop self-interference (two source contributions). IBP / \textit{LiteRed2}, \texttt{A22TwoLoopTree}/\allowbreak\texttt{A22OneLoopSelf} bases; MI: $A_{22,\text{LO}}$, $A_3$, $A_4$ (also $A_6$ for $\tilde A_2^2$). & \cite{Gehrmann-DeRidder:2004ttg} (NNLO; $A_2^2,\tilde A_2^2,\hat A_2^2$), \cite{Jakubcik:2022zdi} (NNLO; $\breve A_2^2$) & Local: not applicable. Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
 $A_4^0$, $\tilde A_4^0$: $\gamma^*\to qgg\bar q$, NNLO, double-real; \texttt{[A,4,0]} & Colour-ordered amplitude; colour-coefficient extraction. IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$ ($A_4^0$); $R_4$, $R_6$, $R_{8,a}$, $R_{8,b}$ ($\tilde A_4^0$). & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Local: both colour components validated: eikonal and AP/spin-correlated splitting functions for the leading term; dipole eikonal and absent $gg$ collinear singularity for the subleading term (Appendix~\ref{sec:localValidationExtra}). Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
 $B_4^0$: $\gamma^*\to q\bar q q^\prime\bar q^\prime$, NNLO; \texttt{[B,4,0]} & Sector self-interference (direct amplitude only). IBP / \textit{LiteRed2}, \texttt{X40} basis; MI: $R_4$, $R_6$. & \cite{Gehrmann-DeRidder:2005btv} (NNLO) & Local: single-collinear ($q^\prime\bar q^\prime\to g$), double-soft, and triple-collinear limits reproduced (Appendix~\ref{subsec:localValidationB40}). Global: feeds $r_\text{NNLO}$. & Pass \\ \hline
@@ -1741,3 +1735,6 @@ Massive $A_3^0$: $\gamma^*\to q(m_q)g\bar q(m_q)$, exploratory; \texttt{[A,3,0,\
 \end{longtable}
 \end{center}
 }
+
+The complete massless antenna set is globally validated in Chapter~\ref{ch:validation} through the cancellation of all infrared poles and the reproduction of the known NNLO hadronic $R$-ratio result. Further work may complement this global validation with a systematic study of all the double-unresolved limits of the four-parton antennae, the one-loop single-unresolved limits of the real--virtual antennae, and direct comparisons of the loop pole structure with universal infrared factorisation formulae~\cite{Catani:1998bh}.
+

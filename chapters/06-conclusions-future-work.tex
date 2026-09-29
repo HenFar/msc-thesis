@@ -19,9 +19,7 @@ corresponding phase-space and loop integrals to master integrals, using IBP redu
 appropriate, followed by the substitution of their analytic expressions and expansion in the
 dimensional-regularisation parameter $\epsilon$.
 
-The results were subjected to several complementary validation procedures. The unintegrated antenna
-functions were compared with established results in the literature, and their infrared behaviour was
-tested in the appropriate unresolved limits. In particular, the massless $A_3^0$ antenna was used to
+The results were subjected to several complementary validation procedures. The integrated antenna functions were compared with established results in the literature, the four-parton antennae were also compared with explicit unintegrated expressions, and the infrared behaviour of the tree-level antennae was tested in the relevant unresolved limits. In particular, the massless $A_3^0$ antenna was used to
 demonstrate explicitly the recovery of the soft eikonal factor and the relevant Altarelli--Parisi
 splitting functions. At the integrated level, the complete massless antenna set was subjected to the
 global validation presented in Chapter~\ref{ch:validation}. When assembled into the massless hadronic
@@ -70,7 +68,7 @@ processes for which the required subtraction ingredients could be constructed wi
 framework. Similarly, extending the present final--final implementation to initial--final and
 initial--initial kinematics would be necessary for applications involving coloured partons in the
 initial state. In the longer term, the same framework could provide a basis for investigating the
-antenna functions required at perturbative orders beyond NNLO, in particular at N$^3$LO.
+antenna functions required at perturbative orders beyond NNLO, in particular at N$^3$LO. Further work could also complement the global $R$-ratio validation with additional local checks, including the full double-unresolved limits of the four-parton antennae, the one-loop single-unresolved limits of the real--virtual antennae, and comparisons of the loop pole structure with universal infrared factorisation formulae~\cite{Catani:1998bh}.
 
 These extensions would substantially increase the algebraic complexity and computational cost of both
 the construction and integration stages. They therefore also motivate the further development of the
@@ -89,8 +87,8 @@ implementation more modular and to delegate computationally intensive stages to 
 \textit{Python}-based layer could coordinate the workflow, with the process-dependent profiles stored
 in a portable, machine-readable format such as \texttt{JSON}. \textit{FeynArts} and \textit{FeynCalc}
 could continue to provide diagram generation and amplitude manipulation, respectively, while large
-symbolic manipulations could be delegated to \textit{FORM}. Similarly, the IBP-reduction stage could
-be transferred from \textit{LiteRed2} to \textit{Kira}, while \textit{Mathematica} could be retained
+symbolic manipulations could be delegated to \textit{FORM}~\cite{Ruijl:2017dtg}. Similarly, the IBP-reduction stage could
+be transferred from \textit{LiteRed2} to \textit{Kira}~\cite{Klappert:2020nbg}, while \textit{Mathematica} could be retained
 for symbolic operations for which it remains advantageous. The purpose of this restructuring would
 therefore not simply be to improve the performance of calculations that \textit{AntCalc} can already
 perform, but to make the framework sufficiently scalable for the more demanding physics applications

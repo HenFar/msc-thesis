@@ -170,8 +170,7 @@ These diagrams represent the reduced hadronic-current process with $\gamma^*$ as
 off-shell and colourless source. In the full 
 process, $e^+e^-\to\gamma^*\to qg\bar q$, the photon is internal between the 
 lepton (electron-positron) and hadron (quark-antiquark) currents. 
-All other lines are external, meaning that they represent 
-outgoing asymptotic partons, the quarks and gluons. Each of the diagrams features 
+Apart from the single internal quark propagator, the remaining lines are external, meaning that they represent outgoing asymptotic partons, the quarks and gluons. Each of the diagrams features 
 two vertices, where the lines meet. The vertices represent the interactions between 
 the particles, which are determined by their respective Lagrangians. 
 Each diagram contains an electromagnetic $\gamma^*q\bar q$ current insertion and a 
@@ -199,7 +198,7 @@ loop contributions to the amplitude. Both are required at a given perturbative o
 and can develop infrared singularities, which must ultimately cancel in infrared-safe
 physical observables.
 
-The two QCD infrared limits, soft and collinear, can be derived explicitly as follows. We 
+The kinematic conditions for the two QCD infrared limits, soft and collinear, are obtained as follows. We 
 start by defining the physical system under study: consider two massless final-state 
 partons $i$ and $j$ with four-momenta $p_i$ and $p_j$. By momentum conservation, 
 the four-momentum of the internal virtual propagator is $P=p_i+p_j$. The matrix 
@@ -290,7 +289,7 @@ unresolved limits relevant to this thesis are summarised in Table~\ref{tab:limit
         \hline
         Collinear ($q'\bar q'$) & $3_{q'}\parallel4_{\bar q'}$               & $P_{q\bar q\to G}(z)$ \\
         \hline
-        Triple collinear        & $1_q\parallel3_{q'}\parallel4_{\bar q'}$   & $P_{143\to Q}^{\text{non-ident.}}(x,y)$ \\
+        Triple collinear        & $1_q\parallel3_{q'}\parallel4_{\bar q'}$   & $P_{134\to Q}^{\text{non-ident.}}(x,y)$ \\
         \hline
         \multicolumn{3}{|c|}{$(1_q,\,3_q,\,4_{\bar q},\,2_{\bar q})$ --- NNLO real radiation, identical flavour} \\
         \hline
@@ -435,7 +434,7 @@ throughout, which is written as,
 \begin{equation}\label{eq:normN}
     \mathcal N(\epsilon,k)=\frac{C(\epsilon,k)}{\Phi_2},\quad C(\epsilon,k)=\frac{G_k}{S_\epsilon^k}
 \end{equation}
-using the $d$-dimensional two-particle phase-space measure $\Phi_2$. This is the
+using the $d$-dimensional two-particle phase-space volume $\Phi_2$. This is the
 general representation of the work's normalisation convention.
 
 As discussed in Subsection~\ref{subsec:uvDivergences}, ultraviolet divergences are
@@ -467,12 +466,12 @@ up to the desired order.
 At LO, the approximation to the $m$-jet cross section is computed as the integral
 over the appropriate phase space,
 \begin{equation}\label{eq:bornLevel}
-    d\sigma_\text{LO} = \int_m d\sigma^B,\quad d\sigma^B=d\Phi_m(q:p_1,...,p_m)\frac1{S_m}|\mathcal M_m^0(p_1,...,p_m)|^2J_m^{m}(p_1,...,p_m)
+    d\sigma_\text{LO} = \int_m d\sigma^B,\quad d\sigma^B=d\Phi_m(q:p_1,...,p_m)\frac1{S_m}|\mathcal M_m^0(p_1,...,p_m)|^2J_m^{(m)}(p_1,...,p_m)
 \end{equation}
 where $d\sigma^B$ is the tree-level $m$-parton contribution to the $m$-jet cross
 section, built from the squared tree-level $m$-parton amplitude $|\mathcal M_m^0(p_1,...,p_m)|^2$.
 At LO every final-state particle forms its own jet, so the jet function carries
-$m$ jets for $m$ final-state particles, $J_m^m$. $S_m$ is a symmetry factor for
+$m$ jets for $m$ final-state particles, $J_m^{(m)}$. $S_m$ is a symmetry factor for
 identical partons in the final state, and
 $\Phi_m$ is the $m$-parton final-state phase space in $d$ dimensions \cite{Gehrmann-DeRidder:2005btv},
 \begin{equation}
@@ -566,7 +565,7 @@ Fig.~\ref{fig:colourConnectionNLO}.
 
 \input{figures/colour-connection-nlo.tex}
 
-The jet function $J_m^m$ in the antenna subtraction term above does not depend on
+The jet function $J_m^{(m)}$ in the antenna subtraction term above does not depend on
 the individual momenta $p_i$, $p_j$ and $p_k$, but only on $\tilde p_I$ and
 $\tilde p_K$. One can therefore carry out the integration over the unresolved
 antenna phase space appropriate to $p_i$, $p_j$ and $p_k$ analytically, exploiting
@@ -1160,20 +1159,15 @@ integral and therefore vanishes identically in dimensional regularisation, such 
 $\hat A_{3,\text{bare}}^1\equiv0$. The quark-loop ($N_f$) term that appears below 
 originates entirely from the coupling-renormalisation counterterm.
 
-Ultraviolet renormalisation of the one-loop contribution is performed
-according to Eq.~\eqref{eq:alphaRescaling}, yielding
+The same interference can be written with the UV-renormalised antennae (Eq.~\eqref{eq:alphaRescaling}); the $\beta_0$ counterterm, which affects the leading-colour and $N_f$ components, appears explicitly,
 \begin{equation}
     |M_{qg\bar q}^1|^2 = N\!\left(A_{3,\text{ren}}^1+\frac{11}{6\epsilon}A_3^0\right)-\frac1N\tilde A_{3,\text{ren}}^1+N_f\!\left(\hat A_{3,\text{ren}}^1-\frac{1}{3\epsilon}A_3^0\right).
 \end{equation}
-After ultraviolet renormalisation, the three-parton contribution still
-contains the one-loop correction associated with the underlying $q\bar q$
-two-parton configuration. This contribution must therefore be subtracted in
-the definition of the one-loop three-parton antenna, yielding
+The renormalised contribution still contains the one-loop correction of the underlying $q\bar q$ configuration; subtracting it from the leading- and subleading-colour components gives
 \begin{equation}
     |M_{qg\bar q}^1|^2 = N\!\left(A_{3}^1+A_3^0\left(\frac{11}{6\epsilon}+A_2^1\right)\right)-\frac1N\left(\tilde A_{3}^1+A_2^1A_3^0\right)+N_f\!\left(\hat A_{3}^1-\frac{1}{3\epsilon}A_3^0\right)
 \end{equation}
-This procedure defines the final NNLO one-loop antenna set, consisting of
-$A_3^1$, $\tilde A_3^1$, and $\hat A_3^1$.
+The $N_f$ coefficient vanishes, since $\hat A_{3,\text{bare}}^1\equiv0$, while $\hat A_3^1=A_3^0/(3\epsilon)$ is non-zero. This defines the final NNLO one-loop antenna set, consisting of $A_3^1$, $\tilde A_3^1$, and $\hat A_3^1$.
 
 The NNLO two-loop antenna-set contains two distinct terms: the interference
 between the tree-level and two-loop amplitudes, and the squared one-loop
@@ -1729,15 +1723,14 @@ a sampled physical external phase-space point $p$. The loop-level antenna requir
 an MC is ultimately evaluated as a function of the external invariants. Its 
 calculation, however, involves tensor loop integrals with loop-momentum dependence, 
 which must be reduced before the antenna can be evaluated at a sampled phase-space 
-point. This reduction is performed through the Passarino-Veltman reduction
+point. This reduction is performed through the Passarino--Veltman reduction
 mechanism, described in detail in Section~\ref{subsec:PaVe}, which reduces the
 tensor loop integrals to linear combinations of scalar one-loop functions,
-usually denoted by $A_0$, $B_0$, ..., while keeping 
-the phase-space variables and integration untouched, as \cite{Passarino:1979pv},
+usually denoted by $A_0$, $B_0$, ..., while keeping the phase-space variables and integration untouched, as in Ref.~\cite{Passarino:1979pv},
 \begin{equation}\label{eq:PaVeSchematic}
-    \int d^d\ell\, \frac{\ell^{\mu_1}...\ell^{\mu_R}}{\prod_j D_j^{a_j}} \xrightarrow{\text{Passarino-Veltman}} \sum_k c_k\!\left(\{s_{ij}\}\right)\{A_0,B_0,C_0,D_0,...\}_k.
+    \int d^d\ell\, \frac{\ell^{\mu_1}...\ell^{\mu_R}}{\prod_j D_j^{a_j}} \xrightarrow{\text{Passarino--Veltman}} \sum_k c_k\!\left(\{s_{ij}\}\right)\{A_0,B_0,C_0,D_0,...\}_k.
 \end{equation}
-Since the Passarino-Veltman procedure is a one-loop method, the two-loop integrals of the
+Since the Passarino--Veltman procedure is a one-loop method, the two-loop integrals of the
 $A_2^2$ set are instead reduced by IBP identities (Subsection~\ref{subsec:ibp}) to two-loop
 master integrals when the antenna is built.
 
@@ -1864,7 +1857,7 @@ is available in Section~\ref{sec:PhiToCuts}.
 \subsubsection{Laporta Algorithm}
 
 At NLO and NNLO these reduction systems become very complex and their solution ever 
-more time-intensive. The Laporta algorithm is a systematic-elimination method that 
+more time-intensive. The Laporta algorithm is a systematic elimination procedure that 
 uses IBP relations to express more complicated integrals in terms of a smaller set 
 of unreduced ones (master integrals) \cite{Laporta:2000dsw}.
 
@@ -1901,9 +1894,7 @@ in
 Section~\ref{sec:laportaByHand}.
 
 After determining the integral families and sectors present, we apply the IBP 
-identities to the seed integrals. These seed integrals are a part of a finite, bounded set 
-of integrals chosen from each relevant sector, whose 
-IBP identities must be sufficiently numerous to reduce every target integral 
+identities to the seed integrals. The seeds form a finite set of integrals chosen from each relevant sector, whose IBP identities must be sufficiently numerous to reduce every target integral 
 and every non-zero subtopology reached along the way.
 
 After generating IBP identities for the selected seed integrals, any relation 
@@ -1981,7 +1972,7 @@ is parametrised. Angular and energy-fraction integrations typically reduce to
 Beta functions. When a master depends on a non-trivial kinematic variable, such as 
 $x=m^2/q^2$, the most common approach is to differentiate the master with 
 respect to that variable. The derivative produces integrals in the same family,
-which IBP is then able to reduce to the master basis, as \cite{Remiddi:1997ny},
+which IBP is then able to reduce to the master basis, as in Ref.~\cite{Remiddi:1997ny},
 \begin{equation}
     \frac{d}{dx}\vec M(x,\epsilon) = A(x,\epsilon)\vec M(x,\epsilon)
 \end{equation}
@@ -2004,13 +1995,7 @@ The required expansion depth is determined by the reduction coefficient. If
 $c_k\sim\epsilon^{-p}$, the $M_k$ must be expanded through to $\epsilon^{p}$ to obtain
 the finite contribution to $c_kM_k$.
 
-The reduction techniques introduced in this chapter provide the computational tools
-required for the analytic integration of the antenna functions considered in this
-work. In particular, the IBP identities are systematically solved through the
-Laporta algorithm, reducing the phase-space and loop integrals to a finite set of
-master integrals. As described in Chapter~\ref{ch:packageframework}, this reduction
-procedure is implemented within the \textit{AntCalc} workflow and is subsequently
-applied in Chapter~\ref{ch:workedexample} to obtain the integrated antenna functions
-in dimensional regularisation. The resulting Laurent expansions in $\epsilon$ provide
-the explicit infrared pole structure required for their use in higher-order
-subtraction at NLO and NNLO.
+The reduction techniques introduced in this chapter provide the tools
+required for the analytic integration of the antenna functions considered here.
+Implemented in the \textit{AntCalc} workflow (Chapter~\ref{ch:packageframework}), they are
+applied in Chapter~\ref{ch:workedexample} to obtain the integrated antennae as series in $\epsilon$.

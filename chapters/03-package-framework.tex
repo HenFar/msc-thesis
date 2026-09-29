@@ -7,10 +7,10 @@ package created from scratch as part of this thesis work to automate the symboli
 construction and integration of QCD antenna functions. The package provides direct access to
 both unintegrated and integrated antenna functions and implements the computational framework
 described in the previous chapter. The results presented in this thesis were produced with
-\textit{AntCalc}, version 0.3.2$\beta$6, corresponding to commit \texttt{7f19742}.
+\textit{AntCalc}, version 0.3.2$\beta$6, corresponding to commit \texttt{5ae114d}.
 
 \textit{AntCalc} makes use of \textit{FeynCalc} \cite{Feyncalc1,Feyncalc2,Feyncalc3,Feyncalc4}
-for symbolic amplitude manipulation and interfaces with \textit{LiteRed2} \cite{Litered} for
+(with \textit{FeynArts} \cite{Hahn:2000kx} for diagram generation) for symbolic amplitude manipulation and interfaces with \textit{LiteRed2} \cite{Litered,Lee:2013mka} for
 IBP reduction. Both are external dependencies that must be installed by the user prior to
 loading \textit{AntCalc}; the package's own installation procedure only installs the
 \textit{AntCalc} paclet itself.
@@ -24,8 +24,9 @@ are introduced.
 
 The package supports massless and massive antenna routes. All routes were validated against
 the established literature (the trivial Born-normalisation route $A_2^0$ excepted), with all massless routes being validated against
-\cite{Gehrmann-DeRidder:2005btv} except for the two-loop antenna set, which was validated
-against \cite{Gehrmann-DeRidder:2004ttg}. The single massive route results were validated
+\cite{Gehrmann-DeRidder:2005btv} and \cite{Gehrmann-DeRidder:2004ttg}, the latter being the direct
+reference for the two-loop antenna set and also providing channel-level results used as
+cross-checks of assembled sums. The single massive route results were validated
 against \cite{GehrmannDeRidder:2009fz}. All routes are public, and each produces stable and reproducible results notwithstanding the current beta version. The release-acceptance procedure 
 that ensures this is described in Section~\ref{sec:validationDiagnostics}.
 
@@ -36,7 +37,7 @@ that ensures this is described in Section~\ref{sec:validationDiagnostics}.
 \section{Design Philosophy and Scope}\label{sec:philosophy}
 
 \textit{AntCalc} was built to combine the symbolic amplitude capabilities of the 
-FeynCalc environment with the IBP-reduction capabilities of LiteRed2, adapting and 
+\textit{FeynCalc} environment with the IBP-reduction capabilities of \textit{LiteRed2}, adapting and 
 orchestrating the parts of those systems required for the construction and integration
 of QCD antenna functions. 
 
@@ -47,7 +48,7 @@ Though it supports a wide
 variety of options to inspect and configure the backend operations, the default outputs
 of its two central functions are designed to reflect this objective.
 For example, the unintegrated one-loop three-parton antennae $\{A_3^1, \tilde A_3^1, \hat A_3^1\}$ returned by
-\texttt{BuildAntenna[\ldots]} are expressed after Passarino-Veltman reduction, in terms of
+\texttt{BuildAntenna[\ldots]} are expressed after Passarino--Veltman reduction, in terms of
 scalar one-loop functions and the external kinematic invariants, following the conventional
 representation used in the literature \cite{Gehrmann-DeRidder:2005btv}. By default, \texttt{IntegrateAntenna[\ldots]} returns
 the integrated antennae as Laurent series in $\epsilon$, with the truncation order chosen to
@@ -66,15 +67,11 @@ workflows and the route context carries the evolving results and diagnostics bet
 stages.
 Using route profiles and route contexts, as described in Section~\ref{sec:profile},
 facilitates the addition of further modules while reducing duplicated logic and
-direct dependencies. These new modules need not be
-compatible with previously implemented functions through function-specific 
-couplings. They need only conform with the profile system, being selected and 
-configured by route profiles, and accepting inputs from and delivering outputs 
-to the route contexts. 
+direct dependencies. New modules do not need function-specific couplings to previously implemented functions: they interoperate through the shared profile and route-context interface, being selected and configured by route profiles, accepting inputs from and delivering outputs to the route contexts. 
 
 Currently, \textit{AntCalc} is organised by mass scale, into massless and massive routes.
 All massless quark-antiquark final-final antenna functions through NNLO have been made public.
-Alongside these, a single massive route, $A_3^0$, is finalised, validated, and likewise public.
+Alongside these, a single massive route, $A_3^0$, is likewise public; its construction is validated in the soft, collinear, and massless limits (Appendix~\ref{sec:localValidationExtra}).
 This is the first massive antenna of what is expected to be a complete
 expansion of \textit{AntCalc}'s capabilities into the massive regime for quark-antiquark
 final-final antennae.
@@ -94,7 +91,7 @@ The antenna functions currently implemented are summarised in Table~\ref{tab:ant
    NLO & $A_2^1$, $A_3^0$ & \cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg} \\ \hline
    NNLO & $A_3^1$, $\tilde A_3^1$,
    $\hat A_3^1$, $A_4^0$, $\tilde A_4^0$, $B_4^0$, $C_4^0$ & \cite{Gehrmann-DeRidder:2005btv,Gehrmann-DeRidder:2004ttg} \\ \hline
-   NNLO & $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$ & \cite{Gehrmann-DeRidder:2004ttg} \\ \hline
+   NNLO & $A_2^2$, $\tilde A_2^2$, $\hat A_2^2$, $\breve A_2^2$ & \cite{Gehrmann-DeRidder:2004ttg} ($\breve A_2^2$ also \cite{Jakubcik:2022zdi}) \\ \hline
    NLO, massive & $A_3^{0,(m_q)}$ & \cite{GehrmannDeRidder:2009fz} \\ \hline
   \end{tabular}
   
@@ -129,7 +126,7 @@ The principal build-side profile is
 \texttt{AntennaProfile[key]}, which specifies information such as antenna type, 
 multiplicity and loop order, colour normalisation, extraction rules, components, etc.
 \texttt{AntennaReductionProfile[key]} is separate, but still build-side. It specifies 
-the Passarino-Veltman-reduction preferences for the appropriate routes. In this case, up to
+the Passarino--Veltman-reduction preferences for the appropriate routes. In this case, up to
 NNLO, these are the $\{\text A,2,1\}$ and 
 $\{\text A,3,1\}$ loop routes. \texttt{AntennaIntegrationProfile[key]} is the 
 integration-side profile, which specifies its side's backend, IBP basis 
@@ -301,7 +298,7 @@ extraction process.
 
 One-loop routes are dispatched to \texttt{BuildLoopAntennaData} where the primary backend
 reduction method is selected through the nested \texttt{ReductionProfile}, which by default is
-Passarino-Veltman reduction, as described in Section~\ref{subsec:PaVe}.
+Passarino--Veltman reduction, as described in Section~\ref{subsec:PaVe}.
 
 The production method consists of generating the tree-level and one-loop amplitudes, using
 \texttt{TreeAmplitude} and \texttt{MAmpOneLoop}, respectively, and then forming the tree-loop 
@@ -336,11 +333,13 @@ used for $A_2^0$ and $A_3^0$, as discussed in Subsection~\ref{subsec:treeLevelRo
 
 Loop-order-two routes are dispatched to \texttt{BuildTwoLoopAntennaData}. Within the massless
 $q\bar q$ final-final antennae considered up to NNLO, the only two-loop antenna set is $A_2^2$.
-Unlike the one-loop routes, the two-loop source is not reduced with Passarino-Veltman reduction.
-On the build side, the two loop momenta $\ell_1$ and $\ell_2$ are removed directly by IBP reduction
-with \textit{LiteRed2}, and the known analytic expressions of the resulting master integrals are
-substituted, so that the public build result is real and expressed in terms of $\epsilon$ alone,
-with the scale set to $\mu^2=q^2$. Passarino-Veltman reduction enters this route only through the unintegrated
+Unlike the one-loop routes, the two-loop source is not reduced with Passarino--Veltman reduction.
+The two loop momenta $\ell_1$ and $\ell_2$ are removed by IBP reduction with \textit{LiteRed2}: in a
+direct \texttt{BuildAntenna} call this is part of the build, while in the modular
+\texttt{BuildAndIntegrateAntenna} path used in Chapter~\ref{ch:workedexample} it is performed by
+\texttt{IntegrateAntenna}. In either case the known analytic expressions of the resulting master
+integrals are substituted, so that the public build result is real and expressed in terms of $\epsilon$ alone,
+with the scale set to $\mu^2=q^2$. Passarino--Veltman reduction enters this route only through the unintegrated
 $A_2^1$ antenna, which is attached to the leading-colour and quark-loop components as their
 ultraviolet counterterm at the public build boundary described in Section~\ref{sec:buildStage}.
 The four-component set is also not generated like the $A_4^0$ and $A_3^1$ sets were; rather, its
@@ -371,8 +370,7 @@ This route may be schematically represented as shown in Fig.~\ref{fig:a22-build}
 
 \input{figures/a22-build.tex}
 
-The programme reads the profile and generates the two necessary amplitudes, for the
-two separate loops and for the one-loop self-interference case, $\mathcal M_2^{2,[2\times 0]}$
+The package reads the profile and generates the two necessary amplitudes, the tree--two-loop interference and the one-loop self-interference, $\mathcal M_2^{2,[2\times 0]}$
 and $\mathcal M_2^{2,[1\times 1]}$. The former amplitude generates three antenna-set 
 components, while the latter produces only one, but all four are extracted using the 
 same usual method used for tree-level and one-loop antenna functions, applied 
@@ -437,8 +435,7 @@ IntegrateAntenna[AntennaObject]
 \end{lstlisting}
 \end{mdframed}
 
-It is relevant to note that \texttt{IntegrateAntenna} requires the profile to complete its 
-function like \texttt{BuildAntenna}, since it also encodes the relevant routing information 
+As with \texttt{BuildAntenna}, \texttt{IntegrateAntenna} requires a profile, since it also encodes the relevant routing information 
 for the reduction and integration process. 
 
 Unlike the build stage, whose intermediate data are collected in a single route context, the
@@ -470,14 +467,13 @@ of those that share the same topology in the current implementation, share the s
 set. Since IBP reduction acts on the kinematic integral structure and is independent of the colour
 coefficients, the components of a set are reduced separately. \textit{AntCalc} can therefore
 integrate the complete set or a single selected component, avoiding unnecessary reductions.
-The exception to this rule is the $A_2^2$ set, in which different sets are used depending on
-configuration. A diagram of this route's multi-configuration structure is shown in
+The exception to this rule is the $A_2^2$ set, in which the basis-family set depends on which of the two source contributions is being reduced. A diagram of this route's multi-configuration structure is shown in
 Figure~\ref{fig:a22-component-extraction}; comparing it with the upper path of
 Figure~\ref{fig:component-extraction} shows how the $A_2^2$ route differs from the
 single-family routes used for $A_3^1$ and most others.
 
 The $A_2^1$ antenna is also an exception to the use of integral families: its
-loop integrals are reduced directly to scalar one-loop integrals using Passarino-Veltman
+loop integrals are reduced directly to scalar one-loop integrals using Passarino--Veltman
 reduction, whose known analytic expressions are then substituted and expanded as Laurent
 series in $\epsilon$. The integration profiles are summarised in Table~\ref{tab:intModes}.
 
@@ -490,7 +486,7 @@ series in $\epsilon$. The integration profiles are summarised in Table~\ref{tab:
    \hline
    \textbf{Default Backend} & \textbf{Basis-Family Set} & \textbf{Current Route} \\
    \hline
-   Passarino-Veltman / \textit{FeynHelpers} & massless two-parton vertex & $\mathcal A_2^1$ \\ \hline
+   Passarino--Veltman / \textit{FeynHelpers} & massless two-parton vertex & $\mathcal A_2^1$ \\ \hline
    IBP / \textit{LiteRed2} & \texttt{X30} & $\mathcal A_3^0$ \\ \hline
    IBP / \textit{LiteRed2} & \texttt{X40} & $\mathcal A_4^0$, $\tilde{\mathcal A}_4^0$, $\mathcal B_4^0$, $\mathcal C_4^0$ \\ \hline
    IBP / \textit{LiteRed2} & \texttt{A31} & $\mathcal A_3^1$, $\tilde{\mathcal A}_3^1$, $\hat{\mathcal A}_3^1$ \\ \hline
@@ -521,11 +517,11 @@ functions is illustrated through representative examples in Chapter~\ref{ch:work
 
 \subsection{Integration Routes}
 
-\subsubsection{Passarino-Veltman Route}
+\subsubsection{Passarino--Veltman Route}
 
 The $A_2^1$ antenna constitutes a special low-multiplicity virtual case and is the only
 integration route implemented without IBP reduction. As a two-parton one-loop form-factor
-contribution, its loop integrals can be treated directly using Passarino-Veltman reduction,
+contribution, its loop integrals can be treated directly using Passarino--Veltman reduction,
 which reduces the tensor loop integrals to scalar one-loop functions. \textit{AntCalc}
 evaluates these scalar functions analytically using \textit{Package-X} \cite{PackageX} through
 \textit{FeynHelpers} \cite{FeynHelpers}. The required branch and scale conventions are then
@@ -716,7 +712,8 @@ global validation. Called as
 \texttt{BuildRRatio[SMQCD, maxOrder -> \ldots]}\footnote{The label \texttt{SMQCD} is not
 standard in the literature. It is used here to denote the massless QCD sector of the Standard
 Model.}, it generates the $R$-ratio through NNLO and, by default, returns the finite
-coefficient after application of the observable convention bridge. This result has been validated against a
+coefficient after applying the fixed weights of Eq.~\eqref{eq:rNNLO} to the integrated antennae
+($\tfrac12$ for $\tilde{\mathcal A}_4^0$ and $2$ for $\mathcal C_4^0$). This result has been validated against a
 literature reference target, as discussed in Chapter~\ref{ch:validation}.
 
 \iffalse
@@ -870,7 +867,7 @@ Memory usage was measured using \texttt{MaxMemoryUsed[]}, relative to the
 initial kernel baseline. These measurements were taken using a MacBook Pro (Mac16.8), 
 with an Apple M4 Pro 12 core (8 performance and 4 efficiency) CPU, and 24~GB unified 
 RAM, running macOS 26.6.2 (build 25G83), \textit{Wolfram Mathematica} 15.0.0 for Mac 
-OS X ARM (64-bit), and AntCalc 0.3.1$\beta$3.
+OS X ARM (64-bit), and \textit{AntCalc} 0.3.2$\beta$6.
 
 The lower-order routes, up to NLO, complete both stages in approximately one second,
 with the cost increasing substantially for the NNLO routes, in particular $A_2^2$, 

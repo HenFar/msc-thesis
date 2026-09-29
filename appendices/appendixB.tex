@@ -3,8 +3,7 @@
 \section{Feynman Rules}\label{sec:FeynmanRules}
 
 For the massless final-final quark-antiquark antenna functions considered throughout this 
-work, in CDR, with $d=4-2\epsilon$, and using the Feynman gauge $\lambda=1$, the required 
-Feynman rules go as follows.
+work, in CDR, with $d=4-2\epsilon$, and using the Feynman gauge $\lambda=1$, the required Feynman rules are as follows.
 
 An application of these rules is shown in full in Subsection~\ref{sec:matDerivation}.
 
@@ -57,7 +56,7 @@ throughout this work is given in Table~\ref{tab:props} \cite{Ellis:1996mzs,Peski
 \label{tab:props}
 \end{table}
 
-For an external massless quark, 
+For external massless quarks and antiquarks, 
 \begin{equation}
     \sum_s u_s(p)\bar u_s(p) = \slashed p,\quad \sum_sv_s(p)\bar v_s(p) = \slashed p.
 \end{equation}
@@ -157,7 +156,7 @@ Table~\ref{tab:vertices} \cite{Ellis:1996mzs,Peskin:1995ev}.
 \label{tab:vertices}
 \end{table}
 
-\section{Passarino-Veltman Reduction}\label{subsec:PaVe}
+\section{Passarino--Veltman Reduction}\label{subsec:PaVe}
 
 At one loop, amplitudes produce tensor integrals similar
 to those in Eq.~\eqref{eq:PaVeSchematic} \cite{Passarino:1979pv}. With the massless\footnote{
@@ -179,7 +178,7 @@ The reduction is carried out in $d=4-2\epsilon$ dimensions, so that,
     g_{\mu\nu}g^{\mu\nu} = d.
 \end{equation}
 
-Passarino-Veltman reduction removes the Lorentz indices in the numerator 
+Passarino--Veltman reduction removes the Lorentz indices in the numerator 
 $\ell^\mu\ell^\nu\ell^\rho...$ terms and expresses them 
 in terms of external momenta $p_i^\mu$, the metric 
 tensor $g_{\mu\nu}$ and scalar one-loop integrals, through 
@@ -264,11 +263,11 @@ two types can be defined as,
 \end{equation}
 For massless propagators $A_0$ is scaleless and therefore vanishes in dimensional regularisation.
 
-\subsection{Passarino-Veltman Scalar Functions}
+\subsection{Passarino--Veltman Scalar Functions}
 
-As mentioned, only three of the MI considered are Passarino-Veltman scalar functions. Those are 
-$B_0$, $C_0$ and $D_0$ and are the Passarino-Veltman two-, three- and four-point 
-scalar integrals, respectively. The Passarino-Veltman method also features the $A_0$ (one-point)
+As mentioned, only three of the MI considered are Passarino--Veltman scalar functions. Those are 
+$B_0$, $C_0$ and $D_0$ and are the Passarino--Veltman two-, three- and four-point 
+scalar integrals, respectively. The Passarino--Veltman method also features the $A_0$ (one-point)
 scalar function, which does not feature in \textit{AntCalc}. It also accounts for 
 scalar integrals with more than four external legs, as those can be further reduced 
 in four dimensions to combinations of $D_0$ functions \cite{Melrose:1965kb,vanNeerven:1983vr}.
@@ -280,7 +279,7 @@ two internal propagators. It is represented in $d$ dimensions as,
 \begin{equation}
     B_0\!\left(k^2;0,0\right) = \frac{(2\pi\mu)^{4-d}}{i\pi^2}\int d^dp\frac1{\left(p^2+i\varepsilon\right)\Big((p+k)^2+i\varepsilon\Big)}
 \end{equation}
-where $k$ is the external momentum and $\mu$ is the 't~Hooft normalisation scale.
+where $k$ is the external momentum and $\mu$ is the 't~Hooft normalisation scale. This differs from the normalisation used above by an overall factor $(4\pi)^\epsilon$.
 
 It is also noteworthy that this integral, unlike higher-point ones, is UV divergent and 
 generates the pole term $\Delta_B$, 
@@ -300,15 +299,14 @@ yields the explicit analytical form \cite{Passarino:1979pv},
 \subsubsection{The $C_0$ Function}
 
 The $C_0$ function represents a scalar loop with three external lines and three
-internal propagators. It is a common feature in the vertex corrections of 
-electroweak physics. It is written in $d$ dimensions as,
+internal propagators. It is a common feature of one-loop vertex corrections. It is written in $d$ dimensions as,
 \begin{equation}
     \begin{split}
         C_0\!\left(k_1^2,k_2^2,(k_1+k_2)^2;0,0,0\right)=&\,\frac{(2\pi\mu)^{4-d}}{i\pi^2}\\ &\int d^dp\,\frac1{\Big(p^2+i\varepsilon\Big)\Big((p+k_1)^2+i\varepsilon\Big)\Big((p+k_1+k_2)^2+i\varepsilon\Big)}.
     \end{split}
 \end{equation}
 
-This integral is UV finite and may be rewritten as a double integral over the Feynman 
+This integral is UV finite (for massless propagators and external legs it does, however, contain infrared singularities) and may be rewritten as a double integral over the Feynman 
 parameters $x$ and $y$ as,
 \begin{equation}
     C_0\propto\int_0^1dx\int_0^{1-x}dy\,\left[ax^2+by^2+cxy+dx+ey+f\right]^{-1}
@@ -321,13 +319,13 @@ momentum invariants \cite{tHooft:1978xw}.
 The $D_0$ function describes a scalar loop with four external lines and four internal 
 propagators. It is often called the scalar box integral. It is written as,
 \begin{equation}
-    D_0\!\left(k_1^2,k_2^2,k_3^2;k_4^2,(k_1+k_2)^2,(k_2+k_3)^2;0,0,0,0\right)=\frac{(2\pi\mu)^{4-d}}{i\pi^2}\int d^dp\,\frac1{D_0D_1D_2D_3}
+    D_0\!\left(k_1^2,k_2^2,k_3^2;k_4^2,(k_1+k_2)^2,(k_2+k_3)^2;0,0,0,0\right)=\frac{(2\pi\mu)^{4-d}}{i\pi^2}\int d^dp\,\frac1{\mathcal D_0\mathcal D_1\mathcal D_2\mathcal D_3}
 \end{equation}
 with denominator factors,
 \begin{equation}
     \begin{split}
-        &D_0 = p^2+i\varepsilon\\
-        &D_i = \left(p+\sum_{a=1}^ik_a\right)^2+i\varepsilon,
+        &\mathcal D_0 = p^2+i\varepsilon\\
+        &\mathcal D_i = \left(p+\sum_{a=1}^ik_a\right)^2+i\varepsilon,
     \end{split}
 \end{equation}
 with $k_4=-(k_1+k_2+k_3)$.
@@ -341,7 +339,7 @@ expression is expressed in terms of Spence functions (dilogarithms) \cite{tHooft
 
 The method behind IBP reduction, as discussed in Subsection~\ref{subsec:ibp} 
 may be made easier to visualise with an example. Consider a one-loop 
-bubble, akin to that studied via Passarino-Veltman reduction in Section~\ref{subsec:PaVe}. 
+bubble, akin to that studied via Passarino--Veltman reduction in Section~\ref{subsec:PaVe}. 
 Take,
 \begin{equation}
     \mathcal I(a_0,a_1) = \int d^d\ell\,\frac{1}{D_0^{a_0}D_1^{a_1}}
@@ -523,7 +521,7 @@ Antenna integration is computed in the same manner as in the massless regime,
     \mathcal X_n^l\sim\int d\Phi_X\,\left(\prod_{r=1}^l d^d\ell_r\right)X_n^l(\{p\},\{\ell\})\sim\left(q^2\right)^{\lambda+\kappa\epsilon}f\!\left(\left\{\frac{m^2}{q^2}\right\},\epsilon\right).
 \end{equation}
 
-Passarino-Veltman and IBP reduction remain applicable in the massive regime, following the same
+Passarino--Veltman and IBP reduction remain applicable in the massive regime, following the same
 principles introduced for the massless case.
 For IBP reduction, however, the massive case is significantly harder analytically:
 the phase-space is non-trivial and has mass-dependent thresholds; the master
@@ -624,6 +622,8 @@ Much like the $A_3^0$ massless unintegrated antenna was locally validated by com
 (single) collinear limits, so have other antenna functions been validated in that way. In this section 
 we present those validation methods and results.
 
+In addition to the unresolved-limit checks described below, the constructed $A_4^0$, $\widetilde A_4^0$, $B_4^0$, and $C_4^0$ antennae were compared with the explicit $\epsilon\to0$ expressions given in Eqs.~(5.29), (5.30), (5.38), and (5.43) of Ref.~\cite{Gehrmann-DeRidder:2005btv} (v3). Numerical evaluations at randomly chosen kinematic points showed exact agreement. The two-parton antennae $A_2^1$ and $A_2^2$ contain no unresolved final-state radiation and therefore have no corresponding local unresolved limits.
+
 \subsection{$A_4^0$}\label{subsec:localValidationA40}
 
 The leading $A_4^0(1_q,3_g,4_g,2_{\bar q})$ massless antenna component has five relevant limits: two soft limits,
@@ -634,8 +634,7 @@ ordering, as $1\leftrightarrow 2$ and $3\leftrightarrow4$.
 
 \subsubsection{Soft Limit and the Eikonal Factor}
 
-In this limit we set $p_g\to 0$. As mentioned, the limit is symmetric for both gluons. We will be focusing on the 
-soft-$3_g$ here.
+In this limit we set $p_g\to 0$. As mentioned, the limit is symmetric for both gluons. Here we consider the soft-$3_g$ limit.
 
 The limit is thus computed as,
 \begin{equation}
@@ -673,7 +672,7 @@ For the $1_q\parallel 3_g$ limit, the quark and gluon pair recombine into a pare
 \begin{equation}
     p_1=zp_{13},\quad p_3=(1-z)p_{13}
 \end{equation}
-where $z$ is the momentum fraction carried by the original quark. This step makes $s_{13}$ vanish as, $s_{13}\to 0$.
+where $z$ is the momentum fraction carried by the original quark. In this limit, $s_{13}\to 0$.
 
 We now introduce the Mandelstam notation $s_{(13)j}$ to represent the invariant computed from the momenta of the 
 parent quark and some other $j$ particle. The remaining invariants become,
@@ -728,7 +727,7 @@ For the $3_g\parallel 4_g$ limit, the gluon-gluon pair recombine into a parent g
 \begin{equation}
     p_3=zp_{34},\quad p_4=(1-z)p_{34}.
 \end{equation}
-This step makes $s_{34}$ vanish.
+In this limit, $s_{34}\to 0$.
 
 The remaining invariants become,
 \begin{equation}
@@ -795,7 +794,7 @@ but this value is not to be understood as a general result.
 \subsection{$\tilde A_4^0$}\label{subsec:localValidationA40Tilde}
 
 The subleading $\tilde A_4^0(1_q,3_g,4_g,2_{\bar q})$ massless antenna component has the same five
-kinematic regions as the leading term, but their singular structure differs. As seen in
+kinematic regions as the leading term, but the singular structure of each region differs. As seen in
 Subsection~\ref{subsec:antFamilies}, $\tilde A_4^0$ is obtained from the squared sum of both colour
 orderings, $\left|\mathcal M_4^0(1_q,3_g,4_g,2_{\bar q})+\mathcal M_4^0(1_q,4_g,3_g,2_{\bar q})\right|^2$, so its
 gluons are not colour ordered and it must be symmetric under the exchange of the two gluon labels,
@@ -823,7 +822,7 @@ In[1]:= tA40 = BuildAntenna[A,4,0,Component->Subleading];
     \end{equation*}
 \end{mdframed}
 
-All other limits carry the same method as the ones for $A_4^0$.
+All other limits are checked using the same method as for $A_4^0$.
 
 \subsubsection{Soft Limit and the Eikonal Factor}
 
@@ -1154,7 +1153,7 @@ In[1]:= mA30 = BuildAntenna[A,3,0,quarkMass->mQ];
 This is $\mathcal S_{132}(m_q,m_q)$ of the equation above, written over a common denominator.
 
 
-\subsubsection{Collinear Limit and the Altarelli--Parisi Splitting Function}
+\subsubsection{Quasi-Collinear Limit and the Massive Splitting Function}
 
 To compute this limit, we start by replacing,
 \begin{equation}

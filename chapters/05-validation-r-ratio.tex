@@ -57,8 +57,7 @@ normalisation. In this work, these colour-restored, final-state-specific combina
 $T$-objects.
 
 The notation for a $T$-object identifies both the corresponding partonic final state and its
-perturbative order. The subscript specifies the final-state particles, while the superscript denotes
-the perturbative order, with $2$, $4$, and $6$ corresponding to LO, NLO, and NNLO, respectively. The
+perturbative order. The subscript specifies the final-state particles, while the superscript is the total power of couplings ($e$ and $g_s$) in the corresponding squared-amplitude contribution, with $2$, $4$, and $6$ corresponding to LO, NLO, and NNLO, respectively. The
 LO two-parton contribution, associated with the process $\gamma^*\to q\bar q$, provides the common
 normalisation and is given by
 \begin{equation}
@@ -306,7 +305,7 @@ check of both the integrated massless antenna set and its implementation in \tex
 As an additional illustration of the perturbative result obtained above, the \textit{AntCalc}
 prediction for the hadronic $R$-ratio can be compared with the experimental data compiled by the
 Particle Data Group (PDG) \cite{Tanabashi:2018oca}. Figure~\ref{fig:rratioFullDomain} shows this
-comparison over a broad range of centre-of-mass energies. The purpose of this comparison is not to
+comparison over a broad range of centre-of-mass energies. The coupling is $\alpha_s(M_Z)=0.1180$, evolved at two loops with $N_f=3,4,5$ matched at $m_c=1.27$ and $m_b=4.18$~GeV, with $\mu=Q=\sqrt s$; the coefficients use $N_f=3$, $4$, $5$ below 3.73~GeV, up to 10.56~GeV, and above. The purpose of this comparison is not to
 describe the full experimental spectrum. The result derived in this work is a massless fixed-order
 perturbative QCD prediction and therefore does not include several effects that are important in
 specific energy regions. At low energies, the data exhibit pronounced hadronic resonance and
@@ -364,8 +363,4 @@ illustrate the expected limitations of the massless fixed-order approximation.
 Taken together, the cancellation of the infrared poles, the agreement with the independently known
 perturbative $R$-ratio, and the comparison with experimental data provide complementary checks of the
 results obtained in this work. In particular, the first two constitute the principal global validation
-of the complete massless antenna set implemented in \textit{AntCalc} through NNLO. This validation is
-especially important because these antenna functions are intended to serve as building blocks for the
-construction of subtraction terms in NNLO QCD calculations: their successful combination in a physical
-inclusive observable provides a non-trivial test of their relative normalisation, colour structure,
-and integrated infrared behaviour.
+of the complete massless antenna set implemented in \textit{AntCalc} through NNLO. This validation matters because these antenna functions are intended as building blocks for NNLO subtraction terms.
