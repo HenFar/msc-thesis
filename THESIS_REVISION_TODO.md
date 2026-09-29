@@ -70,6 +70,42 @@ Advisor feedback takes priority over everything below where they overlap. This i
 
 ---
 
+### Prof. Pires email — 29 September 2026 (third batch: Fig. 4.6, massive A₃⁰ ¼, Fig. 5.2)
+
+- **Fig. 4.6 (p.62/79 pdf) — DONE (Mine).** C₄⁰ exchange diagrams (c) had g → q q̄' (flavour-violating); (d) had the same problem
+  (g → q' q̄). All external lines of (c),(d) now q, q̄, q, q̄; caption "For identical flavours ($q'=q$)". (a),(b) untouched.
+- **Fig. 5.2 to the top — DONE (Mine).** `[h!]`→`[t]`; now top of printed p.77. Main text still ends p.80.
+- **§4.5.2 massive ¼ — Prof is RIGHT; my 28 Sep note (written at Henrique's request) is wrong and must go.** Grounded:
+  - Gehrmann-De Ridder–Ritzmann (0904.3297, Ref. [25]) Eq. (3.1) = bracket/(E²_cm+2m²_Q) + O(ε), and its own soft limit Eq. (4.8) gives
+    the full eikonal S₁₃₂ → the literature antenna DOES reduce to massless A₃⁰. (pdftotext shows a stray "4" = bracket glyph.)
+  - AntCalc (HEAD 84cfaf2): `MassiveA30ThesisAntenna` applies a hand-set "normalization bridge" (4/9·raw)/((4/3)colourNorm·Born_paper),
+    fitted to the encoded target `MassiveA30UnintegratedPaperConvention` = bracket/(4((1−ε)q²+2m²)) (PrimarySource "TM_Joana_Reis.pdf",
+    Eqs. 5.1.1–5.1.3). That target has an extra ¼ vs the paper. The standard extraction (`PackageExtractedAntenna`) has the right factor
+    (m→0: massless × q²/s₁₂, i.e. only Born at s₁₂ vs q²).
+  - The "derived" cut factor I_paper = J/4 is C_cut = runtime coeff / paper coeff — linear in the build normalisation, so it absorbs
+    the build's ¼ (circular). Scratch-copy test (git archive HEAD, repo untouched): build ×4 and C_cut = 1 → build(m→0) = A₃⁰ exactly;
+    consistency check gives C_cut = 1 from BOTH masters (MatchQ True); integrated (IBP route, shortcut, default call) = paper exactly,
+    identical to base. **So both ¼'s are the same ¼; the fix leaves the integrated result unchanged.**
+  - New build = old display without the 4 in the denominator (new/old = 4 exactly).
+  - **Code fix (not applied to ~/Desktop/AntCalc — Henrique's call):** (1) massive_a30_reconstruction.wl `MassiveA30ThesisAntenna` ×4
+    (better: raw/Born at q² via the standard machinery); (2) massive_a30_integrated.wl `MassiveA30IntegratedCutMeasureFactor[] := 1`;
+    (3) massive_a30_unintegrated.wl encoded target → bracket/((1−ε)q²+2m²) so ThesisExactMatchQ stays True; (4) comments/README/
+    records-and-diagnostics.md "I_paper = j/4" → 1; version bump + reinstall (see antcalc-version-updating).
+  - **Thesis after the fix:** Ch4 §4.5.2 Out[2] drop the 4; replace the ¼ note by "reduces exactly to A₃⁰ of §4.1.1 as m_q→0";
+    Eq. (4.44) eq:massiveMasterMap ¼ → 1 and rewrite the "overall constant factor of 1/4 … fixed before any master values" paragraph;
+    App A massive build drop the 4; Ch3 version citation.
+  - **29 Sep (later): Henrique's agent fixed the code** (restored the numerator 4 of GDR–R Eq. (3.1); the "4" in the extraction was real,
+    net normalisation unchanged). Henrique's run: massive build at m→0 / massless A₃⁰ = 1. Thesis DONE: Ch4 §4.5.2 Out[2] and App A
+    massive build without the 4; the ¼ note replaced by "reduces exactly to the massless A₃⁰ … coincides at ε=0 with Eq. (3.1) of [25]".
+    OPEN: Eq. (4.44) ¼ and the paragraph before it — wait for the integrated check / what the agent set C_cut to. Agent's caveat
+    (agreed): C_cut = 1 is an effective coefficient-comparison result; LiteRed's cut measure vs the literature measure was not compared
+    independently — the thesis must not claim more. Ch3 version citation if bumped.
+  - **29 Sep (latest): integrated check passes** (Henrique, fresh kernel via Get of the repo: integrated/paper = 1.00000000000000;
+    cut factor 1, report {1,1,True}; his earlier 1.475 was a stale installed-paclet session). Eq. (4.44) now I₁ = J₁, I₂ = aJ₁ + bJ₂;
+    preceding paragraph rewritten: common factor 1 from the coefficient comparison with the antenna normalised as in the massless case;
+    LiteRed cut normalisation not compared separately. Build 157 pp, main text ends p.80. **Open:** AntCalc tree is 0.3.2-beta.6,
+    UNCOMMITTED → after Henrique commits (+ reinstall via version_updater.wl), update Ch3 l.10 ("0.3.2β4, commit 6deae58").
+
 ### Prof. Pires email — 28 September 2026 (second email, "final drill": Ch4 p.41 → Ch5 §5.4) — INTAKE ONLY, no .tex edited yet
 
 Grounded against the current source (Ch4, Ch2 §2.4/§2.5, Ch5, App A) and AntCalc docs (`docs/reference/BuildAntenna.md`,

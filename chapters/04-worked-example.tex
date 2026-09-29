@@ -1583,18 +1583,18 @@ $\left\{m_q^2-k_1^2, m_q^2-k_2^2, k_3^2,-s_{13},-s_{23}\right\}$ in that order,
 Here, $\mathcal N_\text{LiteRed2}$ represents the normalisation implicit in the cut-integral
 convention used for the family in \textit{LiteRed2}. The \textit{LiteRed2} masters $J_1$ and
 $J_2$ must subsequently be converted to the master-integral basis $I_1$ and $I_2$ used for the
-available analytic expressions. In addition to the change of basis, the two conventions differ
-by an overall constant factor of $1/4$ between the cut-integral normalisation of
-\textit{LiteRed2} and the phase-space normalisation of the literature masters. This factor multiplies both
-of the relations below and reflects the different normalisation conventions of the two sets of masters
-rather than any physical effect. It is fixed before any master-integral values are inserted: comparing the
-coefficients of $J_1^{(m_q,0,m_q)}$ and of $J_2^{(m_q,0,m_q)}$ obtained from the reduction with the
-corresponding coefficients of the literature result yields the same factor independently for each master.
-The resulting transformation is,
+available analytic expressions. The change of basis follows from the explicit reduction of the
+numerator master $I_2^{(m_q,0,m_q)}$ in the \textit{LiteRed2} family. With the antenna normalised as in
+the massless case, comparing the coefficients of $J_1^{(m_q,0,m_q)}$ and of $J_2^{(m_q,0,m_q)}$ obtained
+from the reduction with the corresponding coefficients of the literature result gives the same overall
+factor, equal to one, independently for each master, before any master-integral values are inserted. The
+overall normalisation of the \textit{LiteRed2} cut integrals was not compared separately with the
+literature phase-space measure, so this factor is established through the coefficient comparison. The
+resulting transformation is,
 \begin{equation}\label{eq:massiveMasterMap}
     \begin{split}
-        &I_1^{(m_q,0,m_q)} = \frac14J_1^{(m_q,0,m_q)},\\
-        &I_2^{(m_q,0,m_q)} = \frac14\!\left(aJ_1^{(m_q,0,m_q)}+bJ_2^{(m_q,0,m_q)}\right).
+        &I_1^{(m_q,0,m_q)} = J_1^{(m_q,0,m_q)},\\
+        &I_2^{(m_q,0,m_q)} = aJ_1^{(m_q,0,m_q)}+bJ_2^{(m_q,0,m_q)}.
     \end{split}
 \end{equation}
 with,
@@ -1654,7 +1654,7 @@ unintegrated antenna is obtained as,
 \texttt{Out[2]:=}
     \begin{equation*}
         \begin{gathered}
-            \frac{1}{4s_{13}^2s_{23}^2\left[2(-2+\epsilon)m_q^2+(-1+\epsilon)(s_{12}+s_{13}+s_{23})\right]}\Big\{-4(-2+\epsilon)m_q^4\left(s_{13}^2+s_{23}^2\right)\\
+            \frac{1}{s_{13}^2s_{23}^2\left[2(-2+\epsilon)m_q^2+(-1+\epsilon)(s_{12}+s_{13}+s_{23})\right]}\Big\{-4(-2+\epsilon)m_q^4\left(s_{13}^2+s_{23}^2\right)\\
             +(-1+\epsilon)s_{13}s_{23}\left[2s_{12}^2-(-1+\epsilon)s_{13}^2-2\epsilon s_{13}s_{23}-(-1+\epsilon)s_{23}^2+2s_{12}(s_{13}+s_{23})\right]\\
             -2m_q^2\Big[s_{12}\left((-1+\epsilon)s_{13}^2-2(-2+\epsilon)s_{13}s_{23}+(-1+\epsilon)s_{23}^2\right)\\
             +(-1+\epsilon)\left(s_{13}^3+s_{13}^2s_{23}+s_{13}s_{23}^2+s_{23}^3\right)\Big]\Big\}
@@ -1663,9 +1663,8 @@ unintegrated antenna is obtained as,
 \end{mdframed}
 
 which is the complete unintegrated antenna, exact in $\epsilon$. In the massless limit $m_q\to0$ it reduces
-to $A_3^0/4$. The primary objective of this route was to reproduce the literature result of
-Ref.~\cite{GehrmannDeRidder:2009fz}, and this overall factor of $1/4$ is the normalisation required for
-consistency with it. The corresponding integrated antenna is
+exactly to the massless $A_3^0$ of Subsection~\ref{sec:matDerivation}, and at $\epsilon=0$ it coincides with
+Eq.~(3.1) of Ref.~\cite{GehrmannDeRidder:2009fz}. The corresponding integrated antenna is
 obtained with,
 
 \begin{mdframed}[backgroundcolor=gray!10, linewidth=0pt]
