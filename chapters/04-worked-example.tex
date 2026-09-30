@@ -55,9 +55,11 @@ master integrals required for the antenna functions considered in this chapter. 
 are defined and evaluated there, organised by antenna family; in this chapter, only $R_3$,
 which is needed for the worked example of Subsection~\ref{sec:matDerivation}, and the massive master
 integrals of Section~\ref{sec:massiveA30} are treated in the main text.
-Evaluating the massless master integrals analytically was a crucial part of this work: they were all
+Evaluating the master integrals analytically was a crucial part of this work: they were all
 derived explicitly, and not merely taken from a source, and their results reproduce the analytic
-expressions known from the literature \cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276}.
+expressions known from the literature \cite{Gehrmann-DeRidder:2005btv,GehrmannDeRidder0311276,GehrmannDeRidder:2009fz}.
+For $R_6$ and $R_{8,b}$ the derivation uses the optical theorem, with the three-loop
+forward-scattering integrals $I_6$ and $I_8$ taken from Ref.~\cite{GehrmannDeRidder0311276}.
 Appendix~\ref{ap:masterIntegrals} presents their definitions and results, and the derivation of
 $R_{8,a}$, the most involved of them, is given step by step as an example of the method.
 
@@ -1578,10 +1580,11 @@ available analytic expressions. The change of basis follows from the explicit re
 numerator master $I_2^{(m_q,0,m_q)}$ in the \textit{LiteRed2} family. The unintegrated massive
 antenna includes the explicit numerator factor of $4$ of Eq.~(3.1) of Ref.~\cite{GehrmannDeRidder:2009fz}.
 Comparing the coefficients of $J_1^{(m_q,0,m_q)}$ and $J_2^{(m_q,0,m_q)}$ obtained from the reduction with
-those of the literature result then fixes an effective map between the two master bases. This match
-checks the combined convention of the antenna and the masters; the normalisation of the
-\textit{LiteRed2} cut-integral measure was not compared independently with the phase-space measure of
-the literature. The resulting transformation is,
+those of the literature result then fixes an effective map between the two master bases. This map is
+verified independently in Section~\ref{sec:MImassive} of Appendix~\ref{ap:masterIntegrals},
+where, with the overall normalisation fixed by $J_1=I_1$, $J_2$ is obtained directly as a mass
+derivative of the phase-space volume. The resulting
+transformation is,
 \begin{equation}\label{eq:massiveMasterMap}
     \begin{split}
         &I_1^{(m_q,0,m_q)} = J_1^{(m_q,0,m_q)},\\
@@ -1623,7 +1626,8 @@ corresponds to the massive antenna phase-space volume, while $I_2$ is its first 
 by the invariant $s_{13}$.
 
 The two master integrals are known analytically \cite{GehrmannDeRidder:2009fz} and can be
-expressed in terms of Gauss hypergeometric functions. Using the threshold variable of
+expressed in terms of Gauss hypergeometric functions. They were re-derived in this work, as shown in
+Section~\ref{sec:MImassive} of Appendix~\ref{ap:masterIntegrals}. Using the threshold variable of
 Eq.~\eqref{eq:thresholdr} they take the form,
 \begin{equation}
     \begin{split}

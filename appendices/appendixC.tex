@@ -6,7 +6,8 @@ the two-loop $A$-type integrals of the $A_2^2$ set, the one-loop phase-space $V$
 $A_3^1$ set, and the four-particle phase-space $R$-type integrals of the four-parton antennae. The
 only massless master integral treated in the main text is $R_3$, which is needed for the worked
 example of Subsection~\ref{sec:matDerivation}, and the massive master integrals are presented together
-with the massive $A_3^0$ antenna in Section~\ref{sec:massiveA30}. The notation for the phase-space
+with the massive $A_3^0$ antenna in Section~\ref{sec:massiveA30}, with their derivation given in
+Section~\ref{sec:MImassive}. The notation for the phase-space
 measures and for the normalisation factors $S_\Gamma$ and $S_{\Gamma,2}$ is collected in
 Section~\ref{sec:MInotation}, and the scalar one-loop functions $B_0$, $C_0$ and $D_0$
 are discussed in Appendix~\ref{subsec:PaVe}. The derivation of $R_{8,a}$, the most involved of the
@@ -31,6 +32,7 @@ the method used for the others.
    $\tilde A_2^2$ & $A_{22,\text{LO}}$, $A_3$, $A_4$, $A_6$ & $A_{22,\text{LO}}$, $A_3$, $A_4, A_6$ \\ \hline
    $\hat A_2^2$ & $A_4$, $B_0^\dagger$, $C_0^\dagger$ & $A_4$ \\ \hline
    $\breve A_2^2$ & $A_{22,\text{LO}}$ & $A_{22,\text{LO}}$ \\ \hline
+   $A_3^{0,(m_q)}$ & -- & $I_1^{(m_q,0,m_q)}$, $I_2^{(m_q,0,m_q)}$ \\ \hline
   \end{tabular}
    
 \label{tab:MI}
@@ -67,8 +69,12 @@ For the four-particle phase space, $\Delta_4$ denotes the Gram determinant, whic
 \end{equation}
 The exponent of $q^2$ in $d\Phi_4$ is fixed by dimensional analysis: a four-particle phase space has mass
 dimension $3d-8$, so, with $\Delta_4$ as defined above, the prefactor must be $\left(q^2\right)^{\frac{2-d}{2}}$,
-as for $d\Phi_3$. Equation~(A.5) of Ref.~\cite{GehrmannDeRidder0311276} prints the exponent $3-\frac d2$,
-which is not consistent with the dimension of $\Delta_4$ as defined here.
+as for $d\Phi_3$. Equation~(A.5) of Ref.~\cite{GehrmannDeRidder0311276} prints the exponent $3-\frac d2$ with the same
+definition of $\Delta_4$. This is a misprint: rescaling all invariants by $q^2$, the exponent
+$\frac{2-d}{2}$ gives a total phase-space volume $\propto\left(q^2\right)^{2-3\epsilon}$, in agreement with
+the four-particle volume $P_4$ quoted in Eq.~(A.10) of the same reference, whereas $3-\frac d2$ would
+give $\left(q^2\right)^{4-3\epsilon}$. A numerical evaluation of the $d=4$ measure above also reproduces the
+normalisation of $P_4$.
 The factor $\Theta(-\Delta_4)$, where $\Theta$ is the Heaviside step function, restricts the integration
 to the physical region of the four-particle phase space. The angular factors in
 Eq.~\eqref{eq:phaseSpaces} are written in terms of $d\Omega_n$, the solid-angle element on the unit
@@ -571,3 +577,92 @@ $S_{\Gamma,2}$ normalisation used throughout this section yields \cite{GehrmannD
 \begin{equation}
     R_{8,b} = S_{\Gamma,2}\!\left(q^2\right)^{-2-2\epsilon}\Bigg[\frac3{4\epsilon^4}-\frac{17\pi^2}{12\epsilon^2}-\frac{44\zeta_3}{\epsilon}-\frac{61\pi^4}{60}+\mathcal O(\epsilon)\Bigg].
 \end{equation}
+
+\section{Massive Integrals of the $A_3^{0,(m_q)}$ Antenna}\label{sec:MImassive}
+
+In this section, we derive the two massive master integrals $I_1^{(m_q,0,m_q)}$ and
+$I_2^{(m_q,0,m_q)}$ used in Subsection~\ref{subsec:massiveMI}. We also check the change of basis
+in Eq.~\eqref{eq:massiveMasterMap} by evaluating the corresponding integrals numerically.
+
+\subsection{Massive Three-Particle Phase Space}
+
+For $\gamma^*(q)\to Q(k_1)\,\bar Q(k_2)\,g(k_3)$ with $k_1^2=k_2^2=m_q^2$ and $k_3^2=0$, the
+three-particle phase space can be written in a form analogous to the massless $d\Phi_3$ of
+Eq.~\eqref{eq:phaseSpaces}. The product $s_{12}s_{13}s_{23}$ is replaced by four times the Gram
+determinant of $\{k_1,k_2,k_3\}$,
+\begin{equation}
+    K = s_{12}s_{13}s_{23}-m_q^2\left(s_{13}^2+s_{23}^2\right),
+\end{equation}
+and $q^2 = s_{12}+s_{13}+s_{23}+2m_q^2$. The measure is then
+\begin{equation}
+    d\Phi_3^{(m_q,0,m_q)} = (2\pi)^{3-2d}2^{-1-d}\!\left(q^2\right)^{\frac{2-d}{2}}K^{\frac{d-4}{2}}\,\Theta(K)\,
+    d\Omega_{d-1}d\Omega_{d-2}\,d\mathcal S_3\,\delta\!\left(q^2-2m_q^2-s_{123}\right).
+\end{equation}
+The equal-mass two-particle phase-space volume is
+\begin{equation}
+    \Phi_2^{(m_q,m_q)} = (2\pi)^{2-d}\,2^{1-d}\,\Omega_{d-1}\left(q^2\right)^{\frac{d-4}{2}}r^{\frac{d-3}{2}},
+\end{equation}
+where $r$ is the threshold variable defined in Eq.~\eqref{eq:thresholdr}. For $m_q=0$, both
+expressions reduce to their massless counterparts.
+
+\subsection{Parametrisation}
+
+To carry out the integration, we use the gluon energy fraction and the heavy-quark angle in the
+$Q\bar Q$ rest frame. Defining
+$u=(s_{13}+s_{23})/q^2\in[0,r]$ and $c\in[-1,1]$,
+\begin{equation}
+    s_{13} = \frac{q^2u}{2}\left(1-\beta_u c\right),\qquad
+    s_{23} = \frac{q^2u}{2}\left(1+\beta_u c\right),\qquad
+    \beta_u = \sqrt{\frac{r-u}{1-u}},
+\end{equation}
+where $\beta_u$ is the heavy-quark velocity in the $Q\bar Q$ rest frame, whose invariant mass is
+$(1-u)q^2$. In these variables the Gram factor and the Jacobian become
+\begin{equation}
+    K = \left(q^2\right)^3\frac{u^2}{4}\,(r-u)\left(1-c^2\right),\qquad
+    ds_{13}\,ds_{23} = \left(q^2\right)^2\frac{u\,\beta_u}{2}\,du\,dc.
+\end{equation}
+The integrand therefore factorises in $u$ and $c$, with the physical integration region given by
+$u\in[0,r]$ and $c\in[-1,1]$.
+
+\subsection{Evaluation}
+
+The angular integral is elementary,
+\begin{equation}
+    \int_{-1}^{1}dc\,\left(1-c^2\right)^{-\epsilon} = \frac{2^{1-2\epsilon}\,\Gamma^2(1-\epsilon)}{\Gamma(2-2\epsilon)}.
+\end{equation}
+The integration over $u$ can be written in the Euler form,
+\begin{equation}
+    \int_0^r du\,u^{\alpha-1}(r-u)^{\gamma-\alpha-1}(1-u)^{-\frac12}
+    = r^{\gamma-1}B(\alpha,\gamma-\alpha)\;{}_2F_1\!\left(\tfrac12,\alpha;\gamma;r\right).
+\end{equation}
+For $I_1$, we have $\alpha=2-2\epsilon$ and $\gamma=\frac72-3\epsilon$. For $I_2$, the additional
+factor $s_{13}$ contributes only its part even in $c$, $q^2u/2$, as the term linear in $c$
+integrates to zero. This gives $\alpha=3-2\epsilon$ and $\gamma=\frac92-3\epsilon$. After collecting
+the prefactors, dividing by $\Phi_2^{(m_q,m_q)}$ and simplifying the Gamma functions, we obtain
+\begin{equation}
+    \begin{split}
+        I_1^{(m_q,0,m_q)} &= \left(q^2\right)^{1-\epsilon}r^{2-2\epsilon}2^{-2\epsilon}\pi^{-2+\epsilon}\frac{\Gamma(2-2\epsilon)\Gamma(3-3\epsilon)}{\Gamma(6-6\epsilon)}\,{}_2F_1\!\left(\tfrac12,2-2\epsilon;\tfrac72-3\epsilon;r\right),\\
+        I_2^{(m_q,0,m_q)} &= \left(q^2\right)^{2-\epsilon}r^{3-2\epsilon}2^{1-2\epsilon}\pi^{-2+\epsilon}\frac{\Gamma(3-2\epsilon)\Gamma(4-3\epsilon)}{\Gamma(8-6\epsilon)}\,{}_2F_1\!\left(\tfrac12,3-2\epsilon;\tfrac92-3\epsilon;r\right),
+    \end{split}
+\end{equation}
+in agreement with Subsection~\ref{subsec:massiveMI} and Ref.~\cite{GehrmannDeRidder:2009fz}.
+In the expression for $I_1$, the factor $r^{2-2\epsilon}$ comes from $r^{\frac52-3\epsilon}$ in the
+Euler integral and $r^{-\frac12+\epsilon}$ in $\Phi_2^{(m_q,m_q)}$. We can also check the massless
+limit: for $r\to1$ and $\epsilon=0$, $I_1\to1/(32\pi^2)$, as expected from the massless ratio
+$R_3/\Phi_2$.
+
+\subsection{Check of the Change of Basis}
+
+The \textit{LiteRed2} master $J_2$ contains a squared massive cut denominator. Using
+$1/D_1^2 = -\partial_{m_1^2}(1/D_1)$ for $D_1=m_1^2-k_1^2$, we can obtain it from $J_1$
+evaluated with unequal masses, $k_1^2=m_1^2$ and $k_2^2=m_q^2$,
+\begin{equation}
+    J_2^{(m_q,0,m_q)} = -\frac{\partial}{\partial m_1^2}\,J_1^{(m_1,0,m_q)}\Big|_{m_1=m_q},
+\end{equation}
+where the unequal-mass Gram factor is $s_{12}s_{13}s_{23}-m_1^2s_{23}^2-m_q^2s_{13}^2$ and the
+normalisation follows from $J_1=I_1$. At fixed $s_{23}$, the $s_{13}$ integration is of
+Beta-function type. We then evaluate the remaining integral and the mass derivative numerically.
+For $m_q^2/q^2\in\{0.05,\,0.15\}$ and $\epsilon\in\{0,\,-0.2\}$, the combination $aJ_1+bJ_2$,
+with $a$ and $b$ defined in Section~\ref{sec:massiveA30}, agrees with the expression for
+$I_2^{(m_q,0,m_q)}$ above to at least 12 significant digits. This provides a direct numerical
+check of the change of basis in Eq.~\eqref{eq:massiveMasterMap}.
