@@ -32,7 +32,7 @@ limites \textit{soft} e colineares relevantes de forma local no espaço de fase.
 subtraídas às contribuições reais, eliminam as singularidades antes da integração 
 numérica. Depois de integradas analiticamente sobre o espaço de fase da radiação 
 não resolvida, originam polos em regularização dimensional que cancelam os polos 
-das contribuições virtuais. O cancelamento destas singularidades permite que as combinações finitas resultantes sejam integradas numericamente em quatro dimensões.
+das contribuições virtuais.
 
 Esta dissertação apresenta o desenvolvimento de \textit{AntCalc}, um pacote simbólico para a 
 construção e integração automatizadas de funções de antena em QCD. O projeto 
@@ -54,8 +54,7 @@ contribuições perturbativas reais e virtuais à mesma ordem. Utiliza-se regula
 dimensional, na qual o número de dimensões
 do espaço-tempo é tomado como \(d=4-2\epsilon\). Neste enquadramento, as divergências
 manifestam-se como polos em \(1/\epsilon\), e as quantidades integradas são expressas por
-séries de Laurent. O cancelamento dos polos pode, assim, ser acompanhado explicitamente 
-ao combinar as diferentes contribuições para uma quantidade física.
+séries de Laurent.
 
 É também apresentada a estrutura das funções de antena e a sua decomposição em cor. 
 As antenas são obtidas a partir de amplitudes físicas normalizadas e organizadas de 
@@ -73,9 +72,7 @@ são então reduzidas, através de identidades de integração por partes (IBP) 
 algoritmo de Laporta, a um conjunto finito de integrais mestres. Em casos adequados, recorre-se também à redução de
 Passarino–Veltman. Uma vez identificados os integrais mestres e substituídas as 
 respetivas expressões conhecidas, obtém-se a forma integrada da antena como uma 
-expansão em \(\epsilon\). O resultado da redução fica, deste modo, expresso num 
-conjunto limitado de integrais mestres, cujas expansões em \(\epsilon\) determinam 
-as partes singular e finita da antena integrada.
+expansão em \(\epsilon\).
 
 O pacote \textit{AntCalc} foi implementado no ambiente \textit{Wolfram Mathematica} e integra 
 ferramentas especializadas para as diferentes fases do cálculo. \textit{FeynArts} é utilizado 
@@ -95,8 +92,7 @@ componentes de cor quando aplicável. Na fase de integração, essa expressão �
 convertida para uma forma apropriada à redução, associada à família de integrais 
 correta e reduzida aos integrais mestres. Finalmente, a substituição dos resultados 
 dos integrais mestres e a expansão em torno de \(\epsilon=0\) produzem a antena 
-integrada. Ao longo deste fluxo são efetuados testes de consistência e apresentados 
-diagnósticos do cálculo.
+integrada.
 
 Como exemplo detalhado, é apresentada a derivação da antena \(A_3^0\), que descreve a
 emissão de um gluão entre um quark e um antiquark sem massa a \textit{tree-level}
@@ -106,18 +102,13 @@ caso ilustra todo o percurso, desde a geração da amplitude até à expressão 
 A validação local da antena é efetuada através dos seus limites infravermelhos. No
 limite \textit{soft}, verifica-se que a expressão reproduz o fator eikonal esperado; nos
 limites colineares, confirma-se a recuperação da função de desdobramento
-(\textit{splitting function}) de Altarelli–Parisi apropriada. A concordância nestes limites constitui uma 
-verificação local da expressão obtida, independente da comparação posterior da 
-antena integrada com resultados da literatura.
+(\textit{splitting function}) de Altarelli–Parisi apropriada.
 
 Para além de \(A_3^0\), \textit{AntCalc} é aplicado a um conjunto de antenas sem massa até NNLO. 
 São obtidas contribuições de dois, três e quatro partões, incluindo os conjuntos 
 \(A_2^2\), \(A_3^1\) e \(A_4^0\), bem como antenas com outras estruturas de cor, tais como 
 \(B_4^0\) e \(C_4^0\). Os resultados não integrados e integrados são comparados com 
-resultados estabelecidos na literatura, verificando-se concordância. A concordância 
-com os resultados publicados verifica, em simultâneo, as convenções de regularização 
-dimensional e normalização, bem como o tratamento da estrutura de cor e do espaço de 
-fase adotado na implementação.
+resultados estabelecidos na literatura, verificando-se concordância.
 
 A validação global é realizada através do cálculo do rácio hadrónico \(R\), no
 limite de quarks sem massa, até NNLO em QCD, isto é, até \(\mathcal{O}(\alpha_s^2)\).
@@ -132,7 +123,6 @@ ser inclusivo, constitui um teste rigoroso da consistência do formalismo: os po
 infravermelhos provenientes das contribuições reais e virtuais devem cancelar
 exatamente. O cálculo do \(R\)-ratio a partir dos objetos integrados produzidos por
 \textit{AntCalc} confirma esse cancelamento e reproduz o resultado finito conhecido até NNLO.
-A reprodução do \(R\)-ratio complementa, deste modo, os testes locais das antenas.
 
 A dissertação explora ainda a extensão ao caso massivo pela construção e integração 
 da antena massiva \(A_3^0\). A presença de quarks massivos nesta antena altera a cinemática, a estrutura

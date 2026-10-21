@@ -1,29 +1,39 @@
+% Cover following the official FCUL template (capa_mestrado_dissertacao_provisoria.odt):
+% Arial Narrow (here: metric-compatible Nimbus Sans Narrow), template sizes and weights,
+% 3 cm side margins, year in the footer. Positions are distances from the top of the page.
+\newcommand{\coverfont}[2]{\fontencoding{T1}\fontfamily{phv}\fontseries{#1}\fontshape{n}\fontsize{#2}{1.285\dimexpr#2\relax}\selectfont\hyphenchar\font=-1 }
+
 \begin{titlepage}
-\centering
-\vspace*{-2cm}
+\begin{tikzpicture}[remember picture,overlay,
+    every node/.style={anchor=center,align=center,inner sep=0pt,text width=425pt}]
+  \def\at#1{($(current page.north)+(0,-#1)$)}
 
-% --- University and faculty ---
-{\Large\textbf{Universidade de Lisboa}}\\[4pt]
-{\Large\textbf{Faculdade de Ciências}}\\[4pt]
-{\large\textbf{Departamento de Física}}\\[3cm]
+  % --- University, faculty and department (12pt, regular, uppercase) ---
+  \node at \at{57pt}  {\coverfont{c}{12pt}UNIVERSIDADE DE LISBOA};
+  \node at \at{78.5pt}{\coverfont{c}{12pt}FACULDADE DE CIÊNCIAS};
+  \node at \at{100pt} {\coverfont{c}{12pt}DEPARTAMENTO DE FÍSICA};
 
-% --- FCUL logo (black) ---
-\includegraphics[width=0.5\textwidth]{figures/logo.png}\\[3cm]
+  % --- FCUL logo (black), 2.75 in wide ---
+  \node at \at{211pt} {\includegraphics[width=2.75in]{figures/fcul_logo_black.png}};
 
-% --- Thesis title ---
-{\LARGE\bfseries Computation of Multi-Particle Phase-Space Integrals and Their Applications in High-Energy Physics}\\[2cm]
+  % --- Thesis title (17pt, bold) ---
+  \node at \at{381.5pt}{\coverfont{bc}{17pt}Computation of Multi-Particle Phase-Space Integrals and Their Applications in High-Energy Physics};
 
-% --- Candidate ---
-{\large\textbf{Henrique Gomes da Cruz Martins Farinha}}\\[2cm]
+  % --- Candidate (15pt, regular) ---
+  \node at \at{510.5pt}{\coverfont{c}{15pt}Henrique Gomes da Cruz Martins Farinha};
 
-% --- Degree and specialisation ---
-{\large Mestrado em Engenharia Física\\\textbf{Versão Provisória}}\\[2cm]
+  % --- Degree (13pt, bold) ---
+  \node at \at{587.5pt}{\coverfont{bc}{13pt}Mestrado em Engenharia Física};
 
-% --- Advisor(s) ---
-{\small Dissertação orientada por:\\Dr. João Nuno Ramalho Gonçalves Pires\\Dr. Jorge Miguel de Brito Almeida Sampaio}\\[2cm]
+  % --- Provisional version (11pt, regular) ---
+  \node at \at{639pt} {\coverfont{c}{11pt}Versão Provisória};
 
-% --- Date ---
-\vfill
-{\large \the\year{}}
+  % --- Advisors (13pt, regular) ---
+  \node at \at{689.5pt}{\coverfont{c}{13pt}Dissertação orientada por:\\
+    Dr.\ João Nuno Ramalho Gonçalves Pires\\
+    Dr.\ Jorge Miguel de Brito Almeida Sampaio};
 
+  % --- Year, in the footer (14pt) ---
+  \node at \at{809pt} {\coverfont{c}{14pt}\the\year};
+\end{tikzpicture}
 \end{titlepage}
